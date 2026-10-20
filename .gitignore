@@ -9,3 +9,10 @@ playwright-report/
 .env.*
 !.env.example
 .DS_Store
+
+# Artefak verifikasi visual: bukti lokal, bukan aset repo (ratusan MB).
+docs/VERIFY_SCENE/
+docs/VERIFY_COUNTRY/
+docs/VERIFY_LANDING/
+docs/research/shots/
+tmp-*
