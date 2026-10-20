@@ -89,22 +89,11 @@
   overflow-x: clip;
   background-color: var(--surface);
   color: var(--ink);
-  animation: country-enter var(--duration-scene) var(--ease-standard) both;
 }
 
 .country--leaving {
   animation: country-exit var(--duration-transition) var(--ease-exit) both;
   pointer-events: none;
-}
-
-@keyframes country-enter {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes country-exit {
@@ -124,7 +113,6 @@
 .country-block__inner {
   width: 100%;
   max-width: 68ch;
-  margin-inline: 0;
   padding-inline: var(--gutter-mobile);
 }
 
@@ -132,6 +120,38 @@
   .country-block__inner {
     max-width: 70ch;
     padding-inline: var(--gutter-desktop);
+  }
+}
+
+/* --- Zona margin kanan (desktop only) ------------------------------------- */
+
+.country-sidebar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .country {
+    display: grid;
+    grid-template-columns: minmax(0, 68ch) minmax(0, 1fr);
+    column-gap: var(--space-8);
+  }
+
+  .country-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline-start: var(--space-4);
+    padding-block-start: calc(var(--space-16) + 48px);
+  }
+
+  .country-block__inner {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .country {
+    grid-template-columns: minmax(0, 68ch) minmax(0, 420px);
   }
 }
 
@@ -230,6 +250,13 @@
   justify-content: flex-end;
   padding: var(--space-12) var(--gutter-mobile) var(--space-6);
   padding-block-start: calc(var(--space-12) + 48px); /* Account for back nav */
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .country-hero {
+    grid-column: 1 / 2;
+  }
 }
 
 .country-hero__accent {
@@ -244,7 +271,6 @@
   position: relative;
   z-index: var(--z-content);
   width: 100%;
-  max-width: 68ch;
   padding-inline-start: var(--space-3);
 }
 
@@ -252,10 +278,6 @@
   .country-hero {
     padding: var(--space-16) var(--gutter-desktop) var(--space-8);
     padding-block-start: calc(var(--space-16) + 48px);
-  }
-
-  .country-hero__inner {
-    max-width: 70ch;
   }
 }
 
@@ -521,16 +543,16 @@
 
 .country-sources__title {
   color: var(--ink-muted);
-  font-size: var(--text-label);
+  font-size: var(--text-body);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-label);
+  line-height: var(--leading-body);
 }
 
 .country-sources__list {
   margin: var(--space-1) 0 0;
   padding-inline-start: var(--space-3);
   color: var(--ink-muted);
-  font-size: 0.75rem;
+  font-size: var(--text-label);
   line-height: 1.6;
 }
 
@@ -554,7 +576,7 @@
   margin-block-start: var(--space-2);
   max-width: 65ch;
   color: var(--ink-muted);
-  font-size: 0.75rem;
+  font-size: var(--text-label);
   line-height: 1.6;
 }
 
@@ -575,6 +597,30 @@
   padding-inline-start: var(--space-2);
   display: grid;
   gap: var(--space-1);
+}
+
+/* --- Siluet negara di zona margin ----------------------------------------- */
+
+.country-silhouette {
+  position: sticky;
+  inset-block-start: calc(var(--space-16) + 48px);
+  width: 100%;
+  max-width: 380px;
+}
+
+.country-silhouette__svg {
+  width: 100%;
+  height: auto;
+  fill: var(--line);
+  opacity: 0.35;
+}
+
+.country-silhouette__label {
+  margin-block-start: var(--space-2);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  text-align: center;
 }
 
 /* --- Negara tidak ditemukan ----------------------------------------------- */
