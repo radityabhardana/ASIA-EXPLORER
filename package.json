@@ -16,6 +16,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "e2e": "playwright test",
+    "model:build": "node scripts/build-model.mjs",
+    "model:verify": "node scripts/verify-model.mjs",
     "verify": "node scripts/verify.mjs"
   },
   "dependencies": {
