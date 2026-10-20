@@ -1,6 +1,23 @@
+import { BrowserRouter } from 'react-router-dom';
+
+import '@/styles/shell.css';
+import ScrollProgressBar from './ScrollProgressBar';
+import { AppRoutes } from './routes';
+
 export const APP_ROOT_ID = 'app-root';
 
-// Routing dan seluruh section landing ditambahkan setelah DESIGN.md v3 selesai.
 export default function App() {
-  return <div id={APP_ROOT_ID} />;
+  return (
+    <div id={APP_ROOT_ID} className="app-shell">
+      <a className="skip-link" href="#konten">
+        Lewati ke konten
+      </a>
+      <ScrollProgressBar />
+      <BrowserRouter>
+        <main id="konten" className="app-main" tabIndex={-1}>
+          <AppRoutes />
+        </main>
+      </BrowserRouter>
+    </div>
+  );
 }
