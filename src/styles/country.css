@@ -118,18 +118,19 @@
 }
 
 .country-block {
-  padding-block: var(--space-6);
+  padding-block: var(--space-4);
 }
 
 .country-block__inner {
   width: 100%;
-  max-width: 800px;
-  margin-inline: auto;
+  max-width: 68ch;
+  margin-inline: 0;
   padding-inline: var(--gutter-mobile);
 }
 
 @media (min-width: 768px) {
   .country-block__inner {
+    max-width: 70ch;
     padding-inline: var(--gutter-desktop);
   }
 }
@@ -226,19 +227,16 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding: var(--space-16) var(--gutter-mobile) var(--space-12);
-  overflow: hidden;
+  justify-content: flex-end;
+  padding: var(--space-12) var(--gutter-mobile) var(--space-6);
+  padding-block-start: calc(var(--space-12) + 48px); /* Account for back nav */
 }
 
 .country-hero__accent {
   position: absolute;
-  inset-block-end: 0;
-  inset-inline-end: 0;
-  width: 8px;
-  height: 40%;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 4px;
   background-color: var(--country-accent);
 }
 
@@ -246,49 +244,58 @@
   position: relative;
   z-index: var(--z-content);
   width: 100%;
-  max-width: 1100px;
-  margin-inline: auto;
-  text-align: center;
+  max-width: 68ch;
+  padding-inline-start: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .country-hero {
+    padding: var(--space-16) var(--gutter-desktop) var(--space-8);
+    padding-block-start: calc(var(--space-16) + 48px);
+  }
+
+  .country-hero__inner {
+    max-width: 70ch;
+  }
 }
 
 .country-hero__local {
   max-width: 100%;
   margin: 0;
   color: var(--ink);
-  font-size: clamp(3rem, 12vw, 8rem);
+  font-size: clamp(2.5rem, 10vw, 6rem);
   line-height: 1.1;
-  text-wrap: balance;
+  text-align: start;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
 .country-hero__local .country-native {
-  display: inline-block;
-  max-width: 100%;
+  display: inline;
 }
 
 .country-hero__name {
-  margin-block-start: var(--space-3);
+  margin-block-start: var(--space-2);
   color: var(--ink);
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: var(--weight-semibold);
   line-height: 1.3;
+  text-align: start;
 }
 
 .country-hero__meta {
-  margin-block-start: var(--space-2);
+  margin-block-start: var(--space-1);
   color: var(--ink-muted);
   font-size: var(--text-label);
   line-height: var(--leading-label);
+  text-align: start;
 }
 
 /* --- Sapaan --------------------------------------------------------------- */
 
 .country-greeting {
-  display: flex;
-  align-items: center;
-  min-height: 320px;
+  padding-block-start: var(--space-6);
 }
 
 .country-greeting .country-block__inner {
@@ -297,7 +304,7 @@
 
 .country-greeting__native {
   color: var(--ink);
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(2rem, 7vw, 4rem);
   line-height: 1.2;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -375,7 +382,7 @@
 /* --- Bahasa dan frasa ----------------------------------------------------- */
 
 .country-language {
-  min-height: 400px;
+  padding-block-start: var(--space-6);
 }
 
 .country-language__name {
@@ -468,12 +475,6 @@
 
 /* --- Budaya dan orang ----------------------------------------------------- */
 
-.country-note {
-  display: flex;
-  align-items: center;
-  min-height: 280px;
-}
-
 .country-note__text {
   margin-block-start: var(--space-2);
   max-width: 65ch;
@@ -483,25 +484,39 @@
 }
 
 .country-separator {
-  width: 100px;
+  width: 100%;
+  max-width: 70ch;
   height: 1px;
-  margin-block: var(--space-3);
-  margin-inline: auto;
+  margin-block: var(--space-4);
+  margin-inline: 0;
   background-color: var(--line);
+}
+
+@media (min-width: 768px) {
+  .country-separator {
+    padding-inline-start: var(--gutter-desktop);
+  }
 }
 
 /* --- Sumber --------------------------------------------------------------- */
 
 .country-sources {
-  padding-block: var(--space-6);
+  padding-block: var(--space-6) var(--space-8);
   border-block-start: 1px solid var(--line);
 }
 
 .country-sources__inner {
   width: 100%;
-  max-width: 800px;
-  margin-inline: auto;
-  padding-inline: var(--space-4);
+  max-width: 68ch;
+  margin-inline: 0;
+  padding-inline: var(--gutter-mobile);
+}
+
+@media (min-width: 768px) {
+  .country-sources__inner {
+    max-width: 70ch;
+    padding-inline: var(--gutter-desktop);
+  }
 }
 
 .country-sources__title {
@@ -591,16 +606,6 @@
 }
 
 /* --- Mobile dan reduced motion -------------------------------------------- */
-
-@media (max-width: 767px) {
-  .country-hero {
-    padding-block-start: var(--space-12);
-  }
-
-  .country-hero__local {
-    font-size: clamp(2.5rem, 14vw, 5rem);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .country,

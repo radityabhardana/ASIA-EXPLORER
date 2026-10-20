@@ -33,15 +33,12 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
         <ol className="country-phrases">
           {phrases.map((phrase, index) => (
             <li className="country-phrases__item" key={`${phrase.native}-${index}`}>
-              <p className="country-phrases__label">Frasa {index + 1}</p>
+              <p className="country-phrases__label">{phrase.id}</p>
               <p className="country-phrases__native">
                 <NativeText profile={profile}>{phrase.native}</NativeText>
               </p>
               {differs(phrase.roman, phrase.native) && (
                 <p className="country-phrases__roman">{phrase.roman}</p>
-              )}
-              {differs(phrase.id, phrase.native) && (
-                <p className="country-phrases__meaning">{phrase.id}</p>
               )}
             </li>
           ))}
