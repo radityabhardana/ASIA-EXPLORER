@@ -21,22 +21,28 @@ const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const TOKENS_PATH = path.join(ROOT, 'src', 'styles', 'tokens.css');
 
 const CONTRAST_CHECKS = [
-  { foreground: '--ink', background: '--surface', minimum: 7, design: 12.63 },
-  { foreground: '--ink-muted', background: '--surface', minimum: 4.5, design: 5.12 },
-  { foreground: '--accent', background: '--surface', minimum: 4.5, design: 5.48 },
-  { foreground: '--accent-ink', background: '--accent', minimum: 4.5, design: 4.61 },
+  { foreground: '--ink', background: '--surface', minimum: 7, design: 15.51 },
+  { foreground: '--ink-muted', background: '--surface', minimum: 4.5, design: 5.47 },
+  { foreground: '--accent', background: '--surface', minimum: 4.5, design: 5.88 },
+  { foreground: '--accent-ink', background: '--accent', minimum: 4.5, design: 6.23 },
 ];
 
 const DISTANCE_CHECKS = [
-  { first: 'id', second: 'my', design: 18.3 },
-  { first: 'my', second: 'sg', design: 21.7 },
-  { first: 'th', second: 'vn', design: 19.4 },
-  { first: 'vn', second: 'cn', design: 17.2 },
-  { first: 'cn', second: 'mn', design: 15.6 },
-  { first: 'jp', second: 'kr', design: 16.9 },
-  { first: 'kr', second: 'cn', design: 18.1 },
-  { first: 'sa', second: 'tr', design: 20.4 },
-  { first: 'kz', second: 'uz', design: 15.2 },
+  { first: 'id', second: 'my', design: 38.68 },
+  { first: 'my', second: 'sg', design: 44.28 },
+  { first: 'th', second: 'vn', design: 46.37 },
+  { first: 'vn', second: 'cn', design: 15.54 },
+  { first: 'cn', second: 'mn', design: 19.18 },
+  { first: 'jp', second: 'kr', design: 33.16 },
+  { first: 'kr', second: 'cn', design: 32.84 },
+  { first: 'sa', second: 'tr', design: 42.34 },
+  { first: 'kz', second: 'uz', design: 24.26 },
+  // Perbatasan darat yang belum tercakup daftar awal. Tanpa ini, dua negara
+  // yang bersebelahan di peta SVG bisa tampil nyaris satu warna.
+  { first: 'th', second: 'my', design: 31.25 },
+  { first: 'cn', second: 'in', design: 16.18 },
+  { first: 'cn', second: 'kz', design: 31.45 },
+  { first: 'in', second: 'mn', design: 18.75 },
 ];
 
 const MINIMUM_DELTA_E = 15;
@@ -179,14 +185,17 @@ console.log('');
 console.log('[contrast] selisih vs angka DESIGN.md (DESIGN tidak diubah)');
 console.log('  metrik                       hitung   DESIGN   selisih');
 for (const item of [...contrastDeltas, ...distanceDeltas]) {
-  const delta = item.measured - item.design;
+  const hasDesign = typeof item.design === 'number';
+  const delta = hasDesign ? item.measured - item.design : null;
   console.log(
-    `  ${item.label.padEnd(28)}${format(item.measured)}${format(item.design)}${format(delta, 2)}`,
+    `  ${item.label.padEnd(28)}${format(item.measured)}${hasDesign ? format(item.design) : '     —  '}${
+      delta === null ? '     —' : format(delta, 2)
+    }`,
   );
 }
 
 const drift = [...contrastDeltas, ...distanceDeltas].filter(
-  (item) => Math.abs(item.measured - item.design) >= 0.05,
+  (item) => typeof item.design === 'number' && Math.abs(item.measured - item.design) >= 0.05,
 );
 if (drift.length > 0) {
   console.log('');

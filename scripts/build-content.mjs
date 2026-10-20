@@ -134,7 +134,24 @@ if (errors.length) {
 }
 
 const ordered = ORDER.map((id) => countries.find((c) => c.id === id))
-await writeFile(OUT, `${JSON.stringify(ordered, null, 2)}\n`, 'utf8')
+const serialized = `${JSON.stringify(ordered, null, 2)}\n`
+
+// `--check` dipakai gate verify: pastikan JSON yang ter-commit memang hasil
+// build dari berkas mentah, tanpa menulis ulang sumber.
+if (process.argv.includes('--check')) {
+  const current = existsSync(OUT) ? (await readFile(OUT, 'utf8')).replace(/\r\n/g, '\n') : ''
+  if (current !== serialized) {
+    console.error(
+      `[content:build] GAGAL: ${path.relative(root, OUT)} tidak sinkron dengan docs/content/raw-*.json`,
+    )
+    console.error('[content:build] jalankan `npm run content:build` lalu commit hasilnya.')
+    process.exit(1)
+  }
+  console.log(`[content:build] OK  ${ordered.length} negara — ${path.relative(root, OUT)} sinkron`)
+  process.exit(0)
+}
+
+await writeFile(OUT, serialized, 'utf8')
 console.log(`[content:build] OK  ${ordered.length} negara -> ${path.relative(root, OUT)}`)
 for (const c of ordered) {
   console.log(

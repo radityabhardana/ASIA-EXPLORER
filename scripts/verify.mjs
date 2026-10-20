@@ -23,6 +23,16 @@ const steps = [
         ? null
         : `${modelPath} belum ada — jalankan \`npm run model:build\` untuk membuatnya`,
   },
+  {
+    name: 'contrast (scripts/check-contrast.mjs)',
+    entry: 'scripts/check-contrast.mjs',
+    args: [],
+  },
+  {
+    name: 'content (scripts/build-content.mjs --check)',
+    entry: 'scripts/build-content.mjs',
+    args: ['--check'],
+  },
 ];
 
 for (const step of steps) {
