@@ -1,0 +1,949 @@
+[
+  {
+    "id": "id",
+    "iso3": "IDN",
+    "nameId": "Indonesia",
+    "nameLocal": "Indonesia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat pagi",
+      "roman": "Selamat pagi",
+      "meaningId": "Sapaan selamat pada pagi hari",
+      "register": "Formal. Dipakai khusus pada pagi hari; siang dan malam memakai 'Selamat siang'/'Selamat malam'. Dalam situasi santai orang memakai 'Halo' atau 'Hai', jadi 'Selamat pagi' bukan sapaan netral serba-waktu."
+    },
+    "language": {
+      "nameId": "Bahasa Indonesia",
+      "nativeName": "Bahasa Indonesia",
+      "script": "Latin (Rumi)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Dibakukan dari bahasa Melayu Johor-Riau; dibina oleh Badan Bahasa."
+    },
+    "phrases": [
+      {
+        "id": "terima kasih",
+        "native": "Terima kasih",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "maaf",
+        "native": "Maaf",
+        "roman": "Maaf"
+      },
+      {
+        "id": "sampai jumpa",
+        "native": "Sampai jumpa",
+        "roman": "Sampai jumpa"
+      }
+    ],
+    "cultureNote": "Indonesia mencatat 718 bahasa daerah dari 2.560 titik pengamatan, terkonsentrasi di Indonesia timur. Bahasa Indonesia menjadi bahasa pemersatu di atas keragaman itu.",
+    "peopleNote": "Sapaan memakai Bapak/Ibu untuk yang lebih tua. Bersalaman dengan tangan kanan disertai anggukan; sebagian orang melakukan salim. Sepatu dilepas saat masuk rumah.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Indonesian_language",
+        "what": "Nama bahasa, status resmi, asal dari bahasa Melayu"
+      },
+      {
+        "url": "https://badanbahasa.kemendikdasmen.go.id/artikel-detail/4540/masa-depan-bahasa-daerah",
+        "what": "718 bahasa daerah dari 2.560 titik pengamatan"
+      },
+      {
+        "url": "https://uiii.ac.id/basic-norms-language",
+        "what": "Sapaan Bapak/Ibu, tangan kanan, 'Selamat pagi'"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Etiquette_in_Indonesia",
+        "what": "Salim, tangan kanan, sepatu dilepas"
+      },
+      {
+        "url": "https://theculturalatlas.org/indonesian-culture/indonesian-culture-etiquette",
+        "what": "Norma sapaan dan interaksi dengan orang tua"
+      }
+    ],
+    "needsVerification": [
+      "Rentang waktu 'Selamat pagi' tidak diambil dari pedoman resmi Badan Bahasa",
+      "KBBI gagal diakses saat riset (DNS), definisi lema tidak dikutip langsung"
+    ]
+  },
+  {
+    "id": "my",
+    "iso3": "MYS",
+    "nameId": "Malaysia",
+    "nameLocal": "Malaysia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat sejahtera",
+      "roman": "Selamat sejahtera",
+      "meaningId": "Salam sejahtera / sapaan hormat",
+      "register": "Formal dan netral secara agama. Lazim sebagai pembuka pidato dan acara resmi; dalam percakapan harian orang lebih sering memakai 'Hai'/'Helo' atau 'Assalamualaikum'."
+    },
+    "language": {
+      "nameId": "Bahasa Melayu",
+      "nativeName": "Bahasa Melayu",
+      "script": "Latin (Rumi) dan Arab (Jawi)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Bahasa kebangsaan menurut Perkara 152; dibina Dewan Bahasa dan Pustaka."
+    },
+    "phrases": [
+      {
+        "id": "terima kasih",
+        "native": "Terima kasih",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "maaf",
+        "native": "Maaf",
+        "roman": "Maaf"
+      },
+      {
+        "id": "selamat tinggal",
+        "native": "Selamat tinggal",
+        "roman": "Selamat tinggal"
+      }
+    ],
+    "cultureNote": "Perkara 152 Perlembagaan Persekutuan menetapkan bahasa Melayu sebagai bahasa kebangsaan, ditulis dalam Rumi dan Jawi. Jawi masih dipakai, terutama untuk warisan dan keagamaan.",
+    "peopleNote": "Bersalaman dengan tangan kanan atau kedua tangan; membongkok sedikit saat melewati orang tua. Sepatu dilepas di rumah. Menunjuk memakai ibu jari, bukan telunjuk.",
+    "depth": "Penjelajahan",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Malay_language",
+        "what": "Nama bahasa, Rumi dan Jawi, rumpun Austronesia, Perkara 152"
+      },
+      {
+        "url": "https://prpm.dbp.gov.my/cari1?keyword=terima%20kasih",
+        "what": "Lema 'terima kasih'"
+      },
+      {
+        "url": "https://prpm.dbp.gov.my/cari1?keyword=maaf",
+        "what": "Lema 'maaf'"
+      },
+      {
+        "url": "https://theculturalatlas.org/malaysian-culture/malaysian-culture-etiquette",
+        "what": "Bersalaman, sepatu dilepas, menunjuk dengan ibu jari"
+      }
+    ],
+    "needsVerification": [
+      "Status 'Selamat sejahtera' sebagai sapaan harian vs pembuka pidato belum terverifikasi dari laman rasmi kerajaan",
+      "PRPM tidak memuat entri kepala 'salam sejahtera' maupun 'selamat tinggal'"
+    ]
+  },
+  {
+    "id": "sg",
+    "iso3": "SGP",
+    "nameId": "Singapura",
+    "nameLocal": "Singapore",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Hello",
+      "roman": "Hello",
+      "meaningId": "Halo",
+      "register": "Bahasa Inggris dipilih karena berstatus bahasa kerja utama dan lingua franca antaretnis. Melayu adalah bahasa kebangsaan tetapi perannya seremonial; Mandarin dan Tamil resmi namun dipakai di dalam komunitas masing-masing."
+    },
+    "language": {
+      "nameId": "Bahasa Inggris",
+      "nativeName": "English",
+      "script": "Latin",
+      "family": "Indo-Eropa (Jermanik)",
+      "note": "Bahasa kerja utama; Melayu bahasa kebangsaan yang seremonial; Mandarin dan Tamil juga resmi."
+    },
+    "phrases": [
+      {
+        "id": "terima kasih",
+        "native": "Thank you",
+        "roman": "Thank you"
+      },
+      {
+        "id": "maaf",
+        "native": "Sorry",
+        "roman": "Sorry"
+      },
+      {
+        "id": "selamat tinggal",
+        "native": "Goodbye",
+        "roman": "Goodbye"
+      }
+    ],
+    "cultureNote": "Budaya hawker Singapura tercatat di Daftar Warisan Budaya Takbenda UNESCO pada 16 Desember 2020. Pusat jajanan menjadi ruang makan bersama lintas kelompok etnis.",
+    "peopleNote": "Sepatu dilepas sebelum masuk rumah. Hadiah diserahkan dengan kedua tangan. Meja hawker ditandai dengan bungkus tisu. Tepat waktu dihargai.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Singapore",
+        "what": "Empat bahasa resmi; Melayu bahasa kebangsaan; Inggris bahasa kerja"
+      },
+      {
+        "url": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+        "what": "Hawker culture inscribed 16 Desember 2020"
+      },
+      {
+        "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-etiquette",
+        "what": "Sepatu, hadiah dua tangan, tisu penanda tempat, ketepatan waktu"
+      }
+    ],
+    "needsVerification": [
+      "Pemilihan 'Hello' adalah keputusan editorial, bukan kutipan satu sumber resmi"
+    ]
+  },
+  {
+    "id": "th",
+    "iso3": "THA",
+    "nameId": "Thailand",
+    "nameLocal": "ประเทศไทย",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "สวัสดี",
+      "roman": "sawatdi",
+      "meaningId": "Halo / salam",
+      "register": "Netral sampai formal. Partikel ครับ (penutur pria) atau ค่ะ (penutur wanita) ditambahkan di akhir kalimat untuk kesopanan."
+    },
+    "language": {
+      "nameId": "Bahasa Thai",
+      "nativeName": "ภาษาไทย",
+      "script": "Aksara Thai",
+      "family": "Kra-Dai",
+      "note": "Bahasa bernada tanpa infleksi; partikel ครับ/ค่ะ menandai kesopanan."
+    },
+    "phrases": [
+      {
+        "id": "terima kasih",
+        "native": "ขอบคุณ",
+        "roman": "khopkhun"
+      },
+      {
+        "id": "maaf",
+        "native": "ขอโทษ",
+        "roman": "kho thot"
+      },
+      {
+        "id": "selamat tinggal",
+        "native": "ลาก่อน",
+        "roman": "la kon"
+      }
+    ],
+    "cultureNote": "Aksara Thai diadaptasi dari aksara Khmer; prasasti Thai tertua berangka 1292 M. Sistem tulis itu masih dipakai hingga kini.",
+    "peopleNote": "Wai dipakai untuk menyapa dan berpamitan; yang lebih muda memulai. Sepatu dilepas di rumah dan wihara. Kepala tidak disentuh; kaki tidak diarahkan ke orang.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Thai_language",
+        "what": "Rumpun Kra-Dai, aksara Thai, prasasti 1292 M, partikel khrap/kha"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/สวัสดี",
+        "what": "Romanisasi Royal Institute"
+      },
+      {
+        "url": "https://thailandfoundation.or.th/wai-the-thai-greeting/",
+        "what": "Wai untuk menyapa dan berpamitan"
+      },
+      {
+        "url": "https://thailand.iom.int/sites/g/files/tmzbdl1371/files/documents/Tips%2520for%2520Migrant%2520Workers%2520on%2520the%2520Culture%2520of%2520Thailand_ENG.pdf",
+        "what": "Sepatu dilepas, tabu kepala dan kaki"
+      }
+    ],
+    "needsVerification": [
+      "Romanisasi RTGS tidak menandai nada"
+    ]
+  },
+  {
+    "id": "vn",
+    "iso3": "VNM",
+    "nameId": "Vietnam",
+    "nameLocal": "Việt Nam",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Xin chào",
+      "roman": "Xin chào",
+      "meaningId": "Halo / salam",
+      "register": "Agak formal. Dalam percakapan harian orang memakai 'chào' saja, sering ditambah kata kekerabatan sesuai usia lawan bicara (anh, chị, em, ông, bà)."
+    },
+    "language": {
+      "nameId": "Bahasa Vietnam",
+      "nativeName": "Tiếng Việt",
+      "script": "Latin (chữ Quốc ngữ)",
+      "family": "Austroasiatik (cabang Vietik)",
+      "note": "Enam nada; ortografi Latin berdiakritik menggantikan chữ Nôm."
+    },
+    "phrases": [
+      {
+        "id": "terima kasih",
+        "native": "Cảm ơn",
+        "roman": "Cảm ơn"
+      },
+      {
+        "id": "maaf",
+        "native": "Xin lỗi",
+        "roman": "Xin lỗi"
+      },
+      {
+        "id": "selamat tinggal",
+        "native": "Tạm biệt",
+        "roman": "Tạm biệt"
+      }
+    ],
+    "cultureNote": "Chữ Quốc ngữ, ortografi Latin berbasis karya misionaris Portugis abad ke-17, menggantikan chữ Nôm dan menjadi tulisan resmi pada awal abad ke-20.",
+    "peopleNote": "Memberi dan menerima dengan dua tangan. Kepala tidak disentuh; benda tidak dioper melewati kepala. Sapaan memakai kata kekerabatan sesuai usia dan status.",
+    "depth": "Penjelajahan",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Vietnamese_language",
+        "what": "Nama bahasa, chữ Quốc ngữ, rumpun Austroasiatik-Vietik"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/xin_chào",
+        "what": "Bentuk formal dan pemakaian harian 'chào' + kata kekerabatan"
+      },
+      {
+        "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-etiquette",
+        "what": "Dua tangan, tabu kepala, deferensi usia"
+      }
+    ],
+    "needsVerification": [
+      "'Tạm biệt' bersifat formal/literer; padanan harian belum ditetapkan"
+    ]
+  },
+  {
+    "id": "ph",
+    "iso3": "PHL",
+    "nameId": "Filipina",
+    "nameLocal": "Pilipinas",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Kumusta",
+      "roman": "Kumusta",
+      "meaningId": "Halo / apa kabar",
+      "register": "netral; bentuk hormat: Kumusta po"
+    },
+    "language": {
+      "nameId": "Bahasa Filipino",
+      "nativeName": "Filipino",
+      "script": "Latin (Alpabetong Filipino, 28 huruf)",
+      "family": "Austronesia (Melayo-Polinesia, Filipina Tengah)",
+      "note": "Nama resmi bahasa nasional; berbasis Tagalog, diperkaya bahasa Filipina lain."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Salamat",
+        "roman": "Salamat"
+      },
+      {
+        "id": "Permisi saat lewat",
+        "native": "Makikiraan po",
+        "roman": "Makikiraan po"
+      },
+      {
+        "id": "Selamat tinggal",
+        "native": "Paalam",
+        "roman": "Paalam"
+      }
+    ],
+    "cultureNote": "Konstitusi 1987 Pasal XIV menetapkan Filipino sebagai bahasa nasional; namanya dipilih karena mencakup unsur bahasa daerah, bukan hanya Tagalog.",
+    "peopleNote": "Sapaan hormat po/opo dipakai kepada orang lebih tua. Pagmamano, mengambil tangan kanan orang tua lalu menyentuh kening, masih lazim. Sepatu dilepas saat masuk rumah.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://kwf.gov.ph/tungkol-sa-kwf/",
+        "what": "Mandat bahasa nasional"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/taga1270",
+        "what": "Klasifikasi Tagalog"
+      },
+      {
+        "url": "https://www.tagalognow.com/learn/mano-po-and-filipino-etiquette/",
+        "what": "Etiket po/opo dan pagmamano"
+      }
+    ],
+    "needsVerification": [
+      "Ejaan bervariasi: Kumusta / Kamusta"
+    ]
+  },
+  {
+    "id": "cn",
+    "iso3": "CHN",
+    "nameId": "Tiongkok",
+    "nameLocal": "中国",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "你好",
+      "roman": "Nǐ hǎo",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Tionghoa (Mandarin)",
+      "nativeName": "普通话",
+      "script": "Aksara Han (hanzi) yang distandarkan",
+      "family": "Sino-Tibet",
+      "note": "Putonghua (Mandarin) jadi bahasa resmi negara; varian Tionghoa lain tidak selalu saling dipahami."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "谢谢",
+        "roman": "Xièxie"
+      },
+      {
+        "id": "Permisi",
+        "native": "请问",
+        "roman": "Qǐngwèn"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "再见",
+        "roman": "Zàijiàn"
+      }
+    ],
+    "cultureNote": "Meja makan bundar dipilih karena tanpa sudut tajam, melambangkan kelancaran hubungan; posisi duduk tamu ditentukan status, usia, dan kedekatan dengan tuan rumah.",
+    "peopleNote": "Jabat tangan ringan atau anggukan; tamu diseat menurut status dan usia, kursi kehormatan di kanan tuan rumah; minuman dituang untuk orang lain lebih dulu.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "http://en.moe.gov.cn/Resources/Laws_and_Policies/201506/t20150626_191388.html",
+        "what": "Pasal 9: Putonghua dan aksara Han standar dipakai organ negara sebagai bahasa resmi"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Chinese-languages",
+        "what": "Rumpun Sino-Tibet; varietas Tionghoa tidak saling dipahami; Pinyin"
+      },
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7122949/",
+        "what": "Meja bundar, posisi duduk menurut status/usia, jabat tangan ringan, tuang minuman untuk orang lain"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E4%BD%A0%E5%A5%BD",
+        "what": "你好 = halo; pinyin nǐ hǎo"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%B0%A2%E8%B0%A2",
+        "what": "谢谢 = terima kasih; pinyin xièxie"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%AF%B7%E9%97%AE",
+        "what": "请问 = permisi, boleh saya tanya; pinyin qǐngwèn"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E5%86%8D%E8%A7%81",
+        "what": "再见 = sampai jumpa; pinyin zàijiàn"
+      }
+    ],
+    "needsVerification": [
+      "Register sapaan 你好 belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "jp",
+    "iso3": "JPN",
+    "nameId": "Jepang",
+    "nameLocal": "日本",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "こんにちは",
+      "roman": "Konnichiwa",
+      "meaningId": "Halo",
+      "register": "netral, dipakai siang hari"
+    },
+    "language": {
+      "nameId": "Bahasa Jepang",
+      "nativeName": "日本語",
+      "script": "Hiragana, katakana, kanji",
+      "family": "Japonic",
+      "note": "Bahasa resmi nasional; dialek Kagoshima dan Tohoku tidak saling dipahami penutur Tokyo."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ありがとう",
+        "roman": "Arigatou"
+      },
+      {
+        "id": "Permisi",
+        "native": "すみません",
+        "roman": "Sumimasen"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "さようなら",
+        "roman": "Sayounara"
+      }
+    ],
+    "cultureNote": "Jepang memiliki 15 hari libur nasional; Shōgatsu (Tahun Baru) adalah perayaan terpenting, ditandai kunjungan ke kuil dan tempat suci.",
+    "peopleNote": "Membungkuk saat menyapa; pelukan dan jabat tangan jarang. Sepatu dilepas di ambang pintu, diganti sandal dalam ruangan, dan sandal khusus dipakai di toilet.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://www.ethnologue.com/language/jpn/",
+        "what": "Bahasa resmi nasional Jepang; rumpun Japonic"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Japanese-writing-system",
+        "what": "Tiga aksara: kanji, hiragana, katakana"
+      },
+      {
+        "url": "https://www.japan.travel/id/guide/understanding-and-mastering-japanese-manners-and-etiquette/",
+        "what": "Membungkuk sebagai salam, kontak fisik jarang, lepas sepatu di ambang pintu"
+      },
+      {
+        "url": "https://www.britannica.com/place/Japan/Daily-life-and-social-customs",
+        "what": "15 hari libur nasional; Shōgatsu perayaan terpenting"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E4%BB%8A%E6%97%A5%E3%81%AF",
+        "what": "今日は dibaca konnichiwa, salam siang hari"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89",
+        "what": "さようなら = selamat tinggal"
+      }
+    ],
+    "needsVerification": [
+      "さようなら berkonotasi final/formal, bukan salam harian"
+    ]
+  },
+  {
+    "id": "kr",
+    "iso3": "KOR",
+    "nameId": "Korea Selatan",
+    "nameLocal": "한국",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하세요",
+      "roman": "Annyeonghaseyo",
+      "meaningId": "Halo",
+      "register": "sopan informal (haeyo-che)"
+    },
+    "language": {
+      "nameId": "Bahasa Korea",
+      "nativeName": "한국어",
+      "script": "Hangul",
+      "family": "Koreanik",
+      "note": "Bahasa resmi Korea Selatan; hubungan kekerabatannya dengan bahasa lain tidak disepakati."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "감사합니다",
+        "roman": "Gamsahamnida"
+      },
+      {
+        "id": "Permisi",
+        "native": "저기요",
+        "roman": "Jeogiyo"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "안녕히 계세요",
+        "roman": "Annyeonghi gyeseyo"
+      }
+    ],
+    "cultureNote": "Hangul mulai dipakai pada 1443 dan awalnya disebut Ŏnmun; aksara ini disusun dalam blok suku kata, bukan deret huruf.",
+    "peopleNote": "Membungkuk singkat dan memberi atau menerima dengan dua tangan; orang lebih tua disapa lebih dulu, dan makan dimulai setelah yang tertua.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://www.ethnologue.com/language/kor/",
+        "what": "Bahasa resmi nasional Korea Selatan; rumpun Koreanic"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Korean-language",
+        "what": "Hangul sejak 1443, blok suku kata, kekerabatan bahasa tidak disepakati"
+      },
+      {
+        "url": "https://english.visitseoul.net/etiquette",
+        "what": "Membungkuk singkat, dua tangan, hierarki usia"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94",
+        "what": "안녕하세요 = halo; bentuk sopan informal"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4",
+        "what": "감사합니다 = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%9E%88_%EA%B3%84%EC%84%B8%EC%9A%94",
+        "what": "안녕히 계세요 = selamat tinggal, diucapkan yang pergi"
+      },
+      {
+        "url": "https://glosbe.com/ko/en/%EC%A0%80%EA%B8%B0%EC%9A%94",
+        "what": "저기요 = permisi untuk meminta perhatian"
+      }
+    ],
+    "needsVerification": [
+      "저기요 lebih tepat 'permisi, minta perhatian' daripada 'maaf'"
+    ]
+  },
+  {
+    "id": "in",
+    "iso3": "IND",
+    "nameId": "India",
+    "nameLocal": "भारत",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaningId": "Halo / salam hormat",
+      "register": "netral, formal maupun sehari-hari"
+    },
+    "language": {
+      "nameId": "Bahasa Hindi",
+      "nativeName": "हिन्दी",
+      "script": "Devanagari",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Dipilih Hindi, bukan Inggris: bahasa resmi Union dan penutur L1 terbesar di India."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "धन्यवाद",
+        "roman": "Dhanyavād"
+      },
+      {
+        "id": "Permisi",
+        "native": "माफ़ कीजिए",
+        "roman": "Māf kījie"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "अलविदा",
+        "roman": "Alvidā"
+      }
+    ],
+    "cultureNote": "India punya ratusan bahasa dari beberapa rumpun yang tidak berkerabat; Hindi dan Inggris berstatus bahasa resmi Union.",
+    "peopleNote": "Salam namaste dengan telapak tangan rapat; menerima dan makan dengan tangan kanan; jabat tangan dengan lawan jenis tidak selalu diterima.",
+    "depth": "Penjelajahan",
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Hindi-language",
+        "what": "Rumpun Indo-Arya, aksara Devanagari, bahasa resmi India"
+      },
+      {
+        "url": "https://www.britannica.com/place/India",
+        "what": "Bahasa resmi Hindi dan Inggris; ratusan bahasa dari rumpun berbeda"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87",
+        "what": "नमस्ते = salam untuk halo/selamat tinggal"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%A7%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%BE%E0%A4%A6",
+        "what": "धन्यवाद = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%AE%E0%A4%BE%E0%A4%AB%E0%A4%BC_%E0%A4%95%E0%A5%80%E0%A4%9C%E0%A4%BF%E0%A4%8F",
+        "what": "माफ़ कीजिए = permisi/maaf (formal)"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%85%E0%A4%B2%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE",
+        "what": "अलविदा = selamat tinggal"
+      }
+    ],
+    "needsVerification": [
+      "people_note baru didukung satu sumber",
+      "Cakupan bahasa nasional India disederhanakan"
+    ]
+  },
+  {
+    "id": "sa",
+    "iso3": "SAU",
+    "nameId": "Arab Saudi",
+    "nameLocal": "المملكة العربية السعودية",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Semoga keselamatan atasmu",
+      "register": "formal-netral; jawaban: Wa ʿalaykum as-salām"
+    },
+    "language": {
+      "nameId": "Bahasa Arab",
+      "nativeName": "العربية",
+      "script": "Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Bahasa resmi; tulisan Arab Baku Modern, percakapan memakai dialek Najdi/Hijazi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Maaf / permisi",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Selamat jalan",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Bahasa Arab adalah bahasa resmi dan kalender negara memakai Hijriah. Kopi Arab disajikan dalam cangkir kecil bersama kurma sebagai tanda jamuan.",
+    "peopleNote": "Makan dan memberi dengan tangan kanan. Sepatu dilepas di rumah dan majlis. Tamu menyapa yang paling tua lebih dulu. Tunggu perempuan mengulurkan tangan.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://my.gov.sa/en/about-kingdom",
+        "what": "Bahasa resmi dan kalender Hijriah"
+      },
+      {
+        "url": "https://culturalatlas.sbs.com.au/saudi-arabian-culture/saudi-arabian-culture-etiquette",
+        "what": "Etiket tamu, tangan kanan, interaksi gender"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab, finjān, kurma"
+      }
+    ],
+    "needsVerification": [
+      "Frasa memakai Arab Baku; dialek berbeda"
+    ]
+  },
+  {
+    "id": "tr",
+    "iso3": "TUR",
+    "nameId": "Turki",
+    "nameLocal": "Türkiye",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Merhaba",
+      "roman": "Merhaba",
+      "meaningId": "Halo",
+      "register": "netral"
+    },
+    "language": {
+      "nameId": "Bahasa Turki",
+      "nativeName": "Türkçe",
+      "script": "Latin (alfabet Turki, 29 huruf)",
+      "family": "Turkik (cabang Oghuz)",
+      "note": "Alfabet Latin 29 huruf diadopsi 1928; tidak memakai q, w, x, tetapi punya ı, ş, ğ, ç, ö, ü."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Teşekkürler",
+        "roman": "Teşekkürler"
+      },
+      {
+        "id": "Maaf / permisi",
+        "native": "Affedersiniz",
+        "roman": "Affedersiniz"
+      },
+      {
+        "id": "Selamat tinggal",
+        "native": "Hoşça kal",
+        "roman": "Hoşça kal"
+      }
+    ],
+    "cultureNote": "Alfabet Latin diberlakukan 1 November 1928. Kopi Turki diseduh dalam cezve dan disajikan di cangkir kecil.",
+    "peopleNote": "Sepatu dilepas di pintu dan tamu memakai sandal. Yang lebih muda mencium tangan kanan orang tua lalu menempelkannya ke kening. Beri sesuatu dengan tangan kanan atau dua tangan.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://tdk.gov.tr/icerik/yazim-kurallari/ses-harf-ve-alfabe/",
+        "what": "Alfabet Turki 29 huruf"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/nucl1301",
+        "what": "Klasifikasi Turkik Oghuz"
+      },
+      {
+        "url": "https://culturalatlas.sbs.com.au/turkish-culture/turkish-culture-etiquette",
+        "what": "El öpmek dan sandal tamu"
+      }
+    ],
+    "needsVerification": [
+      "Hoşça kal diucapkan pihak yang pergi; tuan rumah menjawab Güle güle"
+    ]
+  },
+  {
+    "id": "kz",
+    "iso3": "KAZ",
+    "nameId": "Kazakhstan",
+    "nameLocal": "Қазақстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Сәлеметсіз бе",
+      "roman": "Sälemetsiz be",
+      "meaningId": "Halo (formal)",
+      "register": "formal; santai: Сәлем (Sälem)"
+    },
+    "language": {
+      "nameId": "Bahasa Kazakh",
+      "nativeName": "Қазақ тілі",
+      "script": "Sirilik; Latin diperkenalkan, belum final",
+      "family": "Turkik (cabang Kipchak)",
+      "note": "Kazakh bahasa negara; Rusia resmi dipakai di lembaga negara."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Рахмет",
+        "roman": "Rahmet"
+      },
+      {
+        "id": "Maaf / permisi",
+        "native": "Кешіріңіз",
+        "roman": "Keshiriñiz"
+      },
+      {
+        "id": "Selamat tinggal",
+        "native": "Сау болыңыз",
+        "roman": "Sau bolıñız"
+      }
+    ],
+    "cultureNote": "Nauryz dirayakan 21 Maret dan tercatat UNESCO 2016. Hidangan Nauryz köje dimasak untuk menyambut tahun baru.",
+    "peopleNote": "Yang lebih muda menyapa lebih dulu. Pria berjabat tangan, kadang dua tangan atau tangan kiri di dada. Sepatu dilepas di pintu. Orang tua tidak dipanggil dengan nama depan.",
+    "depth": "Penjelajahan",
+    "sources": [
+      {
+        "url": "https://glottolog.org/resource/languoid/id/kaza1248",
+        "what": "Klasifikasi Turkik Kipchak"
+      },
+      {
+        "url": "https://welcome.kz/en/important/visiting-kazakh-family",
+        "what": "Etiket berkunjung"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nauryz 21 Maret, UNESCO 2016"
+      }
+    ],
+    "needsVerification": [
+      "Transliterasi Latin belum baku"
+    ]
+  },
+  {
+    "id": "uz",
+    "iso3": "UZB",
+    "nameId": "Uzbekistan",
+    "nameLocal": "Oʻzbekiston",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Assalomu alaykum",
+      "roman": "Assalomu alaykum",
+      "meaningId": "Semoga keselamatan atasmu",
+      "register": "formal-netral; santai: Salom"
+    },
+    "language": {
+      "nameId": "Bahasa Uzbek",
+      "nativeName": "Oʻzbekcha",
+      "script": "Latin resmi; Sirilik masih dipakai",
+      "family": "Turkik (cabang Karluk)",
+      "note": "Latin resmi sejak 1993; Sirilik masih beredar di media dan kalangan lebih tua."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Rahmat",
+        "roman": "Rahmat"
+      },
+      {
+        "id": "Maaf / permisi",
+        "native": "Kechirasiz",
+        "roman": "Kechirasiz"
+      },
+      {
+        "id": "Selamat tinggal",
+        "native": "Xayr",
+        "roman": "Xayr"
+      }
+    ],
+    "cultureNote": "Palov (osh) adalah hidangan nasi nasional yang disajikan untuk tamu. Navruz dirayakan 21 Maret dan tercatat UNESCO 2016.",
+    "peopleNote": "Saat menyapa, tangan kanan diletakkan di dada. Pria berjabat tangan; tunggu perempuan mengulurkan tangan. Sepatu dilepas di pintu. Tempat terjauh dari pintu adalah tempat kehormatan.",
+    "depth": "Lengkap",
+    "sources": [
+      {
+        "url": "https://lex.uz/en/docs/112283",
+        "what": "Undang-undang bahasa resmi"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/uzbe1247",
+        "what": "Klasifikasi Turkik Karluk"
+      },
+      {
+        "url": "https://exploreuzbekistan.uz/en/travel/phrasebook/",
+        "what": "Frasa sapaan"
+      }
+    ],
+    "needsVerification": [
+      "Ejaan Latin memakai ʻ (oʻ, gʻ)"
+    ]
+  },
+  {
+    "id": "mn",
+    "iso3": "MNG",
+    "nameId": "Mongolia",
+    "nameLocal": "Монгол улс",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "Сайн байна уу?",
+      "roman": "Sain baina uu",
+      "meaningId": "Apa kabar? / Halo",
+      "register": "netral; pakai та untuk orang lebih tua"
+    },
+    "language": {
+      "nameId": "Bahasa Mongolia",
+      "nativeName": "Монгол хэл",
+      "script": "Kiril; aksara Mongolia tradisional",
+      "family": "Mongolik",
+      "note": "Khalkha menjadi dasar bahasa resmi; Kiril dipakai sejak 1946 dan aksara tradisional dihidupkan lagi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Баярлалаа",
+        "roman": "Bayarlalaa"
+      },
+      {
+        "id": "Permisi",
+        "native": "Уучлаарай",
+        "roman": "Uuchlaarai"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Баяртай",
+        "roman": "Bayartai"
+      }
+    ],
+    "cultureNote": "Aksara Mongolia tradisional ditulis vertikal, berasal dari Sogdian via Uyghur, dan dijadwalkan kembali menjadi aksara resmi pada 2025.",
+    "peopleNote": "Sapa orang tertua lebih dulu; jabat tangan lazim. Jangan menginjak ambang ger, terima makanan dengan tangan kanan, dan cicipi hidangan tuan rumah.",
+    "depth": "Penjelajahan",
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Mongol-language",
+        "what": "Khalkha dasar bahasa resmi; aksara tradisional vertikal dari Sogdian via Uyghur"
+      },
+      {
+        "url": "https://www.britannica.com/summary/Mongolian-languages",
+        "what": "Kiril diperkenalkan 1946; aksara lama dihidupkan lagi pada 1990-an"
+      },
+      {
+        "url": "https://commisceo-global.com/culture-guides/mongolia/",
+        "what": "Sapa yang tertua dulu; jangan injak ambang ger; terima makanan dengan tangan kanan"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D1%81%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B0%D0%B9%D0%BD%D0%B0%20%D1%83%D1%83",
+        "what": "сайн байна уу = halo"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D0%B1%D0%B0%D1%8F%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0",
+        "what": "баярлалаа = terima kasih"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D1%83%D1%83%D1%87%D0%BB%D0%B0%D0%B0%D1%80%D0%B0%D0%B9",
+        "what": "уучлаарай = maaf/permisi"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D0%B1%D0%B0%D1%8F%D1%80%D1%82%D0%B0%D0%B9",
+        "what": "баяртай = selamat tinggal"
+      }
+    ],
+    "needsVerification": [
+      "Status aksara tradisional 2025-2026 belum dikonfirmasi",
+      "people_note bersumber panduan budaya komersial"
+    ]
+  }
+]

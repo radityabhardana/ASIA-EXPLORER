@@ -18,6 +18,9 @@
     "e2e": "playwright test",
     "model:build": "node scripts/build-model.mjs",
     "model:verify": "node scripts/verify-model.mjs",
+    "contrast": "node scripts/check-contrast.mjs",
+    "map:build": "node scripts/gen-map-paths.mjs",
+    "content:build": "node scripts/build-content.mjs",
     "verify": "node scripts/verify.mjs"
   },
   "dependencies": {

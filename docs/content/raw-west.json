@@ -1,0 +1,172 @@
+[
+  {
+    "id": "ph",
+    "iso3": "PHL",
+    "name_id": "Filipina",
+    "name_local": "Pilipinas",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Kumusta",
+      "roman": "Kumusta",
+      "meaning_id": "Halo / apa kabar",
+      "register": "netral; bentuk hormat: Kumusta po"
+    },
+    "language": {
+      "name_id": "Bahasa Filipino",
+      "native_name": "Filipino",
+      "script": "Latin (Alpabetong Filipino, 28 huruf)",
+      "family": "Austronesia (Melayo-Polinesia, Filipina Tengah)",
+      "note": "Nama resmi bahasa nasional; berbasis Tagalog, diperkaya bahasa Filipina lain."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Salamat", "roman": "Salamat" },
+      { "id": "Permisi saat lewat", "native": "Makikiraan po", "roman": "Makikiraan po" },
+      { "id": "Selamat tinggal", "native": "Paalam", "roman": "Paalam" }
+    ],
+    "culture_note": "Konstitusi 1987 Pasal XIV menetapkan Filipino sebagai bahasa nasional; namanya dipilih karena mencakup unsur bahasa daerah, bukan hanya Tagalog.",
+    "people_note": "Sapaan hormat po/opo dipakai kepada orang lebih tua. Pagmamano, mengambil tangan kanan orang tua lalu menyentuh kening, masih lazim. Sepatu dilepas saat masuk rumah.",
+    "sources": [
+      { "url": "https://kwf.gov.ph/tungkol-sa-kwf/", "what": "Mandat bahasa nasional" },
+      { "url": "https://glottolog.org/resource/languoid/id/taga1270", "what": "Klasifikasi Tagalog" },
+      { "url": "https://www.tagalognow.com/learn/mano-po-and-filipino-etiquette/", "what": "Etiket po/opo dan pagmamano" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["Ejaan bervariasi: Kumusta / Kamusta"]
+  },
+  {
+    "id": "sa",
+    "iso3": "SAU",
+    "name_id": "Arab Saudi",
+    "name_local": "المملكة العربية السعودية",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Semoga keselamatan atasmu",
+      "register": "formal-netral; jawaban: Wa ʿalaykum as-salām"
+    },
+    "language": {
+      "name_id": "Bahasa Arab",
+      "native_name": "العربية",
+      "script": "Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Bahasa resmi; tulisan Arab Baku Modern, percakapan memakai dialek Najdi/Hijazi."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "شكراً", "roman": "Shukran" },
+      { "id": "Maaf / permisi", "native": "عفواً", "roman": "ʿAfwan" },
+      { "id": "Selamat jalan", "native": "مع السلامة", "roman": "Maʿa as-salāma" }
+    ],
+    "culture_note": "Bahasa Arab adalah bahasa resmi dan kalender negara memakai Hijriah. Kopi Arab disajikan dalam cangkir kecil bersama kurma sebagai tanda jamuan.",
+    "people_note": "Makan dan memberi dengan tangan kanan. Sepatu dilepas di rumah dan majlis. Tamu menyapa yang paling tua lebih dulu. Tunggu perempuan mengulurkan tangan.",
+    "sources": [
+      { "url": "https://my.gov.sa/en/about-kingdom", "what": "Bahasa resmi dan kalender Hijriah" },
+      { "url": "https://culturalatlas.sbs.com.au/saudi-arabian-culture/saudi-arabian-culture-etiquette", "what": "Etiket tamu, tangan kanan, interaksi gender" },
+      { "url": "https://en.wikipedia.org/wiki/Arabic_coffee", "what": "Kopi Arab, finjān, kurma" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["Frasa memakai Arab Baku; dialek berbeda"]
+  },
+  {
+    "id": "tr",
+    "iso3": "TUR",
+    "name_id": "Turki",
+    "name_local": "Türkiye",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Merhaba",
+      "roman": "Merhaba",
+      "meaning_id": "Halo",
+      "register": "netral"
+    },
+    "language": {
+      "name_id": "Bahasa Turki",
+      "native_name": "Türkçe",
+      "script": "Latin (alfabet Turki, 29 huruf)",
+      "family": "Turkik (cabang Oghuz)",
+      "note": "Alfabet Latin 29 huruf diadopsi 1928; tidak memakai q, w, x, tetapi punya ı, ş, ğ, ç, ö, ü."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Teşekkürler", "roman": "Teşekkürler" },
+      { "id": "Maaf / permisi", "native": "Affedersiniz", "roman": "Affedersiniz" },
+      { "id": "Selamat tinggal", "native": "Hoşça kal", "roman": "Hoşça kal" }
+    ],
+    "culture_note": "Alfabet Latin diberlakukan 1 November 1928. Kopi Turki diseduh dalam cezve dan disajikan di cangkir kecil.",
+    "people_note": "Sepatu dilepas di pintu dan tamu memakai sandal. Yang lebih muda mencium tangan kanan orang tua lalu menempelkannya ke kening. Beri sesuatu dengan tangan kanan atau dua tangan.",
+    "sources": [
+      { "url": "https://tdk.gov.tr/icerik/yazim-kurallari/ses-harf-ve-alfabe/", "what": "Alfabet Turki 29 huruf" },
+      { "url": "https://glottolog.org/resource/languoid/id/nucl1301", "what": "Klasifikasi Turkik Oghuz" },
+      { "url": "https://culturalatlas.sbs.com.au/turkish-culture/turkish-culture-etiquette", "what": "El öpmek dan sandal tamu" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["Hoşça kal diucapkan pihak yang pergi; tuan rumah menjawab Güle güle"]
+  },
+  {
+    "id": "kz",
+    "iso3": "KAZ",
+    "name_id": "Kazakhstan",
+    "name_local": "Қазақстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Сәлеметсіз бе",
+      "roman": "Sälemetsiz be",
+      "meaning_id": "Halo (formal)",
+      "register": "formal; santai: Сәлем (Sälem)"
+    },
+    "language": {
+      "name_id": "Bahasa Kazakh",
+      "native_name": "Қазақ тілі",
+      "script": "Sirilik; Latin diperkenalkan, belum final",
+      "family": "Turkik (cabang Kipchak)",
+      "note": "Kazakh bahasa negara; Rusia resmi dipakai di lembaga negara."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Рахмет", "roman": "Rahmet" },
+      { "id": "Maaf / permisi", "native": "Кешіріңіз", "roman": "Keshiriñiz" },
+      { "id": "Selamat tinggal", "native": "Сау болыңыз", "roman": "Sau bolıñız" }
+    ],
+    "culture_note": "Nauryz dirayakan 21 Maret dan tercatat UNESCO 2016. Hidangan Nauryz köje dimasak untuk menyambut tahun baru.",
+    "people_note": "Yang lebih muda menyapa lebih dulu. Pria berjabat tangan, kadang dua tangan atau tangan kiri di dada. Sepatu dilepas di pintu. Orang tua tidak dipanggil dengan nama depan.",
+    "sources": [
+      { "url": "https://glottolog.org/resource/languoid/id/kaza1248", "what": "Klasifikasi Turkik Kipchak" },
+      { "url": "https://welcome.kz/en/important/visiting-kazakh-family", "what": "Etiket berkunjung" },
+      { "url": "https://en.wikipedia.org/wiki/Nowruz", "what": "Nauryz 21 Maret, UNESCO 2016" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": ["Transliterasi Latin belum baku"]
+  },
+  {
+    "id": "uz",
+    "iso3": "UZB",
+    "name_id": "Uzbekistan",
+    "name_local": "Oʻzbekiston",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Assalomu alaykum",
+      "roman": "Assalomu alaykum",
+      "meaning_id": "Semoga keselamatan atasmu",
+      "register": "formal-netral; santai: Salom"
+    },
+    "language": {
+      "name_id": "Bahasa Uzbek",
+      "native_name": "Oʻzbekcha",
+      "script": "Latin resmi; Sirilik masih dipakai",
+      "family": "Turkik (cabang Karluk)",
+      "note": "Latin resmi sejak 1993; Sirilik masih beredar di media dan kalangan lebih tua."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Rahmat", "roman": "Rahmat" },
+      { "id": "Maaf / permisi", "native": "Kechirasiz", "roman": "Kechirasiz" },
+      { "id": "Selamat tinggal", "native": "Xayr", "roman": "Xayr" }
+    ],
+    "culture_note": "Palov (osh) adalah hidangan nasi nasional yang disajikan untuk tamu. Navruz dirayakan 21 Maret dan tercatat UNESCO 2016.",
+    "people_note": "Saat menyapa, tangan kanan diletakkan di dada. Pria berjabat tangan; tunggu perempuan mengulurkan tangan. Sepatu dilepas di pintu. Tempat terjauh dari pintu adalah tempat kehormatan.",
+    "sources": [
+      { "url": "https://lex.uz/en/docs/112283", "what": "Undang-undang bahasa resmi" },
+      { "url": "https://glottolog.org/resource/languoid/id/uzbe1247", "what": "Klasifikasi Turkik Karluk" },
+      { "url": "https://exploreuzbekistan.uz/en/travel/phrasebook/", "what": "Frasa sapaan" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["Ejaan Latin memakai ʻ (oʻ, gʻ)"]
+  }
+]

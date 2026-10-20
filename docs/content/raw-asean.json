@@ -1,0 +1,186 @@
+[
+  {
+    "id": "id",
+    "iso3": "IDN",
+    "name_id": "Indonesia",
+    "name_local": "Indonesia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat pagi",
+      "roman": "Selamat pagi",
+      "meaning_id": "Sapaan selamat pada pagi hari",
+      "register": "Formal. Dipakai khusus pada pagi hari; siang dan malam memakai 'Selamat siang'/'Selamat malam'. Dalam situasi santai orang memakai 'Halo' atau 'Hai', jadi 'Selamat pagi' bukan sapaan netral serba-waktu."
+    },
+    "language": {
+      "name_id": "Bahasa Indonesia",
+      "native_name": "Bahasa Indonesia",
+      "script": "Latin (Rumi)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Dibakukan dari bahasa Melayu Johor-Riau; dibina oleh Badan Bahasa."
+    },
+    "phrases": [
+      { "id": "terima kasih", "native": "Terima kasih", "roman": "Terima kasih" },
+      { "id": "maaf", "native": "Maaf", "roman": "Maaf" },
+      { "id": "sampai jumpa", "native": "Sampai jumpa", "roman": "Sampai jumpa" }
+    ],
+    "culture_note": "Indonesia mencatat 718 bahasa daerah dari 2.560 titik pengamatan, terkonsentrasi di Indonesia timur. Bahasa Indonesia menjadi bahasa pemersatu di atas keragaman itu.",
+    "people_note": "Sapaan memakai Bapak/Ibu untuk yang lebih tua. Bersalaman dengan tangan kanan disertai anggukan; sebagian orang melakukan salim. Sepatu dilepas saat masuk rumah.",
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Indonesian_language", "what": "Nama bahasa, status resmi, asal dari bahasa Melayu" },
+      { "url": "https://badanbahasa.kemendikdasmen.go.id/artikel-detail/4540/masa-depan-bahasa-daerah", "what": "718 bahasa daerah dari 2.560 titik pengamatan" },
+      { "url": "https://uiii.ac.id/basic-norms-language", "what": "Sapaan Bapak/Ibu, tangan kanan, 'Selamat pagi'" },
+      { "url": "https://en.wikipedia.org/wiki/Etiquette_in_Indonesia", "what": "Salim, tangan kanan, sepatu dilepas" },
+      { "url": "https://theculturalatlas.org/indonesian-culture/indonesian-culture-etiquette", "what": "Norma sapaan dan interaksi dengan orang tua" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Rentang waktu 'Selamat pagi' tidak diambil dari pedoman resmi Badan Bahasa",
+      "KBBI gagal diakses saat riset (DNS), definisi lema tidak dikutip langsung"
+    ]
+  },
+  {
+    "id": "my",
+    "iso3": "MYS",
+    "name_id": "Malaysia",
+    "name_local": "Malaysia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat sejahtera",
+      "roman": "Selamat sejahtera",
+      "meaning_id": "Salam sejahtera / sapaan hormat",
+      "register": "Formal dan netral secara agama. Lazim sebagai pembuka pidato dan acara resmi; dalam percakapan harian orang lebih sering memakai 'Hai'/'Helo' atau 'Assalamualaikum'."
+    },
+    "language": {
+      "name_id": "Bahasa Melayu",
+      "native_name": "Bahasa Melayu",
+      "script": "Latin (Rumi) dan Arab (Jawi)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Bahasa kebangsaan menurut Perkara 152; dibina Dewan Bahasa dan Pustaka."
+    },
+    "phrases": [
+      { "id": "terima kasih", "native": "Terima kasih", "roman": "Terima kasih" },
+      { "id": "maaf", "native": "Maaf", "roman": "Maaf" },
+      { "id": "selamat tinggal", "native": "Selamat tinggal", "roman": "Selamat tinggal" }
+    ],
+    "culture_note": "Perkara 152 Perlembagaan Persekutuan menetapkan bahasa Melayu sebagai bahasa kebangsaan, ditulis dalam Rumi dan Jawi. Jawi masih dipakai, terutama untuk warisan dan keagamaan.",
+    "people_note": "Bersalaman dengan tangan kanan atau kedua tangan; membongkok sedikit saat melewati orang tua. Sepatu dilepas di rumah. Menunjuk memakai ibu jari, bukan telunjuk.",
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Malay_language", "what": "Nama bahasa, Rumi dan Jawi, rumpun Austronesia, Perkara 152" },
+      { "url": "https://prpm.dbp.gov.my/cari1?keyword=terima%20kasih", "what": "Lema 'terima kasih'" },
+      { "url": "https://prpm.dbp.gov.my/cari1?keyword=maaf", "what": "Lema 'maaf'" },
+      { "url": "https://theculturalatlas.org/malaysian-culture/malaysian-culture-etiquette", "what": "Bersalaman, sepatu dilepas, menunjuk dengan ibu jari" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Status 'Selamat sejahtera' sebagai sapaan harian vs pembuka pidato belum terverifikasi dari laman rasmi kerajaan",
+      "PRPM tidak memuat entri kepala 'salam sejahtera' maupun 'selamat tinggal'"
+    ]
+  },
+  {
+    "id": "sg",
+    "iso3": "SGP",
+    "name_id": "Singapura",
+    "name_local": "Singapore",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Hello",
+      "roman": "Hello",
+      "meaning_id": "Halo",
+      "register": "Bahasa Inggris dipilih karena berstatus bahasa kerja utama dan lingua franca antaretnis. Melayu adalah bahasa kebangsaan tetapi perannya seremonial; Mandarin dan Tamil resmi namun dipakai di dalam komunitas masing-masing."
+    },
+    "language": {
+      "name_id": "Bahasa Inggris",
+      "native_name": "English",
+      "script": "Latin",
+      "family": "Indo-Eropa (Jermanik)",
+      "note": "Bahasa kerja utama; Melayu bahasa kebangsaan yang seremonial; Mandarin dan Tamil juga resmi."
+    },
+    "phrases": [
+      { "id": "terima kasih", "native": "Thank you", "roman": "Thank you" },
+      { "id": "maaf", "native": "Sorry", "roman": "Sorry" },
+      { "id": "selamat tinggal", "native": "Goodbye", "roman": "Goodbye" }
+    ],
+    "culture_note": "Budaya hawker Singapura tercatat di Daftar Warisan Budaya Takbenda UNESCO pada 16 Desember 2020. Pusat jajanan menjadi ruang makan bersama lintas kelompok etnis.",
+    "people_note": "Sepatu dilepas sebelum masuk rumah. Hadiah diserahkan dengan kedua tangan. Meja hawker ditandai dengan bungkus tisu. Tepat waktu dihargai.",
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Languages_of_Singapore", "what": "Empat bahasa resmi; Melayu bahasa kebangsaan; Inggris bahasa kerja" },
+      { "url": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore", "what": "Hawker culture inscribed 16 Desember 2020" },
+      { "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-etiquette", "what": "Sepatu, hadiah dua tangan, tisu penanda tempat, ketepatan waktu" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Pemilihan 'Hello' adalah keputusan editorial, bukan kutipan satu sumber resmi"
+    ]
+  },
+  {
+    "id": "th",
+    "iso3": "THA",
+    "name_id": "Thailand",
+    "name_local": "ประเทศไทย",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "สวัสดี",
+      "roman": "sawatdi",
+      "meaning_id": "Halo / salam",
+      "register": "Netral sampai formal. Partikel ครับ (penutur pria) atau ค่ะ (penutur wanita) ditambahkan di akhir kalimat untuk kesopanan."
+    },
+    "language": {
+      "name_id": "Bahasa Thai",
+      "native_name": "ภาษาไทย",
+      "script": "Aksara Thai",
+      "family": "Kra-Dai",
+      "note": "Bahasa bernada tanpa infleksi; partikel ครับ/ค่ะ menandai kesopanan."
+    },
+    "phrases": [
+      { "id": "terima kasih", "native": "ขอบคุณ", "roman": "khopkhun" },
+      { "id": "maaf", "native": "ขอโทษ", "roman": "kho thot" },
+      { "id": "selamat tinggal", "native": "ลาก่อน", "roman": "la kon" }
+    ],
+    "culture_note": "Aksara Thai diadaptasi dari aksara Khmer; prasasti Thai tertua berangka 1292 M. Sistem tulis itu masih dipakai hingga kini.",
+    "people_note": "Wai dipakai untuk menyapa dan berpamitan; yang lebih muda memulai. Sepatu dilepas di rumah dan wihara. Kepala tidak disentuh; kaki tidak diarahkan ke orang.",
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Thai_language", "what": "Rumpun Kra-Dai, aksara Thai, prasasti 1292 M, partikel khrap/kha" },
+      { "url": "https://en.wiktionary.org/wiki/สวัสดี", "what": "Romanisasi Royal Institute" },
+      { "url": "https://thailandfoundation.or.th/wai-the-thai-greeting/", "what": "Wai untuk menyapa dan berpamitan" },
+      { "url": "https://thailand.iom.int/sites/g/files/tmzbdl1371/files/documents/Tips%2520for%2520Migrant%2520Workers%2520on%2520the%2520Culture%2520of%2520Thailand_ENG.pdf", "what": "Sepatu dilepas, tabu kepala dan kaki" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["Romanisasi RTGS tidak menandai nada"]
+  },
+  {
+    "id": "vn",
+    "iso3": "VNM",
+    "name_id": "Vietnam",
+    "name_local": "Việt Nam",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Xin chào",
+      "roman": "Xin chào",
+      "meaning_id": "Halo / salam",
+      "register": "Agak formal. Dalam percakapan harian orang memakai 'chào' saja, sering ditambah kata kekerabatan sesuai usia lawan bicara (anh, chị, em, ông, bà)."
+    },
+    "language": {
+      "name_id": "Bahasa Vietnam",
+      "native_name": "Tiếng Việt",
+      "script": "Latin (chữ Quốc ngữ)",
+      "family": "Austroasiatik (cabang Vietik)",
+      "note": "Enam nada; ortografi Latin berdiakritik menggantikan chữ Nôm."
+    },
+    "phrases": [
+      { "id": "terima kasih", "native": "Cảm ơn", "roman": "Cảm ơn" },
+      { "id": "maaf", "native": "Xin lỗi", "roman": "Xin lỗi" },
+      { "id": "selamat tinggal", "native": "Tạm biệt", "roman": "Tạm biệt" }
+    ],
+    "culture_note": "Chữ Quốc ngữ, ortografi Latin berbasis karya misionaris Portugis abad ke-17, menggantikan chữ Nôm dan menjadi tulisan resmi pada awal abad ke-20.",
+    "people_note": "Memberi dan menerima dengan dua tangan. Kepala tidak disentuh; benda tidak dioper melewati kepala. Sapaan memakai kata kekerabatan sesuai usia dan status.",
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Vietnamese_language", "what": "Nama bahasa, chữ Quốc ngữ, rumpun Austroasiatik-Vietik" },
+      { "url": "https://en.wiktionary.org/wiki/xin_chào", "what": "Bentuk formal dan pemakaian harian 'chào' + kata kekerabatan" },
+      { "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-etiquette", "what": "Dua tangan, tabu kepala, deferensi usia" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "'Tạm biệt' bersifat formal/literer; padanan harian belum ditetapkan"
+    ]
+  }
+]

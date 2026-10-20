@@ -1,0 +1,196 @@
+[
+  {
+    "id": "cn",
+    "iso3": "CHN",
+    "name_id": "Tiongkok",
+    "name_local": "中国",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "你好",
+      "roman": "Nǐ hǎo",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Tionghoa (Mandarin)",
+      "native_name": "普通话",
+      "script": "Aksara Han (hanzi) yang distandarkan",
+      "family": "Sino-Tibet",
+      "note": "Putonghua (Mandarin) jadi bahasa resmi negara; varian Tionghoa lain tidak selalu saling dipahami."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "谢谢", "roman": "Xièxie" },
+      { "id": "Permisi", "native": "请问", "roman": "Qǐngwèn" },
+      { "id": "Sampai jumpa", "native": "再见", "roman": "Zàijiàn" }
+    ],
+    "culture_note": "Meja makan bundar dipilih karena tanpa sudut tajam, melambangkan kelancaran hubungan; posisi duduk tamu ditentukan status, usia, dan kedekatan dengan tuan rumah.",
+    "people_note": "Jabat tangan ringan atau anggukan; tamu diseat menurut status dan usia, kursi kehormatan di kanan tuan rumah; minuman dituang untuk orang lain lebih dulu.",
+    "sources": [
+      { "url": "http://en.moe.gov.cn/Resources/Laws_and_Policies/201506/t20150626_191388.html", "what": "Pasal 9: Putonghua dan aksara Han standar dipakai organ negara sebagai bahasa resmi" },
+      { "url": "https://www.britannica.com/topic/Chinese-languages", "what": "Rumpun Sino-Tibet; varietas Tionghoa tidak saling dipahami; Pinyin" },
+      { "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7122949/", "what": "Meja bundar, posisi duduk menurut status/usia, jabat tangan ringan, tuang minuman untuk orang lain" },
+      { "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E4%BD%A0%E5%A5%BD", "what": "你好 = halo; pinyin nǐ hǎo" },
+      { "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%B0%A2%E8%B0%A2", "what": "谢谢 = terima kasih; pinyin xièxie" },
+      { "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%AF%B7%E9%97%AE", "what": "请问 = permisi, boleh saya tanya; pinyin qǐngwèn" },
+      { "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E5%86%8D%E8%A7%81", "what": "再见 = sampai jumpa; pinyin zàijiàn" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["Register sapaan 你好 belum dirujuk ke sumber primer"]
+  },
+  {
+    "id": "jp",
+    "iso3": "JPN",
+    "name_id": "Jepang",
+    "name_local": "日本",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "こんにちは",
+      "roman": "Konnichiwa",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai siang hari"
+    },
+    "language": {
+      "name_id": "Bahasa Jepang",
+      "native_name": "日本語",
+      "script": "Hiragana, katakana, kanji",
+      "family": "Japonic",
+      "note": "Bahasa resmi nasional; dialek Kagoshima dan Tohoku tidak saling dipahami penutur Tokyo."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "ありがとう", "roman": "Arigatou" },
+      { "id": "Permisi", "native": "すみません", "roman": "Sumimasen" },
+      { "id": "Sampai jumpa", "native": "さようなら", "roman": "Sayounara" }
+    ],
+    "culture_note": "Jepang memiliki 15 hari libur nasional; Shōgatsu (Tahun Baru) adalah perayaan terpenting, ditandai kunjungan ke kuil dan tempat suci.",
+    "people_note": "Membungkuk saat menyapa; pelukan dan jabat tangan jarang. Sepatu dilepas di ambang pintu, diganti sandal dalam ruangan, dan sandal khusus dipakai di toilet.",
+    "sources": [
+      { "url": "https://www.ethnologue.com/language/jpn/", "what": "Bahasa resmi nasional Jepang; rumpun Japonic" },
+      { "url": "https://www.britannica.com/topic/Japanese-writing-system", "what": "Tiga aksara: kanji, hiragana, katakana" },
+      { "url": "https://www.japan.travel/id/guide/understanding-and-mastering-japanese-manners-and-etiquette/", "what": "Membungkuk sebagai salam, kontak fisik jarang, lepas sepatu di ambang pintu" },
+      { "url": "https://www.britannica.com/place/Japan/Daily-life-and-social-customs", "what": "15 hari libur nasional; Shōgatsu perayaan terpenting" },
+      { "url": "https://en.wiktionary.org/wiki/%E4%BB%8A%E6%97%A5%E3%81%AF", "what": "今日は dibaca konnichiwa, salam siang hari" },
+      { "url": "https://en.wiktionary.org/wiki/%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89", "what": "さようなら = selamat tinggal" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["さようなら berkonotasi final/formal, bukan salam harian"]
+  },
+  {
+    "id": "kr",
+    "iso3": "KOR",
+    "name_id": "Korea Selatan",
+    "name_local": "한국",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하세요",
+      "roman": "Annyeonghaseyo",
+      "meaning_id": "Halo",
+      "register": "sopan informal (haeyo-che)"
+    },
+    "language": {
+      "name_id": "Bahasa Korea",
+      "native_name": "한국어",
+      "script": "Hangul",
+      "family": "Koreanik",
+      "note": "Bahasa resmi Korea Selatan; hubungan kekerabatannya dengan bahasa lain tidak disepakati."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "감사합니다", "roman": "Gamsahamnida" },
+      { "id": "Permisi", "native": "저기요", "roman": "Jeogiyo" },
+      { "id": "Sampai jumpa", "native": "안녕히 계세요", "roman": "Annyeonghi gyeseyo" }
+    ],
+    "culture_note": "Hangul mulai dipakai pada 1443 dan awalnya disebut Ŏnmun; aksara ini disusun dalam blok suku kata, bukan deret huruf.",
+    "people_note": "Membungkuk singkat dan memberi atau menerima dengan dua tangan; orang lebih tua disapa lebih dulu, dan makan dimulai setelah yang tertua.",
+    "sources": [
+      { "url": "https://www.ethnologue.com/language/kor/", "what": "Bahasa resmi nasional Korea Selatan; rumpun Koreanic" },
+      { "url": "https://www.britannica.com/topic/Korean-language", "what": "Hangul sejak 1443, blok suku kata, kekerabatan bahasa tidak disepakati" },
+      { "url": "https://english.visitseoul.net/etiquette", "what": "Membungkuk singkat, dua tangan, hierarki usia" },
+      { "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94", "what": "안녕하세요 = halo; bentuk sopan informal" },
+      { "url": "https://en.wiktionary.org/wiki/%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4", "what": "감사합니다 = terima kasih" },
+      { "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%9E%88_%EA%B3%84%EC%84%B8%EC%9A%94", "what": "안녕히 계세요 = selamat tinggal, diucapkan yang pergi" },
+      { "url": "https://glosbe.com/ko/en/%EC%A0%80%EA%B8%B0%EC%9A%94", "what": "저기요 = permisi untuk meminta perhatian" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": ["저기요 lebih tepat 'permisi, minta perhatian' daripada 'maaf'"]
+  },
+  {
+    "id": "in",
+    "iso3": "IND",
+    "name_id": "India",
+    "name_local": "भारत",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaning_id": "Halo / salam hormat",
+      "register": "netral, formal maupun sehari-hari"
+    },
+    "language": {
+      "name_id": "Bahasa Hindi",
+      "native_name": "हिन्दी",
+      "script": "Devanagari",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Dipilih Hindi, bukan Inggris: bahasa resmi Union dan penutur L1 terbesar di India."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "धन्यवाद", "roman": "Dhanyavād" },
+      { "id": "Permisi", "native": "माफ़ कीजिए", "roman": "Māf kījie" },
+      { "id": "Sampai jumpa", "native": "अलविदा", "roman": "Alvidā" }
+    ],
+    "culture_note": "India punya ratusan bahasa dari beberapa rumpun yang tidak berkerabat; Hindi dan Inggris berstatus bahasa resmi Union.",
+    "people_note": "Salam namaste dengan telapak tangan rapat; menerima dan makan dengan tangan kanan; jabat tangan dengan lawan jenis tidak selalu diterima.",
+    "sources": [
+      { "url": "https://www.britannica.com/topic/Hindi-language", "what": "Rumpun Indo-Arya, aksara Devanagari, bahasa resmi India" },
+      { "url": "https://www.britannica.com/place/India", "what": "Bahasa resmi Hindi dan Inggris; ratusan bahasa dari rumpun berbeda" },
+      { "url": "https://en.wiktionary.org/wiki/%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87", "what": "नमस्ते = salam untuk halo/selamat tinggal" },
+      { "url": "https://en.wiktionary.org/wiki/%E0%A4%A7%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%BE%E0%A4%A6", "what": "धन्यवाद = terima kasih" },
+      { "url": "https://en.wiktionary.org/wiki/%E0%A4%AE%E0%A4%BE%E0%A4%AB%E0%A4%BC_%E0%A4%95%E0%A5%80%E0%A4%9C%E0%A4%BF%E0%A4%8F", "what": "माफ़ कीजिए = permisi/maaf (formal)" },
+      { "url": "https://en.wiktionary.org/wiki/%E0%A4%85%E0%A4%B2%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE", "what": "अलविदा = selamat tinggal" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "people_note baru didukung satu sumber",
+      "Cakupan bahasa nasional India disederhanakan"
+    ]
+  },
+  {
+    "id": "mn",
+    "iso3": "MNG",
+    "name_id": "Mongolia",
+    "name_local": "Монгол улс",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "Сайн байна уу?",
+      "roman": "Sain baina uu",
+      "meaning_id": "Apa kabar? / Halo",
+      "register": "netral; pakai та untuk orang lebih tua"
+    },
+    "language": {
+      "name_id": "Bahasa Mongolia",
+      "native_name": "Монгол хэл",
+      "script": "Kiril; aksara Mongolia tradisional",
+      "family": "Mongolik",
+      "note": "Khalkha menjadi dasar bahasa resmi; Kiril dipakai sejak 1946 dan aksara tradisional dihidupkan lagi."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Баярлалаа", "roman": "Bayarlalaa" },
+      { "id": "Permisi", "native": "Уучлаарай", "roman": "Uuchlaarai" },
+      { "id": "Sampai jumpa", "native": "Баяртай", "roman": "Bayartai" }
+    ],
+    "culture_note": "Aksara Mongolia tradisional ditulis vertikal, berasal dari Sogdian via Uyghur, dan dijadwalkan kembali menjadi aksara resmi pada 2025.",
+    "people_note": "Sapa orang tertua lebih dulu; jabat tangan lazim. Jangan menginjak ambang ger, terima makanan dengan tangan kanan, dan cicipi hidangan tuan rumah.",
+    "sources": [
+      { "url": "https://www.britannica.com/topic/Mongol-language", "what": "Khalkha dasar bahasa resmi; aksara tradisional vertikal dari Sogdian via Uyghur" },
+      { "url": "https://www.britannica.com/summary/Mongolian-languages", "what": "Kiril diperkenalkan 1946; aksara lama dihidupkan lagi pada 1990-an" },
+      { "url": "https://commisceo-global.com/culture-guides/mongolia/", "what": "Sapa yang tertua dulu; jangan injak ambang ger; terima makanan dengan tangan kanan" },
+      { "url": "https://glosbe.com/mn/en/%D1%81%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B0%D0%B9%D0%BD%D0%B0%20%D1%83%D1%83", "what": "сайн байна уу = halo" },
+      { "url": "https://glosbe.com/mn/en/%D0%B1%D0%B0%D1%8F%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0", "what": "баярлалаа = terima kasih" },
+      { "url": "https://glosbe.com/mn/en/%D1%83%D1%83%D1%87%D0%BB%D0%B0%D0%B0%D1%80%D0%B0%D0%B9", "what": "уучлаарай = maaf/permisi" },
+      { "url": "https://en.wiktionary.org/wiki/%D0%B1%D0%B0%D1%8F%D1%80%D1%82%D0%B0%D0%B9", "what": "баяртай = selamat tinggal" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Status aksara tradisional 2025-2026 belum dikonfirmasi",
+      "people_note bersumber panduan budaya komersial"
+    ]
+  }
+]
