@@ -1,0 +1,76 @@
+/*
+ * Wadah scene 3D Asia.
+ *
+ * Kontrak ukuran untuk mencegah CLS: container selalu punya `aspect-ratio`
+ * dan `min-height`, canvas absolut mengisi container sehingga tidak pernah
+ * mengubah tinggi dokumen saat renderer siap.
+ */
+
+.asia-scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  min-height: 320px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.asia-scene__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Rute lab DEV: scene mengisi viewport penuh. */
+.asia-scene--lab {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.scene-lab {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.scene-lab__stage {
+  width: 100vw;
+  height: 100dvh;
+}
+
+.scene-lab__status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-muted);
+}
+
+.scene-lab__hud {
+  position: absolute;
+  z-index: var(--z-content);
+  left: var(--space-3);
+  bottom: var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+  color: var(--ink-muted);
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  pointer-events: none;
+}
+
+.scene-lab__hud p {
+  margin: 0;
+}
+
+.scene-lab__hud strong {
+  color: var(--ink);
+}
