@@ -1,25 +1,134 @@
+/*
+ * Basis halaman. Reset ringan, latar kertas, noise halus, tipografi dasar.
+ * Token berasal dari tokens.css — jangan menulis nilai warna literal di sini.
+ */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+html {
+  background-color: var(--surface);
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Tidak ada `scroll-behavior: smooth` — Lenis yang memegang scroll (lihat
+     src/lib/motion.ts), dan prefers-reduced-motion mematikan Lenis. */
+}
+
 html,
 body,
 #root {
   margin: 0;
+  padding: 0;
 }
 
 body {
   min-height: 100dvh;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#app-root {
+/*
+ * Tekstur kertas: feTurbulence inline (bukan gambar eksternal), opacity 0.03.
+ * Lapisan ini duduk di belakang konten: body::before z-index 0, #root z-index 1.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: var(--noise-size) var(--noise-size);
+}
+
+#root {
+  position: relative;
+  z-index: var(--z-content);
   min-height: 100dvh;
+}
+
+/* --- Tipografi dasar ---------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+}
+
+h2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+}
+
+h3,
+h4 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+}
+
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+strong,
+b {
+  font-weight: var(--weight-semibold);
+}
+
+/* Native script tidak pernah di-bold — stroke weight sudah inherent. */
+[lang]:not([lang^='id']) {
+  font-weight: var(--weight-regular);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
+  font-size: 0.9375em;
 }
 
 img,
@@ -31,6 +140,46 @@ svg {
   max-width: 100%;
 }
 
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* --- Fokus & seleksi ---------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* --- Utilitas ----------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Reduced motion (DESIGN §9, §11) ------------------------------------ */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -38,6 +187,7 @@ svg {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 }

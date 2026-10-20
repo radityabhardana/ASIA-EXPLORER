@@ -1,5 +1,102 @@
+@import './fonts.css';
+
 /*
- * Token desain belum ditetapkan.
- * Diisi DESIGN.md v3 - jangan menambah warna, tipografi, atau spacing di sini sebelum itu.
- * Komponen wajib memakai variabel dari file ini, bukan nilai literal.
+ * Token ASIAKIN v3.2 — sumber tunggal warna, tipe, spacing, motion.
+ * Komponen wajib memakai variabel di sini, bukan nilai literal.
+ * Nilai warna/tipe diambil dari DESIGN.md §3 dan §4 dan diverifikasi oleh
+ * `node scripts/check-contrast.mjs`.
  */
+
+:root {
+  /* --- Warna peran (light theme) ---------------------------------------- */
+  --surface: #f9f7f3;
+  --surface-raised: #fffef9;
+  --ink: #1a1f24;
+  --ink-muted: #5c6670;
+  --line: #d8d4cc;
+  --accent: #176b68;
+  --accent-ink: #fffef9;
+  --danger: #a62f36;
+
+  /* --- Palette 15 negara (color picking + peta SVG) --------------------- */
+  /* Kunci sama dengan `paletteKey` di src/content/map-paths.json. */
+  --country-id: #c97a5f;
+  --country-my: #6b9b8e;
+  --country-sg: #b85f5f;
+  --country-th: #9b7fad;
+  --country-vn: #d4a05e;
+  --country-ph: #6a7fad;
+  --country-cn: #b89f7a;
+  --country-jp: #d18a94;
+  --country-kr: #7a9bb8;
+  --country-in: #c9935f;
+  --country-sa: #a8b87a;
+  --country-tr: #9f7a8f;
+  --country-kz: #7a8fa8;
+  --country-uz: #8fa88e;
+  --country-mn: #a8927a;
+
+  /* --- Tipografi -------------------------------------------------------- */
+  --font-display: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --font-text:
+    'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --weight-regular: 400;
+  --weight-semibold: 600;
+
+  --text-hero: clamp(2.5rem, 6vw, 4.5rem);
+  --leading-hero: 1.1;
+  --text-h1: clamp(1.75rem, 4vw, 2.5rem);
+  --leading-h1: 1.2;
+  --text-h2: 1.5rem;
+  --leading-h2: 1.3;
+  --text-body: 1rem;
+  --leading-body: 1.6;
+  --text-label: 0.875rem;
+  --leading-label: 1.5;
+  --text-native: clamp(1.5rem, 3vw, 2rem);
+  --leading-native: 1.6;
+
+  /* --- Spacing: basis 8px ---------------------------------------------- */
+  --space-0: 0;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+  --gutter-mobile: 16px;
+  --gutter-desktop: 24px;
+
+  /* --- Radius ----------------------------------------------------------- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* --- Motion (DESIGN §11) --------------------------------------------- */
+  --duration-micro: 120ms;
+  --duration-transition: 200ms;
+  --duration-scene: 300ms;
+  --duration-max: 320ms;
+  --duration-reduced: 80ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* --- Z-index ---------------------------------------------------------- */
+  --z-base: 0;
+  --z-content: 1;
+  --z-progress: 40;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-skip-link: 100;
+
+  /* --- Shell / tekstur -------------------------------------------------- */
+  --shell-progress-size: 4px;
+  --shell-progress-opacity: 0.6;
+  --noise-opacity: 0.03;
+  --noise-size: 200px;
+}
