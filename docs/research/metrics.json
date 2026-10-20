@@ -1,0 +1,1028 @@
+{
+  "generatedAt": "2026-10-20T17:42:59.604Z",
+  "targets": [
+    {
+      "slug": "awwwards-parallax",
+      "url": "https://www.awwwards.com/websites/parallax/",
+      "role": "collection",
+      "note": "Halaman koleksi awwwards (sumber pemilihan situs)"
+    },
+    {
+      "slug": "apricode",
+      "url": "https://apricode.agency",
+      "role": "site",
+      "note": "Dari daftar awwwards/parallax: #1 Apricode (Parallax, Scrolling, Storytelling, GSAP)"
+    },
+    {
+      "slug": "lenval",
+      "url": "https://lenvalproperties.com",
+      "role": "site",
+      "note": "Dari daftar awwwards/parallax: Lenval Properties (Parallax, Typography, WebGL, Storytelling, GSAP)"
+    },
+    {
+      "slug": "motion-dev",
+      "url": "https://motion.dev/",
+      "role": "reference",
+      "note": "Dokumentasi Motion (Framer Motion)"
+    },
+    {
+      "slug": "threejs-home",
+      "url": "https://threejs.org/",
+      "role": "reference",
+      "note": "Landing three.js"
+    },
+    {
+      "slug": "threejs-examples",
+      "url": "https://threejs.org/examples/",
+      "role": "reference",
+      "note": "Index examples three.js"
+    }
+  ],
+  "records": [
+    {
+      "slug": "awwwards-parallax",
+      "url": "https://www.awwwards.com/websites/parallax/",
+      "role": "collection",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "httpStatus": 200,
+      "finalUrl": "https://www.awwwards.com/websites/parallax/",
+      "shots": [
+        "shots/awwwards-parallax-desktop-0.png",
+        "shots/awwwards-parallax-desktop-25.png",
+        "shots/awwwards-parallax-desktop-50.png",
+        "shots/awwwards-parallax-desktop-75.png",
+        "shots/awwwards-parallax-desktop-100.png"
+      ],
+      "metrics": {
+        "title": "Best Parallax Websites | Web Design Inspiration",
+        "scrollHeight": 9623,
+        "viewportHeight": 900,
+        "heightVh": 10.69,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 5,
+        "videoCount": 0,
+        "autoplayVideo": 0,
+        "canvasCount": 0,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 0,
+        "imgCount": 126,
+        "h1": "Parallax",
+        "h1FontVh": 1.6
+      },
+      "consoleErrors": [
+        "requestStorageAccess: Permission denied."
+      ],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "apricode",
+      "url": "https://apricode.agency",
+      "role": "site",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "httpStatus": 200,
+      "finalUrl": "https://apricode.agency/",
+      "shots": [
+        "shots/apricode-desktop-0.png",
+        "shots/apricode-desktop-25.png",
+        "shots/apricode-desktop-50.png",
+        "shots/apricode-desktop-75.png",
+        "shots/apricode-desktop-100.png"
+      ],
+      "metrics": {
+        "title": "Apricode — Immersive Websites, Ecommerce, Apps & AI",
+        "scrollHeight": 14297,
+        "viewportHeight": 900,
+        "heightVh": 15.89,
+        "stickyCount": 4,
+        "pinned": 3,
+        "pinnedDetail": [
+          {
+            "tag": "div",
+            "cls": "visual-stage",
+            "top": "0px",
+            "parentVh": 7
+          },
+          {
+            "tag": "div",
+            "cls": "portfolio-surface",
+            "top": "0px",
+            "parentVh": 5.89
+          },
+          {
+            "tag": "section",
+            "cls": "reel-screen",
+            "top": "0px",
+            "parentVh": 1.8
+          }
+        ],
+        "stickyDetail": [
+          {
+            "tag": "div",
+            "cls": "menu-top",
+            "top": "0px",
+            "parentVh": 0
+          },
+          {
+            "tag": "div",
+            "cls": "visual-stage",
+            "top": "0px",
+            "parentVh": 7
+          },
+          {
+            "tag": "div",
+            "cls": "portfolio-surface",
+            "top": "0px",
+            "parentVh": 5.89
+          },
+          {
+            "tag": "section",
+            "cls": "reel-screen",
+            "top": "0px",
+            "parentVh": 1.8
+          }
+        ],
+        "fixedCount": 5,
+        "videoCount": 2,
+        "autoplayVideo": 0,
+        "canvasCount": 3,
+        "matrix3d": 1,
+        "scrollAttrCount": 0,
+        "lazyImages": 1,
+        "imgCount": 13,
+        "h1": "Make the digital feel extraordinary",
+        "h1FontVh": 8.4
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": [
+        {
+          "pct": 0,
+          "scrollY": 0,
+          "elements": [
+            {
+              "selector": "main h1",
+              "tag": "h1",
+              "cls": "",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": 438,
+              "height": 159
+            },
+            {
+              "selector": "[class*=\"hero\"]",
+              "tag": "section",
+              "cls": "scene-copy scene-copy--hero",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": 0,
+              "height": 900
+            },
+            {
+              "selector": "canvas",
+              "tag": "canvas",
+              "cls": "",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": 0,
+              "height": 900
+            }
+          ]
+        },
+        {
+          "pct": 50,
+          "scrollY": 6699,
+          "elements": [
+            {
+              "selector": "main h1",
+              "tag": "h1",
+              "cls": "",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -861,
+              "height": 159
+            },
+            {
+              "selector": "[class*=\"hero\"]",
+              "tag": "section",
+              "cls": "scene-copy scene-copy--hero",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -1299,
+              "height": 900
+            },
+            {
+              "selector": "canvas",
+              "tag": "canvas",
+              "cls": "",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -1299,
+              "height": 900
+            }
+          ]
+        },
+        {
+          "pct": 90,
+          "scrollY": 12057,
+          "elements": [
+            {
+              "selector": "main h1",
+              "tag": "h1",
+              "cls": "",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -6219,
+              "height": 159
+            },
+            {
+              "selector": "[class*=\"hero\"]",
+              "tag": "section",
+              "cls": "scene-copy scene-copy--hero",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -6657,
+              "height": 900
+            },
+            {
+              "selector": "canvas",
+              "tag": "canvas",
+              "cls": "",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -6657,
+              "height": 900
+            }
+          ]
+        }
+      ],
+      "error": null
+    },
+    {
+      "slug": "lenval",
+      "url": "https://lenvalproperties.com",
+      "role": "site",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "httpStatus": 200,
+      "finalUrl": "https://lenvalproperties.com/",
+      "shots": [
+        "shots/lenval-desktop-0.png",
+        "shots/lenval-desktop-25.png",
+        "shots/lenval-desktop-50.png",
+        "shots/lenval-desktop-75.png",
+        "shots/lenval-desktop-100.png"
+      ],
+      "metrics": {
+        "title": "Lenval Properties — Creators of Refined Living & Iconic Spaces",
+        "scrollHeight": 13219,
+        "viewportHeight": 900,
+        "heightVh": 14.69,
+        "stickyCount": 8,
+        "pinned": 6,
+        "pinnedDetail": [
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_video-screen",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_video-screen",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 2.88
+          }
+        ],
+        "stickyDetail": [
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_video-screen",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_video-screen",
+            "top": "0px",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 2.88
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 0.96
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 0.96
+          }
+        ],
+        "fixedCount": 8,
+        "videoCount": 5,
+        "autoplayVideo": 1,
+        "canvasCount": 4,
+        "matrix3d": 7,
+        "scrollAttrCount": 13,
+        "lazyImages": 0,
+        "imgCount": 16,
+        "h1": "",
+        "h1FontVh": 6.4
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": [
+        {
+          "pct": 0,
+          "scrollY": 9605,
+          "elements": [
+            {
+              "selector": "main h1",
+              "tag": "h1",
+              "cls": "h1 text-dark",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -8464,
+              "height": 137
+            },
+            {
+              "selector": "[class*=\"hero\"]",
+              "tag": "div",
+              "cls": "hero-w",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -9155,
+              "height": 900
+            },
+            {
+              "selector": "section:first-of-type",
+              "tag": "section",
+              "cls": "section theme_on-color",
+              "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 450, 10, 1)",
+              "translate": "none",
+              "opacity": "0.3",
+              "top": -9155,
+              "height": 900
+            },
+            {
+              "selector": "canvas",
+              "tag": "canvas",
+              "cls": "fluid-cur",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "0.25",
+              "top": 0,
+              "height": 900
+            }
+          ]
+        },
+        {
+          "pct": 50,
+          "scrollY": 9605,
+          "elements": [
+            {
+              "selector": "main h1",
+              "tag": "h1",
+              "cls": "h1 text-dark",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -8464,
+              "height": 137
+            },
+            {
+              "selector": "[class*=\"hero\"]",
+              "tag": "div",
+              "cls": "hero-w",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -9155,
+              "height": 900
+            },
+            {
+              "selector": "section:first-of-type",
+              "tag": "section",
+              "cls": "section theme_on-color",
+              "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 450, 10, 1)",
+              "translate": "none",
+              "opacity": "0.3",
+              "top": -9155,
+              "height": 900
+            },
+            {
+              "selector": "canvas",
+              "tag": "canvas",
+              "cls": "fluid-cur",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "0.25",
+              "top": 0,
+              "height": 900
+            }
+          ]
+        },
+        {
+          "pct": 90,
+          "scrollY": 11087,
+          "elements": [
+            {
+              "selector": "main h1",
+              "tag": "h1",
+              "cls": "h1 text-dark",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -9946,
+              "height": 137
+            },
+            {
+              "selector": "[class*=\"hero\"]",
+              "tag": "div",
+              "cls": "hero-w",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "1",
+              "top": -10637,
+              "height": 900
+            },
+            {
+              "selector": "section:first-of-type",
+              "tag": "section",
+              "cls": "section theme_on-color",
+              "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 450, 10, 1)",
+              "translate": "none",
+              "opacity": "0.3",
+              "top": -10637,
+              "height": 900
+            },
+            {
+              "selector": "canvas",
+              "tag": "canvas",
+              "cls": "fluid-cur",
+              "transform": "none",
+              "translate": "none",
+              "opacity": "0.25",
+              "top": 0,
+              "height": 900
+            }
+          ]
+        }
+      ],
+      "error": null
+    },
+    {
+      "slug": "motion-dev",
+      "url": "https://motion.dev/",
+      "role": "reference",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "httpStatus": 200,
+      "finalUrl": "https://motion.dev/",
+      "shots": [
+        "shots/motion-dev-desktop-0.png",
+        "shots/motion-dev-desktop-25.png",
+        "shots/motion-dev-desktop-50.png",
+        "shots/motion-dev-desktop-75.png",
+        "shots/motion-dev-desktop-100.png"
+      ],
+      "metrics": {
+        "title": "Motion (prev Framer Motion): JavaScript & React animation library",
+        "scrollHeight": 12821,
+        "viewportHeight": 900,
+        "heightVh": 14.25,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 2,
+        "videoCount": 15,
+        "autoplayVideo": 0,
+        "canvasCount": 1,
+        "matrix3d": 24,
+        "scrollAttrCount": 0,
+        "lazyImages": 92,
+        "imgCount": 92,
+        "h1": "The animation library loved by humans and agents alike.",
+        "h1FontVh": 3.8
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()"
+      ],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "threejs-home",
+      "url": "https://threejs.org/",
+      "role": "reference",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "httpStatus": 200,
+      "finalUrl": "https://threejs.org/",
+      "shots": [
+        "shots/threejs-home-desktop-0.png",
+        "shots/threejs-home-desktop-25.png",
+        "shots/threejs-home-desktop-50.png",
+        "shots/threejs-home-desktop-75.png",
+        "shots/threejs-home-desktop-100.png"
+      ],
+      "metrics": {
+        "title": "Three.js – JavaScript 3D Library",
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "heightVh": 1,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 2,
+        "videoCount": 0,
+        "autoplayVideo": 0,
+        "canvasCount": 0,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 244,
+        "imgCount": 244,
+        "h1": "three.js r186",
+        "h1FontVh": 2
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "threejs-examples",
+      "url": "https://threejs.org/examples/",
+      "role": "reference",
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "httpStatus": 200,
+      "finalUrl": "https://threejs.org/examples/",
+      "shots": [
+        "shots/threejs-examples-desktop-0.png",
+        "shots/threejs-examples-desktop-25.png",
+        "shots/threejs-examples-desktop-50.png",
+        "shots/threejs-examples-desktop-75.png",
+        "shots/threejs-examples-desktop-100.png"
+      ],
+      "metrics": {
+        "title": "three.js examples",
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "heightVh": 1,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 2,
+        "videoCount": 0,
+        "autoplayVideo": 0,
+        "canvasCount": 0,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 607,
+        "imgCount": 609,
+        "h1": "three.js",
+        "h1FontVh": 2
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "awwwards-parallax",
+      "url": "https://www.awwwards.com/websites/parallax/",
+      "role": "collection",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "httpStatus": 200,
+      "finalUrl": "https://www.awwwards.com/websites/parallax/",
+      "shots": [
+        "shots/awwwards-parallax-mobile-0.png",
+        "shots/awwwards-parallax-mobile-25.png",
+        "shots/awwwards-parallax-mobile-50.png",
+        "shots/awwwards-parallax-mobile-75.png",
+        "shots/awwwards-parallax-mobile-100.png"
+      ],
+      "metrics": {
+        "title": "Best Parallax Websites | Web Design Inspiration",
+        "scrollHeight": 22637,
+        "viewportHeight": 844,
+        "heightVh": 26.82,
+        "stickyCount": 1,
+        "pinned": 1,
+        "pinnedDetail": [
+          {
+            "tag": "header",
+            "cls": "",
+            "top": "0px",
+            "parentVh": 26.82
+          }
+        ],
+        "stickyDetail": [
+          {
+            "tag": "header",
+            "cls": "",
+            "top": "0px",
+            "parentVh": 26.82
+          }
+        ],
+        "fixedCount": 6,
+        "videoCount": 0,
+        "autoplayVideo": 0,
+        "canvasCount": 0,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 0,
+        "imgCount": 126,
+        "h1": "Parallax",
+        "h1FontVh": 1.7
+      },
+      "consoleErrors": [
+        "requestStorageAccess: Permission denied."
+      ],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "apricode",
+      "url": "https://apricode.agency",
+      "role": "site",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "httpStatus": 200,
+      "finalUrl": "https://apricode.agency/",
+      "shots": [
+        "shots/apricode-mobile-0.png",
+        "shots/apricode-mobile-25.png",
+        "shots/apricode-mobile-50.png",
+        "shots/apricode-mobile-75.png",
+        "shots/apricode-mobile-100.png"
+      ],
+      "metrics": {
+        "title": "Apricode — Immersive Websites, Ecommerce, Apps & AI",
+        "scrollHeight": 13435,
+        "viewportHeight": 844,
+        "heightVh": 15.92,
+        "stickyCount": 4,
+        "pinned": 3,
+        "pinnedDetail": [
+          {
+            "tag": "div",
+            "cls": "visual-stage",
+            "top": "0px",
+            "parentVh": 6.8
+          },
+          {
+            "tag": "div",
+            "cls": "portfolio-surface",
+            "top": "0px",
+            "parentVh": 5.93
+          },
+          {
+            "tag": "section",
+            "cls": "reel-screen",
+            "top": "0px",
+            "parentVh": 1.8
+          }
+        ],
+        "stickyDetail": [
+          {
+            "tag": "div",
+            "cls": "menu-top",
+            "top": "0px",
+            "parentVh": 0
+          },
+          {
+            "tag": "div",
+            "cls": "visual-stage",
+            "top": "0px",
+            "parentVh": 6.8
+          },
+          {
+            "tag": "div",
+            "cls": "portfolio-surface",
+            "top": "0px",
+            "parentVh": 5.93
+          },
+          {
+            "tag": "section",
+            "cls": "reel-screen",
+            "top": "0px",
+            "parentVh": 1.8
+          }
+        ],
+        "fixedCount": 6,
+        "videoCount": 2,
+        "autoplayVideo": 0,
+        "canvasCount": 3,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 1,
+        "imgCount": 13,
+        "h1": "Make the digital feel extraordinary",
+        "h1FontVh": 4.7
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "lenval",
+      "url": "https://lenvalproperties.com",
+      "role": "site",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "httpStatus": 200,
+      "finalUrl": "https://lenvalproperties.com/",
+      "shots": [
+        "shots/lenval-mobile-0.png",
+        "shots/lenval-mobile-25.png",
+        "shots/lenval-mobile-50.png",
+        "shots/lenval-mobile-75.png",
+        "shots/lenval-mobile-100.png"
+      ],
+      "metrics": {
+        "title": "Lenval Properties — Creators of Refined Living & Iconic Spaces",
+        "scrollHeight": 7683,
+        "viewportHeight": 844,
+        "heightVh": 9.1,
+        "stickyCount": 8,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 0.59
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_video-screen",
+            "top": "0px",
+            "parentVh": 0
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 0.59
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 0.59
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_video-screen",
+            "top": "0px",
+            "parentVh": 0
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 0.59
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_img",
+            "top": "0px",
+            "parentVh": 0.59
+          },
+          {
+            "tag": "div",
+            "cls": "project-card_info",
+            "top": "auto",
+            "parentVh": 0.59
+          }
+        ],
+        "fixedCount": 8,
+        "videoCount": 5,
+        "autoplayVideo": 1,
+        "canvasCount": 4,
+        "matrix3d": 7,
+        "scrollAttrCount": 13,
+        "lazyImages": 0,
+        "imgCount": 16,
+        "h1": "",
+        "h1FontVh": 4.1
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "motion-dev",
+      "url": "https://motion.dev/",
+      "role": "reference",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "httpStatus": 200,
+      "finalUrl": "https://motion.dev/",
+      "shots": [
+        "shots/motion-dev-mobile-0.png",
+        "shots/motion-dev-mobile-25.png",
+        "shots/motion-dev-mobile-50.png",
+        "shots/motion-dev-mobile-75.png",
+        "shots/motion-dev-mobile-100.png"
+      ],
+      "metrics": {
+        "title": "Motion (prev Framer Motion): JavaScript & React animation library",
+        "scrollHeight": 14235,
+        "viewportHeight": 844,
+        "heightVh": 16.87,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 2,
+        "videoCount": 15,
+        "autoplayVideo": 0,
+        "canvasCount": 1,
+        "matrix3d": 24,
+        "scrollAttrCount": 0,
+        "lazyImages": 92,
+        "imgCount": 92,
+        "h1": "The animation library loved by humans and agents alike.",
+        "h1FontVh": 3.6
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()"
+      ],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "threejs-home",
+      "url": "https://threejs.org/",
+      "role": "reference",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "httpStatus": 200,
+      "finalUrl": "https://threejs.org/",
+      "shots": [
+        "shots/threejs-home-mobile-0.png",
+        "shots/threejs-home-mobile-25.png",
+        "shots/threejs-home-mobile-50.png",
+        "shots/threejs-home-mobile-75.png",
+        "shots/threejs-home-mobile-100.png"
+      ],
+      "metrics": {
+        "title": "Three.js – JavaScript 3D Library",
+        "scrollHeight": 844,
+        "viewportHeight": 844,
+        "heightVh": 1,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 1,
+        "videoCount": 0,
+        "autoplayVideo": 0,
+        "canvasCount": 0,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 244,
+        "imgCount": 244,
+        "h1": "three.js r186",
+        "h1FontVh": 2.1
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    },
+    {
+      "slug": "threejs-examples",
+      "url": "https://threejs.org/examples/",
+      "role": "reference",
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "httpStatus": 200,
+      "finalUrl": "https://threejs.org/examples/",
+      "shots": [
+        "shots/threejs-examples-mobile-0.png",
+        "shots/threejs-examples-mobile-25.png",
+        "shots/threejs-examples-mobile-50.png",
+        "shots/threejs-examples-mobile-75.png",
+        "shots/threejs-examples-mobile-100.png"
+      ],
+      "metrics": {
+        "title": "three.js examples",
+        "scrollHeight": 844,
+        "viewportHeight": 844,
+        "heightVh": 1,
+        "stickyCount": 0,
+        "pinned": 0,
+        "pinnedDetail": [],
+        "stickyDetail": [],
+        "fixedCount": 1,
+        "videoCount": 0,
+        "autoplayVideo": 0,
+        "canvasCount": 0,
+        "matrix3d": 0,
+        "scrollAttrCount": 0,
+        "lazyImages": 607,
+        "imgCount": 609,
+        "h1": "three.js",
+        "h1FontVh": 2.1
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "heroTrack": null,
+      "error": null
+    }
+  ]
+}
