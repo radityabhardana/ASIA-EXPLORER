@@ -1,0 +1,615 @@
+/*
+ * Halaman negara `/negara/:id` (docs/DESIGN_COUNTRY.md, koreksi orchestrator).
+ *
+ * Aksen negara hanya dipakai untuk garis/penanda — teks selalu --ink atau
+ * --ink-muted. Font aksara memakai stack sistem, bukan unduhan Noto.
+ * Urutan blok: hero, sapaan, bahasa + frasa, budaya, orang, sumber.
+ */
+
+:root {
+  --font-cjk:
+    'Yu Gothic UI', 'Hiragino Sans', 'Noto Sans CJK JP', 'Malgun Gothic', 'Noto Sans KR',
+    'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  --font-arab: 'Segoe UI', 'Geeza Pro', 'Noto Naskh Arabic', 'Noto Sans Arabic', Tahoma,
+    sans-serif;
+  --font-cyril: 'Segoe UI', 'Helvetica Neue', 'Noto Sans', Arial, sans-serif;
+  --font-deva: 'Nirmala UI', 'Devanagari Sangam MN', 'Noto Sans Devanagari', Mangal, sans-serif;
+  --font-thai: 'Leelawadee UI', Thonburi, 'Noto Sans Thai', Tahoma, sans-serif;
+}
+
+.country[data-country='id'] {
+  --country-accent: var(--country-id);
+}
+
+.country[data-country='my'] {
+  --country-accent: var(--country-my);
+}
+
+.country[data-country='sg'] {
+  --country-accent: var(--country-sg);
+}
+
+.country[data-country='th'] {
+  --country-accent: var(--country-th);
+}
+
+.country[data-country='vn'] {
+  --country-accent: var(--country-vn);
+}
+
+.country[data-country='ph'] {
+  --country-accent: var(--country-ph);
+}
+
+.country[data-country='cn'] {
+  --country-accent: var(--country-cn);
+}
+
+.country[data-country='jp'] {
+  --country-accent: var(--country-jp);
+}
+
+.country[data-country='kr'] {
+  --country-accent: var(--country-kr);
+}
+
+.country[data-country='in'] {
+  --country-accent: var(--country-in);
+}
+
+.country[data-country='sa'] {
+  --country-accent: var(--country-sa);
+}
+
+.country[data-country='tr'] {
+  --country-accent: var(--country-tr);
+}
+
+.country[data-country='kz'] {
+  --country-accent: var(--country-kz);
+}
+
+.country[data-country='uz'] {
+  --country-accent: var(--country-uz);
+}
+
+.country[data-country='mn'] {
+  --country-accent: var(--country-mn);
+}
+
+/* --- Halaman -------------------------------------------------------------- */
+
+.country {
+  --country-accent: var(--accent);
+  --country-gap-tight: 8px;
+  --country-gap-snug: 12px;
+  --country-gap-loose: 24px;
+
+  position: relative;
+  overflow-x: clip;
+  background-color: var(--surface);
+  color: var(--ink);
+  animation: country-enter var(--duration-scene) var(--ease-standard) both;
+}
+
+.country--leaving {
+  animation: country-exit var(--duration-transition) var(--ease-exit) both;
+  pointer-events: none;
+}
+
+@keyframes country-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes country-exit {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.country-block {
+  padding-block: var(--space-6);
+}
+
+.country-block__inner {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+  padding-inline: var(--gutter-mobile);
+}
+
+@media (min-width: 768px) {
+  .country-block__inner {
+    padding-inline: var(--gutter-desktop);
+  }
+}
+
+/* --- Navigasi kembali ----------------------------------------------------- */
+
+.country-back {
+  position: fixed;
+  inset-block-start: var(--gutter-mobile);
+  inset-inline-start: var(--gutter-mobile);
+  z-index: var(--z-overlay);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  text-decoration: none;
+  transition:
+    color var(--duration-micro) var(--ease-standard),
+    text-decoration-color var(--duration-micro) var(--ease-standard);
+}
+
+.country-back:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--country-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.country-back[data-leaving='true'] {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .country-back {
+    inset-block-start: var(--space-3);
+    inset-inline-start: var(--space-3);
+  }
+}
+
+/* --- Teks aksara asli ----------------------------------------------------- */
+
+.country-native {
+  display: inline;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  font-weight: var(--weight-regular);
+}
+
+.country-native--latin {
+  font-family: var(--font-text);
+}
+
+.country-native--cjk {
+  font-family: var(--font-cjk);
+  line-height: 1.15;
+}
+
+.country-native--hangul {
+  font-family: var(--font-cjk);
+  line-height: 1.2;
+}
+
+.country-native--arab {
+  font-family: var(--font-arab);
+  line-height: 1.35;
+}
+
+.country-native--cyril {
+  font-family: var(--font-cyril);
+  line-height: 1.15;
+}
+
+.country-native--deva {
+  font-family: var(--font-deva);
+  line-height: 1.45;
+}
+
+.country-native--thai {
+  font-family: var(--font-thai);
+  line-height: 1.45;
+}
+
+/* --- Hero ----------------------------------------------------------------- */
+
+.country-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-16) var(--gutter-mobile) var(--space-12);
+  overflow: hidden;
+}
+
+.country-hero__accent {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  width: 8px;
+  height: 40%;
+  background-color: var(--country-accent);
+}
+
+.country-hero__inner {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.country-hero__local {
+  max-width: 100%;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(3rem, 12vw, 8rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.country-hero__local .country-native {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.country-hero__name {
+  margin-block-start: var(--space-3);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+}
+
+.country-hero__meta {
+  margin-block-start: var(--space-2);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+/* --- Sapaan --------------------------------------------------------------- */
+
+.country-greeting {
+  display: flex;
+  align-items: center;
+  min-height: 320px;
+}
+
+.country-greeting .country-block__inner {
+  text-align: start;
+}
+
+.country-greeting__native {
+  color: var(--ink);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.country-greeting__roman {
+  margin-block-start: var(--space-2);
+  color: var(--ink-muted);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+}
+
+.country-greeting__meaning {
+  margin-block-start: var(--country-gap-snug);
+  color: var(--ink);
+}
+
+.country-greeting__register {
+  margin-block-start: var(--country-gap-tight);
+  max-width: 60ch;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.country-greeting__audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  margin-block-start: var(--country-gap-loose);
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-label);
+  cursor: pointer;
+  transition:
+    opacity var(--duration-micro) var(--ease-standard),
+    transform var(--duration-micro) var(--ease-standard);
+}
+
+.country-greeting__audio:hover {
+  opacity: 0.9;
+}
+
+.country-greeting__audio:active {
+  transform: scale(0.98);
+}
+
+.country-greeting__audio svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.country-greeting__status {
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+@media (max-width: 599px) {
+  .country-greeting__audio {
+    width: 100%;
+  }
+}
+
+/* --- Bahasa dan frasa ----------------------------------------------------- */
+
+.country-language {
+  min-height: 400px;
+}
+
+.country-language__name {
+  margin-block-start: var(--space-2);
+  color: var(--ink);
+  font-size: 1.125rem;
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+}
+
+.country-language__native {
+  margin-block-start: var(--country-gap-tight);
+  color: var(--ink-muted);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.country-language__meta {
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+.country-language__note {
+  margin-block-start: var(--space-1);
+  max-width: 65ch;
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  font-style: italic;
+  line-height: var(--leading-label);
+}
+
+.country-phrases__title {
+  margin-block-start: var(--space-6);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-h2);
+}
+
+.country-phrases {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.country-phrases__item {
+  padding-inline-start: var(--space-2);
+  border-inline-start: 2px solid var(--country-accent);
+}
+
+.country-phrases__label {
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-label);
+}
+
+.country-phrases__native {
+  margin-block-start: var(--country-gap-tight);
+  color: var(--ink);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.country-phrases__roman,
+.country-phrases__meaning {
+  margin-block-start: var(--country-gap-tight);
+}
+
+.country-phrases__roman {
+  color: var(--ink-muted);
+}
+
+.country-phrases__meaning {
+  color: var(--ink);
+}
+
+@media (max-width: 767px) {
+  .country-phrases {
+    gap: var(--space-3);
+  }
+}
+
+/* --- Budaya dan orang ----------------------------------------------------- */
+
+.country-note {
+  display: flex;
+  align-items: center;
+  min-height: 280px;
+}
+
+.country-note__text {
+  margin-block-start: var(--space-2);
+  max-width: 65ch;
+  color: var(--ink);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.country-separator {
+  width: 100px;
+  height: 1px;
+  margin-block: var(--space-3);
+  margin-inline: auto;
+  background-color: var(--line);
+}
+
+/* --- Sumber --------------------------------------------------------------- */
+
+.country-sources {
+  padding-block: var(--space-6);
+  border-block-start: 1px solid var(--line);
+}
+
+.country-sources__inner {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.country-sources__title {
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-label);
+}
+
+.country-sources__list {
+  margin: var(--space-1) 0 0;
+  padding-inline-start: var(--space-3);
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.country-sources__item {
+  padding-block: 2px;
+}
+
+.country-sources__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink-muted);
+}
+
+.country-sources__link:hover {
+  color: var(--ink);
+}
+
+.country-sources__more,
+.country-verification {
+  margin-block-start: var(--space-2);
+  max-width: 65ch;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.country-sources__more summary,
+.country-verification summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.country-verification__list {
+  margin-block-start: var(--space-1);
+  padding-inline-start: var(--space-2);
+  display: grid;
+  gap: var(--space-1);
+}
+
+/* --- Negara tidak ditemukan ----------------------------------------------- */
+
+.country--missing {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-16) var(--gutter-mobile);
+}
+
+.country-missing {
+  width: 100%;
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+.country-missing__text {
+  margin-block-start: var(--space-2);
+  color: var(--ink-muted);
+}
+
+.country-missing__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-block-start: var(--space-3);
+}
+
+/* --- Mobile dan reduced motion -------------------------------------------- */
+
+@media (max-width: 767px) {
+  .country-hero {
+    padding-block-start: var(--space-12);
+  }
+
+  .country-hero__local {
+    font-size: clamp(2.5rem, 14vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .country,
+  .country--leaving {
+    animation: none;
+  }
+
+  .country-back,
+  .country-greeting__audio {
+    transition: none;
+  }
+}
