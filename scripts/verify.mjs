@@ -1,6 +1,9 @@
 import { spawnSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 
 const entry = (path) => `node_modules/${path}`;
+
+const modelPath = 'public/models/asia.glb';
 
 const steps = [
   { name: 'typecheck (tsc --noEmit)', entry: entry('typescript/bin/tsc'), args: ['--noEmit'] },
@@ -11,10 +14,25 @@ const steps = [
   },
   { name: 'test (vitest run)', entry: entry('vitest/vitest.mjs'), args: ['run'] },
   { name: 'build (vite build)', entry: entry('vite/bin/vite.js'), args: ['build'] },
+  {
+    name: 'model (scripts/verify-model.mjs)',
+    entry: 'scripts/verify-model.mjs',
+    args: [],
+    skipReason: () =>
+      existsSync(modelPath)
+        ? null
+        : `${modelPath} belum ada — jalankan \`npm run model:build\` untuk membuatnya`,
+  },
 ];
 
 for (const step of steps) {
   console.log(`\n[verify] mulai: ${step.name}`);
+
+  const skipReason = step.skipReason?.();
+  if (skipReason) {
+    console.log(`[verify] LEWATI: ${step.name} — ${skipReason}`);
+    continue;
+  }
 
   const result = spawnSync(process.execPath, [step.entry, ...step.args], { stdio: 'inherit' });
 
