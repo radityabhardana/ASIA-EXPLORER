@@ -3,105 +3,105 @@
     "id": "cn",
     "iso3": "CHN",
     "name": "China",
-    "triangles": 8330,
+    "triangles": 5536,
     "height": 6.0
   },
   {
     "id": "in",
     "iso3": "IND",
     "name": "India",
-    "triangles": 4926,
+    "triangles": 3268,
     "height": 5.4
   },
   {
     "id": "id",
     "iso3": "IDN",
     "name": "Indonesia",
-    "triangles": 15020,
+    "triangles": 9836,
     "height": 3.2
   },
   {
     "id": "jp",
     "iso3": "JPN",
     "name": "Japan",
-    "triangles": 4070,
+    "triangles": 2668,
     "height": 4.2
   },
   {
     "id": "kr",
     "iso3": "KOR",
     "name": "South Korea",
-    "triangles": 962,
+    "triangles": 628,
     "height": 3.6
   },
   {
     "id": "my",
     "iso3": "MYS",
     "name": "Malaysia",
-    "triangles": 1854,
+    "triangles": 1224,
     "height": 3.0
   },
   {
     "id": "ph",
     "iso3": "PHL",
     "name": "Philippines",
-    "triangles": 5010,
+    "triangles": 3276,
     "height": 3.0
   },
   {
     "id": "sg",
     "iso3": "SGP",
     "name": "Singapore",
-    "triangles": 44,
+    "triangles": 28,
     "height": 1.8
   },
   {
     "id": "th",
     "iso3": "THA",
     "name": "Thailand",
-    "triangles": 2102,
+    "triangles": 1388,
     "height": 3.8
   },
   {
     "id": "vn",
     "iso3": "VNM",
     "name": "Vietnam",
-    "triangles": 2032,
+    "triangles": 1344,
     "height": 3.4
   },
   {
     "id": "sa",
     "iso3": "SAU",
     "name": "Saudi Arabia",
-    "triangles": 1142,
+    "triangles": 756,
     "height": 4.6
   },
   {
     "id": "tr",
     "iso3": "TUR",
     "name": "Turkey",
-    "triangles": 1890,
+    "triangles": 1256,
     "height": 4.4
   },
   {
     "id": "kz",
     "iso3": "KAZ",
     "name": "Kazakhstan",
-    "triangles": 3098,
+    "triangles": 2060,
     "height": 4.8
   },
   {
     "id": "uz",
     "iso3": "UZB",
     "name": "Uzbekistan",
-    "triangles": 1528,
+    "triangles": 1016,
     "height": 3.0
   },
   {
     "id": "mn",
     "iso3": "MNG",
     "name": "Mongolia",
-    "triangles": 1784,
+    "triangles": 1188,
     "height": 4.0
   }
 ]

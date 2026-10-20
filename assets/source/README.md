@@ -49,15 +49,3 @@ Kalau file tidak ada, `tools/build-asia.py` memakai warna netral `#d9d6cf` dan m
 | MNG  | mn | Mongolia | 4.0 |
 
 Tinggi belum ditetapkan desain; nilainya ada di `COUNTRIES` pada `tools/build-asia.py`.
-
-## Bevel tepi atas
-
-`tools/build-asia.py` menambahkan chamfer satu segmen pada rim atas tiap negara
-(`BEVEL_WIDTH_RATIO = 0.10` dari tinggi ekstrusi, `BEVEL_WEIGHT_ATTR = "bevel_top"`).
-Rim ditandai lewat edge attribute, jadi hanya tepi atas yang di-bevel; tepi bawah
-tidak terlihat dan kalau ikut di-bevel jumlah triangle naik ~2x.
-
-`use_clamp_overlap = True` membatasi lebar chamfer sesuai jarak vertex garis pantai.
-Pada data 1:50m dengan tolerance 0.03 (≈1,9 km), jarak antar vertex rim ~0,01–0,05 unit,
-sehingga lebar efektif ter-clamp ke ~0,001–0,028 unit (bukan 0,18–0,60). Artinya chamfer
-ada secara geometri tapi praktis tidak terlihat pada skala peta penuh.

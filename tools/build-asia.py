@@ -7,7 +7,6 @@ Pipeline (headless Blender):
       -> Douglas-Peucker simplification (triangle budget)
       -> 2D filled Bezier curve per country (holes preserved)
       -> bmesh extrude + EAR_CLIP triangulate + recalc normals + flat shading
-      -> single-segment bevel on silhouette edges (10% of extrusion height)
       -> GLB (Draco) + manifest
 
 Run via `npm run model:build` (see scripts/build-model.mjs).
@@ -54,13 +53,6 @@ MIN_ISLAND_AREA = 0.01
 KEEP_UNSIMPLIFIED_ABOVE = 32
 
 MAX_TRIANGLES = 60000
-
-# Thin chamfer on the top rim so the edge catches light. Width is a share of
-# the country's extrusion height; clamp_overlap protects thin isthmi.
-BEVEL_WIDTH_RATIO = 0.10
-BEVEL_ANGLE_LIMIT = math.radians(30.0)
-BEVEL_SEGMENTS = 1
-BEVEL_WEIGHT_ATTR = "bevel_top"
 
 NEUTRAL_COLOR = "#d9d6cf"  # used until assets/palette.json exists
 
@@ -330,32 +322,6 @@ def fill_curve(polygons: list[dict], name: str) -> bpy.types.Curve:
     return curve
 
 
-def apply_bevel(obj: bpy.types.Object, width: float) -> None:
-    """Add and immediately apply a single-segment chamfer on the weighted rim."""
-    modifier = obj.modifiers.new(name="bevel", type="BEVEL")
-    modifier.width = width
-    modifier.offset_type = "OFFSET"
-    modifier.segments = BEVEL_SEGMENTS
-    modifier.affect = "EDGES"
-    modifier.limit_method = "WEIGHT"
-    modifier.edge_weight = BEVEL_WEIGHT_ATTR
-    modifier.angle_limit = BEVEL_ANGLE_LIMIT
-    modifier.use_clamp_overlap = True
-
-    depsgraph = bpy.context.evaluated_depsgraph_get()
-    depsgraph.update()
-    beveled = bpy.data.meshes.new_from_object(obj.evaluated_get(depsgraph))
-    previous = obj.data
-
-    obj.modifiers.clear()
-    obj.data = beveled
-    bpy.data.meshes.remove(previous)
-
-    leftover = beveled.attributes.get(BEVEL_WEIGHT_ATTR)
-    if leftover is not None:
-        beveled.attributes.remove(leftover)
-
-
 def build_country(country: dict, polygons: list[dict], palette: dict[str, str], has_palette: bool) -> dict:
     curve = fill_curve(polygons, country["iso3"])
     curve_object = bpy.data.objects.new(country["iso3"], curve)
@@ -388,62 +354,6 @@ def build_country(country: dict, polygons: list[dict], palette: dict[str, str], 
         quad_method="BEAUTY",
         ngon_method="EAR_CLIP",
     )
-
-    # Only the top rim is chamfered: the bottom edge is never visible and
-    # beveling it doubles the triangle cost. Rim = top vertex pair with a
-    # dihedral above the angle limit.
-    top_z = country["height"]
-    bevel_layer = bm.edges.layers.float.new(BEVEL_WEIGHT_ATTR)
-    rim_edges = 0
-    for edge in bm.edges:
-        if len(edge.link_faces) != 2:
-            continue
-        first, second = edge.verts
-        if abs(first.co.z - top_z) > 1e-5 or abs(second.co.z - top_z) > 1e-5:
-            continue
-        if edge.calc_face_angle(0.0) < BEVEL_ANGLE_LIMIT:
-            continue
-        edge[bevel_layer] = 1.0
-        rim_edges += 1
-
-    if rim_edges == 0:
-        fail(f"tidak ada edge rim atas untuk di-bevel di {country['iso3']}")
-
-    volume_before = bm.calc_volume(signed=True)
-    bm.to_mesh(mesh)
-    bm.free()
-
-    triangles_before = len(mesh.polygons)
-    if triangles_before == 0:
-        fail(f"triangulasi menghasilkan 0 triangle untuk {country['iso3']}")
-
-    for polygon in mesh.polygons:
-        polygon.use_smooth = False
-
-    obj = bpy.data.objects.new(country["iso3"], mesh)
-    obj["iso_a3"] = country["iso3"]
-    obj["id"] = country["id"]
-    obj["country"] = country["name"]
-    obj["height"] = float(country["height"])
-    bpy.context.collection.objects.link(obj)
-
-    bevel_width = country["height"] * BEVEL_WIDTH_RATIO
-    apply_bevel(obj, bevel_width)
-
-    # The chamfer strips add faces, so normals are re-derived on the closed
-    # solid before the new quads are triangulated.
-    mesh = obj.data
-    bm = bmesh.new()
-    bm.from_mesh(mesh)
-    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
-    bmesh.ops.triangulate(
-        bm,
-        faces=bm.faces[:],
-        quad_method="BEAUTY",
-        ngon_method="EAR_CLIP",
-    )
-    non_manifold = sum(1 for edge in bm.edges if len(edge.link_faces) != 2)
-    volume_after = bm.calc_volume(signed=True)
     bm.to_mesh(mesh)
     bm.free()
 
@@ -452,26 +362,24 @@ def build_country(country: dict, polygons: list[dict], palette: dict[str, str], 
 
     mesh.materials.append(make_material(country, palette, has_palette))
 
-    if non_manifold:
-        fail(f"bevel membuat {non_manifold} edge non-manifold di {country['iso3']} (spike/self-intersect)")
-    if volume_after <= 0.0:
-        fail(f"volume {country['iso3']} tidak valid setelah bevel ({volume_after:.4f})")
+    obj = bpy.data.objects.new(country["iso3"], mesh)
+    obj["iso_a3"] = country["iso3"]
+    obj["id"] = country["id"]
+    obj["country"] = country["name"]
+    obj["height"] = float(country["height"])
+    bpy.context.collection.objects.link(obj)
 
     triangles = len(mesh.polygons)
     if triangles == 0:
-        fail(f"bevel menghasilkan 0 triangle untuk {country['iso3']}")
+        fail(f"triangulasi menghasilkan 0 triangle untuk {country['iso3']}")
 
     return {
         "id": country["id"],
         "iso3": country["iso3"],
         "name": country["name"],
         "triangles": triangles,
-        "triangles_before": triangles_before,
         "vertices": len(mesh.vertices),
         "height": country["height"],
-        "bevel_width": bevel_width,
-        "rim_edges": rim_edges,
-        "volume_loss": 1.0 - volume_after / volume_before if volume_before else 0.0,
     }
 
 
@@ -482,13 +390,9 @@ def build_scene(tolerance: float, palette: dict[str, str], has_palette: bool) ->
     stats = []
     for country in COUNTRIES:
         stats.append(build_country(country, polygons_by_iso3[country["iso3"]], palette, has_palette))
-        entry = stats[-1]
         log(
             f"{country['iso3']} ({country['id']}): "
-            f"verts={entry['vertices']} tris={entry['triangles']} "
-            f"(bevel +{entry['triangles'] - entry['triangles_before']} on {entry['rim_edges']} rim edges) "
-            f"bevel_width={entry['bevel_width']:.3f} volume_loss={entry['volume_loss']:.2%} "
-            f"height={country['height']}"
+            f"verts={stats[-1]['vertices']} tris={stats[-1]['triangles']} height={country['height']}"
         )
 
     scene_objects = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
@@ -501,11 +405,9 @@ def build_scene(tolerance: float, palette: dict[str, str], has_palette: bool) ->
         fail(f"negara hilang dari scene: {', '.join(missing)}")
 
     total_triangles = sum(item["triangles"] for item in stats)
-    total_triangles_before = sum(item["triangles_before"] for item in stats)
     total_vertices = sum(item["vertices"] for item in stats)
     log(
         f"TOTAL objek={len(scene_objects)} triangle={total_triangles} "
-        f"(sebelum bevel={total_triangles_before}, delta=+{total_triangles - total_triangles_before}) "
         f"vertex={total_vertices} tolerance={tolerance}"
     )
     return stats
