@@ -49,3 +49,20 @@ Kalau file tidak ada, `tools/build-asia.py` memakai warna netral `#d9d6cf` dan m
 | MNG  | mn | Mongolia | 4.0 |
 
 Tinggi belum ditetapkan desain; nilainya ada di `COUNTRIES` pada `tools/build-asia.py`.
+
+## Keputusan: bevel tepi dibatalkan
+
+Bevel satu segmen pada rim atas pernah dicoba (commit `96e0769`, di-revert di `6038ae7`)
+dan dibatalkan karena tidak memberi efek visual sama sekali:
+
+- Lebar yang diminta: 10% tinggi ekstrusi = **0,18–0,60 unit**.
+- Jarak antar vertex garis pantai Natural Earth 1:50m pada tolerance 0.03 (≈1,9 km)
+  hanya **0,01–0,05 unit**.
+- `use_clamp_overlap` memotong lebar chamfer sampai **0,001–0,028 unit** (diukur dari
+  selisih z vertex GLB; 0% vertex mencapai lebar penuh).
+- Pada model selebar ~200 unit di viewport 1200 px, itu setara **0,02–0,15 px** — tidak terlihat.
+- Biayanya tetap +18.320 triangle (35.472 → 53.792, +51,6%) dan +167 KB.
+
+Kesimpulan: chamfer geometris tidak bisa terlihat pada kepadatan garis pantai 1:50m tanpa
+menurunkan detail siluet secara drastis. Definisi tepi dikerjakan di three.js, bukan di aset:
+`EdgesGeometry` + `LineSegments` untuk outline ±1,5 px, ditambah shading flat pada sisi.
