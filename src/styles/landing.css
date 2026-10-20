@@ -1,0 +1,880 @@
+/*
+ * Landing scroll narrative — 8 scene.
+ * Tinggi tiap scene mengikuti DESIGN_LANDING_V4 §0.8 (total 920vh); scene
+ * yang di-pin memakai stage `position: sticky` setinggi 100vh sehingga
+ * tambahan tinggi section menjadi jarak pin tanpa pin-spacer GSAP.
+ */
+
+.landing {
+  --landing-gutter: var(--gutter-mobile);
+  --landing-edge: var(--space-3);
+  position: relative;
+  background-color: var(--surface);
+  isolation: isolate;
+}
+
+@media (min-width: 768px) {
+  .landing {
+    --landing-gutter: var(--gutter-desktop);
+    --landing-edge: var(--space-6);
+  }
+}
+
+.landing-scene {
+  position: relative;
+  background-color: var(--surface);
+}
+
+.landing-scene:focus {
+  outline: none;
+}
+
+.landing-scene--hero {
+  height: 100vh;
+}
+.landing-scene--scale {
+  height: 120vh;
+}
+.landing-scene--language {
+  height: 150vh;
+}
+.landing-scene--script {
+  height: 140vh;
+}
+.landing-scene--regional {
+  height: 110vh;
+}
+.landing-scene--cultural {
+  height: 120vh;
+}
+.landing-scene--invitation {
+  height: 100vh;
+}
+.landing-scene--footer {
+  height: 80vh;
+}
+
+/* --- Stage -------------------------------------------------------------- */
+
+.landing-stage {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--landing-gutter);
+  overflow: clip;
+}
+
+.landing-scene--pinned .landing-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.landing-stage__copy {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+/* --- Tipografi bersama -------------------------------------------------- */
+
+.landing-kicker {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.landing-display {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.4vw, 4.5rem);
+  font-weight: var(--weight-regular);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.landing-display--stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.landing-display__number {
+  font-size: clamp(4.5rem, 13vw, 10rem);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.landing-display__words {
+  max-width: 18ch;
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  line-height: 1.25;
+}
+
+.landing-display--wide .landing-display__words {
+  max-width: 22ch;
+}
+
+.landing-note {
+  max-width: 42ch;
+  margin: 0;
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  color: var(--ink-muted);
+}
+
+/* --- Skip link di dalam halaman ---------------------------------------- */
+
+.landing-skip {
+  position: fixed;
+  top: calc(var(--space-1) + 40px);
+  left: var(--space-1);
+  z-index: var(--z-skip-link);
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  transform: translateY(calc(-100% - 64px));
+  transition: transform var(--duration-micro) var(--ease-standard);
+}
+
+.landing-skip:focus,
+.landing-skip:focus-visible {
+  transform: translateY(0);
+}
+
+/* --- Scene 1 — hero ---------------------------------------------------- */
+
+.landing-stage--hero {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  justify-items: center;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-6) var(--space-3);
+}
+
+.landing-hero__copy {
+  justify-self: start;
+  width: min(100%, 920px);
+}
+
+.landing-hero__title {
+  max-width: 15ch;
+  font-size: var(--text-hero);
+  font-weight: var(--weight-regular);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.landing-hero__scene {
+  width: min(48vw, 720px);
+}
+
+.landing-hint {
+  margin: 0;
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* --- Peta SVG ----------------------------------------------------------- */
+
+.landing-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.landing-map__country {
+  stroke: var(--surface);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.landing-map--interactive .landing-map__country {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.landing-map--interactive .landing-map__country:hover {
+  opacity: 0.78;
+}
+
+.landing-map--interactive .landing-map__country:focus-visible {
+  outline: none;
+  stroke: var(--ink);
+  stroke-width: 4;
+}
+
+/* --- Scene 2 — skala ---------------------------------------------------- */
+
+.landing-stage--split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.landing-stage--split .landing-note {
+  margin-top: var(--space-2);
+}
+
+.landing-map-wrap {
+  justify-self: end;
+  width: 100%;
+  max-width: 640px;
+}
+
+/* --- Scene 3 — bahasa --------------------------------------------------- */
+
+.landing-stage--language {
+  display: grid;
+  place-items: center;
+}
+
+.landing-lang__sil {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.landing-lang__shape {
+  width: 52vw;
+  height: auto;
+  max-height: 72vh;
+  color: var(--ink);
+  opacity: 0.08;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 65%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
+}
+
+/* --- Scene 4 — aksara --------------------------------------------------- */
+
+.landing-stage--script {
+  justify-content: center;
+  gap: clamp(16px, 4vh, 40px);
+}
+
+.landing-script__viewport {
+  width: auto;
+  margin-inline: calc(-1 * var(--landing-gutter));
+  overflow: clip;
+}
+
+.landing-script__track {
+  display: flex;
+  gap: 4vw;
+  width: max-content;
+  padding-inline: 30vw;
+  will-change: transform;
+}
+
+.landing-script__card {
+  position: relative;
+  flex: 0 0 40vw;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-block: 1px solid var(--line);
+}
+
+.landing-script__card::before {
+  content: '';
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline: 0;
+  height: 2px;
+  background-color: var(--card-accent, var(--accent));
+}
+
+.landing-script__native {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.landing-script__roman {
+  margin: 0;
+  font-size: var(--text-label);
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.landing-script__native[lang='th'],
+.landing-dialog__native[lang='th'] {
+  font-family: 'Leelawadee UI', 'Tahoma', 'Noto Sans Thai', sans-serif;
+}
+
+.landing-script__native[lang='ar'],
+.landing-dialog__native[lang='ar'] {
+  font-family: 'Segoe UI', 'Traditional Arabic', 'Noto Naskh Arabic', serif;
+}
+
+.landing-script__native[lang='ko'],
+.landing-dialog__native[lang='ko'] {
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+/* --- Scene 5 — regional ------------------------------------------------- */
+
+.landing-stage--regional {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-regional__layers {
+  position: absolute;
+  inset: 0;
+}
+
+.landing-regional__layer {
+  position: absolute;
+}
+
+.landing-regional__layer .landing-sil {
+  width: 100%;
+  height: auto;
+  color: var(--ink);
+  opacity: 0.12;
+}
+
+.landing-regional__layer--my {
+  left: 10vw;
+  top: 15vh;
+  width: 30vw;
+}
+.landing-regional__layer--th {
+  right: 8vw;
+  top: 12vh;
+  width: 20vw;
+}
+.landing-regional__layer--vn {
+  left: 25vw;
+  top: 35vh;
+  width: 16vw;
+}
+.landing-regional__layer--sg {
+  right: 35vw;
+  top: 55vh;
+  width: 6vw;
+}
+.landing-regional__layer--id {
+  left: 27vw;
+  top: 22vh;
+  width: 46vw;
+}
+.landing-regional__layer--ph {
+  right: 18vw;
+  top: 40vh;
+  width: 18vw;
+}
+
+.landing-regional__layer {
+  max-width: 100%;
+}
+
+/* --- Scene 6 — budaya --------------------------------------------------- */
+
+.landing-stage--cultural {
+  display: grid;
+  place-items: center;
+}
+
+.landing-cultural__layers {
+  position: absolute;
+  inset: 0;
+}
+
+.landing-cultural__layer {
+  position: absolute;
+}
+
+.landing-cultural__layer .landing-sil {
+  width: 100%;
+  height: auto;
+  color: var(--ink);
+  opacity: 0.12;
+}
+
+.landing-cultural__layer--tr {
+  left: 14vw;
+  top: 18vh;
+  width: 30vw;
+}
+.landing-cultural__layer--th {
+  right: 12vw;
+  top: 20vh;
+  width: 17vw;
+}
+
+.landing-cultural__icon {
+  position: absolute;
+  display: block;
+  width: 64px;
+  height: 64px;
+  color: var(--ink);
+}
+
+.landing-cultural__icon--cezve {
+  left: 30vw;
+  top: 34vh;
+}
+.landing-cultural__icon--wai {
+  right: 24vw;
+  top: 38vh;
+}
+
+/* --- Scene 7 — undangan ------------------------------------------------- */
+
+.landing-stage--invitation {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+}
+
+.landing-invitation__scene {
+  position: relative;
+  width: min(62vw, 900px);
+}
+
+.landing-invitation__scene--hovering {
+  cursor: pointer;
+}
+
+.landing-invitation__label {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin: 0;
+  padding: 6px 12px;
+  transform: translateX(-50%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-raised);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  color: var(--ink);
+  pointer-events: none;
+}
+
+/* --- Daftar negara (kontrol keyboard) ----------------------------------- */
+
+.landing-country-list {
+  position: fixed;
+  inset-block-end: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: var(--z-overlay);
+  width: min(260px, calc(100vw - var(--space-4)));
+  max-height: min(60vh, 520px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background-color: var(--surface-raised);
+  border: 1px solid var(--line);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity var(--duration-transition) var(--ease-standard),
+    transform var(--duration-transition) var(--ease-standard);
+}
+
+.landing-country-list:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.landing-country-list__title {
+  margin: 0;
+  padding: 4px 8px;
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.landing-country-list__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.landing-country-list button {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background-color: transparent;
+  color: var(--ink);
+  text-align: start;
+  cursor: pointer;
+}
+
+.landing-country-list li:first-child button {
+  border-top: 0;
+}
+
+.landing-country-list button:hover {
+  background-color: var(--surface);
+}
+
+/* --- Dialog negara ------------------------------------------------------ */
+
+.landing-dialog {
+  width: min(420px, calc(100vw - var(--space-4)));
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-raised);
+  color: var(--ink);
+  box-shadow:
+    0 24px 48px color-mix(in srgb, var(--ink) 12%, transparent),
+    0 8px 16px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+.landing-dialog::backdrop {
+  background-color: color-mix(in srgb, var(--ink) 24%, transparent);
+}
+
+.landing-dialog__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+}
+
+.landing-dialog__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background-color: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.landing-dialog__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.landing-dialog__title {
+  padding-right: var(--space-6);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+}
+
+.landing-dialog__native {
+  margin: var(--space-3) 0 0;
+  font-size: clamp(1.75rem, 4vw, 2rem);
+  line-height: 1.5;
+}
+
+.landing-dialog__roman {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-label);
+  color: var(--ink-muted);
+}
+
+.landing-dialog__meaning {
+  margin: var(--space-1) 0 0;
+  color: var(--ink-muted);
+}
+
+.landing-dialog__meta {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-label);
+  color: var(--ink-muted);
+}
+
+.landing-dialog__action {
+  margin-top: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.landing-dialog__action:hover {
+  text-decoration: none;
+}
+
+/* --- Scene 8 — footer --------------------------------------------------- */
+
+.landing-stage--footer {
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.landing-footer__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.landing-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-footer__links a {
+  font-size: var(--text-label);
+}
+
+.landing-footer__mark {
+  margin: auto 0 0;
+  font-family: var(--font-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* --- Wadah scene 3D ----------------------------------------------------- */
+
+.landing-asia {
+  position: relative;
+  width: 100%;
+}
+
+.landing-asia .asia-scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.landing-asia .asia-scene__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.landing-asia__pending,
+.landing-asia__fallback {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+}
+
+.landing-asia__pending .landing-map,
+.landing-asia__fallback .landing-map {
+  max-height: 100%;
+}
+
+.landing-sil {
+  display: block;
+  fill: currentColor;
+}
+
+/* --- Mobile 375 (§7) ---------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .landing-stage--split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+  }
+
+  .landing-map-wrap {
+    justify-self: center;
+    max-height: 38vh;
+  }
+
+  .landing-map-wrap .landing-map {
+    max-height: 38vh;
+  }
+
+  .landing-hero__scene {
+    width: 84vw;
+  }
+
+  .landing-lang__shape {
+    width: 88vw;
+    max-height: 70vh;
+  }
+
+  /* Scene 4 menjadi tumpukan vertikal; tidak ada filmstrip horizontal. */
+  .landing-scene--script .landing-stage {
+    position: relative;
+    height: 100%;
+  }
+
+  .landing-script__viewport {
+    width: auto;
+    margin-inline: 0;
+    overflow: visible;
+  }
+
+  .landing-script__track {
+    flex-direction: column;
+    gap: 4vh;
+    width: 100%;
+    padding-inline: 0;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .landing-script__card {
+    flex: none;
+    width: 100%;
+    min-height: 30vh;
+    padding: var(--space-3);
+  }
+
+  .landing-script__native {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+
+  /* Scene 5: tiga siluet saja. */
+  .landing-regional__layer--my,
+  .landing-regional__layer--vn,
+  .landing-regional__layer--sg {
+    display: none;
+  }
+
+  .landing-regional__layer--id {
+    left: 14vw;
+    top: 20vh;
+    width: 72vw;
+  }
+  .landing-regional__layer--th {
+    left: -6vw;
+    right: auto;
+    top: 10vh;
+    width: 48vw;
+  }
+  .landing-regional__layer--ph {
+    right: -6vw;
+    top: 45vh;
+    width: 52vw;
+  }
+
+  /* Scene 6: satu siluet + cezve. */
+  .landing-cultural__layer--th,
+  .landing-cultural__icon--wai {
+    display: none;
+  }
+
+  .landing-cultural__layer--tr {
+    left: 16vw;
+    top: 20vh;
+    width: 68vw;
+  }
+
+  .landing-cultural__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .landing-cultural__icon--cezve {
+    left: 26vw;
+    top: 42vh;
+  }
+
+  .landing-stage--invitation {
+    grid-template-rows: auto auto;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+  }
+
+  .landing-invitation__scene {
+    width: 85vw;
+  }
+
+  .landing-footer__links {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .landing-footer__links a {
+    font-size: var(--text-label);
+  }
+}
+
+/* --- Reduced motion (§0.7) --------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-scene--pinned .landing-stage {
+    position: relative;
+    height: 100%;
+  }
+
+  .landing [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .landing [data-highlight] {
+    opacity: 1;
+  }
+
+  .landing-script__track {
+    transform: none !important;
+    will-change: auto;
+  }
+}
