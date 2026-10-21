@@ -36,7 +36,8 @@ const steps = [
   {
     name: 'e2e (playwright test)',
     entry: entry('@playwright/test/cli.js'),
-    args: ['test'],
+    // 2 worker: 6+ worker terbukti flaky pada mesin ini (scroll + WebGL).
+    args: ['test', '--workers=2'],
     // E2E butuh browser + port bebas; jangan dijalankan diam-diam di gate cepat.
     skipReason: () =>
       process.env.VERIFY_E2E === '1'

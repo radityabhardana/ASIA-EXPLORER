@@ -33,6 +33,32 @@ test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page
     timeout: 45_000,
   });
 
+  /*
+   * `ready` menyala sebelum intro selesai; kamera masih bergerak beberapa
+   * ratus milidetik. Klik pada proyeksi yang diambil terlalu dini bisa jatuh
+   * di laut. Tunggu sampai proyeksi diam dulu.
+   */
+  await page.evaluate(async () => {
+    const scene = window.__asiakin_scene;
+    if (!scene) {
+      return;
+    }
+    let previous = scene.projected('jp');
+    for (let attempt = 0; attempt < 40; attempt += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 120));
+      const current = scene.projected('jp');
+      if (
+        previous &&
+        current &&
+        Math.abs(current.x - previous.x) < 0.5 &&
+        Math.abs(current.y - previous.y) < 0.5
+      ) {
+        return;
+      }
+      previous = current;
+    }
+  });
+
   const countryCount = await page.evaluate(
     () => window.__asiakin_scene?.countryCount ?? -1,
   );

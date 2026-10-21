@@ -116,7 +116,7 @@ test('navigasi kembali tetap terlihat dan menuju beranda', async ({ page }) => {
   await back.click();
   await expect(page).toHaveURL('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Jelajahi Asia lewat bahasa aslinya',
+    'Asia Explorer',
   );
 
   expect(errors).toEqual([]);

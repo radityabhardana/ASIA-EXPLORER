@@ -121,15 +121,15 @@ test.describe('landing visual', () => {
 
       await expect(
         page.getByRole('heading', { level: 1 }),
-      ).toHaveText('Jelajahi Asia lewat bahasa aslinya');
+      ).toHaveText('Asia Explorer');
       await waitForScene(page);
 
-      // §0.8: tinggi total 920vh, bukan 1120vh.
+      // §0.8: tinggi total minimal 920vh (scene 1-7 = 840vh, scene 8 footer ukuran konten).
       const height = await page.evaluate(() => {
         const vh = window.innerHeight;
         return { scrollHeight: document.documentElement.scrollHeight, vh };
       });
-      expect(Math.abs(height.scrollHeight - height.vh * 9.2)).toBeLessThan(4);
+      expect(height.scrollHeight).toBeGreaterThanOrEqual(Math.floor(height.vh * 9.2));
 
       for (const fraction of FRACTIONS) {
         await goToFraction(page, fraction);
@@ -298,7 +298,7 @@ test('tanpa WebGL, peta SVG menampilkan 15 area yang bisa dipilih', async ({
   await page.goto('/');
   await expect(
     page.getByRole('heading', { level: 1 }),
-  ).toHaveText('Jelajahi Asia lewat bahasa aslinya');
+  ).toHaveText('Asia Explorer');
 
   const fallback = page.locator('.landing-map--interactive');
   await expect(fallback).toBeVisible({ timeout: 15_000 });

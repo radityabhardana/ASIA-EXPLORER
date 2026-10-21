@@ -1,59 +1,89 @@
-# ASIAKIN — Eksplorasi Benua Asia Lewat Bahasa & Budaya
+# Asia Explorer
 
-Website penjelajahan interaktif benua Asia berbasis narasi, tipografi aksara lokal, dan peta relief 3D. Dibuat dengan pendekatan editorial berkelas tanpa chrome navbar, tanpa kotak kartu generik, dan bebas dari template AI-slop.
+Situs penjelajahan benua Asia: satu benua 3D di landing page, lima belas halaman negara yang
+dibaca seperti esai. Tanpa navbar, tanpa kartu, tanpa menu. Navigasi lewat gulir dan benua itu
+sendiri.
 
-## 🌟 Fitur Utama
+Nama produk di layar: **Asia Explorer**. Nama paket dan folder tetap `asiakin`/`asiakin-v3`
+(lihat `docs/PRD_V2_4_DELTA.md`, D37).
 
-- **Benua 3D Interaktif**: Visualisasi relief Asia diekstrusi dari batas kartografis Natural Earth (proyeksi Lambert Azimuthal Equal-Area) menggunakan Three.js + WebGL. Dilengkapi pencahayaan matahari terarah (`DirectionalLight` + `PCFShadowMap`) dan label pointer raycasting dinamis.
-- **Transisi Scroll Naratif**: Timeline scroll tersinkronisasi murni berbasis GSAP ScrollTrigger dan Lenis smooth scroll, membawa pengunjung dari skala benua (15 negara) ke keanekaragaman bahasa (718 bahasa daerah Indonesia).
-- **Triptych Aksara Dunia**: Perbandingan tipografi sapaan tiga rumpun aksara (Arab, Jepang Kanji/Kana, dan Thai) yang responsif di desktop maupun ponsel.
-- **Halaman Negara Editorial (15 Negara)**:
-  - Tata letak dua zona proporsional (narasi budaya di kiri, kartografi di kanan).
-  - Potret siluet negara dengan arsiran kartografis hatch 45°.
-  - Spesimen aksara lokal dengan pemutar audio Web Speech API bawaan.
-  - Penanda kejujuran kedalaman data (*Lengkap* vs *Penjelajahan*) murni tipografis tanpa chip/badge.
-  - Bebas dari template kartu box-shadow dan panah '→'.
-- **Aksesibilitas & Fallback**:
-  - Kontras teks WCAG AAA (rasio 15.51).
-  - Kontras warna batas negara tetangga CIEDE2000 $\Delta E \ge 15.54$.
-  - Fallback otomatis ke peta SVG interaktif jika peramban tidak mendukung WebGL.
-  - Dukungan `prefers-reduced-motion` menyeluruh.
+## Isi
 
-## 🚀 Menjalankan Secara Lokal
+- **Landing** (`/`) — delapan adegan yang dijalankan satu timeline gulir: hero benua, skala,
+  bahasa, aksara, peta regional, budaya, undangan, indeks 15 negara.
+- **Halaman negara** (`/negara/:id`) — urutan Hero → Cerita → Budaya → Orang → Bahasa → Sumber,
+  satu kolom teks 68ch dengan sidebar sticky. Rute lama `/country/:id` dialihkan ke sini.
+- **Tema terang saja.** `--ground`, `--surface`, `--ink` di `src/styles/tokens.css`.
 
-### Prasyarat
-- Node.js $\ge 20$
-- npm
+## Bentuk data
 
-### Menjalankan Server Pengembangan
+| Berkas | Isi |
+|---|---|
+| `docs/content/raw-{asean,west,east}.json` | sumber yang diedit manusia: cerita, budaya, orang, sapaan, sumber |
+| `src/content/countries.json` | keluaran `npm run content:build`, divalidasi skema |
+| `src/content/countries.ts` | tipe dan pembacaan; label kejujuran `Lengkap` untuk `confidence === 'tinggi'` (10 negara), `Penjelajahan` untuk 5 sisanya |
+
+Lima belas negara: `id, my, sg, th, vn, ph, cn, jp, kr, in, sa, tr, kz, uz, mn`.
+
+Setiap negara punya minimal dua sumber dengan URL dan tanggal akses. Angka penduduk dan ibu kota
+sengaja tidak ditampilkan.
+
+## Benua 3D
+
+Model GLB dibangun dari batas Natural Earth 1:50m dengan proyeksi Lambert Azimuthal Equal-Area
+(90°E, 32°N), diekstrusi di Blender lewat CLI, lalu dipilih dengan raycast memakai `extras.iso3`.
+Dataran (`--ground`) memakai `ShadowMaterial` dan tiga cincin rambut sebagai penanda skala.
+
+Tanpa WebGL, saat chunk gagal dimuat, atau setelah 5 detik tanpa frame, `AsiaSceneLazy` jatuh ke
+peta SVG yang tetap bisa diklik. Preloader berjalan paling lama 1,2 detik dan hanya sekali per
+sesi; muat langsung ke `/negara/:id` tidak memakai preloader.
+
+## Menjalankan
+
+Node.js ≥ 22.
 
 ```bash
-# 1. Pasang dependensi
 npm install
-
-# 2. Jalankan dev server
-npm run dev
-# Atau jalankan di background tanpa jendela console:
-# start-hidden.bat
+npm run dev          # http://localhost:5173/ (port dikunci)
+start-hidden.bat     # alternatif tanpa jendela konsol
+stop-server.bat      # hentikan server latar
 ```
 
-Aplikasi dapat diakses di: `http://localhost:5173/`
-
-Untuk menghentikan background dev server:
-```bash
-stop-server.bat
-```
-
-## 🧪 Pipeline Pengujian & Verifikasi
-
-Proyek ini menerapkan verifikasi ketat berbasis browser nyata Playwright, unit test Vitest, dan validasi model 3D:
+## Verifikasi
 
 ```bash
-# Jalankan seluruh pemeriksaan kualitas (typecheck, lint, vitest, build, model, contrast, content)
-npm run verify
-
-# Jalankan verifikasi lengkap termasuk browser E2E Playwright:
-VERIFY_E2E=1 npm run verify
+npm run verify              # typecheck, lint, vitest, build, model, kontras warna, konten
+set VERIFY_E2E=1 && npm run verify   # ikut menjalankan Playwright (butuh port 5173 bebas)
 ```
 
-Laporan hasil verifikasi lengkap tersimpan di [`docs/VERIFY.md`](docs/VERIFY.md).
+`scripts/verify.mjs` menjalankan langkah berurutan dan berhenti pada kegagalan pertama. Playwright
+dijalankan dengan `--workers=2`; jumlah worker lebih tinggi terbukti membuat gate waktu gagal
+secara acak. Hentikan server yang sedang berjalan lebih dulu (`stop-server.bat`) karena suite
+memakai `reuseExistingServer: false`.
+
+Gate yang mengikat ada di `e2e/gates.spec.ts`: orientasi utara-atas, tanpa kedip peta SVG,
+preloader, ukuran tinta benua, grid 48px, tabrakan headline, counter, diptych budaya,
+keterjangkauan indeks kaki halaman, dan reveal per adegan di 375/768.
+
+`docs/VERIFY.md` memuat angka hasil pengukuran terakhir, `docs/OPEN_DEFECTS.md` memuat cacat yang
+masih terbuka. Tangkapan layar tersimpan lokal di `docs/VERIFY/` (diabaikan git).
+
+## Model dan peta
+
+```bash
+npm run model:build    # butuh Blender 5.2 di jalur baku; GLB tidak byte-reproducible
+npm run model:verify
+npm run map:build      # regenerasi path SVG dari GeoJSON
+npm run contrast       # rasio teks dan ΔE2000 antarnegara bertetangga
+```
+
+## Susunan
+
+```
+src/app/         shell, rute, preloader
+src/scene/       AsiaScene (Three.js): kamera, dataran, intro, measureInk()
+src/sections/    landing (8 adegan) dan country (6 blok)
+src/content/     data mentah (docs/content) dan countries.json hasil build
+src/styles/      tokens, shell, landing, country
+docs/            audit, PRD delta, cacat terbuka, laporan verifikasi
+```
