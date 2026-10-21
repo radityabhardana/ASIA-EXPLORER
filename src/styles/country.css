@@ -829,13 +829,12 @@
 .country-sources__depth {
   display: inline-block;
   margin-block-end: var(--space-2);
-  padding: 4px 8px;
-  background-color: var(--line);
-  color: var(--ink);
+  color: var(--ink-muted);
   font-size: var(--text-label);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-label);
-  border-radius: var(--radius-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* --- Mobile dan reduced motion -------------------------------------------- */

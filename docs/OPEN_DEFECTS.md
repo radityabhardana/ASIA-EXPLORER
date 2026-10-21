@@ -106,3 +106,17 @@ Skrip ukur: `tmp-scene-check.mjs`, `tmp-hover-check.mjs` (gitignored).
    terlihat di tangkapan; 15 nama tampil tanpa Lengkap/Penjelajahan.
 3. **Pita kosong** ±250 px di atas judul kaki halaman, plus siluet terpotong di tepi atas.
 4. **Popup masih modal kartu** (`CountryDialog.tsx`) — belum editorial, belum memenuhi D30.
+
+## Landing — putaran 3 (13dca3d), hasil ukur sendiri
+
+Bukti: docs/VERIFY_LANDING/r3v-00-preloader.png, r3v-030.png, r3v-040.png, r3v-050.png, r3v-dialog.png; skrip tmp-landing-check.mjs.
+
+1. **Preloader tidak terpasang.** Preloader.tsx ada, App.tsx tidak mengimpornya. Pada t=120ms jumlah elemen [class*="preloader"] = 0; html[data-ready] = null setelah 4 detik.
+2. **Intro hero tidak ada.** Grep asiakin:ready hanya menemukan pengirim di Preloader; tidak ada listener di seluruh src.
+3. **Penanda kejujuran nol.** body.innerText setelah scroll penuh: 'Lengkap' = 0, 'Penjelajahan' = 0.
+4. **Triptych 2 dari 3.** r3v-050.png: hanya Arab dan Korea; Thai tidak dirender. Dua garis warna (olive, biru) masih ada di y=278.
+5. **Viewport kosong.** r3v-040.png: seluruh bidang kosong kecuali potongan '- Badan Bahasa' terpotong di tepi atas.
+6. **Em dash.** '- Badan Bahasa' dan '— Badan Bahasa' muncul sebagai pemisah (melanggar D30).
+7. **Dialog berpanah.** Teks: 'Jelajahi Jepang →'; panel 418x343 px.
+8. **Label hover ganda.** .landing-invitation__label (chip berbingkai) dan .asia-scene__label tampil bersamaan.
+
