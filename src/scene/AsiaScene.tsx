@@ -9,7 +9,7 @@
  * Sumber angka: DESIGN.md §5b (FOV 42, tilt 35°, lebar 62vw/85vw, DPR clamp).
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Object3D } from 'three';
 import type { RefObject } from 'react';
 import {
@@ -38,6 +38,8 @@ import {
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
+import { getCountry } from '@/content/countries';
+import { getRegion } from '@/content/regions';
 import { getWebGLTier } from '@/lib/webgl';
 
 export interface AsiaSceneProps {
@@ -261,6 +263,15 @@ export default function AsiaScene({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const callbacksRef = useRef({ onHoverCountry, onSelectCountry, onUnavailable });
   const selectedRef = useRef<string | null>(selectedId ?? null);
+  
+  const [hoverLabel, setHoverLabel] = useState<{
+    visible: boolean;
+    x: number;
+    y: number;
+    nameId: string;
+    nameLocal: string;
+    region: string;
+  } | null>(null);
 
   useEffect(() => {
     callbacksRef.current = { onHoverCountry, onSelectCountry, onUnavailable };
@@ -399,6 +410,26 @@ export default function AsiaScene({
       hoveredId = id;
       stateDirty = true;
       callbacksRef.current.onHoverCountry?.(id);
+      
+      // Update hover label
+      if (id) {
+        const country = getCountry(id);
+        const region = getRegion(id);
+        if (country && region) {
+          setHoverLabel({
+            visible: true,
+            x: pointerClientX,
+            y: pointerClientY,
+            nameId: country.nameId,
+            nameLocal: country.nameLocal,
+            region,
+          });
+        } else {
+          setHoverLabel(null);
+        }
+      } else {
+        setHoverLabel(null);
+      }
     };
 
     const pickAt = (clientX: number, clientY: number): string | null => {
@@ -427,6 +458,22 @@ export default function AsiaScene({
       pointerClientX = event.clientX;
       pointerClientY = event.clientY;
       pointerMoved = true;
+      
+      // Update hover label position immediately
+      if (hoveredId) {
+        const country = getCountry(hoveredId);
+        const region = getRegion(hoveredId);
+        if (country && region) {
+          setHoverLabel({
+            visible: true,
+            x: event.clientX,
+            y: event.clientY,
+            nameId: country.nameId,
+            nameLocal: country.nameLocal,
+            region,
+          });
+        }
+      }
     };
 
     const onPointerLeave = () => {
@@ -500,7 +547,7 @@ export default function AsiaScene({
     const gltfLoader = new GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
 
-    const fitCamera = (azimuth: number, elevation: number, scroll: number) => {
+    const fitCamera = (azimuth: number, elevation: number, scroll: number, introZoom = 1.0) => {
       const aspect = camera.aspect;
       const widthFractionTarget = widthFraction(aspect);
       const padding = cameraPadding(aspect);
@@ -576,7 +623,7 @@ export default function AsiaScene({
         }
 
         distance = Math.max(distance, heightDistance);
-        scaledDistance = distance * (1 - scroll * 0.05);
+        scaledDistance = distance * (1 - scroll * 0.05) * introZoom;
 
         // Yang diletakkan di tengah frame adalah pusat siluet, bukan pusat bbox
         // model — bbox memuat ruang kosong sehingga pusatnya meleset.
@@ -661,22 +708,40 @@ export default function AsiaScene({
     let lastDistance = 0;
     let lastOffsetRight = 0;
     let lastOffsetUp = 0;
+    let introProgress = 0; // 0 → 1 over entrance animation
+    let introStartTime = 0;
+    const INTRO_DURATION = 1000; // ms
 
     const tick = (time: number) => {
       const seconds = time / 1000;
       const delta = lastTime === 0 ? 0 : Math.min(seconds - lastTime, 0.1);
       lastTime = seconds;
 
+      // Entrance animation: camera settles into final pose over 1000ms
+      if (loaded && introProgress < 1 && !reducedMotion) {
+        if (introStartTime === 0) {
+          introStartTime = time;
+        }
+        const elapsed = time - introStartTime;
+        introProgress = Math.min(1, elapsed / INTRO_DURATION);
+      } else if (reducedMotion) {
+        introProgress = 1; // Skip intro entirely
+      }
+
       const scroll = Math.min(
         1,
         Math.max(0, scrollProgressRef?.current ?? 0),
       );
 
-      if (!reducedMotion && hoveredId === null && selectedRef.current === null) {
+      if (!reducedMotion && hoveredId === null && selectedRef.current === null && introProgress >= 1) {
         azimuth += 0.00006 * (delta * 60);
       }
       const elevation = ((TILT_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
-      fitCamera(azimuth, elevation, scroll);
+      
+      // Calculate intro zoom multiplier: ease-out-cubic from 1.15x to 1.0x
+      const eased = 1 - Math.pow(1 - introProgress, 3);
+      const introZoom = reducedMotion ? 1.0 : 1 + 0.15 * (1 - eased);
+      fitCamera(azimuth, elevation, scroll, introZoom);
 
       if (pointerMoved) {
         pointerMoved = false;
@@ -958,6 +1023,19 @@ export default function AsiaScene({
   return (
     <div className={className ? `asia-scene ${className}` : 'asia-scene'} ref={containerRef}>
       <canvas ref={canvasRef} className="asia-scene__canvas" aria-hidden="true" />
+      {hoverLabel && hoverLabel.visible && (
+        <div
+          className="asia-scene__label"
+          style={{
+            left: `${hoverLabel.x}px`,
+            top: `${hoverLabel.y}px`,
+          }}
+        >
+          <div className="asia-scene__label-id">{hoverLabel.nameId}</div>
+          <div className="asia-scene__label-native">{hoverLabel.nameLocal}</div>
+          <div className="asia-scene__label-region">{hoverLabel.region}</div>
+        </div>
+      )}
     </div>
   );
 }

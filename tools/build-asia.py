@@ -57,16 +57,16 @@ MAX_TRIANGLES = 60000
 NEUTRAL_COLOR = "#d9d6cf"  # used until assets/palette.json exists
 CONTEXT_COLOR = "#E7E1D6"  # flat context landmass color
 
-# Extrusion heights per D21: island nations 1.2, mainland 1.8
+# Extrusion heights per D21 revision: island nations 0.5, mainland 1.8
 COUNTRIES = (
     {"id": "cn", "iso3": "CHN", "name": "China", "height": 1.8},
     {"id": "in", "iso3": "IND", "name": "India", "height": 1.8},
-    {"id": "id", "iso3": "IDN", "name": "Indonesia", "height": 1.2},
-    {"id": "jp", "iso3": "JPN", "name": "Japan", "height": 1.2},
+    {"id": "id", "iso3": "IDN", "name": "Indonesia", "height": 0.5},
+    {"id": "jp", "iso3": "JPN", "name": "Japan", "height": 0.5},
     {"id": "kr", "iso3": "KOR", "name": "South Korea", "height": 1.8},
-    {"id": "my", "iso3": "MYS", "name": "Malaysia", "height": 1.2},
-    {"id": "ph", "iso3": "PHL", "name": "Philippines", "height": 1.2},
-    {"id": "sg", "iso3": "SGP", "name": "Singapore", "height": 1.2},
+    {"id": "my", "iso3": "MYS", "name": "Malaysia", "height": 0.5},
+    {"id": "ph", "iso3": "PHL", "name": "Philippines", "height": 0.5},
+    {"id": "sg", "iso3": "SGP", "name": "Singapore", "height": 0.5},
     {"id": "th", "iso3": "THA", "name": "Thailand", "height": 1.8},
     {"id": "vn", "iso3": "VNM", "name": "Vietnam", "height": 1.8},
     {"id": "sa", "iso3": "SAU", "name": "Saudi Arabia", "height": 1.8},
@@ -81,12 +81,13 @@ ID_BY_ISO3 = {c["iso3"]: c["id"] for c in COUNTRIES}
 
 PHI0 = math.radians(LAT0)
 
-# Bounding box for context mesh (roughly frame around Asia)
+# Bounding box for context mesh - expanded to eliminate straight cut
+# Now covers full continental Asia including Russia/Arctic to lat 75
 CONTEXT_BBOX = {
     "lon_min": 25.0,
     "lon_max": 150.0,
     "lat_min": -15.0,
-    "lat_max": 65.0,
+    "lat_max": 75.0,
 }
 
 

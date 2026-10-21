@@ -18,14 +18,14 @@
     "iso3": "IDN",
     "name": "Indonesia",
     "triangles": 9836,
-    "height": 1.2
+    "height": 0.5
   },
   {
     "id": "jp",
     "iso3": "JPN",
     "name": "Japan",
     "triangles": 2668,
-    "height": 1.2
+    "height": 0.5
   },
   {
     "id": "kr",
@@ -39,21 +39,21 @@
     "iso3": "MYS",
     "name": "Malaysia",
     "triangles": 1224,
-    "height": 1.2
+    "height": 0.5
   },
   {
     "id": "ph",
     "iso3": "PHL",
     "name": "Philippines",
     "triangles": 3276,
-    "height": 1.2
+    "height": 0.5
   },
   {
     "id": "sg",
     "iso3": "SGP",
     "name": "Singapore",
     "triangles": 28,
-    "height": 1.2
+    "height": 0.5
   },
   {
     "id": "th",
