@@ -10,12 +10,16 @@
   display: grid;
   place-items: center;
   background-color: var(--surface);
-  transition: clip-path 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition:
+    clip-path 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
   clip-path: inset(0 0 0 0);
+  transform: translateY(0);
 }
 
 .preloader--exiting {
   clip-path: inset(0 0 100% 0);
+  transform: translateY(-8%);
 }
 
 .preloader__content {

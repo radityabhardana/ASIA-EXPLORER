@@ -24,7 +24,7 @@ export const SCENE_RANGES = {
   hero: 0,
   scale: 100 / 920,
   language: 220 / 920,
-  script: 370 / 920,
+  script: 320 / 920,
   regional: 510 / 920,
   cultural: 620 / 920,
   invitation: 740 / 920,
@@ -202,24 +202,11 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
         0.025,
       );
       counter('.landing-scene--language [data-counter]', 718, LANGUAGE + 0.012, 0.045);
+      fadeOut('.landing-scene--language .landing-stage__copy', LANGUAGE + 0.08, 0.02);
 
-      // Scene 4 — filmstrip aksara.
+      // Scene 4 — triptych aksara.
       reveal('.landing-scene--script .landing-stage__copy', SCRIPT, 0.02);
       reveal('.landing-script__card', SCRIPT + 0.002, 0.004, 0.005);
-      if (!isMobile) {
-        const track = query<HTMLElement>('.landing-script__track');
-        if (track) {
-          // Track: 30vw pad + 40vw card1 + 4vw gap + 40vw card2 + 4vw gap +
-          // 40vw card3 + 30vw pad = 188vw. Translate -70vw so card3 right edge
-          // lands at 88vw (fully visible with 12vw right margin).
-          tl.fromTo(
-            track,
-            { x: 0 },
-            { x: '-70vw', duration: 0.044, ease: 'none' },
-            SCRIPT,
-          );
-        }
-      }
 
       // Scene 5 — tapestry regional.
       reveal('.landing-scene--regional .landing-stage__copy', REGIONAL, 0.02);

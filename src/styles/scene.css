@@ -11,7 +11,7 @@
   width: 100%;
   aspect-ratio: 3 / 2;
   min-height: 320px;
-  overflow: hidden;
+  overflow: visible;
   background-color: transparent;
 }
 
@@ -77,15 +77,20 @@
 
 /* Hover label: floats near pointer, shows country info */
 .asia-scene__label {
-  position: fixed;
-  z-index: var(--z-elevated);
-  transform: translate(12px, -50%);
+  position: absolute;
+  z-index: var(--z-elevated, 10);
+  transform: translate(16px, -50%);
   pointer-events: none;
   font-family: var(--font-text);
   color: var(--ink);
   line-height: 1.4;
+  white-space: nowrap;
   opacity: 0;
   animation: asia-label-fade-in 180ms ease-out forwards;
+}
+
+.asia-scene__label[data-flip='true'] {
+  transform: translate(calc(-100% - 16px), -50%);
 }
 
 @keyframes asia-label-fade-in {

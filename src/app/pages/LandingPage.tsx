@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
 
 import { scrollToSection } from '@/lib/motion';
@@ -31,8 +31,26 @@ export default function LandingPage() {
   const invitationProgressRef = useRef(0.5);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoverId, setHoverId] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
 
   useLandingTimeline({ root: rootRef, progress: heroProgressRef });
+
+  // Hero intro triggered by preloader exit or immediate if preloader skipped.
+  useEffect(() => {
+    const handleReady = () => {
+      setReady(true);
+    };
+
+    if (document.documentElement.dataset.ready === 'true') {
+      handleReady();
+    } else {
+      window.addEventListener('asiakin:ready', handleReady);
+    }
+
+    return () => {
+      window.removeEventListener('asiakin:ready', handleReady);
+    };
+  }, []);
 
   const selectedCountry = selectedId ? countryEntry(selectedId) ?? null : null;
   const hoverCountry = hoverId ? countryEntry(hoverId) ?? null : null;
@@ -44,7 +62,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="landing" ref={rootRef}>
+    <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
       {/* Scene 1 — hero */}
       <section
         className="landing-scene landing-scene--hero"
@@ -55,14 +73,14 @@ export default function LandingPage() {
         </a>
 
         <div className="landing-stage landing-stage--hero">
-          <div className="landing-hero__copy" data-reveal>
+          <div className="landing-hero__copy" data-intro>
             <p className="landing-kicker">Asiakin</p>
             <h1 className="landing-hero__title" id="landing-title">
               Jelajahi Asia lewat bahasa aslinya
             </h1>
           </div>
 
-          <div className="landing-hero__scene">
+          <div className="landing-hero__scene" data-intro>
             <AsiaSceneLazy
               decorative
               label="Peta Asia"
@@ -70,7 +88,7 @@ export default function LandingPage() {
             />
           </div>
 
-          <p className="landing-hint" data-reveal>
+          <p className="landing-hint" data-intro>
             Gulir
           </p>
         </div>
@@ -122,7 +140,7 @@ export default function LandingPage() {
                 718
               </span>
               <span className="landing-display__words">
-                bahasa daerah, Indonesia — Badan Bahasa
+                bahasa daerah, Indonesia (Badan Bahasa)
               </span>
             </h2>
           </div>
@@ -243,10 +261,10 @@ export default function LandingPage() {
               <WaiIcon />
             </span>
             <span className="landing-cultural__label landing-cultural__label--tr" data-reveal>
-              Turki — kopi Turki, cezve
+              Turki, kopi Turki, cezve
             </span>
             <span className="landing-cultural__label landing-cultural__label--th" data-reveal>
-              Thailand — wai, salam hormat
+              Thailand, wai, salam hormat
             </span>
           </div>
 
@@ -292,11 +310,6 @@ export default function LandingPage() {
               onHoverCountry={(id) => setHoverId(id)}
               onSelectCountry={(id) => setSelectedId(id)}
             />
-            {hoverCountry ? (
-              <p className="landing-invitation__label" aria-hidden="true">
-                {hoverCountry.nameId}
-              </p>
-            ) : null}
           </div>
 
           <div
@@ -360,7 +373,12 @@ export default function LandingPage() {
                       aria-haspopup="dialog"
                       onClick={() => setSelectedId(country.id)}
                     >
-                      {country.nameId}
+                      <span className="landing-footer__index-name">
+                        {country.nameId}
+                      </span>
+                      <span className="landing-footer__index-depth">
+                        {country.depth}
+                      </span>
                     </button>
                   </li>
                 ))}

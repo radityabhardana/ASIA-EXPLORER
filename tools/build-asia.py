@@ -81,12 +81,12 @@ ID_BY_ISO3 = {c["iso3"]: c["id"] for c in COUNTRIES}
 
 PHI0 = math.radians(LAT0)
 
-# Bounding box for context mesh - expanded to eliminate straight cut
-# Now covers full continental Asia including Russia/Arctic to lat 75
+# Bounding box for context mesh - tightened to Asia proper
+# Excludes Africa, far Europe, and stray oceanic islands
 CONTEXT_BBOX = {
     "lon_min": 25.0,
     "lon_max": 150.0,
-    "lat_min": -15.0,
+    "lat_min": -11.0,
     "lat_max": 75.0,
 }
 
@@ -186,7 +186,9 @@ def make_ring(ring: list[list[float]], tolerance: float) -> list[tuple[float, fl
 
 
 def in_asia_frame(properties: dict) -> bool:
-    """Check if country centroid is within the Asia frame."""
+    """Check if country centroid is within the Asia frame and belongs to Asia."""
+    if properties.get("CONTINENT") != "Asia":
+        return False
     lon = properties.get("LABEL_X") or properties.get("MIN_X") or 0
     lat = properties.get("LABEL_Y") or properties.get("MIN_Y") or 0
     return (

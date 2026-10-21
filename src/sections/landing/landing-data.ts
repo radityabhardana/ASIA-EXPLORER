@@ -24,8 +24,8 @@ export function countryEntry(id: string): Country | undefined {
   return countryById.get(id);
 }
 
-/** Tiga aksara yang ditampilkan di scene 4 (§1 tabel scene). */
-export const SCRIPT_COUNTRY_IDS = ['th', 'sa', 'kr'] as const;
+/** Tiga aksara yang ditampilkan di scene 4: Arab, Jepang/CJK, Thailand (§1 tabel scene). */
+export const SCRIPT_COUNTRY_IDS = ['sa', 'jp', 'th'] as const;
 
 export type RegionalLayer = 'back' | 'mid' | 'front';
 

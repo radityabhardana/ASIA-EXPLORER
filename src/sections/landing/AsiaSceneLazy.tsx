@@ -83,6 +83,7 @@ export default function AsiaSceneLazy({
           >
             <AsiaScene
               {...rest}
+              decorative={decorative}
               onSelectCountry={onSelectCountry}
               onUnavailable={() => {
                 setFailed(true);

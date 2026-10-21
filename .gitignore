@@ -14,5 +14,8 @@ playwright-report/
 docs/VERIFY_SCENE/
 docs/VERIFY_COUNTRY/
 docs/VERIFY_LANDING/
+docs/VERIFY/
 docs/research/shots/
 tmp-*
+
+.slim/deepwork/

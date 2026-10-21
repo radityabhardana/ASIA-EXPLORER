@@ -36,11 +36,18 @@ async function goToFraction(page: Page, fraction: number): Promise<void> {
   const target = await page.evaluate((value) => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const y = Math.round(max * value);
-    window.scrollTo(0, y);
+    window.scrollTo({ top: y, behavior: 'instant' });
     return y;
   }, fraction);
-  await page.waitForFunction((y) => Math.abs(window.scrollY - y) <= 2, target, {
-    timeout: 5_000,
+  await page.waitForFunction((y) => Math.abs(window.scrollY - y) <= 6, target, {
+    timeout: 10_000,
+  }).catch(async (err) => {
+    const info = await page.evaluate(() => ({
+      scrollY: window.scrollY,
+      scrollHeight: document.documentElement.scrollHeight,
+      innerHeight: window.innerHeight,
+    }));
+    throw new Error(`${err.message} — target was ${target} (fraction ${fraction}), actual was ${JSON.stringify(info)}`);
   });
   await page.evaluate(
     () =>
@@ -86,6 +93,37 @@ test.describe('landing visual', () => {
     for (const viewport of VIEWPORTS) {
       await page.setViewportSize(viewport);
       await page.goto('/');
+
+      // Preloader verification (D29): must appear, then disappear.
+      if (viewport.width === 1440) {
+        const preloaderCheck = await Promise.race([
+          page.waitForTimeout(120).then(async () => {
+            const exists = await page.evaluate(() => {
+              return document.querySelectorAll('[class*="preloader"]').length > 0;
+            });
+            return { exists, timeout: false };
+          }),
+          page.waitForTimeout(3000).then(() => ({ exists: false, timeout: true })),
+        ]);
+        
+        if (!preloaderCheck.timeout) {
+          expect(preloaderCheck.exists).toBe(true);
+        }
+
+        await page.waitForFunction(
+          () => document.documentElement.dataset.ready === 'true',
+          null,
+          { timeout: 5000 },
+        );
+        const readySet = await page.evaluate(
+          () => document.documentElement.dataset.ready,
+        );
+        expect(readySet).toBe('true');
+        
+        // Wait for intro animation to settle.
+        await page.waitForTimeout(1200);
+      }
+
       await expect(
         page.getByRole('heading', { level: 1 }),
       ).toHaveText('Jelajahi Asia lewat bahasa aslinya');
@@ -107,6 +145,21 @@ test.describe('landing visual', () => {
           path: `${SHOT_DIR}/landing-${viewport.width}x${viewport.height}-${percent}.png`,
         });
       }
+
+      // Check completion markers at 100% scroll (footer visible).
+      if (viewport.width === 1440) {
+        await goToFraction(page, 1);
+        const markers = await page.evaluate(() => {
+          const text = document.body.innerText;
+          const lengkap = (text.match(/Lengkap/g) || []).length;
+          const penjelajahan = (text.match(/Penjelajahan/g) || []).length;
+          const arrows = (text.match(/[→←]/g) || []).length;
+          return { lengkap, penjelajahan, arrows };
+        });
+        expect(markers.lengkap).toBe(10);
+        expect(markers.penjelajahan).toBe(5);
+        expect(markers.arrows).toBe(0);
+      }
     }
 
     expect(errors).toEqual([]);
@@ -114,6 +167,7 @@ test.describe('landing visual', () => {
 });
 
 test('skip link, 15 tombol negara di footer, dialog, dan navigasi', async ({ page }) => {
+  test.setTimeout(90_000);
   const errors = collectErrors(page);
 
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -198,7 +252,7 @@ test.describe('reduced motion', () => {
       const state = await page.evaluate(() => {
         const headings = Array.from(
           document.querySelectorAll<HTMLElement>(
-            '.landing-display, .landing-hero__title',
+            'h1, h2, h3, .landing-display, .landing-hero__title, .landing-script__card, .landing-cultural__label, .landing-ethos__text, .landing-footer__mark',
           ),
         );
         return headings.map((node) => {

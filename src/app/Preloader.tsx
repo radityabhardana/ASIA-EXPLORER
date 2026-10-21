@@ -19,15 +19,17 @@ export default function Preloader() {
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const shouldShow = !shown && !reducedMotion;
-    
+
     // Set data-ready immediately if not showing preloader
     if (!shouldShow) {
-      requestAnimationFrame(() => {
+      if (typeof document !== 'undefined') {
         document.documentElement.dataset.ready = 'true';
+      }
+      requestAnimationFrame(() => {
         window.dispatchEvent(new CustomEvent('asiakin:ready'));
       });
     }
-    
+
     return shouldShow;
   });
 
@@ -36,6 +38,8 @@ export default function Preloader() {
 
   useEffect(() => {
     if (!visible) {
+      document.documentElement.dataset.ready = 'true';
+      window.dispatchEvent(new CustomEvent('asiakin:ready'));
       return;
     }
 
@@ -48,12 +52,12 @@ export default function Preloader() {
         timeoutRef.current = null;
       }
       setExiting(true);
+      document.documentElement.dataset.ready = 'true';
+      window.dispatchEvent(new CustomEvent('asiakin:ready'));
       setTimeout(() => {
         if (!mounted) return;
         setVisible(false);
         sessionStorage.setItem(PRELOADER_SESSION_KEY, '1');
-        document.documentElement.dataset.ready = 'true';
-        window.dispatchEvent(new CustomEvent('asiakin:ready'));
       }, 600);
     };
 

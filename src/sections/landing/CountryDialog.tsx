@@ -91,7 +91,6 @@ export default function CountryDialog({ country, onClose }: CountryDialogProps) 
           <p className="landing-dialog__meta">Bahasa: {country.language.nameId}</p>
           <Link className="landing-dialog__action" to={`/negara/${country.id}`}>
             Jelajahi {country.nameId}
-            <span aria-hidden="true"> →</span>
           </Link>
         </div>
       ) : null}

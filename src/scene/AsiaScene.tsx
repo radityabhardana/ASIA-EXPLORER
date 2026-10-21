@@ -20,6 +20,7 @@ import {
   DirectionalLight,
   EdgesGeometry,
   Float32BufferAttribute,
+  HemisphereLight,
   LineBasicMaterial,
   LineSegments,
   Mesh,
@@ -41,6 +42,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { getCountry } from '@/content/countries';
 import { getRegion } from '@/content/regions';
 import { getWebGLTier } from '@/lib/webgl';
+import '@/styles/scene.css';
 
 export interface AsiaSceneProps {
   /** 0..1, dibaca di dalam loop rAF — bukan state React. */
@@ -50,6 +52,8 @@ export interface AsiaSceneProps {
   onSelectCountry?: (id: string) => void;
   /** WebGL gagal dibuat atau model tidak bisa dimuat. */
   onUnavailable?: () => void;
+  /** Decorative scenes have no interaction, no hover labels. */
+  decorative?: boolean;
   className?: string;
 }
 
@@ -94,7 +98,7 @@ const SELECT_LIFT = 1.4;
 const LIFT_TAU = 0.11;
 
 const MATERIAL_ROUGHNESS = 0.8;
-const OUTLINE_OPACITY = 0.25;
+const OUTLINE_OPACITY = 0.4;
 
 /** Lebar benua terhadap viewport, diinterpolasi dari aspect — bukan breakpoint. */
 function widthFraction(aspect: number): number {
@@ -257,6 +261,7 @@ export default function AsiaScene({
   onHoverCountry,
   onSelectCountry,
   onUnavailable,
+  decorative = false,
   className,
 }: AsiaSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -268,6 +273,7 @@ export default function AsiaScene({
     visible: boolean;
     x: number;
     y: number;
+    flip: boolean;
     nameId: string;
     nameLocal: string;
     region: string;
@@ -309,7 +315,7 @@ export default function AsiaScene({
     renderer.outputColorSpace = SRGBColorSpace;
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, DPR_MAX));
-    renderer.shadowMap.enabled = false;
+    renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFShadowMap;
 
     const scene = new Scene();
@@ -326,22 +332,32 @@ export default function AsiaScene({
       return new Color(value || '#b9b4aa');
     };
 
-    const ambient = new AmbientLight(0xffffff, 0.85);
+    // Ambient base + hemisphere for depth perception
+    const ambient = new AmbientLight(0xffffff, 0.5);
     scene.add(ambient);
+    
+    // Hemisphere: sky warm, ground cool — creates natural depth
+    const hemi = new HemisphereLight(0xfff4e8, 0x8b9dc3, 0.45);
+    scene.add(hemi);
 
-    const sun = new DirectionalLight(0xffffff, 1.05);
+    // Main sun from upper-right-front for visible shadows on extrusion
+    const sun = new DirectionalLight(0xfff8f0, 1.2);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(1024, 1024);
-    sun.shadow.camera.left = -120;
-    sun.shadow.camera.right = 120;
-    sun.shadow.camera.top = 120;
-    sun.shadow.camera.bottom = -120;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.left = -140;
+    sun.shadow.camera.right = 140;
+    sun.shadow.camera.top = 140;
+    sun.shadow.camera.bottom = -140;
     sun.shadow.camera.near = 1;
     sun.shadow.camera.far = 900;
-    sun.shadow.bias = -0.0015;
-    sun.shadow.normalBias = 0.02;
+    sun.shadow.bias = -0.0008;
+    sun.shadow.normalBias = 0.015;
     scene.add(sun);
     scene.add(sun.target);
+    
+    // Fill light from opposite side to soften shadows
+    const fill = new DirectionalLight(0xd4e4f7, 0.35);
+    scene.add(fill);
 
     const groundGeometry = new PlaneGeometry(520, 520);
     const groundMaterial = new ShadowMaterial({ opacity: 0.16 });
@@ -403,23 +419,44 @@ export default function AsiaScene({
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
 
-    const setHover = (id: string | null) => {
+    const setHover = (id: string | null, clientX = pointerClientX, clientY = pointerClientY) => {
+      if (decorative) {
+        return;
+      }
+
+      const rect = container.getBoundingClientRect();
+      const localX = clientX - rect.left;
+      const localY = clientY - rect.top;
+      const flip = clientX + 16 + 180 > window.innerWidth - 16;
+
       if (hoveredId === id) {
+        if (id) {
+          setHoverLabel((prev) =>
+            prev
+              ? {
+                  ...prev,
+                  x: localX,
+                  y: localY,
+                  flip,
+                }
+              : null,
+          );
+        }
         return;
       }
       hoveredId = id;
       stateDirty = true;
       callbacksRef.current.onHoverCountry?.(id);
-      
-      // Update hover label
+
       if (id) {
         const country = getCountry(id);
         const region = getRegion(id);
         if (country && region) {
           setHoverLabel({
             visible: true,
-            x: pointerClientX,
-            y: pointerClientY,
+            x: localX,
+            y: localY,
+            flip,
             nameId: country.nameId,
             nameLocal: country.nameLocal,
             region,
@@ -451,44 +488,31 @@ export default function AsiaScene({
       return typeof id === 'string' ? id : null;
     };
 
+    // Define handlers outside so they're in scope for cleanup
     const onPointerMove = (event: PointerEvent) => {
-      if (!loaded) {
+      if (!loaded || decorative) {
         return;
       }
       pointerClientX = event.clientX;
       pointerClientY = event.clientY;
       pointerMoved = true;
-      
-      // Update hover label position immediately
-      if (hoveredId) {
-        const country = getCountry(hoveredId);
-        const region = getRegion(hoveredId);
-        if (country && region) {
-          setHoverLabel({
-            visible: true,
-            x: event.clientX,
-            y: event.clientY,
-            nameId: country.nameId,
-            nameLocal: country.nameLocal,
-            region,
-          });
-        }
-      }
     };
 
     const onPointerLeave = () => {
+      if (decorative) return;
       pointerMoved = false;
       setHover(null);
     };
 
     const onPointerDown = (event: PointerEvent) => {
+      if (decorative) return;
       pointerDownX = event.clientX;
       pointerDownY = event.clientY;
       pointerDownValid = true;
     };
 
     const onPointerUp = (event: PointerEvent) => {
-      if (!loaded || !pointerDownValid) {
+      if (!loaded || !pointerDownValid || decorative) {
         return;
       }
       pointerDownValid = false;
@@ -502,11 +526,14 @@ export default function AsiaScene({
       }
     };
 
-    canvas.addEventListener('pointermove', onPointerMove);
-    canvas.addEventListener('pointerleave', onPointerLeave);
-    canvas.addEventListener('pointerdown', onPointerDown);
-    canvas.addEventListener('pointerup', onPointerUp);
-    canvas.addEventListener('pointercancel', onPointerLeave);
+    // Only register listeners if not decorative
+    if (!decorative) {
+      canvas.addEventListener('pointermove', onPointerMove);
+      canvas.addEventListener('pointerleave', onPointerLeave);
+      canvas.addEventListener('pointerdown', onPointerDown);
+      canvas.addEventListener('pointerup', onPointerUp);
+      canvas.addEventListener('pointercancel', onPointerLeave);
+    }
 
     const debug: AsiaSceneDebug = {
       ready: false,
@@ -745,7 +772,7 @@ export default function AsiaScene({
 
       if (pointerMoved) {
         pointerMoved = false;
-        setHover(pickAt(pointerClientX, pointerClientY));
+        setHover(pickAt(pointerClientX, pointerClientY), pointerClientX, pointerClientY);
       }
 
       if (stateDirty) {
@@ -776,6 +803,8 @@ export default function AsiaScene({
 
       if (!debug.ready) {
         debug.ready = true;
+        // Notify preloader that scene is ready
+        window.dispatchEvent(new CustomEvent('asiakin:scene-ready'));
       }
       debug.diagnostics = {
         distance: lastDistance,
@@ -944,13 +973,21 @@ export default function AsiaScene({
       debug.vertices = new Float32Array(tempVertices);
 
       // Model dibangun mengelilingi pusat bounding box, bukan origin.
+      // Sun from upper-right-front for visible shadows on extrusion faces
       sun.position.set(
-        center.x + 60,
-        center.y + 160,
-        center.z + 60,
+        center.x + 100,
+        center.y + 200,
+        center.z + 80,
       );
       sun.target.position.copy(center);
       sun.target.updateMatrixWorld();
+      
+      // Fill light from opposite side
+      fill.position.set(
+        center.x - 80,
+        center.y + 120,
+        center.z - 60,
+      );
 
       ground.position.set(center.x, -0.08, center.z);
       ground.updateMatrixWorld();
@@ -1018,14 +1055,15 @@ export default function AsiaScene({
         delete window.__asiakin_scene;
       }
     };
-  }, [scrollProgressRef]);
+  }, [scrollProgressRef, decorative]);
 
   return (
     <div className={className ? `asia-scene ${className}` : 'asia-scene'} ref={containerRef}>
       <canvas ref={canvasRef} className="asia-scene__canvas" aria-hidden="true" />
-      {hoverLabel && hoverLabel.visible && (
+      {!decorative && hoverLabel && hoverLabel.visible && (
         <div
           className="asia-scene__label"
+          data-flip={hoverLabel.flip ? 'true' : undefined}
           style={{
             left: `${hoverLabel.x}px`,
             top: `${hoverLabel.y}px`,
