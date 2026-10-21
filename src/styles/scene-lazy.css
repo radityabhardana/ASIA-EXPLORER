@@ -1,0 +1,16 @@
+/*
+ * Wadah cadangan untuk AsiaSceneLazy guna mencegah layout shift (CLS).
+ * Dimensi box identik dengan .asia-scene dari scene.css (aspect-ratio: 3 / 2, min-height: 320px).
+ */
+
+.landing-asia__placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  min-height: 320px;
+  background-color: transparent;
+}
+
+.landing-asia__body {
+  display: contents;
+}

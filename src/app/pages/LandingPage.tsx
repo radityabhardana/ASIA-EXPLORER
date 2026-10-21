@@ -9,11 +9,12 @@ import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import Silhouette from '@/sections/landing/Silhouette';
 import { CezveIcon, WaiIcon } from '@/sections/landing/icons';
 import {
-  FOOTER_SOURCES,
+  COUNTRY_SOURCES,
   REGIONAL_SILHOUETTES,
   SCRIPT_COUNTRY_IDS,
   countries,
   countryEntry,
+  sourceDomainLabel,
 } from '@/sections/landing/landing-data';
 import { useLandingTimeline } from '@/sections/landing/useLandingTimeline';
 import '@/styles/landing.css';
@@ -73,11 +74,50 @@ export default function LandingPage() {
         </a>
 
         <div className="landing-stage landing-stage--hero">
+          <div className="landing-hero__ground" aria-hidden="true">
+            <svg
+              className="landing-hero__ground-svg"
+              viewBox="0 0 1000 585"
+              preserveAspectRatio="none"
+            >
+              <ellipse
+                className="landing-hero__ground-disc"
+                cx="500"
+                cy="292.5"
+                rx="498"
+                ry="290"
+              />
+              <ellipse
+                className="landing-hero__ground-ring landing-hero__ground-ring--1"
+                cx="500"
+                cy="292.5"
+                rx="498"
+                ry="290"
+              />
+              <ellipse
+                className="landing-hero__ground-ring landing-hero__ground-ring--2"
+                cx="500"
+                cy="292.5"
+                rx="410"
+                ry="239"
+              />
+              <ellipse
+                className="landing-hero__ground-ring landing-hero__ground-ring--3"
+                cx="500"
+                cy="292.5"
+                rx="320"
+                ry="187"
+              />
+            </svg>
+          </div>
+
           <div className="landing-hero__copy" data-intro>
-            <p className="landing-kicker">Asiakin</p>
             <h1 className="landing-hero__title" id="landing-title">
-              Jelajahi Asia lewat bahasa aslinya
+              Asia Explorer
             </h1>
+            <p className="landing-hero__tagline">
+              Bahasa, aksara, dan budaya lima belas bangsa di benua Asia.
+            </p>
           </div>
 
           <div className="landing-hero__scene" data-intro>
@@ -112,7 +152,7 @@ export default function LandingPage() {
                 negara dalam cakupan
               </span>
             </h2>
-            <p className="landing-note">Dari Arab Saudi sampai Jepang.</p>
+            <p className="landing-note">Dari Turki sampai Jepang.</p>
           </div>
 
           <div className="landing-map-wrap" data-reveal>
@@ -143,6 +183,9 @@ export default function LandingPage() {
                 bahasa daerah, Indonesia (Badan Bahasa)
               </span>
             </h2>
+            <p className="landing-note">
+              Tercatat dari 2.560 titik pengamatan di seluruh kepulauan.
+            </p>
           </div>
         </div>
       </section>
@@ -237,37 +280,6 @@ export default function LandingPage() {
         aria-labelledby="landing-cultural-heading"
       >
         <div className="landing-stage landing-stage--cultural">
-          <div className="landing-cultural__layers" aria-hidden="true">
-            <div
-              className="landing-cultural__layer landing-cultural__layer--tr"
-              data-parallax="0.92"
-            >
-              <div className="landing-cultural__reveal" data-reveal>
-                <Silhouette id="tr" />
-              </div>
-            </div>
-            <div
-              className="landing-cultural__layer landing-cultural__layer--th"
-              data-parallax="1.08"
-            >
-              <div className="landing-cultural__reveal" data-reveal>
-                <Silhouette id="th" />
-              </div>
-            </div>
-            <span className="landing-cultural__icon landing-cultural__icon--cezve" data-reveal>
-              <CezveIcon />
-            </span>
-            <span className="landing-cultural__icon landing-cultural__icon--wai" data-reveal>
-              <WaiIcon />
-            </span>
-            <span className="landing-cultural__label landing-cultural__label--tr" data-reveal>
-              Turki, kopi Turki, cezve
-            </span>
-            <span className="landing-cultural__label landing-cultural__label--th" data-reveal>
-              Thailand, wai, salam hormat
-            </span>
-          </div>
-
           <div className="landing-stage__copy landing-center" data-reveal>
             <h2
               className="landing-display"
@@ -275,6 +287,54 @@ export default function LandingPage() {
             >
               Setiap negara punya caranya sendiri
             </h2>
+          </div>
+
+          <div className="landing-cultural__diptych">
+            <div className="landing-cultural__col landing-cultural__col--tr">
+              <div
+                className="landing-cultural__layer landing-cultural__layer--tr"
+                data-parallax="0.92"
+              >
+                <div className="landing-cultural__reveal" data-reveal>
+                  <Silhouette id="tr" />
+                </div>
+              </div>
+              <p
+                className="landing-cultural__label landing-cultural__label--tr"
+                data-reveal
+              >
+                <span
+                  className="landing-cultural__icon landing-cultural__icon--cezve"
+                  aria-hidden="true"
+                >
+                  <CezveIcon />
+                </span>
+                <span className="landing-cultural__text">Turki, kopi Turki, cezve</span>
+              </p>
+            </div>
+
+            <div className="landing-cultural__col landing-cultural__col--th">
+              <div
+                className="landing-cultural__layer landing-cultural__layer--th"
+                data-parallax="1.08"
+              >
+                <div className="landing-cultural__reveal" data-reveal>
+                  <Silhouette id="th" />
+                </div>
+              </div>
+              <p
+                className="landing-cultural__label landing-cultural__label--th"
+                data-reveal
+              >
+                <span
+                  className="landing-cultural__icon landing-cultural__icon--wai"
+                  aria-hidden="true"
+                >
+                  <WaiIcon />
+                </span>
+                <span className="landing-cultural__text">Thailand, wai, salam hormat</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -297,7 +357,8 @@ export default function LandingPage() {
               Pilih negara, mulai penjelajahan
             </h2>
             <p className="landing-note">
-              Arahkan kursor ke benua, atau tekan Tab untuk daftar negara.
+              Sentuh atau arahkan kursor ke negara di benua, atau pakai daftar
+              di bawah halaman.
             </p>
           </div>
 
@@ -343,19 +404,27 @@ export default function LandingPage() {
             <h2 className="landing-display" id="landing-footer-heading">
               Sumber data
             </h2>
-            <p className="landing-note">Data: Badan Bahasa, Britannica, UNESCO</p>
+            <p className="landing-note">
+              Rujukan 15 negara:
+            </p>
           </div>
 
-          <ul className="landing-footer__links">
-            {FOOTER_SOURCES.map((source) => (
-              <li key={source.label}>
-                <a
-                  href={source.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {source.label}
-                </a>
+          <ul className="landing-footer__links" data-reveal>
+            {COUNTRY_SOURCES.map((country) => (
+              <li key={country.id} className="landing-footer__source-item">
+                <span className="landing-footer__source-country">{country.nameId}:</span>{' '}
+                {country.sources.map((source, idx) => (
+                  <span key={source.url}>
+                    {idx > 0 ? ', ' : ''}
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      {sourceDomainLabel(source.url, source.what)}
+                    </a>
+                  </span>
+                ))}
               </li>
             ))}
           </ul>
@@ -386,7 +455,7 @@ export default function LandingPage() {
             </nav>
           </div>
 
-          <p className="landing-footer__mark">Asiakin</p>
+          <p className="landing-footer__mark">Asia Explorer</p>
         </div>
       </footer>
     </div>

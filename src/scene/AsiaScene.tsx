@@ -57,12 +57,24 @@ export interface AsiaSceneProps {
   className?: string;
 }
 
+export interface InkMeasurement {
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
+  widthPx: number;
+  heightPx: number;
+  viewportWidth: number;
+  widthVw: number;
+}
+
 interface AsiaSceneDebug {
   ready: boolean;
   countryCount: number;
   diagnostics?: Record<string, number>;
   vertices?: Float32Array<ArrayBufferLike>;
   projected(id: string): { x: number; y: number } | null;
+  measureInk?(): InkMeasurement;
 }
 
 declare global {
@@ -86,8 +98,11 @@ interface CountryEntry {
   anchor: Vector3;
   lift: number;
   target: number;
-}const FOV = 42;
-const TILT_FROM_HORIZONTAL = 35;
+  introStartMs: number;
+}
+
+const FOV = 38;
+const ELEVATION_FROM_HORIZONTAL = 52;
 const DPR_MAX = 1.5;
 
 /** Satuan dunia model ≈170 unit lebar, jadi lift dalam satuan dunia. */
@@ -99,17 +114,6 @@ const LIFT_TAU = 0.11;
 
 const MATERIAL_ROUGHNESS = 0.8;
 const OUTLINE_OPACITY = 0.4;
-
-/** Lebar benua terhadap viewport, diinterpolasi dari aspect — bukan breakpoint. */
-function widthFraction(aspect: number): number {
-  const t = Math.min(1, Math.max(0, (1.35 - aspect) / 0.7));
-  return 0.62 + 0.23 * t;
-}
-
-/** Padding kamera agar benua pas target width (cacat 2). */
-function cameraPadding(aspect: number): number {
-  return aspect < 1 ? 0.1 : 0.12;
-}
 
 function assetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path}`;
@@ -360,7 +364,7 @@ export default function AsiaScene({
     scene.add(fill);
 
     const groundGeometry = new PlaneGeometry(520, 520);
-    const groundMaterial = new ShadowMaterial({ opacity: 0.16 });
+    const groundMaterial = new ShadowMaterial({ opacity: 0.12 });
     const ground = new Mesh(groundGeometry, groundMaterial);
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = -0.08;
@@ -400,6 +404,7 @@ export default function AsiaScene({
       if (reducedMotion) {
         for (const country of countries) {
           country.lift = country.target;
+          country.mesh.position.y = country.target;
         }
         stateDirty = true;
       }
@@ -549,7 +554,7 @@ export default function AsiaScene({
         camera.updateMatrixWorld();
         anchorWorld.set(
           country.anchor.x,
-          country.anchor.y + country.lift,
+          country.anchor.y + country.mesh.position.y,
           country.anchor.z,
         );
         const ndc = projectedWorld.copy(anchorWorld).project(camera);
@@ -562,10 +567,123 @@ export default function AsiaScene({
           y: rect.top + (-ndc.y * 0.5 + 0.5) * rect.height,
         };
       },
+      measureInk() {
+        if (!loaded) {
+          return {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            widthPx: 0,
+            heightPx: 0,
+            viewportWidth: window.innerWidth,
+            widthVw: 0,
+          };
+        }
+
+        const groundVisible = ground.visible;
+        ground.visible = false;
+
+        camera.updateMatrixWorld();
+        renderer.render(scene, camera);
+
+        ground.visible = groundVisible;
+
+        const gl = renderer.getContext();
+        const width = gl.drawingBufferWidth;
+        const height = gl.drawingBufferHeight;
+        const pixels = new Uint8Array(width * height * 4);
+        gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+
+        let minX = width;
+        let maxX = -1;
+        let minY = height;
+        let maxY = -1;
+
+        for (let y = 0; y < height; y++) {
+          const rowOffset = y * width * 4;
+          for (let x = 0; x < width; x++) {
+            const alpha = pixels[rowOffset + x * 4 + 3] ?? 0;
+            if (alpha > 10) {
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+              if (y < minY) minY = y;
+              if (y > maxY) maxY = y;
+            }
+          }
+        }
+
+        if (maxX < minX || maxY < minY) {
+          return {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            widthPx: 0,
+            heightPx: 0,
+            viewportWidth: window.innerWidth,
+            widthVw: 0,
+          };
+        }
+
+        const rect = canvas.getBoundingClientRect();
+        const cssLeft = rect.left + (minX / width) * rect.width;
+        const cssRight = rect.left + ((maxX + 1) / width) * rect.width;
+        const cssTop = rect.top + ((height - 1 - maxY) / height) * rect.height;
+        const cssBottom = rect.top + ((height - minY) / height) * rect.height;
+
+        const widthPx = cssRight - cssLeft;
+        const heightPx = cssBottom - cssTop;
+        const viewportWidth = window.innerWidth;
+        const widthVw = (widthPx / viewportWidth) * 100;
+
+        let maxY_for_maxX = 0;
+        let r_maxX = 0, g_maxX = 0, b_maxX = 0, a_maxX = 0;
+        if (maxX >= 0) {
+          for (let y = 0; y < height; y++) {
+            const idx = (y * width + maxX) * 4;
+            if ((pixels[idx + 3] ?? 0) > 10) {
+              maxY_for_maxX = y;
+              r_maxX = pixels[idx] ?? 0;
+              g_maxX = pixels[idx + 1] ?? 0;
+              b_maxX = pixels[idx + 2] ?? 0;
+              a_maxX = pixels[idx + 3] ?? 0;
+            }
+          }
+        }
+
+        debug.diagnostics = {
+          ...debug.diagnostics,
+          minPixelX: minX,
+          maxPixelX: maxX,
+          minPixelY: minY,
+          maxPixelY: maxY,
+          drawingBufferWidth: width,
+          drawingBufferHeight: height,
+          pixelAtMaxX_y: maxY_for_maxX,
+          pixelAtMaxX_r: r_maxX,
+          pixelAtMaxX_g: g_maxX,
+          pixelAtMaxX_b: b_maxX,
+          pixelAtMaxX_a: a_maxX,
+        };
+
+        return {
+          left: cssLeft,
+          right: cssRight,
+          top: cssTop,
+          bottom: cssBottom,
+          widthPx,
+          heightPx,
+          viewportWidth,
+          widthVw,
+        };
+      },
     };
 
     if (import.meta.env.DEV) {
-      window.__asiakin_scene = debug;
+      if (decorative || !window.__asiakin_scene) {
+        window.__asiakin_scene = debug;
+      }
     }
 
     const dracoLoader = new DRACOLoader();
@@ -576,12 +694,7 @@ export default function AsiaScene({
 
     const fitCamera = (azimuth: number, elevation: number, scroll: number, introZoom = 1.0) => {
       const aspect = camera.aspect;
-      const widthFractionTarget = widthFraction(aspect);
-      const padding = cameraPadding(aspect);
       const tanHalf = Math.tan((FOV * Math.PI) / 360);
-      // NDC ±1 = satu viewport penuh, jadi fraksi target dipakai langsung.
-      const widthHalf = widthFractionTarget * (1 + padding);
-      const heightHalf = 0.92;
 
       const sx = Math.sin(azimuth);
       const cx = Math.cos(azimuth);
@@ -597,105 +710,63 @@ export default function AsiaScene({
       const fy = -sy;
       const fz = -cx * cy;
 
-      // Dua hal yang saling memengaruhi: jarak kamera (lebar 62vw) dan geseran
-      // target (pusat siluet di tengah frame). Iterasi singkat membuat keduanya
-      // konvergen tanpa alokasi per frame.
-      let offsetRight = 0;
-      let offsetUp = 0;
-      let scaledDistance = 0;
-      const targetSpan = widthFractionTarget * 2;
-      for (let cycle = 0; cycle < 3; cycle += 1) {
-        let distance = 0;
-        let heightDistance = 0;
+      const offsetRight = 7.0;
+      let offsetUp = lastOffsetUp;
+      let distance = lastDistance > 50 ? lastDistance : 160;
+      const targetSpan = 1.98;
+
+      for (let iter = 0; iter < 10; iter += 1) {
+        let minNdcX = Number.POSITIVE_INFINITY;
+        let maxNdcX = Number.NEGATIVE_INFINITY;
+        let minNdcY = Number.POSITIVE_INFINITY;
+        let maxNdcY = Number.NEGATIVE_INFINITY;
+
         for (let i = 0; i < silhouetteCount; i += 1) {
           const lx = silhouette[i * 3] ?? 0;
           const ly = silhouette[i * 3 + 1] ?? 0;
           const lz = silhouette[i * 3 + 2] ?? 0;
-          const projectedRight = lx * rx + lz * rz - offsetRight;
-          const projectedUp = lx * ux + ly * uy + lz * uz - offsetUp;
-          const projectedForward = lx * fx + ly * fy + lz * fz;
-          const widthNeed =
-            Math.abs(projectedRight) / (tanHalf * aspect * widthHalf);
-          const heightNeed = Math.abs(projectedUp) / (tanHalf * heightHalf);
-          distance = Math.max(distance, projectedForward + widthNeed);
-          heightDistance = Math.max(heightDistance, projectedForward + heightNeed);
+
+          const projRight = lx * rx + lz * rz - offsetRight;
+          const projUp = lx * ux + ly * uy + lz * uz - offsetUp;
+          const projFwd = lx * fx + ly * fy + lz * fz;
+
+          const depth = distance - projFwd;
+          if (depth <= 1) continue;
+
+          const ndcX = projRight / (depth * tanHalf * aspect);
+          const ndcY = projUp / (depth * tanHalf);
+
+          if (ndcX < minNdcX) minNdcX = ndcX;
+          if (ndcX > maxNdcX) maxNdcX = ndcX;
+          if (ndcY < minNdcY) minNdcY = ndcY;
+          if (ndcY > maxNdcY) maxNdcY = ndcY;
         }
 
-        for (let iteration = 0; iteration < 6; iteration += 1) {
-          let maxPositive = Number.NEGATIVE_INFINITY;
-          let maxNegative = Number.POSITIVE_INFINITY;
-          for (let i = 0; i < silhouetteCount; i += 1) {
-            const lx = silhouette[i * 3] ?? 0;
-            const ly = silhouette[i * 3 + 1] ?? 0;
-            const lz = silhouette[i * 3 + 2] ?? 0;
-            const projectedRight = lx * rx + lz * rz - offsetRight;
-            const projectedForward = lx * fx + ly * fy + lz * fz;
-            const denominator = (distance - projectedForward) * tanHalf * aspect;
-            if (denominator <= 0) {
-              continue;
-            }
-            const value = projectedRight / denominator;
-            maxPositive = Math.max(maxPositive, value);
-            maxNegative = Math.min(maxNegative, value);
-          }
-          const span = maxPositive - maxNegative;
-          if (!Number.isFinite(span) || span <= 0) {
-            distance *= 1.5;
-            continue;
-          }
-          distance *= span / targetSpan;
-          if (Math.abs(span - targetSpan) < 0.002) {
-            break;
-          }
-        }
+        const spanX = maxNdcX - minNdcX;
+        const midNdcY = (minNdcY + maxNdcY) / 2;
 
-        distance = Math.max(distance, heightDistance);
-        scaledDistance = distance * (1 - scroll * 0.05) * introZoom;
+        if (!Number.isFinite(spanX) || spanX <= 0) break;
 
-        // Yang diletakkan di tengah frame adalah pusat siluet, bukan pusat bbox
-        // model — bbox memuat ruang kosong sehingga pusatnya meleset.
-        for (let pass = 0; pass < 3; pass += 1) {
-          let minRight = Number.POSITIVE_INFINITY;
-          let maxRight = Number.NEGATIVE_INFINITY;
-          let minUp = Number.POSITIVE_INFINITY;
-          let maxUp = Number.NEGATIVE_INFINITY;
-          for (let i = 0; i < silhouetteCount; i += 1) {
-            const lx = silhouette[i * 3] ?? 0;
-            const ly = silhouette[i * 3 + 1] ?? 0;
-            const lz = silhouette[i * 3 + 2] ?? 0;
-            const projectedForward = lx * fx + ly * fy + lz * fz;
-            const denominator = (scaledDistance - projectedForward) * tanHalf;
-            if (denominator <= 0) {
-              continue;
-            }
-            const rightValue =
-              (lx * rx + lz * rz - offsetRight) / (denominator * aspect);
-            const upValue =
-              (lx * ux + ly * uy + lz * uz - offsetUp) / denominator;
-            minRight = Math.min(minRight, rightValue);
-            maxRight = Math.max(maxRight, rightValue);
-            minUp = Math.min(minUp, upValue);
-            maxUp = Math.max(maxUp, upValue);
-          }
-          const midRight = (minRight + maxRight) / 2;
-          const midUp = (minUp + maxUp) / 2;
-          if (!Number.isFinite(midRight) || !Number.isFinite(midUp)) {
-            break;
-          }
-          if (Math.abs(midRight) < 0.0002 && Math.abs(midUp) < 0.0002) {
-            break;
-          }
-          offsetRight += midRight * scaledDistance * tanHalf * aspect;
-          offsetUp += midUp * scaledDistance * tanHalf;
+        distance *= spanX / targetSpan;
+        const targetNdcY = 0.315;
+        offsetUp += (midNdcY - targetNdcY) * distance * tanHalf;
+
+        lastMinRight = minNdcX;
+        lastMaxRight = maxNdcX;
+
+        if (Math.abs(spanX - targetSpan) < 0.002 && Math.abs(midNdcY) < 0.001) {
+          break;
         }
       }
 
+      const scaledDistance = distance * (1 - scroll * 0.05) * introZoom;
       lastDistance = scaledDistance;
+      lastOffsetRight = offsetRight;
+      lastOffsetUp = offsetUp;
+
       const targetX = center.x + rx * offsetRight + ux * offsetUp;
       const targetY = center.y + uy * offsetUp;
       const targetZ = center.z + rz * offsetRight + uz * offsetUp;
-      lastOffsetRight = offsetRight;
-      lastOffsetUp = offsetUp;
 
       camera.position.set(
         targetX + sx * cy * scaledDistance,
@@ -735,40 +806,35 @@ export default function AsiaScene({
     let lastDistance = 0;
     let lastOffsetRight = 0;
     let lastOffsetUp = 0;
-    let introProgress = 0; // 0 → 1 over entrance animation
+    let lastMinRight = 0;
+    let lastMaxRight = 0;
     let introStartTime = 0;
-    const INTRO_DURATION = 1000; // ms
 
     const tick = (time: number) => {
       const seconds = time / 1000;
       const delta = lastTime === 0 ? 0 : Math.min(seconds - lastTime, 0.1);
       lastTime = seconds;
 
-      // Entrance animation: camera settles into final pose over 1000ms
-      if (loaded && introProgress < 1 && !reducedMotion) {
-        if (introStartTime === 0) {
-          introStartTime = time;
-        }
-        const elapsed = time - introStartTime;
-        introProgress = Math.min(1, elapsed / INTRO_DURATION);
-      } else if (reducedMotion) {
-        introProgress = 1; // Skip intro entirely
+      if (loaded && introStartTime === 0) {
+        introStartTime = time;
       }
+      const elapsedIntro = loaded && introStartTime > 0 ? time - introStartTime : 0;
 
       const scroll = Math.min(
         1,
         Math.max(0, scrollProgressRef?.current ?? 0),
       );
 
-      if (!reducedMotion && hoveredId === null && selectedRef.current === null && introProgress >= 1) {
-        azimuth += 0.00006 * (delta * 60);
+      const MAX_IDLE_RAD = (1.5 * Math.PI) / 180;
+      if (!reducedMotion && hoveredId === null && selectedRef.current === null && elapsedIntro >= 1600) {
+        const idleSeconds = (elapsedIntro - 1600) / 1000;
+        azimuth = Math.sin(idleSeconds * (2 * Math.PI / 8)) * MAX_IDLE_RAD;
+      } else {
+        azimuth = 0;
       }
-      const elevation = ((TILT_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
-      
-      // Calculate intro zoom multiplier: ease-out-cubic from 1.15x to 1.0x
-      const eased = 1 - Math.pow(1 - introProgress, 3);
-      const introZoom = reducedMotion ? 1.0 : 1 + 0.15 * (1 - eased);
-      fitCamera(azimuth, elevation, scroll, introZoom);
+
+      const elevation = ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
+      fitCamera(azimuth, elevation, scroll, 1.0);
 
       if (pointerMoved) {
         pointerMoved = false;
@@ -794,8 +860,23 @@ export default function AsiaScene({
           const factor = 1 - Math.exp(-delta / LIFT_TAU);
           country.lift += (country.target - country.lift) * factor;
         }
-        if (Math.abs(country.mesh.position.y - country.lift) > 0.0005) {
-          country.mesh.position.y = country.lift;
+
+        let introOffsetY = 0;
+        if (!reducedMotion && elapsedIntro < 1600) {
+          if (elapsedIntro < country.introStartMs) {
+            introOffsetY = -1.6;
+          } else if (elapsedIntro >= country.introStartMs + 400) {
+            introOffsetY = 0;
+          } else {
+            const t = (elapsedIntro - country.introStartMs) / 400;
+            const eased = 1 - Math.pow(1 - t, 3);
+            introOffsetY = -1.6 * (1 - eased);
+          }
+        }
+
+        const targetY = introOffsetY + country.lift;
+        if (Math.abs(country.mesh.position.y - targetY) > 0.0005) {
+          country.mesh.position.y = targetY;
         }
       }
 
@@ -806,16 +887,19 @@ export default function AsiaScene({
         // Notify preloader that scene is ready
         window.dispatchEvent(new CustomEvent('asiakin:scene-ready'));
       }
-      debug.diagnostics = {
-        distance: lastDistance,
-        aspect: camera.aspect,
-        width: container.clientWidth,
-        height: container.clientHeight,
-        azimuth,
-        offsetRight: lastOffsetRight,
-        offsetUp: lastOffsetUp,
-        targetX: camera.position.x,
-      };
+        debug.diagnostics = {
+          distance: lastDistance,
+          aspect: camera.aspect,
+          width: container.clientWidth,
+          height: container.clientHeight,
+          azimuth,
+          offsetRight: lastOffsetRight,
+          offsetUp: lastOffsetUp,
+          targetX: camera.position.x,
+          minRight: lastMinRight,
+          maxRight: lastMaxRight,
+          silhouetteCount,
+        };
     };
 
     const init = async () => {
@@ -946,6 +1030,7 @@ export default function AsiaScene({
           anchor,
           lift: 0,
           target: 0,
+          introStartMs: 600,
         };
         countries.push(country);
         pickTargets.push(object);
@@ -954,11 +1039,29 @@ export default function AsiaScene({
 
       debug.countryCount = countries.length;
 
+      let minCentroidX = Number.POSITIVE_INFINITY;
+      let maxCentroidX = Number.NEGATIVE_INFINITY;
+      for (const country of countries) {
+        minCentroidX = Math.min(minCentroidX, country.anchor.x);
+        maxCentroidX = Math.max(maxCentroidX, country.anchor.x);
+      }
+      const spanCentroidX = maxCentroidX - minCentroidX || 1;
+      for (const country of countries) {
+        const westToEast = (country.anchor.x - minCentroidX) / spanCentroidX;
+        country.introStartMs = 600 + westToEast * 600;
+      }
+
       // Matrix dunia sudah final setelah traverse (node GLB tanpa transform),
       // jadi hull bisa dihitung sekali di sini.
       gltf.scene.updateMatrixWorld(true);
       silhouette = computeSilhouette(pickTargets, center);
       silhouetteCount = silhouette.length / 3;
+
+      for (const country of countries) {
+        if (!reducedMotion) {
+          country.mesh.position.y = -1.6;
+        }
+      }
 
       for (let i = 0; i < pickTargets.length; i += 1) {
         const position = pickTargets[i]!.geometry.getAttribute('position');

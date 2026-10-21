@@ -4,6 +4,24 @@ import '@/styles/preloader.css';
 const PRELOADER_SESSION_KEY = 'asiakin:preloader-shown';
 const MAX_WAIT_MS = 1200;
 
+function isSessionShown(): boolean {
+  if (typeof window === 'undefined') return true;
+  try {
+    return sessionStorage.getItem(PRELOADER_SESSION_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markSessionShown(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem(PRELOADER_SESSION_KEY, '1');
+  } catch {
+    // ignore
+  }
+}
+
 /**
  * Preloader (D29): brand wordmark + typographic progress line. Waits for
  * scene ready or timeout, exits with transform/clip. Skipped with reduced
@@ -15,7 +33,7 @@ export default function Preloader() {
       return false;
     }
     const isLanding = window.location.pathname === '/';
-    const shown = sessionStorage.getItem(PRELOADER_SESSION_KEY);
+    const shown = isSessionShown();
     const reducedMotion =
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -26,9 +44,12 @@ export default function Preloader() {
       if (typeof document !== 'undefined') {
         document.documentElement.dataset.ready = 'true';
       }
+      markSessionShown();
       requestAnimationFrame(() => {
         window.dispatchEvent(new CustomEvent('asiakin:ready'));
       });
+    } else {
+      markSessionShown();
     }
 
     return shouldShow;
@@ -55,10 +76,10 @@ export default function Preloader() {
       setExiting(true);
       document.documentElement.dataset.ready = 'true';
       window.dispatchEvent(new CustomEvent('asiakin:ready'));
+      markSessionShown();
       setTimeout(() => {
         if (!mounted) return;
         setVisible(false);
-        sessionStorage.setItem(PRELOADER_SESSION_KEY, '1');
       }, 600);
     };
 
@@ -94,7 +115,7 @@ export default function Preloader() {
   return (
     <div className={`preloader ${exiting ? 'preloader--exiting' : ''}`}>
       <div className="preloader__content">
-        <div className="preloader__wordmark">Asiakin</div>
+        <div className="preloader__wordmark">Asia Explorer</div>
         <div className="preloader__progress">
           <span className="preloader__line" />
         </div>
