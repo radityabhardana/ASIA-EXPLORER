@@ -789,7 +789,45 @@
   fill: currentColor;
 }
 
-/* --- Mobile 375 (§7) ---------------------------------------------------- */
+/* --- Mobile 375 & Tablet (< 900px) (§7) -------------------------------- */
+
+@media (max-width: 899px) {
+  /* Scene 4 menjadi tumpukan vertikal; tidak ada filmstrip horizontal. */
+  .landing-scene--script .landing-stage {
+    position: relative;
+    height: 100%;
+  }
+
+  .landing-script__viewport {
+    width: auto;
+    margin-inline: 0;
+    overflow: visible;
+  }
+
+  .landing-script__track {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    width: 100%;
+    padding-inline: var(--space-3);
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .landing-script__card {
+    flex: none;
+    width: 100%;
+    min-height: auto;
+    padding: var(--space-4) var(--space-2);
+  }
+
+  .landing-script__native {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    overflow-wrap: normal;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+}
 
 @media (max-width: 767px) {
   .landing-stage--split {
@@ -813,38 +851,6 @@
   .landing-lang__shape {
     width: 88vw;
     max-height: 70vh;
-  }
-
-  /* Scene 4 menjadi tumpukan vertikal; tidak ada filmstrip horizontal. */
-  .landing-scene--script .landing-stage {
-    position: relative;
-    height: 100%;
-  }
-
-  .landing-script__viewport {
-    width: auto;
-    margin-inline: 0;
-    overflow: visible;
-  }
-
-  .landing-script__track {
-    flex-direction: column;
-    gap: 4vh;
-    width: 100%;
-    padding-inline: 0;
-    transform: none !important;
-    will-change: auto;
-  }
-
-  .landing-script__card {
-    flex: none;
-    width: 100%;
-    min-height: 30vh;
-    padding: var(--space-3);
-  }
-
-  .landing-script__native {
-    font-size: clamp(1.75rem, 8vw, 2.25rem);
   }
 
   /* Scene 5: tiga siluet saja. */

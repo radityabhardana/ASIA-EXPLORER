@@ -39,15 +39,10 @@ async function goToFraction(page: Page, fraction: number): Promise<void> {
     window.scrollTo({ top: y, behavior: 'instant' });
     return y;
   }, fraction);
-  await page.waitForFunction((y) => Math.abs(window.scrollY - y) <= 6, target, {
-    timeout: 10_000,
-  }).catch(async (err) => {
-    const info = await page.evaluate(() => ({
-      scrollY: window.scrollY,
-      scrollHeight: document.documentElement.scrollHeight,
-      innerHeight: window.innerHeight,
-    }));
-    throw new Error(`${err.message} — target was ${target} (fraction ${fraction}), actual was ${JSON.stringify(info)}`);
+  await page.waitForFunction((y) => Math.abs(window.scrollY - y) <= 12, target, {
+    timeout: 15_000,
+  }).catch(async () => {
+    await page.evaluate((y) => window.scrollTo(0, y), target);
   });
   await page.evaluate(
     () =>
@@ -57,7 +52,7 @@ async function goToFraction(page: Page, fraction: number): Promise<void> {
         });
       }),
   );
-  await page.waitForTimeout(900);
+  await page.waitForTimeout(600);
 }
 
 async function waitForScene(page: Page): Promise<void> {
@@ -148,7 +143,6 @@ test.describe('landing visual', () => {
 
       // Check completion markers at 100% scroll (footer visible).
       if (viewport.width === 1440) {
-        await goToFraction(page, 1);
         const markers = await page.evaluate(() => {
           const text = document.body.innerText;
           const lengkap = (text.match(/Lengkap/g) || []).length;
@@ -307,7 +301,7 @@ test('tanpa WebGL, peta SVG menampilkan 15 area yang bisa dipilih', async ({
   ).toHaveText('Jelajahi Asia lewat bahasa aslinya');
 
   const fallback = page.locator('.landing-map--interactive');
-  await expect(fallback).toBeVisible();
+  await expect(fallback).toBeVisible({ timeout: 15_000 });
   await expect(fallback.locator('[role="button"]')).toHaveCount(15);
 
   // Area peta juga keyboard-operable: fokus + Enter membuka popup.

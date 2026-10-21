@@ -14,6 +14,7 @@ const SETTLE = () =>
 test.skip(({ isMobile }) => Boolean(isMobile), 'Screenshot memakai viewport eksplisit.');
 
 test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page }) => {
+  test.setTimeout(90_000);
   const consoleErrors: string[] = [];
 
   page.on('console', (message) => {

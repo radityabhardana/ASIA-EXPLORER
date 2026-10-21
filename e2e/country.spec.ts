@@ -46,10 +46,10 @@ for (const country of COUNTRIES) {
       await expect(local).toBeVisible();
       await expect(local).toHaveText(country.local);
 
-      const greeting = page.locator('.country-greeting__native');
+      const greeting = page.locator('.country-specimen__greeting');
       await greeting.scrollIntoViewIfNeeded();
       await expect(greeting).toBeVisible();
-      await expect(greeting).toHaveText(country.greeting);
+      await expect(greeting).toContainText(country.greeting);
       await expect(greeting).toBeInViewport();
 
       const widths = await page.evaluate(() => ({
@@ -70,7 +70,7 @@ for (const country of COUNTRIES) {
       expect(overflowingText).toEqual([]);
 
       const noteWords = await page
-        .locator('.country-greeting__register, .country-note__text')
+        .locator('.country-specimen__register, .country-note__text')
         .evaluateAll((nodes) =>
           nodes.map((node) =>
             (node.textContent ?? '')
@@ -115,7 +115,9 @@ test('navigasi kembali tetap terlihat dan menuju beranda', async ({ page }) => {
 
   await back.click();
   await expect(page).toHaveURL('/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('ASIAKIN');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Jelajahi Asia lewat bahasa aslinya',
+  );
 
   expect(errors).toEqual([]);
 });

@@ -7,18 +7,19 @@ const MAX_WAIT_MS = 1200;
 /**
  * Preloader (D29): brand wordmark + typographic progress line. Waits for
  * scene ready or timeout, exits with transform/clip. Skipped with reduced
- * motion, shown once per session.
+ * motion or non-landing routes, shown once per session on landing ('/').
  */
 export default function Preloader() {
   const [visible, setVisible] = useState(() => {
     if (typeof window === 'undefined') {
       return false;
     }
+    const isLanding = window.location.pathname === '/';
     const shown = sessionStorage.getItem(PRELOADER_SESSION_KEY);
     const reducedMotion =
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const shouldShow = !shown && !reducedMotion;
+    const shouldShow = isLanding && !shown && !reducedMotion;
 
     // Set data-ready immediately if not showing preloader
     if (!shouldShow) {
