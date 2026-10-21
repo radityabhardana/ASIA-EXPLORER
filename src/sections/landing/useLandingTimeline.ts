@@ -209,10 +209,13 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       if (!isMobile) {
         const track = query<HTMLElement>('.landing-script__track');
         if (track) {
+          // Track: 30vw pad + 40vw card1 + 4vw gap + 40vw card2 + 4vw gap +
+          // 40vw card3 + 30vw pad = 188vw. Translate -70vw so card3 right edge
+          // lands at 88vw (fully visible with 12vw right margin).
           tl.fromTo(
             track,
             { x: 0 },
-            { x: '-44vw', duration: 0.044, ease: 'none' },
+            { x: '-70vw', duration: 0.044, ease: 'none' },
             SCRIPT,
           );
         }
