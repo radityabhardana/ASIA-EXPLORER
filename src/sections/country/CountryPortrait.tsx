@@ -11,43 +11,27 @@ type CountryPortraitProps = {
   profile: TextProfile;
 };
 
-/**
- * Generate topographic contour lines from a path.
- * Deterministic: uses fixed offsets, no random.
- */
-function generateContours(d: string, layers: number = 5): string[] {
-  // Generate offset contours (simplified: stroke-based expansion)
-  const contours: string[] = [];
-
-  // Create stroke-based contours by duplicating path with different stroke-widths
-  for (let i = 0; i < layers; i++) {
-    contours.push(d);
-  }
-
-  return contours;
-}
-
 export default function CountryPortrait({ countryId, nameLocal, profile }: CountryPortraitProps) {
-  const { viewBox, contours, aspectRatio } = useMemo(() => {
+  const { viewBox, path, aspectRatio, patternId } = useMemo(() => {
     const mapData = mapPaths.find((item) => item.id === countryId);
-    if (!mapData) return { viewBox: '0 0 100 100', contours: [], aspectRatio: 1 };
+    if (!mapData) return { viewBox: '0 0 100 100', path: '', aspectRatio: 1, patternId: '' };
 
     const { d, bbox } = mapData;
     const [minX = 0, minY = 0, maxX = 0, maxY = 0] = bbox;
-    if (maxX <= minX || maxY <= minY) return { viewBox: '0 0 100 100', contours: [], aspectRatio: 1 };
+    if (maxX <= minX || maxY <= minY) return { viewBox: '0 0 100 100', path: '', aspectRatio: 1, patternId: '' };
 
     const width = maxX - minX;
     const height = maxY - minY;
-    const layers = generateContours(d, 5);
 
     return {
       viewBox: `${minX} ${minY} ${width} ${height}`,
-      contours: layers,
+      path: d,
       aspectRatio: width / height,
+      patternId: `hatch-${countryId}`,
     };
   }, [countryId]);
 
-  if (contours.length === 0) return null;
+  if (!path) return null;
 
   return (
     <section className="country-block country-portrait" aria-label="Portret negara">
@@ -60,24 +44,21 @@ export default function CountryPortrait({ countryId, nameLocal, profile }: Count
           aria-hidden="true"
           focusable="false"
         >
-          {/* Contour layers */}
-          {contours.map((d, i) => (
-            <path
-              key={i}
-              d={d}
-              className="country-portrait__contour"
-              style={
-                {
-                  '--layer': i,
-                  '--offset': i * 4,
-                } as React.CSSProperties
-              }
-              fill="none"
-              stroke="var(--ink)"
-              strokeWidth={0.5 + i * 0.3}
-              opacity={1 - i * 0.15}
-            />
-          ))}
+          <defs>
+            <pattern
+              id={patternId}
+              patternUnits="userSpaceOnUse"
+              width="8"
+              height="8"
+              patternTransform="rotate(45)"
+            >
+              <line x1="0" y1="0" x2="0" y2="8" stroke="var(--ink)" strokeWidth="0.5" opacity="0.3" />
+            </pattern>
+          </defs>
+          {/* Base outline */}
+          <path d={path} fill="none" stroke="var(--ink)" strokeWidth="1" opacity="0.6" />
+          {/* Hatch fill */}
+          <path d={path} fill={`url(#${patternId})`} stroke="none" />
         </svg>
         <div className="country-portrait__name">
           <NativeText profile={profile}>{nameLocal}</NativeText>

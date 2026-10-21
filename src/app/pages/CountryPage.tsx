@@ -6,8 +6,6 @@ import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
 import CountryHero from '@/sections/country/CountryHero';
 import CountryPortrait from '@/sections/country/CountryPortrait';
-import CountrySilhouette from '@/sections/country/CountrySilhouette';
-import GreetingBlock from '@/sections/country/GreetingBlock';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
 import RegionLocator from '@/sections/country/RegionLocator';
@@ -55,13 +53,9 @@ export default function CountryPage() {
     <article className={className} data-country={country.id} aria-labelledby="country-title">
       <BackNavigation leaving={leaving} onClick={handleBackClick} />
       <CountryHero country={country} profile={profile} />
-      <aside className="country-sidebar">
-        <CountrySilhouette countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
-      </aside>
       <RegionLocator countryId={country.id} region={country.region} />
       <CountryPortrait countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
       <ScriptSpecimen country={country} profile={profile} />
-      <GreetingBlock country={country} profile={profile} />
       <LanguageBlock country={country} profile={profile} />
       <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
       <div className="country-separator" aria-hidden="true" />
