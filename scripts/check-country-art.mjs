@@ -5,8 +5,8 @@
 
 import { chromium } from 'playwright';
 
-const BASE_URL = 'http://localhost:5196';
-const COUNTRIES = ['jp', 'sa'];
+const BASE_URL = 'http://localhost:5206';
+const COUNTRIES = ['jp', 'id', 'sa', 'kz'];
 const VIEWPORTS = [
   { width: 375, height: 812 },
   { width: 768, height: 1024 },

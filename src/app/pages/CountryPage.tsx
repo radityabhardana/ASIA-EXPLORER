@@ -26,8 +26,8 @@ export default function CountryPage() {
 
   useEffect(() => {
     document.title = country
-      ? `${country.nameId} — ASIAKIN`
-      : 'Negara tidak ditemukan — ASIAKIN';
+      ? `${country.nameId} · ASIAKIN`
+      : 'Negara tidak ditemukan · ASIAKIN';
   }, [country]);
 
   if (!country) {
@@ -53,12 +53,12 @@ export default function CountryPage() {
     <article className={className} data-country={country.id} aria-labelledby="country-title">
       <BackNavigation leaving={leaving} onClick={handleBackClick} />
       <CountryHero country={country} profile={profile} />
-      <RegionLocator countryId={country.id} region={country.region} />
-      <CountryPortrait countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
       <ScriptSpecimen country={country} profile={profile} />
+      <CountryPortrait countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
       <LanguageBlock country={country} profile={profile} />
-      <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
+      <RegionLocator countryId={country.id} region={country.region} />
       <div className="country-separator" aria-hidden="true" />
+      <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
       <NoteBlock id="country-people-title" title="Orang" text={country.peopleNote} />
       <SourceBlock
         sources={country.sources}

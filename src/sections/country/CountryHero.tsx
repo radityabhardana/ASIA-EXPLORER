@@ -20,9 +20,9 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
           {country.nameId}
         </h1>
         <p className="country-hero__meta">
-          <span>{country.region}</span>
-          <span aria-hidden="true"> · </span>
-          <span>{country.depth}</span>
+          <span className="country-hero__region">{country.region}</span>
+          <span className="country-hero__sep" aria-hidden="true"> · </span>
+          <span className="country-honesty-marker">{country.depth}</span>
         </p>
       </div>
     </header>

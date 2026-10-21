@@ -12,7 +12,7 @@ export default function SourceBlock({ sources, needsVerification, depth }: Sourc
   return (
     <footer className="country-sources">
       <div className="country-sources__inner">
-        <p className="country-sources__depth">
+        <p className="country-sources__depth country-honesty-marker">
           {depth === 'Lengkap' ? 'Lengkap' : 'Penjelajahan'}
         </p>
         <h2 className="country-sources__title">Sumber</h2>

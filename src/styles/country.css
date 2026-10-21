@@ -123,6 +123,94 @@
   }
 }
 
+/* --- Penanda kejujuran (anti-slop, tipografi halus, tanpa badge/chip) ----- */
+
+.country-honesty-marker {
+  display: inline-block;
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-caps: all-small-caps;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* --- Zona editorial desktop (dua zona harmonis) --------------------------- */
+
+@media (min-width: 900px) {
+  .country {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+    column-gap: var(--space-8);
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: var(--gutter-desktop);
+    align-items: start;
+  }
+
+  .country-block__inner,
+  .country-sources__inner {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .country-hero {
+    grid-column: 1 / -1;
+    padding-inline: 0;
+    padding-block: var(--space-12) var(--space-4);
+    padding-block-start: calc(var(--space-12) + 48px);
+  }
+
+  .country-specimen {
+    grid-column: 1;
+    padding-block: var(--space-4);
+  }
+
+  .country-portrait {
+    grid-column: 2;
+    padding-block: var(--space-4);
+    padding-inline: 0;
+  }
+
+  .country-language {
+    grid-column: 1;
+    padding-block: var(--space-4);
+  }
+
+  .country-locator {
+    grid-column: 2;
+    padding-block: var(--space-4);
+    padding-inline: 0;
+  }
+
+  .country-separator {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    margin-inline: 0;
+    margin-block: var(--space-4);
+  }
+
+  .country-note[aria-labelledby='country-culture-title'] {
+    grid-column: 1;
+    padding-block: var(--space-4);
+  }
+
+  .country-note[aria-labelledby='country-people-title'] {
+    grid-column: 2;
+    padding-block: var(--space-4);
+  }
+
+  .country-sources {
+    grid-column: 1 / -1;
+    padding-inline: 0;
+  }
+}
+
 /* --- Navigasi kembali ----------------------------------------------------- */
 
 .country-back {
@@ -526,13 +614,14 @@
 .country-locator__map {
   position: relative;
   width: 100%;
-  max-width: 540px;
+  max-width: 420px;
   margin-inline: 0;
 }
 
 .country-locator__svg {
   display: block;
   width: 100%;
+  max-height: 280px;
   height: auto;
 }
 
@@ -566,21 +655,24 @@
 /* --- Country Portrait ----------------------------------------------------- */
 
 .country-portrait {
-  padding-block: var(--space-6);
+  padding-block: var(--space-4);
+  padding-inline: var(--gutter-mobile);
 }
 
 .country-portrait__plate {
   position: relative;
   width: 100%;
-  max-width: 68ch;
+  max-width: 420px;
   margin-inline: 0;
+  padding-block: var(--space-6);
+  border-block-start: 1px solid var(--line);
 }
 
 .country-portrait__svg {
   display: block;
   width: 100%;
+  max-height: 320px;
   height: auto;
-  max-height: 480px;
 }
 
 .country-portrait__contour {
@@ -588,9 +680,9 @@
 }
 
 .country-portrait__name {
-  margin-block-start: var(--space-4);
+  margin-block-start: var(--space-3);
   color: var(--ink);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: var(--weight-semibold);
   line-height: 1.2;
   text-align: start;
@@ -605,7 +697,7 @@
 /* --- Script Specimen ------------------------------------------------------ */
 
 .country-specimen {
-  padding-block: var(--space-6) var(--space-4);
+  padding-block: var(--space-4);
   overflow: hidden;
 }
 
@@ -621,9 +713,11 @@
   position: relative;
   margin: 0;
   color: var(--ink);
-  font-size: clamp(3rem, 12vw, 8rem);
-  line-height: 1.1;
+  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+  line-height: 1.15;
   overflow: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .country-specimen__greeting-inner {
@@ -735,11 +829,16 @@
   display: inline-block;
   margin-block-end: var(--space-2);
   color: var(--ink-muted);
-  font-size: var(--text-label);
+  font-size: 0.6875rem;
   font-weight: var(--weight-semibold);
   line-height: var(--leading-label);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-variant-caps: all-small-caps;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
 /* --- Mobile dan reduced motion -------------------------------------------- */

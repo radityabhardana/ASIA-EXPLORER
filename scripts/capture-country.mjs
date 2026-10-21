@@ -6,7 +6,7 @@ const VIEWPORTS = [
   { width: 375, height: 812, label: '375' },
 ];
 
-const COUNTRIES = ['jp', 'sa'];
+const COUNTRIES = ['jp', 'id', 'sa', 'kz'];
 
 const browser = await chromium.launch();
 
@@ -18,7 +18,7 @@ for (const country of COUNTRIES) {
     });
     const page = await context.newPage();
     
-    await page.goto(`http://localhost:5198/negara/${country}`, { waitUntil: 'networkidle' });
+    await page.goto(`http://localhost:5206/negara/${country}`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(800);
     
     await page.screenshot({
