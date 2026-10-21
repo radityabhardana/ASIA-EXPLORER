@@ -38,7 +38,12 @@ Diukur sendiri lewat Playwright di `localhost:5192`, 1440x900, gulir bertahap 9 
 4. **Terbuka.** Kartu aksara ketiga: kotak terukur x=1066→1642 pada viewport 1440, jadi
    terpotong 202 px (lebar kartu 576 px = 40% viewport, mustahil tiga sejajar). Label
    bahasa + arti sudah ada dan terbaca.
-5. **Belum diverifikasi ulang** setelah putaran 1 (scene 75%).
+5. **Terbuka, terukur di `landing-1440x900-075.png`.** Siluet Turki (x≈180–670,
+   y≈150–630) dan Thailand (x≈1000–1275, y≈225–710) ditembus headline
+   "Setiap negara punya caranya sendiri" yang duduk di y≈480–530, sehingga label
+   "Turki — kopi Turki, cezve" (y≈523) tertimpa descender headline dan terbaca
+   setengah. Ikon 24 px melayang di dalam bentuk tanpa kaitan visual. Ruang mati
+   atas 150 px dan bawah 190 px.
 6. **Terbuka, sekarang berbentuk kartu.** Indeks 15 negara ada, tetapi dirender sebagai
    15 tombol berbingkai 218x60 px (border 1px `rgb(216,212,204)`) di blok 920 px pada
    x=24 — melanggar aturan tanpa-kartu dan menyisakan ±500 px kosong di kanan.
