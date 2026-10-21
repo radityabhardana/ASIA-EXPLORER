@@ -52,7 +52,41 @@ Diukur sendiri lewat Playwright di `localhost:5192`, 1440x900, gulir bertahap 9 
 8. **Sebagian.** Tidak ada gulir horizontal (`scrollWidth == clientWidth == 1440` di
    semua posisi), tetapi kaki halaman masih menyisakan ±200 px ruang mati di atas judul.
 
-## Scene — menunggu eksekusi
+## Scene — D21 sudah dieksekusi, cacat lanjutan terbuka
 
-D21 di `docs/SCENE_GEOMETRY.md`: alas konteks datar + ekstrusi 1,2–1,8 unit. Belum
-dijalankan karena dua lane berat sudah memakai kuota.
+`85634b4` membangun ulang GLB: 16 node, 43.044 tris, 270,7 KB, 15 mesh ber-`iso_a3`,
+`context` tanpa `iso_a3`, ekstrusi 1,2 (pulau) / 1,8 (daratan). Cacat yang masih terlihat
+di `docs/VERIFY_SCENE/hero-1440-after.png`:
+
+1. **Garis potong artifisial.** Context difilter `CONTEXT_BBOX` (`tools/build-asia.py:84-90`,
+   lat maksimum 65) sehingga Rusia/Arktik terbelah lurus di tepi utara; terlihat sebagai
+   garis horizontal di sekitar y≈292 pada 1440x900.
+2. **Pulau masih terbaca bilah.** Ekstrusi 1,2 unit pada data 50m membuat dinding lebih
+   tinggi daripada lebar pulau (id, ph, my, sg, jp).
+3. **Benua tidak mengisi bidang.** Elemen `.landing-hero__scene` 893x595 px (62,0vw),
+   siluet hanya ±580 px.
+4. **Caption debug bocor.** "Terpilih: - Hover: -" tampil di tangkapan (melanggar D30).
+
+## Halaman negara — putaran 2 (bukti `art-jp-1440.png`, `art-sa-1440.png`)
+
+1. **Siluet ganda.** `CountryPage.tsx:59` (`CountrySilhouette`) dan `:62`
+   (`CountryPortrait`) menggambar outline negara yang sama dua kali.
+2. **Sapaan ganda.** `:63` (`ScriptSpecimen`) dan `:64` (`GreetingBlock`).
+3. **Penanda berbingkai.** "Lengkap" dirender sebagai chip berbingkai, melanggar aturan
+   tanpa-kartu.
+4. **Caption yatim.** Nama asli diletakkan jauh dari bentuk yang diberi nama (Arab Saudi:
+   caption di bawah siluet kanan atas, judul besar di kiri).
+5. **Kontur palsu.** Efek topografi hanya lima stroke identik pada path yang sama, bukan
+   garis offset; terbaca sebagai outline tebal.
+6. **Ruang mati.** Dokumen sangat tinggi dengan pita kosong besar; zona margin kanan
+   kosong sementara locator terlalu besar relatif informasinya.
+
+## Landing — putaran 2 (bukti `r2-1440x900-050.png`, `r2-1440x900-100.png`)
+
+1. **Triptych belum jadi.** Di 50% hanya dua aksara terlihat (Arab + Korea); Thai keluar
+   layar. Ada dua pasang garis warna (hijau + biru) dengan panjang tak sama yang terbaca
+   sebagai sisa, bukan desain.
+2. **Indeks kehilangan penanda kejujuran.** Klaim lane "honesty marker intact" tidak
+   terlihat di tangkapan; 15 nama tampil tanpa Lengkap/Penjelajahan.
+3. **Pita kosong** ±250 px di atas judul kaki halaman, plus siluet terpotong di tepi atas.
+4. **Popup masih modal kartu** (`CountryDialog.tsx`) — belum editorial, belum memenuhi D30.
