@@ -33,6 +33,16 @@ const steps = [
     entry: 'scripts/build-content.mjs',
     args: ['--check'],
   },
+  {
+    name: 'e2e (playwright test)',
+    entry: entry('@playwright/test/cli.js'),
+    args: ['test'],
+    // E2E butuh browser + port bebas; jangan dijalankan diam-diam di gate cepat.
+    skipReason: () =>
+      process.env.VERIFY_E2E === '1'
+        ? null
+        : 'opt-in: jalankan `VERIFY_E2E=1 npm run verify` (butuh browser + PW_PORT bebas)',
+  },
 ];
 
 for (const step of steps) {
