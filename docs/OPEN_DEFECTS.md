@@ -52,20 +52,36 @@ Diukur sendiri lewat Playwright di `localhost:5192`, 1440x900, gulir bertahap 9 
 8. **Sebagian.** Tidak ada gulir horizontal (`scrollWidth == clientWidth == 1440` di
    semua posisi), tetapi kaki halaman masih menyisakan ±200 px ruang mati di atas judul.
 
-## Scene — D21 sudah dieksekusi, cacat lanjutan terbuka
+## Scene — putaran 2 (`53df049`), hasil ukur sendiri
 
-`85634b4` membangun ulang GLB: 16 node, 43.044 tris, 270,7 KB, 15 mesh ber-`iso_a3`,
-`context` tanpa `iso_a3`, ekstrusi 1,2 (pulau) / 1,8 (daratan). Cacat yang masih terlihat
-di `docs/VERIFY_SCENE/hero-1440-after.png`:
+Bukti: `docs/VERIFY_SCENE/r3-hero-1440.png`, `r3-hero-375.png`, `r3-hover-projected.png`.
+Skrip ukur: `tmp-scene-check.mjs`, `tmp-hover-check.mjs` (gitignored).
 
-1. **Garis potong artifisial.** Context difilter `CONTEXT_BBOX` (`tools/build-asia.py:84-90`,
-   lat maksimum 65) sehingga Rusia/Arktik terbelah lurus di tepi utara; terlihat sebagai
-   garis horizontal di sekitar y≈292 pada 1440x900.
-2. **Pulau masih terbaca bilah.** Ekstrusi 1,2 unit pada data 50m membuat dinding lebih
-   tinggi daripada lebar pulau (id, ph, my, sg, jp).
-3. **Benua tidak mengisi bidang.** Elemen `.landing-hero__scene` 893x595 px (62,0vw),
-   siluet hanya ±580 px.
-4. **Caption debug bocor.** "Terpilih: - Hover: -" tampil di tangkapan (melanggar D30).
+**Tutup (diukur, bukan diklaim):**
+
+1. **Bidang terisi.** Bbox tinta di dalam `.landing-hero__scene` = 892x346 px dari elemen
+   893x595 px → **61,9vw** pada 1440 (target 62vw); 319 px dari 375 → **85,1vw** (target
+   85vw). Klaim lane bahwa ini "belum diukur" ternyata lulus.
+2. **Caption debug hilang.** Query seluruh teks "Terpilih:/Hover:" → 0 elemen.
+3. **Potongan utara hilang.** `lat_max` 75 (`tools/build-asia.py:86`); garis horizontal
+   lat-65 tidak lagi terlihat pada tangkapan 1440 maupun 375.
+
+**Terbuka:**
+
+4. **Label hover ganda.** Scene 7 merender dua label sekaligus: `.asia-scene__label`
+   (Jepang / 日本 / Asia Timur) dan `.landing-invitation__label` ("Jepang", y=789).
+5. **Label tidak mengikuti kursor.** Kotak `.asia-scene__label` = x=274, w=893 (selebar
+   kanvas) di y=254 — `left`/`top` tidak terpasang, teks menempel di tepi kiri kanvas
+   ±600 px dari Jepang.
+6. **Label bocor ke scene dekoratif.** Instance hero ikut merender label, padahal hero
+   `decorative` dan tidak boleh interaktif.
+7. **Chip berbingkai** pada `.landing-invitation__label` melanggar larangan kartu (D30).
+8. **Benua masih terbaca datar.** Ekstrusi 1,8 unit tidak menghasilkan relief yang terlihat;
+   tidak ada bayangan directional maupun hierarki terang-gelap. `r3-hover-projected.png`
+   terbaca sebagai peta vektor berwarna, bukan objek 3D.
+9. **Konteks mengotori bingkai.** Context abu-abu menyertakan Afrika timur, Jazirah Arab,
+   Eropa timur, dan pulau lepas (Madagaskar/Comoros) di tepi kiri.
+10. **Jepang nyaris tak terbaca** pada 1440 (sliver ±14 px) meski labelnya aktif.
 
 ## Halaman negara — putaran 2 (bukti `art-jp-1440.png`, `art-sa-1440.png`)
 
