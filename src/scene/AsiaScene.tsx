@@ -100,6 +100,11 @@ function widthFraction(aspect: number): number {
   return 0.62 + 0.23 * t;
 }
 
+/** Padding kamera agar benua pas target width (cacat 2). */
+function cameraPadding(aspect: number): number {
+  return aspect < 1 ? 0.1 : 0.12;
+}
+
 function assetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path}`;
 }
@@ -498,10 +503,11 @@ export default function AsiaScene({
     const fitCamera = (azimuth: number, elevation: number, scroll: number) => {
       const aspect = camera.aspect;
       const widthFractionTarget = widthFraction(aspect);
+      const padding = cameraPadding(aspect);
       const tanHalf = Math.tan((FOV * Math.PI) / 360);
       // NDC ±1 = satu viewport penuh, jadi fraksi target dipakai langsung.
-      const widthHalf = widthFractionTarget;
-      const heightHalf = 0.86;
+      const widthHalf = widthFractionTarget * (1 + padding);
+      const heightHalf = 0.92;
 
       const sx = Math.sin(azimuth);
       const cx = Math.cos(azimuth);

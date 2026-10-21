@@ -63,7 +63,7 @@
   flex-direction: column;
   justify-content: center;
   gap: var(--space-3);
-  padding: var(--space-4) var(--landing-gutter);
+  padding: var(--space-3) var(--landing-gutter);
   overflow: clip;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .landing-hero__scene {
-  width: min(48vw, 720px);
+  width: min(62vw, 960px);
 }
 
 .landing-hint {
@@ -315,6 +315,15 @@
   background-color: var(--card-accent, var(--accent));
 }
 
+.landing-script__label {
+  margin: 0;
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
 .landing-script__native {
   margin: 0;
   font-size: clamp(2rem, 3.6vw, 3rem);
@@ -327,6 +336,14 @@
   margin: 0;
   font-size: var(--text-label);
   letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.landing-script__meaning {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   color: var(--ink-muted);
   text-align: center;
 }
@@ -429,31 +446,51 @@
 }
 
 .landing-cultural__layer--tr {
-  left: 14vw;
-  top: 18vh;
-  width: 30vw;
+  left: 10vw;
+  top: 12vh;
+  width: 38vw;
 }
 .landing-cultural__layer--th {
-  right: 12vw;
-  top: 20vh;
-  width: 17vw;
+  right: 10vw;
+  top: 14vh;
+  width: 22vw;
+}
+
+.landing-cultural__label {
+  position: absolute;
+  display: block;
+  max-width: 28ch;
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.landing-cultural__label--tr {
+  left: 22vw;
+  top: 52vh;
+}
+
+.landing-cultural__label--th {
+  right: 14vw;
+  top: 56vh;
 }
 
 .landing-cultural__icon {
   position: absolute;
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   color: var(--ink);
 }
 
 .landing-cultural__icon--cezve {
-  left: 30vw;
-  top: 34vh;
+  left: 32vw;
+  top: 32vh;
 }
 .landing-cultural__icon--wai {
-  right: 24vw;
-  top: 38vh;
+  right: 22vw;
+  top: 36vh;
 }
 
 /* --- Scene 7 — undangan ------------------------------------------------- */
@@ -490,75 +527,6 @@
   line-height: var(--leading-label);
   color: var(--ink);
   pointer-events: none;
-}
-
-/* --- Daftar negara (kontrol keyboard) ----------------------------------- */
-
-.landing-country-list {
-  position: fixed;
-  inset-block-end: var(--space-2);
-  inset-inline-start: var(--space-2);
-  z-index: var(--z-overlay);
-  width: min(260px, calc(100vw - var(--space-4)));
-  max-height: min(60vh, 520px);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-1);
-  background-color: var(--surface-raised);
-  border: 1px solid var(--line);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition:
-    opacity var(--duration-transition) var(--ease-standard),
-    transform var(--duration-transition) var(--ease-standard);
-}
-
-.landing-country-list:focus-within {
-  opacity: 1;
-  pointer-events: auto;
-  transform: none;
-}
-
-.landing-country-list__title {
-  margin: 0;
-  padding: 4px 8px;
-  font-size: var(--text-label);
-  line-height: var(--leading-label);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-}
-
-.landing-country-list__items {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.landing-country-list button {
-  width: 100%;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  border: 0;
-  border-top: 1px solid var(--line);
-  background-color: transparent;
-  color: var(--ink);
-  text-align: start;
-  cursor: pointer;
-}
-
-.landing-country-list li:first-child button {
-  border-top: 0;
-}
-
-.landing-country-list button:hover {
-  background-color: var(--surface);
 }
 
 /* --- Dialog negara ------------------------------------------------------ */
@@ -659,7 +627,7 @@
 .landing-stage--footer {
   justify-content: center;
   align-items: flex-start;
-  gap: var(--space-3);
+  gap: var(--space-6);
 }
 
 .landing-footer__copy {
@@ -679,6 +647,59 @@
 
 .landing-footer__links a {
   font-size: var(--text-label);
+}
+
+.landing-footer__index {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.landing-footer__index-title {
+  margin: 0;
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+}
+
+.landing-footer__index-nav {
+  width: 100%;
+}
+
+.landing-footer__index-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-footer__index-button {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  background-color: transparent;
+  color: var(--ink);
+  font-size: var(--text-base);
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--duration-micro) var(--ease-standard);
+}
+
+.landing-footer__index-button:hover {
+  background-color: var(--surface-raised);
+}
+
+.landing-footer__index-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .landing-footer__mark {
@@ -750,7 +771,7 @@
   }
 
   .landing-hero__scene {
-    width: 84vw;
+    width: 85vw;
   }
 
   .landing-lang__shape {

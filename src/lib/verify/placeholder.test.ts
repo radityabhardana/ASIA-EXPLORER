@@ -32,16 +32,22 @@ describe('fondasi aplikasi', () => {
     expect(progressBar).not.toBeNull();
     expect(progressBar).toHaveAttribute('aria-hidden', 'true');
 
-    expect(screen.queryByRole('navigation')).toBeNull();
+    // Izinkan satu nav in-flow di landing, larang header dan nav fixed.
+    const navs = screen.queryAllByRole('navigation');
+    expect(navs.length).toBeLessThanOrEqual(1);
+    if (navs.length === 1) {
+      const computed = getComputedStyle(navs[0]!);
+      expect(computed.position).not.toBe('fixed');
+    }
+    expect(screen.queryByRole('banner')).toBeNull();
   });
 
   it('rute tidak dikenal dialihkan ke beranda', async () => {
     window.history.pushState({}, '', '/rute-tidak-ada');
     render(createElement(App));
 
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'ASIAKIN' }),
-    ).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1 })).toBeInTheDocument();
+    expect(window.location.pathname).toBe('/');
   });
 
   it('deep link /negara/jp menampilkan nama negara dalam bahasa Indonesia', async () => {
@@ -53,12 +59,12 @@ describe('fondasi aplikasi', () => {
     ).toBeInTheDocument();
   });
 
-  it('id negara yang tidak dikenal dikembalikan ke beranda', async () => {
+  it('id negara yang tidak dikenal menampilkan status tidak ditemukan', async () => {
     window.history.pushState({}, '', '/negara/atlantis');
     render(createElement(App));
 
     expect(
-      await screen.findByRole('heading', { level: 1, name: 'ASIAKIN' }),
+      await screen.findByRole('heading', { level: 1, name: 'Negara tidak ditemukan' }),
     ).toBeInTheDocument();
   });
 });

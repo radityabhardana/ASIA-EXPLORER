@@ -162,8 +162,11 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
 
       const isMobile = mobileQuery?.matches ?? false;
 
-      // Scene 1 — hero.
-      reveal('.landing-hero__copy', 0.004, 0.032);
+      // Scene 1 — hero. H1 harus opacity 1 di progres 0 (cacat 1).
+      const heroCopy = queryAll<HTMLElement>('.landing-hero__copy');
+      if (heroCopy.length > 0) {
+        tl.set(heroCopy, { opacity: 1, y: 0 }, 0);
+      }
       reveal('.landing-hero__hint', 0.05, 0.02);
 
       // Scene 2 — skala negara.

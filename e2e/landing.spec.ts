@@ -13,28 +13,6 @@ const VIEWPORTS = [
 /** Lima titik scroll untuk bukti visual. */
 const FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
 
-/**
- * 15 negara dalam urutan `countries.json`; urutan ini juga urutan Tab di
- * daftar negara. Hard-code di sini supaya perubahan urutan data terdeteksi.
- */
-const COUNTRY_IDS = [
-  'id',
-  'my',
-  'sg',
-  'th',
-  'vn',
-  'ph',
-  'cn',
-  'jp',
-  'kr',
-  'in',
-  'sa',
-  'tr',
-  'kz',
-  'uz',
-  'mn',
-] as const;
-
 function collectErrors(page: Page): string[] {
   const errors: string[] = [];
   page.on('console', (message) => {
@@ -125,7 +103,7 @@ test.describe('landing visual', () => {
   });
 });
 
-test('skip link, 15 tombol negara, dialog, dan navigasi', async ({ page }) => {
+test('skip link, 15 tombol negara di footer, dialog, dan navigasi', async ({ page }) => {
   const errors = collectErrors(page);
 
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -139,26 +117,10 @@ test('skip link, 15 tombol negara, dialog, dan navigasi', async ({ page }) => {
   await page.keyboard.press('Enter');
   await expect(page.locator('#peta')).toBeFocused();
 
-  // Target 44px (§0.6) diukur sebelum daftar muncul.
-  const buttons = page.locator('.landing-country-list [data-country]');
+  // Country index sekarang di footer (in-flow), bukan panel fixed.
+  const buttons = page.locator('.landing-footer__index-button');
   await expect(buttons).toHaveCount(15);
 
-  const focusedIds: string[] = [];
-  for (let index = 0; index < COUNTRY_IDS.length; index += 1) {
-    await page.keyboard.press('Tab');
-    const focused = await page.evaluate(() => {
-      const active = document.activeElement;
-      return active instanceof HTMLElement
-        ? (active.dataset.country ?? null)
-        : null;
-    });
-    focusedIds.push(focused ?? 'bukan-tombol-negara');
-  }
-  expect(focusedIds).toEqual([...COUNTRY_IDS]);
-
-  // Daftar muncul karena fokus ada di dalamnya, bukan karena class tambahan.
-  const list = page.locator('.landing-country-list');
-  await expect(list).toHaveCSS('opacity', '1');
   const heights = await buttons.evaluateAll((nodes) =>
     nodes.map((node) => node.getBoundingClientRect().height),
   );
@@ -167,9 +129,8 @@ test('skip link, 15 tombol negara, dialog, dan navigasi', async ({ page }) => {
   }
 
   // Enter membuka popup; fokus awal di tombol tutup.
-  const indonesia = page.locator('[data-country="id"]');
-  await indonesia.focus();
-  await page.keyboard.press('Enter');
+  const indonesia = page.locator('.landing-footer__index-button[data-country="id"]');
+  await indonesia.click();
   const dialog = page.locator('dialog.landing-dialog');
   await expect(dialog).toBeVisible();
   await expect(page.locator('.landing-dialog__close')).toBeFocused();

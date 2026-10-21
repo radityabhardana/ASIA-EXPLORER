@@ -5,7 +5,6 @@ import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryDialog from '@/sections/landing/CountryDialog';
-import CountryList from '@/sections/landing/CountryList';
 import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import Silhouette from '@/sections/landing/Silhouette';
 import { CezveIcon, WaiIcon } from '@/sections/landing/icons';
@@ -13,6 +12,7 @@ import {
   FOOTER_SOURCES,
   REGIONAL_SILHOUETTES,
   SCRIPT_COUNTRY_IDS,
+  countries,
   countryEntry,
 } from '@/sections/landing/landing-data';
 import { useLandingTimeline } from '@/sections/landing/useLandingTimeline';
@@ -156,6 +156,9 @@ export default function LandingPage() {
                       } as CSSProperties
                     }
                   >
+                    <p className="landing-script__label">
+                      {country.language.nameId}
+                    </p>
                     <p
                       className="landing-script__native"
                       lang={profile.lang}
@@ -168,6 +171,9 @@ export default function LandingPage() {
                         {country.greeting.roman}
                       </p>
                     ) : null}
+                    <p className="landing-script__meaning">
+                      {country.greeting.meaningId}
+                    </p>
                   </article>
                 );
               })}
@@ -236,6 +242,12 @@ export default function LandingPage() {
             <span className="landing-cultural__icon landing-cultural__icon--wai" data-reveal>
               <WaiIcon />
             </span>
+            <span className="landing-cultural__label landing-cultural__label--tr" data-reveal>
+              Turki — kopi Turki, cezve
+            </span>
+            <span className="landing-cultural__label landing-cultural__label--th" data-reveal>
+              Thailand — wai, salam hormat
+            </span>
           </div>
 
           <div className="landing-stage__copy landing-center" data-reveal>
@@ -287,8 +299,6 @@ export default function LandingPage() {
             ) : null}
           </div>
 
-          <CountryList onSelect={(id) => setSelectedId(id)} />
-
           <div
             className="visually-hidden"
             role="status"
@@ -300,8 +310,13 @@ export default function LandingPage() {
               : ''}
           </div>
           <p id="landing-map-help" className="visually-hidden">
-            Gunakan Tab untuk membuka daftar negara, lalu Enter untuk memilih.
+            Gunakan peta atau indeks negara di bagian bawah halaman.
           </p>
+
+          <CountryDialog
+            country={selectedCountry}
+            onClose={() => setSelectedId(null)}
+          />
         </div>
       </section>
 
@@ -332,14 +347,30 @@ export default function LandingPage() {
             ))}
           </ul>
 
+          <div className="landing-footer__index" data-reveal>
+            <h3 className="landing-footer__index-title">15 negara</h3>
+            <nav className="landing-footer__index-nav" aria-label="Indeks negara">
+              <ul className="landing-footer__index-list">
+                {countries.map((country) => (
+                  <li key={country.id}>
+                    <button
+                      type="button"
+                      className="landing-footer__index-button"
+                      data-country={country.id}
+                      aria-haspopup="dialog"
+                      onClick={() => setSelectedId(country.id)}
+                    >
+                      {country.nameId}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
           <p className="landing-footer__mark">Asiakin</p>
         </div>
       </footer>
-
-      <CountryDialog
-        country={selectedCountry}
-        onClose={() => setSelectedId(null)}
-      />
     </div>
   );
 }
