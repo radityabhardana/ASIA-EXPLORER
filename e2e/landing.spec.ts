@@ -26,12 +26,22 @@ function collectErrors(page: Page): string[] {
   return errors;
 }
 
-/** Scroll programatik + dua frame + jeda, supaya tween scrub sempat selesai. */
+/**
+ * Scroll programatik lalu tunggu sampai ScrollTrigger benar-benar selesai.
+ * 400 ms tidak cukup: harness lama merekam penghitung "0" di posisi 25%
+ * padahal nilainya sudah 15 saat diukur dengan jeda 900 ms. Jeda 400 ms
+ * menghasilkan bukti palsu, jadi jangan diturunkan tanpa mengukur ulang.
+ */
 async function goToFraction(page: Page, fraction: number): Promise<void> {
-  await page.evaluate((value) => {
+  const target = await page.evaluate((value) => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    window.scrollTo(0, Math.round(max * value));
+    const y = Math.round(max * value);
+    window.scrollTo(0, y);
+    return y;
   }, fraction);
+  await page.waitForFunction((y) => Math.abs(window.scrollY - y) <= 2, target, {
+    timeout: 5_000,
+  });
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
@@ -40,7 +50,7 @@ async function goToFraction(page: Page, fraction: number): Promise<void> {
         });
       }),
   );
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(900);
 }
 
 async function waitForScene(page: Page): Promise<void> {
