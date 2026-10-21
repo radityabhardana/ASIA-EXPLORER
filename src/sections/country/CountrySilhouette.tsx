@@ -1,19 +1,10 @@
 import mapPaths from '@/content/map-paths.json';
 
-import NativeText from './NativeText';
-import type { TextProfile } from './scripts';
-
 type CountrySilhouetteProps = {
   countryId: string;
-  nameLocal: string;
-  profile: TextProfile;
 };
 
-export default function CountrySilhouette({
-  countryId,
-  nameLocal,
-  profile,
-}: CountrySilhouetteProps) {
+export default function CountrySilhouette({ countryId }: CountrySilhouetteProps) {
   const mapData = mapPaths.find((item) => item.id === countryId);
 
   if (!mapData) {
@@ -40,9 +31,6 @@ export default function CountrySilhouette({
       >
         <path d={d} />
       </svg>
-      <p className="country-silhouette__label">
-        <NativeText profile={profile}>{nameLocal}</NativeText>
-      </p>
     </div>
   );
 }

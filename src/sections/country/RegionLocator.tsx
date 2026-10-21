@@ -87,7 +87,7 @@ export default function RegionLocator({ countryId, region }: RegionLocatorProps)
   return (
     <section className="country-block country-locator" aria-label="Lokasi regional">
       <div className="country-block__inner">
-        <h2 className="country-locator__title">Lokasi</h2>
+        <p className="country-locator__title">Lokasi</p>
         <div className="country-locator__map">
           <svg
             className="country-locator__svg"

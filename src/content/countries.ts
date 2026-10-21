@@ -34,6 +34,11 @@ export interface Source {
   what: string
 }
 
+export interface Story {
+  text: string
+  sources: readonly Source[]
+}
+
 export interface Country {
   id: string
   iso3: string
@@ -46,6 +51,7 @@ export interface Country {
   cultureNote: string
   peopleNote: string
   depth: CountryDepth
+  story: Story
   sources: Source[]
   needsVerification: string[]
 }

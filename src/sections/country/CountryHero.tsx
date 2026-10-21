@@ -11,7 +11,6 @@ type CountryHeroProps = {
 export default function CountryHero({ country, profile }: CountryHeroProps) {
   return (
     <header className="country-hero">
-      <span className="country-hero__accent" aria-hidden="true" />
       <div className="country-hero__inner">
         <p className="country-hero__local">
           <NativeText profile={profile}>{country.nameLocal}</NativeText>

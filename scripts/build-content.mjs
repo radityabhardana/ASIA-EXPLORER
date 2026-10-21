@@ -65,6 +65,25 @@ for (const file of RAW) {
       fail(`${at}.confidence: harus "tinggi" atau "sedang", dapat ${JSON.stringify(confidence)}`)
     }
 
+    const storyText = str(entry?.story?.text)
+    if (!storyText) {
+      fail(`${at}.story.text: kosong`)
+    } else {
+      const words = storyText.split(/\s+/).length
+      if (words < 120 || words > 180) {
+        fail(`${at}.story.text: harus 120–180 kata, dapat ${words}`)
+      }
+    }
+
+    const storySources = Array.isArray(entry?.story?.sources) ? entry.story.sources : []
+    if (storySources.length < 2) {
+      fail(`${at}.story.sources: minimal 2, dapat ${storySources.length}`)
+    }
+    const cleanStorySources = storySources.map((s, i) => ({
+      url: nonEmpty(s?.url, `${at}.story.sources[${i}].url`),
+      what: nonEmpty(s?.what, `${at}.story.sources[${i}].what`),
+    }))
+
     countries.push({
       id,
       iso3,
@@ -94,6 +113,10 @@ for (const file of RAW) {
       // Label kejujuran: hanya negara dengan sumber yang cukup untuk semua blok
       // yang diberi label "Lengkap". Sisanya "Penjelajahan" apa adanya.
       depth: confidence === 'tinggi' ? 'Lengkap' : 'Penjelajahan',
+      story: {
+        text: storyText,
+        sources: cleanStorySources,
+      },
       sources: sources.map((s, i) => ({
         url: nonEmpty(s?.url, `${at}.sources[${i}].url`),
         what: nonEmpty(s?.what, `${at}.sources[${i}].what`),
@@ -155,6 +178,6 @@ await writeFile(OUT, serialized, 'utf8')
 console.log(`[content:build] OK  ${ordered.length} negara -> ${path.relative(root, OUT)}`)
 for (const c of ordered) {
   console.log(
-    `  ${c.id.padEnd(3)} ${c.iso3}  ${c.depth.padEnd(12)} sumber=${String(c.sources.length).padStart(2)}  ${c.nameId}`,
+    `  ${c.id.padEnd(3)} ${c.iso3}  ${c.depth.padEnd(12)} sumber=${String(c.sources.length).padStart(2)} cerita=${String(c.story.sources.length).padStart(2)} (${String(c.story.text.trim().split(/\s+/).length).padStart(3)}k)  ${c.nameId}`,
   )
 }

@@ -9,8 +9,8 @@ import CountryPortrait from '@/sections/country/CountryPortrait';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
 import RegionLocator from '@/sections/country/RegionLocator';
-import ScriptSpecimen from '@/sections/country/ScriptSpecimen';
 import SourceBlock from '@/sections/country/SourceBlock';
+import StoryBlock from '@/sections/country/StoryBlock';
 import { profileFor } from '@/sections/country/scripts';
 import { useExitToLanding } from '@/sections/country/useExitToLanding';
 import '@/styles/country.css';
@@ -52,19 +52,37 @@ export default function CountryPage() {
   return (
     <article className={className} data-country={country.id} aria-labelledby="country-title">
       <BackNavigation leaving={leaving} onClick={handleBackClick} />
+
+      {/* 1. Hero */}
       <CountryHero country={country} profile={profile} />
-      <ScriptSpecimen country={country} profile={profile} />
-      <CountryPortrait countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
-      <LanguageBlock country={country} profile={profile} />
-      <RegionLocator countryId={country.id} region={country.region} />
-      <div className="country-separator" aria-hidden="true" />
-      <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
-      <NoteBlock id="country-people-title" title="Orang" text={country.peopleNote} />
-      <SourceBlock
-        sources={country.sources}
-        needsVerification={country.needsVerification}
-        depth={country.depth}
-      />
+
+      {/* Visual & locator sidebar: sticky on desktop, inline block below hero on <900px */}
+      <aside className="country-sidebar" aria-label="Visual dan lokasi regional">
+        <CountryPortrait countryId={country.id} />
+        <RegionLocator countryId={country.id} region={country.region} />
+      </aside>
+
+      {/* Main reading column: Cerita, Budaya, Orang, Bahasa, Sumber */}
+      <div className="country-body">
+        {/* 2. Cerita */}
+        <StoryBlock country={country} />
+
+        {/* 3. Budaya */}
+        <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
+
+        {/* 4. Orang */}
+        <NoteBlock id="country-people-title" title="Orang" text={country.peopleNote} />
+
+        {/* 5. Bahasa */}
+        <LanguageBlock country={country} profile={profile} />
+
+        {/* 6. Sumber */}
+        <SourceBlock
+          sources={country.sources}
+          needsVerification={country.needsVerification}
+          depth={country.depth}
+        />
+      </div>
     </article>
   );
 }

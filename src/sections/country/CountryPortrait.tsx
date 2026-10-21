@@ -2,16 +2,11 @@ import { useMemo } from 'react';
 
 import mapPaths from '@/content/map-paths.json';
 
-import NativeText from './NativeText';
-import type { TextProfile } from './scripts';
-
 type CountryPortraitProps = {
   countryId: string;
-  nameLocal: string;
-  profile: TextProfile;
 };
 
-export default function CountryPortrait({ countryId, nameLocal, profile }: CountryPortraitProps) {
+export default function CountryPortrait({ countryId }: CountryPortraitProps) {
   const { viewBox, path, aspectRatio, patternId } = useMemo(() => {
     const mapData = mapPaths.find((item) => item.id === countryId);
     if (!mapData) return { viewBox: '0 0 100 100', path: '', aspectRatio: 1, patternId: '' };
@@ -60,9 +55,6 @@ export default function CountryPortrait({ countryId, nameLocal, profile }: Count
           {/* Hatch fill */}
           <path d={path} fill={`url(#${patternId})`} stroke="none" />
         </svg>
-        <div className="country-portrait__name">
-          <NativeText profile={profile}>{nameLocal}</NativeText>
-        </div>
       </div>
     </section>
   );

@@ -3,30 +3,33 @@ import type { Country } from '@/content/countries';
 type SourceBlockProps = {
   sources: Country['sources'];
   needsVerification?: Country['needsVerification'];
-  depth: Country['depth'];
+  depth?: Country['depth'];
 };
 
-export default function SourceBlock({ sources, needsVerification, depth }: SourceBlockProps) {
+export default function SourceBlock({ sources, needsVerification }: SourceBlockProps) {
   const hasVerification = needsVerification && needsVerification.length > 0;
 
   return (
-    <footer className="country-sources">
-      <div className="country-sources__inner">
-        <p className="country-sources__depth country-honesty-marker">
-          {depth === 'Lengkap' ? 'Lengkap' : 'Penjelajahan'}
-        </p>
-        <h2 className="country-sources__title">Sumber</h2>
+    <footer className="country-block country-sources" aria-labelledby="country-sources-title">
+      <div className="country-block__inner">
+        <h2 id="country-sources-title" className="country-sources__title">
+          Sumber
+        </h2>
         <ol className="country-sources__list">
           {sources.map((source, i) => (
             <li key={i} className="country-sources__item">
-              <a
-                href={source.url}
-                className="country-sources__link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {source.what}
-              </a>
+              {source.url ? (
+                <a
+                  href={source.url}
+                  className="country-sources__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {source.what}
+                </a>
+              ) : (
+                <span className="country-sources__text">{source.what}</span>
+              )}
             </li>
           ))}
         </ol>
