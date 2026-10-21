@@ -16,7 +16,6 @@ export default function BackNavigation({ leaving, onClick }: BackNavigationProps
       aria-disabled={leaving || undefined}
       data-leaving={leaving ? 'true' : undefined}
     >
-      <span aria-hidden="true">←</span>
       <span>Kembali ke benua</span>
     </Link>
   );

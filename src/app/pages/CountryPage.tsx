@@ -5,11 +5,14 @@ import { getCountry } from '@/content/countries';
 import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
 import CountryHero from '@/sections/country/CountryHero';
+import CountryPortrait from '@/sections/country/CountryPortrait';
 import CountrySilhouette from '@/sections/country/CountrySilhouette';
 import GreetingBlock from '@/sections/country/GreetingBlock';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
-import SourceList from '@/sections/country/SourceList';
+import RegionLocator from '@/sections/country/RegionLocator';
+import ScriptSpecimen from '@/sections/country/ScriptSpecimen';
+import SourceBlock from '@/sections/country/SourceBlock';
 import { profileFor } from '@/sections/country/scripts';
 import { useExitToLanding } from '@/sections/country/useExitToLanding';
 import '@/styles/country.css';
@@ -55,12 +58,19 @@ export default function CountryPage() {
       <aside className="country-sidebar">
         <CountrySilhouette countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
       </aside>
+      <RegionLocator countryId={country.id} region={country.region} />
+      <CountryPortrait countryId={country.id} nameLocal={country.nameLocal} profile={profile} />
+      <ScriptSpecimen country={country} profile={profile} />
       <GreetingBlock country={country} profile={profile} />
       <LanguageBlock country={country} profile={profile} />
       <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
       <div className="country-separator" aria-hidden="true" />
       <NoteBlock id="country-people-title" title="Orang" text={country.peopleNote} />
-      <SourceList sources={country.sources} needsVerification={country.needsVerification} />
+      <SourceBlock
+        sources={country.sources}
+        needsVerification={country.needsVerification}
+        depth={country.depth}
+      />
     </article>
   );
 }
