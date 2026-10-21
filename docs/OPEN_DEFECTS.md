@@ -22,17 +22,30 @@ Bukti: `docs/VERIFY_COUNTRY/jp-1440-full.png` (1440), `docs/VERIFY_COUNTRY/sa-37
 Lulus di putaran ini: tipografi sumber 14 px dengan kontras 5,47:1, entrance tanpa
 opacity 0 (teks tajam di tangkapan full-page), mobile 375 rapi satu kolom tanpa overflow.
 
-## Landing — cacat terbuka (lane implementer, sesi `ses_ea4665641ffebFV6S3gjt5U7nf`)
+## Landing — status terukur setelah putaran 1 (`67143f4`)
 
-1. Gulir 0 tanpa headline (H1 opacity 0).
-2. Benua ±33vw; target 62vw desktop / 85vw mobile.
-3. Penghitung berhenti di "0".
-4. Kolom aksara ketiga terpotong tepi kanan; sapaan tanpa arti dan tanpa label bahasa.
-5. Scene 75%: siluet terpotong, ikon 24 px melayang, headline menabrak bentuk.
-6. Kaki halaman 80% kosong; belum ada indeks 15 negara.
-7. `.landing-country-list` masih `position: fixed` (chrome menu) + tes unit mengunci
-   larangan landmark navigasi.
-8. Void 300–600 px di semua tangkapan.
+Diukur sendiri lewat Playwright di `localhost:5192`, 1440x900, gulir bertahap 9 langkah.
+
+1. **Tutup.** H1 terlihat di gulir 0 (`docs/VERIFY_LANDING/landing-1440x900-000.png`).
+2. **Sebagian.** Elemen `.landing-hero__scene` = 893x595 px = 62,0vw, tetapi siluet
+   benua di dalamnya hanya menempati ±580 px dari 893 px (64% isi kanvas), jadi yang
+   terbaca tetap ±40vw. Ini urusan camera fit di `AsiaScene.tsx`, bukan CSS lebar.
+   Geometri juga masih rusak: bilah vertikal di kepulauan, celah krem antar-negara.
+3. **Bukan cacat.** Penghitung berjalan: `15=10` di 13%, `15=15` di 20%, `718=718` di
+   30%. Angka "0" di tangkapan lama adalah artefak harness: skrip melompat langsung ke
+   fraksi gulir lalu memotret sebelum tween GSAP sempat jalan. **Aturan verifikasi baru:
+   gulir bertahap (≥20 langkah, jeda) sebelum memotret, jangan lompat-lalu- shoot.**
+4. **Terbuka.** Kartu aksara ketiga: kotak terukur x=1066→1642 pada viewport 1440, jadi
+   terpotong 202 px (lebar kartu 576 px = 40% viewport, mustahil tiga sejajar). Label
+   bahasa + arti sudah ada dan terbaca.
+5. **Belum diverifikasi ulang** setelah putaran 1 (scene 75%).
+6. **Terbuka, sekarang berbentuk kartu.** Indeks 15 negara ada, tetapi dirender sebagai
+   15 tombol berbingkai 218x60 px (border 1px `rgb(216,212,204)`) di blok 920 px pada
+   x=24 — melanggar aturan tanpa-kartu dan menyisakan ±500 px kosong di kanan.
+7. **Tutup.** `.landing-country-list` sudah in-flow di kaki halaman; suite unit 27/27
+   hijau (tes larangan landmark navigasi sudah disesuaikan ke nav in-flow).
+8. **Sebagian.** Tidak ada gulir horizontal (`scrollWidth == clientWidth == 1440` di
+   semua posisi), tetapi kaki halaman masih menyisakan ±200 px ruang mati di atas judul.
 
 ## Scene — menunggu eksekusi
 
