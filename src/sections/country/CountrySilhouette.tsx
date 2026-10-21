@@ -21,7 +21,10 @@ export default function CountrySilhouette({
   }
 
   const { d, bbox } = mapData;
-  const [minX, minY, maxX, maxY] = bbox;
+  const [minX = 0, minY = 0, maxX = 0, maxY = 0] = bbox;
+  if (maxX <= minX || maxY <= minY) {
+    return null;
+  }
   const width = maxX - minX;
   const height = maxY - minY;
   const viewBox = `${minX} ${minY} ${width} ${height}`;
