@@ -55,30 +55,39 @@ KEEP_UNSIMPLIFIED_ABOVE = 32
 MAX_TRIANGLES = 60000
 
 NEUTRAL_COLOR = "#d9d6cf"  # used until assets/palette.json exists
+CONTEXT_COLOR = "#E7E1D6"  # flat context landmass color
 
-# Extrusion heights are placeholders until the design pass fixes the relief.
+# Extrusion heights per D21: island nations 1.2, mainland 1.8
 COUNTRIES = (
-    {"id": "cn", "iso3": "CHN", "name": "China", "height": 6.0},
-    {"id": "in", "iso3": "IND", "name": "India", "height": 5.4},
-    {"id": "id", "iso3": "IDN", "name": "Indonesia", "height": 3.2},
-    {"id": "jp", "iso3": "JPN", "name": "Japan", "height": 4.2},
-    {"id": "kr", "iso3": "KOR", "name": "South Korea", "height": 3.6},
-    {"id": "my", "iso3": "MYS", "name": "Malaysia", "height": 3.0},
-    {"id": "ph", "iso3": "PHL", "name": "Philippines", "height": 3.0},
-    {"id": "sg", "iso3": "SGP", "name": "Singapore", "height": 1.8},
-    {"id": "th", "iso3": "THA", "name": "Thailand", "height": 3.8},
-    {"id": "vn", "iso3": "VNM", "name": "Vietnam", "height": 3.4},
-    {"id": "sa", "iso3": "SAU", "name": "Saudi Arabia", "height": 4.6},
-    {"id": "tr", "iso3": "TUR", "name": "Turkey", "height": 4.4},
-    {"id": "kz", "iso3": "KAZ", "name": "Kazakhstan", "height": 4.8},
-    {"id": "uz", "iso3": "UZB", "name": "Uzbekistan", "height": 3.0},
-    {"id": "mn", "iso3": "MNG", "name": "Mongolia", "height": 4.0},
+    {"id": "cn", "iso3": "CHN", "name": "China", "height": 1.8},
+    {"id": "in", "iso3": "IND", "name": "India", "height": 1.8},
+    {"id": "id", "iso3": "IDN", "name": "Indonesia", "height": 1.2},
+    {"id": "jp", "iso3": "JPN", "name": "Japan", "height": 1.2},
+    {"id": "kr", "iso3": "KOR", "name": "South Korea", "height": 1.8},
+    {"id": "my", "iso3": "MYS", "name": "Malaysia", "height": 1.2},
+    {"id": "ph", "iso3": "PHL", "name": "Philippines", "height": 1.2},
+    {"id": "sg", "iso3": "SGP", "name": "Singapore", "height": 1.2},
+    {"id": "th", "iso3": "THA", "name": "Thailand", "height": 1.8},
+    {"id": "vn", "iso3": "VNM", "name": "Vietnam", "height": 1.8},
+    {"id": "sa", "iso3": "SAU", "name": "Saudi Arabia", "height": 1.8},
+    {"id": "tr", "iso3": "TUR", "name": "Turkey", "height": 1.8},
+    {"id": "kz", "iso3": "KAZ", "name": "Kazakhstan", "height": 1.8},
+    {"id": "uz", "iso3": "UZB", "name": "Uzbekistan", "height": 1.8},
+    {"id": "mn", "iso3": "MNG", "name": "Mongolia", "height": 1.8},
 )
 
 ISO3_LIST = [c["iso3"] for c in COUNTRIES]
 ID_BY_ISO3 = {c["iso3"]: c["id"] for c in COUNTRIES}
 
 PHI0 = math.radians(LAT0)
+
+# Bounding box for context mesh (roughly frame around Asia)
+CONTEXT_BBOX = {
+    "lon_min": 25.0,
+    "lon_max": 150.0,
+    "lat_min": -15.0,
+    "lat_max": 65.0,
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -175,6 +184,16 @@ def make_ring(ring: list[list[float]], tolerance: float) -> list[tuple[float, fl
     return points
 
 
+def in_asia_frame(properties: dict) -> bool:
+    """Check if country centroid is within the Asia frame."""
+    lon = properties.get("LABEL_X") or properties.get("MIN_X") or 0
+    lat = properties.get("LABEL_Y") or properties.get("MIN_Y") or 0
+    return (
+        CONTEXT_BBOX["lon_min"] <= lon <= CONTEXT_BBOX["lon_max"]
+        and CONTEXT_BBOX["lat_min"] <= lat <= CONTEXT_BBOX["lat_max"]
+    )
+
+
 def load_polygons(tolerance: float) -> dict[str, list[dict[str, list]]]:
     """iso3 -> [{outer: [...], holes: [[...], ...]}, ...] in projected space."""
     if not os.path.exists(SOURCE):
@@ -227,6 +246,58 @@ def load_polygons(tolerance: float) -> dict[str, list[dict[str, list]]]:
         fail(f"negara tidak ditemukan di GeoJSON: {', '.join(missing)}")
 
     return polygons
+
+
+def load_context_polygons(tolerance: float) -> list[dict[str, list]]:
+    """Load all OTHER countries in the Asia frame for the context mesh."""
+    if not os.path.exists(SOURCE):
+        fail(f"sumber data tidak ditemukan: {SOURCE}")
+
+    with open(SOURCE, encoding="utf-8") as handle:
+        collection = json.load(handle)
+
+    all_polygons: list[dict[str, list]] = []
+    skipped_holes = 0
+
+    for feature in collection.get("features", []):
+        properties = feature.get("properties", {})
+        iso3 = properties.get("ISO_A3") or properties.get("ADM0_A3")
+
+        # Skip the 15 pickable countries
+        if iso3 in ISO3_LIST:
+            continue
+
+        # Skip countries outside Asia frame
+        if not in_asia_frame(properties):
+            continue
+
+        geometry = feature.get("geometry") or {}
+        raw_polygons = (
+            geometry.get("coordinates", [])
+            if geometry.get("type") == "MultiPolygon"
+            else [geometry.get("coordinates", [])]
+        )
+
+        for raw_polygon in raw_polygons:
+            if not raw_polygon:
+                continue
+            outer = make_ring(raw_polygon[0], tolerance)
+            if outer is None or abs(signed_area(outer)) < MIN_ISLAND_AREA:
+                continue
+            holes = []
+            for raw_hole in raw_polygon[1:]:
+                hole = make_ring(raw_hole, tolerance)
+                if hole is None or abs(signed_area(hole)) < MIN_ISLAND_AREA * 0.05:
+                    skipped_holes += 1
+                    continue
+                holes.append(hole)
+            all_polygons.append({"outer": outer, "holes": holes})
+
+    if skipped_holes:
+        log(f"context: lewat {skipped_holes} lubang kecil")
+
+    log(f"context: memuat {len(all_polygons)} polygon dari negara lain di frame Asia")
+    return all_polygons
 
 
 # --------------------------------------------------------------------------- #
@@ -284,6 +355,21 @@ def make_material(country: dict, palette: dict[str, str], has_palette: bool) -> 
         principled.inputs["Roughness"].default_value = 0.85
         principled.inputs["Metallic"].default_value = 0.0
     material["source_hex"] = hex_color
+    return material
+
+
+def make_context_material() -> bpy.types.Material:
+    """Create flat material for context landmass."""
+    rgba = hex_to_linear_rgba(CONTEXT_COLOR)
+    material = bpy.data.materials.new(name="mat_context")
+    material.use_nodes = True
+    material.diffuse_color = rgba
+    principled = material.node_tree.nodes.get("Principled BSDF")
+    if principled is not None:
+        principled.inputs["Base Color"].default_value = rgba
+        principled.inputs["Roughness"].default_value = 0.9
+        principled.inputs["Metallic"].default_value = 0.0
+    material["source_hex"] = CONTEXT_COLOR
     return material
 
 
@@ -383,9 +469,63 @@ def build_country(country: dict, polygons: list[dict], palette: dict[str, str], 
     }
 
 
-def build_scene(tolerance: float, palette: dict[str, str], has_palette: bool) -> list[dict]:
+def build_context(polygons: list[dict]) -> dict:
+    """Build flat context mesh from all other countries."""
+    if not polygons:
+        log("context: tidak ada polygon untuk dibangun")
+        return {"triangles": 0, "vertices": 0}
+
+    curve = fill_curve(polygons, "context")
+    curve_object = bpy.data.objects.new("context_curve", curve)
+    bpy.context.collection.objects.link(curve_object)
+
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    depsgraph.update()
+    mesh = bpy.data.meshes.new_from_object(curve_object.evaluated_get(depsgraph))
+
+    bpy.data.objects.remove(curve_object, do_unlink=True)
+    bpy.data.curves.remove(curve)
+
+    if len(mesh.polygons) == 0:
+        log("context: curve fill menghasilkan 0 face — skip context mesh")
+        return {"triangles": 0, "vertices": 0}
+
+    bm = bmesh.new()
+    bm.from_mesh(mesh)
+    bm.verts.ensure_lookup_table()
+    bmesh.ops.remove_doubles(bm, verts=bm.verts[:], dist=1e-6)
+
+    # NO extrusion — flat mesh
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    bmesh.ops.triangulate(
+        bm,
+        faces=bm.faces[:],
+        quad_method="BEAUTY",
+        ngon_method="EAR_CLIP",
+    )
+    bm.to_mesh(mesh)
+    bm.free()
+
+    for polygon in mesh.polygons:
+        polygon.use_smooth = False
+
+    mesh.materials.append(make_context_material())
+
+    obj = bpy.data.objects.new("context", mesh)
+    # NO iso_a3 — context is not pickable
+    bpy.context.collection.objects.link(obj)
+
+    triangles = len(mesh.polygons)
+    vertices = len(mesh.vertices)
+    log(f"context: triangles={triangles} vertices={vertices}")
+
+    return {"triangles": triangles, "vertices": vertices}
+
+
+def build_scene(tolerance: float, palette: dict[str, str], has_palette: bool) -> tuple[list[dict], dict]:
     reset_scene()
     polygons_by_iso3 = load_polygons(tolerance)
+    context_polygons = load_context_polygons(tolerance)
 
     stats = []
     for country in COUNTRIES:
@@ -395,22 +535,25 @@ def build_scene(tolerance: float, palette: dict[str, str], has_palette: bool) ->
             f"verts={stats[-1]['vertices']} tris={stats[-1]['triangles']} height={country['height']}"
         )
 
-    scene_objects = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
-    if len(scene_objects) != len(COUNTRIES):
-        fail(f"jumlah objek mesh {len(scene_objects)} != {len(COUNTRIES)}")
+    context_stats = build_context(context_polygons)
 
-    present = sorted(obj.get("iso_a3", "") for obj in scene_objects)
+    scene_objects = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
+    expected_count = len(COUNTRIES) + (1 if context_stats["triangles"] > 0 else 0)
+    if len(scene_objects) != expected_count:
+        fail(f"jumlah objek mesh {len(scene_objects)} != {expected_count}")
+
+    present = sorted(obj.get("iso_a3", "") for obj in scene_objects if obj.get("iso_a3"))
     missing = sorted(set(ISO3_LIST) - set(present))
     if missing:
         fail(f"negara hilang dari scene: {', '.join(missing)}")
 
-    total_triangles = sum(item["triangles"] for item in stats)
-    total_vertices = sum(item["vertices"] for item in stats)
+    total_triangles = sum(item["triangles"] for item in stats) + context_stats["triangles"]
+    total_vertices = sum(item["vertices"] for item in stats) + context_stats["vertices"]
     log(
         f"TOTAL objek={len(scene_objects)} triangle={total_triangles} "
         f"vertex={total_vertices} tolerance={tolerance}"
     )
-    return stats
+    return stats, context_stats
 
 
 def export_glb() -> None:
@@ -455,12 +598,14 @@ def main() -> None:
     palette, has_palette = load_palette()
 
     stats = None
+    context_stats = None
     for tolerance in TOLERANCE_STEPS:
         log(f"membangun scene dengan tolerance={tolerance}")
-        candidate = build_scene(tolerance, palette, has_palette)
-        total_triangles = sum(item["triangles"] for item in candidate)
+        candidate, context = build_scene(tolerance, palette, has_palette)
+        total_triangles = sum(item["triangles"] for item in candidate) + context["triangles"]
         if total_triangles <= MAX_TRIANGLES:
             stats = candidate
+            context_stats = context
             break
         log(f"triangle {total_triangles} > batas {MAX_TRIANGLES} — menaikkan tolerance")
 

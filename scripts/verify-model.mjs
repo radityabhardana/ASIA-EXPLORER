@@ -155,7 +155,13 @@ function main() {
   );
   const nodesWithoutExtras = rows.filter((row) => !row.iso3);
 
-  check('15 node mesh', meshNodes.length === 15, `ditemukan ${meshNodes.length}`);
+  const contextNodes = rows.filter((row) => row.node === 'context' && !row.iso3);
+  const pickableNodes = rows.filter((row) => row.iso3);
+  check(
+    '15 node pickable + 1 context',
+    pickableNodes.length === 15 && contextNodes.length <= 1,
+    `pickable ${pickableNodes.length}, context ${contextNodes.length}`,
+  );
   check(
     'semua ISO3 lengkap',
     missingIso3.length === 0 && unexpectedIso3.length === 0,
@@ -177,8 +183,8 @@ function main() {
     totalTriangles.toLocaleString('en-US'),
   );
   check(
-    'extras.iso_a3 di setiap node',
-    nodesWithoutExtras.length === 0,
+    'extras.iso_a3 di 15 node pickable',
+    nodesWithoutExtras.filter((row) => row.node !== 'context').length === 0,
     nodesWithoutExtras.length
       ? `tanpa extras: ${nodesWithoutExtras.map((row) => row.node).join(', ')}`
       : '15/15',
@@ -225,7 +231,9 @@ function main() {
     `${'node'.padEnd(width)}  ${'iso3'}  ${'id'}  ${'tris'.padStart(7)}  ${'height'.padStart(6)}  country`,
   );
   const order = EXPECTED.map((entry) => entry.iso3);
-  const sorted = [...rows].sort((a, b) => order.indexOf(a.iso3) - order.indexOf(b.iso3));
+  const pickableSorted = rows.filter((row) => row.iso3).sort((a, b) => order.indexOf(a.iso3) - order.indexOf(b.iso3));
+  const contextRow = rows.find((row) => row.node === 'context');
+  const sorted = contextRow ? [contextRow, ...pickableSorted] : pickableSorted;
   for (const row of sorted) {
     const expected = EXPECTED.find((entry) => entry.iso3 === row.iso3);
     console.log(
