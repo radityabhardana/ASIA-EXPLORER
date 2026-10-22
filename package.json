@@ -7,7 +7,12 @@
     "node": ">=22"
   },
   "scripts": {
+    "predev": "node scripts/free-port.mjs",
     "dev": "vite --port 5173 --strictPort",
+    "prerundev": "node scripts/free-port.mjs",
+    "rundev": "vite --port 5173 --strictPort",
+    "prestart": "node scripts/free-port.mjs",
+    "start": "vite --port 5173 --strictPort",
     "build": "npm run typecheck && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
