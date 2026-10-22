@@ -77,11 +77,7 @@ export default function CountryDialog({ country, onClose }: CountryDialogProps) 
           <h2 className="landing-dialog__title" id="landing-dialog-title">
             {country.nameId}
           </h2>
-          <p
-            className="landing-dialog__native"
-            lang={profile.lang}
-            dir={profile.dir}
-          >
+          <p className="landing-dialog__native" lang={profile.lang} dir={profile.dir}>
             {country.greeting.native}
           </p>
           {differs(country.greeting.native, country.greeting.roman) ? (
@@ -89,9 +85,22 @@ export default function CountryDialog({ country, onClose }: CountryDialogProps) 
           ) : null}
           <p className="landing-dialog__meaning">{country.greeting.meaningId}</p>
           <p className="landing-dialog__meta">Bahasa: {country.language.nameId}</p>
-          <Link className="landing-dialog__action" to={`/negara/${country.id}`}>
-            Jelajahi {country.nameId}
-          </Link>
+          {country.hasPage !== false ? (
+            <Link className="landing-dialog__action" to={`/negara/${country.id}`}>
+              Jelajahi {country.nameId}
+            </Link>
+          ) : (
+            <div
+              className="landing-dialog__action"
+              style={{
+                fontSize: 'var(--text-body)',
+                color: 'var(--ink-muted)',
+                fontFamily: 'var(--font-text)',
+              }}
+            >
+              Kawasan {country.region} · Ibu kota: {country.capital || '-'}
+            </div>
+          )}
         </div>
       ) : null}
     </dialog>

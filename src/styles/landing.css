@@ -324,6 +324,203 @@
   color: var(--ink-muted);
 }
 
+/* --- Hero interaktif --------------------------------------------------- */
+
+.landing-hero__sub {
+  margin: 6px 0 0;
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.landing-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.landing-hero__chips-label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+}
+
+.landing-hero__chip {
+  min-height: 44px;
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition:
+    color var(--duration-micro) var(--ease-standard),
+    text-decoration-thickness var(--duration-micro) var(--ease-standard);
+}
+
+.landing-hero__chip:hover {
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+}
+
+.landing-hero__chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.landing-hero__chip-sep {
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
+
+.landing-hint--select {
+  letter-spacing: 0.08em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Label hover ter-anchor, bukan mengikuti kursor. */
+.landing-hero__peek {
+  position: absolute;
+  left: 50%;
+  bottom: 58px;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  max-width: min(90vw, 560px);
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background-color: color-mix(in srgb, var(--surface-raised) 92%, transparent);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+  transition:
+    opacity 160ms var(--ease-standard),
+    transform 160ms var(--ease-standard);
+}
+
+.landing-hero__peek[data-visible='true'] {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.landing-hero__peek-name {
+  font-weight: var(--weight-semibold);
+}
+
+.landing-hero__peek-native {
+  font-size: 1rem;
+}
+
+.landing-hero__peek-roman {
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+}
+
+/* Scene memakai label internal yang mengikuti kursor; hero memakai label
+   ter-anchor di atas supaya tidak rapuh. */
+.landing-hero__scene .asia-scene__label {
+  display: none;
+}
+
+.landing-hero__scene .landing-asia .asia-scene__canvas {
+  touch-action: pan-y;
+}
+
+.landing-hero__scene--country {
+  cursor: pointer;
+}
+
+@media (hover: none) {
+  .landing-hero__peek {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-hero__chip,
+  .landing-hero__peek,
+  .landing-country-list {
+    transition: none;
+  }
+}
+
+/* Daftar negara: tidak terlihat sampai ada fokus keyboard di dalamnya,
+   tetapi tombolnya tetap target 44px yang nyata (bukan off-screen). */
+.landing-country-list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  width: min(760px, calc(100vw - var(--space-4)));
+  max-height: min(72vh, 560px);
+  padding: var(--space-3);
+  overflow: auto;
+  border: 1px solid var(--line);
+  background-color: var(--surface-raised);
+  box-shadow: 0 24px 48px color-mix(in srgb, var(--ink) 14%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--duration-micro) var(--ease-standard);
+}
+
+.landing-country-list:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.landing-country-list__title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.landing-country-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-country-list__items button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background-color: transparent;
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  cursor: pointer;
+}
+
+.landing-country-list__items button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.landing-country-list__items button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* Tablet (641px - 1024px) */
 @media (min-width: 641px) and (max-width: 1024px) {
   .landing-hero__scene {
@@ -719,7 +916,7 @@
 
 .landing-invitation__scene {
   position: relative;
-  width: min(62vw, 900px);
+  width: min(85vw, 1140px);
 }
 
 .landing-invitation__scene--hovering {

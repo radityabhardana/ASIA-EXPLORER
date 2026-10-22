@@ -1,12 +1,12 @@
 import { countries as allCountries } from '@/content/countries';
 import type { Country } from '@/content/countries';
+import { COUNTRIES as COUNTRIES_48 } from '@/content/countries48';
 import mapPathData from '@/content/map-paths.json';
 import type { MapPathEntry } from '@/lib/map-paths';
 
 /**
- * Data landing hanya membaca sumber yang sudah ada. Tidak ada angka baru di
- * modul ini: 15 berasal dari `countries.json`, 718 berasal dari
- * `countries.id.cultureNote` (Badan Bahasa).
+ * Data landing membaca 15 negara terverifikasi serta 48 negara lengkap
+ * untuk eksplorasi peta 3D interaktif.
  */
 export const countries: readonly Country[] = allCountries;
 
@@ -15,13 +15,59 @@ export const mapPaths = mapPathData as unknown as readonly MapPathEntry[];
 
 const mapById = new Map(mapPaths.map((entry) => [entry.id, entry]));
 const countryById = new Map(countries.map((country) => [country.id, country]));
+const countryByIso = new Map(countries.map((country) => [country.iso3.toUpperCase(), country]));
+
+const REGION_LABEL: Record<string, string> = {
+  'West Asia': 'Asia Barat',
+  'Central Asia': 'Asia Tengah',
+  'South Asia': 'Asia Selatan',
+  'Southeast Asia': 'Asia Tenggara',
+  'East Asia': 'Asia Timur',
+};
 
 export function mapEntry(id: string): MapPathEntry | undefined {
   return mapById.get(id);
 }
 
-export function countryEntry(id: string): Country | undefined {
-  return countryById.get(id);
+export function countryEntry(idOrIso: string): Country | undefined {
+  const norm = idOrIso.toLowerCase();
+  const upper = idOrIso.toUpperCase();
+  const direct = countryById.get(norm) || countryByIso.get(upper);
+  if (direct) {
+    return { ...direct, hasPage: true };
+  }
+  const item48 = COUNTRIES_48[upper];
+  if (!item48) return undefined;
+
+  return {
+    id: norm,
+    iso3: upper,
+    nameId: item48.name,
+    nameLocal: item48.name,
+    region: REGION_LABEL[item48.region] || item48.region,
+    capital: item48.capital,
+    hasPage: false,
+    greeting: {
+      native: item48.greet.text,
+      roman: item48.greet.latin,
+      meaningId: item48.culture,
+      register: item48.fact,
+    },
+    language: {
+      nameId: item48.languages.join(', '),
+      nativeName: item48.languages[0] || '',
+      script: 'Lokal',
+      family: 'Asia',
+      note: item48.fact,
+    },
+    phrases: [],
+    cultureNote: item48.culture,
+    peopleNote: item48.fact,
+    depth: 'Penjelajahan',
+    story: { text: item48.culture, sources: [] },
+    sources: [],
+    needsVerification: [],
+  };
 }
 
 /** Tiga aksara yang ditampilkan di scene 4: Arab, Jepang/CJK, Thailand (§1 tabel scene). */
@@ -59,9 +105,7 @@ export function sourceDomainLabel(url: string, what?: string): string {
     const pathname = parsed.pathname;
 
     const lastSlug = pathname.split('/').filter(Boolean).pop() ?? '';
-    const cleanSlug = decodeURIComponent(lastSlug)
-      .replace(/[-_]+/g, ' ')
-      .trim();
+    const cleanSlug = decodeURIComponent(lastSlug).replace(/[-_]+/g, ' ').trim();
 
     if (host.includes('britannica.com')) {
       if (cleanSlug) {

@@ -1,20 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
 
 import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryDialog from '@/sections/landing/CountryDialog';
+import CountryList from '@/sections/landing/CountryList';
+import InteractiveAsiaMap48 from '@/sections/landing/InteractiveAsiaMap48';
 import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import Silhouette from '@/sections/landing/Silhouette';
 import { CezveIcon, WaiIcon } from '@/sections/landing/icons';
 import {
-  COUNTRY_SOURCES,
   REGIONAL_SILHOUETTES,
   SCRIPT_COUNTRY_IDS,
-  countries,
   countryEntry,
-  sourceDomainLabel,
 } from '@/sections/landing/landing-data';
 import { useLandingTimeline } from '@/sections/landing/useLandingTimeline';
 import '@/styles/landing.css';
@@ -24,14 +23,15 @@ const scriptCountries = SCRIPT_COUNTRY_IDS.flatMap((id) => {
   return country ? [country] : [];
 });
 
+/** Tiga pintu masuk cepat; semuanya punya halaman negara. */
+const HERO_PICK_IDS = ['id', 'jp', 'tr'] as const;
+
 export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
   const heroProgressRef = useRef(0);
-  // Scene 7 statis saat interaktif (§3): progres tetap, kamera tidak berubah.
-  const invitationProgressRef = useRef(0.5);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [hoverId, setHoverId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
 
   useLandingTimeline({ root: rootRef, progress: heroProgressRef });
@@ -53,8 +53,48 @@ export default function LandingPage() {
     };
   }, []);
 
-  const selectedCountry = selectedId ? countryEntry(selectedId) ?? null : null;
-  const hoverCountry = hoverId ? countryEntry(hoverId) ?? null : null;
+  const selectedCountry = selectedId ? (countryEntry(selectedId) ?? null) : null;
+  const hoveredCountry = hoveredId ? (countryEntry(hoveredId) ?? null) : null;
+  const hoveredProfile = hoveredCountry ? profileFor(hoveredCountry) : null;
+  const openTimerRef = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (openTimerRef.current !== null) {
+        window.clearTimeout(openTimerRef.current);
+      }
+    },
+    [],
+  );
+
+  const selectCountry = (id: string) => {
+    if (openTimerRef.current !== null) {
+      window.clearTimeout(openTimerRef.current);
+      openTimerRef.current = null;
+    }
+    setHoveredId(null);
+    setSelectedId(id);
+  };
+
+  /**
+   * Scene 3D memilih lewat `pointerup`. Dialog harus dibuka satu task setelah
+   * itu: `click` sintetis dari gestur yang sama kalau tidak akan mendarat di
+   * backdrop/link dialog dan langsung menutup atau menavigasi.
+   */
+  const selectCountryFromScene = (id: string) => {
+    setHoveredId(null);
+    if (openTimerRef.current !== null) {
+      window.clearTimeout(openTimerRef.current);
+    }
+    openTimerRef.current = window.setTimeout(() => {
+      openTimerRef.current = null;
+      setSelectedId(id);
+    }, 0);
+  };
+
+  const closeDialog = () => {
+    setSelectedId(null);
+  };
 
   const handleSkipToMap = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -65,10 +105,7 @@ export default function LandingPage() {
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
       {/* Scene 1 — hero */}
-      <section
-        className="landing-scene landing-scene--hero"
-        aria-labelledby="landing-title"
-      >
+      <section className="landing-scene landing-scene--hero" aria-labelledby="landing-title">
         <a className="landing-skip" href="#peta" onClick={handleSkipToMap}>
           Lewati ke peta
         </a>
@@ -115,22 +152,89 @@ export default function LandingPage() {
             <h1 className="landing-hero__title" id="landing-title">
               Asia Explorer
             </h1>
-            <p className="landing-hero__tagline">
-              Bahasa, aksara, dan budaya lima belas bangsa di benua Asia.
-            </p>
+            <p className="landing-hero__tagline">Kenali Asia lewat tanganmu.</p>
+            <p className="landing-hero__sub">Pilih satu negara di benua untuk mulai.</p>
+
+            <div className="landing-hero__chips" data-intro>
+              <span className="landing-hero__chips-label">Coba:</span>
+              {HERO_PICK_IDS.map((id, index) => {
+                const country = countryEntry(id);
+                if (!country) {
+                  return null;
+                }
+                return (
+                  <Fragment key={id}>
+                    {index > 0 ? (
+                      <span className="landing-hero__chip-sep" aria-hidden="true">
+                        ·
+                      </span>
+                    ) : null}
+                    <button
+                      type="button"
+                      className="landing-hero__chip"
+                      aria-haspopup="dialog"
+                      onClick={() => selectCountry(id)}
+                    >
+                      {country.nameId}
+                    </button>
+                  </Fragment>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="landing-hero__scene" data-intro>
+          <div
+            className={
+              hoveredCountry
+                ? 'landing-hero__scene landing-hero__scene--country'
+                : 'landing-hero__scene'
+            }
+            data-intro
+          >
             <AsiaSceneLazy
-              decorative
-              label="Peta Asia"
+              label="Peta Asia interaktif"
+              describedBy="landing-hero-help"
+              selectedId={selectedId}
+              onHoverCountry={setHoveredId}
+              onSelectCountry={selectCountryFromScene}
               scrollProgressRef={heroProgressRef}
             />
           </div>
 
-          <p className="landing-hint" data-intro>
-            Gulir
+          <div
+            className="landing-hero__peek"
+            data-visible={hoveredCountry ? 'true' : undefined}
+            aria-hidden="true"
+          >
+            {hoveredCountry && hoveredProfile ? (
+              <>
+                <span className="landing-hero__peek-name">{hoveredCountry.nameId}</span>
+                <span
+                  className="landing-hero__peek-native"
+                  lang={hoveredProfile.lang}
+                  dir={hoveredProfile.dir}
+                >
+                  {hoveredCountry.greeting.native}
+                </span>
+                {differs(hoveredCountry.greeting.native, hoveredCountry.greeting.roman) ? (
+                  <span className="landing-hero__peek-roman">
+                    {hoveredCountry.greeting.roman}
+                  </span>
+                ) : null}
+              </>
+            ) : null}
+          </div>
+
+          <p id="landing-hero-help" className="visually-hidden">
+            Pilih negara di benua. Tekan Tab untuk membuka daftar negara, lalu Enter untuk
+            melihat sapaan.
           </p>
+
+          <p className="landing-hint landing-hint--select" data-intro>
+            Pilih negara · atau gulir
+          </p>
+
+          <CountryList onSelect={selectCountry} />
         </div>
       </section>
 
@@ -141,16 +245,11 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--split">
           <div className="landing-stage__copy" data-reveal>
-            <h2
-              className="landing-display landing-display--stat"
-              id="landing-scale-heading"
-            >
+            <h2 className="landing-display landing-display--stat" id="landing-scale-heading">
               <span className="landing-display__number" data-counter="15">
                 15
               </span>
-              <span className="landing-display__words">
-                negara dalam cakupan
-              </span>
+              <span className="landing-display__words">negara dalam cakupan</span>
             </h2>
             <p className="landing-note">Dari Turki sampai Jepang.</p>
           </div>
@@ -217,24 +316,14 @@ export default function LandingPage() {
                       } as CSSProperties
                     }
                   >
-                    <p className="landing-script__label">
-                      {country.language.nameId}
-                    </p>
-                    <p
-                      className="landing-script__native"
-                      lang={profile.lang}
-                      dir={profile.dir}
-                    >
+                    <p className="landing-script__label">{country.language.nameId}</p>
+                    <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
                       {country.greeting.native}
                     </p>
                     {differs(country.greeting.native, country.greeting.roman) ? (
-                      <p className="landing-script__roman">
-                        {country.greeting.roman}
-                      </p>
+                      <p className="landing-script__roman">{country.greeting.roman}</p>
                     ) : null}
-                    <p className="landing-script__meaning">
-                      {country.greeting.meaningId}
-                    </p>
+                    <p className="landing-script__meaning">{country.greeting.meaningId}</p>
                   </article>
                 );
               })}
@@ -264,10 +353,7 @@ export default function LandingPage() {
           </div>
 
           <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display"
-              id="landing-regional-heading"
-            >
+            <h2 className="landing-display" id="landing-regional-heading">
               Asia Tenggara, ratusan cara menyapa
             </h2>
           </div>
@@ -281,10 +367,7 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--cultural">
           <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display"
-              id="landing-cultural-heading"
-            >
+            <h2 className="landing-display" id="landing-cultural-heading">
               Setiap negara punya caranya sendiri
             </h2>
           </div>
@@ -299,10 +382,7 @@ export default function LandingPage() {
                   <Silhouette id="tr" />
                 </div>
               </div>
-              <p
-                className="landing-cultural__label landing-cultural__label--tr"
-                data-reveal
-              >
+              <p className="landing-cultural__label landing-cultural__label--tr" data-reveal>
                 <span
                   className="landing-cultural__icon landing-cultural__icon--cezve"
                   aria-hidden="true"
@@ -322,10 +402,7 @@ export default function LandingPage() {
                   <Silhouette id="th" />
                 </div>
               </div>
-              <p
-                className="landing-cultural__label landing-cultural__label--th"
-                data-reveal
-              >
+              <p className="landing-cultural__label landing-cultural__label--th" data-reveal>
                 <span
                   className="landing-cultural__icon landing-cultural__icon--wai"
                   aria-hidden="true"
@@ -350,114 +427,31 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--invitation">
           <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display"
-              id="landing-invitation-heading"
-            >
+            <h2 className="landing-display" id="landing-invitation-heading">
               Pilih negara, mulai penjelajahan
             </h2>
             <p className="landing-note">
-              Sentuh atau arahkan kursor ke negara di benua, atau pakai daftar
-              di bawah halaman.
+              Sentuh atau arahkan kursor ke negara di benua untuk mulai penjelajahan.
             </p>
           </div>
 
           <div className="landing-invitation__scene" data-reveal>
-            <AsiaSceneLazy
-              label="Peta Asia interaktif"
-              describedBy="landing-map-help"
-              scrollProgressRef={invitationProgressRef}
-              selectedId={selectedId}
-              onHoverCountry={(id) => setHoverId(id)}
-              onSelectCountry={(id) => setSelectedId(id)}
-            />
+            <InteractiveAsiaMap48 onSelectCountry={selectCountry} />
           </div>
 
-          <div
-            className="visually-hidden"
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {hoverCountry
-              ? `${hoverCountry.nameId} — ${hoverCountry.language.nameId}`
-              : ''}
-          </div>
           <p id="landing-map-help" className="visually-hidden">
-            Gunakan peta atau indeks negara di bagian bawah halaman.
+            Gunakan peta benua untuk memilih negara.
           </p>
-
-          <CountryDialog
-            country={selectedCountry}
-            onClose={() => setSelectedId(null)}
-          />
         </div>
       </section>
 
-      {/* Scene 8 — footer */}
-      <footer
-        className="landing-scene landing-scene--footer"
-        aria-labelledby="landing-footer-heading"
-      >
-        <div className="landing-stage landing-stage--footer">
-          <div className="landing-footer__copy" data-reveal>
-            <h2 className="landing-display" id="landing-footer-heading">
-              Sumber data
-            </h2>
-            <p className="landing-note">
-              Rujukan 15 negara:
-            </p>
-          </div>
+      <CountryDialog country={selectedCountry} onClose={closeDialog} />
 
-          <ul className="landing-footer__links" data-reveal>
-            {COUNTRY_SOURCES.map((country) => (
-              <li key={country.id} className="landing-footer__source-item">
-                <span className="landing-footer__source-country">{country.nameId}:</span>{' '}
-                {country.sources.map((source, idx) => (
-                  <span key={source.url}>
-                    {idx > 0 ? ', ' : ''}
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      {sourceDomainLabel(source.url, source.what)}
-                    </a>
-                  </span>
-                ))}
-              </li>
-            ))}
-          </ul>
-
-          <div className="landing-footer__index" data-reveal>
-            <h3 className="landing-footer__index-title">15 negara</h3>
-            <nav className="landing-footer__index-nav" aria-label="Indeks negara">
-              <ul className="landing-footer__index-list">
-                {countries.map((country) => (
-                  <li key={country.id}>
-                    <button
-                      type="button"
-                      className="landing-footer__index-button"
-                      data-country={country.id}
-                      aria-haspopup="dialog"
-                      onClick={() => setSelectedId(country.id)}
-                    >
-                      <span className="landing-footer__index-name">
-                        {country.nameId}
-                      </span>
-                      <span className="landing-footer__index-depth">
-                        {country.depth}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
-          <p className="landing-footer__mark">Asia Explorer</p>
-        </div>
-      </footer>
+      <div className="visually-hidden" role="status" aria-live="polite" aria-atomic="true">
+        {selectedCountry
+          ? `${selectedCountry.nameId} — ${selectedCountry.language.nameId}`
+          : ''}
+      </div>
     </div>
   );
 }

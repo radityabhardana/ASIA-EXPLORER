@@ -54,6 +54,8 @@ export interface Country {
   story: Story
   sources: Source[]
   needsVerification: string[]
+  hasPage?: boolean
+  capital?: string
 }
 
 /** Urutan tampil mengikuti PRD v2.3 dan urutan di `countries.json`. */
