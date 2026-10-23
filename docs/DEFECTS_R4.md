@@ -53,8 +53,8 @@ Status: `open` · `wip` · `closed` (butuh bukti terukur) · `deferred` (keluar 
 | N3 | Hover = panel info, tanpa popup; klik langsung ke halaman negara | K9 | B | open |
 | N4 | Navbar transparan, `absolute`, 3 tautan + bahasa + Masuk/Daftar | K10 | B | open |
 | N5 | i18n ID/EN penuh dengan paritas kunci | K11 | B/F | open |
-| N6 | Marquee aksara 15 negara, tanpa kartu | K12 | D | open |
-| N7 | "Asia Tenggara, ratusan cara menyapa" → "Satu kawasan, enam negara", nol overlap | K13 | D | open |
+| N6 | Marquee aksara 15 negara, tanpa kartu | K12 | D | closed — 15 negara di `landing-data.ts:SCRIPT_COUNTRY_IDS`, marquee CSS loop 45s di `landing.css`, pause on hover/focus, tanpa card/border/shadow, static wrap on reduced-motion, Gate 2 (0 overlap) & Gate 3 unionHvh (1440: 0.867, 768: 0.883, 375: 0.882 >= 0.70) lulus di `e2e/round4-gates.spec.ts` |
+| N7 | "Asia Tenggara, ratusan cara menyapa" → "Satu kawasan, enam negara", nol overlap | K13 | D | closed — Subhead menyebut ID, MY, SG, TH, VN, PH, layout single-row `.landing-regional__row` di `landing.css`, label nama negara per siluet, Gate 2 (0 overlap) & Gate 3 unionHvh (1440: 0.884, 768: 0.898, 375: 0.901 >= 0.70) lulus di `e2e/round4-gates.spec.ts` |
 | N8 | Skip link bukan pill; strip progres tepi kiri dihapus | K14 | A | wip |
 | N9 | Pemilihan negara lewat mosaik 15 foto dari `images.json` | K15 | F | open |
 | N10 | Blok dashboard di landing + rute `/dashboard`, `/negara` | K16 | F/G | open |

@@ -265,10 +265,10 @@
   }
 }
 
-/* Wordmark & Tagline: x=48, y=40, Crimson Pro, clamp(40px,5vw,72px) */
+/* Hero Brand Title & Tagline: x=48, y=104 (navbar 64px + 40px min vertical distance), Crimson Pro, clamp(40px,5vw,72px) */
 .landing-hero__copy {
   position: absolute;
-  top: 40px;
+  top: 104px;
   left: 48px;
   z-index: 2;
   margin: 0;
@@ -335,8 +335,8 @@
   color: var(--ink-muted);
 }
 
-/* Tablet (641px - 1024px) */
-@media (min-width: 641px) and (max-width: 1024px) {
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
   .landing-hero__scene {
     width: min(77vw, 117vh);
     top: 56%;
@@ -347,11 +347,11 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .landing-hero__copy {
-    top: 32px;
-    left: var(--gutter-mobile);
-    right: var(--gutter-mobile);
+    top: 96px;
+    left: 24px;
+    right: 24px;
     max-width: none;
   }
 
@@ -494,52 +494,86 @@
 /* --- Scene 4 — aksara ---------------------------------------------------- */
 
 .landing-stage--script {
+  /* Panggung aksara (K12): headline di atas, pita aksara 15 negara di bawah.
+     Grid P2: teks headline left-aligned di 48px. */
   display: grid;
-  /* Kolom eksplisit 1fr: tanpa ini kolom implisit berukuran max-content h2
-     (≈1005px) dan `justify-content: center` milik .landing-stage memusatkan
-     blok secara horizontal — grid P2 menuntut blok left-aligned di 48 (audit
-     putaran koreksi 1). */
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: clamp(16px, 4vh, 40px);
-  padding-block: var(--space-4);
+  grid-template-rows: auto 1fr;
+  gap: clamp(24px, 4vh, 48px);
+  padding-top: var(--space-4);
+  padding-bottom: clamp(32px, 8vh, 72px);
   align-items: stretch;
 }
 
 .landing-script__viewport {
   width: 100%;
   min-height: 0;
-  display: grid;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.landing-script__marquee {
+  --marquee-gap: clamp(48px, 6vw, 96px);
+  display: flex;
+  flex-direction: row;
+  gap: var(--marquee-gap);
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
 }
 
 .landing-script__track {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2.5vw, 32px);
-  width: 100%;
-  will-change: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--marquee-gap);
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: landing-marquee 45s linear infinite;
+  will-change: transform;
 }
 
-.landing-script__card {
+.landing-script__marquee:hover .landing-script__track,
+.landing-script__marquee:focus-within .landing-script__track {
+  animation-play-state: paused;
+}
+
+@keyframes landing-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - var(--marquee-gap)));
+  }
+}
+
+.landing-script__item {
   position: relative;
-  min-height: min(58vh, 560px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: var(--space-2);
-  padding: var(--space-4);
-  background-color: var(--ground);
-  text-align: center;
+  flex-shrink: 0;
+  padding: var(--space-2) 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: auto;
+  text-align: left;
+  outline: none;
 }
 
-/* Aksen kecil yang berfungsi, bukan bingkai kartu. */
-.landing-script__card::before {
-  content: '';
-  width: 40px;
-  height: 2px;
-  background-color: var(--card-accent, var(--ink));
+.landing-script__item:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.landing-script__item::before {
+  content: none;
 }
 
 .landing-script__label {
@@ -553,18 +587,22 @@
 
 .landing-script__native {
   margin: 0;
-  font-size: clamp(2rem, 3.6vw, 3rem);
-  line-height: 1.4;
-  text-align: center;
-  overflow-wrap: anywhere;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 1.25;
+  text-align: left;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  white-space: nowrap;
 }
 
 .landing-script__roman {
   margin: 0;
-  font-size: var(--text-label);
+  font-size: var(--text-sm);
+  line-height: 1.4;
   letter-spacing: 0.02em;
-  color: var(--ink-muted);
-  text-align: center;
+  color: var(--ink-secondary);
+  text-align: left;
+  white-space: nowrap;
 }
 
 .landing-script__meaning {
@@ -572,7 +610,7 @@
   font-size: var(--text-label);
   line-height: var(--leading-label);
   color: var(--ink-muted);
-  text-align: center;
+  text-align: left;
 }
 
 .landing-script__native[lang='th'],
@@ -595,70 +633,72 @@
   font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
 }
 
-/* --- Scene 5 — Asia Tenggara: headline di atas, band siluet di bawah ----- */
+/* --- Scene 5 — regional 6 negara (K13) ---------------------------------- */
 
 .landing-stage--regional {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: var(--space-3);
-  padding-block: var(--space-4);
+  grid-template-rows: auto 1fr;
+  gap: clamp(24px, 4vh, 48px);
+  padding-top: var(--space-4);
+  padding-bottom: clamp(32px, 8vh, 72px);
 }
 
 .landing-regional__band {
-  position: relative;
   width: 100%;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.landing-regional__layers {
-  position: absolute;
-  inset: 0;
-  overflow: clip;
-}
-
-.landing-regional__layer {
-  position: absolute;
-  max-width: 100%;
-}
-
-.landing-regional__layer .landing-sil {
+.landing-regional__row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(8px, 2vw, 32px);
   width: 100%;
+  align-items: end;
+}
+
+.landing-regional__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.landing-regional__sil-wrap {
+  width: 100%;
+  height: clamp(80px, 18vh, 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-regional__sil {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
   display: block;
   color: var(--ink);
-  opacity: 0.12;
+  opacity: 0.22;
+  transition: opacity 0.3s ease;
 }
 
-/* Posisi sebagai persentase band (band mulai DI BAWAH headline: A5). */
-.landing-regional__layer--my {
-  left: 8%;
-  top: 6%;
-  width: 30vw;
+.landing-regional__item:hover .landing-regional__sil {
+  opacity: 0.85;
 }
-.landing-regional__layer--th {
-  right: 10%;
-  top: 0;
-  width: 17vw;
-}
-.landing-regional__layer--vn {
-  left: 44%;
-  bottom: 4%;
-  width: 11vw;
-}
-.landing-regional__layer--sg {
-  left: 30%;
-  top: 46%;
-  width: 7vw;
-}
-.landing-regional__layer--id {
-  left: 16%;
-  top: 34%;
-  width: 46vw;
-}
-.landing-regional__layer--ph {
-  right: 4%;
-  top: 34%;
-  width: 15vw;
+
+.landing-regional__name {
+  margin: 0;
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  letter-spacing: 0.04em;
+  color: var(--ink-secondary);
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* --- Scene 6 — undangan interaktif --------------------------------------- */
@@ -982,71 +1022,63 @@
 /* --- Mobile & tablet ------------------------------------------------------ */
 
 @media (max-width: 767px) {
-  /* Mobile: panggung aksara tetap ter-pin seperti scene lain, lalu tiga kartu
-     terdistribusi memenuhi tampilan agar union ink >= 70vh (tanpa ruang kosong
-     di kala scroll-lampau). */
+  /* Mobile: panggung aksara tetap ter-pin, pita marquee mengalir halus */
   .landing-scene--script .landing-stage {
     position: sticky;
     top: 0;
     height: 100vh;
+    padding-top: var(--space-4);
+    padding-bottom: clamp(24px, 6vh, 48px);
   }
 
   .landing-script__viewport {
-    display: grid;
-    align-items: stretch;
-  }
-
-  .landing-script__track {
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
-    gap: var(--space-3);
+    justify-content: flex-end;
     width: 100%;
-    height: 100%;
-    transform: none !important;
-    will-change: auto;
+    min-height: 0;
   }
 
-  .landing-script__card {
-    flex: 1 1 0;
-    width: 100%;
-    min-height: auto;
-    padding: var(--space-3) var(--space-2);
+  .landing-script__marquee {
+    --marquee-gap: clamp(28px, 6vw, 44px);
   }
 
   .landing-script__native {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    font-size: clamp(2rem, 7vw, 2.75rem);
     overflow-wrap: normal;
     word-break: keep-all;
     white-space: nowrap;
   }
 
-  /* Regional mobile: siluet tetap di bawah headline, band penuh lebar. */
-  .landing-regional__layer--my,
-  .landing-regional__layer--vn,
-  .landing-regional__layer--sg {
-    display: none;
-  }
-
-  .landing-regional__layer--th {
-    left: auto;
-    right: -2%;
+  /* Regional mobile: 6 negara sejajar 1 baris, nol overlap */
+  .landing-scene--regional .landing-stage {
+    position: sticky;
     top: 0;
-    width: 44vw;
+    height: 100vh;
+    padding-top: var(--space-4);
+    padding-bottom: clamp(24px, 6vh, 48px);
   }
 
-  .landing-regional__layer--id {
-    left: auto;
-    right: 6%;
-    top: 58%;
-    width: 74vw;
+  .landing-regional__band {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 0;
   }
 
-  .landing-regional__layer--ph {
-    left: -2%;
-    right: auto;
-    top: 4%;
-    width: 34vw;
+  .landing-regional__row {
+    gap: 4px;
+    width: 100%;
+  }
+
+  .landing-regional__sil-wrap {
+    height: clamp(60px, 12vh, 90px);
+  }
+
+  .landing-regional__name {
+    font-size: clamp(9px, 2.5vw, 11px);
+    letter-spacing: 0;
   }
 
   .landing-stage--scale {
@@ -1113,9 +1145,24 @@
     transform: none;
   }
 
+  .landing-script__marquee {
+    overflow: visible;
+  }
+
   .landing-script__track {
+    animation: none !important;
     transform: none !important;
     will-change: auto;
+  }
+
+  .landing-script__track[aria-hidden="true"] {
+    display: none !important;
+  }
+
+  .landing-script__marquee .landing-script__track:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
   }
 }
 /* __END__ */

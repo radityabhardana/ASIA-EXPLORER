@@ -42,8 +42,8 @@
 
 ### TAHAP D — Marquee Aksara 15 Negara & Regional Asia Tenggara
 *Tujuan: Panggung narasi interaktif tanpa container card atau klaim palsu.*
-- [ ] **D.1**: Implementasi horizontal marquee 15 negara ("Aksara yang bergerak"), loop kontinu ±45s, pause on hover/focus, fallback statis reduced-motion. *(Owner: @designer)*
-- [ ] **D.2**: Redesign scene regional "Satu kawasan, enam negara" (ID, MY, SG, TH, VN, PH) berjejer rapi, zero text-silhouette overlap. *(Owner: @designer)*
+- [x] **D.1**: Implementasi horizontal marquee 15 negara ("Aksara yang bergerak"), loop kontinu ±45s, pause on hover/focus, fallback statis reduced-motion. *(Owner: @designer)*
+- [x] **D.2**: Redesign scene regional "Satu kawasan, enam negara" (ID, MY, SG, TH, VN, PH) berjejer rapi, zero text-silhouette overlap. *(Owner: @designer)*
 - [ ] **D.3**: Blok landing "Lanjutkan penjelajahan" membaca state profil lokal dari IndexedDB. *(Owner: @fixer)*
 
 ### TAHAP E — Halaman Negara Editorial & Latar Adaptif

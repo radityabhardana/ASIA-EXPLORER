@@ -304,7 +304,7 @@ export function useLandingTimeline({
         );
       }
 
-      // Scene 4 — triptych aksara.
+      // Scene 4 — marquee aksara (K12).
       const scriptWin = measureWindow(
         '.landing-scene--script',
         '.landing-stage__copy',
@@ -315,13 +315,12 @@ export function useLandingTimeline({
           segment(scriptWin, 0, 0.3),
         );
         reveal(
-          '.landing-script__card',
-          segment(scriptWin, 0.1, 0.36),
-          scriptWin.w * 0.06,
+          '.landing-script__viewport',
+          segment(scriptWin, 0.08, 0.32),
         );
       }
 
-      // Scene 5 — tapestry regional (di-pin, tanpa parallax).
+      // Scene 5 — regional 6 negara (K13).
       const regionalWin = measureWindow(
         '.landing-scene--regional',
         '.landing-stage__copy',
@@ -332,9 +331,8 @@ export function useLandingTimeline({
           segment(regionalWin, 0, 0.35),
         );
         reveal(
-          '.landing-regional__reveal',
-          segment(regionalWin, 0.08, 0.45),
-          regionalWin.w * 0.05,
+          '.landing-regional__row',
+          segment(regionalWin, 0.08, 0.35),
         );
       }
 
