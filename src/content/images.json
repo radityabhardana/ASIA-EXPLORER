@@ -1,0 +1,3096 @@
+{
+  "version": 1,
+  "budgetKb": 600,
+  "countries": {
+    "cn": [
+      {
+        "slug": "great-wall-badaling",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.45
+        },
+        "dominant": "#98c8e8",
+        "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABwAwCdASoYAA0APu1mqk2ppaQiMAgBMB2JR5cXwmAAOE8WuygA/eA//6oj/q5k/5O+z8JcG39cVs7XZPo6Eij0i/18g+Am3AHjcpVvf/6v1Ps8//hnFzdWsmNzbHz9e4j5tci1m53F9ZLEq34411uua5Aiyi2YqldToYuIsKcQQAAA",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/cn/great-wall-badaling-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/cn/great-wall-badaling-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/cn/great-wall-badaling-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/cn/great-wall-badaling-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Daniel Case",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:View_east_from_Great_Wall_of_China_at_Badaling.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Jalur batu Tembok Besar membentang di punggung bukit Badaling dengan menara jaga",
+          "en": "The stone path of the Great Wall running along the Badaling ridge with watchtowers"
+        }
+      },
+      {
+        "slug": "xinyongan-road-shanghai",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#686868",
+        "lqip": "data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAADQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZUwbzxAPACba03nzIXoB5JNnBOfj4AD+7uR+G+3rz/utrM/ue/ZmdA7flH9q/9Y+6TaKV35oXbDYt/DfNvUPJdQaeDt517650PO/YDp8V3ieT03erBLrBDNe/QvaLDBnblx/yf9Z6Y2/OKyXW3l9DMrdfr49XwXzGz/d4mxZ2T+FGB6o6TOGiD4895//Q8cH3X1QeQfyeQuljHYK+ASCuARDQ0mJYXYidt03c+fKhCAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/cn/xinyongan-road-shanghai-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/cn/xinyongan-road-shanghai-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/cn/xinyongan-road-shanghai-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/cn/xinyongan-road-shanghai-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Stefan Fussan",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shanghai_-_Xinyongan_Road_-_0001.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Pejalan dan deretan kedai memenuhi jalan Xinyongan di pusat kota Shanghai",
+          "en": "Pedestrians and shopfronts filling Xinyongan Road in central Shanghai"
+        }
+      },
+      {
+        "slug": "jiaozi-dumplings",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#f8f8f8",
+        "lqip": "data:image/webp;base64,UklGRgQBAABXRUJQVlA4IPgAAABwBQCdASoYABAALrV2u12jqampiYC0SznjAkHaLV4TBRphus3AB7gg5nhT/Qf9+H95VIwAAP7l3P6b9f/+qZ+Sem/XA/8Yv+OIT+aM7cj//DUF3Cel/7RakjTjzhW87mzbZbbLX8LE21kqxkCbg0pWUzM3rGDAYJBpaKdeFIXFIJVTWJoHqmhZFhy98aADxMwMzFdx/zhkXs/PS6VnF3a8c/Nb2/ScvhX/9mN+Kf/uQ//7e/zY//tHz6bvfrPlfnfL5MGjERPRbNMiMT/rmKBXn/xaOpDa4R3iUq+IYPZVhBnlL8uNKrtvRB9RUx0Tck9lU2biAAAAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/cn/jiaozi-dumplings-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/cn/jiaozi-dumplings-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/cn/jiaozi-dumplings-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/cn/jiaozi-dumplings-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Emcc83",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jiaozi_GS_CN.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Piring jiaozi dengan saus celup dan sumpit di atas meja",
+          "en": "A plate of jiaozi dumplings with dipping sauce and chopsticks"
+        }
+      },
+      {
+        "slug": "tianzifang-signboard",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRgIBAABXRUJQVlA4IPYAAADQBACdASoYABAAPu1yrU+pp6QiMAgBMB2JbDw31X24HFxZd/knjbjSAWxyABwU8AD+9C3//Je9W/5/GEMl5CroD/+f/huf42f2ZllDrMJ//IFHjtWY1KxY+w3GLNYT2zFnHkF3HeC8QU9bYFF4DdxCr+x4t65MkW//5V+NfbfjiWYTCU6j3yeJdf8EcXtyrqeQbLcF2dnf6j4aGvYM+A5m1M0lz6/QAOtNI8g3LjFhwDbOHXZlFNbtwpFfdaTb1xP7M6d8uV/4n/SYurWc9q33JGNKB/xdf+NZWbIpLJ5cfMo0HzPG5SggOiemUYM2M0ZJwCcJAAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/cn/tianzifang-signboard-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/cn/tianzifang-signboard-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/cn/tianzifang-signboard-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/cn/tianzifang-signboard-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "亚南 朱 from Hangzhou, China",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mailbox_and_handmade_signboard_(8367870268).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama berhuruf Hanzi tergantung di lorong kota tua Tianzifang, Shanghai",
+          "en": "A hand-lettered signboard with Chinese characters hanging in Shanghai's Tianzifang lane"
+        }
+      }
+    ],
+    "id": [
+      {
+        "slug": "borobudur-temple",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#a8c8f8",
+        "lqip": "data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAADwAwCdASoYAA0APu1krU6ppaSiMAgBMB2JZg2/vxYWCN+QE8ARt1uAAPx4P9UP/q6/9PLR64Hnr1BEcut3/3X//7tafMSdrZjMwYNwf/J35zo2My1t6/8cAxP7/xsM/xv+x+LjlOZqmL/xMbSfVDBB/lbWVPJeo22yjq8q0/+z+0QaHw//q57cnjTC3hdtbplhvZkj4NFNWJjKvvBKs7H4Fs4tnviz4L/1PLT/T/PnavrVd3VD37PNJ99vMWqk/n9f7l2yOlAAAA==",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/id/borobudur-temple-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/id/borobudur-temple-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/id/borobudur-temple-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/id/borobudur-temple-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Gunawan Kartapranata",
+          "license": "Public domain",
+          "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Borobudur-Nothwest-view.jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Candi Borobudur terlihat dari sisi barat laut di antara perbukitan hijau Jawa Tengah",
+          "en": "The Borobudur temple seen from its northwest side amid the green hills of Central Java"
+        }
+      },
+      {
+        "slug": "jakarta-thamrin-bus",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#c8d8e8",
+        "lqip": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAABQAQCdASoYABAAA4BaJZQABL8AAP2mf/4X5D/w06R/5V/Y9jO+h7VUuMfONsz9MYvtQI6zPtiPLSm8A1XVYxgLlKMxXqgf/pZQOIwNd55cgefV1oTjd0/38nq560WUm+xjRxR7S/usk4ffxuF+CdaJ6P9r1vVH0Sf5n6iSDmRK3b8FhfvlKbRKI+vvbx+mKTql4f8ysir/UQZz/9Lnwb//pxX/9Lnwb//p46CN9fjS8TD7KrMebwAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/id/jakarta-thamrin-bus-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/id/jakarta-thamrin-bus-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/id/jakarta-thamrin-bus-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/id/jakarta-thamrin-bus-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Gunawan Kartapranata",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jakarta_Doubledecker_Tourist_Bus_at_Sarinah_Thamrin.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Bus wisata dua tingkat melintas Jalan Thamrin dengan gedung pencakar langit Jakarta di belakangnya",
+          "en": "A double-decker tourist bus passing along Thamrin Avenue with Jakarta high-rises behind"
+        }
+      },
+      {
+        "slug": "nasi-goreng-warung",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#d8e8f8",
+        "lqip": "data:image/webp;base64,UklGRgoBAABXRUJQVlA4IP4AAACQBQCdASoYABAAPu1orU2ppqSiMAgBMB2JR3EJu5ApmSgO8A0w3qtuBxdeZN5wLB0nAB0G4AD+S/2E3/3WH3/1/+/DBXzFgj4KeGn/tjmfKooUEt2Vz8UmGobnizX8Vx2IXT92/qklu/HrpqX+TvybmlW/XKHekylG1vZ+9z+qnRvlnLI3k79LS3nUJFrv/Bv86yKPWkLxHT5R3wWuSgwk5n+lzFRL/rUNPPQn2fw7XS7vDFi+Q27BNlVosYHei/TbSXjheNJo9IKTWOljBDCFuGwjpUplRuYwbOcmPwYKjskpOPgYMkf81g2XtrT0maOklJlJSZUWU2HcmwAAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/id/nasi-goreng-warung-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/id/nasi-goreng-warung-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/id/nasi-goreng-warung-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/id/nasi-goreng-warung-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Bahnfrend",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nasi_goreng,_Warung_Kuliner_69,_BG_Junction,_2025_(02).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Piring nasi goreng dengan teh es dan lauk pendamping di meja warung",
+          "en": "A plate of Indonesian fried rice with iced tea and side dishes at a warung"
+        }
+      },
+      {
+        "slug": "aksara-jawa-surakarta",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#888888",
+        "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAACwAwCdASoYABAAPu1qrU8ppiQiMAgBMB2JZzuGvJwh+2DqcE55AAD+on0Pdh1dObxP7P59y4z9Gh7vStAjH067f9CHebuoC+vSMen2Fj+gDeH67heZqoxyXOdP5mUZuMpeD92//DVkX78tJB4mrJ95/Y/xHHw83Y6g83Y6iQo+Y7w6Fa0iVOUsJUjwJ0f8i+bML/xqSXObUW/vR7tXsagA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/id/aksara-jawa-surakarta-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/id/aksara-jawa-surakarta-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/id/aksara-jawa-surakarta-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/id/aksara-jawa-surakarta-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Paduan.co",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aksara_Jawa_028.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama kantor dinas di Surakarta dengan tulisan aksara Jawa dan Latin",
+          "en": "An office signboard in Surakarta displaying Javanese script alongside Latin lettering"
+        }
+      }
+    ],
+    "in": [
+      {
+        "slug": "taj-mahal",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.45
+        },
+        "dominant": "#7898c8",
+        "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABwAwCdASoYAA0ALrV2u12jqampiYC0SxHoTc3hDYqg3gDEMQAA/rjt/6jT/tH3PEMJP4N5iT2n3Vt6hJ1zC1N21FwvPFb0PrRg4N8rb5phXfrT7lFgyyTKR8Ks11v9LfZvcfabGfrZtL70mmAhvZOpz+wkRfEqzzNU44DvluiOhcRy2WQ3Ok2YNs7qD/jtLAA=",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/in/taj-mahal-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/in/taj-mahal-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/in/taj-mahal-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/in/taj-mahal-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Yann ; edited by Jim Carter",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Taj_Mahal_(Edited).jpeg",
+          "required": true
+        },
+        "alt": {
+          "id": "Kubah putih Taj Mahal berdiri di ujung kolam refleksi panjang di Agra",
+          "en": "The white domed mausoleum of the Taj Mahal framed by its long reflecting pool at Agra"
+        }
+      },
+      {
+        "slug": "chandni-chowk",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRvwAAABXRUJQVlA4IPAAAACQBACdASoYABAALrV2u12jqampiYC0Sxni/QFWDtBBqfEH8lFiPf4icAH1ZAAAzP//hrevsE75/Kj61uPQfu3b//lIgQu18qmTM4l40x5tCz4jXF+x/cH9rPLBtEWbsgSzbah8Nh+iBeJoKts9xnnfyr+f/cxQ26X+naxzMI0G9zodOuKBtv3iI6Iqto9NVWzXT4n+b7EnEXPzeLI0grCqz6b/Wu1kn+f/3D/15XhQ++Ji6dFfr/vPhIo3NDsafyCd1DSPVaEyHX9wvaf65097nmxDoyq8ULciUTxn/eY3ySX5Ve0hc30sHDftJY5GwAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/in/chandni-chowk-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/in/chandni-chowk-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/in/chandni-chowk-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/in/chandni-chowk-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Misa.stefanovic.07",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:32_-_Old_Delhi_Chandni_Chowk.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Keramaian pejalan dan kendaraan niaga di jalur Chandni Chowk, Old Delhi",
+          "en": "Busy shoppers and market traffic along the Chandni Chowk lane in Old Delhi"
+        }
+      },
+      {
+        "slug": "thali-darjeeling",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#980808",
+        "lqip": "data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAABwBACdASoYABAAPu1iqU2ppaQiMAgBMB2JbFe6zmY/0AVBYYB2CjAjlUFBcAD+5Gf5r36eX8/nCxTnX8Wn/k6xfVJj/cWljrSn10EfotkC4zpyCNhYQ0AZMgOE5o/H6EGejr947HMILDhG5XwYu3bHtEJJf4Afv8Qf9R/9kHon+Tb/ybdWb7Xfyb/H+7/+h/CH8TLVn7WZNEttVP8F31jDYMyRQIupRX/HZR8TD/93BPk9sA8yhsKFOoAgUP4+ZST0dKnqmAxsuWo8elX8sHWc+mHHcKnfq5R8AAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/in/thali-darjeeling-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/in/thali-darjeeling-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/in/thali-darjeeling-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/in/thali-darjeeling-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Vyacheslav Argenberg",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Darjeeling,_India,_Indian_Thali_meal.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Nampan thali logam dengan ramekan kari, nasi, dan roti di Darjeeling",
+          "en": "A metal thali platter with curry bowls, rice, and breads in Darjeeling"
+        }
+      },
+      {
+        "slug": "rani-kamlapati-board",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#b8b8b8",
+        "lqip": "data:image/webp;base64,UklGRuIAAABXRUJQVlA4INYAAACQBACdASoYABAAPu1Ct1apoqakGAEwHYljPDq93+AUuP6t3jMZJF/isbecwaAA/tiflHv+wBJ/v/83HyA3p/+vMNNHb/vHXsZ/4YLTHc5r47P0IGR0Mb6P0RR+34a1yCyPz/6f1Cl5LCDVvVTQ7P1UhFnyCgqGuUqP6av8z9PXnq/dq2P/fra/8Yhk+vmebflScisPGF2bBWKJ2Eg/ClxMvwGFv34zU7z7ff7BTjub/MNN1ve12L6ukjikWlqfSQywqao/D3r1DTrvPmABmx6xEo3Xv8AA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/in/rani-kamlapati-board-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/in/rani-kamlapati-board-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/in/rani-kamlapati-board-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/in/rani-kamlapati-board-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Suyash Dwivedi",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rani_Kamlapati_Railway_Station_Board_in_Hindi_at_Plateform_005.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama stasiun Rani Kamlapati dengan huruf Devanagari di peron",
+          "en": "The Rani Kamlapati railway station name board with Devanagari lettering on the platform"
+        }
+      }
+    ],
+    "jp": [
+      {
+        "slug": "mount-fuji-lake",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.35
+        },
+        "dominant": "#181828",
+        "lqip": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAACQAwCdASoYAA0APu1iqU2ppaOiMAgBMB2JZj11vkB0JEAEK/lgAP7rWfq2/WLZx7Og6ga9p8XKzjQf3Ih40FdBvvF0X0+3JzXHlEOoh1LlAJ4vMIjFQSDkMJ+6LVB6v/fbve/ZnJ69PeNx8QpPz/yPSBul3+Df1OYn8G/reeXEpMNfCQ/ZJXzUJtJvgK5XolXEoWBiDvYq5cIAAAA=",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/jp/mount-fuji-lake-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/jp/mount-fuji-lake-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/jp/mount-fuji-lake-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/jp/mount-fuji-lake-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Alpsdake",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mount_Fuji_from_Lake_Yamanaka.JPG",
+          "required": true
+        },
+        "alt": {
+          "id": "Puncak Mount Fuji tertutup salju terlihat dari tepian Danau Yamanaka",
+          "en": "The snow-capped peak of Mount Fuji seen from the shore of Lake Yamanaka"
+        }
+      },
+      {
+        "slug": "shibuya-crossing",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#382818",
+        "lqip": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAADwBACdASoYABAAPu1oqk6ppiQiMAgBMB2JY0wbztQVlS4Ey7xwOXgxCX/K1WAZYgAA/uNAK//DOQoTOX5fGNttF33dXb34fd9Dn4r7EAp8XhL1m0VTIIOWMYQS0E+CdWOqonas0LJgtafyXjhBQeDIYY+mL8/EG5J/+DXs5leLsvDCyRH/f//2P87+J3wZyrxx7+dZ2MEB1LGfQbrwN3yu/8GO6wJ33WdLOPJ+WDqYEFe8DaZiOHo3dcn+RI57Lwxo//kSf+bPvkfDLO5AAAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/jp/shibuya-crossing-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/jp/shibuya-crossing-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/jp/shibuya-crossing-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/jp/shibuya-crossing-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Bruce from Sydney, Australia",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shibuya_Crossing_(25790725888).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Empat arah pejalan menyeberang serentak di persimpangan scramble Shibuya, Tokyo",
+          "en": "Pedestrians crossing from all directions at the famous Shibuya scramble intersection in Tokyo"
+        }
+      },
+      {
+        "slug": "nigiri-sushi",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#283848",
+        "lqip": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAADwAwCdASoYABAALrV2u12jqampiYC0SxiwA1gQcDxJfJBYLtzANq2AAP7uVGm/7rfMOgrr9qnjji/hMMW3//fM1RTL7e7YsQvQn/gzR/8162OWVj56GBV73fHs0HbrwJfGw8Zxp+trUaWPI8DeqaIxsusI+/Uv5gAZ6iNj4nfvJ3a/8YstW/n/nxf7N61VLI/XvhVq9z4BuIMUmv/zyjmvPmbb9WFXWNM/ehjWKr+iVwAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/jp/nigiri-sushi-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/jp/nigiri-sushi-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/jp/nigiri-sushi-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/jp/nigiri-sushi-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Tim Reckmann from Hamm, Deutschland",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sushi_(14927932561).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Nampan nigiri sushi tersusun rapi di atas meja restoran",
+          "en": "Platters of nigiri sushi neatly arranged on a restaurant table"
+        }
+      },
+      {
+        "slug": "kabukicho-neon",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAADwBACdASoYABAAPu1krU2ppaSiMAgBMB2JZEwbztQYpXCH7fZV8gMs7OBSAASs0AAA/vQthdv/qkX8j94fs/nIRNndcZ4kYlCoCZ3wYE/oPv/+4DvtfqEXx8HG57bWOPQd+/j/6tipnyPHi0YVRhDkbA+Ngh3jzu2UK4pO9/5KXAmyJ01vPUhCYbKm5aF4EZsqYVZwcNCXbcncZmC4Q6UtBa//7qyGP/MJ6QzeuRL+MSmKuTy4fnXHtfuz9gSD+fwsknrmkU+7aV+xDR2Ot4NjLsXa7USTQfZjkAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/jp/kabukicho-neon-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/jp/kabukicho-neon-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/jp/kabukicho-neon-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/jp/kabukicho-neon-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Basile Morin",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Colorful_neon_street_signs_in_Kabukich%C5%8D,_Shinjuku,_Tokyo.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan neon penuh kanji memenuhi fasad gedung di Kabukichō, Shinjuku",
+          "en": "Kanji-covered neon billboards crowding the building facades of Kabukichō, Shinjuku"
+        }
+      }
+    ],
+    "kr": [
+      {
+        "slug": "gyeongbokgung",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABQAwCdASoYAA0APu1Ct1apoqakGAEwHYlHh1fQDoSIAH5jAAD+409XCM8Xdz/+6tbq+3GofS0P5wmWYhYXgVnmu9jBYgnasA81yFBoN3cNnHTJZcEuBo8zS43/yH/v+X8jZbku02XnfYyd3gvsUcWDi2O+n/9p1y/f0iGfq9Gr3A6gRft1MFtkAys66KVAAAA=",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/kr/gyeongbokgung-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/kr/gyeongbokgung-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/kr/gyeongbokgung-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/kr/gyeongbokgung-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "chsyang",
+          "license": "Public domain",
+          "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:%EA%B2%BD%EB%B3%B5%EA%B6%81%EF%BC%8F%E6%99%AF%E7%A6%8F%E5%AE%AE_Gyeongbokgung_(53618347305).jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Kompleks istana kerajaan Gyeongbokgung dengan atap keramik di bawah langit Seoul",
+          "en": "The royal palace complex of Gyeongbokgung with tiered tiled roofs in Seoul"
+        }
+      },
+      {
+        "slug": "gyedong-gil-street",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#686868",
+        "lqip": "data:image/webp;base64,UklGRvIAAABXRUJQVlA4IOYAAABQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JZDxgTdyAbofmEeUCwSbmAc34AP7jU//t7//0xv/k2/IrrGrBX//k2E7HP/hmz/3///8nfunC/IXLmbaMw/6meig/ipH1IR9yQ/QAgNSXF8uy9gQJS8T06gUMl/ulj7SIHQNR7OlFWfspc7Xv9rhHeH07OjU9jn3AjZTrew67jWAJ9GQeNAfEf0w7TdLU9vZOzBExwwWsVQd1sboXvkcASNHLfr4j5vlHqo9/ur3ft7/A0AFSLRpy5ZwQzn9WglKl2djn4Nhu851dhmCAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/kr/gyedong-gil-street-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kr/gyedong-gil-street-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/kr/gyedong-gil-street-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kr/gyedong-gil-street-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Basile Morin",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gyedong-gil_street_with_climbing_plants_at_golden_hour_in_Seoul_South_Korea.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Kafe berjendela terbuka dan tanaman rambat di Jalan Gyedong-gil, Seoul",
+          "en": "A café with open windows and climbing plants along Gyedong-gil street, Seoul"
+        }
+      },
+      {
+        "slug": "dolsot-bibimbap",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#180808",
+        "lqip": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4IL4AAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JaDuHoDEVWiRmYeJBjACJWAAA/uRmW+T//GLv9XzZ//0qZXEM74wNwbbDAB/ezJ85OlbCE0ZponnGJQNgjSv++Nc0Jz4z1RcCeQQBLWFv7GGXmg8V6BzNhUYhqK3otINXgfP/cp8V5h7qadzdVv6Rsz/Z1QDckWY75qHNo/d+7oPHhutQ2/P42mNJD43+dDw4F6JJKzo6vml41UWLu8wYWAVraAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/kr/dolsot-bibimbap-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kr/dolsot-bibimbap-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/kr/dolsot-bibimbap-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kr/dolsot-bibimbap-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Sous Chef",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dolsot-bibimbap.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Semangkuk dolsot bibimbap berisi sayur, daging, telur, dan gochujang",
+          "en": "A stone bowl of dolsot bibimbap with vegetables, meat, egg, and gochujang"
+        }
+      },
+      {
+        "slug": "sinchon-station-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#d8d8d8",
+        "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAQBACdASoYABAALrV2u12jqampiYC0Sznpbfj+O/YBiACKAPxAAXzjgAD+Z/8xf59/8/z7DXv/71GDnegND4fD4CXPifmuOng14SsiO7ktaDdggEILxXbbvCESWceY63BZXOz/aZf4nYD4A8mkXy/DtHJ/k3DBB+44afA4iIxfBrIinWrlk3LJuY9+FThTgAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/kr/sinchon-station-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kr/sinchon-station-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/kr/sinchon-station-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kr/sinchon-station-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "LERK",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Seoul-metro-240-Sinchon-station-sign-20181121-081712.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama stasiun Sinchon dengan tulisan Hangul, Hanja, dan Latin",
+          "en": "The Sinchon station sign showing Hangul, Hanja, and Roman lettering in Seoul"
+        }
+      }
+    ],
+    "kz": [
+      {
+        "slug": "charyn-canyon",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.55
+        },
+        "dominant": "#d8e8f8",
+        "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAACwAwCdASoYAA0APu1yrU+pp6QiMAgBMB2JR5TWl/1S0Tx/ADgN8AD+2+lf8YUP6DzZUxH21eV/xlgDX4YYykPtfjWuZpPnzT6YybndyE7R+n+ec+WdPtGN+ScFB0CVcGNl3HBuFG7lF9RiI0HU/UfoG6bBi49I4hPUg7+Oi6Y4K1XAl3Osi2kfvZsEANQgBiZwAA==",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/kz/charyn-canyon-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/kz/charyn-canyon-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/kz/charyn-canyon-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/kz/charyn-canyon-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Bgag",
+          "license": "CC0",
+          "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charyn_Canyon,_Kazakhstan_01.jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Tebing batu pasir berlapis merah terpotong lembah di Charyn Canyon",
+          "en": "Layered red sandstone cliffs gouged by the river valley in Charyn Canyon"
+        }
+      },
+      {
+        "slug": "almaty-city-bus",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#383838",
+        "lqip": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAACwBACdASoYABAAPu1orU2ppqSiMAgBMB2JZTuGvt/bqkHwB6YTuAPOOr5czN/AAP7bAYP/iWJooc3vSs230ZunP6fiZUP3VEzx7EgyXn9P3G2rlCXLDNio6tFVE+4JJFaHdaf+/9fdl2K2dVh8qv//qMy0yfuv+ctT+Db8xngTa7dS2QAziKX89f0r6VSh/p4zxaO+YVRb6UKivGeeg2OmzTa1L7PRGvOXL/Bv/94wf/Bv/944MTS0xl+5e1XSTcfyEybvxkdOixC4wAANwAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/kz/almaty-city-bus-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kz/almaty-city-bus-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/kz/almaty-city-bus-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kz/almaty-city-bus-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Matti Blume",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Golden_Dragon_XML6125,_Almaty_(P1180221).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Bus kota Golden Dragon melintas di wilayah Almaly, Almaty",
+          "en": "A Golden Dragon city bus passing through the Almaly district of Almaty"
+        }
+      },
+      {
+        "slug": "beshbarmak-plate",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRgwBAABXRUJQVlA4IAABAABQBQCdASoYABAAPu1kqk4ppaQiMAgBMB2JbD0KoDag61n+A0QDBtW4GlvOMAmzGABWOgAA/t0PpE//FskH52duEj1zG8UMkwjX3Y8gTdjHCUPl1Z0TytrEK839RtNswFpE9IaLRhTqByjZUfdKST98EHAG73xX3zhYdIKcXz48Q//sqH/nv/9r/6b9d/xbrh//ivP7/v/9W2//jwj6XAdUPevwkEdoNjnv5czL9avfO/0Tyfz/IcfxO7Uu6OufcCvz/fqwZLF9cDoxNMeLMj7/VmhG1ekCZeqF/rNfD92K/2yOhZ4Xx2GAawZ8vpO14/sRuV6beYOx4mJiSaJ5tAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/kz/beshbarmak-plate-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kz/beshbarmak-plate-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/kz/beshbarmak-plate-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kz/beshbarmak-plate-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "NataAllice",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:%D0%91%D0%B5%D1%88%D0%B1%D0%B0%D1%80%D0%BC%D0%B0%D0%BA_-_%D0%BA%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%BE%D0%B5_%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D0%B1%D0%BB%D1%8E%D0%B4%D0%BE.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Nampan beshbarmak dengan potongan daging, mi tarik tangan, dan kaldu di Kazakhstan",
+          "en": "A platter of Kazakh beshbarmak with meat, hand-pulled noodles, and broth"
+        }
+      },
+      {
+        "slug": "almaty-city-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#c8d8e8",
+        "lqip": "data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAAAwAQCdASoYABAAA4BaJQAAtrAA/uCRl4M/8zff/f7Ynon5jxQMXB7vwOuf/zMuvPITvK9vd6OhOcaJX/7dwr937y//pczQuCQG/BunJav/+fQc8P3+/Qn4NHh3DKgPOGm4gYrPp8YlAX3AZYRxBx+T7P/4xGES//9H5+9xu+o6vaL/0lp195qfXYnMJcvTSAdR8DQsFIbvOv/60Oa2f/1oc2n85kZw3xS1ZPGZ+BKAelv2ZkImH0FILlHcygGSjTJKAAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/kz/almaty-city-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kz/almaty-city-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/kz/almaty-city-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/kz/almaty-city-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Ds02006",
+          "license": "Public domain",
+          "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:ALAcityborder.JPG",
+          "required": false
+        },
+        "alt": {
+          "id": "Papan tanda jalan di batas masuk kota Almaty dengan tulisan setempat",
+          "en": "A road sign marking the entrance to the city of Almaty"
+        }
+      }
+    ],
+    "mn": [
+      {
+        "slug": "gobi-camels",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#e8f8f8",
+        "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADQAwCdASoYAA0APu1qrU8ppiQiMAgBMB2JRaLW7KkkGAdgcxAUzTwA/t8O/7Gf/D0Pj/+2CsGw6axb573FEZ7LACv7EchEnxwUfNvPMaQs/Jp20HpbXEyEc+shnQLL5HMJuTHkr24V+iCf/+fqgrAd3tUeDSPz53dIrFdTwsiAV+oFLkAAAA==",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/mn/gobi-camels-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/mn/gobi-camels-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/mn/gobi-camels-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/mn/gobi-camels-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Bernard Gagnon",
+          "license": "CC0",
+          "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Camels_in_Gobi_Desert_01.jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Unta Baktria menapaki padang pasir terbuka di Gurun Gobi, Mongolia",
+          "en": "Bactrian camels crossing the open sandy steppe of the Gobi Desert"
+        }
+      },
+      {
+        "slug": "ulaanbaatar-street",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#484858",
+        "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAACQAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JZVezSxVDBdwAwfQAAP7SfPH/zoPs+zo5NfK96bdO7i3+8P/ho/vk5ck1L7CKVCt3XBgB8oc6w3DEfVsNjj9wYfBjJ/738//9R//JtkmPl4/QIUyB/jlsw2PDnmwzy/NBvxJLpVENvrpvq6Nvutrug9/iciLC+Wo9d44goAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/mn/ulaanbaatar-street-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/mn/ulaanbaatar-street-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/mn/ulaanbaatar-street-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/mn/ulaanbaatar-street-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Jonashtand",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:202408_Street_views_in_Ulaanbaatar_02.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Lalu lintas kota dan gedung menengah menghiasi jalan utama Ulaanbaatar",
+          "en": "City traffic and mid-rise buildings filling a main street in Ulaanbaatar"
+        }
+      },
+      {
+        "slug": "mongolian-buuz",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#c8c8d8",
+        "lqip": "data:image/webp;base64,UklGRtgAAABXRUJQVlA4IMwAAAAQBACdASoYABAALrV2u12jqampiYC0SxHi/QG1qV9xcCjfeJMhwBy4AAD+ul39//+aLuV0W4WJqz7GalJ/x/KoeTIcOOim9A2z7xmijMy6LQo/50Hg4TC5u4oejdXstwq7kq2z/IvonINsjC4r3fUKtis6TgmozdEwzATOUQNmILEWsMOP01h/5ojm8Tfj9F/ddVN5t2pT6bJdLrismQTe88t8Bi1SgKtCm902McE7UTLugeOLOvHFp/+Kyi0PzpP7Kdltvlf+zotA0AA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/mn/mongolian-buuz-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/mn/mongolian-buuz-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/mn/mongolian-buuz-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/mn/mongolian-buuz-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Mizu basyo",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mongolian_buuz.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Semangkuk buuz kukus isi daging kambing khas Mongolia",
+          "en": "A plate of buuz, steamed mutton dumplings from Mongolian cuisine"
+        }
+      },
+      {
+        "slug": "nalaikh-road-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#5898d8",
+        "lqip": "data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAACQBACdASoYABAAPu1kqU2ppaQiMAgBMB2JaFoJgKgI5w/jN4BaSQZBT0w6r4AAyZ/R3/xi84vKlT6AxO43oIdHXYrgzqN/rUztcKH1/mKXTEuiOXKaEWpgOo3yO3fBb160ZKLtba//5jGGIem1QB8Q2Lsp8Fdwy1ARmjhoRNzreWP7DmbQaezx/4NazT4/419N6/p9j/i2t1/T7H/GUoJ21xdnNQbFprQHUAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/mn/nalaikh-road-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/mn/nalaikh-road-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/mn/nalaikh-road-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/mn/nalaikh-road-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Ganzorig @ Mapillary.com",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:A01_Road_(AH3)_in_Nalaikh,_Ulaanbaatar,_Mongolia_(2023).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan penunjuk rute Jalan Raya Asia 3 dengan tulisan kiril di Nalaikh, Ulaanbaatar",
+          "en": "An Asian Highway 3 route sign with Cyrillic lettering on the road at Nalaikh"
+        }
+      }
+    ],
+    "my": [
+      {
+        "slug": "petronas-towers",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.38
+        },
+        "dominant": "#181818",
+        "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwAQCdASoYAA0AA4BaJQAAlFAA/uRCv/ZjTczX9rs/63m2OIv+0Ks8vq0Tt/ZkdAzwoQzIvKOPZKFanprlbTm3M4o8E8n+nj63axdOJRr4X6DY5MaNt6xycS0PgOgsOyZ/XXLK6R/89//kevo2/v6Q/5c7sBPA2w8miZ7JoNvK/ZbC/zS3/IrzDT8ahJx+NQiXLJOM9RRgmu/WWAqLrgAA",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/my/petronas-towers-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/my/petronas-towers-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/my/petronas-towers-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/my/petronas-towers-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "James Kerwin from Tbilisi",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Twins_SE_Asia_2019_(49171985716).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Menara kembar Petronas menjulang di antara gedung tinggi pusat Kuala Lumpur",
+          "en": "The twin Petronas Towers rising above neighboring high-rises in central Kuala Lumpur"
+        }
+      },
+      {
+        "slug": "pasar-pudu-kl",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#5898d8",
+        "lqip": "data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAACwBQCdASoYABAAPu1iqU2ppaQiMAgBMB2JbDuHoDHCecJAFpAtwNQocQBOGMGMHDrwQAC/3MAA/tXRD5dj3O8ev/7a1/jXfVE/HUCUV4XPSod/qikILWGCBmhq/ZWd4R2kTyUM6FR8wTUyyloUyCrapTqy6oeP8irvs/pPux/8vT/q5sVZYf3/g1+JiwguPOe7ZhVVE8d6bszrZ79kvb/YAXrv+wAvpa17v8naXN1apf+/R/3srjqGFTfRm/VuP3a5JUYXV0/MJ+vx4GeHS1+2fZFfZYlGKKqFUqpsAAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/my/pasar-pudu-kl-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/my/pasar-pudu-kl-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/my/pasar-pudu-kl-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/my/pasar-pudu-kl-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "angys*",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasar_Pudu,_Kuala_Lumpur_(231127).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Para pengunjung dan lapak sayur memadati pasar basah tradisional Pudu di Kuala Lumpur",
+          "en": "Shoppers and vegetable stalls crowding the traditional Pudu wet market in Kuala Lumpur"
+        }
+      },
+      {
+        "slug": "nasi-lemak-banana-leaf",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#383838",
+        "lqip": "data:image/webp;base64,UklGRvIAAABXRUJQVlA4IOYAAACQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JbDxcPweKFaKf2ucMYR3IsABaaAAA/oP4Dh/32r/gmiFF2WN33/4bdN3vn56HiazDn6bHHj/I2FMjeQpkHFg/7KxMe6wPITreLj07Zy/EVILedKcfAKmsfv7ZKKmtrfOBJsQXAs6ipWUiIWpIjhv8f/3D/0LJ+Pe34a/QppaAvfz/2bNK386SftPczIvBBHoryNVOlVuoYQHT0M3TX/9bv+X9I/vmW7ubnnYeKl3vokuI+X8sslbf4c1fBBTyZPiI3JIWj34pe1ty9OAAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/my/nasi-lemak-banana-leaf-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/my/nasi-lemak-banana-leaf-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/my/nasi-lemak-banana-leaf-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/my/nasi-lemak-banana-leaf-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Jpatokal",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nasi_lemak_on_banana_leaf.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Nasi lemak di atas daun pisang dengan ayam goreng, ikan bilis, kacang, telur, dan sambal",
+          "en": "Nasi lemak on a banana leaf with fried chicken, anchovies, peanuts, egg, and sambal"
+        }
+      },
+      {
+        "slug": "jawi-istana-maziah",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#181828",
+        "lqip": "data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAABQBQCdASoYABAALrV2u12jqampiYC0Sxpg490V8IrC39GtwD+bW7unYIcqwh7dttgxvgAA/uzZ7vv1/5Nv+8CP6aYY1FXB+U2rntQ31p7Y/GXq+ZLlX095Wos9UHsz/rGP2nZ2j0T8/+zkkinWOvCuqtn+ncgtblLVRtS1bvZAy77xzNW7JjXCWYYMlVmH/Lh/9gAwpn6U1kpNkuIujiguIkhy1WV3f3a/XbOg+4jBkuKX/q2JX+rX6RJVuT0VIAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/my/jawi-istana-maziah-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/my/jawi-istana-maziah-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/my/jawi-istana-maziah-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/my/jawi-istana-maziah-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Dominic Nelson",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kuala_Terengganu_-_Istana_Maziah_name_plaque_Jawi_-_May_2024.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama gerbang berhuruf Jawi di Istana Maziah, Kuala Terengganu",
+          "en": "A gateway name plaque in Jawi script at Istana Maziah, Kuala Terengganu"
+        }
+      }
+    ],
+    "ph": [
+      {
+        "slug": "chocolate-hills",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#f8f8f8",
+        "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABQAwCdASoYAA0APu1mq04ppaQiMAgBMB2JYjzsPVHzyMM4oAD+1qf//l6f+DMk8G/4z9UA2D23/R4+aI3zbZybGIXOaSm24qEbiGCDPuQv/Ep1rl5gegcV3eKY4Uq1umQr9pVNJXwglaNNcaM9iOz4g+qifWjQvluHYpujLkASM9+AAAA=",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/ph/chocolate-hills-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/ph/chocolate-hills-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/ph/chocolate-hills-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/ph/chocolate-hills-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Wolfgang Hägele",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chocolate_Hills_Carmen_Bohol_2019.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Gundukan bukit kerucut Chocolate Hills berdiri di atas lahan dan hutan Bohol",
+          "en": "The conical mounds of the Chocolate Hills rising over fields and forest in Bohol"
+        }
+      },
+      {
+        "slug": "manila-jeepney-street",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#686868",
+        "lqip": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABQBACdASoYABAALrV2u12jqampiYC0SzncPQFWG9b6EYzqneN1zJwBhlcAAP7eqYfBn/Suf/l+uBfkjb0YP//mY8Lyyss/2gW4Mm7eW0YCjubvovMPYlS6ZWN6ZrF3J9VxwWc9AEfasgNuMHQX1bzuHQGTsGURQnVLBtLqov/w172E6rlWDu9CWc9ieV2YhdokznJTgmuPgiaOb7Mfm+2pHclDNWvK6ohsTWx7UbRBkc2/UAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/ph/manila-jeepney-street-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/ph/manila-jeepney-street-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/ph/manila-jeepney-street-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/ph/manila-jeepney-street-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Bahnfrend",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jeepney,_Muralla_Street,_2018_(02).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Sepasang jeepney melintas Jalan Muralla di Intramuros dengan bangunan Aduana di belakang",
+          "en": "Pair of jeepneys passing along Muralla Street in Intramuros with the Aduana Building behind"
+        }
+      },
+      {
+        "slug": "halo-halo-laguna",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#b87848",
+        "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAwBACdASoYABAAPu1iqU2ppaQiMAgBMB2JbGH7zmgP8ApfAwDsFGABsfQA/rmMi3KkVmPjFzpsLR5CGryjhfhPvrrqJLZtSBB2jZcisZ2vmPh4yicq3lXgK9LenP7VMHqMecK017Xirzw04uvO5L9Qr/f95hyLlqd37VbJy58+pXlz59c/nNTditVclXGTDMRV/JHzxffQLadOYtuNra437skUomBu+rQAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/ph/halo-halo-laguna-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/ph/halo-halo-laguna-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/ph/halo-halo-laguna-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/ph/halo-halo-laguna-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Ian Lopez ( Ianlopez1115 )",
+          "license": "CC0",
+          "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chicken_empanada_and_halo-halo_20230602.jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Semangkuk halo-halo dengan empanada ayam di meja restoran San Pablo, Laguna",
+          "en": "A bowl of halo-halo with a chicken empanada at a San Pablo City, Laguna eatery"
+        }
+      },
+      {
+        "slug": "makati-street-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#d8d8d8",
+        "lqip": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAAAwAwCdASoYABAALrV2u12jqampiYC0SxncO4A1lJHyK8kAAP6if/AfGuj/8xn/nA38r4n3O//XVZSZpv+DAy48f2aeUiMvAn6uNDsdz6flx1+D9nyrvu7m1M+FQf/aMl7uIqV7cpOC3VxDQX8/5dwyEOt51H//yJIf/6XOm/XNP6qkBvgz+ryqnlrgP4bTP/TS+RLy/4moPe8V1dUGoJ5NUz96R65UIZwq+volzsAAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/ph/makati-street-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/ph/makati-street-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/ph/makati-street-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/ph/makati-street-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Jonashtand",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:202403_Street_sign_of_Makati_Avenue.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama Jalan Makati Avenue berdiri di persimpangan bisnis kota Makati",
+          "en": "A street name sign for Makati Avenue standing at a commercial intersection in Makati"
+        }
+      }
+    ],
+    "sa": [
+      {
+        "slug": "qasr-al-farid-alula",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#6888c8",
+        "lqip": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAAAwBACdASoYAA0APu1krU2ppaSiMAgBMB2JbGD1qrPHCsjpwxhHAAoN0AAA+z/+o09of/gxyY/nS/+Gv8Yfv6rXL8Pit5ikTqs16vvNvyE1hXYJpL/GiVMstgPXgbSld2vCCUXRUc4XmS4nnr3dV3/Vj/2AJleosdTEG/MukFuYW0oLmrFnsL2H2tOOpqSZ/uY/77CuU2XyvuLAz1Q//uah9Yxt9bX+rWXlsZyhj7cZ2XAA",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/sa/qasr-al-farid-alula-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/sa/qasr-al-farid-alula-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/sa/qasr-al-farid-alula-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/sa/qasr-al-farid-alula-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Following Hadrian",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Qasr_al-Farid,_a_1st-century_AD_Nabatean_unfinished_tomb_carved_into_a_giant_boulder_in_Hegra_(Mada%27in_Salih),_the_kingdom%27s_second_Nabatean_capital_after_Petra,_Saudi_Arabia_-_53534952258.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Makam batu Qasr al-Farid belum selesai diukir di Hegra, AlUla",
+          "en": "The unfinished rock-cut tomb of Qasr al-Farid at Hegra in AlUla"
+        }
+      },
+      {
+        "slug": "jeddah-corniche",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#a89888",
+        "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAACQAwCdASoYABAAPu1orU6ppiSiMAgBMB2JY2EGY5QAVZtgAu7YAP7f+H/VmOVVZb6MRXrdtGUuLBdm5rqW5IuotfPksiGiFc9+9CHtMxXaM/gJR/5pD/6XIX3v9BfvbO2p6dRECzL9XCa0QNJvy5fKt8xR/bdwk8WEAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/sa/jeddah-corniche-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sa/jeddah-corniche-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/sa/jeddah-corniche-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sa/jeddah-corniche-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Joseph Azrak",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jeddah_Corniche_at_night.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Tepian laut Corniche Jeddah bersistri lampu kota pada malam hari",
+          "en": "The lit waterfront of Jeddah Corniche at night with city lights"
+        }
+      },
+      {
+        "slug": "kabsa-rice-platter",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#282818",
+        "lqip": "data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAACwBACdASoYABAAPu1iqk2ppaQiMAgBMB2JZDuHoDFK4Q/AtwONmzDfMgxgBErAAP7eqtdP8tPMfesvb//18lYqejw4LpQu5XOLr2A3wBRSa5e5i2sYgJXLu8+HGSJTrDTPViPa24T33gBJIwqDawyUIAAsN0lvbv12tyHp29dF++/jUrtidgwYZj545sdgOCrTPQc1NzziSnhPiQ1w6N1moiF4dZlFNR/IaqlHnhTifJX/Xf/P30C3+2HxKnecB2uiRaP74QGXxpw6kfquE2WdsLROaZDgAAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/sa/kabsa-rice-platter-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sa/kabsa-rice-platter-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/sa/kabsa-rice-platter-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sa/kabsa-rice-platter-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Sammy Six",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kabsa_(6486384335).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Nampan besar kabsa, nasi rempah dengan lauk daging untuk dibagi bersama",
+          "en": "A large shared platter of kabsa, spiced rice served with meat"
+        }
+      },
+      {
+        "slug": "khobar-street-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#585858",
+        "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBACdASoYABAAPu1orU2ppqSiMAgBMB2JZzxMxBfg51KZqoAMDAPECAD+Z+2e0/q9v4CHPri+Mzf6pmNcZW7lMEN9uNgwKgmK2kOMTnFdKKvXCa16LvRaKPvajqCN7qVwMnB986Um6Mt5g7sMpB50+5wQpku2SrQfQ0mu1iKiAfAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/sa/khobar-street-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sa/khobar-street-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/sa/khobar-street-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sa/khobar-street-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Ashashyou",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Street_sign_in_Khobar.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama jalan dengan tulisan Arab dan Latin di pinggir jalan Khobar",
+          "en": "A street name sign with Arabic and bilingual lettering on a Khobar street"
+        }
+      }
+    ],
+    "sg": [
+      {
+        "slug": "marina-bay-skyline",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.55
+        },
+        "dominant": "#b8b8b8",
+        "lqip": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAAAwAwCdASoYAA0ALrV2u12jqampiYC0SzjhqlA1DpOdS/7AAP2qr/6vT/y3d/zfzZE90eSk4OH/PIEjff+asMAZz596chQJrHb22mUGUr+F172ge+UpXbPsGwQGT8SZH2v39y9Sfx61XSkuYusTPCQmeeDw6qN+oKwTuU7t8LrQV1zY1eu9se4AAAA=",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/sg/marina-bay-skyline-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/sg/marina-bay-skyline-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/sg/marina-bay-skyline-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/sg/marina-bay-skyline-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Diego Delso",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skyline,_Marina_Bay,_Singapur,_2023-08-17,_DD_28.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Cakrawala Marina Bay Singapore dengan menara pusat kota berpendar di seberang teluk",
+          "en": "The Marina Bay skyline of Singapore with downtown towers glinting across the bay"
+        }
+      },
+      {
+        "slug": "bedok-hawker-centre",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#584838",
+        "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQAwCdASoYABAAPu1krU2ppaSiMAgBMB2JY0wbxbwyzNikhwAvLAAA/sen5H9eqLFzWEtsaasC9X2bM1tNayfaV6bRrk6tvoXyE0+j138D4P8B3d/Kd/zhX9BeSc93fy74VvZGyffHTBGTglxwyX2y35L7ReV3sh9fL0dP0Bgks6yBNW/wuUUGeusTPBMd/rbEP37/hrk0n1RN+AAAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/sg/bedok-hawker-centre-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sg/bedok-hawker-centre-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/sg/bedok-hawker-centre-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sg/bedok-hawker-centre-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "LN9267",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bedok_Interchange_Hawker_Centre_07-08-2025.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Pengunjung menikmati makanan di meja panjang pusat jajanan Bedok Interchange di Singapura",
+          "en": "Diners eating at long shared tables in the Bedok Interchange Hawker Centre"
+        }
+      },
+      {
+        "slug": "hainanese-chicken-rice",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#c8a878",
+        "lqip": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADwBQCdASoYABAAPu1iqk4ppaQiMAgBMB2JZF2bY5QYl39g/GblDqif6O4A0/5xkv+AnDGABp24AAD+ujPL/5Sd//blv5gelKA1/4Sdv7zacqyo/NueQ3IaXyyv9kPnPrO+love+zTHtxpS9IdloXA2hEf11UVf8adHf40/WwOk4iOvKH7Qb7ydZ//jx+Tb3h8kJcVaBoD4YkY3hH+/LH/tA0asvOPQcD/oJ8ulsNyk+vld3182pLpnMlhg59jwRHFfwjLe9GTXy21rHjvP/noMypyCwAh8T6gAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/sg/hainanese-chicken-rice-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sg/hainanese-chicken-rice-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/sg/hainanese-chicken-rice-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sg/hainanese-chicken-rice-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Misaochan",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hainanese_chicken_rice.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Piring ayam hainan dengan nasi putih, irisan timun, dan kuah pendamping",
+          "en": "A plate of Hainanese chicken rice with white rice, cucumber slices, and broth"
+        }
+      },
+      {
+        "slug": "chinatown-mrt-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#888888",
+        "lqip": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4IOgAAADwBQCdASoYABAAPu1qrU8ppiQiMAgBMB2JYjuHoDEyv7coerdwAe4HouOMT/zv4ZzxABxP8DHFYAD+tDr083/1+c0oE/6izwyuhZMURzWKOz9ojC/KFJ0X96XMiUYuwArw7sQiJ0DDAl1bh0qNLlCxY0i/vzuHYx9Qa0/D7+Gv/rlnpj0ouGRqsaU3+//Yj6QsWv91s7f8z7oeYIP5nRGGNh7BxeJSeokG6h/opv13mf/xG1+0ebOsJsIBlLshfmo+/KVTdhda9vBVxlu9oqjo7RVTTM2w61WfE6uNet9DhJepmjSnwAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/sg/chinatown-mrt-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sg/chinatown-mrt-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/sg/chinatown-mrt-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/sg/chinatown-mrt-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "CEphoto, Uwe Aranas",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Singapore_MRT-Station_Chinatown-01.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama stasiun MRT Chinatown dengan tulisan Latin dan Hanzi di bawah tanah",
+          "en": "Chinatown MRT station signage with Latin and Chinese characters in the underground station"
+        }
+      }
+    ],
+    "th": [
+      {
+        "slug": "wat-arun-bangkok",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.45,
+          "y": 0.5
+        },
+        "dominant": "#483828",
+        "lqip": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABwAwCdASoYAA0APu1kqk4ppaQiMAgBMB2JaF/2RhYh/AwidjAA/u1nv54ddAIP+CPAew9jTn9/90eQ+fliu1kQoqJm5koMEU6GSfm6p1PzMRjUH3gSnebz9o92k94t2lb+//M5P9avZ2f4h9exGAAA",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/th/wat-arun-bangkok-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/th/wat-arun-bangkok-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/th/wat-arun-bangkok-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/th/wat-arun-bangkok-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Diego Delso",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Templo_Wat_Arun,_Bangkok,_Tailandia,_2013-08-22,_DD_32.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Menara prang Wat Arun menjulang di tepi Sungai Chao Phraya, Bangkok",
+          "en": "The prang tower of Wat Arun rising over the Chao Phraya riverfront in Bangkok"
+        }
+      },
+      {
+        "slug": "yaowarat-street",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#483828",
+        "lqip": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAAAwBQCdASoYABAAPu1oqk6ppiQiMAgBMB2JaDuHoDEG4Q/b3wPcEHN8W5xR04YwALctAAD+xuP+cliTt8DfCj9h4rUipzjul/SRgSvEOl8G3P14IxgDAt8mqiCd97ACerCJJoInk8JFDl+GD0Mlv8GI/9kTU6cdNxDP2KLqKO+j/s707B081Ht/yht+nf6X126qDmDp/uV6gKayyi0EuZ6Hn2JvzKrOAd0ZPR9+8ybXdY6Div+V4gp/leIP/EtZ+bTr2WB1jZSpggqa9ALQEAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/th/yaowarat-street-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/th/yaowarat-street-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/th/yaowarat-street-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/th/yaowarat-street-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Marcin Konsek",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2016_Bangkok,_Dystrykt_Samphanthawong,_Ulica_Yaowarat,_Chi%C5%84skie_produkty_%C5%BCywno%C5%9Bciowe_(02).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Warung dan lapak makanan menghiasi trotoar Jalan Yaowarat di kawasan pecinan Bangkok",
+          "en": "Food stalls and shopfronts lining the sidewalk of Yaowarat Road in Bangkok's Chinatown"
+        }
+      },
+      {
+        "slug": "pad-thai-bangkok",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#88a8c8",
+        "lqip": "data:image/webp;base64,UklGRiABAABXRUJQVlA4IBQBAABwBgCdASoYABAAPu1iqU2ppaQiMAgBMB2JbEwcCCjP4BxB/UdTvE98qFgzThjCPCfK6YDqQRYBvKoKC4AA/iw/3T8wR7j/91/woX7u//u93Fvla9M/roXXiTYN//ldGK8liqD8ZnvyfMUTpcvEdJgKqYSW/ndRklX/XC1b5AghkayOn/xMCGYMEGviiJCbbYClP+bfsv//XQf/KZ/+R6P/b3+nAJvY/hr0bvDWfbkP/DXpwTh2y6aqX7aPe2WQBX/s8+7j6YbMufPzZmXPn5ze8iGdUovkN/p5JH9/+Om3za0f+z/8S/3PkDmFuynBr+U28Gv5ViyHX450t6JPTqLhz9Z3u8gEYY6EiYDrUVL4CTVvYAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/th/pad-thai-bangkok-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/th/pad-thai-bangkok-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/th/pad-thai-bangkok-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/th/pad-thai-bangkok-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "ProtoplasmaKid",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pad_thai_con_camarones.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Porsi pad thai dengan udang, tauge, kacang tanah, dan potongan jeruk nipis",
+          "en": "A serving of pad thai with shrimp, bean sprouts, crushed peanuts, and lime"
+        }
+      },
+      {
+        "slug": "thai-sign-wat-phra-kaew",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#d8d8d8",
+        "lqip": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAACwBACdASoYABAAPu1krU6ppaSiMAgBMB2JZWD8hLlX+q4QDyATQr81hyzc4/oAAP7vTD8a+I28Ff5neZ3/+WUf/y5dvJE1Gj8iKwy3UGXKbVW6Y2pf9/omb8v2Ff7K7OWb1NjiUTyccMrQ3lbX0SVW4tMlHZz7pP//4a/tyg//ldp07/6E8GxntyR9oG0m+DXp8JZhAR0/X8s9JFcQHuYMdB5o72ZuT+VuNGzfgBgwAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/th/thai-sign-wat-phra-kaew-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/th/thai-sign-wat-phra-kaew-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/th/thai-sign-wat-phra-kaew-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/th/thai-sign-wat-phra-kaew-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Iudexvivorum",
+          "license": "CC0",
+          "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emerald_Buddha_Temple_-_2017-06-11_(018).jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Papan tanda dwibahasa Thai dan Latin di area Wat Phra Kaew, Bangkok",
+          "en": "A bilingual Thai and English sign within the grounds of Wat Phra Kaew, Bangkok"
+        }
+      }
+    ],
+    "tr": [
+      {
+        "slug": "cappadocia-balloon",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.45
+        },
+        "dominant": "#484848",
+        "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAwAwCdASoYAA0APu1Ct1apoqakGAEwHYljPYfCQHQAKfWAAP7f/1ahvR0U/AQ2lKXa/7EpU/ZMpV0Zc/gNsAtBFBonDM33R+/59/6fGfon+trzHYy/lynnWH7aAqvsKdW4uejzzzGdOcaoCXFkE+M5NXbOeF0rULeiIoqzdAA=",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/tr/cappadocia-balloon-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/tr/cappadocia-balloon-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/tr/cappadocia-balloon-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/tr/cappadocia-balloon-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "This Photo was taken by Wolfgang Moroder . Feel free to use my photos, but please mention me as the author and send me a message . This image is not in the public domain . Please respect the copyright protection. It may only be used according to the rules mentioned here. This specifically excludes use in social media , if applicable terms of the licenses listed here not appropriate. Please do not upload an updated image here without consultation with the Author. The author would like to make corrections only at his own source. This ensures that the changes are preserved. Please if you think that any changes should be required, please inform the author. Otherwise you can upload a new image with a new name. Please use one of the templates derivative or extract .",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hot_air_balloon_ride_at_sunrise_in_Cappadocia_4.JPG",
+          "required": true
+        },
+        "alt": {
+          "id": "Puluhan balon panas melayang di langit fajar di atas lembah tufa Cappadocia",
+          "en": "Dozens of hot air balloons drifting over the tuff valleys of Cappadocia at sunrise"
+        }
+      },
+      {
+        "slug": "istiklal-tram",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAABQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JZDuGw4tFfOBYcBOGMI4ACRPQAP7q7ZomZ/+//t3gY/d7vOsegzKqB+CEIMQsBANZD1U/kodfszCstP2FTKb3dp7a5QP4vWGKDZ/4epenUxVKcAArbbt/+LD9Pf+rl3hfbcf73PiO72i+f+ki2bqSizp/Rl/djwSdHj4ql4+Lh+80X7/H87fdd0jgFNnP/eqEdfYr2U+XSU3+ZiMKo16P88WKGL+6DDlT2uH1UHlGfNa41toAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/tr/istiklal-tram-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/tr/istiklal-tram-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/tr/istiklal-tram-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/tr/istiklal-tram-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Kurmanbek",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Istiklal_Street_tram_in_January_2024.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Trem nostalgia merah menyusuri rel di keramaian Jalan Istiklal, Istanbul",
+          "en": "The red nostalgic tram gliding along its track amid the crowds of Istiklal Street, Istanbul"
+        }
+      },
+      {
+        "slug": "baklava-gaziantep",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#c8b898",
+        "lqip": "data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAADQBACdASoYABAAPu1krU2ppaSiMAgBMB2JR3D0Bh7/6PiD8DfA9wQbLxLEOAF7kAD+S/xrsSf3zL95NTfBdGBjdnp9GqR/tFmnACKTgYPuGCQ1ALNkqYXtiY4YE957Fi4b23IbS7hty3fzAn60DoWPbsosPy/bn4S0a91v/I9fUxv+Z++zX1UbimDcxbTWmSpsAfP/jKfTbIDRwVvPZtAe0AdUM/5zROgFp5mPWrv6nf5iaR2+fmwfzBd8bw+aR73sZv/F5m0c0hH9J7efrbckx2lP9EU/xWQ388GupQ3gAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/tr/baklava-gaziantep-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/tr/baklava-gaziantep-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/tr/baklava-gaziantep-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/tr/baklava-gaziantep-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "KediÇobanı",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baklava_sunumu.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Nampan baklava berlapis dipajang di kedai baklava Gaziantep",
+          "en": "Trays of layered baklava on display at a pastry shop in Gaziantep"
+        }
+      },
+      {
+        "slug": "rami-station-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#b8b8b8",
+        "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAABwAwCdASoYABAALrV2u12jqampiYC0S0sIMv1Ez5AWtUAJOUAA/uFv//mP/o31H3/8JeGRrKEMRRwmdedo+D9cnqohg86Ahch1R06sHZ7Gwl3+mBiSDAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/tr/rami-station-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/tr/rami-station-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/tr/rami-station-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/tr/rami-station-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Zach1055",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:T4_Rami_station_sign,_Istanbul_Turkey_2024.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama stasiun Rami dengan huruf Latin di jalur tram T4 Istanbul",
+          "en": "The Rami station sign with Latin Turkish lettering on Istanbul's T4 line"
+        }
+      }
+    ],
+    "uz": [
+      {
+        "slug": "registan-samarkand",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.45
+        },
+        "dominant": "#78b8e8",
+        "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAwAwCdASoYAA0APu1iqU2ppaOiMAgBMB2JZheAAbwAwTAAAP7cD+O175yD9+9v4g2XhcwBISQ3P91acwgr4FmfQ3/5/IArU2rIXpIl52hhgJoT2W4WXpUMwzEq3q0P03//+Uz/4Naox9b+Se7OllAEDuNAj5VOUpKpzig/PLFVwTINEr2Xv2M5ondLy02pL725rP2A/1thmbl03wZXIMXK/6PlNQ71UjYAAA==",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/uz/registan-samarkand-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/uz/registan-samarkand-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/uz/registan-samarkand-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/uz/registan-samarkand-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Bernard Gagnon",
+          "license": "CC0",
+          "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Registan_01.jpg",
+          "required": false
+        },
+        "alt": {
+          "id": "Fasad madrasah biru bermosaik kompleks Registan di Samarkand",
+          "en": "Blue-tiled mosaic facades of the Registan madrasas in Samarkand"
+        }
+      },
+      {
+        "slug": "kosmonavtlar-metro",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABwAwCdASoYABAAPu1mq04ppaQiMAgBMB2JR5CjGPIO4AJGYgAA/uuov/0eAAz/+pKh+glinXD40ijH1WQOluVELvtpsZ55ef9UW+zcL/+ldg7xZxyzza/fwF1ak1+5MESvAH8dc7H18l8V7XAAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/uz/kosmonavtlar-metro-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/uz/kosmonavtlar-metro-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/uz/kosmonavtlar-metro-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/uz/kosmonavtlar-metro-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Adam Harangozó",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kosmonavtlar_Station_of_Tashkent_Metro_6.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Balai bawah tanah stasiun metro Kosmonavtlar dengan lengkungan biru di Tashkent",
+          "en": "The underground vaulted hall of Kosmonavtlar metro station in Tashkent"
+        }
+      },
+      {
+        "slug": "tashkent-plov-centre",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABwBACdASoYABAAPu1qrU8ppiQiMAgBMB2JR3D0Bh88IUYGoIOMlmzGABbloAD+6vuWepqh//VzWwB9LGS67bhETffFTSWwXZRwzIsea997CN09mmFuYolGAJPiGBAiZN0FfEdaM2+NFIktAt/0DBX9Tn+yBDMNWv//wa+I5mL2Wo/14xLdrNtUXprcyOiPJLkm+3nL2bAM6HjGdjO7qIY4EYd8JKNW+gPhRbJ8gCKAAA==",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/uz/tashkent-plov-centre-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/uz/tashkent-plov-centre-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/uz/tashkent-plov-centre-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/uz/tashkent-plov-centre-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Adam Harangozó",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Central_Asian_Plov_Centre_in_Tashkent_2.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Piring besar plov dengan nasi kuning, wortel, dan potongan daging di Tashkent",
+          "en": "A large plate of plov with yellow rice, carrots, and pieces of meat in Tashkent"
+        }
+      },
+      {
+        "slug": "tashkent-garden-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAABwBACdASoYABAAPu1yrU+pp6QiMAgBMB2JbDzS4GmEyBxwmXqwwCcMYAMJIAD+8QB/7Tov/xf73r/e38El/c9v+M/4yX/WLGH8V6drEfYk9Qrv9/rzfqvtmgidNSOMed8wiKJvjELuOL5lYm/1xlVgnEH5qWgf76z6Iv/Obnih306y0e9lAzsDr3oBfnz5nVTop2lz4H1eUP8UG9+C9JPJTfmlPhWsCrVX92f/hDAtH/2fEzvL+yvO+NptlcZrsw8T3+NT3V4B+PAH9AcHmgmgtCk93omgn/9HIRiDTvFRAAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/uz/tashkent-garden-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/uz/tashkent-garden-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/uz/tashkent-garden-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/uz/tashkent-garden-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Humoyun Mehridinov",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Beautiful_Sign_in_Tashkent_Botanical_Garden.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama dengan tulisan Uzbek di Taman Botani Tashkent",
+          "en": "A garden sign with Uzbek lettering at the Tashkent Botanical Garden"
+        }
+      }
+    ],
+    "vn": [
+      {
+        "slug": "ha-long-bay",
+        "role": "hero",
+        "width": 1600,
+        "height": 900,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAABQAwCdASoYAA0APu1krU2ppaSiMAgBMB2JZzdAQDodoAhuoAD+41P/6c9//+II9f/4xd8L45zgHj/k5/8PLD/Suf//y74h4kLRdBXjAMRfxeBzyCDWgIgMRcO7iLMHGe5l7/oBcv/gP/h5/+DF3+DX/wa204f/2w34/f07xO/1z/4KXpPaosmnJ9QXb+ByAMMPwxwa7vp15+9mNK8sCFdixQRP042gOY1uHX24daEGx/4A",
+        "avif": [
+          {
+            "w": 960,
+            "file": "/images/countries/vn/ha-long-bay-960.avif",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/vn/ha-long-bay-1600.avif",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "webp": [
+          {
+            "w": 960,
+            "file": "/images/countries/vn/ha-long-bay-960.webp",
+            "w_px": 960,
+            "h_px": 540
+          },
+          {
+            "w": 1600,
+            "file": "/images/countries/vn/ha-long-bay-1600.webp",
+            "w_px": 1600,
+            "h_px": 900
+          }
+        ],
+        "credit": {
+          "author": "Vyacheslav Argenberg",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ha_Long_Bay,_Vietnam,_View_from_above.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Pulau karst berpuncak hijau tersebar di perairan teluk Ha Long yang tenang",
+          "en": "Green-capped limestone islands scattered across the calm waters of Ha Long Bay"
+        }
+      },
+      {
+        "slug": "hanoi-old-quarter",
+        "role": "life",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAABQBACdASoYABAAPu1Ct1apoqakGAEwHYliO4egMNr9IKoGY7sOOr5c21VwAP7od/Xf06gB/7wL/uv11+6IgVwRf+omZiBbuhte1u26AJAw/joCFo8EFpRn4NaTXv8c4Djvr3Q/01aQve8Q7Hovhe04V4TLmV9dH/sX/9QeuVY1Rd//f/Sa31f5/6lTygftiwq5HQEm4s6losAnAmlFruRfRdWDHTP3hoT4nCpxmz0op98xe6mgv9//8ND4/UDP+gSx1sKJK6cRtBaNhHq7kWDsAAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/vn/hanoi-old-quarter-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/vn/hanoi-old-quarter-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/vn/hanoi-old-quarter-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/vn/hanoi-old-quarter-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Richard Mortel from Riyadh, Saudi Arabia",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Old_Quarter_street_scene,_Hanoi_(1)_(38464672752).jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Sepeda motor dan pejalan memadati jalan sempit kawasan kota tua Hanoi",
+          "en": "Motorbikes and pedestrians crowding a narrow lane in Hanoi's Old Quarter"
+        }
+      },
+      {
+        "slug": "bun-bo-hue",
+        "role": "food",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#080808",
+        "lqip": "data:image/webp;base64,UklGRgIBAABXRUJQVlA4IPYAAACQBQCdASoYABAALrV2u12jqampiYC0SjuHoDam6939NaIIOj4ifm+8wDJIv8VOGMGMAHb+gAD+2w35f5Evxwf/2cjjXtfgtafysmcISe8wKHmgQso//yff+cXInA48Au6//01JDKS2rQSV2yfDAbkKhqonidm15JBaufRL4usImb7SfVphro8opvH4jCo17x2nl5dUPWEjOEa/NHzP/kf/sg+mH+/4KuBW3qDx9iG8On52i4zKardbqOMlXqt5rV8DNvoLI7n2xKkZLaWW7/853wccOLw5VhyRelCppiALmY7ds0b0b+qzsC1WOx/G6OKtoET/gAA=",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/vn/bun-bo-hue-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/vn/bun-bo-hue-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/vn/bun-bo-hue-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/vn/bun-bo-hue-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Minh28397",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%C3%BAn_b%C3%B2_Hu%E1%BA%BF_minh28397.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Semangkuk bún bò Huế dengan irisan daging dan sayur pendamping di kedai Hanoi",
+          "en": "A bowl of bún bò Huế with sliced meat and garnishes at a Hanoi eatery"
+        }
+      },
+      {
+        "slug": "hanoi-street-sign",
+        "role": "script",
+        "width": 960,
+        "height": 640,
+        "focus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "dominant": "#f8f8f8",
+        "lqip": "data:image/webp;base64,UklGRuIAAABXRUJQVlA4INYAAADwAwCdASoYABAAPu1Ct1apoqakGAEwHYlHi/QFWDQQsqVhs2BwObywAP7bD/mqd/M/Lk/5uP3Wn61tH3TSpdhf/7eLA7vSv/X/on/pRh8TvkXsF4P2cyM1pcF5RHzaE/58/3GPvY4HD/+9c20rXyWGuWRWw8V1q6ki9v4tWPb+Jmv10DP8DNjoHL1L/nNwjwEkdz/vTS9ZpsvC5qi+xXt4d3PqcFlgdcV0TVLes3Yptkt6mGhfOfY2tmpzzMKK17zOMymqsFp2U4sXnkriKRgaUMAHEAAA",
+        "avif": [
+          {
+            "w": 640,
+            "file": "/images/countries/vn/hanoi-street-sign-640.avif",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/vn/hanoi-street-sign-960.avif",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "webp": [
+          {
+            "w": 640,
+            "file": "/images/countries/vn/hanoi-street-sign-640.webp",
+            "w_px": 640,
+            "h_px": 427
+          },
+          {
+            "w": 960,
+            "file": "/images/countries/vn/hanoi-street-sign-960.webp",
+            "w_px": 960,
+            "h_px": 640
+          }
+        ],
+        "credit": {
+          "author": "Ltn12345",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Qu%E1%BB%91c_T%E1%BB%AD_Gi%C3%A1m_Street,_Hanoi_02.jpg",
+          "required": true
+        },
+        "alt": {
+          "id": "Papan nama biru Jalan Quốc Tử Giám di tepi jalan kota Hanoi",
+          "en": "A blue street name sign for Quốc Tử Giám Street in Hanoi"
+        }
+      }
+    ]
+  }
+}

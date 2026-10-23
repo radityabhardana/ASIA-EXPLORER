@@ -34,6 +34,11 @@ const steps = [
     args: ['--check'],
   },
   {
+    name: 'images (tools/fetch-images.mjs --check)',
+    entry: 'tools/fetch-images.mjs',
+    args: ['--check'],
+  },
+  {
     name: 'e2e (playwright test)',
     entry: entry('@playwright/test/cli.js'),
     // 2 worker: 6+ worker terbukti flaky pada mesin ini (scroll + WebGL).

@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.cache/
 assets/source/*.geojson
 coverage/
 test-results/
@@ -19,3 +20,5 @@ docs/research/shots/
 tmp-*
 
 .slim/deepwork/
+
+tmp-a-shots/
