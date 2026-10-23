@@ -271,14 +271,17 @@ const SELECT_LIFT = 1.4;
 const LIFT_TAU = 0.11;
 const GLOW_TAU = 0.12;
 
-const FIT_INK_SPAN_X = 1.76;
-const FIT_INK_SPAN_X_MOBILE = 1.79;
+const FIT_INK_SPAN_X = 1.28;
+const FIT_INK_SPAN_X_MOBILE = 1.76;
 const FIT_INK_SPAN_Y = 1.86;
 const FIT_INK_SAFETY = 1.04;
 
 const HOVER_HYSTERESIS_MS = 130;
-const MATERIAL_ROUGHNESS = 0.8;
+const MATERIAL_ROUGHNESS = 0.55;
+const MATERIAL_METALNESS = 0.05;
 const OUTLINE_OPACITY = 0.45;
+const MIN_CAMERA_DISTANCE = 130;
+const MAX_CAMERA_DISTANCE = 320;
 
 function assetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path}`;
@@ -513,20 +516,20 @@ export default function AsiaScene({
       return new Color(value || '#b9b4aa');
     };
 
-    const ambient = new AmbientLight(0xfff8f0, 0.6);
+    const ambient = new AmbientLight(0xfff8ee, 0.25);
     scene.add(ambient);
 
-    const hemi = new HemisphereLight(0xfff6ee, 0xd0c8bc, 0.35);
+    const hemi = new HemisphereLight(0xfff8ee, 0xd4cac0, 0.7);
     scene.add(hemi);
 
-    // K8: Main sun NW (azimut 315°, elevasi 48°)
-    const sun = new DirectionalLight(0xfffdfa, 1.15);
+    // Main sun light from NW
+    const sun = new DirectionalLight(0xfffdf8, 1.25);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
-    sun.shadow.camera.left = -160;
-    sun.shadow.camera.right = 160;
-    sun.shadow.camera.top = 160;
-    sun.shadow.camera.bottom = -160;
+    sun.shadow.camera.left = -180;
+    sun.shadow.camera.right = 180;
+    sun.shadow.camera.top = 180;
+    sun.shadow.camera.bottom = -180;
     sun.shadow.camera.near = 1;
     sun.shadow.camera.far = 900;
     sun.shadow.bias = -0.0006;
@@ -534,8 +537,8 @@ export default function AsiaScene({
     scene.add(sun);
     scene.add(sun.target);
 
-    // Fill light from SE
-    const fill = new DirectionalLight(0xe8e0d5, 0.25);
+    // Soft warm directional fill light from SE
+    const fill = new DirectionalLight(0xe8dfd5, 0.45);
     scene.add(fill);
 
     // groundLike: semua objek panggung tanah disembunyikan saat measureInk()
@@ -959,9 +962,10 @@ export default function AsiaScene({
       triggerInterrupt();
       userHasControlled = true;
       const zoomFactor = event.deltaY * 0.12;
-      const minDistance = 130;
-      const maxDistance = 320;
-      targetDistance = Math.max(minDistance, Math.min(maxDistance, targetDistance + zoomFactor));
+      targetDistance = Math.max(
+        MIN_CAMERA_DISTANCE,
+        Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
+      );
     };
 
     const onDblClick = (event: MouseEvent) => {
@@ -1418,7 +1422,10 @@ export default function AsiaScene({
           const factor = 1 - Math.exp(-delta / 0.08);
           currentAzimuth += (targetAzimuth - currentAzimuth) * factor;
           currentElevation += (targetElevation - currentElevation) * factor;
-          currentDistance += (targetDistance - currentDistance) * factor;
+          currentDistance = Math.max(
+            MIN_CAMERA_DISTANCE,
+            Math.min(MAX_CAMERA_DISTANCE, currentDistance + (targetDistance - currentDistance) * factor),
+          );
 
           currentPose.azimuth = currentAzimuth;
           currentPose.elevation = currentElevation;
@@ -1670,7 +1677,7 @@ export default function AsiaScene({
         const material = new MeshStandardMaterial({
           color: countryColor(entry.id),
           roughness: MATERIAL_ROUGHNESS,
-          metalness: 0,
+          metalness: MATERIAL_METALNESS,
           flatShading: true,
           polygonOffset: true,
           polygonOffsetFactor: 1,
@@ -1780,7 +1787,7 @@ export default function AsiaScene({
       sun.target.position.copy(center);
       sun.target.updateMatrixWorld();
 
-      fill.position.set(center.x + 80, center.y + 60, center.z + 80);
+      fill.position.set(center.x + 100, center.y + 70, center.z + 100);
 
       scene.add(gltf.scene);
 
@@ -1792,7 +1799,7 @@ export default function AsiaScene({
       // Ukur HERO_POSE kanonik pertama kali
       const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
       fitCamera(0, elevation, 0, 1.0);
-      targetDistance = Math.max(130, Math.min(320, lastDistance));
+      targetDistance = Math.max(MIN_CAMERA_DISTANCE, Math.min(MAX_CAMERA_DISTANCE, lastDistance));
       currentDistance = targetDistance;
       instanceHeroPose.azimuth = 0;
       instanceHeroPose.distance = lastDistance;

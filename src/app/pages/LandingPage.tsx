@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
@@ -7,6 +8,7 @@ import Navbar from '@/app/Navbar';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryDialog from '@/sections/landing/CountryDialog';
 import CountryMapSvg from '@/sections/landing/CountryMapSvg';
+import MosaicGallery from '@/sections/landing/MosaicGallery';
 import Silhouette from '@/sections/landing/Silhouette';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import {
@@ -36,6 +38,7 @@ export default function LandingPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [selectedScenarioOption, setSelectedScenarioOption] = useState<number>(0);
 
   useLandingTimeline({
     root: rootRef,
@@ -133,10 +136,6 @@ export default function LandingPage() {
               scrollProgressRef={heroProgressRef}
             />
           </div>
-
-          <p className="landing-hint" data-intro>
-            Gulir
-          </p>
         </div>
       </section>
 
@@ -201,10 +200,10 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--script">
           <div className="landing-stage__copy" data-reveal>
+            <p className="landing-kicker">TIPOGRAFI ASIA</p>
             <h2 className="landing-display" id="landing-script-heading">
-              Aksara yang bergerak
+              Satu Sapaan, Lima Belas Aksara
             </h2>
-            <p className="landing-note">Limabelas negara, limabelas cara menuliskan sapaan.</p>
           </div>
 
           <div className="landing-script__band" data-reveal>
@@ -320,46 +319,95 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--dashboard">
           <div className="landing-stage__copy landing-center" data-reveal>
-            <p className="landing-kicker">Ruang Belajar</p>
+            <p className="landing-kicker">RUANG BELAJAR</p>
             <h2 className="landing-display" id="landing-dashboard-heading">
-              Dashboard & Sistem Belajar
+              Studio Belajar &amp; Progres Budaya
             </h2>
             <p className="landing-note">
-              Setelah menjelajah, simpan progres dan pelajari norma budaya secara mendalam di perambanmu.
+              Simpan pemahaman etiket dan rawat memori aksara secara mandiri di perambanmu.
             </p>
           </div>
 
           <div className="landing-dashboard__grid" data-reveal>
-            {/* Pillar 1 */}
-            <article className="landing-dashboard__card">
-              <div className="landing-dashboard__card-top">
-                <span className="landing-dashboard__badge">Prioritas Otomatis</span>
-                <span className="landing-dashboard__pillar">Kurikulum Cerdas</span>
-              </div>
-              <h3 className="landing-dashboard__card-title">Satu Langkah Berikutnya</h3>
-              <p className="landing-dashboard__card-desc">
-                Tugas cerdas dipilihkan untukmu — lanjutkan pelajaran, ulas frasa, atau baca cerita.
-              </p>
-              <div className="landing-dashboard__preview">
-                <div className="landing-dashboard__task-header">
-                  <span className="landing-dashboard__task-pill">Rekomendasi</span>
-                  <span className="landing-dashboard__task-time">4 mnt</span>
+            {/* Left Side: Live Interactive Learning Studio / Console */}
+            <div className="landing-dashboard__console">
+              <div className="landing-dashboard__console-bar">
+                <div className="landing-dashboard__console-dots" aria-hidden="true">
+                  <span className="landing-dashboard__console-dot landing-dashboard__console-dot--red" />
+                  <span className="landing-dashboard__console-dot landing-dashboard__console-dot--yellow" />
+                  <span className="landing-dashboard__console-dot landing-dashboard__console-dot--green" />
                 </div>
-                <div className="landing-dashboard__task-text">Etiket Pertemuan & Jamuan di Kyoto</div>
+                <span className="landing-dashboard__console-title">
+                  asiakin-engine v3.0 &middot; Kyoto, Jepang &middot; Progres 5/6
+                </span>
               </div>
-            </article>
 
-            {/* Pillar 2 */}
-            <article className="landing-dashboard__card">
-              <div className="landing-dashboard__card-top">
-                <span className="landing-dashboard__badge">Spaced Repetition</span>
-                <span className="landing-dashboard__pillar">Memori Permanen</span>
+              {/* Active Quest Scenario preview */}
+              <div className="landing-dashboard__scenario-box">
+                <div className="landing-dashboard__scenario-header">
+                  <span className="landing-dashboard__scenario-badge">SKENARIO ETIKET BUDAYA</span>
+                  <span className="landing-dashboard__scenario-location">Tokyo, Jepang</span>
+                </div>
+                <h3 className="landing-dashboard__scenario-title">
+                  &ldquo;Etiket Menyerahkan Kartu Nama (Meishi) di Tokyo&rdquo;
+                </h3>
+                <div
+                  className="landing-dashboard__scenario-options"
+                  role="radiogroup"
+                  aria-label="Pilihan respon etiket"
+                >
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={selectedScenarioOption === 0}
+                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 0 ? 'landing-dashboard__option-btn--active' : ''}`}
+                    onClick={() => setSelectedScenarioOption(0)}
+                  >
+                    <div className="landing-dashboard__option-content">
+                      <span className="landing-dashboard__option-indicator" aria-hidden="true">
+                        {selectedScenarioOption === 0 && (
+                          <span className="landing-dashboard__option-indicator-inner" />
+                        )}
+                      </span>
+                      <span className="landing-dashboard__option-text">
+                        Pegang dua sudut atas dengan kedua tangan, teks menghadap penerima, bungkukkan badan 15 derajat.
+                      </span>
+                    </div>
+                    {selectedScenarioOption === 0 && (
+                      <div className="landing-dashboard__option-tags">
+                        <span className="landing-dashboard__reason-tag">Penghormatan Hierarki</span>
+                        <span className="landing-dashboard__reason-tag">Konteks Sosial</span>
+                      </div>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={selectedScenarioOption === 1}
+                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 1 ? 'landing-dashboard__option-btn--active' : ''}`}
+                    onClick={() => setSelectedScenarioOption(1)}
+                  >
+                    <div className="landing-dashboard__option-content">
+                      <span className="landing-dashboard__option-indicator" aria-hidden="true">
+                        {selectedScenarioOption === 1 && (
+                          <span className="landing-dashboard__option-indicator-inner" />
+                        )}
+                      </span>
+                      <span className="landing-dashboard__option-text">
+                        Serahkan santai dengan satu tangan ke atas meja rapat lalu simpan langsung ke saku.
+                      </span>
+                    </div>
+                  </button>
+                </div>
               </div>
-              <h3 className="landing-dashboard__card-title">Phrase Vault & Ulas Tepat Waktu</h3>
-              <p className="landing-dashboard__card-desc">
-                Sistem spaced repetition 5-kotak Leitner (1, 3, 7, 16, 35 hari) agar ingatan bertahan permanen.
-              </p>
-              <div className="landing-dashboard__preview">
+
+              {/* Spaced Repetition track: 5 Leitner review boxes */}
+              <div className="landing-dashboard__leitner-track">
+                <div className="landing-dashboard__leitner-header">
+                  <span className="landing-dashboard__leitner-label">Phrase Vault Spaced Repetition</span>
+                  <span>Interval Otomatis</span>
+                </div>
                 <div className="landing-dashboard__leitner-boxes">
                   <div className="landing-dashboard__leitner-box" title="Kotak 1: 1 hari">
                     <span className="landing-dashboard__leitner-num">1</span>
@@ -369,9 +417,13 @@ export default function LandingPage() {
                     <span className="landing-dashboard__leitner-num">2</span>
                     <span className="landing-dashboard__leitner-interval">3h</span>
                   </div>
-                  <div className="landing-dashboard__leitner-box" title="Kotak 3: 7 hari">
+                  <div
+                    className="landing-dashboard__leitner-box landing-dashboard__leitner-box--active"
+                    title="Kotak 3: 7 hari"
+                  >
                     <span className="landing-dashboard__leitner-num">3</span>
                     <span className="landing-dashboard__leitner-interval">7h</span>
+                    <span className="landing-dashboard__leitner-status">● 12 Frasa</span>
                   </div>
                   <div className="landing-dashboard__leitner-box" title="Kotak 4: 16 hari">
                     <span className="landing-dashboard__leitner-num">4</span>
@@ -383,59 +435,71 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
-            </article>
 
-            {/* Pillar 3 */}
-            <article className="landing-dashboard__card">
-              <div className="landing-dashboard__card-top">
-                <span className="landing-dashboard__badge">Sebab Budaya</span>
-                <span className="landing-dashboard__pillar">Konteks Sosial</span>
-              </div>
-              <h3 className="landing-dashboard__card-title">Skenario Budaya Bercabang</h3>
-              <p className="landing-dashboard__card-desc">
-                Bukan sekadar kuis pilihan ganda. Pelajari sebab budaya di balik setiap aturan etiket.
-              </p>
-              <div className="landing-dashboard__preview">
-                <div className="landing-dashboard__scenario-q">
-                  &ldquo;Menerima kartu nama dengan dua tangan dan membacanya sesaat...&rdquo;
+              {/* Local-first status bar */}
+              <div className="landing-dashboard__status-bar">
+                <div className="landing-dashboard__status-indicator">
+                  <span className="landing-dashboard__status-pulse" aria-hidden="true" />
+                  <span>Tersimpan Lokal di IndexedDB</span>
                 </div>
-                <div className="landing-dashboard__scenario-tags">
-                  <span className="landing-dashboard__tag">Penghormatan Hierarki</span>
-                  <span className="landing-dashboard__tag">Konteks Sosial</span>
-                </div>
+                <span>0 Pelacak &middot; Siap Ekspor JSON</span>
               </div>
-            </article>
+            </div>
 
-            {/* Pillar 4 */}
-            <article className="landing-dashboard__card">
-              <div className="landing-dashboard__card-top">
-                <span className="landing-dashboard__badge">Local-First</span>
-                <span className="landing-dashboard__pillar">Privasi Penuh</span>
-              </div>
-              <h3 className="landing-dashboard__card-title">Datamu Milikmu (Local-First)</h3>
-              <p className="landing-dashboard__card-desc">
-                Tersimpan aman di IndexedDB perangkatmu tanpa pelacak, bisa diekspor atau diimpor JSON kapan saja.
-              </p>
-              <div className="landing-dashboard__preview">
-                <div className="landing-dashboard__privacy-row">
-                  <span className="landing-dashboard__privacy-status">Tersimpan di IndexedDB</span>
-                  <span className="landing-dashboard__privacy-badge">0 Pelacak</span>
+            {/* Right Side: 4 Strategic Capability Pillars */}
+            <div className="landing-dashboard__pillars">
+              <article className="landing-dashboard__pillar-item">
+                <span className="landing-dashboard__pillar-num">01</span>
+                <div className="landing-dashboard__pillar-content">
+                  <h3 className="landing-dashboard__pillar-title">Kurikulum Cerdas</h3>
+                  <p className="landing-dashboard__pillar-desc">
+                    Satu tugas harian dipilih deterministik tanpa rasa bingung &mdash; selesaikan etiket, ulas frasa, atau jelajahi negara baru.
+                  </p>
                 </div>
-                <div className="landing-dashboard__privacy-actions">
-                  <span className="landing-dashboard__privacy-btn">Ekspor JSON</span>
-                  <span className="landing-dashboard__privacy-btn">Impor Riwayat</span>
-                </div>
-              </div>
-            </article>
-          </div>
+              </article>
 
-          <div className="landing-dashboard__actions" data-reveal>
-            <a href="/dashboard" className="landing-dashboard__cta">
-              Buka Dashboard
-            </a>
+              <article className="landing-dashboard__pillar-item">
+                <span className="landing-dashboard__pillar-num">02</span>
+                <div className="landing-dashboard__pillar-content">
+                  <h3 className="landing-dashboard__pillar-title">Phrase Vault 5-Tingkat</h3>
+                  <p className="landing-dashboard__pillar-desc">
+                    Spaced repetition berbasis interval 1h, 3h, 7h, 16h, dan 35h mengulang frasa kunci sebelum terlupakan.
+                  </p>
+                </div>
+              </article>
+
+              <article className="landing-dashboard__pillar-item">
+                <span className="landing-dashboard__pillar-num">03</span>
+                <div className="landing-dashboard__pillar-content">
+                  <h3 className="landing-dashboard__pillar-title">Etiket Berakar Sebab</h3>
+                  <p className="landing-dashboard__pillar-desc">
+                    Bukan pilihan ganda buta. Pelajari norma budaya asli beserta latar belakang sosial dan hierarki kultural.
+                  </p>
+                </div>
+              </article>
+
+              <article className="landing-dashboard__pillar-item">
+                <span className="landing-dashboard__pillar-num">04</span>
+                <div className="landing-dashboard__pillar-content">
+                  <h3 className="landing-dashboard__pillar-title">Kedaulatan Data Penuh</h3>
+                  <p className="landing-dashboard__pillar-desc">
+                    100% tersimpan di perambanmu melalui IndexedDB, tanpa pelacak analitik, bebas ekspor dan impor berkas JSON kapan saja.
+                  </p>
+                </div>
+              </article>
+
+              <div className="landing-dashboard__actions">
+                <Link to="/dashboard" className="landing-dashboard__cta">
+                  Buka Dashboard <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Scene Mosaik — 15 Negara, Satu Benua */}
+      <MosaicGallery />
 
       {/* Scene 7 — footer: indeks negara + wordmark */}
       <footer

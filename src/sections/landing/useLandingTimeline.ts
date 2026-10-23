@@ -118,7 +118,7 @@ export function useLandingTimeline({
       // Bersihkan inline style sisa build sebelumnya supaya pengukuran
       // geometri tidak terdistorsi offset y/opacity tween yang lama.
       for (const element of rootElement.querySelectorAll<HTMLElement | SVGElement>(
-        '[data-reveal], .landing-lang__sil, .landing-scene--scale [data-highlight]',
+        '[data-reveal], .landing-lang__sil, .landing-scene--scale [data-highlight], .landing-scene--language',
       )) {
         element.style.removeProperty('opacity');
         element.style.removeProperty('transform');
@@ -319,6 +319,11 @@ export function useLandingTimeline({
           segment(languageWin, 0.15, 0.75),
           'power3.out',
         );
+        tl.to(
+          '.landing-scene--language',
+          { opacity: 0, duration: segment(languageWin, 0.75, 0.95).duration },
+          segment(languageWin, 0.75, 0.95).at,
+        );
       }
 
       // Scene 4 — marquee aksara (K12).
@@ -370,6 +375,26 @@ export function useLandingTimeline({
         reveal(
           '.landing-dashboard__actions',
           segment(dashboardWin, 0.15, 0.45),
+        );
+      }
+
+      // Scene Mosaic — 15 Negara, Satu Benua
+      const mosaicWin = measureWindow(
+        '.landing-scene--mosaic',
+        '.landing-stage__copy',
+      );
+      if (mosaicWin) {
+        reveal(
+          '.landing-scene--mosaic .landing-stage__copy',
+          segment(mosaicWin, 0, 0.35),
+        );
+        reveal(
+          '.landing-mosaic__grid',
+          segment(mosaicWin, 0.06, 0.4),
+        );
+        reveal(
+          '.landing-mosaic__legal',
+          segment(mosaicWin, 0.12, 0.45),
         );
       }
 

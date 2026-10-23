@@ -13,17 +13,58 @@
  */
 
 /* K8: Sembunyikan SVG ground disc lama per CONTRACT_SCENE_B.md */
-.landing-hero__ground {
+.landing-hero__ground,
+.landing-hint {
   display: none !important;
 }
 
 .asia-scene {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 2;
-  min-height: 320px;
-  overflow: hidden;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: visible;
   background-color: transparent;
+}
+
+/* Pastikan container hero & invitation di landing page mengisi stage penuh tanpa clipping */
+.landing-hero__scene {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+
+.landing-hero__scene .landing-asia,
+.landing-hero__scene .asia-scene {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+}
+
+.landing-invitation__scene {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+}
+
+.landing-invitation__scene .landing-asia,
+.landing-invitation__scene .asia-scene {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
 }
 
 /* Hindari [data-intro] dari landing.css yang meng-clip container bila di luar .landing--ready */
@@ -178,12 +219,12 @@
 .scene-legend {
   position: absolute;
   right: 48px;
-  bottom: 24px;
-  z-index: 10;
+  bottom: 32px;
+  z-index: 25;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
+  gap: 3px;
   pointer-events: none;
   font-family: var(--font-text, sans-serif);
   user-select: none;
@@ -209,23 +250,23 @@
   flex-direction: row-reverse;
   align-items: center;
   gap: 6px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--ink, #2c2825);
   line-height: 1.25;
 }
 
 .scene-legend__color {
   display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
 }
 
 .scene-controls-hint {
   position: absolute;
-  bottom: 24px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
@@ -237,7 +278,7 @@
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  z-index: 10;
+  z-index: 25;
   text-align: center;
 }
 
