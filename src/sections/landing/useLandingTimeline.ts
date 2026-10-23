@@ -118,7 +118,7 @@ export function useLandingTimeline({
       // Bersihkan inline style sisa build sebelumnya supaya pengukuran
       // geometri tidak terdistorsi offset y/opacity tween yang lama.
       for (const element of rootElement.querySelectorAll<HTMLElement | SVGElement>(
-        '[data-reveal], .landing-lang__sil, .landing-scene--scale [data-highlight], .landing-scene--language',
+        '[data-reveal], .landing-scene--scale [data-highlight]',
       )) {
         element.style.removeProperty('opacity');
         element.style.removeProperty('transform');
@@ -197,32 +197,6 @@ export function useLandingTimeline({
         );
       };
 
-      const counter = (
-        selector: string,
-        value: number,
-        segment: Segment,
-        ease: string,
-      ): void => {
-        const element = rootElement.querySelector<HTMLElement>(selector);
-        if (!element || segment.duration <= 0) {
-          return;
-        }
-        const state = { value: 0 };
-        element.textContent = '0';
-        tl.to(
-          state,
-          {
-            value,
-            duration: segment.duration,
-            ease,
-            onUpdate: () => {
-              element.textContent = String(Math.floor(state.value));
-            },
-          },
-          segment.at,
-        );
-      };
-
       /** Sub-jendela dari reveal window, dalam fraksi panjang jendela. */
       const segment = (
         win: ScrollWindow,
@@ -232,8 +206,6 @@ export function useLandingTimeline({
         at: clampUnit(win.at + win.w * from),
         duration: clampUnit(win.w * (to - from)),
       });
-
-      const isMobile = mobileQuery?.matches ?? false;
 
       // Scene 1 — hero. H1 harus opacity 1 di progres 0 (cacat 1).
       const heroCopy = queryAll<HTMLElement>('.landing-hero__copy');
@@ -289,41 +261,12 @@ export function useLandingTimeline({
             },
             syncSegment.at,
           );
-        }
-      }
-
-      // Scene 3 — kedalaman bahasa.
-      const languageWin = measureWindow(
-        '.landing-scene--language',
-        '.landing-stage__copy',
-      );
-      if (languageWin) {
-        const silhouette = rootElement.querySelector<HTMLElement>(
-          '.landing-lang__sil',
-        );
-        if (silhouette) {
-          tl.fromTo(
-            silhouette,
-            isMobile ? { x: 0, y: '100vh' } : { x: '100vw', y: 0 },
-            { x: 0, y: 0, duration: segment(languageWin, 0, 0.5).duration, ease: 'power2.out' },
-            languageWin.at,
+          tl.to(
+            '.landing-scene--scale',
+            { opacity: 0, duration: segment(scaleWin, 0.85, 0.98).duration },
+            segment(scaleWin, 0.85, 0.98).at,
           );
         }
-        reveal(
-          '.landing-scene--language .landing-stage__copy',
-          segment(languageWin, 0.05, 0.4),
-        );
-        counter(
-          '.landing-scene--language [data-counter]',
-          718,
-          segment(languageWin, 0.15, 0.75),
-          'power3.out',
-        );
-        tl.to(
-          '.landing-scene--language',
-          { opacity: 0, duration: segment(languageWin, 0.75, 0.95).duration },
-          segment(languageWin, 0.75, 0.95).at,
-        );
       }
 
       // Scene 4 — marquee aksara (K12).
@@ -362,6 +305,22 @@ export function useLandingTimeline({
         );
       }
 
+      // Scene 5 — peta interaktif (undangan penjelajahan).
+      const invitationWin = measureWindow(
+        '.landing-scene--invitation',
+        '.landing-stage__copy',
+      );
+      if (invitationWin) {
+        reveal(
+          '.landing-scene--invitation .landing-stage__copy',
+          segment(invitationWin, 0, 0.4),
+        );
+        reveal(
+          '.landing-invitation__scene',
+          segment(invitationWin, 0.15, 0.85),
+        );
+      }
+
       // Scene Mosaic — 15 Negara, Satu Benua
       const mosaicWin = measureWindow(
         '.landing-scene--mosaic',
@@ -379,22 +338,6 @@ export function useLandingTimeline({
         reveal(
           '.landing-mosaic__legal',
           segment(mosaicWin, 0.12, 0.45),
-        );
-      }
-
-      // Scene 7 — footer (wordmark dan hak cipta).
-      const footerWin = measureWindow(
-        '.landing-scene--footer',
-        '.landing-footer__mark',
-      );
-      if (footerWin) {
-        reveal(
-          '.landing-footer__mark',
-          segment(footerWin, 0, 0.4),
-        );
-        reveal(
-          '.landing-footer__copyright',
-          segment(footerWin, 0.1, 0.5),
         );
       }
 

@@ -14,38 +14,16 @@ type GreetingBlockProps = {
 
 type PlaybackStatus = 'idle' | 'speaking' | 'error';
 
-function primarySubtag(lang: string): string {
-  return lang.split('-')[0]?.toLowerCase() ?? '';
-}
-
 export default function GreetingBlock({ country, profile }: GreetingBlockProps) {
   const { greeting } = country;
-  const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [status, setStatus] = useState<PlaybackStatus>('idle');
   const supported = isSpeechSupported();
 
   useEffect(() => {
-    if (!isSpeechSupported()) {
-      return;
-    }
-
-    const synth = window.speechSynthesis;
-    const wanted = primarySubtag(profile.speechLang);
-    const update = () => {
-      const voices = synth.getVoices();
-      setVoiceAvailable(voices.some((voice) => primarySubtag(voice.lang) === wanted));
-    };
-
-    synth.addEventListener('voiceschanged', update);
-    // Daftar suara bisa sudah terisi sebelum langganan dipasang; periksa di tick berikutnya.
-    const probe = window.setTimeout(update, 0);
-
     return () => {
-      window.clearTimeout(probe);
-      synth.removeEventListener('voiceschanged', update);
       cancelSpeech();
     };
-  }, [profile.speechLang]);
+  }, []);
 
   const statusText =
     status === 'error'
@@ -58,6 +36,7 @@ export default function GreetingBlock({ country, profile }: GreetingBlockProps) 
     setStatus('speaking');
     const started = speak(greeting.native, {
       lang: profile.speechLang,
+      fallbackText: greeting.roman,
       onEnd: () => {
         setStatus('idle');
       },
@@ -83,7 +62,7 @@ export default function GreetingBlock({ country, profile }: GreetingBlockProps) 
         {greeting.register.trim().length > 0 && (
           <p className="country-greeting__register">{greeting.register}</p>
         )}
-        {supported && voiceAvailable && (
+        {supported && (
           <button
             type="button"
             className="country-greeting__audio"
@@ -96,9 +75,9 @@ export default function GreetingBlock({ country, profile }: GreetingBlockProps) 
             <span>Dengarkan sapaan</span>
           </button>
         )}
-        <p className="country-greeting__status" role="status" aria-live="polite">
+        <output className="country-greeting__status" aria-live="polite">
           {statusText}
-        </p>
+        </output>
       </div>
     </section>
   );

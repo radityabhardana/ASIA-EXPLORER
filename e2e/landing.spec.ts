@@ -225,9 +225,6 @@ test.describe('reduced motion', () => {
     await expect(
       page.locator('.landing-scene--scale .landing-display__number'),
     ).toHaveText('15');
-    await expect(
-      page.locator('.landing-scene--language .landing-display__number'),
-    ).toHaveText('718');
 
     // Tidak ada stage yang menempel.
     const positions = await page

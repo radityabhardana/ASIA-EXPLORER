@@ -138,7 +138,7 @@
   color: var(--ink);
 }
 
-/* --- Hover label (imperatif; JANGAN set left/top/transform di CSS) ------- */
+/* --- Hover label (sleek pill capsule with accent dot & paper blur) ------- */
 
 .asia-scene__label {
   position: absolute;
@@ -155,14 +155,14 @@
   transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(244, 237, 225, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(140, 115, 85, 0.22);
+  gap: 7px;
+  background: rgba(246, 240, 230, 0.94);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(160, 135, 105, 0.28);
   border-radius: 9999px;
-  padding: 5px 12px 5px 10px;
-  box-shadow: 0 4px 16px rgba(45, 35, 25, 0.08), 0 1px 3px rgba(45, 35, 25, 0.06);
+  padding: 5px 13px 5px 10px;
+  box-shadow: 0 4px 18px rgba(40, 30, 20, 0.1), 0 1px 3px rgba(40, 30, 20, 0.06);
 }
 
 .asia-scene__label[data-visible='true'] {
@@ -170,12 +170,14 @@
 }
 
 .asia-scene__label-dot {
-  width: 6px;
-  height: 6px;
+  width: 6.5px;
+  height: 6.5px;
   border-radius: 50%;
-  background-color: var(--accent, #b82323);
+  background-color: var(--accent, #c53a2a);
   display: inline-block;
   flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(197, 58, 42, 0.3);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
 }
 
 .asia-scene__label-id {
@@ -189,6 +191,7 @@
   font-size: var(--text-label, 0.875rem);
   font-weight: var(--weight-regular, 400);
   color: var(--ink-muted, #5c6670);
+  letter-spacing: 0.01em;
 }
 
 .asia-scene__label-region {
@@ -226,7 +229,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 3px;
+  gap: 4px;
   pointer-events: none;
   font-family: var(--font-text, sans-serif);
   user-select: none;
@@ -251,8 +254,8 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
+  gap: 7px;
+  font-size: 0.75rem;
   color: var(--ink, #2c2825);
   line-height: 1.25;
 }
@@ -286,8 +289,8 @@
 
 @media (max-width: 640px) {
   .scene-controls-hint {
-    bottom: 12px;
-    font-size: 0.7rem;
+    bottom: 16px;
+    font-size: 0.72rem;
     width: 90%;
     white-space: normal;
   }

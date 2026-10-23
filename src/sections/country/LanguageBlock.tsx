@@ -14,38 +14,17 @@ type LanguageBlockProps = {
 
 type PlaybackStatus = 'idle' | 'speaking' | 'error';
 
-function primarySubtag(lang: string): string {
-  return lang.split('-')[0]?.toLowerCase() ?? '';
-}
-
 export default function LanguageBlock({ country, profile }: LanguageBlockProps) {
   const { language, phrases, greeting } = country;
-  const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [status, setStatus] = useState<PlaybackStatus>('idle');
   const [activeSpeechText, setActiveSpeechText] = useState<string | null>(null);
   const supported = isSpeechSupported();
 
   useEffect(() => {
-    if (!isSpeechSupported()) {
-      return;
-    }
-
-    const synth = window.speechSynthesis;
-    const wanted = primarySubtag(profile.speechLang);
-    const update = () => {
-      const voices = synth.getVoices();
-      setVoiceAvailable(voices.some((voice) => primarySubtag(voice.lang) === wanted));
-    };
-
-    synth.addEventListener('voiceschanged', update);
-    const probe = window.setTimeout(update, 0);
-
     return () => {
-      window.clearTimeout(probe);
-      synth.removeEventListener('voiceschanged', update);
       cancelSpeech();
     };
-  }, [profile.speechLang]);
+  }, []);
 
   const statusText =
     status === 'error'
@@ -54,11 +33,12 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
         ? `Memutar audio${activeSpeechText ? ` "${activeSpeechText}"` : ''}…`
         : '';
 
-  function handlePlay(text: string, label: string) {
+  function handlePlay(text: string, label: string, fallbackText?: string) {
     setActiveSpeechText(label);
     setStatus('speaking');
     const started = speak(text, {
       lang: profile.speechLang || profile.lang,
+      fallbackText,
       onEnd: () => {
         setStatus('idle');
         setActiveSpeechText(null);
@@ -75,7 +55,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
   }
 
   function handleListenGreeting() {
-    handlePlay(greeting.native, greeting.meaningId);
+    handlePlay(greeting.native, greeting.meaningId, greeting.roman);
   }
 
   return (
@@ -115,7 +95,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
           {greeting.register.trim().length > 0 && (
             <p className="country-specimen__register">{greeting.register}</p>
           )}
-          {supported && (voiceAvailable || true) && (
+          {supported && (
             <div className="country-language__audio-wrap">
               <button
                 type="button"
@@ -143,7 +123,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
                   <button
                     type="button"
                     className="country-audio-btn"
-                    onClick={() => handlePlay(phrase.native, phrase.id)}
+                    onClick={() => handlePlay(phrase.native, phrase.id, phrase.roman)}
                     aria-label={`Dengarkan pengucapan ${phrase.id}: ${phrase.native}`}
                   >
                     🔊 Dengarkan

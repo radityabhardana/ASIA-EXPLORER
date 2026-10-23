@@ -43,11 +43,10 @@
 .landing-scene--scale {
   height: 120vh;
 }
-.landing-scene--language {
-  height: 100vh;
-}
 .landing-scene--script {
-  height: 150vh;
+  height: auto;
+  min-height: 0;
+  padding: clamp(48px, 8vh, 80px) 0;
   background-color: var(--paper);
   isolation: isolate;
   z-index: 2;
@@ -56,13 +55,22 @@
   height: auto;
   min-height: 120vh;
 }
+.landing-scene--invitation {
+  height: auto;
+  min-height: 80vh;
+  padding: clamp(48px, 8vh, 80px) 0;
+}
 .landing-scene--mosaic {
   height: auto;
   min-height: 100vh;
 }
 .landing-scene--footer {
   height: auto;
-  min-height: 80vh;
+  min-height: 0;
+  padding: 32px 0 36px;
+  background-color: var(--paper);
+  position: relative;
+  z-index: 2;
 }
 
 /* --- Stage -------------------------------------------------------------- */
@@ -479,50 +487,6 @@
   stroke-width: 2.2;
 }
 
-/* --- Scene 3 — bahasa: copy di atas, siluet Indonesia full-bleed di bawah  */
-
-.landing-stage--language {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: var(--space-4);
-  padding-block: var(--space-4);
-}
-
-.landing-lang__shape {
-  color: var(--ink);
-  opacity: 0.12;
-}
-
-.landing-lang__sil {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-  overflow: clip;
-}
-
-.landing-lang__sil .landing-sil {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Komposisi bahasa: siluet lebih tinggi (44vh) supaya union ink teks+siluet
-   tetap >= 70vh dan komposisi terdistribusi penuh di semua lebar,
-   bukan terkumpul di pita atas. */
-.landing-stage--language {
-  grid-template-rows: 44vh minmax(0, 1fr);
-}
-
-.landing-lang__sil {
-  height: 44vh;
-  min-height: 0;
-}
-
-.landing-stage--language .landing-stage__copy {
-  align-self: center;
-}
-
 /* --- Scene 4 — aksara ---------------------------------------------------- */
 
 .landing-stage--script {
@@ -530,9 +494,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: clamp(28px, 5vh, 48px);
-  padding-top: clamp(48px, 9vh, 96px);
-  padding-bottom: var(--space-4);
+  gap: clamp(20px, 3.5vh, 36px);
+  padding: 0 var(--landing-gutter);
+  height: auto;
   width: 100%;
 }
 
@@ -546,7 +510,7 @@
   margin-inline: calc(-1 * var(--landing-gutter));
   background: var(--ground, #ede5d5);
   border-block: 1px solid var(--line);
-  padding: 32px 0;
+  padding: 28px 0;
   box-shadow: inset 0 1px 3px rgba(44, 38, 30, 0.03);
 }
 
@@ -601,13 +565,14 @@
   gap: var(--space-2);
   flex-shrink: 0;
   width: clamp(260px, 20vw, 320px);
-  padding: clamp(18px, 2.4vh, 24px) clamp(20px, 2vw, 26px);
-  background: linear-gradient(145deg, #fdfbf7, #f3ece0);
+  padding: clamp(18px, 2.2vh, 22px) clamp(20px, 2vw, 24px);
+  background: linear-gradient(165deg, #fffef9 0%, #f7f1e6 100%);
   border: 1px solid #dcd1c2;
-  border-radius: 6px;
-  box-shadow: 0 4px 16px rgba(44, 38, 30, 0.06);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(44, 38, 30, 0.05);
   text-align: start;
   outline: none;
+  cursor: pointer;
   transition: transform 220ms var(--ease-standard),
               box-shadow 220ms var(--ease-standard),
               border-color 220ms var(--ease-standard);
@@ -615,7 +580,7 @@
 
 .landing-script__card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(44, 38, 30, 0.1);
+  box-shadow: 0 10px 24px rgba(44, 38, 30, 0.09);
   border-color: #c4b5a2;
 }
 
@@ -635,15 +600,30 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  border-bottom: 1px solid #e2d7c8;
-  padding-bottom: 8px;
+  border-bottom: 1px solid #e8decb;
+  padding-bottom: 10px;
   width: 100%;
 }
 
 .landing-script__card-identity {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+}
+
+.landing-script__country-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-script__accent-bar {
+  display: inline-block;
+  width: 3px;
+  height: 11px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .landing-script__country {
@@ -658,7 +638,7 @@
   margin: 0;
   font-size: 11px;
   line-height: var(--leading-label);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: var(--ink-muted);
   white-space: nowrap;
 }
@@ -735,10 +715,17 @@
   }
 }
 
+.landing-script__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 4px 0 0;
+}
+
 .landing-script__native {
-  margin: var(--space-2) 0;
-  font-size: clamp(1.4rem, 2vw, 1.85rem);
-  line-height: 1.3;
+  margin: 0;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  line-height: 1.25;
   color: var(--ink);
   font-weight: var(--weight-regular);
   overflow-wrap: normal;
@@ -751,8 +738,8 @@
 .landing-script__roman {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-  line-height: 1.4;
+  font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+  line-height: 1.35;
   letter-spacing: 0.01em;
   color: var(--ink-secondary);
   font-style: italic;
@@ -763,10 +750,12 @@
 
 .landing-script__meaning {
   margin: 0;
-  font-size: var(--text-label);
-  line-height: var(--leading-label);
+  font-size: 11px;
+  line-height: 1.35;
   color: var(--ink-muted);
-  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .landing-script__native[lang='th'],
@@ -1436,29 +1425,74 @@
   outline-offset: 2px;
 }
 
+/* --- Scene 5 — peta interaktif (undangan penjelajahan) ------------------- */
+
+.landing-stage--invitation {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  justify-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--landing-gutter);
+  max-width: 1440px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.landing-invitation__scene {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  height: 72vh;
+  min-height: 480px;
+}
+
+.landing-invitation__scene .landing-asia {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-invitation__scene .asia-scene {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  min-height: 480px;
+}
+
+.landing-invitation__scene .landing-asia__placeholder {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  min-height: 480px;
+}
+
 /* --- Scene 7 — footer: wordmark dan hak cipta --------------------------- */
 
 .landing-stage--footer {
   height: auto;
-  min-height: 28vh;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: var(--space-3);
-  padding-block: clamp(48px, 8vh, 96px);
-  padding-inline: var(--landing-gutter);
+  gap: var(--space-2);
+  padding: 36px var(--landing-gutter) 0;
+  border-top: 1px solid var(--line);
+  max-width: 1440px;
+  margin-inline: auto;
+  width: 100%;
 }
 
 .landing-footer__mark {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  letter-spacing: 0.12em;
+  font-size: clamp(1.8rem, 2.4vw, 2.1rem);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--ink);
   font-weight: var(--weight-regular);
+  line-height: 1.2;
 }
 
 .landing-footer__copyright {
@@ -1468,7 +1502,7 @@
   line-height: var(--leading-label);
   color: var(--ink-muted);
   letter-spacing: 0.04em;
-  max-width: 580px;
+  max-width: 600px;
 }
 
 /* --- Wadah scene 3D (fallback svg) --------------------------------------- */
@@ -1511,13 +1545,12 @@
 /* --- Mobile & tablet ------------------------------------------------------ */
 
 @media (max-width: 767px) {
-  /* Mobile: panggung aksara tetap ter-pin, pita marquee mengalir halus */
   .landing-scene--script .landing-stage {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding-top: clamp(40px, 8vh, 64px);
-    padding-bottom: clamp(24px, 6vh, 48px);
+    position: relative;
+    top: auto;
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .landing-script__band {
@@ -1557,8 +1590,15 @@
     max-height: 42vh;
   }
 
-  .landing-lang__sil {
-    min-height: 220px;
+  .landing-invitation__scene {
+    width: 100%;
+    height: 60vh;
+    min-height: 380px;
+  }
+
+  .landing-invitation__scene .asia-scene,
+  .landing-invitation__scene .landing-asia__placeholder {
+    min-height: 380px;
   }
 }
 
@@ -1574,12 +1614,6 @@
        copy bahasa jatuh tepat di tepi lipatan viewport. */
     justify-content: flex-start;
     padding-top: clamp(24px, 8vh, 72px);
-  }
-
-  /* Row kedua grid bahasa: copy mengantri di atas row, bukan center, agar
-     muncul di viewport pada kuantil 25%. */
-  .landing-stage--language .landing-stage__copy {
-    align-self: start;
   }
 
   .landing [data-reveal] {

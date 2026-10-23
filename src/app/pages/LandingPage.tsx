@@ -3,12 +3,12 @@ import type { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { scrollToSection } from '@/lib/motion';
+import { speak } from '@/lib/speech';
 import { differs, profileFor } from '@/sections/country/scripts';
 import Navbar from '@/app/Navbar';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import MosaicGallery from '@/sections/landing/MosaicGallery';
-import Silhouette from '@/sections/landing/Silhouette';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import {
   SCRIPT_COUNTRY_IDS,
@@ -34,6 +34,7 @@ export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
   const heroProgressRef = useRef(0);
+  const invitationProgressRef = useRef(0.5);
   /**
    * Sumber sorotan tunggal scene Skala: tween GSAP menulis 0..1 di sini dan
    * teks counter dalam satu onUpdate — jumlah tinta 3D selalu = teks counter.
@@ -67,28 +68,20 @@ export default function LandingPage() {
     };
   }, []);
 
-  const speakGreeting = (countryId: string, text: string, speechLang: string) => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
-      return;
-    }
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = speechLang;
-      utterance.rate = 0.88;
-      setSpeakingId(countryId);
-
-      utterance.onend = () => {
-        setSpeakingId((cur) => (cur === countryId ? null : cur));
-      };
-      utterance.onerror = () => {
-        setSpeakingId((cur) => (cur === countryId ? null : cur));
-      };
-
-      window.speechSynthesis.speak(utterance);
-    } catch {
-      setSpeakingId(null);
-    }
+  const speakGreeting = (
+    countryId: string,
+    text: string,
+    romanText: string,
+    speechLang: string,
+  ) => {
+    setSpeakingId(countryId);
+    speak(text, {
+      lang: speechLang,
+      fallbackText: romanText,
+      rate: 0.9,
+      onEnd: () => setSpeakingId((cur) => (cur === countryId ? null : cur)),
+      onError: () => setSpeakingId((cur) => (cur === countryId ? null : cur)),
+    });
   };
 
   const handleSkipToMap = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -192,38 +185,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 3 — kedalaman bahasa */}
-      <section
-        className="landing-scene landing-scene--language landing-scene--pinned"
-        aria-labelledby="landing-language-heading"
-      >
-        <div className="landing-stage landing-stage--language">
-          <div className="landing-lang__sil">
-            <Silhouette id="id" className="landing-lang__shape" fit="slice" />
-          </div>
-
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display landing-display--stat landing-display--wide"
-              id="landing-language-heading"
-            >
-              <span className="landing-display__number" data-counter="718">
-                718
-              </span>
-              <span className="landing-display__words">
-                bahasa daerah, Indonesia (Badan Bahasa)
-              </span>
-            </h2>
-            <p className="landing-note">
-              Tercatat dari 2.560 titik pengamatan di seluruh kepulauan.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Scene 4 — panggung aksara (K12) */}
       <section
-        className="landing-scene landing-scene--script landing-scene--pinned"
+        className="landing-scene landing-scene--script"
         aria-labelledby="landing-script-heading"
       >
         <div className="landing-stage landing-stage--script">
@@ -252,18 +216,31 @@ export default function LandingPage() {
                         tabIndex={0}
                         aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}. Ketuk untuk mendengarkan pengucapan.`}
                         onClick={() =>
-                          speakGreeting(country.id, country.greeting.native, profile.speechLang)
+                          speakGreeting(
+                            country.id,
+                            country.greeting.native,
+                            country.greeting.roman,
+                            profile.speechLang,
+                          )
                         }
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            speakGreeting(country.id, country.greeting.native, profile.speechLang);
+                            speakGreeting(
+                              country.id,
+                              country.greeting.native,
+                              country.greeting.roman,
+                              profile.speechLang,
+                            );
                           }
                         }}
                       >
                         <div className="landing-script__card-header">
                           <div className="landing-script__card-identity">
-                            <span className="landing-script__country">{country.nameId}</span>
+                            <div className="landing-script__country-badge">
+                              <span className="landing-script__accent-bar" aria-hidden="true" />
+                              <span className="landing-script__country">{country.nameId}</span>
+                            </div>
                             <span className="landing-script__label">
                               {country.language.nameId}
                             </span>
@@ -274,7 +251,12 @@ export default function LandingPage() {
                             aria-label={`Dengarkan pengucapan sapaan ${country.nameId}`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              speakGreeting(country.id, country.greeting.native, profile.speechLang);
+                              speakGreeting(
+                                country.id,
+                                country.greeting.native,
+                                country.greeting.roman,
+                                profile.speechLang,
+                              );
                             }}
                           >
                             {isSpeaking ? (
@@ -301,14 +283,21 @@ export default function LandingPage() {
                             )}
                           </button>
                         </div>
-                        <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
-                          {country.greeting.native}
-                        </p>
-                        <p className="landing-script__roman">
-                          {differs(country.greeting.native, country.greeting.roman)
-                            ? country.greeting.roman
-                            : country.greeting.meaningId}
-                        </p>
+                        <div className="landing-script__card-body">
+                          <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
+                            {country.greeting.native}
+                          </p>
+                          <p className="landing-script__roman">
+                            {differs(country.greeting.native, country.greeting.roman)
+                              ? country.greeting.roman
+                              : country.greeting.meaningId}
+                          </p>
+                          {differs(country.greeting.native, country.greeting.roman) && country.greeting.meaningId && (
+                            <p className="landing-script__meaning">
+                              &ldquo;{country.greeting.meaningId}&rdquo;
+                            </p>
+                          )}
+                        </div>
                       </article>
                     );
                   })}
@@ -324,12 +313,20 @@ export default function LandingPage() {
                         className={`landing-script__item landing-script__card ${isSpeaking ? 'landing-script__card--speaking' : ''}`}
                         tabIndex={-1}
                         onClick={() =>
-                          speakGreeting(country.id, country.greeting.native, profile.speechLang)
+                          speakGreeting(
+                            country.id,
+                            country.greeting.native,
+                            country.greeting.roman,
+                            profile.speechLang,
+                          )
                         }
                       >
                         <div className="landing-script__card-header">
                           <div className="landing-script__card-identity">
-                            <span className="landing-script__country">{country.nameId}</span>
+                            <div className="landing-script__country-badge">
+                              <span className="landing-script__accent-bar" aria-hidden="true" />
+                              <span className="landing-script__country">{country.nameId}</span>
+                            </div>
                             <span className="landing-script__label">
                               {country.language.nameId}
                             </span>
@@ -341,7 +338,12 @@ export default function LandingPage() {
                             aria-label={`Dengarkan pengucapan sapaan ${country.nameId}`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              speakGreeting(country.id, country.greeting.native, profile.speechLang);
+                              speakGreeting(
+                                country.id,
+                                country.greeting.native,
+                                country.greeting.roman,
+                                profile.speechLang,
+                              );
                             }}
                           >
                             {isSpeaking ? (
@@ -368,14 +370,21 @@ export default function LandingPage() {
                             )}
                           </button>
                         </div>
-                        <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
-                          {country.greeting.native}
-                        </p>
-                        <p className="landing-script__roman">
-                          {differs(country.greeting.native, country.greeting.roman)
-                            ? country.greeting.roman
-                            : country.greeting.meaningId}
-                        </p>
+                        <div className="landing-script__card-body">
+                          <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
+                            {country.greeting.native}
+                          </p>
+                          <p className="landing-script__roman">
+                            {differs(country.greeting.native, country.greeting.roman)
+                              ? country.greeting.roman
+                              : country.greeting.meaningId}
+                          </p>
+                          {differs(country.greeting.native, country.greeting.roman) && country.greeting.meaningId && (
+                            <p className="landing-script__meaning">
+                              &ldquo;{country.greeting.meaningId}&rdquo;
+                            </p>
+                          )}
+                        </div>
                       </article>
                     );
                   })}
@@ -628,6 +637,34 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Scene 5 — Peta Interaktif & Pilih Negara */}
+      <section
+        id="peta"
+        ref={mapSectionRef}
+        tabIndex={-1}
+        className="landing-scene landing-scene--invitation"
+        aria-labelledby="landing-invitation-heading"
+      >
+        <div className="landing-stage landing-stage--invitation">
+          <div className="landing-stage__copy landing-center" data-reveal>
+            <p className="landing-kicker">PETA INTERAKTIF</p>
+            <h2 className="landing-display" id="landing-invitation-heading">
+              Pilih Negara, Mulai Penjelajahan
+            </h2>
+            <p className="landing-note">Sentuh atau arahkan kursor ke benua 3D untuk menjelajahi 15 negara.</p>
+          </div>
+
+          <div className="landing-invitation__scene" data-reveal>
+            <AsiaSceneLazy
+              debugKey="invitation"
+              label="Peta Asia interaktif"
+              scrollProgressRef={invitationProgressRef}
+              showOverlays={true}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Scene Mosaik — 15 Negara, Satu Benua */}
       <MosaicGallery />
 
@@ -637,10 +674,10 @@ export default function LandingPage() {
         aria-labelledby="landing-footer-heading"
       >
         <div className="landing-stage landing-stage--footer">
-          <p className="landing-footer__mark" id="landing-footer-heading" data-reveal>
+          <p className="landing-footer__mark" id="landing-footer-heading">
             Asia Explorer
           </p>
-          <p className="landing-footer__copyright" data-reveal>
+          <p className="landing-footer__copyright">
             &copy; 2026 Asia Explorer &middot; Ekspedisi tipografi, etiket, dan kartografi 15 negara.
           </p>
         </div>

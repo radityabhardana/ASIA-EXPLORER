@@ -47,43 +47,43 @@ import '@/styles/scene.css';
 
 /**
  * Palet warna elegan terinspirasi dari identitas bendera/nasional masing-masing 15 negara:
- * - id (Indonesia): Merah terakota & putih hangat (#c23b2b)
- * - my (Malaysia): Royal navy & red accent (#27496d)
- * - sg (Singapura): Crimson scarlet (#cf2e2e)
- * - th (Thailand): Indigo navy (#2d3748)
- * - vn (Vietnam): Imperial crimson (#b32424)
- * - ph (Filipina): Royal blue (#29527a)
- * - cn (Tiongkok): Vermilion gold (#ba2626)
- * - jp (Jepang): Crimson sun (#c53030)
- * - kr (Korea Selatan): Taegeuk cobalt (#2b5282)
- * - in (India): Saffron warm amber (#c66917)
- * - sa (Arab Saudi): Oasis emerald green (#236b3b)
- * - tr (Turki): Turkish deep red (#b82323)
- * - kz (Kazakhstan): Steppe azure blue (#2b7a8a)
- * - uz (Uzbekistan): Turquoise sky (#286b94)
- * - mn (Mongolia): Mongolian sky blue (#2b5c8f)
+ * - id (Indonesia): Indonesian crimson vermilion (#c53a2a)
+ * - my (Malaysia): Malaysian deep royal navy (#244b78)
+ * - sg (Singapura): Singapore scarlet (#d42b2b)
+ * - th (Thailand): Thai royal navy (#283852)
+ * - vn (Vietnam): Vietnam imperial red (#b82323)
+ * - ph (Filipina): Philippine royal sapphire (#205085)
+ * - cn (Tiongkok): China vermilion (#be2424)
+ * - jp (Jepang): Japan sun red (#cb2d2d)
+ * - kr (Korea Selatan): Korea taegeuk blue (#25528c)
+ * - mn (Mongolia): Mongolian azure sky (#286299)
+ * - in (India): India saffron amber (#d06a1c)
+ * - sa (Arab Saudi): Saudi oasis green (#1f6d38)
+ * - tr (Turki): Turkish crimson (#bd2020)
+ * - kz (Kazakhstan): Kazakh azure steppe (#257e90)
+ * - uz (Uzbekistan): Uzbek turquoise (#23739e)
  */
 export const COUNTRY_COLORS: Record<string, string> = {
   // Southeast Asia
-  id: '#c23b2b',
-  my: '#27496d',
-  sg: '#cf2e2e',
-  th: '#2d3748',
-  vn: '#b32424',
-  ph: '#29527a',
+  id: '#c53a2a',
+  my: '#244b78',
+  sg: '#d42b2b',
+  th: '#283852',
+  vn: '#b82323',
+  ph: '#205085',
   // East Asia
-  cn: '#ba2626',
-  jp: '#c53030',
-  kr: '#2b5282',
-  mn: '#2b5c8f',
+  cn: '#be2424',
+  jp: '#cb2d2d',
+  kr: '#25528c',
+  mn: '#286299',
   // South Asia
-  in: '#c66917',
+  in: '#d06a1c',
   // West Asia
-  sa: '#236b3b',
-  tr: '#b82323',
+  sa: '#1f6d38',
+  tr: '#bd2020',
   // Central Asia
-  kz: '#2b7a8a',
-  uz: '#286b94',
+  kz: '#257e90',
+  uz: '#23739e',
 };
 
 export const REGION_COLORS: Record<string, string> = COUNTRY_COLORS;
@@ -276,8 +276,8 @@ const FIT_INK_SPAN_Y = 1.86;
 const FIT_INK_SAFETY = 1.04;
 
 const HOVER_HYSTERESIS_MS = 130;
-const MATERIAL_ROUGHNESS = 0.55;
-const MATERIAL_METALNESS = 0.05;
+const MATERIAL_ROUGHNESS = 0.42;
+const MATERIAL_METALNESS = 0.08;
 const OUTLINE_OPACITY = 0.45;
 const MIN_CAMERA_DISTANCE = 130;
 const MAX_CAMERA_DISTANCE = 320;
@@ -514,14 +514,14 @@ export default function AsiaScene({
       return new Color(value || '#b9b4aa');
     };
 
-    const ambient = new AmbientLight(0xfff8ee, 0.25);
+    const ambient = new AmbientLight(0xfff8ee, 0.2);
     scene.add(ambient);
 
-    const hemi = new HemisphereLight(0xfff8ee, 0xd4cac0, 0.7);
+    const hemi = new HemisphereLight(0xfff8ee, 0xdcd0c0, 0.75);
     scene.add(hemi);
 
-    // Main sun light from NW
-    const sun = new DirectionalLight(0xfffdf8, 1.25);
+    // Main sun light from NW (0xfffcf5, 1.35)
+    const sun = new DirectionalLight(0xfffcf5, 1.35);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     sun.shadow.camera.left = -180;
@@ -535,9 +535,10 @@ export default function AsiaScene({
     scene.add(sun);
     scene.add(sun.target);
 
-    // Soft warm directional fill light from SE
-    const fill = new DirectionalLight(0xe8dfd5, 0.45);
+    // Warm SE fill light (0xebe0d2, 0.55)
+    const fill = new DirectionalLight(0xebe0d2, 0.55);
     scene.add(fill);
+    scene.add(fill.target);
 
     // groundLike: semua objek panggung tanah disembunyikan saat measureInk()
     const groundLike: Object3D[] = [];
@@ -741,6 +742,13 @@ export default function AsiaScene({
           labelRegionRef.current.textContent = region;
         }
 
+        const labelDot = labelEl.querySelector<HTMLElement>('.asia-scene__label-dot');
+        if (labelDot) {
+          const colorHex = COUNTRY_COLORS[id] || '#c53a2a';
+          labelDot.style.backgroundColor = colorHex;
+          labelDot.style.boxShadow = `0 0 6px ${colorHex}55`;
+        }
+
         labelW = labelEl.offsetWidth || 120;
         labelH = labelEl.offsetHeight || 24;
 
@@ -938,14 +946,18 @@ export default function AsiaScene({
     };
 
     const onWheel = (event: WheelEvent) => {
-      event.preventDefault();
-      triggerInterrupt();
-      userHasControlled = true;
-      const zoomFactor = event.deltaY * 0.12;
-      targetDistance = Math.max(
-        MIN_CAMERA_DISTANCE,
-        Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
-      );
+      // Hanya izinkan zoom bila tombol Ctrl ditekan (pola umum peta interaktif web)
+      // Normal mouse wheel scrolling TIDAK PERNAH di-intercept / di-preventDefault
+      if (event.ctrlKey) {
+        event.preventDefault();
+        triggerInterrupt();
+        userHasControlled = true;
+        const zoomFactor = event.deltaY * 0.12;
+        targetDistance = Math.max(
+          MIN_CAMERA_DISTANCE,
+          Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
+        );
+      }
     };
 
     const onDblClick = (event: MouseEvent) => {
@@ -1744,31 +1756,105 @@ export default function AsiaScene({
       const continentDepth = continentSize.z;
       const baseY = minCountryBottomY - 0.04;
 
-      // 1. Panggung ground penangkap bayangan lembut di atas kertas #f4ede1 / #ede7dc
+      // 1. Panggung ground penangkap bayangan lembut di atas kertas (opacity 0.14)
       const groundGeometry = new PlaneGeometry(1200, 1200);
-      const groundMaterial = new ShadowMaterial({ opacity: 0.16 });
+      const groundMaterial = new ShadowMaterial({ opacity: 0.14 });
       const ground = new Mesh(groundGeometry, groundMaterial);
       ground.rotation.x = -Math.PI / 2;
       ground.position.set(center.x, baseY, center.z);
       ground.receiveShadow = true;
       scene.add(ground);
 
-      // 2. Lingkar kompas / kartografi tipis elegan mengitari benua (opacity ~0.25)
+      // 2. Cincin kompas kartografi kuningan hangat (delicate warm brass)
       const ringRadius = Math.max(118, Math.hypot(continentWidth, continentDepth) * 0.58);
-      const ringGeometry = new RingGeometry(ringRadius - 0.25, ringRadius + 0.25, 180);
+      const ringGeometry = new RingGeometry(ringRadius - 0.22, ringRadius + 0.22, 180);
       ringGeometry.rotateX(-Math.PI / 2);
       const ringMaterial = new MeshBasicMaterial({
-        color: 0x3d352c,
+        color: 0xa88454,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.32,
         depthWrite: false,
       });
       const ringMesh = new Mesh(ringGeometry, ringMaterial);
       ringMesh.position.set(center.x, baseY + 0.005, center.z);
       scene.add(ringMesh);
 
+      // 3. Cincin konsentris halus bagian dalam
+      const innerRingGeometry = new RingGeometry(ringRadius - 3.2, ringRadius - 3.0, 180);
+      innerRingGeometry.rotateX(-Math.PI / 2);
+      const innerRingMaterial = new MeshBasicMaterial({
+        color: 0xa88454,
+        transparent: true,
+        opacity: 0.18,
+        depthWrite: false,
+      });
+      const innerRingMesh = new Mesh(innerRingGeometry, innerRingMaterial);
+      innerRingMesh.position.set(center.x, baseY + 0.005, center.z);
+      scene.add(innerRingMesh);
+
+      // 4. Titik kardinal dan tanda derajat (cardinal points & degree ticks)
+      const tickPositions: number[] = [];
+      const numTicks = 72; // setiap 5 derajat
+      for (let i = 0; i < numTicks; i++) {
+        const theta = (i * 2 * Math.PI) / numTicks;
+        const cos = Math.cos(theta);
+        const sin = Math.sin(theta);
+
+        let rInner = ringRadius - 1.2;
+        let rOuter = ringRadius - 0.1;
+
+        const isCardinal = i % 18 === 0;
+        const isMajor = i % 6 === 0;
+        const isMid = i % 3 === 0;
+
+        if (isCardinal) {
+          rInner = ringRadius - 4.2;
+          rOuter = ringRadius + 2.2;
+        } else if (isMajor) {
+          rInner = ringRadius - 3.1;
+          rOuter = ringRadius + 0.2;
+        } else if (isMid) {
+          rInner = ringRadius - 2.2;
+          rOuter = ringRadius - 0.1;
+        }
+
+        tickPositions.push(
+          center.x + cos * rInner,
+          baseY + 0.006,
+          center.z + sin * rInner,
+          center.x + cos * rOuter,
+          baseY + 0.006,
+          center.z + sin * rOuter,
+        );
+
+        if (isCardinal) {
+          const crossR = ringRadius + 1.2;
+          const perpX = -sin * 0.9;
+          const perpZ = cos * 0.9;
+          tickPositions.push(
+            center.x + cos * crossR - perpX,
+            baseY + 0.006,
+            center.z + sin * crossR - perpZ,
+            center.x + cos * crossR + perpX,
+            baseY + 0.006,
+            center.z + sin * crossR + perpZ,
+          );
+        }
+      }
+
+      const ticksGeometry = new BufferGeometry();
+      ticksGeometry.setAttribute('position', new Float32BufferAttribute(tickPositions, 3));
+      const ticksMaterial = new LineBasicMaterial({
+        color: 0xa88454,
+        transparent: true,
+        opacity: 0.28,
+        depthWrite: false,
+      });
+      const ticksMesh = new LineSegments(ticksGeometry, ticksMaterial);
+      scene.add(ticksMesh);
+
       // groundLike: semua objek panggung tanah disembunyikan saat measureInk()
-      groundLike.push(ground, ringMesh);
+      groundLike.push(ground, ringMesh, innerRingMesh, ticksMesh);
 
       // K8: Posisi pencahayaan matahari dari NW (azimut 315°, elevasi 48°)
       sun.position.set(center.x - 100, center.y + 140, center.z - 100);
@@ -1776,6 +1862,8 @@ export default function AsiaScene({
       sun.target.updateMatrixWorld();
 
       fill.position.set(center.x + 100, center.y + 70, center.z + 100);
+      fill.target.position.copy(center);
+      fill.target.updateMatrixWorld();
 
       scene.add(gltf.scene);
 
@@ -1862,15 +1950,39 @@ export default function AsiaScene({
             mesh.material.dispose();
           }
         }
+        for (const obj of groundLike) {
+          obj.removeFromParent();
+          if ('geometry' in obj && obj.geometry instanceof BufferGeometry) {
+            obj.geometry.dispose();
+          }
+          if ('material' in obj && obj.material) {
+            const mat = obj.material;
+            if (Array.isArray(mat)) {
+              for (const m of mat) m.dispose();
+            } else if (
+              mat instanceof ShadowMaterial ||
+              mat instanceof MeshStandardMaterial ||
+              mat instanceof MeshBasicMaterial ||
+              mat instanceof LineBasicMaterial
+            ) {
+              mat.dispose();
+            }
+          }
+        }
         scene.traverse((object) => {
-          if (object instanceof Mesh && !countries.some((c) => c.mesh === object)) {
+          if (
+            object instanceof Mesh &&
+            !countries.some((c) => c.mesh === object) &&
+            !groundLike.includes(object)
+          ) {
             object.geometry.dispose();
             const material = object.material;
             if (!Array.isArray(material)) {
               if (
                 material instanceof ShadowMaterial ||
                 material instanceof MeshStandardMaterial ||
-                material instanceof MeshBasicMaterial
+                material instanceof MeshBasicMaterial ||
+                material instanceof LineBasicMaterial
               ) {
                 material.dispose();
               }
@@ -1916,26 +2028,26 @@ export default function AsiaScene({
           <div className="scene-legend" aria-label="Legenda Wilayah">
             <span className="scene-legend__title">WILAYAH</span>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#b82323' }} /> West Asia
+              <span className="scene-legend__color" style={{ background: '#bd2020' }} /> West Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#2b7a8a' }} /> Central
+              <span className="scene-legend__color" style={{ background: '#257e90' }} /> Central
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#c66917' }} /> South Asia
+              <span className="scene-legend__color" style={{ background: '#d06a1c' }} /> South Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#c23b2b' }} /> Southeast
+              <span className="scene-legend__color" style={{ background: '#c53a2a' }} /> Southeast
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#ba2626' }} /> East Asia
+              <span className="scene-legend__color" style={{ background: '#be2424' }} /> East Asia
             </div>
           </div>
 
           <p className="scene-controls-hint">
-            Tarik untuk memutar · Scroll untuk zoom · Klik negara untuk fokus
+            Tarik untuk memutar · Klik negara untuk fokus
           </p>
         </>
       )}

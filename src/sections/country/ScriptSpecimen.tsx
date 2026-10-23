@@ -14,15 +14,10 @@ type ScriptSpecimenProps = {
 
 type PlaybackStatus = 'idle' | 'speaking' | 'error';
 
-function primarySubtag(lang: string): string {
-  return lang.split('-')[0]?.toLowerCase() ?? '';
-}
-
 export default function ScriptSpecimen({ country, profile }: ScriptSpecimenProps) {
   const { greeting, language } = country;
   const containerRef = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(() => typeof IntersectionObserver === 'undefined');
-  const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [status, setStatus] = useState<PlaybackStatus>('idle');
   const supported = isSpeechSupported();
 
@@ -46,26 +41,10 @@ export default function ScriptSpecimen({ country, profile }: ScriptSpecimenProps
   }, []);
 
   useEffect(() => {
-    if (!isSpeechSupported()) {
-      return;
-    }
-
-    const synth = window.speechSynthesis;
-    const wanted = primarySubtag(profile.speechLang);
-    const update = () => {
-      const voices = synth.getVoices();
-      setVoiceAvailable(voices.some((voice) => primarySubtag(voice.lang) === wanted));
-    };
-
-    synth.addEventListener('voiceschanged', update);
-    const probe = window.setTimeout(update, 0);
-
     return () => {
-      window.clearTimeout(probe);
-      synth.removeEventListener('voiceschanged', update);
       cancelSpeech();
     };
-  }, [profile.speechLang]);
+  }, []);
 
   const statusText =
     status === 'error'
@@ -78,6 +57,7 @@ export default function ScriptSpecimen({ country, profile }: ScriptSpecimenProps
     setStatus('speaking');
     const started = speak(greeting.native, {
       lang: profile.speechLang,
+      fallbackText: greeting.roman,
       onEnd: () => {
         setStatus('idle');
       },
@@ -113,7 +93,7 @@ export default function ScriptSpecimen({ country, profile }: ScriptSpecimenProps
               <p className="country-specimen__register">{greeting.register}</p>
             )}
           </div>
-          {supported && voiceAvailable && (
+          {supported && (
             <button
               type="button"
               className="country-specimen__audio"
@@ -126,9 +106,9 @@ export default function ScriptSpecimen({ country, profile }: ScriptSpecimenProps
               <span>Dengarkan sapaan</span>
             </button>
           )}
-          <p className="country-specimen__status" role="status" aria-live="polite">
+          <output className="country-specimen__status" aria-live="polite">
             {statusText}
-          </p>
+          </output>
         </div>
       </div>
     </section>
