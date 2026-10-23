@@ -62,8 +62,8 @@ export default function LandingPage() {
     };
   }, []);
 
-  const selectedCountry = selectedId ? countryEntry(selectedId) ?? null : null;
-  const hoverCountry = hoverId ? countryEntry(hoverId) ?? null : null;
+  const selectedCountry = selectedId ? (countryEntry(selectedId) ?? null) : null;
+  const hoverCountry = hoverId ? (countryEntry(hoverId) ?? null) : null;
 
   const handleSkipToMap = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -74,20 +74,13 @@ export default function LandingPage() {
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
       <TopoBackground />
-      <a
-        className="landing-skip skip-link"
-        href="#peta"
-        onClick={handleSkipToMap}
-      >
+      <a className="landing-skip skip-link" href="#peta" onClick={handleSkipToMap}>
         Lewati ke peta
       </a>
       <Navbar onScrollToMap={handleSkipToMap} />
 
       {/* Scene 1 — hero */}
-      <section
-        className="landing-scene landing-scene--hero"
-        aria-labelledby="landing-title"
-      >
+      <section className="landing-scene landing-scene--hero" aria-labelledby="landing-title">
         <div className="landing-stage landing-stage--hero">
           <div className="landing-hero__ground" aria-hidden="true">
             <svg
@@ -127,12 +120,11 @@ export default function LandingPage() {
           </div>
 
           <div className="landing-hero__copy" data-intro>
+            <p className="landing-hero__eyebrow">PETA INTERAKTIF · 15 NEGARA</p>
+            <span className="landing-hero__accent-bar" aria-hidden="true" />
             <h1 className="landing-hero__title" id="landing-title">
               Asia Explorer
             </h1>
-            <p className="landing-hero__tagline">
-              Bahasa, aksara, dan budaya lima belas bangsa di benua Asia.
-            </p>
           </div>
 
           <div className="landing-hero__scene" data-intro>
@@ -164,9 +156,7 @@ export default function LandingPage() {
               <span className="landing-display__number" data-counter="15">
                 15
               </span>
-              <span className="landing-display__words">
-                negara dalam cakupan
-              </span>
+              <span className="landing-display__words">negara dalam cakupan</span>
             </h2>
             <p className="landing-note">Dari Turki sampai Jepang.</p>
           </div>
@@ -222,9 +212,7 @@ export default function LandingPage() {
             <h2 className="landing-display" id="landing-script-heading">
               Aksara yang bergerak
             </h2>
-            <p className="landing-note">
-              Limabelas negara, limabelas cara menuliskan sapaan.
-            </p>
+            <p className="landing-note">Limabelas negara, limabelas cara menuliskan sapaan.</p>
           </div>
 
           <div className="landing-script__viewport" data-reveal>
@@ -243,16 +231,10 @@ export default function LandingPage() {
                       tabIndex={0}
                       aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}`}
                     >
-                      <p
-                        className="landing-script__native"
-                        lang={profile.lang}
-                        dir={profile.dir}
-                      >
+                      <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
                         {country.greeting.native}
                       </p>
-                      <p className="landing-script__label">
-                        {country.language.nameId}
-                      </p>
+                      <p className="landing-script__label">{country.language.nameId}</p>
                       <p className="landing-script__roman">
                         {differs(country.greeting.native, country.greeting.roman)
                           ? country.greeting.roman
@@ -272,16 +254,10 @@ export default function LandingPage() {
                       className="landing-script__item landing-script__card"
                       tabIndex={-1}
                     >
-                      <p
-                        className="landing-script__native"
-                        lang={profile.lang}
-                        dir={profile.dir}
-                      >
+                      <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
                         {country.greeting.native}
                       </p>
-                      <p className="landing-script__label">
-                        {country.language.nameId}
-                      </p>
+                      <p className="landing-script__label">{country.language.nameId}</p>
                       <p className="landing-script__roman">
                         {differs(country.greeting.native, country.greeting.roman)
                           ? country.greeting.roman
@@ -303,10 +279,7 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--regional">
           <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display"
-              id="landing-regional-heading"
-            >
+            <h2 className="landing-display" id="landing-regional-heading">
               Satu kawasan, enam negara
             </h2>
             <p className="landing-note">
@@ -324,9 +297,7 @@ export default function LandingPage() {
                   <div className="landing-regional__sil-wrap">
                     <Silhouette id={item.id} className="landing-regional__sil" fit="meet" />
                   </div>
-                  <p className="landing-regional__name">
-                    {item.name}
-                  </p>
+                  <p className="landing-regional__name">{item.name}</p>
                 </div>
               ))}
             </div>
@@ -345,15 +316,10 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--invitation">
           <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display"
-              id="landing-invitation-heading"
-            >
+            <h2 className="landing-display" id="landing-invitation-heading">
               Pilih negara, mulai penjelajahan
             </h2>
-            <p className="landing-note">
-              Sentuh atau arahkan kursor ke negara di benua.
-            </p>
+            <p className="landing-note">Sentuh atau arahkan kursor ke negara di benua.</p>
           </div>
 
           <div className="landing-invitation__scene" data-reveal>
@@ -368,24 +334,14 @@ export default function LandingPage() {
             />
           </div>
 
-          <div
-            className="visually-hidden"
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {hoverCountry
-              ? `${hoverCountry.nameId}, ${hoverCountry.language.nameId}`
-              : ''}
+          <div className="visually-hidden" role="status" aria-live="polite" aria-atomic="true">
+            {hoverCountry ? `${hoverCountry.nameId}, ${hoverCountry.language.nameId}` : ''}
           </div>
           <p id="landing-map-help" className="visually-hidden">
             Gunakan peta atau indeks negara di bagian bawah halaman.
           </p>
 
-          <CountryDialog
-            country={selectedCountry}
-            onClose={() => setSelectedId(null)}
-          />
+          <CountryDialog country={selectedCountry} onClose={() => setSelectedId(null)} />
         </div>
       </section>
 
@@ -410,12 +366,8 @@ export default function LandingPage() {
                       aria-haspopup="dialog"
                       onClick={() => setSelectedId(country.id)}
                     >
-                      <span className="landing-footer__index-name">
-                        {country.nameId}
-                      </span>
-                      <span className="landing-footer__index-depth">
-                        {country.depth}
-                      </span>
+                      <span className="landing-footer__index-name">{country.nameId}</span>
+                      <span className="landing-footer__index-depth">{country.depth}</span>
                     </button>
                   </li>
                 ))}

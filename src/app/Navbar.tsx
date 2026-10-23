@@ -28,9 +28,7 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
     if (typeof window !== 'undefined') {
       localStorage.setItem('asiakin_lang', nextLang);
       document.documentElement.lang = nextLang;
-      window.dispatchEvent(
-        new CustomEvent('asiakin:langchange', { detail: { lang: nextLang } }),
-      );
+      window.dispatchEvent(new CustomEvent('asiakin:langchange', { detail: { lang: nextLang } }));
     }
   };
 
@@ -100,42 +98,28 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
   return (
     <header className="navbar" role="banner">
       <div className="navbar__container">
-        {/* Left: Wordmark & Navigation links */}
-        <div className="navbar__brand-nav">
-          <a
-            href="/"
-            className="navbar__wordmark"
-            aria-label="Asia Explorer — Beranda"
-          >
-            Asia Explorer
-          </a>
+        {/* Navigation links */}
+        <nav className="navbar__nav" aria-label="Navigasi utama">
+          <ul className="navbar__links">
+            <li>
+              <a href="#peta" className="navbar__link" onClick={handleScrollClick}>
+                Jelajah
+              </a>
+            </li>
+            <li>
+              <a href="/dashboard" className="navbar__link">
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a href="/negara" className="navbar__link">
+                Negara
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-          <nav className="navbar__nav" aria-label="Navigasi utama">
-            <ul className="navbar__links">
-              <li>
-                <a
-                  href="#peta"
-                  className="navbar__link"
-                  onClick={handleScrollClick}
-                >
-                  Jelajah
-                </a>
-              </li>
-              <li>
-                <a href="/dashboard" className="navbar__link">
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a href="/negara" className="navbar__link">
-                  Negara
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        {/* Right: Language switcher, Masuk, Daftar & Mobile Toggle */}
+        {/* Right actions: ID / EN switcher, Masuk, Daftar & Mobile Toggle */}
         <div className="navbar__actions">
           <button
             type="button"
@@ -147,30 +131,22 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
             }
             onClick={handleToggleLang}
           >
-            <svg
-              className="navbar__globe-icon"
-              viewBox="0 0 16 16"
-              width="16"
-              height="16"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.25"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="8" cy="8" r="6.75" />
-              <line x1="1.25" y1="8" x2="14.75" y2="8" />
-              <path d="M8 1.25 C9.8 3.5 10.75 5.7 10.75 8 C10.75 10.3 9.8 12.5 8 14.75 C6.2 12.5 5.25 10.3 5.25 8 C5.25 5.7 6.2 3.5 8 1.25 Z" />
-            </svg>
-            <span className="navbar__lang-text">{lang.toUpperCase()}</span>
+            <span className={`navbar__lang-opt ${lang === 'id' ? 'navbar__lang-opt--active' : ''}`}>
+              ID
+            </span>
+            <span className="navbar__lang-sep" aria-hidden="true">
+              /
+            </span>
+            <span className={`navbar__lang-opt ${lang === 'en' ? 'navbar__lang-opt--active' : ''}`}>
+              EN
+            </span>
           </button>
 
           <a href="/dashboard" className="navbar__link navbar__link--subtle">
             Masuk
           </a>
 
-          <a href="/dashboard" className="navbar__btn-action">
+          <a href="/dashboard" className="navbar__link navbar__link--register">
             Daftar
           </a>
 
@@ -181,9 +157,7 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
             className="navbar__mobile-toggle"
             aria-expanded={mobileOpen}
             aria-controls="navbar-mobile-drawer"
-            aria-label={
-              mobileOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'
-            }
+            aria-label={mobileOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
             onClick={() => setMobileOpen((prev) => !prev)}
           >
             <span className="navbar__toggle-line" />
@@ -203,13 +177,6 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
           ref={mobileMenuRef}
         >
           <div className="navbar__mobile-header">
-            <a
-              href="/"
-              className="navbar__wordmark"
-              onClick={() => setMobileOpen(false)}
-            >
-              Asia Explorer
-            </a>
             <button
               type="button"
               ref={closeButtonRef}
@@ -240,11 +207,7 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
           <nav className="navbar__mobile-nav" aria-label="Navigasi ponsel">
             <ul className="navbar__mobile-links">
               <li>
-                <a
-                  href="#peta"
-                  className="navbar__mobile-link"
-                  onClick={handleScrollClick}
-                >
+                <a href="#peta" className="navbar__mobile-link" onClick={handleScrollClick}>
                   Jelajah
                 </a>
               </li>
@@ -275,23 +238,7 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
               className="navbar__lang-btn navbar__lang-btn--mobile"
               onClick={handleToggleLang}
             >
-              <svg
-                className="navbar__globe-icon"
-                viewBox="0 0 16 16"
-                width="16"
-                height="16"
-                aria-hidden="true"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="8" cy="8" r="6.75" />
-                <line x1="1.25" y1="8" x2="14.75" y2="8" />
-                <path d="M8 1.25 C9.8 3.5 10.75 5.7 10.75 8 C10.75 10.3 9.8 12.5 8 14.75 C6.2 12.5 5.25 10.3 5.25 8 C5.25 5.7 6.2 3.5 8 1.25 Z" />
-              </svg>
-              <span>Bahasa: {lang.toUpperCase()}</span>
+              <span>Bahasa: {lang === 'id' ? 'ID (Indonesia)' : 'EN (English)'}</span>
             </button>
 
             <div className="navbar__mobile-actions">
@@ -304,7 +251,7 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
               </a>
               <a
                 href="/dashboard"
-                className="navbar__btn-action navbar__btn-action--full"
+                className="navbar__mobile-link navbar__mobile-link--register"
                 onClick={() => setMobileOpen(false)}
               >
                 Daftar

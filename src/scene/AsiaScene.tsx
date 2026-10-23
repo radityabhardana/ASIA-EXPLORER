@@ -9,26 +9,30 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   AmbientLight,
   Box3,
   BufferGeometry,
   Color,
-  ConeGeometry,
   DirectionalLight,
   EdgesGeometry,
   Float32BufferAttribute,
+  Fog,
+  GridHelper,
   HemisphereLight,
-  InstancedMesh,
   LineBasicMaterial,
   LineSegments,
+  Material,
   Mesh,
+  MeshBasicMaterial,
   MeshStandardMaterial,
   Object3D,
   PCFShadowMap,
   PerspectiveCamera,
   PlaneGeometry,
   Raycaster,
+  RingGeometry,
   Scene,
   ShadowMaterial,
   SRGBColorSpace,
@@ -43,6 +47,37 @@ import { countries as allCountries, getCountry } from '@/content/countries';
 import { getRegion } from '@/content/regions';
 import { getWebGLTier } from '@/lib/webgl';
 import '@/styles/scene.css';
+
+/**
+ * Pewarnaan wilayah resmi (sesuai video referensi):
+ * - West Asia (sa, tr): Terracotta / brick red (#b55a45)
+ * - Central Asia (kz, uz): Ochre / khaki (#b89b4f)
+ * - South Asia (in): Warm amber / mustard (#c88a38)
+ * - Southeast Asia (id, my, sg, th, vn, ph): Sage / moss green (#588b68)
+ * - East Asia (cn, jp, kr, mn): Slate blue / muted indigo (#516c8a)
+ */
+export const REGION_COLORS: Record<string, string> = {
+  // West Asia
+  sa: '#b55a45',
+  tr: '#b55a45',
+  // Central Asia
+  kz: '#b89b4f',
+  uz: '#b89b4f',
+  // South Asia
+  in: '#c88a38',
+  // Southeast Asia
+  id: '#588b68',
+  my: '#588b68',
+  sg: '#588b68',
+  th: '#588b68',
+  vn: '#588b68',
+  ph: '#588b68',
+  // East Asia
+  cn: '#516c8a',
+  jp: '#516c8a',
+  kr: '#516c8a',
+  mn: '#516c8a',
+};
 
 export interface CameraPose {
   azimuth: number; // rad, 0 = hero yaw
@@ -64,7 +99,7 @@ export const HERO_POSE: CameraPose = {
 
 export const INTRO = {
   durationMs: 2600,
-  orbitRad: (120 * Math.PI) / 180,
+  orbitRad: 0,
   distanceFrom: 1.85,
   elevationFrom: (68 * Math.PI) / 180,
   targetLiftFrom: 0.06,
@@ -141,6 +176,8 @@ export interface AsiaSceneProps {
   /** Target tengah NDC-Y bbox siluet; 0 = tengah kanvas vertikal. */
   fitTargetNdcY?: number;
   className?: string;
+  /** Tampilkan overlay legenda wilayah dan petunjuk kontrol. */
+  showOverlays?: boolean;
 }
 
 export interface InkMeasurement {
@@ -235,7 +272,7 @@ const FIT_INK_SAFETY = 1.04;
 
 const HOVER_HYSTERESIS_MS = 130;
 const MATERIAL_ROUGHNESS = 0.8;
-const OUTLINE_OPACITY = 0.4;
+const OUTLINE_OPACITY = 0.45;
 
 function assetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path}`;
@@ -255,7 +292,7 @@ function isManifest(value: unknown): value is ManifestEntry[] {
 }
 
 function disposeMaterial(
-  material: MeshStandardMaterial | LineBasicMaterial,
+  material: MeshStandardMaterial | LineBasicMaterial | MeshBasicMaterial | ShadowMaterial,
 ): void {
   material.dispose();
 }
@@ -372,146 +409,6 @@ function disposeObject(root: Object3D): void {
   });
 }
 
-/**
- * K8: Buat lempeng tanah bergelombang (PlaneGeometry 72x48 segmen = 6.912 tris)
- * dengan pergeseran Y deterministik.
- */
-function createTerrainPlate(
-  width: number,
-  height: number,
-  center: Vector3,
-  minCountryBottomY: number,
-  terrainColors: Color[],
-): Mesh {
-  const geometry = new PlaneGeometry(width, height, 72, 48);
-  geometry.rotateX(-Math.PI / 2);
-  const position = geometry.getAttribute('position');
-  const colors: number[] = [];
-
-  const minY = -0.45;
-  const maxY = Math.min(0.25, minCountryBottomY - 0.15);
-  const rangeY = Math.max(0.1, maxY - minY);
-
-  for (let i = 0; i < position.count; i++) {
-    const x = position.getX(i);
-    const z = position.getZ(i);
-
-    const nx = (x / width) * 5.0;
-    const nz = (z / height) * 4.0;
-    const n1 = Math.sin(nx * 1.8 + nz * 1.2) * 0.45;
-    const n2 = Math.cos(nx * 3.7 - nz * 2.4) * 0.25;
-    const n3 = Math.sin(nx * 7.1 + nz * 6.3) * 0.15;
-    const n4 = Math.cos(nx * 12.5 - nz * 9.8) * 0.08;
-    const rawH = (n1 + n2 + n3 + n4 + 0.93) / 1.86;
-    const clampedH = Math.max(0, Math.min(1, rawH));
-
-    const y = minY + clampedH * rangeY;
-    position.setY(i, y);
-
-    const colorIndex = clampedH * (terrainColors.length - 1);
-    const c0 = terrainColors[Math.floor(colorIndex)] || terrainColors[0]!;
-    const c1 =
-      terrainColors[Math.ceil(colorIndex)] ||
-      terrainColors[terrainColors.length - 1]!;
-    const t = colorIndex - Math.floor(colorIndex);
-    colors.push(
-      c0.r + (c1.r - c0.r) * t,
-      c0.g + (c1.g - c0.g) * t,
-      c0.b + (c1.b - c0.b) * t,
-    );
-  }
-
-  geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
-  geometry.computeVertexNormals();
-
-  const material = new MeshStandardMaterial({
-    vertexColors: true,
-    roughness: 0.88,
-    metalness: 0.05,
-    flatShading: true,
-  });
-
-  const mesh = new Mesh(geometry, material);
-  mesh.position.set(center.x, 0, center.z);
-  mesh.receiveShadow = true;
-  mesh.castShadow = false;
-  mesh.renderOrder = 0;
-  return mesh;
-}
-
-/**
- * K8: Buat 180 low-poly ridge prisms (32 tris per prisma = 5.760 tris).
- * Total terrain = 6.912 + 5.760 = 12.672 tris (2 draw calls).
- */
-function createTerrainRidges(
-  plateWidth: number,
-  plateHeight: number,
-  center: Vector3,
-  minCountryBottomY: number,
-  terrainColors: Color[],
-): InstancedMesh {
-  const ridgeCount = 180;
-  const geom = new ConeGeometry(1, 1, 16, 1, false); // Exactly 32 tris
-  const pos = geom.getAttribute('position');
-  for (let i = 0; i < pos.count; i++) {
-    pos.setZ(i, pos.getZ(i) * 2.2);
-    if (pos.getY(i) > 0.4) {
-      pos.setX(i, pos.getX(i) + 0.15);
-    }
-  }
-  geom.computeVertexNormals();
-
-  const mat = new MeshStandardMaterial({
-    roughness: 0.85,
-    metalness: 0.05,
-    flatShading: true,
-  });
-
-  const instanced = new InstancedMesh(geom, mat, ridgeCount);
-  instanced.receiveShadow = true;
-  instanced.castShadow = false;
-  instanced.renderOrder = 0;
-
-  const dummy = new Object3D();
-  const color = new Color();
-
-  let seed = 42;
-  const random = () => {
-    seed = (seed * 9301 + 49297) % 233280;
-    return seed / 233280;
-  };
-
-  const maxY = Math.min(0.25, minCountryBottomY - 0.15);
-  const minY = -0.45;
-
-  for (let i = 0; i < ridgeCount; i++) {
-    const u = (random() - 0.5) * 0.9 * plateWidth;
-    const v = (random() - 0.5) * 0.85 * plateHeight;
-
-    const baseRadius = 2.5 + random() * 4.5;
-    const ridgeLength = 5.0 + random() * 12.0;
-    const height = 0.8 + random() * 2.2;
-    const rotY = random() * Math.PI * 2;
-    const posY = minY + (maxY - minY) * (0.1 + random() * 0.6);
-
-    dummy.position.set(center.x + u, posY, center.z + v);
-    dummy.scale.set(baseRadius, height, ridgeLength / 2.2);
-    dummy.rotation.set(0, rotY, (random() - 0.5) * 0.15);
-    dummy.updateMatrix();
-    instanced.setMatrixAt(i, dummy.matrix);
-
-    const cIdx = Math.floor(random() * terrainColors.length);
-    color.copy(terrainColors[cIdx] || terrainColors[0]!);
-    instanced.setColorAt(i, color);
-  }
-
-  if (instanced.instanceColor) {
-    instanced.instanceColor.needsUpdate = true;
-  }
-  instanced.instanceMatrix.needsUpdate = true;
-  return instanced;
-}
-
 export default function AsiaScene({
   scrollProgressRef,
   highlightProgressRef,
@@ -527,7 +424,9 @@ export default function AsiaScene({
   debugKey,
   fitTargetNdcY = 0,
   className,
+  showOverlays,
 }: AsiaSceneProps) {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -597,6 +496,7 @@ export default function AsiaScene({
     renderer.shadowMap.type = PCFShadowMap;
 
     const scene = new Scene();
+    scene.fog = new Fog(0xf4ede1, 180, 520);
     const camera = new PerspectiveCamera(FOV, 1, 1, 20_000);
     const raycaster = new Raycaster();
     const pointer = new Vector2();
@@ -609,27 +509,22 @@ export default function AsiaScene({
       styles.getPropertyValue('--accent').trim() || '#176b68',
     );
     const countryColor = (id: string): Color => {
+      const regionHex = REGION_COLORS[id];
+      if (regionHex) {
+        return new Color(regionHex);
+      }
       const value = styles.getPropertyValue(`--country-${id}`).trim();
       return new Color(value || '#b9b4aa');
     };
 
-    const terrainColors = [
-      new Color(styles.getPropertyValue('--terrain-100').trim() || '#eadfc9'),
-      new Color(styles.getPropertyValue('--terrain-200').trim() || '#ddc9a6'),
-      new Color(styles.getPropertyValue('--terrain-300').trim() || '#c9a97a'),
-      new Color(styles.getPropertyValue('--terrain-400').trim() || '#a8814f'),
-      new Color(styles.getPropertyValue('--terrain-500').trim() || '#8f6b3f'),
-      new Color(styles.getPropertyValue('--terrain-600').trim() || '#6b4f2e'),
-    ];
-
-    const ambient = new AmbientLight(0xffffff, 0.5);
+    const ambient = new AmbientLight(0xfff8f0, 0.6);
     scene.add(ambient);
 
-    const hemi = new HemisphereLight(0xfff4e8, 0x8b9dc3, 0.45);
+    const hemi = new HemisphereLight(0xfff6ee, 0xd0c8bc, 0.35);
     scene.add(hemi);
 
-    // K8: Main sun NW (azimut 315°, elevasi 45°)
-    const sun = new DirectionalLight(0xfff8f0, 1.2);
+    // K8: Main sun NW (azimut 315°, elevasi 48°)
+    const sun = new DirectionalLight(0xfffdfa, 1.15);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     sun.shadow.camera.left = -160;
@@ -638,24 +533,17 @@ export default function AsiaScene({
     sun.shadow.camera.bottom = -160;
     sun.shadow.camera.near = 1;
     sun.shadow.camera.far = 900;
-    sun.shadow.bias = -0.0008;
-    sun.shadow.normalBias = 0.015;
+    sun.shadow.bias = -0.0006;
+    sun.shadow.normalBias = 0.02;
     scene.add(sun);
     scene.add(sun.target);
 
     // Fill light from SE
-    const fill = new DirectionalLight(0xd4e4f7, 0.35);
+    const fill = new DirectionalLight(0xe8e0d5, 0.25);
     scene.add(fill);
 
-    const groundGeometry = new PlaneGeometry(520, 520);
-    const groundMaterial = new ShadowMaterial({ opacity: 0.06 });
-    const ground = new Mesh(groundGeometry, groundMaterial);
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.46;
-    ground.receiveShadow = true;
-    scene.add(ground);
-
-    const groundLike: Object3D[] = [ground];
+    // groundLike: semua objek panggung tanah disembunyikan saat measureInk()
+    const groundLike: Object3D[] = [];
     const countries: CountryEntry[] = [];
     const countriesById = new Map<string, CountryEntry>();
     const pickTargets: Mesh[] = [];
@@ -674,6 +562,24 @@ export default function AsiaScene({
     let pointerDownX = 0;
     let pointerDownY = 0;
     let pointerDownValid = false;
+
+    // Interactive controls state (orbit drag & zoom)
+    let userHasControlled = false;
+    let currentAzimuth = 0;
+    let targetAzimuth = 0;
+    let currentElevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+    let targetElevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+    let currentDistance = 220;
+    let targetDistance = 220;
+    let baseDistance = 220;
+
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragStartAzimuth = 0;
+    let dragStartElevation = 0;
+    let lastClickId: string | null = null;
+    let lastClickTime = 0;
 
     // Cache container rect untuk menghindari getBoundingClientRect berulang
     let cachedContainerRect = container.getBoundingClientRect();
@@ -743,6 +649,7 @@ export default function AsiaScene({
       if (loaded && owner !== 'intro') {
         const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
         fitCamera(0, elevation, 0, 1.0);
+        baseDistance = lastDistance;
         instanceHeroPose.azimuth = 0;
         instanceHeroPose.distance = lastDistance;
         instanceHeroPose.elevation = elevation;
@@ -909,17 +816,60 @@ export default function AsiaScene({
       }
     };
 
-    const onPointerMove = (event: PointerEvent) => {
-      if (!loaded || decorative) {
+    const handleActivate = (id: string) => {
+      callbacksRef.current.onActivateCountry?.(id);
+      callbacksRef.current.onSelectCountry?.(id);
+      navigate(`/negara/${id}`);
+    };
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.button !== 0 && event.pointerType === 'mouse') {
         return;
       }
+      triggerInterrupt();
+      pointerDownX = event.clientX;
+      pointerDownY = event.clientY;
+      dragStartX = event.clientX;
+      dragStartY = event.clientY;
+      dragStartAzimuth = targetAzimuth;
+      dragStartElevation = targetElevation;
+      isDragging = false;
+      pointerDownValid = true;
+      try {
+        canvas.setPointerCapture(event.pointerId);
+      } catch {
+        // ignore
+      }
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (!loaded) return;
+
+      if (pointerDownValid) {
+        const dx = event.clientX - dragStartX;
+        const dy = event.clientY - dragStartY;
+        if (!isDragging && Math.hypot(dx, dy) > 4) {
+          isDragging = true;
+          userHasControlled = true;
+          triggerInterrupt();
+          container.classList.add('asia-scene--dragging');
+        }
+        if (isDragging) {
+          // Putar horizontal (azimut) dan vertikal (elevasi)
+          targetAzimuth = dragStartAzimuth - dx * 0.007;
+          const minElev = (12 * Math.PI) / 180;
+          const maxElev = (82 * Math.PI) / 180;
+          targetElevation = Math.max(minElev, Math.min(maxElev, dragStartElevation + dy * 0.005));
+          return;
+        }
+      }
+
       pointerClientX = event.clientX;
       pointerClientY = event.clientY;
       pointerMoved = true;
     };
 
     const onPointerLeave = (event: PointerEvent) => {
-      if (decorative) return;
       if (event.pointerType !== 'mouse' && event.type !== 'pointercancel') {
         return;
       }
@@ -928,77 +878,96 @@ export default function AsiaScene({
       setHovered(null);
     };
 
-    const onPointerDown = (event: PointerEvent) => {
-      if (decorative) return;
-      if (owner === 'intro') {
-        triggerInterrupt();
-        pointerDownValid = false;
-        return;
-      }
-      pointerDownX = event.clientX;
-      pointerDownY = event.clientY;
-      pointerDownValid = true;
-    };
-
     const onPointerUp = (event: PointerEvent) => {
-      if (!loaded || !pointerDownValid || decorative) {
+      if (!loaded || !pointerDownValid) {
         return;
       }
       pointerDownValid = false;
+      try {
+        if (canvas.hasPointerCapture(event.pointerId)) {
+          canvas.releasePointerCapture(event.pointerId);
+        }
+      } catch {
+        // ignore
+      }
+      container.classList.remove('asia-scene--dragging');
+
+      if (isDragging) {
+        isDragging = false;
+        return;
+      }
+
       const moved = Math.hypot(
         event.clientX - pointerDownX,
         event.clientY - pointerDownY,
       );
-      if (moved > 12) {
+      if (moved > 8) {
         return;
       }
 
       let id = pickAt(event.clientX, event.clientY);
 
-      // K9 touch: fallback 22px nearest-anchor untuk negara kecil (SG/TH)
-      if (event.pointerType !== 'mouse') {
-        if (!id) {
-          let nearestId: string | null = null;
-          let nearestDist = 22;
-          for (const country of countries) {
-            const proj = projectCountryAnchor(country);
-            if (proj) {
-              const d = Math.hypot(
-                event.clientX - proj.screenX,
-                event.clientY - proj.screenY,
-              );
-              if (d < nearestDist) {
-                nearestDist = d;
-                nearestId = country.id;
-              }
+      // Touch fallback nearest-anchor untuk layar sentuh
+      if (!id && event.pointerType !== 'mouse') {
+        let nearestId: string | null = null;
+        let nearestDist = 24;
+        for (const country of countries) {
+          const proj = projectCountryAnchor(country);
+          if (proj) {
+            const d = Math.hypot(
+              event.clientX - proj.screenX,
+              event.clientY - proj.screenY,
+            );
+            if (d < nearestDist) {
+              nearestDist = d;
+              nearestId = country.id;
             }
           }
-          if (nearestId) {
-            id = nearestId;
-          }
         }
-
-        // Tap 1 = hover & panel; Tap 2 negara sama = activate
-        if (id) {
-          if (hoveredId === id) {
-            candidateId = null;
-            callbacksRef.current.onActivateCountry?.(id);
-            callbacksRef.current.onSelectCountry?.(id);
-          } else {
-            candidateId = id;
-            candidateAt = 0;
-            setHovered(id, event.clientX, event.clientY);
-          }
-        } else {
-          candidateId = null;
-          setHovered(null);
+        if (nearestId) {
+          id = nearestId;
         }
-        return;
       }
 
       if (id) {
-        callbacksRef.current.onActivateCountry?.(id);
+        selectedRef.current = id;
         callbacksRef.current.onSelectCountry?.(id);
+        setHovered(id, event.clientX, event.clientY);
+
+        // Double-click / double-tap detection: navigasi ke /negara/:id
+        const now = performance.now();
+        if (lastClickId === id && now - lastClickTime < 400) {
+          handleActivate(id);
+          lastClickId = null;
+          return;
+        }
+        lastClickId = id;
+        lastClickTime = now;
+      } else {
+        selectedRef.current = null;
+        callbacksRef.current.onSelectCountry?.(null as unknown as string);
+        setHovered(null);
+        lastClickId = null;
+      }
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault();
+      triggerInterrupt();
+      userHasControlled = true;
+      const zoomFactor = event.deltaY * 0.16;
+      const minDistance = Math.max(70, baseDistance * 0.45);
+      const maxDistance = Math.min(420, baseDistance * 1.8);
+      targetDistance = Math.max(
+        minDistance,
+        Math.min(maxDistance, targetDistance + zoomFactor),
+      );
+    };
+
+    const onDblClick = (event: MouseEvent) => {
+      const id = pickAt(event.clientX, event.clientY);
+      if (id) {
+        handleActivate(id);
       }
     };
 
@@ -1009,17 +978,16 @@ export default function AsiaScene({
     };
 
     window.addEventListener('scroll', updateCachedRect, { passive: true });
-    window.addEventListener('wheel', triggerInterrupt, { passive: true });
     window.addEventListener('touchmove', triggerInterrupt, { passive: true });
     window.addEventListener('keydown', onKeyDown);
 
-    if (!decorative) {
-      canvas.addEventListener('pointermove', onPointerMove);
-      canvas.addEventListener('pointerleave', onPointerLeave);
-      canvas.addEventListener('pointerdown', onPointerDown);
-      canvas.addEventListener('pointerup', onPointerUp);
-      canvas.addEventListener('pointercancel', onPointerLeave);
-    }
+    canvas.addEventListener('pointermove', onPointerMove);
+    canvas.addEventListener('pointerleave', onPointerLeave);
+    canvas.addEventListener('pointerdown', onPointerDown);
+    canvas.addEventListener('pointerup', onPointerUp);
+    canvas.addEventListener('pointercancel', onPointerLeave);
+    canvas.addEventListener('wheel', onWheel, { passive: false });
+    canvas.addEventListener('dblclick', onDblClick);
 
     const debug: AsiaSceneDebug = {
       ready: false,
@@ -1136,7 +1104,7 @@ export default function AsiaScene({
           };
         }
 
-        // Sembunyikan semua ground-like objects (ground plane + terrain relief)
+        // Sembunyikan semua ground-like objects (ground plane, compass ring, grid)
         const prevVisibilities = groundLike.map((obj) => obj.visible);
         for (const obj of groundLike) {
           obj.visible = false;
@@ -1366,21 +1334,25 @@ export default function AsiaScene({
             : 0
           : country.hoverAmt;
         const hl = reducedMotion ? (country.hl > 0 ? 1 : 0) : country.hl;
+        const baseColor = countryColor(country.id);
 
         if (selected) {
           country.outlineMaterial.color.copy(accentColor);
           country.outlineMaterial.opacity = 0.95;
+          country.material.color.copy(baseColor);
           country.material.emissive.copy(accentColor);
           country.material.emissiveIntensity = 0.38;
         } else if (country.id === hoveredId) {
           // Negara aktif ter-hover: sorotan jelas
           country.outlineMaterial.color.copy(accentColor);
           country.outlineMaterial.opacity = 0.95;
+          country.material.color.copy(baseColor);
           country.material.emissive.copy(accentColor);
           country.material.emissiveIntensity = 0.28;
         } else {
-          // Negara lain: dim lembut jika ada negara lain aktif
-          country.material.emissive.copy(country.material.color);
+          // Negara lain: warna wilayah asli
+          country.material.color.copy(baseColor);
+          country.material.emissive.copy(baseColor);
           country.material.emissiveIntensity =
             hoverAmt * 0.16 + hl * 0.3;
           if (hoverAmt > 0.03) {
@@ -1460,39 +1432,64 @@ export default function AsiaScene({
       }
 
       if (owner === 'scroll') {
-        const scroll = Math.min(
-          1,
-          Math.max(0, scrollProgressRef?.current ?? 0),
-        );
-        const MAX_IDLE_RAD = (1.5 * Math.PI) / 180;
-        if (
-          idleSway !== false &&
-          !reducedMotion &&
-          hoveredId === null &&
-          selectedRef.current === null
-        ) {
-          const swayElapsed = Math.max(0, time - introFinishedAt);
-          const ramp = Math.min(1, swayElapsed / 1200);
-          azimuth =
-            Math.sin((swayElapsed / 1000) * ((2 * Math.PI) / 8)) *
-            MAX_IDLE_RAD *
-            ramp;
+        if (userHasControlled) {
+          // Orbit kamera interaktif yang halus (lerp/dampening)
+          const factor = 1 - Math.exp(-delta / 0.08);
+          currentAzimuth += (targetAzimuth - currentAzimuth) * factor;
+          currentElevation += (targetElevation - currentElevation) * factor;
+          currentDistance += (targetDistance - currentDistance) * factor;
+
+          currentPose.azimuth = currentAzimuth;
+          currentPose.elevation = currentElevation;
+          currentPose.distance = currentDistance;
+          currentPose.tx = fitTarget.x;
+          currentPose.ty = fitTarget.y;
+          currentPose.tz = fitTarget.z;
+
+          placeCameraFromPose(currentPose);
         } else {
-          azimuth = 0;
+          const scroll = Math.min(
+            1,
+            Math.max(0, scrollProgressRef?.current ?? 0),
+          );
+          const MAX_IDLE_RAD = (1.5 * Math.PI) / 180;
+          if (
+            idleSway !== false &&
+            !reducedMotion &&
+            hoveredId === null &&
+            selectedRef.current === null
+          ) {
+            const swayElapsed = Math.max(0, time - introFinishedAt);
+            const ramp = Math.min(1, swayElapsed / 1200);
+            azimuth =
+              Math.sin((swayElapsed / 1000) * ((2 * Math.PI) / 8)) *
+              MAX_IDLE_RAD *
+              ramp;
+          } else {
+            azimuth = 0;
+          }
+          const elevation =
+            ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
+          fitCamera(azimuth, elevation, scroll, 1.0);
+
+          currentAzimuth = azimuth;
+          targetAzimuth = azimuth;
+          currentElevation = elevation;
+          targetElevation = elevation;
+          currentDistance = lastDistance;
+          targetDistance = lastDistance;
+
+          currentPose.azimuth = azimuth;
+          currentPose.distance = lastDistance;
+          currentPose.elevation = elevation;
+          currentPose.tx = fitTarget.x;
+          currentPose.ty = fitTarget.y;
+          currentPose.tz = fitTarget.z;
         }
-        const elevation =
-          ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
-        fitCamera(azimuth, elevation, scroll, 1.0);
-        currentPose.azimuth = azimuth;
-        currentPose.distance = lastDistance;
-        currentPose.elevation = elevation;
-        currentPose.tx = fitTarget.x;
-        currentPose.ty = fitTarget.y;
-        currentPose.tz = fitTarget.z;
       }
 
       // K9 Hover raycasting & hysteresis (maksimal 1x per frame)
-      if (!decorative && loaded) {
+      if (loaded && !isDragging) {
         if (pointerMoved) {
           pointerMoved = false;
           const id = pickAt(pointerClientX, pointerClientY);
@@ -1576,11 +1573,11 @@ export default function AsiaScene({
 
       debug.diagnostics = {
         ...debug.diagnostics,
-        distance: lastDistance,
+        distance: currentPose.distance,
         aspect: camera.aspect,
         width: containerW,
         height: containerH,
-        azimuth,
+        azimuth: currentPose.azimuth,
         fitScale: lastFitScale,
         spanXNdc: lastSpanX,
         spanYNdc: lastSpanY,
@@ -1692,6 +1689,7 @@ export default function AsiaScene({
           anchor.set(targetX, topY, targetZ);
         }
 
+        // PBR material bersih dengan pewarnaan wilayah resmi
         const material = new MeshStandardMaterial({
           color: countryColor(entry.id),
           roughness: MATERIAL_ROUGHNESS,
@@ -1767,35 +1765,56 @@ export default function AsiaScene({
       }
       debug.vertices = new Float32Array(tempVertices);
 
-      // K8: Bangun relief terrain 3D di bawah kontinen Asia
-      const plateWidth = 240;
-      const plateHeight = 180;
-      const terrainPlate = createTerrainPlate(
-        plateWidth,
-        plateHeight,
-        center,
-        minCountryBottomY,
-        terrainColors,
-      );
-      const terrainRidges = createTerrainRidges(
-        plateWidth,
-        plateHeight,
-        center,
-        minCountryBottomY,
-        terrainColors,
-      );
-      scene.add(terrainPlate);
-      scene.add(terrainRidges);
-      groundLike.push(terrainPlate, terrainRidges);
+      // Panggung pendaratan & elemen kartografi benua Asia
+      const continentSize = new Vector3();
+      box.getSize(continentSize);
+      const continentWidth = continentSize.x;
+      const continentDepth = continentSize.z;
+      const baseY = minCountryBottomY - 0.04;
 
-      // K8: Posisi pencahayaan matahari dari NW (azimut 315°, elevasi 45°)
-      sun.position.set(center.x - 100, center.y + 141.42, center.z - 100);
+      // 1. Panggung ground penangkap bayangan lembut di atas kertas #f4ede1 / #ede7dc
+      const groundGeometry = new PlaneGeometry(1200, 1200);
+      const groundMaterial = new ShadowMaterial({ opacity: 0.16 });
+      const ground = new Mesh(groundGeometry, groundMaterial);
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.set(center.x, baseY, center.z);
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // 2. Lingkar kompas / kartografi tipis elegan mengitari benua (opacity ~0.25)
+      const ringRadius = Math.max(118, Math.hypot(continentWidth, continentDepth) * 0.58);
+      const ringGeometry = new RingGeometry(ringRadius - 0.25, ringRadius + 0.25, 180);
+      ringGeometry.rotateX(-Math.PI / 2);
+      const ringMaterial = new MeshBasicMaterial({
+        color: 0x3d352c,
+        transparent: true,
+        opacity: 0.25,
+        depthWrite: false,
+      });
+      const ringMesh = new Mesh(ringGeometry, ringMaterial);
+      ringMesh.position.set(center.x, baseY + 0.005, center.z);
+      scene.add(ringMesh);
+
+      // 3. Garis kisi kartografi halus pada panggung tanah
+      const gridHelper = new GridHelper(600, 16, 0x8c7e6c, 0xb8ad9c);
+      gridHelper.position.set(center.x, baseY + 0.002, center.z);
+      gridHelper.rotation.y = (18 * Math.PI) / 180;
+      if (gridHelper.material instanceof LineBasicMaterial) {
+        gridHelper.material.transparent = true;
+        gridHelper.material.opacity = 0.10;
+        gridHelper.material.depthWrite = false;
+      }
+      scene.add(gridHelper);
+
+      // groundLike: semua objek panggung tanah disembunyikan saat measureInk()
+      groundLike.push(ground, ringMesh, gridHelper);
+
+      // K8: Posisi pencahayaan matahari dari NW (azimut 315°, elevasi 48°)
+      sun.position.set(center.x - 100, center.y + 140, center.z - 100);
       sun.target.position.copy(center);
       sun.target.updateMatrixWorld();
 
       fill.position.set(center.x + 80, center.y + 60, center.z + 80);
-      ground.position.set(center.x, -0.46, center.z);
-      ground.updateMatrixWorld();
 
       scene.add(gltf.scene);
 
@@ -1807,6 +1826,9 @@ export default function AsiaScene({
       // Ukur HERO_POSE kanonik pertama kali
       const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
       fitCamera(0, elevation, 0, 1.0);
+      baseDistance = lastDistance;
+      targetDistance = lastDistance;
+      currentDistance = lastDistance;
       instanceHeroPose.azimuth = 0;
       instanceHeroPose.distance = lastDistance;
       instanceHeroPose.elevation = elevation;
@@ -1847,17 +1869,16 @@ export default function AsiaScene({
       motionQuery.removeEventListener('change', onMotionChange);
       resizeObserver.disconnect();
       window.removeEventListener('scroll', updateCachedRect);
-      window.removeEventListener('wheel', triggerInterrupt);
       window.removeEventListener('touchmove', triggerInterrupt);
       window.removeEventListener('keydown', onKeyDown);
 
-      if (!decorative) {
-        canvas.removeEventListener('pointermove', onPointerMove);
-        canvas.removeEventListener('pointerleave', onPointerLeave);
-        canvas.removeEventListener('pointerdown', onPointerDown);
-        canvas.removeEventListener('pointerup', onPointerUp);
-        canvas.removeEventListener('pointercancel', onPointerLeave);
-      }
+      canvas.removeEventListener('pointermove', onPointerMove);
+      canvas.removeEventListener('pointerleave', onPointerLeave);
+      canvas.removeEventListener('pointerdown', onPointerDown);
+      canvas.removeEventListener('pointerup', onPointerUp);
+      canvas.removeEventListener('pointercancel', onPointerLeave);
+      canvas.removeEventListener('wheel', onWheel);
+      canvas.removeEventListener('dblclick', onDblClick);
 
       renderer.setAnimationLoop(null);
 
@@ -1891,10 +1912,16 @@ export default function AsiaScene({
             if (!Array.isArray(material)) {
               if (
                 material instanceof ShadowMaterial ||
-                material instanceof MeshStandardMaterial
+                material instanceof MeshStandardMaterial ||
+                material instanceof MeshBasicMaterial
               ) {
                 material.dispose();
               }
+            }
+          } else if (object instanceof GridHelper) {
+            object.geometry.dispose();
+            if (object.material instanceof Material) {
+              object.material.dispose();
             }
           }
         });
@@ -1924,7 +1951,10 @@ export default function AsiaScene({
     fitTargetNdcY,
     introEnabled,
     idleSway,
+    navigate,
   ]);
+
+  const showControlsAndLegend = showOverlays ?? (debugKey !== 'scale');
 
   return (
     <div
@@ -1936,6 +1966,54 @@ export default function AsiaScene({
         className="asia-scene__canvas"
         aria-hidden="true"
       />
+
+      {showControlsAndLegend && (
+        <>
+          <div className="scene-legend" aria-label="Legenda Wilayah">
+            <span className="scene-legend__title">WILAYAH</span>
+            <div className="scene-legend__item">
+              <span
+                className="scene-legend__color"
+                style={{ background: '#b55a45' }}
+              />{' '}
+              West Asia
+            </div>
+            <div className="scene-legend__item">
+              <span
+                className="scene-legend__color"
+                style={{ background: '#b89b4f' }}
+              />{' '}
+              Central Asia
+            </div>
+            <div className="scene-legend__item">
+              <span
+                className="scene-legend__color"
+                style={{ background: '#c88a38' }}
+              />{' '}
+              South Asia
+            </div>
+            <div className="scene-legend__item">
+              <span
+                className="scene-legend__color"
+                style={{ background: '#588b68' }}
+              />{' '}
+              Southeast Asia
+            </div>
+            <div className="scene-legend__item">
+              <span
+                className="scene-legend__color"
+                style={{ background: '#516c8a' }}
+              />{' '}
+              East Asia
+            </div>
+          </div>
+
+          <p className="scene-controls-hint">
+            Tarik untuk memutar · Scroll untuk zoom · Klik negara untuk fokus
+          </p>
+        </>
+      )}
+
       {!decorative && (
         <>
           <div

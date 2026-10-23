@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import '@/styles/preloader.css';
 
 const PRELOADER_SESSION_KEY = 'asiakin:preloader-shown';
-const MAX_WAIT_MS = 1200;
+const MIN_WAIT_MS = 1200;
+const MAX_WAIT_MS = 1800;
 
 function isSessionShown(): boolean {
   if (typeof window === 'undefined') return true;
@@ -23,9 +24,11 @@ function markSessionShown(): void {
 }
 
 /**
- * Preloader (D29): brand wordmark + typographic progress line. Waits for
- * scene ready or timeout, exits with transform/clip. Skipped with reduced
- * motion or non-landing routes, shown once per session on landing ('/').
+ * Preloader (Fullscreen Intro Screen matching frame_001.jpg):
+ * Warm paper background (#EDE7DC / #F4EDE1), centered editorial title,
+ * eyebrow 'BENUA ASIA', hairline divider, and subtitle 'Menyiapkan data 15 negara'.
+ * Once ready (~1.2s - 1.8s), smoothly scales up to 1.04 and fades out,
+ * seamlessly revealing the 3D map stage.
  */
 export default function Preloader() {
   const [visible, setVisible] = useState(() => {
@@ -56,7 +59,8 @@ export default function Preloader() {
   });
 
   const [exiting, setExiting] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const minTimerRef = useRef<number | null>(null);
+  const maxTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!visible) {
@@ -66,45 +70,74 @@ export default function Preloader() {
     }
 
     let mounted = true;
+    let minTimeElapsed = false;
+    let sceneIsReady = false;
 
-    const handleReady = () => {
+    const completeExit = () => {
       if (!mounted) return;
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
+      if (minTimerRef.current) {
+        clearTimeout(minTimerRef.current);
+        minTimerRef.current = null;
       }
+      if (maxTimerRef.current) {
+        clearTimeout(maxTimerRef.current);
+        maxTimerRef.current = null;
+      }
+
       setExiting(true);
       document.documentElement.dataset.ready = 'true';
       window.dispatchEvent(new CustomEvent('asiakin:ready'));
       markSessionShown();
+
       setTimeout(() => {
         if (!mounted) return;
         setVisible(false);
-      }, 600);
+      }, 700);
     };
 
-    const sceneReady = () => {
+    const tryExit = () => {
+      if (minTimeElapsed && sceneIsReady) {
+        completeExit();
+      }
+    };
+
+    const handleSceneReady = () => {
+      sceneIsReady = true;
+      tryExit();
+    };
+
+    const checkInitialScene = () => {
       return (
         typeof window !== 'undefined' &&
-        (window as unknown as { __asiakin_scene?: { ready?: boolean } })
-          .__asiakin_scene?.ready === true
+        (window as unknown as { __asiakin_scene?: { ready?: boolean } }).__asiakin_scene?.ready ===
+          true
       );
     };
 
-    if (sceneReady()) {
-      handleReady();
-      return;
+    if (checkInitialScene()) {
+      sceneIsReady = true;
     }
 
-    window.addEventListener('asiakin:scene-ready', handleReady);
-    timeoutRef.current = window.setTimeout(handleReady, MAX_WAIT_MS);
+    window.addEventListener('asiakin:scene-ready', handleSceneReady);
+
+    // Minimum display duration (~1.2s) for intro readability
+    minTimerRef.current = window.setTimeout(() => {
+      minTimeElapsed = true;
+      if (sceneIsReady) {
+        completeExit();
+      }
+    }, MIN_WAIT_MS);
+
+    // Fallback maximum wait at ~1.8s
+    maxTimerRef.current = window.setTimeout(() => {
+      completeExit();
+    }, MAX_WAIT_MS);
 
     return () => {
       mounted = false;
-      window.removeEventListener('asiakin:scene-ready', handleReady);
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      window.removeEventListener('asiakin:scene-ready', handleSceneReady);
+      if (minTimerRef.current) clearTimeout(minTimerRef.current);
+      if (maxTimerRef.current) clearTimeout(maxTimerRef.current);
     };
   }, [visible]);
 
@@ -113,12 +146,17 @@ export default function Preloader() {
   }
 
   return (
-    <div className={`preloader ${exiting ? 'preloader--exiting' : ''}`}>
+    <div
+      className={`preloader ${exiting ? 'preloader--exiting' : ''}`}
+      role="status"
+      aria-live="polite"
+      aria-label="Memuat Asia Explorer"
+    >
       <div className="preloader__content">
-        <div className="preloader__wordmark">Asia Explorer</div>
-        <div className="preloader__progress">
-          <span className="preloader__line" />
-        </div>
+        <span className="preloader__eyebrow">BENUA ASIA</span>
+        <div className="preloader__title">Asia Explorer</div>
+        <span className="preloader__divider" aria-hidden="true" />
+        <p className="preloader__subtitle">Menyiapkan data 15 negara</p>
       </div>
     </div>
   );
