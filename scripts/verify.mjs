@@ -39,6 +39,11 @@ const steps = [
     args: ['--check'],
   },
   {
+    name: 'themes (tools/build-themes.mjs --check)',
+    entry: 'tools/build-themes.mjs',
+    args: ['--check'],
+  },
+  {
     name: 'e2e (playwright test)',
     entry: entry('@playwright/test/cli.js'),
     // 2 worker: 6+ worker terbukti flaky pada mesin ini (scroll + WebGL).
