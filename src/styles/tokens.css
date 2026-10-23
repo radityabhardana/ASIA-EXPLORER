@@ -12,12 +12,29 @@
   --surface: #f9f7f3;
   --surface-raised: #fffef9;
   --ground: #f0eeea;
+  --paper: #f4ede1;
   --ink: #1a1f24;
   --ink-muted: #5c6670;
   --line: #d8d4cc;
   --accent: #176b68;
   --accent-ink: #fffef9;
   --danger: #a62f36;
+
+  /* --- Palet Highlands / Topo Background (PRD §2.A & K18) --------------- */
+  --paper-warm: #f4ede1;
+  --topo-line: #c8b7a6;
+  --hillshade-ochre: #e2d2be;
+  --hillshade-clay: #c49a72;
+  --hillshade-umber: #8a6242;
+
+  /* --- Palet Terrain Relief (CONTRACT_SCENE_B & K8) --------------------- */
+  --terrain-100: #eadfc9;
+  --terrain-200: #ddc9a6;
+  --terrain-300: #c9a97a;
+  --terrain-400: #a8814f;
+  --terrain-500: #8f6b3f;
+  --terrain-600: #6b4f2e;
+  --terrain-ink: #fffef9;
 
   /* --- Palette 15 negara (color picking + peta SVG) --------------------- */
   /* Kunci sama dengan `paletteKey` di src/content/map-paths.json. */
@@ -96,7 +113,9 @@
   --z-progress: 40;
   --z-overlay: 50;
   --z-modal: 60;
-  --z-skip-link: 100;
+  --z-nav: 100;
+  --z-skip-link: 110;
+  --z-drawer: 150;
 
   /* --- Shell / tekstur -------------------------------------------------- */
   --shell-progress-size: 4px;

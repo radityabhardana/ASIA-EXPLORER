@@ -10,7 +10,7 @@
   --landing-gutter: var(--gutter-mobile);
   --landing-edge: var(--space-3);
   position: relative;
-  background-color: var(--surface);
+  background-color: var(--paper);
   isolation: isolate;
 }
 
@@ -30,7 +30,7 @@
 
 .landing-scene {
   position: relative;
-  background-color: var(--surface);
+  background-color: transparent;
 }
 
 .landing-scene:focus {
@@ -940,6 +940,45 @@
   fill: currentColor;
 }
 
+/* --- Tablet -------------------------------------------------------------- */
+
+/*
+ * 768–1023px: stage scene memakai `width: min(76vw, 1100px)` dari aturan dasar.
+ * Di lebar ini kolom grid implicit menyusut ke max-content copy sehingga kanvas
+ * hanya ~584px dan benua 3D terlalu pendek untuk mengisi 70% tinggi viewport
+ * (terukur: unionHvh 0.68 pada skala, 0.64 pada undangan). Kolom eksplisit
+ * `minmax(0, 1fr)` mengunci track ke lebar stage, dan scene mengambil lebar
+ * penuh track supaya kamera fit menghitung benua dari kanvas yang lebih besar.
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .landing-stage--scale {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 4px;
+    padding-bottom: 0;
+    gap: var(--space-4);
+  }
+
+  .landing-stage--invitation {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 4px;
+    padding-bottom: 0;
+    gap: var(--space-6);
+  }
+
+  .landing-scale__scene,
+  .landing-invitation__scene {
+    width: 100%;
+    min-height: 570px;
+  }
+
+  .landing-scale__scene .asia-scene,
+  .landing-scale__scene .landing-asia__placeholder,
+  .landing-invitation__scene .asia-scene,
+  .landing-invitation__scene .landing-asia__placeholder {
+    min-height: 570px;
+  }
+}
+
 /* --- Mobile & tablet ------------------------------------------------------ */
 
 @media (max-width: 767px) {
@@ -1010,13 +1049,30 @@
     width: 34vw;
   }
 
+  .landing-stage--scale {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-top: 2px;
+    padding-bottom: 0;
+  }
+
+  .landing-scale__scene {
+    width: calc(100% + 2 * var(--landing-gutter));
+    margin-inline: calc(-1 * var(--landing-gutter));
+    min-height: 540px;
+  }
+
   .landing-stage--invitation {
-    gap: var(--space-2);
-    padding-block: var(--space-3);
+    grid-template-columns: minmax(0, 1fr);
+    gap: calc(var(--space-6) + 12px);
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .landing-invitation__scene {
-    width: 100%;
+    width: calc(100% + 2 * var(--landing-gutter));
+    margin-inline: calc(-1 * var(--landing-gutter));
+    min-height: 540px;
   }
 
   .landing-footer__index-list {

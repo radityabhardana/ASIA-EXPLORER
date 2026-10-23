@@ -1,33 +1,30 @@
 /*
- * Scene 3D benua Asia (Varian B — slab relief).
+ * Scene 3D benua Asia (Varian B — slab relief & K7/K8/K9).
  *
  * Modul ini adalah satu-satunya tempat yang mengimpor `three`, dan pemakai
  * wajib memuatnya lewat `React.lazy` supaya chunk 3D terpisah dari entry.
  * Tidak ada akses `document` saat modul dievaluasi — semua sentuhan DOM
  * terjadi di dalam effect, sehingga impor tetap aman di lingkungan tanpa WebGL.
- *
- * Sumber angka: DESIGN.md §5b (FOV 38, tilt 52°, DPR clamp) + AUDIT Tahap A:
- * fit kamera berbasis margin NDC (tinta tak menyentuh tepi kanvas), label
- * hover imperatif (rAF transform + lerp), dan sorotan 15 negara via
- * `highlightProgressRef` (dibaca per frame, bukan state React).
  */
 
-import { useEffect, useRef } from 'react';
-import type { Object3D } from 'three';
+import { useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 import {
   AmbientLight,
   Box3,
   BufferGeometry,
   Color,
+  ConeGeometry,
   DirectionalLight,
   EdgesGeometry,
   Float32BufferAttribute,
   HemisphereLight,
+  InstancedMesh,
   LineBasicMaterial,
   LineSegments,
   Mesh,
   MeshStandardMaterial,
+  Object3D,
   PCFShadowMap,
   PerspectiveCamera,
   PlaneGeometry,
@@ -42,23 +39,99 @@ import {
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-import { getCountry } from '@/content/countries';
+import { countries as allCountries, getCountry } from '@/content/countries';
 import { getRegion } from '@/content/regions';
 import { getWebGLTier } from '@/lib/webgl';
 import '@/styles/scene.css';
+
+export interface CameraPose {
+  azimuth: number; // rad, 0 = hero yaw
+  distance: number; // world units, camera->target
+  elevation: number; // rad above horizontal
+  tx: number;
+  ty: number;
+  tz: number; // look-at target
+}
+
+export const HERO_POSE: CameraPose = {
+  azimuth: 0,
+  distance: 220,
+  elevation: (52 * Math.PI) / 180,
+  tx: 0,
+  ty: 0,
+  tz: 0,
+};
+
+export const INTRO = {
+  durationMs: 2600,
+  orbitRad: (120 * Math.PI) / 180,
+  distanceFrom: 1.85,
+  elevationFrom: (68 * Math.PI) / 180,
+  targetLiftFrom: 0.06,
+} as const;
+
+/** Pure. Writes into `out` (zero allocation). Clamps progress to [0,1]. */
+export function introPose(
+  progress: number,
+  hero: Readonly<CameraPose>,
+  out: CameraPose,
+): CameraPose {
+  const p = Math.min(1, Math.max(0, progress));
+  if (p >= 1) {
+    out.azimuth = hero.azimuth;
+    out.distance = hero.distance;
+    out.elevation = hero.elevation;
+    out.tx = hero.tx;
+    out.ty = hero.ty;
+    out.tz = hero.tz;
+    return out;
+  }
+  // easeInOutCubic
+  const t = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+  out.azimuth = hero.azimuth + (1 - t) * INTRO.orbitRad;
+  out.distance = hero.distance * (1 + (INTRO.distanceFrom - 1) * (1 - t));
+  out.elevation = hero.elevation + (1 - t) * (INTRO.elevationFrom - hero.elevation);
+  out.tx = hero.tx;
+  out.ty = hero.ty + (1 - t) * (INTRO.targetLiftFrom * hero.distance);
+  out.tz = hero.tz;
+  return out;
+}
+
+export interface CountryHitObj {
+  id: string;
+  anchor: { x: number; y: number };
+  side: 'left' | 'right';
+}
+export type CountryHit = string & CountryHitObj;
+
+export function createCountryHit(
+  id: string,
+  anchor: { x: number; y: number },
+  side: 'left' | 'right',
+): CountryHit {
+  const hit = Object.assign(new String(id), { id, anchor, side });
+  return hit as unknown as CountryHit;
+}
 
 export interface AsiaSceneProps {
   /** 0..1, dibaca di dalam loop rAF — bukan state React. */
   scrollProgressRef?: RefObject<number>;
   /**
    * 0..1 progress sorotan scene "Skala": count = round(p * 15), urutan
-   * barat → timur berdasarkan rank anchor.x. Dibaca per frame di rAF;
-   * penulisnya satu-satunya tween GSAP agar counter tetap sinkron.
+   * barat -> timur berdasarkan rank anchor.x. Dibaca per frame di rAF.
    */
   highlightProgressRef?: RefObject<number>;
   selectedId?: string | null;
-  onHoverCountry?: (id: string | null) => void;
+  onHoverCountry?: (hit: CountryHit | string | null) => void;
+  onCountryAnchor?: (
+    id: string,
+    anchor: { x: number; y: number },
+    side: 'left' | 'right',
+  ) => void;
   onSelectCountry?: (id: string) => void;
+  onActivateCountry?: (id: string) => void;
+  introEnabled?: boolean;
+  idleSway?: boolean;
   /** WebGL gagal dibuat atau model tidak bisa dimuat. */
   onUnavailable?: () => void;
   /** Decorative scenes have no interaction, no hover labels. */
@@ -79,7 +152,6 @@ export interface InkMeasurement {
   heightPx: number;
   viewportWidth: number;
   widthVw: number;
-  /** Tinggi tinta sebagai % tinggi viewport (audit A3). */
   heightVh: number;
 }
 
@@ -92,12 +164,32 @@ export interface AsiaSceneDebug {
   vertices?: Float32Array<ArrayBufferLike>;
   projected(id: string): { x: number; y: number } | null;
   measureInk?(): InkMeasurement;
-  /** Id negara dengan nilai sorotan ≥ 0,5 (setelah crossfade). */
   lit?(): string[];
-  /** Jumlah negara yang menyala saat ini. */
   highlightCount?(): number;
-  /** Progress sorotan mentah 0..1 yang sedang dibaca per frame. */
   highlightProgress?(): number;
+  pose(): CameraPose;
+  intro(): {
+    state: 'boot' | 'intro' | 'scroll' | 'reduced' | 'skipped' | 'done';
+    progress: number;
+    elapsedMs: number;
+  };
+  hovered(): string | null;
+  panelAnchor(): {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    side: 'left' | 'right';
+  } | null;
+  stats(): {
+    frames: number;
+    picks: number;
+    drawCalls: number;
+    triangles: number;
+    hoverEmits: number;
+    maxFrameMs: number;
+  };
+  warnings?(): string[];
 }
 
 declare global {
@@ -122,60 +214,26 @@ interface CountryEntry {
   anchor: Vector3;
   lift: number;
   target: number;
-  /** Nilai hover 0..1 (crossfade 120 ms), bukan boolean. */
   hoverAmt: number;
-  /** Nilai sorotan skala 0..1 (crossfade 120 ms). */
   hl: number;
-  /** Urutan barat → timur untuk sorotan scene Skala. */
   band: number;
-  introStartMs: number;
 }
 
 const FOV = 38;
 const ELEVATION_FROM_HORIZONTAL = 52;
 const DPR_MAX = 1.5;
 
-/** Satuan dunia model ≈170 unit lebar, jadi lift dalam satuan dunia. */
 const HOVER_LIFT = 0.6;
 const SELECT_LIFT = 1.4;
-
-/** Damper eksponensial: ~89% dalam 200ms. */
 const LIFT_TAU = 0.11;
-
-/** Crossfade emissive hover / sorotan skala, ekuivalen gsap.quickTo 120 ms. */
 const GLOW_TAU = 0.12;
 
-/**
- * Target span NDC tinta benua (hull siluet, sumbu X) sebelum faktor aman.
- * Faktor aman FIT_INK_SAFETY mengabsorbi piksel anti-aliasing dan vertex
- * Y-ekstrem yang tak ikut hull XZ supaya tinta benar-benar tidak menyentuh
- * tepi kanvas (audit L1). 1.76 / 1.04 ≈ 1.69 tinta digambar = 62 ±3 vw pada
- * wadah hero 76 vw dan 85 ±4 vw pada wadah mobile 100 vw.
- */
 const FIT_INK_SPAN_X = 1.76;
-
-/**
- * Target span X khusus viewport ≤640 (audit L2 putaran 2): hero 375 lebih
- * rapat — tinta benua ≈ 86 vw (1.79/1.04 NDC) di dalam gate e2e 81–89.
- */
 const FIT_INK_SPAN_X_MOBILE = 1.79;
-
-/** Cap span NDC-Y tinta: 93% tinggi wadah dengan margin atas-bawah. */
 const FIT_INK_SPAN_Y = 1.86;
-
-/**
- * Faktor aman terhadap span hasil proyeksi hull: anti-aliasing (~1 piksel
- * tiap sisi) dan vertex Y-ekstrem di dalam hull XZ menambah ~2–4% ink yang
- * digambar melewati proyeksi hull. Dikalikan terhadap kedua sumbu.
- */
 const FIT_INK_SAFETY = 1.04;
 
-/** Histeresis hover masuk/keluar (audit A6: 120–150 ms). */
 const HOVER_HYSTERESIS_MS = 130;
-
-/** Lerp posisi label mengikuti pointer (satu sisi fst mirip tau 60 ms). */
-const LABEL_TAU = 0.06;
-
 const MATERIAL_ROUGHNESS = 0.8;
 const OUTLINE_OPACITY = 0.4;
 
@@ -196,15 +254,12 @@ function isManifest(value: unknown): value is ManifestEntry[] {
   );
 }
 
-function disposeMaterial(material: MeshStandardMaterial | LineBasicMaterial): void {
+function disposeMaterial(
+  material: MeshStandardMaterial | LineBasicMaterial,
+): void {
   material.dispose();
 }
 
-/**
- * Garis tepi hanya dari rim horizontal (atas/bawah hasil ekstrusi).
- * `EdgesGeometry` mentah juga memuat sudut dinding vertikal yang tampak
- * seperti garis putus-putus di garis pantai; itu dibuang di sini.
- */
 function createOutlineGeometry(geometry: BufferGeometry): BufferGeometry {
   const edges = new EdgesGeometry(geometry, 24);
   const position = edges.getAttribute('position');
@@ -230,15 +285,6 @@ function createOutlineGeometry(geometry: BufferGeometry): BufferGeometry {
   return outline;
 }
 
-/**
- * Titik siluet untuk pencocokan lebar kamera.
- *
- * Bounding box model jauh lebih lebar dari daratan sebenarnya: sudut bbox
- * berada di ruang kosong, sehingga mencocokkan span sudut bbox membuat benua
- * hanya mengisi ~52vw dari target. Yang dipakai adalah hull cembung tapak
- * XZ (proyeksi daratan ke bidang horizontal) — audit Tahap A menambahkan
- * mesh konteks non-negara ke tumpukan ini agar kamera juga meliputi tanah.
- */
 function computeSilhouette(meshes: Mesh[], center: Vector3): Float32Array {
   const xs: number[] = [];
   const ys: number[] = [];
@@ -251,7 +297,10 @@ function computeSilhouette(meshes: Mesh[], center: Vector3): Float32Array {
       continue;
     }
     for (let i = 0; i < position.count; i += 1) {
-      vertex.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld).sub(center);
+      vertex
+        .fromBufferAttribute(position, i)
+        .applyMatrix4(mesh.matrixWorld)
+        .sub(center);
       xs.push(vertex.x);
       ys.push(vertex.y);
       zs.push(vertex.z);
@@ -323,12 +372,156 @@ function disposeObject(root: Object3D): void {
   });
 }
 
+/**
+ * K8: Buat lempeng tanah bergelombang (PlaneGeometry 72x48 segmen = 6.912 tris)
+ * dengan pergeseran Y deterministik.
+ */
+function createTerrainPlate(
+  width: number,
+  height: number,
+  center: Vector3,
+  minCountryBottomY: number,
+  terrainColors: Color[],
+): Mesh {
+  const geometry = new PlaneGeometry(width, height, 72, 48);
+  geometry.rotateX(-Math.PI / 2);
+  const position = geometry.getAttribute('position');
+  const colors: number[] = [];
+
+  const minY = -0.45;
+  const maxY = Math.min(0.25, minCountryBottomY - 0.15);
+  const rangeY = Math.max(0.1, maxY - minY);
+
+  for (let i = 0; i < position.count; i++) {
+    const x = position.getX(i);
+    const z = position.getZ(i);
+
+    const nx = (x / width) * 5.0;
+    const nz = (z / height) * 4.0;
+    const n1 = Math.sin(nx * 1.8 + nz * 1.2) * 0.45;
+    const n2 = Math.cos(nx * 3.7 - nz * 2.4) * 0.25;
+    const n3 = Math.sin(nx * 7.1 + nz * 6.3) * 0.15;
+    const n4 = Math.cos(nx * 12.5 - nz * 9.8) * 0.08;
+    const rawH = (n1 + n2 + n3 + n4 + 0.93) / 1.86;
+    const clampedH = Math.max(0, Math.min(1, rawH));
+
+    const y = minY + clampedH * rangeY;
+    position.setY(i, y);
+
+    const colorIndex = clampedH * (terrainColors.length - 1);
+    const c0 = terrainColors[Math.floor(colorIndex)] || terrainColors[0]!;
+    const c1 =
+      terrainColors[Math.ceil(colorIndex)] ||
+      terrainColors[terrainColors.length - 1]!;
+    const t = colorIndex - Math.floor(colorIndex);
+    colors.push(
+      c0.r + (c1.r - c0.r) * t,
+      c0.g + (c1.g - c0.g) * t,
+      c0.b + (c1.b - c0.b) * t,
+    );
+  }
+
+  geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
+  geometry.computeVertexNormals();
+
+  const material = new MeshStandardMaterial({
+    vertexColors: true,
+    roughness: 0.88,
+    metalness: 0.05,
+    flatShading: true,
+  });
+
+  const mesh = new Mesh(geometry, material);
+  mesh.position.set(center.x, 0, center.z);
+  mesh.receiveShadow = true;
+  mesh.castShadow = false;
+  mesh.renderOrder = 0;
+  return mesh;
+}
+
+/**
+ * K8: Buat 180 low-poly ridge prisms (32 tris per prisma = 5.760 tris).
+ * Total terrain = 6.912 + 5.760 = 12.672 tris (2 draw calls).
+ */
+function createTerrainRidges(
+  plateWidth: number,
+  plateHeight: number,
+  center: Vector3,
+  minCountryBottomY: number,
+  terrainColors: Color[],
+): InstancedMesh {
+  const ridgeCount = 180;
+  const geom = new ConeGeometry(1, 1, 16, 1, false); // Exactly 32 tris
+  const pos = geom.getAttribute('position');
+  for (let i = 0; i < pos.count; i++) {
+    pos.setZ(i, pos.getZ(i) * 2.2);
+    if (pos.getY(i) > 0.4) {
+      pos.setX(i, pos.getX(i) + 0.15);
+    }
+  }
+  geom.computeVertexNormals();
+
+  const mat = new MeshStandardMaterial({
+    roughness: 0.85,
+    metalness: 0.05,
+    flatShading: true,
+  });
+
+  const instanced = new InstancedMesh(geom, mat, ridgeCount);
+  instanced.receiveShadow = true;
+  instanced.castShadow = false;
+  instanced.renderOrder = 0;
+
+  const dummy = new Object3D();
+  const color = new Color();
+
+  let seed = 42;
+  const random = () => {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+
+  const maxY = Math.min(0.25, minCountryBottomY - 0.15);
+  const minY = -0.45;
+
+  for (let i = 0; i < ridgeCount; i++) {
+    const u = (random() - 0.5) * 0.9 * plateWidth;
+    const v = (random() - 0.5) * 0.85 * plateHeight;
+
+    const baseRadius = 2.5 + random() * 4.5;
+    const ridgeLength = 5.0 + random() * 12.0;
+    const height = 0.8 + random() * 2.2;
+    const rotY = random() * Math.PI * 2;
+    const posY = minY + (maxY - minY) * (0.1 + random() * 0.6);
+
+    dummy.position.set(center.x + u, posY, center.z + v);
+    dummy.scale.set(baseRadius, height, ridgeLength / 2.2);
+    dummy.rotation.set(0, rotY, (random() - 0.5) * 0.15);
+    dummy.updateMatrix();
+    instanced.setMatrixAt(i, dummy.matrix);
+
+    const cIdx = Math.floor(random() * terrainColors.length);
+    color.copy(terrainColors[cIdx] || terrainColors[0]!);
+    instanced.setColorAt(i, color);
+  }
+
+  if (instanced.instanceColor) {
+    instanced.instanceColor.needsUpdate = true;
+  }
+  instanced.instanceMatrix.needsUpdate = true;
+  return instanced;
+}
+
 export default function AsiaScene({
   scrollProgressRef,
   highlightProgressRef,
   selectedId = null,
   onHoverCountry,
+  onCountryAnchor,
   onSelectCountry,
+  onActivateCountry,
+  introEnabled = true,
+  idleSway = true,
   onUnavailable,
   decorative = false,
   debugKey,
@@ -337,17 +530,35 @@ export default function AsiaScene({
 }: AsiaSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // Label hover imperatif: selalu ada di DOM (non-dekoratif), teks & posisi
-  // ditulis dari rAF — tidak pernah lewat state React per pointermove.
-  const labelRef = useRef<HTMLDivElement>(null);
+
+  const panelRef = useRef<HTMLDivElement>(null);
   const labelIdRef = useRef<HTMLDivElement>(null);
   const labelNativeRef = useRef<HTMLDivElement>(null);
   const labelRegionRef = useRef<HTMLDivElement>(null);
-  const callbacksRef = useRef({ onHoverCountry, onSelectCountry, onUnavailable });
+  const panelLangRef = useRef<HTMLSpanElement>(null);
+  const panelScriptRef = useRef<HTMLSpanElement>(null);
+  const panelDepthRef = useRef<HTMLSpanElement>(null);
+
+  const [keyboardActiveIndex, setKeyboardActiveIndex] = useState(0);
+  const keyboardButtonsRef = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const callbacksRef = useRef({
+    onHoverCountry,
+    onCountryAnchor,
+    onSelectCountry,
+    onActivateCountry,
+    onUnavailable,
+  });
   const selectedRef = useRef<string | null>(selectedId ?? null);
 
   useEffect(() => {
-    callbacksRef.current = { onHoverCountry, onSelectCountry, onUnavailable };
+    callbacksRef.current = {
+      onHoverCountry,
+      onCountryAnchor,
+      onSelectCountry,
+      onActivateCountry,
+      onUnavailable,
+    };
   });
 
   useEffect(() => {
@@ -390,31 +601,41 @@ export default function AsiaScene({
     const raycaster = new Raycaster();
     const pointer = new Vector2();
 
-    // Token warna dibaca setelah mount; modul tetap aman tanpa DOM.
     const styles = window.getComputedStyle(container);
-    const inkColor = new Color(styles.getPropertyValue('--ink').trim() || '#1a1f24');
-    const accentColor = new Color(styles.getPropertyValue('--accent').trim() || '#176b68');
+    const inkColor = new Color(
+      styles.getPropertyValue('--ink').trim() || '#1a1f24',
+    );
+    const accentColor = new Color(
+      styles.getPropertyValue('--accent').trim() || '#176b68',
+    );
     const countryColor = (id: string): Color => {
       const value = styles.getPropertyValue(`--country-${id}`).trim();
       return new Color(value || '#b9b4aa');
     };
 
-    // Ambient base + hemisphere for depth perception
+    const terrainColors = [
+      new Color(styles.getPropertyValue('--terrain-100').trim() || '#eadfc9'),
+      new Color(styles.getPropertyValue('--terrain-200').trim() || '#ddc9a6'),
+      new Color(styles.getPropertyValue('--terrain-300').trim() || '#c9a97a'),
+      new Color(styles.getPropertyValue('--terrain-400').trim() || '#a8814f'),
+      new Color(styles.getPropertyValue('--terrain-500').trim() || '#8f6b3f'),
+      new Color(styles.getPropertyValue('--terrain-600').trim() || '#6b4f2e'),
+    ];
+
     const ambient = new AmbientLight(0xffffff, 0.5);
     scene.add(ambient);
 
-    // Hemisphere: sky warm, ground cool — creates natural depth
     const hemi = new HemisphereLight(0xfff4e8, 0x8b9dc3, 0.45);
     scene.add(hemi);
 
-    // Main sun from upper-right-front for visible shadows on extrusion
+    // K8: Main sun NW (azimut 315°, elevasi 45°)
     const sun = new DirectionalLight(0xfff8f0, 1.2);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
-    sun.shadow.camera.left = -140;
-    sun.shadow.camera.right = 140;
-    sun.shadow.camera.top = 140;
-    sun.shadow.camera.bottom = -140;
+    sun.shadow.camera.left = -160;
+    sun.shadow.camera.right = 160;
+    sun.shadow.camera.top = 160;
+    sun.shadow.camera.bottom = -160;
     sun.shadow.camera.near = 1;
     sun.shadow.camera.far = 900;
     sun.shadow.bias = -0.0008;
@@ -422,18 +643,19 @@ export default function AsiaScene({
     scene.add(sun);
     scene.add(sun.target);
 
-    // Fill light from opposite side to soften shadows
+    // Fill light from SE
     const fill = new DirectionalLight(0xd4e4f7, 0.35);
     scene.add(fill);
 
     const groundGeometry = new PlaneGeometry(520, 520);
-    const groundMaterial = new ShadowMaterial({ opacity: 0.12 });
+    const groundMaterial = new ShadowMaterial({ opacity: 0.06 });
     const ground = new Mesh(groundGeometry, groundMaterial);
     ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.08;
+    ground.position.y = -0.46;
     ground.receiveShadow = true;
     scene.add(ground);
 
+    const groundLike: Object3D[] = [ground];
     const countries: CountryEntry[] = [];
     const countriesById = new Map<string, CountryEntry>();
     const pickTargets: Mesh[] = [];
@@ -452,39 +674,57 @@ export default function AsiaScene({
     let pointerDownX = 0;
     let pointerDownY = 0;
     let pointerDownValid = false;
-    // Ukuran wadah untuk clamp/flip label; diperbarui saat resize & pointer.
-    let containerW = 1;
-    let containerH = 1;
-    // Posisi label (px lokal) — target pointer dan nilai lerp saat ini.
-    let labelTargetX = 0;
-    let labelTargetY = 0;
-    let labelCurX = 0;
-    let labelCurY = 0;
-    let labelW = 0;
-    let labelH = 0;
-    let labelVisible = false;
 
-    const labelEl = decorative ? null : (labelRef.current ?? null);
+    // Cache container rect untuk menghindari getBoundingClientRect berulang
+    let cachedContainerRect = container.getBoundingClientRect();
+    let containerW = Math.max(1, cachedContainerRect.width);
+    let containerH = Math.max(1, cachedContainerRect.height);
+
+    const updateCachedRect = () => {
+      if (disposed) return;
+      cachedContainerRect = container.getBoundingClientRect();
+      containerW = Math.max(1, cachedContainerRect.width);
+      containerH = Math.max(1, cachedContainerRect.height);
+    };
+
+    const panelEl = decorative ? null : (panelRef.current ?? null);
 
     const center = new Vector3();
     const box = new Box3();
 
-    // Titik siluet dipakai untuk mencocokkan lebar; disimpan rata agar loop
-    // frame tidak mengalokasikan objek baru.
     let silhouette: Float32Array = new Float32Array(0);
     let silhouetteCount = 0;
     const anchorWorld = new Vector3();
     const projectedWorld = new Vector3();
-    // State fit kamera: target look-at (di-reseed ke pusat model setiap
-    // panggilan) dan vektor kerja proyeksi tanpa alokasi per frame.
     const fitTarget = new Vector3();
     const projVec = new Vector3();
+
+    // K7 camera ownership & state
+    type CameraOwner = 'boot' | 'intro' | 'scroll';
+    let owner: CameraOwner = 'boot';
+    let introStartedAt = 0;
+    let introFinishedAt = 0;
+    const instanceHeroPose: CameraPose = { ...HERO_POSE };
+    const currentPose: CameraPose = { ...HERO_POSE };
+
+    // Stats tracking
+    let frameCount = 0;
+    let pickCount = 0;
+    let hoverEmitCount = 0;
+    let maxFrameMs = 0;
+    let lastAnchorEmitTime = 0;
+    let lastAnchorX = -9999;
+    let lastAnchorY = -9999;
+
+    container.dataset.intro = 'boot';
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let reducedMotion = motionQuery.matches;
     const onMotionChange = (event: MediaQueryListEvent) => {
       reducedMotion = event.matches;
       if (reducedMotion) {
+        owner = 'scroll';
+        container.dataset.intro = 'reduced';
         for (const country of countries) {
           country.lift = country.target;
           country.mesh.position.y = country.target;
@@ -494,37 +734,86 @@ export default function AsiaScene({
     motionQuery.addEventListener('change', onMotionChange);
 
     const resize = () => {
-      const width = Math.max(1, container.clientWidth);
-      const height = Math.max(1, container.clientHeight);
+      updateCachedRect();
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, DPR_MAX));
-      renderer.setSize(width, height, false);
-      camera.aspect = width / height;
+      renderer.setSize(containerW, containerH, false);
+      camera.aspect = containerW / containerH;
       camera.updateProjectionMatrix();
-      containerW = width;
-      containerH = height;
+
+      if (loaded && owner !== 'intro') {
+        const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+        fitCamera(0, elevation, 0, 1.0);
+        instanceHeroPose.azimuth = 0;
+        instanceHeroPose.distance = lastDistance;
+        instanceHeroPose.elevation = elevation;
+        instanceHeroPose.tx = fitTarget.x;
+        instanceHeroPose.ty = fitTarget.y;
+        instanceHeroPose.tz = fitTarget.z;
+
+        if (!debugKey || debugKey === 'hero') {
+          HERO_POSE.azimuth = 0;
+          HERO_POSE.distance = lastDistance;
+          HERO_POSE.elevation = elevation;
+          HERO_POSE.tx = fitTarget.x;
+          HERO_POSE.ty = fitTarget.y;
+          HERO_POSE.tz = fitTarget.z;
+        }
+      }
     };
     resize();
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
 
-    /**
-     * Satu-satunya tempat status hover berubah. `immediate` dipakai untuk
-     * tap pertama sentuh (label tampil seketika, tanpa histeresis).
-     */
+    const placeCameraFromPose = (pose: CameraPose) => {
+      const sx = Math.sin(pose.azimuth);
+      const cx = Math.cos(pose.azimuth);
+      const sy = Math.sin(pose.elevation);
+      const cy = Math.cos(pose.elevation);
+      camera.position.set(
+        pose.tx + sx * cy * pose.distance,
+        pose.ty + sy * pose.distance,
+        pose.tz + cx * cy * pose.distance,
+      );
+      camera.up.set(0, 1, 0);
+      camera.lookAt(pose.tx, pose.ty, pose.tz);
+      camera.updateMatrixWorld();
+    };
+
+    const projectCountryAnchor = (
+      country: CountryEntry,
+    ): { screenX: number; screenY: number; side: 'left' | 'right' } | null => {
+      camera.updateMatrixWorld();
+      anchorWorld.set(
+        country.anchor.x,
+        country.anchor.y + country.mesh.position.y,
+        country.anchor.z,
+      );
+      projVec.copy(anchorWorld).project(camera);
+      if (projVec.z > 1) {
+        return null;
+      }
+      const rect = cachedContainerRect;
+      const screenX = rect.left + (projVec.x * 0.5 + 0.5) * rect.width;
+      const screenY = rect.top + (-projVec.y * 0.5 + 0.5) * rect.height;
+      const containerRelX = (projVec.x * 0.5 + 0.5) * rect.width;
+      const side: 'left' | 'right' =
+        containerRelX > rect.width / 2 ? 'left' : 'right';
+      return { screenX, screenY, side };
+    };
+
     const setHovered = (
       id: string | null,
-      clientX: number,
-      clientY: number,
-      immediate: boolean,
+      clientX = 0,
+      clientY = 0,
     ) => {
       if (id === hoveredId) {
         return;
       }
       hoveredId = id;
-      callbacksRef.current.onHoverCountry?.(id);
+      hoverEmitCount++;
 
-      if (!labelEl) {
+      if (!panelEl) {
         return;
       }
       if (id) {
@@ -542,21 +831,53 @@ export default function AsiaScene({
         if (labelRegionRef.current) {
           labelRegionRef.current.textContent = region;
         }
-        // Ukuran terukur sekali per perubahan negara — bukan per frame.
-        labelW = labelEl.offsetWidth;
-        labelH = labelEl.offsetHeight;
-        const rect = container.getBoundingClientRect();
-        labelTargetX = clientX - rect.left;
-        labelTargetY = clientY - rect.top;
-        if (immediate || !labelVisible) {
-          labelCurX = labelTargetX;
-          labelCurY = labelTargetY;
+        if (panelLangRef.current) {
+          panelLangRef.current.textContent = country.language.nameId;
         }
-        labelVisible = true;
-        labelEl.dataset.visible = 'true';
+        if (panelScriptRef.current) {
+          panelScriptRef.current.textContent = country.language.script;
+        }
+        if (panelDepthRef.current) {
+          panelDepthRef.current.textContent = country.depth;
+        }
+
+        const countryEntry = countriesById.get(id);
+        let projSide: 'left' | 'right' = 'left';
+        let anchorCoords = {
+          x: Math.round(clientX - cachedContainerRect.left),
+          y: Math.round(clientY - cachedContainerRect.top),
+        };
+
+        if (countryEntry) {
+          const proj = projectCountryAnchor(countryEntry);
+          if (proj) {
+            projSide = proj.side;
+            const relY = proj.screenY - cachedContainerRect.top;
+            container.style.setProperty(
+              '--panel-anchor-y',
+              `${Math.round(relY)}px`,
+            );
+            anchorCoords = {
+              x: Math.round(proj.screenX - cachedContainerRect.left),
+              y: Math.round(relY),
+            };
+          }
+        }
+
+        container.dataset.panelSide = projSide;
+        container.dataset.hovered = id;
+        panelEl.dataset.side = projSide;
+        panelEl.dataset.panelFor = id;
+        panelEl.dataset.visible = 'true';
+
+        const hit = createCountryHit(id, anchorCoords, projSide);
+        callbacksRef.current.onHoverCountry?.(hit);
       } else {
-        labelVisible = false;
-        labelEl.dataset.visible = 'false';
+        delete container.dataset.panelSide;
+        container.dataset.hovered = '';
+        delete panelEl.dataset.panelFor;
+        panelEl.dataset.visible = 'false';
+        callbacksRef.current.onHoverCountry?.(null);
       }
     };
 
@@ -564,7 +885,8 @@ export default function AsiaScene({
       if (pickTargets.length === 0) {
         return null;
       }
-      const rect = container.getBoundingClientRect();
+      pickCount++;
+      const rect = cachedContainerRect;
       pointer.set(
         ((clientX - rect.left) / rect.width) * 2 - 1,
         -((clientY - rect.top) / rect.height) * 2 + 1,
@@ -579,6 +901,14 @@ export default function AsiaScene({
       return typeof id === 'string' ? id : null;
     };
 
+    const triggerInterrupt = () => {
+      if (owner === 'intro') {
+        owner = 'scroll';
+        container.dataset.intro = 'done';
+        introFinishedAt = performance.now();
+      }
+    };
+
     const onPointerMove = (event: PointerEvent) => {
       if (!loaded || decorative) {
         return;
@@ -590,22 +920,21 @@ export default function AsiaScene({
 
     const onPointerLeave = (event: PointerEvent) => {
       if (decorative) return;
-      // Sentuh tidak punya hover-out: pointerout/leave palsu yang
-      // menyusul tap tidak boleh menghapus hover, agar tap kedua pada
-      // negara yang sama membuka dialog (audit A6).
-      // pointercancel (contoh: mulai scroll) tetap keluar dari hover.
       if (event.pointerType !== 'mouse' && event.type !== 'pointercancel') {
         return;
       }
       pointerMoved = false;
-      // Keluar hover juga lewat histeresis: candidate kosong sekarang,
-      // tick mengonfirmi keluar setelah HOVER_HYSTERESIS_MS.
       candidateId = null;
-      candidateAt = performance.now();
+      setHovered(null);
     };
 
     const onPointerDown = (event: PointerEvent) => {
       if (decorative) return;
+      if (owner === 'intro') {
+        triggerInterrupt();
+        pointerDownValid = false;
+        return;
+      }
       pointerDownX = event.clientX;
       pointerDownY = event.clientY;
       pointerDownValid = true;
@@ -616,34 +945,73 @@ export default function AsiaScene({
         return;
       }
       pointerDownValid = false;
-      const moved = Math.hypot(event.clientX - pointerDownX, event.clientY - pointerDownY);
+      const moved = Math.hypot(
+        event.clientX - pointerDownX,
+        event.clientY - pointerDownY,
+      );
       if (moved > 12) {
         return;
       }
-      // Maksimal satu raycast per gestur tap.
-      const id = pickAt(event.clientX, event.clientY);
+
+      let id = pickAt(event.clientX, event.clientY);
+
+      // K9 touch: fallback 22px nearest-anchor untuk negara kecil (SG/TH)
       if (event.pointerType !== 'mouse') {
-        // Sentuh: tap pertama menampilkan label, tap kedua pada negara
-        // yang sama membuka dialog (audit A6).
+        if (!id) {
+          let nearestId: string | null = null;
+          let nearestDist = 22;
+          for (const country of countries) {
+            const proj = projectCountryAnchor(country);
+            if (proj) {
+              const d = Math.hypot(
+                event.clientX - proj.screenX,
+                event.clientY - proj.screenY,
+              );
+              if (d < nearestDist) {
+                nearestDist = d;
+                nearestId = country.id;
+              }
+            }
+          }
+          if (nearestId) {
+            id = nearestId;
+          }
+        }
+
+        // Tap 1 = hover & panel; Tap 2 negara sama = activate
         if (id) {
           if (hoveredId === id) {
             candidateId = null;
+            callbacksRef.current.onActivateCountry?.(id);
             callbacksRef.current.onSelectCountry?.(id);
           } else {
             candidateId = id;
             candidateAt = 0;
-            setHovered(id, event.clientX, event.clientY, true);
+            setHovered(id, event.clientX, event.clientY);
           }
         } else {
           candidateId = null;
-          setHovered(null, event.clientX, event.clientY, false);
+          setHovered(null);
         }
         return;
       }
+
       if (id) {
+        callbacksRef.current.onActivateCountry?.(id);
         callbacksRef.current.onSelectCountry?.(id);
       }
     };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' || event.key === ' ') {
+        triggerInterrupt();
+      }
+    };
+
+    window.addEventListener('scroll', updateCachedRect, { passive: true });
+    window.addEventListener('wheel', triggerInterrupt, { passive: true });
+    window.addEventListener('touchmove', triggerInterrupt, { passive: true });
+    window.addEventListener('keydown', onKeyDown);
 
     if (!decorative) {
       canvas.addEventListener('pointermove', onPointerMove);
@@ -657,6 +1025,64 @@ export default function AsiaScene({
       ready: false,
       debugKey,
       countryCount: 0,
+      pose(): CameraPose {
+        return {
+          azimuth: currentPose.azimuth,
+          distance: currentPose.distance,
+          elevation: currentPose.elevation,
+          tx: currentPose.tx,
+          ty: currentPose.ty,
+          tz: currentPose.tz,
+        };
+      },
+      intro() {
+        const elapsed =
+          introStartedAt > 0 ? performance.now() - introStartedAt : 0;
+        const progress =
+          owner === 'intro'
+            ? Math.min(1, Math.max(0, elapsed / INTRO.durationMs))
+            : owner === 'scroll'
+              ? 1
+              : 0;
+        const state = reducedMotion ? 'reduced' : owner;
+        return {
+          state,
+          progress,
+          elapsedMs: elapsed,
+        };
+      },
+      hovered() {
+        return hoveredId;
+      },
+      panelAnchor() {
+        if (!hoveredId) return null;
+        const country = countriesById.get(hoveredId);
+        if (!country) return null;
+        const proj = projectCountryAnchor(country);
+        if (!proj) return null;
+        const w = panelEl?.offsetWidth || 180;
+        const h = panelEl?.offsetHeight || 120;
+        return {
+          x: Math.round(proj.screenX),
+          y: Math.round(proj.screenY),
+          w,
+          h,
+          side: proj.side,
+        };
+      },
+      stats() {
+        return {
+          frames: frameCount,
+          picks: pickCount,
+          drawCalls: renderer.info.render.calls,
+          triangles: renderer.info.render.triangles,
+          hoverEmits: hoverEmitCount,
+          maxFrameMs,
+        };
+      },
+      warnings() {
+        return [];
+      },
       projected(id: string) {
         if (!debug.ready) {
           return null;
@@ -675,7 +1101,7 @@ export default function AsiaScene({
         if (ndc.z > 1) {
           return null;
         }
-        const rect = container.getBoundingClientRect();
+        const rect = cachedContainerRect;
         return {
           x: rect.left + (ndc.x * 0.5 + 0.5) * rect.width,
           y: rect.top + (-ndc.y * 0.5 + 0.5) * rect.height,
@@ -710,13 +1136,29 @@ export default function AsiaScene({
           };
         }
 
-        const groundVisible = ground.visible;
-        ground.visible = false;
+        // Sembunyikan semua ground-like objects (ground plane + terrain relief)
+        const prevVisibilities = groundLike.map((obj) => obj.visible);
+        for (const obj of groundLike) {
+          obj.visible = false;
+        }
 
+        // Jalankan render offscreen di HERO_POSE kanonik untuk pengukuran ink
+        const savedPos = camera.position.clone();
+        const savedQuat = camera.quaternion.clone();
+
+        const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+        fitCamera(0, elevation, 0, 1.0);
         camera.updateMatrixWorld();
         renderer.render(scene, camera);
 
-        ground.visible = groundVisible;
+        // Pulihkan posisi kamera & ground-like visibility
+        camera.position.copy(savedPos);
+        camera.quaternion.copy(savedQuat);
+        camera.updateMatrixWorld();
+
+        groundLike.forEach((obj, idx) => {
+          obj.visible = prevVisibilities[idx] ?? true;
+        });
 
         const gl = renderer.getContext();
         const width = gl.drawingBufferWidth;
@@ -814,23 +1256,12 @@ export default function AsiaScene({
     const gltfLoader = new GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
 
-    /**
-     * Fit kamera berbasis margin (audit L1/A1): iterasi mengukur span dan mid
-     * tinta lewat proyeksi kanonik `Vector3.project` — pipeline yang sama
-     * dengan render — sehingga sampel iterasi selalu identik dengan piksel
-     * yang digambar. Versi lama memakai basis kamera hitung manual yang
-     * mengabaikan magnifikasi perspektif permukaan atas; hasilnya tinta
-     * tergeser ~80px dan menyerempet tepi kanan kanvas.
-     *
-     * Alur per iterasi: tempatkan kamera, proyeksikan hull siluet, lalu
-     * (a) perbesar `distance` bila span melewati target (dengan faktor aman
-     * hapus: anti-aliasing dan vertex Y-ekstrem di dalam hull XZ) dan
-     * (b) geser target look-at sampai mid proyeksi tepat di NDC X = 0 dan
-     * NDC Y = fitTargetNdcY. Tidak ada lagi offset tepi (`offsetRight = 7.0`)
-     * dan `targetSpan = 1.98` yang membuat tinta terpotong `overflow: hidden`
-     * kanvas.
-     */
-    const fitCamera = (azimuth: number, elevation: number, scroll: number, introZoom = 1.0) => {
+    const fitCamera = (
+      azimuth: number,
+      elevation: number,
+      scroll: number,
+      introZoom = 1.0,
+    ) => {
       const aspect = camera.aspect;
       const tanHalf = Math.tan((FOV * Math.PI) / 360);
       const sx = Math.sin(azimuth);
@@ -838,15 +1269,9 @@ export default function AsiaScene({
       const sy = Math.sin(elevation);
       const cy = Math.cos(elevation);
       const zoomFactor = (1 - scroll * 0.05) * introZoom;
-      // Target span X responsif terhadap media query ≤640 yang sama dengan
-      // CSS hero mobile (audit L2): viewport sempit memakai target lebih
-      // agresif agar benua menempati band dengan rapat.
-      const spanXTarget = window.innerWidth <= 640
-        ? FIT_INK_SPAN_X_MOBILE
-        : FIT_INK_SPAN_X;
+      const spanXTarget =
+        window.innerWidth <= 640 ? FIT_INK_SPAN_X_MOBILE : FIT_INK_SPAN_X;
 
-      // Target di-reseed ke pusat model tiap panggilan: tidak ada akumulasi
-      // error antar-frame.
       fitTarget.set(center.x, center.y, center.z);
       let distance = lastDistance > 50 ? lastDistance : 220;
 
@@ -915,9 +1340,6 @@ export default function AsiaScene({
           break;
         }
 
-        // Koreksi pusat: error NDC → geseran dunia pada sumbu kanan/atas
-        // kamera, dibaca langsung dari matrixWorld supaya cocok dengan
-        // pipeline render (bukan basis yang dihitung ulang manual).
         const elements = camera.matrixWorld.elements;
         const shiftRight = midR * distance * tanHalf * aspect;
         const shiftUp = (midU - fitTargetNdcY) * distance * tanHalf;
@@ -926,8 +1348,6 @@ export default function AsiaScene({
         fitTarget.z += elements[2]! * shiftRight + elements[6]! * shiftUp;
       }
 
-      // Penempatan final: pastikan kamera konsisten dengan state (target,
-      // distance) hasil iterasi terakhir, apa pun jalur keluar loop-nya.
       place(distance * zoomFactor);
 
       lastDistance = distance;
@@ -936,30 +1356,42 @@ export default function AsiaScene({
       lastSpanY = finalSpanY;
     };
 
-    /** Warna/status per negara dijalankan tiap frame: murah untuk 15 mesh. */
     const applyState = () => {
+      const anyHovered = hoveredId !== null;
       for (const country of countries) {
         const selected = selectedRef.current === country.id;
-        const hoverAmt = reducedMotion ? (hoveredId === country.id ? 1 : 0) : country.hoverAmt;
+        const hoverAmt = reducedMotion
+          ? hoveredId === country.id
+            ? 1
+            : 0
+          : country.hoverAmt;
         const hl = reducedMotion ? (country.hl > 0 ? 1 : 0) : country.hl;
 
         if (selected) {
           country.outlineMaterial.color.copy(accentColor);
-          country.outlineMaterial.opacity = 0.9;
+          country.outlineMaterial.opacity = 0.95;
           country.material.emissive.copy(accentColor);
           country.material.emissiveIntensity = 0.38;
+        } else if (country.id === hoveredId) {
+          // Negara aktif ter-hover: sorotan jelas
+          country.outlineMaterial.color.copy(accentColor);
+          country.outlineMaterial.opacity = 0.95;
+          country.material.emissive.copy(accentColor);
+          country.material.emissiveIntensity = 0.28;
         } else {
-          // Sorotan skala: emisif warna sendiri. Hover memakai warna aksen
-          // pada outline (perilaku lama) plus emisif tipis.
+          // Negara lain: dim lembut jika ada negara lain aktif
           country.material.emissive.copy(country.material.color);
-          country.material.emissiveIntensity = hoverAmt * 0.16 + hl * 0.3;
+          country.material.emissiveIntensity =
+            hoverAmt * 0.16 + hl * 0.3;
           if (hoverAmt > 0.03) {
             country.outlineMaterial.color.copy(accentColor);
-            country.outlineMaterial.opacity = OUTLINE_OPACITY + hoverAmt * 0.15 + hl * 0.08;
+            country.outlineMaterial.opacity =
+              OUTLINE_OPACITY + hoverAmt * 0.15 + hl * 0.08;
           } else {
             country.outlineMaterial.color.copy(inkColor);
-            country.outlineMaterial.opacity =
-              OUTLINE_OPACITY + hl * 0.12 + (hl > 0.5 ? 0.1 : 0);
+            country.outlineMaterial.opacity = anyHovered
+              ? 0.25
+              : OUTLINE_OPACITY + hl * 0.12 + (hl > 0.5 ? 0.1 : 0);
           }
         }
       }
@@ -971,57 +1403,137 @@ export default function AsiaScene({
     let lastFitScale = 1;
     let lastSpanX = 0;
     let lastSpanY = 0;
-    let introStartTime = 0;
 
     const tick = (time: number) => {
+      frameCount++;
       const seconds = time / 1000;
       const delta = lastTime === 0 ? 0 : Math.min(seconds - lastTime, 0.1);
       lastTime = seconds;
+      const frameMs = delta * 1000;
+      if (frameMs > maxFrameMs) maxFrameMs = frameMs;
 
-      if (loaded && introStartTime === 0) {
-        introStartTime = time;
+      // K7 camera ownership handling
+      const isDocumentReady =
+        typeof document !== 'undefined' &&
+        document.documentElement.dataset.ready === 'true';
+
+      if (owner === 'boot') {
+        if (isDocumentReady) {
+          if (reducedMotion) {
+            owner = 'scroll';
+            container.dataset.intro = 'reduced';
+            introFinishedAt = time;
+          } else if (introEnabled === false) {
+            owner = 'scroll';
+            container.dataset.intro = 'skipped';
+            introFinishedAt = time;
+          } else {
+            owner = 'intro';
+            introStartedAt = time;
+            container.dataset.intro = 'intro';
+          }
+        } else {
+          placeCameraFromPose(instanceHeroPose);
+        }
       }
-      const elapsedIntro = loaded && introStartTime > 0 ? time - introStartTime : 0;
-      const nowMs = time;
 
-      const scroll = Math.min(
-        1,
-        Math.max(0, scrollProgressRef?.current ?? 0),
-      );
-
-      const MAX_IDLE_RAD = (1.5 * Math.PI) / 180;
-      if (!reducedMotion && hoveredId === null && selectedRef.current === null && elapsedIntro >= 1600) {
-        const idleSeconds = (elapsedIntro - 1600) / 1000;
-        azimuth = Math.sin(idleSeconds * (2 * Math.PI / 8)) * MAX_IDLE_RAD;
-      } else {
-        azimuth = 0;
+      if (owner === 'intro') {
+        const scrollNow = Math.min(
+          1,
+          Math.max(0, scrollProgressRef?.current ?? 0),
+        );
+        if (scrollNow > 0.002) {
+          owner = 'scroll';
+          container.dataset.intro = 'done';
+          introFinishedAt = time;
+        } else {
+          const elapsed = time - introStartedAt;
+          const progress = Math.min(1, Math.max(0, elapsed / INTRO.durationMs));
+          introPose(progress, instanceHeroPose, currentPose);
+          placeCameraFromPose(currentPose);
+          if (progress >= 1) {
+            owner = 'scroll';
+            container.dataset.intro = 'done';
+            introFinishedAt = time;
+          }
+        }
       }
 
-      const elevation = ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
-      fitCamera(azimuth, elevation, scroll, 1.0);
+      if (owner === 'scroll') {
+        const scroll = Math.min(
+          1,
+          Math.max(0, scrollProgressRef?.current ?? 0),
+        );
+        const MAX_IDLE_RAD = (1.5 * Math.PI) / 180;
+        if (
+          idleSway !== false &&
+          !reducedMotion &&
+          hoveredId === null &&
+          selectedRef.current === null
+        ) {
+          const swayElapsed = Math.max(0, time - introFinishedAt);
+          const ramp = Math.min(1, swayElapsed / 1200);
+          azimuth =
+            Math.sin((swayElapsed / 1000) * ((2 * Math.PI) / 8)) *
+            MAX_IDLE_RAD *
+            ramp;
+        } else {
+          azimuth = 0;
+        }
+        const elevation =
+          ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
+        fitCamera(azimuth, elevation, scroll, 1.0);
+        currentPose.azimuth = azimuth;
+        currentPose.distance = lastDistance;
+        currentPose.elevation = elevation;
+        currentPose.tx = fitTarget.x;
+        currentPose.ty = fitTarget.y;
+        currentPose.tz = fitTarget.z;
+      }
 
-      // Histeresis hover: maksimal satu raycast per frame, hanya saat
-      // pointer benar-benar berpindah (audit A6).
+      // K9 Hover raycasting & hysteresis (maksimal 1x per frame)
       if (!decorative && loaded) {
         if (pointerMoved) {
           pointerMoved = false;
           const id = pickAt(pointerClientX, pointerClientY);
           if (id !== candidateId) {
             candidateId = id;
-            candidateAt = nowMs;
+            candidateAt = time;
           }
-          // Target posisi label mengikuti pointer setiap frame bergerak.
-          const rect = container.getBoundingClientRect();
-          labelTargetX = pointerClientX - rect.left;
-          labelTargetY = pointerClientY - rect.top;
         }
-        if (candidateId !== hoveredId && nowMs - candidateAt >= HOVER_HYSTERESIS_MS) {
-          setHovered(candidateId, pointerClientX, pointerClientY, false);
+        if (
+          candidateId !== hoveredId &&
+          time - candidateAt >= HOVER_HYSTERESIS_MS
+        ) {
+          setHovered(candidateId, pointerClientX, pointerClientY);
         }
       }
 
-      // Sorotan scene Skala: count = round(p * 15), urutan barat → timur.
-      // Satu sumber data — tween GSAP menulis ref ini dan teks counter.
+      // Emisi onCountryAnchor ber-debounce
+      if (hoveredId && callbacksRef.current.onCountryAnchor) {
+        if (time - lastAnchorEmitTime >= 100) {
+          const country = countriesById.get(hoveredId);
+          if (country) {
+            const proj = projectCountryAnchor(country);
+            if (proj) {
+              const ax = Math.round(proj.screenX - cachedContainerRect.left);
+              const ay = Math.round(proj.screenY - cachedContainerRect.top);
+              if (Math.hypot(ax - lastAnchorX, ay - lastAnchorY) >= 6) {
+                lastAnchorX = ax;
+                lastAnchorY = ay;
+                lastAnchorEmitTime = time;
+                callbacksRef.current.onCountryAnchor(
+                  hoveredId,
+                  { x: ax, y: ay },
+                  proj.side,
+                );
+              }
+            }
+          }
+        }
+      }
+
+      // Sorotan scene Skala
       const hlProgress = highlightProgressRef
         ? Math.min(1, Math.max(0, highlightProgressRef.current ?? 0))
         : 0;
@@ -1048,58 +1560,26 @@ export default function AsiaScene({
           country.hl += (hlTarget - country.hl) * glowFactor;
         }
 
-        let introOffsetY = 0;
-        if (!reducedMotion && elapsedIntro < 1600) {
-          if (elapsedIntro < country.introStartMs) {
-            introOffsetY = -1.6;
-          } else if (elapsedIntro >= country.introStartMs + 400) {
-            introOffsetY = 0;
-          } else {
-            const t = (elapsedIntro - country.introStartMs) / 400;
-            const eased = 1 - Math.pow(1 - t, 3);
-            introOffsetY = -1.6 * (1 - eased);
-          }
-        }
-
-        const targetY = introOffsetY + country.lift;
+        const targetY = country.lift;
         if (Math.abs(country.mesh.position.y - targetY) > 0.0005) {
           country.mesh.position.y = targetY;
         }
       }
 
       applyState();
-
-      // Label imperatif: posisi via transform + lerp — tidak menyentuh
-      // layout React, tidak memicu render.
-      if (labelEl) {
-        if (labelVisible) {
-          const lerpFactor = delta <= 0 ? 1 : 1 - Math.exp(-delta / LABEL_TAU);
-          labelCurX += (labelTargetX - labelCurX) * lerpFactor;
-          labelCurY += (labelTargetY - labelCurY) * lerpFactor;
-          const flip = labelCurX + 14 + labelW > containerW - 8;
-          const appliedX = flip ? labelCurX - labelW - 14 : labelCurX + 14;
-          const appliedY = Math.min(
-            Math.max(labelCurY - labelH / 2, 6),
-            Math.max(6, containerH - labelH - 6),
-          );
-          labelEl.style.transform = `translate3d(${Math.round(appliedX * 100) / 100}px, ${Math.round(appliedY * 100) / 100}px, 0)`;
-          labelEl.dataset.flip = flip ? 'true' : 'false';
-        }
-      }
-
       renderer.render(scene, camera);
 
       if (!debug.ready) {
         debug.ready = true;
-        // Notify preloader that scene is ready
         window.dispatchEvent(new CustomEvent('asiakin:scene-ready'));
       }
+
       debug.diagnostics = {
         ...debug.diagnostics,
         distance: lastDistance,
         aspect: camera.aspect,
-        width: container.clientWidth,
-        height: container.clientHeight,
+        width: containerW,
+        height: containerH,
         azimuth,
         fitScale: lastFitScale,
         spanXNdc: lastSpanX,
@@ -1111,7 +1591,9 @@ export default function AsiaScene({
     };
 
     const init = async () => {
-      const manifestResponse = await fetch(assetUrl('models/asia.manifest.json'));
+      const manifestResponse = await fetch(
+        assetUrl('models/asia.manifest.json'),
+      );
       if (!manifestResponse.ok) {
         throw new Error(`Manifest ${manifestResponse.status}`);
       }
@@ -1127,7 +1609,6 @@ export default function AsiaScene({
       }
 
       loaded = true;
-
       box.setFromObject(gltf.scene);
       box.getCenter(center);
 
@@ -1135,6 +1616,8 @@ export default function AsiaScene({
       for (const entry of manifest) {
         manifestByIso.set(entry.iso3, entry);
       }
+
+      let minCountryBottomY = Number.POSITIVE_INFINITY;
 
       gltf.scene.traverse((object) => {
         if (!(object instanceof Mesh)) {
@@ -1152,12 +1635,6 @@ export default function AsiaScene({
         }
 
         if (!entry) {
-          // Mesh konteks non-negara (tanah benua yang ikut terekspor):
-          // Pakistan, Afghanistan, Bangladesh, Sri Lanka, dan sisa lembaran
-          // kecil lain. GLB hanya berisi serpihan lepas, bukan daratan
-          // kohesif, jadi audit L4 dipilih opsi "tidak ada sama sekali":
-          // mesh disembunyikan seluruhnya — tidak digambar, tanpa bayangan,
-          // tidak pickable, dan tidak ikut siluet fit kamera.
           const existing = object.material;
           if (Array.isArray(existing)) {
             for (const item of existing) {
@@ -1172,12 +1649,13 @@ export default function AsiaScene({
           return;
         }
 
-        // Titik jangkar untuk debug/projected: centroid segitiga di permukaan atas
-        // yang paling dekat ke pusat bounding box — dijamin berada di dalam mesh.
+        minCountryBottomY = Math.min(minCountryBottomY, bounds.min.y);
+
         const position = geometry.getAttribute('position');
         const index = geometry.getIndex();
         const topY = bounds.max.y;
-        const topThreshold = topY - Math.max(0.05, (topY - bounds.min.y) * 0.02);
+        const topThreshold =
+          topY - Math.max(0.05, (topY - bounds.min.y) * 0.02);
         const targetX = (bounds.min.x + bounds.max.x) / 2;
         const targetZ = (bounds.min.z + bounds.max.z) / 2;
         const anchor = new Vector3(targetX, topY, targetZ);
@@ -1195,8 +1673,10 @@ export default function AsiaScene({
             if (ay < topThreshold || by < topThreshold || cy < topThreshold) {
               continue;
             }
-            const px = (position.getX(ia) + position.getX(ib) + position.getX(ic)) / 3;
-            const pz = (position.getZ(ia) + position.getZ(ib) + position.getZ(ic)) / 3;
+            const px =
+              (position.getX(ia) + position.getX(ib) + position.getX(ic)) / 3;
+            const pz =
+              (position.getZ(ia) + position.getZ(ib) + position.getZ(ic)) / 3;
             const dx = px - targetX;
             const dz = pz - targetZ;
             const candidate = dx * dx + dz * dz;
@@ -1257,7 +1737,6 @@ export default function AsiaScene({
           hoverAmt: 0,
           hl: 0,
           band: 0,
-          introStartMs: 600,
         };
         countries.push(country);
         pickTargets.push(object);
@@ -1267,37 +1746,14 @@ export default function AsiaScene({
       debug.countryCount = countries.length;
       debug.unmapped = unmappedNames.slice();
 
-      // Band sorotan: urut barat → timur berdasarkan anchor.x.
       const byBand = [...countries].sort((a, b) => a.anchor.x - b.anchor.x);
       for (let i = 0; i < byBand.length; i += 1) {
         byBand[i]!.band = i;
       }
 
-      let minCentroidX = Number.POSITIVE_INFINITY;
-      let maxCentroidX = Number.NEGATIVE_INFINITY;
-      for (const country of countries) {
-        minCentroidX = Math.min(minCentroidX, country.anchor.x);
-        maxCentroidX = Math.max(maxCentroidX, country.anchor.x);
-      }
-      const spanCentroidX = maxCentroidX - minCentroidX || 1;
-      for (const country of countries) {
-        const westToEast = (country.anchor.x - minCentroidX) / spanCentroidX;
-        country.introStartMs = 600 + westToEast * 600;
-      }
-
-      // Matrix dunia sudah final setelah traverse (node GLB tanpa transform),
-      // jadi hull bisa dihitung sekali di sini. Hanya mesh 15 negara yang
-      // di-fit: mesh konteks disembunyikan (audit L4) sehingga hull mustahil
-      // melebar daripada tinta yang benar-benar digambar.
       gltf.scene.updateMatrixWorld(true);
       silhouette = computeSilhouette(pickTargets, center);
       silhouetteCount = silhouette.length / 3;
-
-      for (const country of countries) {
-        if (!reducedMotion) {
-          country.mesh.position.y = -1.6;
-        }
-      }
 
       for (let i = 0; i < pickTargets.length; i += 1) {
         const position = pickTargets[i]!.geometry.getAttribute('position');
@@ -1311,23 +1767,34 @@ export default function AsiaScene({
       }
       debug.vertices = new Float32Array(tempVertices);
 
-      // Model dibangun mengelilingi pusat bounding box, bukan origin.
-      sun.position.set(
-        center.x + 100,
-        center.y + 200,
-        center.z + 80,
+      // K8: Bangun relief terrain 3D di bawah kontinen Asia
+      const plateWidth = 240;
+      const plateHeight = 180;
+      const terrainPlate = createTerrainPlate(
+        plateWidth,
+        plateHeight,
+        center,
+        minCountryBottomY,
+        terrainColors,
       );
+      const terrainRidges = createTerrainRidges(
+        plateWidth,
+        plateHeight,
+        center,
+        minCountryBottomY,
+        terrainColors,
+      );
+      scene.add(terrainPlate);
+      scene.add(terrainRidges);
+      groundLike.push(terrainPlate, terrainRidges);
+
+      // K8: Posisi pencahayaan matahari dari NW (azimut 315°, elevasi 45°)
+      sun.position.set(center.x - 100, center.y + 141.42, center.z - 100);
       sun.target.position.copy(center);
       sun.target.updateMatrixWorld();
 
-      // Fill light from opposite side
-      fill.position.set(
-        center.x - 80,
-        center.y + 120,
-        center.z - 60,
-      );
-
-      ground.position.set(center.x, -0.08, center.z);
+      fill.position.set(center.x + 80, center.y + 60, center.z + 80);
+      ground.position.set(center.x, -0.46, center.z);
       ground.updateMatrixWorld();
 
       scene.add(gltf.scene);
@@ -1336,6 +1803,34 @@ export default function AsiaScene({
         callbacksRef.current.onUnavailable?.();
         return;
       }
+
+      // Ukur HERO_POSE kanonik pertama kali
+      const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+      fitCamera(0, elevation, 0, 1.0);
+      instanceHeroPose.azimuth = 0;
+      instanceHeroPose.distance = lastDistance;
+      instanceHeroPose.elevation = elevation;
+      instanceHeroPose.tx = fitTarget.x;
+      instanceHeroPose.ty = fitTarget.y;
+      instanceHeroPose.tz = fitTarget.z;
+
+      if (!debugKey || debugKey === 'hero') {
+        HERO_POSE.azimuth = 0;
+        HERO_POSE.distance = lastDistance;
+        HERO_POSE.elevation = elevation;
+        HERO_POSE.tx = fitTarget.x;
+        HERO_POSE.ty = fitTarget.y;
+        HERO_POSE.tz = fitTarget.z;
+      }
+
+      currentPose.azimuth = instanceHeroPose.azimuth;
+      currentPose.distance = instanceHeroPose.distance;
+      currentPose.elevation = instanceHeroPose.elevation;
+      currentPose.tx = instanceHeroPose.tx;
+      currentPose.ty = instanceHeroPose.ty;
+      currentPose.tz = instanceHeroPose.tz;
+
+      placeCameraFromPose(instanceHeroPose);
 
       renderer.setAnimationLoop(tick);
       applyState();
@@ -1351,6 +1846,10 @@ export default function AsiaScene({
       disposed = true;
       motionQuery.removeEventListener('change', onMotionChange);
       resizeObserver.disconnect();
+      window.removeEventListener('scroll', updateCachedRect);
+      window.removeEventListener('wheel', triggerInterrupt);
+      window.removeEventListener('touchmove', triggerInterrupt);
+      window.removeEventListener('keydown', onKeyDown);
 
       if (!decorative) {
         canvas.removeEventListener('pointermove', onPointerMove);
@@ -1383,7 +1882,10 @@ export default function AsiaScene({
           }
         }
         scene.traverse((object) => {
-          if (object instanceof Mesh && !countries.some((c) => c.mesh === object)) {
+          if (
+            object instanceof Mesh &&
+            !countries.some((c) => c.mesh === object)
+          ) {
             object.geometry.dispose();
             const material = object.material;
             if (!Array.isArray(material)) {
@@ -1414,26 +1916,124 @@ export default function AsiaScene({
         }
       }
     };
-  }, [scrollProgressRef, highlightProgressRef, decorative, debugKey, fitTargetNdcY]);
+  }, [
+    scrollProgressRef,
+    highlightProgressRef,
+    decorative,
+    debugKey,
+    fitTargetNdcY,
+    introEnabled,
+    idleSway,
+  ]);
 
   return (
-    <div className={className ? `asia-scene ${className}` : 'asia-scene'} ref={containerRef}>
-      <canvas ref={canvasRef} className="asia-scene__canvas" aria-hidden="true" />
+    <div
+      className={className ? `asia-scene ${className}` : 'asia-scene'}
+      ref={containerRef}
+    >
+      <canvas
+        ref={canvasRef}
+        className="asia-scene__canvas"
+        aria-hidden="true"
+      />
       {!decorative && (
-        <div
-          className="asia-scene__label"
-          ref={labelRef}
-          data-visible="false"
-          aria-hidden="true"
-        >
-          <div className="asia-scene__label-id" ref={labelIdRef} />
-          <div className="asia-scene__label-native" ref={labelNativeRef} />
-          <div className="asia-scene__label-region" ref={labelRegionRef} />
-        </div>
+        <>
+          <div
+            ref={panelRef}
+            className="asia-scene__panel asia-scene__label"
+            data-visible="false"
+            data-country-panel="true"
+            aria-hidden="true"
+          >
+            <div className="asia-scene__panel-header">
+              <div
+                className="asia-scene__panel-name asia-scene__label-id"
+                ref={labelIdRef}
+              />
+              <div
+                className="asia-scene__panel-native asia-scene__label-native"
+                ref={labelNativeRef}
+              />
+              <div
+                className="asia-scene__label-region"
+                ref={labelRegionRef}
+                style={{ display: 'none' }}
+              />
+            </div>
+            <div className="asia-scene__panel-body">
+              <div className="asia-scene__panel-row">
+                <span className="asia-scene__panel-label">Bahasa</span>
+                <span
+                  className="asia-scene__panel-value"
+                  ref={panelLangRef}
+                />
+              </div>
+              <div className="asia-scene__panel-row">
+                <span className="asia-scene__panel-label">Aksara</span>
+                <span
+                  className="asia-scene__panel-value"
+                  ref={panelScriptRef}
+                />
+              </div>
+              <div className="asia-scene__panel-row">
+                <span className="asia-scene__panel-label">Kedalaman</span>
+                <span
+                  className="asia-scene__panel-value"
+                  ref={panelDepthRef}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="asia-scene__keyboard-nav"
+            role="group"
+            aria-label="Navigasi negara benua Asia"
+          >
+            {allCountries.map((c, idx) => (
+              <button
+                key={c.id}
+                ref={(el) => {
+                  keyboardButtonsRef.current[idx] = el;
+                }}
+                type="button"
+                data-scene-country={c.id}
+                tabIndex={keyboardActiveIndex === idx ? 0 : -1}
+                onFocus={() => {
+                  setKeyboardActiveIndex(idx);
+                  callbacksRef.current.onHoverCountry?.(
+                    createCountryHit(c.id, { x: 0, y: 0 }, 'left'),
+                  );
+                }}
+                onClick={() => {
+                  callbacksRef.current.onActivateCountry?.(c.id);
+                  callbacksRef.current.onSelectCountry?.(c.id);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const next = (idx + 1) % allCountries.length;
+                    setKeyboardActiveIndex(next);
+                    keyboardButtonsRef.current[next]?.focus();
+                  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prev =
+                      (idx - 1 + allCountries.length) % allCountries.length;
+                    setKeyboardActiveIndex(prev);
+                    keyboardButtonsRef.current[prev]?.focus();
+                  } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    callbacksRef.current.onHoverCountry?.(null);
+                    (e.target as HTMLElement)?.blur();
+                  }
+                }}
+              >
+                {c.nameId}
+              </button>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
 }
-
-
-

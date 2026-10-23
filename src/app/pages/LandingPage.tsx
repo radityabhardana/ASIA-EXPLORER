@@ -3,9 +3,11 @@ import type { CSSProperties, MouseEvent } from 'react';
 
 import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
+import Navbar from '@/app/Navbar';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryDialog from '@/sections/landing/CountryDialog';
 import Silhouette from '@/sections/landing/Silhouette';
+import TopoBackground from '@/sections/landing/TopoBackground';
 import {
   REGIONAL_SILHOUETTES,
   SCRIPT_COUNTRY_IDS,
@@ -71,15 +73,21 @@ export default function LandingPage() {
 
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
+      <TopoBackground />
+      <a
+        className="landing-skip skip-link"
+        href="#peta"
+        onClick={handleSkipToMap}
+      >
+        Lewati ke peta
+      </a>
+      <Navbar onScrollToMap={handleSkipToMap} />
+
       {/* Scene 1 — hero */}
       <section
         className="landing-scene landing-scene--hero"
         aria-labelledby="landing-title"
       >
-        <a className="landing-skip" href="#peta" onClick={handleSkipToMap}>
-          Lewati ke peta
-        </a>
-
         <div className="landing-stage landing-stage--hero">
           <div className="landing-hero__ground" aria-hidden="true">
             <svg

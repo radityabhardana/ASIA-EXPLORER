@@ -32,14 +32,17 @@ describe('fondasi aplikasi', () => {
     expect(progressBar).not.toBeNull();
     expect(progressBar).toHaveAttribute('aria-hidden', 'true');
 
-    // Izinkan satu nav in-flow di landing, larang header dan nav fixed.
+    // Larang header dan nav fixed (navbar K10 adalah absolute, bukan sticky/fixed).
     const navs = screen.queryAllByRole('navigation');
-    expect(navs.length).toBeLessThanOrEqual(1);
-    if (navs.length === 1) {
-      const computed = getComputedStyle(navs[0]!);
+    for (const nav of navs) {
+      const computed = getComputedStyle(nav);
       expect(computed.position).not.toBe('fixed');
     }
-    expect(screen.queryByRole('banner')).toBeNull();
+    const banner = screen.queryByRole('banner');
+    if (banner) {
+      const computed = getComputedStyle(banner);
+      expect(computed.position).not.toBe('fixed');
+    }
   });
 
   it('rute tidak dikenal dialihkan ke beranda', async () => {

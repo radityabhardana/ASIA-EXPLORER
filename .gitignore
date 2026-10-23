@@ -17,6 +17,7 @@ docs/VERIFY_COUNTRY/
 docs/VERIFY_LANDING/
 docs/VERIFY/
 docs/research/shots/
+docs/*.zip
 tmp-*
 
 .slim/deepwork/
