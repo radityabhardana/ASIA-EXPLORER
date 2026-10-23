@@ -26,8 +26,8 @@ export default function CountryPage() {
 
   useEffect(() => {
     document.title = country
-      ? `${country.nameId} · ASIAKIN`
-      : 'Negara tidak ditemukan · ASIAKIN';
+      ? `${country.nameId} · Asia Explorer`
+      : 'Negara tidak ditemukan · Asia Explorer';
   }, [country]);
 
   if (!country) {
