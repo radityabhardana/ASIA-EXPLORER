@@ -1,0 +1,251 @@
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { countries, getCountry } from '@/content/countries';
+import CountryPage from '@/app/pages/CountryPage';
+import { contrastRatio } from '@/lib/color';
+import CountryBackground, { getCountryTheme } from './CountryBackground';
+import CountryGallery, { getCountryPhotos } from './CountryGallery';
+import CountryHero, { getHeroPhoto } from './CountryHero';
+import LanguageBlock from './LanguageBlock';
+import { profileFor } from './scripts';
+import SourceBlock from './SourceBlock';
+
+class MockSpeechSynthesisUtterance {
+  text: string;
+  lang = '';
+  rate = 1;
+  onend: (() => void) | null = null;
+  onerror: (() => void) | null = null;
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+describe('Country Page & Editorial Cultural Atlas Transformation', () => {
+  let mockSpeak: ReturnType<typeof vi.fn>;
+  let mockCancel: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    mockSpeak = vi.fn();
+    mockCancel = vi.fn();
+    const mockGetVoices = vi.fn().mockReturnValue([
+      { lang: 'ja-JP', name: 'Japanese' },
+      { lang: 'id-ID', name: 'Indonesian' },
+    ]);
+
+    Object.defineProperty(window, 'speechSynthesis', {
+      writable: true,
+      configurable: true,
+      value: {
+        speak: mockSpeak,
+        cancel: mockCancel,
+        getVoices: mockGetVoices,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      },
+    });
+
+    Object.defineProperty(window, 'SpeechSynthesisUtterance', {
+      writable: true,
+      configurable: true,
+      value: MockSpeechSynthesisUtterance,
+    });
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  describe('1. Adaptive Background (CountryBackground.tsx)', () => {
+    it('memiliki palet tema untuk semua 15 negara dengan kontras ink >= 12:1 (AAA)', () => {
+      expect(countries).toHaveLength(15);
+      for (const country of countries) {
+        const theme = getCountryTheme(country.id);
+        expect(theme.base).toMatch(/^#[0-9a-f]{6}$/i);
+        expect(theme.contourStroke).toMatch(/^#[0-9a-f]{6}$/i);
+        expect(theme.contourOpacity).toBeGreaterThanOrEqual(0.12);
+        expect(theme.contourOpacity).toBeLessThanOrEqual(0.18);
+
+        const cr = contrastRatio('#1a1f24', theme.base);
+        expect(
+          cr,
+          `Kontras --ink terhadap base negara ${country.id} harus >= 12:1 (AAA), dapat ${cr.toFixed(2)}:1`,
+        ).toBeGreaterThanOrEqual(12);
+      }
+    });
+
+    it('merender cincin kontur konsentris dan siluet dengan stroke tema', () => {
+      const { container } = render(<CountryBackground countryId="jp" />);
+      const bg = container.querySelector('.country-background');
+      expect(bg).not.toBeNull();
+      expect(bg?.getAttribute('aria-hidden')).toBe('true');
+
+      const rings = container.querySelectorAll('.country-background__ring');
+      expect(rings.length).toBeGreaterThanOrEqual(4);
+
+      const topo = container.querySelector('.country-background__topo-svg');
+      expect(topo).not.toBeNull();
+    });
+  });
+
+  describe('2. Photo Hero with Parallax (CountryHero.tsx)', () => {
+    it('mengambil foto hero dari images.json dan merender picture tag serta kredit', () => {
+      const jp = getCountry('jp')!;
+      const profile = profileFor(jp);
+      const heroPhoto = getHeroPhoto('jp');
+
+      expect(heroPhoto).toBeDefined();
+      expect(heroPhoto?.role).toBe('hero');
+
+      const { container } = render(<CountryHero country={jp} profile={profile} />);
+
+      // Picture tag with AVIF and WebP
+      const picture = container.querySelector('.country-hero__picture');
+      expect(picture).not.toBeNull();
+
+      const sources = container.querySelectorAll('.country-hero__picture source');
+      expect(sources.length).toBeGreaterThanOrEqual(2);
+
+      // Watermark display
+      const watermark = container.querySelector('.country-hero__watermark');
+      expect(watermark).not.toBeNull();
+      expect(watermark?.textContent).toContain(jp.nameLocal);
+
+      // Indonesian name, region, depth
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(jp.nameId);
+      expect(container.querySelector('.country-hero__region')?.textContent).toBe(jp.region);
+      expect(container.querySelector('.country-honesty-marker')?.textContent).toBe(jp.depth);
+
+      // Photographer caption
+      const caption = container.querySelector('.country-hero__caption');
+      expect(caption?.textContent).toContain(heroPhoto!.credit.author);
+      expect(caption?.textContent).toContain(heroPhoto!.credit.license);
+    });
+  });
+
+  describe('3. Audio Pronunciation in LanguageBlock.tsx', () => {
+    it('merender tombol audio interaktif untuk greeting dan 3 frasa', () => {
+      const jp = getCountry('jp')!;
+      const profile = profileFor(jp);
+
+      const { container } = render(<LanguageBlock country={jp} profile={profile} />);
+
+      const audioButtons = container.querySelectorAll('.country-audio-btn');
+      // 1 for greeting + 3 for phrases = 4 buttons
+      expect(audioButtons.length).toBe(4);
+
+      // Check text is "🔊 Dengarkan"
+      const phraseBtn = audioButtons[1];
+      expect(phraseBtn?.textContent).toContain('🔊 Dengarkan');
+
+      // Click button triggers speech
+      fireEvent.click(phraseBtn!);
+      expect(mockSpeak).toHaveBeenCalled();
+    });
+  });
+
+  describe('4. Country Photo Gallery (CountryGallery.tsx)', () => {
+    it('mengambil seluruh foto non-hero negara dan merender grid editorial', () => {
+      const nonHeroPhotos = getCountryPhotos('jp');
+      expect(nonHeroPhotos.length).toBeGreaterThanOrEqual(2);
+
+      const { container } = render(<CountryGallery countryId="jp" countryName="Jepang" />);
+
+      const gallery = container.querySelector('.country-gallery');
+      expect(gallery).not.toBeNull();
+
+      const cards = container.querySelectorAll('.country-gallery__card');
+      expect(cards.length).toBe(nonHeroPhotos.length);
+
+      // Images have loading="lazy" and decoding="async"
+      const imgs = container.querySelectorAll('.country-gallery__img');
+      expect(imgs.length).toBe(nonHeroPhotos.length);
+      for (const img of imgs) {
+        expect(img.getAttribute('loading')).toBe('lazy');
+        expect(img.getAttribute('decoding')).toBe('async');
+      }
+
+      // Check photographer credits
+      const credits = container.querySelectorAll('.country-gallery__credit');
+      expect(credits.length).toBe(nonHeroPhotos.length);
+    });
+  });
+
+  describe('5. Foldable Provenance / Sources (SourceBlock.tsx)', () => {
+    it('membungkus sitasi dalam details lipat dengan summary count dan chevron', () => {
+      const jp = getCountry('jp')!;
+      const { container } = render(
+        <SourceBlock
+          sources={jp.sources}
+          needsVerification={jp.needsVerification}
+          depth={jp.depth}
+        />,
+      );
+
+      const details = container.querySelector('.country-sources-details');
+      expect(details).not.toBeNull();
+
+      const summary = container.querySelector('.country-sources-summary');
+      expect(summary?.textContent).toContain(`Referensi & Sumber Data (${jp.sources.length})`);
+
+      const chevron = container.querySelector('.country-sources-summary__chevron');
+      expect(chevron).not.toBeNull();
+
+      // Verified URLs list
+      const verifiedLinks = container.querySelectorAll('.country-sources__link');
+      expect(verifiedLinks.length).toBeGreaterThan(0);
+      for (const link of verifiedLinks) {
+        expect(link.getAttribute('target')).toBe('_blank');
+        expect(link.getAttribute('rel')).toContain('noopener');
+      }
+    });
+  });
+
+  describe('6. CountryPage Full Integration', () => {
+    it('merender modul Uji Pemahaman: Etiket & Frasa untuk negara Lengkap (JP)', () => {
+      const { container } = render(
+        <MemoryRouter initialEntries={['/negara/jp']}>
+          <Routes>
+            <Route path="/negara/:id" element={<CountryPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      // Title & CTA
+      expect(
+        screen.getByRole('heading', { name: /Uji Pemahaman: Etiket & Frasa Jepang/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          /Ikuti skenario budaya bercabang dan simpan frasa ke Phrase Vault di perambanmu./i,
+        ),
+      ).toBeInTheDocument();
+
+      const cta = screen.getByRole('link', { name: /Mulai Pelajaran di Dashboard →/i });
+      expect(cta).toBeInTheDocument();
+      expect(cta.getAttribute('href')).toBe('/dashboard');
+
+      expect(container.querySelector('.country-dashboard-callout')).not.toBeNull();
+    });
+
+    it('tidak merender modul Uji Pemahaman untuk negara Penjelajahan (MY)', () => {
+      const { container } = render(
+        <MemoryRouter initialEntries={['/negara/my']}>
+          <Routes>
+            <Route path="/negara/:id" element={<CountryPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      expect(
+        screen.queryByRole('heading', { name: /Uji Pemahaman: Etiket & Frasa Malaysia/i }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('link', { name: /Mulai Pelajaran di Dashboard →/i }),
+      ).not.toBeInTheDocument();
+      expect(container.querySelector('.country-dashboard-callout')).toBeNull();
+    });
+  });
+});

@@ -12,37 +12,62 @@ export default function SourceBlock({ sources, needsVerification }: SourceBlockP
   return (
     <footer className="country-block country-sources" aria-labelledby="country-sources-title">
       <div className="country-block__inner">
-        <h2 id="country-sources-title" className="country-sources__title">
-          Sumber
+        <h2 id="country-sources-title" className="visually-hidden">
+          Referensi dan Sumber Data
         </h2>
-        <ol className="country-sources__list">
-          {sources.map((source, i) => (
-            <li key={i} className="country-sources__item">
-              {source.url ? (
-                <a
-                  href={source.url}
-                  className="country-sources__link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {source.what}
-                </a>
-              ) : (
-                <span className="country-sources__text">{source.what}</span>
-              )}
-            </li>
-          ))}
-        </ol>
-        {hasVerification && (
-          <details className="country-verification">
-            <summary>Perlu verifikasi</summary>
-            <ul className="country-verification__list">
-              {needsVerification.map((note, i) => (
-                <li key={i}>{note}</li>
+
+        <details className="country-sources-details">
+          <summary className="country-sources-summary">
+            <span className="country-sources-summary__label">
+              Referensi & Sumber Data ({sources.length})
+            </span>
+            <span className="country-sources-summary__chevron" aria-hidden="true">
+              ▾
+            </span>
+          </summary>
+
+          <div className="country-sources-drawer">
+            <p className="country-sources-provenance">
+              Seluruh data budaya, etika sosial, dan korpus kebahasaan diverifikasi silang dari lembaga bahasa resmi, atlas budaya, dan dokumentasi lapangan.
+            </p>
+
+            <ol className="country-sources__list">
+              {sources.map((source, i) => (
+                <li key={i} className="country-sources__item">
+                  <div className="country-sources__item-body">
+                    <p className="country-sources__what">{source.what}</p>
+                    {source.url ? (
+                      <div className="country-sources__link-wrap">
+                        <a
+                          href={source.url}
+                          className="country-sources__link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className="country-sources__link-url">{source.url}</span>
+                          <span className="country-sources__verified-badge">Terverifikasi</span>
+                        </a>
+                      </div>
+                    ) : (
+                      <p className="country-sources__text">Rujukan arsip literatur terkurasi</p>
+                    )}
+                  </div>
+                </li>
               ))}
-            </ul>
-          </details>
-        )}
+            </ol>
+
+            {hasVerification && (
+              <details className="country-verification">
+                <summary>Catatan verifikasi kuratorial ({needsVerification.length})</summary>
+                <ul className="country-verification__list">
+                  {needsVerification.map((note, i) => (
+                    <li key={i}>{note}</li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </div>
+        </details>
       </div>
     </footer>
   );

@@ -88,7 +88,7 @@
 
   position: relative;
   overflow-x: clip;
-  background-color: var(--surface);
+  background-color: var(--country-base, var(--surface));
   color: var(--ink);
   min-height: 100vh;
 }
@@ -106,6 +106,69 @@
   to {
     opacity: 0;
   }
+}
+
+/* --- Latar Adaptif (CountryBackground) ----------------------------------- */
+
+.country-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background-color: var(--country-base, var(--surface));
+  transition: background-color var(--duration-transition) var(--ease-standard);
+}
+
+.country-background__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(244, 237, 225, 0.45) 0%,
+    transparent 65%
+  );
+}
+
+.country-background__contours {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100vw, 1100px);
+  height: 1100px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.country-background__ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.country-background__silhouette {
+  width: 65%;
+  height: 65%;
+  fill: none;
+  stroke: var(--country-contour-stroke, #5c88a3);
+  stroke-width: 1.25px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.country-background__topo-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* --- Penanda kejujuran (anti-slop, tipografi halus, tanpa badge/chip) ----- */
@@ -156,6 +219,8 @@
     min-width: 0;
     max-width: 68ch;
     padding: 0 0 var(--space-4) 0;
+    position: relative;
+    z-index: 1;
   }
 
   .country-sidebar {
@@ -170,6 +235,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    z-index: 1;
   }
 
   .country-body {
@@ -179,6 +245,8 @@
     max-width: 68ch;
     margin: 0;
     padding: 0;
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -196,6 +264,8 @@
     width: 100%;
     max-width: 68ch;
     padding: 0 0 var(--space-2) 0;
+    position: relative;
+    z-index: 1;
   }
 
   .country-hero__local {
@@ -212,6 +282,8 @@
     position: static;
     width: 100%;
     margin-block: var(--space-3);
+    position: relative;
+    z-index: 1;
   }
 
   .country-body {
@@ -219,6 +291,8 @@
     max-width: 68ch;
     margin: 0;
     padding: 0;
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -387,12 +461,96 @@
   line-height: 1.45;
 }
 
-/* --- 1. Hero (name + local name ONCE, honesty marker, context) ------------ */
+/* --- 1. Hero (Photo Hero with Parallax & Rich Typography) ----------------- */
 
 .country-hero {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.country-hero__visual-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 420px;
+  overflow: hidden;
+  margin-block-end: var(--space-4);
+  background-color: var(--line);
+  border: 1px solid var(--line);
+}
+
+.country-hero__media {
+  position: absolute;
+  inset: -15% 0;
+  width: 100%;
+  height: 130%;
+  will-change: transform;
+}
+
+.country-hero__picture,
+.country-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.country-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(20, 24, 28, 0.78) 0%,
+    rgba(20, 24, 28, 0.3) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.country-hero__watermark {
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  max-width: 70%;
+  font-size: clamp(3rem, 12vw, 7rem);
+  line-height: 1;
+  color: #fffef9;
+  opacity: 0.16;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.country-hero__caption {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 4px 8px;
+  background: rgba(26, 31, 36, 0.72);
+  backdrop-filter: blur(4px);
+  color: #fffef9;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  border-radius: var(--radius-sm);
+  max-width: calc(100% - 24px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.country-hero__caption-credit {
+  color: #fffef9;
+}
+
+.country-hero__caption-license {
+  color: #fffef9;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .country-hero__inner {
@@ -586,6 +744,63 @@
   line-height: 1.6;
 }
 
+.country-audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-micro) var(--ease-standard),
+    border-color var(--duration-micro) var(--ease-standard),
+    color var(--duration-micro) var(--ease-standard),
+    transform var(--duration-micro) var(--ease-standard);
+}
+
+.country-audio-btn:hover {
+  border-color: var(--country-accent);
+  color: var(--country-accent);
+  background-color: var(--paper);
+}
+
+.country-audio-btn:active {
+  transform: scale(0.98);
+}
+
+.country-audio-btn:focus-visible {
+  outline: 2px solid var(--country-accent);
+  outline-offset: 2px;
+}
+
+.country-audio-btn--greeting {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: var(--text-body);
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+}
+
+.country-audio-btn--greeting:hover {
+  background-color: var(--accent);
+  opacity: 0.9;
+  color: var(--accent-ink);
+}
+
+.country-language__audio-wrap {
+  margin-block-start: var(--space-3);
+}
+
 .country-specimen__audio {
   display: inline-flex;
   align-items: center;
@@ -629,6 +844,7 @@
 }
 
 @media (max-width: 599px) {
+  .country-audio-btn--greeting,
   .country-specimen__audio {
     width: 100%;
   }
@@ -659,6 +875,13 @@
   border-inline-start: 2px solid var(--country-accent);
 }
 
+.country-phrases__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
 .country-phrases__label {
   margin: 0;
   color: var(--ink-muted);
@@ -683,52 +906,324 @@
   line-height: var(--leading-body);
 }
 
-/* --- 6. Sumber (Every source with its 'what') ------------------------------ */
+/* --- 6. Galeri Foto (CountryGallery) -------------------------------------- */
+
+.country-gallery {
+  padding-block: var(--space-6);
+  border-block-start: 1px solid var(--line);
+}
+
+.country-gallery__header {
+  margin-block-end: var(--space-3);
+}
+
+.country-gallery__kicker {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--country-accent);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.country-gallery__title {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-h2);
+}
+
+.country-gallery__lead {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.country-gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-block-start: var(--space-3);
+}
+
+@media (min-width: 600px) {
+  .country-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .country-gallery__card--life {
+    grid-column: 1 / -1;
+  }
+}
+
+.country-gallery__card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.country-gallery__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--line);
+}
+
+.country-gallery__picture,
+.country-gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.country-gallery__tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 8px;
+  background: rgba(26, 31, 36, 0.75);
+  backdrop-filter: blur(4px);
+  color: #fffef9;
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+}
+
+.country-gallery__caption {
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.country-gallery__caption-text {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+.country-gallery__credit {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+.country-gallery__license-link {
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.country-gallery__license-link:hover {
+  color: var(--ink);
+}
+
+/* --- 7. Learning Dashboard Callout ---------------------------------------- */
+
+.country-dashboard-callout {
+  padding-block: var(--space-5);
+  margin-block: var(--space-4);
+  border-block-start: 1px solid var(--line);
+}
+
+.country-dashboard-callout__inner {
+  padding: var(--space-4);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--country-accent);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.country-dashboard-callout__kicker {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--country-accent);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.country-dashboard-callout__title {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+}
+
+.country-dashboard-callout__description {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  max-width: 60ch;
+}
+
+.country-dashboard-callout__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 10px 20px;
+  background-color: var(--ink);
+  color: #fffef9;
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--duration-micro) var(--ease-standard);
+}
+
+.country-dashboard-callout__cta:hover {
+  opacity: 0.88;
+}
+
+.country-dashboard-callout__cta:focus-visible {
+  outline: 2px solid var(--country-accent);
+  outline-offset: 2px;
+}
+
+/* --- 8. Sumber (Foldable Provenance Drawer) -------------------------------- */
 
 .country-sources {
   padding-block: var(--space-4) var(--space-12);
   border-block-start: 1px solid var(--line);
 }
 
-.country-sources__title {
-  margin: 0 0 var(--space-2) 0;
-  color: var(--ink-muted);
+.country-sources-details {
+  border: 1px solid var(--line);
+  background-color: var(--surface);
+  transition: border-color var(--duration-micro) var(--ease-standard);
+}
+
+.country-sources-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 12px 18px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-family: var(--font-text);
   font-size: var(--text-body);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-body);
+  color: var(--ink);
+}
+
+.country-sources-summary::-webkit-details-marker {
+  display: none;
+}
+
+.country-sources-summary__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.country-sources-summary__chevron {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  transition: transform var(--duration-standard) var(--ease-standard);
+}
+
+.country-sources-details[open] .country-sources-summary__chevron {
+  transform: rotate(180deg);
+}
+
+.country-sources-drawer {
+  padding: 16px 18px 24px;
+  border-block-start: 1px solid var(--line);
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.country-sources-provenance {
+  margin: 0 0 var(--space-3) 0;
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-style: italic;
 }
 
 .country-sources__list {
-  margin: var(--space-1) 0 0 0;
+  margin: 0;
   padding-inline-start: var(--space-3);
-  color: var(--ink-muted);
-  font-size: var(--text-label);
-  line-height: 1.6;
+  display: grid;
+  gap: var(--space-3);
 }
 
 .country-sources__item {
-  padding-block: 2px;
+  color: var(--ink-muted);
+  font-size: var(--text-label);
+  line-height: 1.5;
+}
+
+.country-sources__what {
+  margin: 0;
+  color: var(--ink);
+  font-weight: var(--weight-medium);
+}
+
+.country-sources__link-wrap {
+  margin-block-start: 4px;
 }
 
 .country-sources__link {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  min-height: 44px;
-  color: var(--ink-muted);
+  gap: 8px;
+  min-height: 36px;
+  color: var(--country-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
-  transition: color var(--duration-micro) var(--ease-standard);
+  word-break: break-all;
 }
 
 .country-sources__link:hover {
   color: var(--ink);
 }
 
+.country-sources__link-url {
+  word-break: break-all;
+}
+
+.country-sources__verified-badge {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--line);
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
 .country-sources__text {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 36px;
   color: var(--ink-muted);
+  font-style: italic;
 }
 
 .country-verification {
@@ -880,8 +1375,14 @@
   }
 
   .country-back,
-  .country-specimen__audio {
+  .country-audio-btn,
+  .country-specimen__audio,
+  .country-sources-summary__chevron {
     transition: none;
+  }
+
+  .country-hero__media {
+    transform: none !important;
   }
 
   .country-specimen__greeting-inner {

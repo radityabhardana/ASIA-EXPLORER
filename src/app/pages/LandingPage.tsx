@@ -6,7 +6,6 @@ import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
 import Navbar from '@/app/Navbar';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
-import CountryDialog from '@/sections/landing/CountryDialog';
 import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import MosaicGallery from '@/sections/landing/MosaicGallery';
 import Silhouette from '@/sections/landing/Silhouette';
@@ -24,21 +23,27 @@ const scriptCountries = SCRIPT_COUNTRY_IDS.flatMap((id) => {
   return country ? [country] : [];
 });
 
+const LEITNER_ITEMS = [
+  { box: 1, interval: '1h', days: 1, duePhrases: 18, label: 'Kotak 1: Interval 1 hari · 18 frasa siap ulas' },
+  { box: 2, interval: '3h', days: 3, duePhrases: 9, label: 'Kotak 2: Interval 3 hari · 9 frasa siap ulas' },
+  { box: 3, interval: '7h', days: 7, duePhrases: 12, label: 'Kotak 3: Interval 7 hari · 12 frasa siap ulas' },
+  { box: 4, interval: '16h', days: 16, duePhrases: 4, label: 'Kotak 4: Interval 16 hari · 4 frasa siap ulas' },
+  { box: 5, interval: '35h', days: 35, duePhrases: 2, label: 'Kotak 5: Interval 35 hari · 2 frasa siap ulas' },
+];
+
 export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
   const heroProgressRef = useRef(0);
-  // Scene 7 statis saat interaktif (§3): progres tetap, kamera tidak berubah.
-  const invitationProgressRef = useRef(0.5);
   /**
    * Sumber sorotan tunggal scene Skala: tween GSAP menulis 0..1 di sini dan
    * teks counter dalam satu onUpdate — jumlah tinta 3D selalu = teks counter.
    */
   const scaleHighlightRef = useRef(1);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [hoverId, setHoverId] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [selectedScenarioOption, setSelectedScenarioOption] = useState<number>(0);
+  const [activeLeitnerBox, setActiveLeitnerBox] = useState<number>(3);
+  const [speakingId, setSpeakingId] = useState<string | null>(null);
 
   useLandingTimeline({
     root: rootRef,
@@ -63,8 +68,29 @@ export default function LandingPage() {
     };
   }, []);
 
-  const selectedCountry = selectedId ? (countryEntry(selectedId) ?? null) : null;
-  const hoverCountry = hoverId ? (countryEntry(hoverId) ?? null) : null;
+  const speakGreeting = (countryId: string, text: string, speechLang: string) => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+      return;
+    }
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = speechLang;
+      utterance.rate = 0.88;
+      setSpeakingId(countryId);
+
+      utterance.onend = () => {
+        setSpeakingId((cur) => (cur === countryId ? null : cur));
+      };
+      utterance.onerror = () => {
+        setSpeakingId((cur) => (cur === countryId ? null : cur));
+      };
+
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      setSpeakingId(null);
+    }
+  };
 
   const handleSkipToMap = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -72,11 +98,14 @@ export default function LandingPage() {
     mapSectionRef.current?.focus({ preventScroll: true });
   };
 
+  const activeLeitnerItem =
+    LEITNER_ITEMS.find((b) => b.box === activeLeitnerBox) ?? LEITNER_ITEMS[2]!;
+
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
       <TopoBackground />
       <a className="landing-skip skip-link" href="#peta" onClick={handleSkipToMap}>
-        Lewati ke peta
+        Lewati ke pilihan negara
       </a>
       <Navbar onScrollToMap={handleSkipToMap} />
 
@@ -130,10 +159,10 @@ export default function LandingPage() {
 
           <div className="landing-hero__scene" data-intro>
             <AsiaSceneLazy
-              decorative
               debugKey="hero"
-              label="Peta Asia"
+              label="Peta Asia interaktif"
               scrollProgressRef={heroProgressRef}
+              showOverlays={true}
             />
           </div>
         </div>
@@ -216,16 +245,62 @@ export default function LandingPage() {
                 <div className="landing-script__track">
                   {scriptCountries.map((country) => {
                     const profile = profileFor(country);
+                    const isSpeaking = speakingId === country.id;
                     return (
                       <article
                         key={country.id}
-                        className="landing-script__item landing-script__card"
+                        className={`landing-script__item landing-script__card ${isSpeaking ? 'landing-script__card--speaking' : ''}`}
                         tabIndex={0}
-                        aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}`}
+                        aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}. Ketuk untuk mendengarkan pengucapan.`}
+                        onClick={() =>
+                          speakGreeting(country.id, country.greeting.native, profile.speechLang)
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            speakGreeting(country.id, country.greeting.native, profile.speechLang);
+                          }
+                        }}
                       >
                         <div className="landing-script__card-header">
-                          <span className="landing-script__country">{country.nameId}</span>
-                          <span className="landing-script__label">{country.language.nameId}</span>
+                          <div className="landing-script__card-identity">
+                            <span className="landing-script__country">{country.nameId}</span>
+                            <span className="landing-script__label">
+                              {country.language.nameId}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            className={`landing-script__audio-btn ${isSpeaking ? 'landing-script__audio-btn--active' : ''}`}
+                            aria-label={`Dengarkan pengucapan sapaan ${country.nameId}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              speakGreeting(country.id, country.greeting.native, profile.speechLang);
+                            }}
+                          >
+                            {isSpeaking ? (
+                              <span className="landing-script__soundwave" aria-hidden="true">
+                                <span className="landing-script__soundwave-bar" />
+                                <span className="landing-script__soundwave-bar" />
+                                <span className="landing-script__soundwave-bar" />
+                              </span>
+                            ) : (
+                              <svg
+                                className="landing-script__speaker-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                              >
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                              </svg>
+                            )}
+                          </button>
                         </div>
                         <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
                           {country.greeting.native}
@@ -243,15 +318,56 @@ export default function LandingPage() {
                 <div className="landing-script__track" aria-hidden="true">
                   {scriptCountries.map((country) => {
                     const profile = profileFor(country);
+                    const isSpeaking = speakingId === country.id;
                     return (
                       <article
                         key={`dup-${country.id}`}
-                        className="landing-script__item landing-script__card"
+                        className={`landing-script__item landing-script__card ${isSpeaking ? 'landing-script__card--speaking' : ''}`}
                         tabIndex={-1}
+                        onClick={() =>
+                          speakGreeting(country.id, country.greeting.native, profile.speechLang)
+                        }
                       >
                         <div className="landing-script__card-header">
-                          <span className="landing-script__country">{country.nameId}</span>
-                          <span className="landing-script__label">{country.language.nameId}</span>
+                          <div className="landing-script__card-identity">
+                            <span className="landing-script__country">{country.nameId}</span>
+                            <span className="landing-script__label">
+                              {country.language.nameId}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            tabIndex={-1}
+                            className={`landing-script__audio-btn ${isSpeaking ? 'landing-script__audio-btn--active' : ''}`}
+                            aria-label={`Dengarkan pengucapan sapaan ${country.nameId}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              speakGreeting(country.id, country.greeting.native, profile.speechLang);
+                            }}
+                          >
+                            {isSpeaking ? (
+                              <span className="landing-script__soundwave" aria-hidden="true">
+                                <span className="landing-script__soundwave-bar" />
+                                <span className="landing-script__soundwave-bar" />
+                                <span className="landing-script__soundwave-bar" />
+                              </span>
+                            ) : (
+                              <svg
+                                className="landing-script__speaker-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                              >
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                              </svg>
+                            )}
+                          </button>
                         </div>
                         <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
                           {country.greeting.native}
@@ -268,46 +384,6 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Scene 5 — undangan interaktif */}
-      <section
-        id="peta"
-        ref={mapSectionRef}
-        tabIndex={-1}
-        className="landing-scene landing-scene--invitation"
-        aria-labelledby="landing-invitation-heading"
-        aria-describedby="landing-map-help"
-      >
-        <div className="landing-stage landing-stage--invitation">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <h2 className="landing-display" id="landing-invitation-heading">
-              Pilih negara, mulai penjelajahan
-            </h2>
-            <p className="landing-note">Sentuh atau arahkan kursor ke negara di benua.</p>
-          </div>
-
-          <div className="landing-invitation__scene" data-reveal>
-            <AsiaSceneLazy
-              debugKey="invitation"
-              label="Peta Asia interaktif"
-              describedBy="landing-map-help"
-              scrollProgressRef={invitationProgressRef}
-              selectedId={selectedId}
-              onHoverCountry={(id) => setHoverId(id)}
-              onSelectCountry={(id) => setSelectedId(id)}
-            />
-          </div>
-
-          <div className="visually-hidden" role="status" aria-live="polite" aria-atomic="true">
-            {hoverCountry ? `${hoverCountry.nameId}, ${hoverCountry.language.nameId}` : ''}
-          </div>
-          <p id="landing-map-help" className="visually-hidden">
-            Gunakan peta atau indeks negara di bagian bawah halaman.
-          </p>
-
-          <CountryDialog country={selectedCountry} onClose={() => setSelectedId(null)} />
         </div>
       </section>
 
@@ -360,7 +436,7 @@ export default function LandingPage() {
                     type="button"
                     role="radio"
                     aria-checked={selectedScenarioOption === 0}
-                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 0 ? 'landing-dashboard__option-btn--active' : ''}`}
+                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 0 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--correct' : ''}`}
                     onClick={() => setSelectedScenarioOption(0)}
                   >
                     <div className="landing-dashboard__option-content">
@@ -385,7 +461,7 @@ export default function LandingPage() {
                     type="button"
                     role="radio"
                     aria-checked={selectedScenarioOption === 1}
-                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 1 ? 'landing-dashboard__option-btn--active' : ''}`}
+                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 1 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--warning' : ''}`}
                     onClick={() => setSelectedScenarioOption(1)}
                   >
                     <div className="landing-dashboard__option-content">
@@ -398,41 +474,96 @@ export default function LandingPage() {
                         Serahkan santai dengan satu tangan ke atas meja rapat lalu simpan langsung ke saku.
                       </span>
                     </div>
+                    {selectedScenarioOption === 1 && (
+                      <div className="landing-dashboard__option-tags">
+                        <span className="landing-dashboard__reason-tag landing-dashboard__reason-tag--amber">
+                          Pelanggaran Norma Formal
+                        </span>
+                      </div>
+                    )}
                   </button>
                 </div>
+
+                {/* Interactive Feedback Cards */}
+                {selectedScenarioOption === 0 && (
+                  <div
+                    className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--success"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <div className="landing-dashboard__feedback-header">
+                      <span
+                        className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--success"
+                        aria-hidden="true"
+                      >
+                        ✓
+                      </span>
+                      <strong className="landing-dashboard__feedback-lead">Benar!</strong>
+                    </div>
+                    <p className="landing-dashboard__feedback-text">
+                      Di Jepang, kartu nama (meishi) dianggap sebagai representasi fisik kehormatan rekan bisnismu. Menerima dengan dua tangan menunjukkan rasa hormat penuh.
+                    </p>
+                  </div>
+                )}
+
+                {selectedScenarioOption === 1 && (
+                  <div
+                    className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--warning"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <div className="landing-dashboard__feedback-header">
+                      <span
+                        className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--warning"
+                        aria-hidden="true"
+                      >
+                        !
+                      </span>
+                      <strong className="landing-dashboard__feedback-lead">Kurang tepat.</strong>
+                    </div>
+                    <p className="landing-dashboard__feedback-text">
+                      Menyerahkan kartu nama dengan satu tangan atau langsung mengantonginya dianggap meremehkan pemilik kartu.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Spaced Repetition track: 5 Leitner review boxes */}
               <div className="landing-dashboard__leitner-track">
                 <div className="landing-dashboard__leitner-header">
                   <span className="landing-dashboard__leitner-label">Phrase Vault Spaced Repetition</span>
-                  <span>Interval Otomatis</span>
+                  <span className="landing-dashboard__leitner-meta">
+                    Interval {activeLeitnerItem.days} Hari &middot; {activeLeitnerItem.duePhrases} Frasa Siap
+                  </span>
                 </div>
-                <div className="landing-dashboard__leitner-boxes">
-                  <div className="landing-dashboard__leitner-box" title="Kotak 1: 1 hari">
-                    <span className="landing-dashboard__leitner-num">1</span>
-                    <span className="landing-dashboard__leitner-interval">1h</span>
-                  </div>
-                  <div className="landing-dashboard__leitner-box" title="Kotak 2: 3 hari">
-                    <span className="landing-dashboard__leitner-num">2</span>
-                    <span className="landing-dashboard__leitner-interval">3h</span>
-                  </div>
-                  <div
-                    className="landing-dashboard__leitner-box landing-dashboard__leitner-box--active"
-                    title="Kotak 3: 7 hari"
-                  >
-                    <span className="landing-dashboard__leitner-num">3</span>
-                    <span className="landing-dashboard__leitner-interval">7h</span>
-                    <span className="landing-dashboard__leitner-status">● 12 Frasa</span>
-                  </div>
-                  <div className="landing-dashboard__leitner-box" title="Kotak 4: 16 hari">
-                    <span className="landing-dashboard__leitner-num">4</span>
-                    <span className="landing-dashboard__leitner-interval">16h</span>
-                  </div>
-                  <div className="landing-dashboard__leitner-box" title="Kotak 5: 35 hari">
-                    <span className="landing-dashboard__leitner-num">5</span>
-                    <span className="landing-dashboard__leitner-interval">35h</span>
-                  </div>
+                <div
+                  className="landing-dashboard__leitner-boxes"
+                  role="tablist"
+                  aria-label="Kotak ulasan Spaced Repetition"
+                >
+                  {LEITNER_ITEMS.map((item) => {
+                    const isActive = activeLeitnerBox === item.box;
+                    return (
+                      <button
+                        key={item.box}
+                        type="button"
+                        role="tab"
+                        aria-selected={isActive}
+                        className={`landing-dashboard__leitner-box ${isActive ? 'landing-dashboard__leitner-box--active' : ''}`}
+                        title={item.label}
+                        onClick={() => setActiveLeitnerBox(item.box)}
+                        onMouseEnter={() => setActiveLeitnerBox(item.box)}
+                      >
+                        <span className="landing-dashboard__leitner-num">{item.box}</span>
+                        <span className="landing-dashboard__leitner-interval">{item.interval}</span>
+                        {isActive && (
+                          <span className="landing-dashboard__leitner-status">
+                            &bull; {item.duePhrases} Frasa
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -501,37 +632,18 @@ export default function LandingPage() {
       {/* Scene Mosaik — 15 Negara, Satu Benua */}
       <MosaicGallery />
 
-      {/* Scene 7 — footer: indeks negara + wordmark */}
+      {/* Scene 7 — footer: wordmark dan catatan hak cipta */}
       <footer
         className="landing-scene landing-scene--footer"
         aria-labelledby="landing-footer-heading"
       >
         <div className="landing-stage landing-stage--footer">
-          <div className="landing-footer__index" data-reveal>
-            <h2 className="landing-footer__index-title" id="landing-footer-heading">
-              Pilih negara
-            </h2>
-            <nav className="landing-footer__index-nav" aria-label="Indeks negara">
-              <ul className="landing-footer__index-list">
-                {countries.map((country) => (
-                  <li key={country.id}>
-                    <button
-                      type="button"
-                      className="landing-footer__index-button"
-                      data-country={country.id}
-                      aria-haspopup="dialog"
-                      onClick={() => setSelectedId(country.id)}
-                    >
-                      <span className="landing-footer__index-name">{country.nameId}</span>
-                      <span className="landing-footer__index-depth">{country.depth}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
-          <p className="landing-footer__mark">Asia Explorer</p>
+          <p className="landing-footer__mark" id="landing-footer-heading" data-reveal>
+            Asia Explorer
+          </p>
+          <p className="landing-footer__copyright" data-reveal>
+            &copy; 2026 Asia Explorer &middot; Ekspedisi tipografi, etiket, dan kartografi 15 negara.
+          </p>
         </div>
       </footer>
     </div>

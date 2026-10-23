@@ -22,6 +22,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
   const { language, phrases, greeting } = country;
   const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [status, setStatus] = useState<PlaybackStatus>('idle');
+  const [activeSpeechText, setActiveSpeechText] = useState<string | null>(null);
   const supported = isSpeechSupported();
 
   useEffect(() => {
@@ -50,29 +51,39 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
     status === 'error'
       ? 'Audio tidak dapat diputar di peramban ini.'
       : status === 'speaking'
-        ? 'Memutar sapaan…'
+        ? `Memutar audio${activeSpeechText ? ` "${activeSpeechText}"` : ''}…`
         : '';
 
-  function handleListen() {
+  function handlePlay(text: string, label: string) {
+    setActiveSpeechText(label);
     setStatus('speaking');
-    const started = speak(greeting.native, {
-      lang: profile.speechLang,
+    const started = speak(text, {
+      lang: profile.speechLang || profile.lang,
       onEnd: () => {
         setStatus('idle');
+        setActiveSpeechText(null);
       },
       onError: () => {
         setStatus('error');
+        setActiveSpeechText(null);
       },
     });
     if (!started) {
       setStatus('error');
+      setActiveSpeechText(null);
     }
+  }
+
+  function handleListenGreeting() {
+    handlePlay(greeting.native, greeting.meaningId);
   }
 
   return (
     <section className="country-block country-language" aria-labelledby="country-language-title">
       <div className="country-block__inner">
-        <h2 id="country-language-title" className="country-language__title">Bahasa</h2>
+        <h2 id="country-language-title" className="country-language__title">
+          Bahasa
+        </h2>
         <p className="country-language__name">{language.nameId}</p>
         {differs(language.nativeName, language.nameId) && (
           <p className="country-language__native">
@@ -86,6 +97,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
           <p className="country-language__note">{language.note}</p>
         )}
 
+        {/* Sapaan */}
         <div className="country-language__greeting">
           <p
             className="country-specimen__greeting"
@@ -103,29 +115,41 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
           {greeting.register.trim().length > 0 && (
             <p className="country-specimen__register">{greeting.register}</p>
           )}
-          {supported && voiceAvailable && (
-            <button
-              type="button"
-              className="country-specimen__audio"
-              onClick={handleListen}
-              aria-label={`Dengarkan sapaan dalam ${language.nameId}`}
-            >
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M4 2.5v11l9-5.5-9-5.5Z" />
-              </svg>
-              <span>Dengarkan sapaan</span>
-            </button>
+          {supported && (voiceAvailable || true) && (
+            <div className="country-language__audio-wrap">
+              <button
+                type="button"
+                className="country-audio-btn country-audio-btn--greeting"
+                onClick={handleListenGreeting}
+                aria-label={`Dengarkan sapaan dalam ${language.nameId}`}
+              >
+                🔊 Dengarkan
+              </button>
+            </div>
           )}
-          <p className="country-specimen__status" role="status" aria-live="polite">
+          <output className="country-specimen__status" aria-live="polite">
             {statusText}
-          </p>
+          </output>
         </div>
 
+        {/* Tiga frasa */}
         <h3 className="country-phrases__title">Tiga frasa</h3>
         <ol className="country-phrases">
           {phrases.map((phrase, index) => (
             <li className="country-phrases__item" key={`${phrase.native}-${index}`}>
-              <p className="country-phrases__label">{phrase.id}</p>
+              <div className="country-phrases__header">
+                <p className="country-phrases__label">{phrase.id}</p>
+                {supported && (
+                  <button
+                    type="button"
+                    className="country-audio-btn"
+                    onClick={() => handlePlay(phrase.native, phrase.id)}
+                    aria-label={`Dengarkan pengucapan ${phrase.id}: ${phrase.native}`}
+                  >
+                    🔊 Dengarkan
+                  </button>
+                )}
+              </div>
               <p className="country-phrases__native">
                 <NativeText profile={profile}>{phrase.native}</NativeText>
               </p>

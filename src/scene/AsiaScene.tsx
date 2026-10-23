@@ -9,7 +9,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   AmbientLight,
   Box3,
@@ -432,7 +431,6 @@ export default function AsiaScene({
   className,
   showOverlays,
 }: AsiaSceneProps) {
-  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -499,7 +497,7 @@ export default function AsiaScene({
     renderer.shadowMap.type = PCFShadowMap;
 
     const scene = new Scene();
-    scene.fog = new Fog(0xf4ede1, 180, 520);
+    scene.fog = new Fog(0xf4ede1, 300, 1800);
     const camera = new PerspectiveCamera(FOV, 1, 1, 20_000);
     const raycaster = new Raycaster();
     const pointer = new Vector2();
@@ -576,8 +574,6 @@ export default function AsiaScene({
     let dragStartY = 0;
     let dragStartAzimuth = 0;
     let dragStartElevation = 0;
-    let lastClickId: string | null = null;
-    let lastClickTime = 0;
 
     // Cache container rect untuk menghindari getBoundingClientRect berulang
     let cachedContainerRect = container.getBoundingClientRect();
@@ -824,12 +820,6 @@ export default function AsiaScene({
       }
     };
 
-    const handleActivate = (id: string) => {
-      callbacksRef.current.onActivateCountry?.(id);
-      callbacksRef.current.onSelectCountry?.(id);
-      navigate(`/negara/${id}`);
-    };
-
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0 && event.pointerType === 'mouse') {
         return;
@@ -938,22 +928,12 @@ export default function AsiaScene({
       if (id) {
         selectedRef.current = id;
         callbacksRef.current.onSelectCountry?.(id);
+        callbacksRef.current.onActivateCountry?.(id);
         setHovered(id, event.clientX, event.clientY);
-
-        // Double-click / double-tap detection: navigasi ke /negara/:id
-        const now = performance.now();
-        if (lastClickId === id && now - lastClickTime < 400) {
-          handleActivate(id);
-          lastClickId = null;
-          return;
-        }
-        lastClickId = id;
-        lastClickTime = now;
       } else {
         selectedRef.current = null;
         callbacksRef.current.onSelectCountry?.(null as unknown as string);
         setHovered(null);
-        lastClickId = null;
       }
     };
 
@@ -971,7 +951,10 @@ export default function AsiaScene({
     const onDblClick = (event: MouseEvent) => {
       const id = pickAt(event.clientX, event.clientY);
       if (id) {
-        handleActivate(id);
+        selectedRef.current = id;
+        callbacksRef.current.onSelectCountry?.(id);
+        callbacksRef.current.onActivateCountry?.(id);
+        setHovered(id, event.clientX, event.clientY);
       }
     };
 
@@ -1233,7 +1216,12 @@ export default function AsiaScene({
       const sy = Math.sin(elevation);
       const cy = Math.cos(elevation);
       const zoomFactor = (1 - scroll * 0.05) * introZoom;
-      const spanXTarget = window.innerWidth <= 640 ? FIT_INK_SPAN_X_MOBILE : FIT_INK_SPAN_X;
+      const spanXTarget =
+        window.innerWidth <= 640
+          ? FIT_INK_SPAN_X_MOBILE
+          : window.innerWidth <= 1024
+            ? 1.56
+            : FIT_INK_SPAN_X;
 
       fitTarget.set(center.x, center.y, center.z);
       let distance = lastDistance > 50 ? lastDistance : 220;
@@ -1915,7 +1903,6 @@ export default function AsiaScene({
     fitTargetNdcY,
     introEnabled,
     idleSway,
-    navigate,
   ]);
 
   const showControlsAndLegend = showOverlays ?? debugKey !== 'scale';
@@ -1956,6 +1943,7 @@ export default function AsiaScene({
       {!decorative && (
         <>
           <div ref={labelRef} className="asia-scene__label" data-visible="false" aria-hidden="true">
+            <span className="asia-scene__label-dot" aria-hidden="true" />
             <span className="asia-scene__label-id" ref={labelIdRef} />
             <span className="asia-scene__label-native" ref={labelNativeRef} />
             <span
