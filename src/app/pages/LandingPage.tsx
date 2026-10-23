@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { CSSProperties, MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
 import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
@@ -9,7 +9,7 @@ import CountryDialog from '@/sections/landing/CountryDialog';
 import Silhouette from '@/sections/landing/Silhouette';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import {
-  REGIONAL_SILHOUETTES,
+  REGIONAL_COUNTRIES,
   SCRIPT_COUNTRY_IDS,
   countries,
   countryEntry,
@@ -212,7 +212,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 4 — panggung aksara */}
+      {/* Scene 4 — panggung aksara (K12) */}
       <section
         className="landing-scene landing-scene--script landing-scene--pinned"
         aria-labelledby="landing-script-heading"
@@ -220,52 +220,83 @@ export default function LandingPage() {
         <div className="landing-stage landing-stage--script">
           <div className="landing-stage__copy" data-reveal>
             <h2 className="landing-display" id="landing-script-heading">
-              Tiga aksara, tiga cara menyapa
+              Aksara yang bergerak
             </h2>
+            <p className="landing-note">
+              Limabelas negara, limabelas cara menuliskan sapaan.
+            </p>
           </div>
 
-          <div className="landing-script__viewport">
-            <div className="landing-script__track" data-track>
-              {scriptCountries.map((country) => {
-                const profile = profileFor(country);
-                return (
-                  <article
-                    key={country.id}
-                    className="landing-script__card"
-                    data-reveal
-                    style={
-                      {
-                        '--card-accent': `var(--country-${country.id})`,
-                      } as CSSProperties
-                    }
-                  >
-                    <p className="landing-script__label">
-                      {country.language.nameId}
-                    </p>
-                    <p
-                      className="landing-script__native"
-                      lang={profile.lang}
-                      dir={profile.dir}
+          <div className="landing-script__viewport" data-reveal>
+            <div
+              className="landing-script__marquee"
+              tabIndex={-1}
+              aria-label="Pita aksara 15 negara"
+            >
+              <div className="landing-script__track">
+                {scriptCountries.map((country) => {
+                  const profile = profileFor(country);
+                  return (
+                    <article
+                      key={country.id}
+                      className="landing-script__item landing-script__card"
+                      tabIndex={0}
+                      aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}`}
                     >
-                      {country.greeting.native}
-                    </p>
-                    {differs(country.greeting.native, country.greeting.roman) ? (
-                      <p className="landing-script__roman">
-                        {country.greeting.roman}
+                      <p
+                        className="landing-script__native"
+                        lang={profile.lang}
+                        dir={profile.dir}
+                      >
+                        {country.greeting.native}
                       </p>
-                    ) : null}
-                    <p className="landing-script__meaning">
-                      {country.greeting.meaningId}
-                    </p>
-                  </article>
-                );
-              })}
+                      <p className="landing-script__label">
+                        {country.language.nameId}
+                      </p>
+                      <p className="landing-script__roman">
+                        {differs(country.greeting.native, country.greeting.roman)
+                          ? country.greeting.roman
+                          : country.greeting.meaningId}
+                      </p>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="landing-script__track" aria-hidden="true">
+                {scriptCountries.map((country) => {
+                  const profile = profileFor(country);
+                  return (
+                    <article
+                      key={`dup-${country.id}`}
+                      className="landing-script__item landing-script__card"
+                      tabIndex={-1}
+                    >
+                      <p
+                        className="landing-script__native"
+                        lang={profile.lang}
+                        dir={profile.dir}
+                      >
+                        {country.greeting.native}
+                      </p>
+                      <p className="landing-script__label">
+                        {country.language.nameId}
+                      </p>
+                      <p className="landing-script__roman">
+                        {differs(country.greeting.native, country.greeting.roman)
+                          ? country.greeting.roman
+                          : country.greeting.meaningId}
+                      </p>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Scene 5 — tapestry regional (di-pin: headline di atas, siluet mengisi sisanya) */}
+      {/* Scene 5 — regional 6 negara (K13) */}
       <section
         className="landing-scene landing-scene--regional landing-scene--pinned"
         aria-labelledby="landing-regional-heading"
@@ -276,20 +307,26 @@ export default function LandingPage() {
               className="landing-display"
               id="landing-regional-heading"
             >
-              Asia Tenggara, ratusan cara menyapa
+              Satu kawasan, enam negara
             </h2>
+            <p className="landing-note">
+              Indonesia, Malaysia, Singapura, Thailand, Vietnam, Filipina.
+            </p>
           </div>
 
           <div className="landing-regional__band">
-            <div className="landing-regional__layers" aria-hidden="true">
-              {REGIONAL_SILHOUETTES.map((layer) => (
+            <div className="landing-regional__row" data-reveal>
+              {REGIONAL_COUNTRIES.map((item) => (
                 <div
-                  key={layer.id}
-                  className={`landing-regional__layer landing-regional__layer--${layer.id}`}
+                  key={item.id}
+                  className={`landing-regional__item landing-regional__item--${item.id}`}
                 >
-                  <div className="landing-regional__reveal" data-reveal>
-                    <Silhouette id={layer.id} />
+                  <div className="landing-regional__sil-wrap">
+                    <Silhouette id={item.id} className="landing-regional__sil" fit="meet" />
                   </div>
+                  <p className="landing-regional__name">
+                    {item.name}
+                  </p>
                 </div>
               ))}
             </div>

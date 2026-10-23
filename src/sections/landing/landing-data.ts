@@ -24,13 +24,46 @@ export function countryEntry(id: string): Country | undefined {
   return countryById.get(id);
 }
 
-/** Tiga aksara yang ditampilkan di scene 4: Arab, Jepang/CJK, Thailand (§1 tabel scene). */
-export const SCRIPT_COUNTRY_IDS = ['sa', 'jp', 'th'] as const;
+/** 15 negara yang ditampilkan di panggung marquee aksara (K12). */
+export const SCRIPT_COUNTRY_IDS = [
+  'sa',
+  'jp',
+  'th',
+  'in',
+  'cn',
+  'kr',
+  'id',
+  'vn',
+  'my',
+  'ph',
+  'sg',
+  'tr',
+  'kz',
+  'uz',
+  'mn',
+] as const;
 
 export type RegionalLayer = 'back' | 'mid' | 'front';
 
+export type RegionalCountry = {
+  id: string;
+  name: string;
+};
+
 /**
- * Enam siluet Asia Tenggara (§5).
+ * Enam negara kawasan Asia Tenggara untuk Scene 5 (K13).
+ */
+export const REGIONAL_COUNTRIES: ReadonlyArray<RegionalCountry> = [
+  { id: 'id', name: 'Indonesia' },
+  { id: 'my', name: 'Malaysia' },
+  { id: 'sg', name: 'Singapura' },
+  { id: 'th', name: 'Thailand' },
+  { id: 'vn', name: 'Vietnam' },
+  { id: 'ph', name: 'Filipina' },
+];
+
+/**
+ * Enam siluet Asia Tenggara (kompatibilitas layer).
  */
 export const REGIONAL_SILHOUETTES: ReadonlyArray<{
   id: string;
