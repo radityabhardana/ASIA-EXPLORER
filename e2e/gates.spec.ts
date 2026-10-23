@@ -405,8 +405,8 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
     'scale',
     'language',
     'script',
-    'regional',
     'invitation',
+    'dashboard',
     'footer',
   ];
 

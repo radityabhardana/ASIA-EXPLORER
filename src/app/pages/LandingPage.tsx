@@ -6,10 +6,10 @@ import { differs, profileFor } from '@/sections/country/scripts';
 import Navbar from '@/app/Navbar';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryDialog from '@/sections/landing/CountryDialog';
+import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import Silhouette from '@/sections/landing/Silhouette';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import {
-  REGIONAL_COUNTRIES,
   SCRIPT_COUNTRY_IDS,
   countries,
   countryEntry,
@@ -26,8 +26,6 @@ export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
   const heroProgressRef = useRef(0);
-  // Scene skala statis: kamera tetap, hanya sorotan yang beranimasi.
-  const scaleProgressRef = useRef(0);
   // Scene 7 statis saat interaktif (§3): progres tetap, kamera tidak berubah.
   const invitationProgressRef = useRef(0.5);
   /**
@@ -142,7 +140,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 2 — skala negara: benua 3D yang sama dengan hero, 15 negara menyala */}
+      {/* Scene 2 — skala negara: proyeksi peta SVG 15 negara dengan sorotan tersinkronisasi */}
       <section
         className="landing-scene landing-scene--scale landing-scene--pinned"
         aria-labelledby="landing-scale-heading"
@@ -161,14 +159,8 @@ export default function LandingPage() {
             <p className="landing-note">Dari Turki sampai Jepang.</p>
           </div>
 
-          <div className="landing-scale__scene" data-reveal>
-            <AsiaSceneLazy
-              decorative
-              debugKey="scale"
-              label="Peta Asia, 15 negara tersorot"
-              scrollProgressRef={scaleProgressRef}
-              highlightProgressRef={scaleHighlightRef}
-            />
+          <div className="landing-scale__map-wrap" data-reveal>
+            <CountryMapSvg variant="scene" className="landing-scale__map" />
           </div>
         </div>
       </section>
@@ -215,97 +207,72 @@ export default function LandingPage() {
             <p className="landing-note">Limabelas negara, limabelas cara menuliskan sapaan.</p>
           </div>
 
-          <div className="landing-script__viewport" data-reveal>
-            <div
-              className="landing-script__marquee"
-              tabIndex={-1}
-              aria-label="Pita aksara 15 negara"
-            >
-              <div className="landing-script__track">
-                {scriptCountries.map((country) => {
-                  const profile = profileFor(country);
-                  return (
-                    <article
-                      key={country.id}
-                      className="landing-script__item landing-script__card"
-                      tabIndex={0}
-                      aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}`}
-                    >
-                      <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
-                        {country.greeting.native}
-                      </p>
-                      <p className="landing-script__label">{country.language.nameId}</p>
-                      <p className="landing-script__roman">
-                        {differs(country.greeting.native, country.greeting.roman)
-                          ? country.greeting.roman
-                          : country.greeting.meaningId}
-                      </p>
-                    </article>
-                  );
-                })}
-              </div>
-
-              <div className="landing-script__track" aria-hidden="true">
-                {scriptCountries.map((country) => {
-                  const profile = profileFor(country);
-                  return (
-                    <article
-                      key={`dup-${country.id}`}
-                      className="landing-script__item landing-script__card"
-                      tabIndex={-1}
-                    >
-                      <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
-                        {country.greeting.native}
-                      </p>
-                      <p className="landing-script__label">{country.language.nameId}</p>
-                      <p className="landing-script__roman">
-                        {differs(country.greeting.native, country.greeting.roman)
-                          ? country.greeting.roman
-                          : country.greeting.meaningId}
-                      </p>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Scene 5 — regional 6 negara (K13) */}
-      <section
-        className="landing-scene landing-scene--regional landing-scene--pinned"
-        aria-labelledby="landing-regional-heading"
-      >
-        <div className="landing-stage landing-stage--regional">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <h2 className="landing-display" id="landing-regional-heading">
-              Satu kawasan, enam negara
-            </h2>
-            <p className="landing-note">
-              Indonesia, Malaysia, Singapura, Thailand, Vietnam, Filipina.
-            </p>
-          </div>
-
-          <div className="landing-regional__band">
-            <div className="landing-regional__row" data-reveal>
-              {REGIONAL_COUNTRIES.map((item) => (
-                <div
-                  key={item.id}
-                  className={`landing-regional__item landing-regional__item--${item.id}`}
-                >
-                  <div className="landing-regional__sil-wrap">
-                    <Silhouette id={item.id} className="landing-regional__sil" fit="meet" />
-                  </div>
-                  <p className="landing-regional__name">{item.name}</p>
+          <div className="landing-script__band" data-reveal>
+            <div className="landing-script__viewport">
+              <div
+                className="landing-script__marquee"
+                tabIndex={-1}
+                aria-label="Pita aksara 15 negara"
+              >
+                <div className="landing-script__track">
+                  {scriptCountries.map((country) => {
+                    const profile = profileFor(country);
+                    return (
+                      <article
+                        key={country.id}
+                        className="landing-script__item landing-script__card"
+                        tabIndex={0}
+                        aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}`}
+                      >
+                        <div className="landing-script__card-header">
+                          <span className="landing-script__country">{country.nameId}</span>
+                          <span className="landing-script__label">{country.language.nameId}</span>
+                        </div>
+                        <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
+                          {country.greeting.native}
+                        </p>
+                        <p className="landing-script__roman">
+                          {differs(country.greeting.native, country.greeting.roman)
+                            ? country.greeting.roman
+                            : country.greeting.meaningId}
+                        </p>
+                      </article>
+                    );
+                  })}
                 </div>
-              ))}
+
+                <div className="landing-script__track" aria-hidden="true">
+                  {scriptCountries.map((country) => {
+                    const profile = profileFor(country);
+                    return (
+                      <article
+                        key={`dup-${country.id}`}
+                        className="landing-script__item landing-script__card"
+                        tabIndex={-1}
+                      >
+                        <div className="landing-script__card-header">
+                          <span className="landing-script__country">{country.nameId}</span>
+                          <span className="landing-script__label">{country.language.nameId}</span>
+                        </div>
+                        <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
+                          {country.greeting.native}
+                        </p>
+                        <p className="landing-script__roman">
+                          {differs(country.greeting.native, country.greeting.roman)
+                            ? country.greeting.roman
+                            : country.greeting.meaningId}
+                        </p>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Scene 6 — undangan interaktif */}
+      {/* Scene 5 — undangan interaktif */}
       <section
         id="peta"
         ref={mapSectionRef}
@@ -342,6 +309,131 @@ export default function LandingPage() {
           </p>
 
           <CountryDialog country={selectedCountry} onClose={() => setSelectedId(null)} />
+        </div>
+      </section>
+
+      {/* Scene 6 — Dashboard & Sistem Belajar */}
+      <section
+        id="dashboard-showcase"
+        className="landing-scene landing-scene--dashboard"
+        aria-labelledby="landing-dashboard-heading"
+      >
+        <div className="landing-stage landing-stage--dashboard">
+          <div className="landing-stage__copy landing-center" data-reveal>
+            <p className="landing-kicker">Ruang Belajar</p>
+            <h2 className="landing-display" id="landing-dashboard-heading">
+              Dashboard & Sistem Belajar
+            </h2>
+            <p className="landing-note">
+              Setelah menjelajah, simpan progres dan pelajari norma budaya secara mendalam di perambanmu.
+            </p>
+          </div>
+
+          <div className="landing-dashboard__grid" data-reveal>
+            {/* Pillar 1 */}
+            <article className="landing-dashboard__card">
+              <div className="landing-dashboard__card-top">
+                <span className="landing-dashboard__badge">Prioritas Otomatis</span>
+                <span className="landing-dashboard__pillar">Kurikulum Cerdas</span>
+              </div>
+              <h3 className="landing-dashboard__card-title">Satu Langkah Berikutnya</h3>
+              <p className="landing-dashboard__card-desc">
+                Tugas cerdas dipilihkan untukmu — lanjutkan pelajaran, ulas frasa, atau baca cerita.
+              </p>
+              <div className="landing-dashboard__preview">
+                <div className="landing-dashboard__task-header">
+                  <span className="landing-dashboard__task-pill">Rekomendasi</span>
+                  <span className="landing-dashboard__task-time">4 mnt</span>
+                </div>
+                <div className="landing-dashboard__task-text">Etiket Pertemuan & Jamuan di Kyoto</div>
+              </div>
+            </article>
+
+            {/* Pillar 2 */}
+            <article className="landing-dashboard__card">
+              <div className="landing-dashboard__card-top">
+                <span className="landing-dashboard__badge">Spaced Repetition</span>
+                <span className="landing-dashboard__pillar">Memori Permanen</span>
+              </div>
+              <h3 className="landing-dashboard__card-title">Phrase Vault & Ulas Tepat Waktu</h3>
+              <p className="landing-dashboard__card-desc">
+                Sistem spaced repetition 5-kotak Leitner (1, 3, 7, 16, 35 hari) agar ingatan bertahan permanen.
+              </p>
+              <div className="landing-dashboard__preview">
+                <div className="landing-dashboard__leitner-boxes">
+                  <div className="landing-dashboard__leitner-box" title="Kotak 1: 1 hari">
+                    <span className="landing-dashboard__leitner-num">1</span>
+                    <span className="landing-dashboard__leitner-interval">1h</span>
+                  </div>
+                  <div className="landing-dashboard__leitner-box" title="Kotak 2: 3 hari">
+                    <span className="landing-dashboard__leitner-num">2</span>
+                    <span className="landing-dashboard__leitner-interval">3h</span>
+                  </div>
+                  <div className="landing-dashboard__leitner-box" title="Kotak 3: 7 hari">
+                    <span className="landing-dashboard__leitner-num">3</span>
+                    <span className="landing-dashboard__leitner-interval">7h</span>
+                  </div>
+                  <div className="landing-dashboard__leitner-box" title="Kotak 4: 16 hari">
+                    <span className="landing-dashboard__leitner-num">4</span>
+                    <span className="landing-dashboard__leitner-interval">16h</span>
+                  </div>
+                  <div className="landing-dashboard__leitner-box" title="Kotak 5: 35 hari">
+                    <span className="landing-dashboard__leitner-num">5</span>
+                    <span className="landing-dashboard__leitner-interval">35h</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            {/* Pillar 3 */}
+            <article className="landing-dashboard__card">
+              <div className="landing-dashboard__card-top">
+                <span className="landing-dashboard__badge">Sebab Budaya</span>
+                <span className="landing-dashboard__pillar">Konteks Sosial</span>
+              </div>
+              <h3 className="landing-dashboard__card-title">Skenario Budaya Bercabang</h3>
+              <p className="landing-dashboard__card-desc">
+                Bukan sekadar kuis pilihan ganda. Pelajari sebab budaya di balik setiap aturan etiket.
+              </p>
+              <div className="landing-dashboard__preview">
+                <div className="landing-dashboard__scenario-q">
+                  &ldquo;Menerima kartu nama dengan dua tangan dan membacanya sesaat...&rdquo;
+                </div>
+                <div className="landing-dashboard__scenario-tags">
+                  <span className="landing-dashboard__tag">Penghormatan Hierarki</span>
+                  <span className="landing-dashboard__tag">Konteks Sosial</span>
+                </div>
+              </div>
+            </article>
+
+            {/* Pillar 4 */}
+            <article className="landing-dashboard__card">
+              <div className="landing-dashboard__card-top">
+                <span className="landing-dashboard__badge">Local-First</span>
+                <span className="landing-dashboard__pillar">Privasi Penuh</span>
+              </div>
+              <h3 className="landing-dashboard__card-title">Datamu Milikmu (Local-First)</h3>
+              <p className="landing-dashboard__card-desc">
+                Tersimpan aman di IndexedDB perangkatmu tanpa pelacak, bisa diekspor atau diimpor JSON kapan saja.
+              </p>
+              <div className="landing-dashboard__preview">
+                <div className="landing-dashboard__privacy-row">
+                  <span className="landing-dashboard__privacy-status">Tersimpan di IndexedDB</span>
+                  <span className="landing-dashboard__privacy-badge">0 Pelacak</span>
+                </div>
+                <div className="landing-dashboard__privacy-actions">
+                  <span className="landing-dashboard__privacy-btn">Ekspor JSON</span>
+                  <span className="landing-dashboard__privacy-btn">Impor Riwayat</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div className="landing-dashboard__actions" data-reveal>
+            <a href="/dashboard" className="landing-dashboard__cta">
+              Buka Dashboard
+            </a>
+          </div>
         </div>
       </section>
 

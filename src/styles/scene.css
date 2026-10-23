@@ -103,140 +103,62 @@
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   pointer-events: none;
-  font-family: var(--font-text);
-  color: var(--ink);
-  line-height: 1.35;
+  font-family: var(--font-text, sans-serif);
+  color: var(--ink, #1a1f24);
+  line-height: 1.25;
   white-space: nowrap;
   will-change: transform;
   opacity: 0;
-  transition:
-    opacity 120ms var(--ease-standard);
+  transition: opacity 120ms var(--ease-standard, ease-out);
+  display: inline-flex;
+  align-items: baseline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 
 .asia-scene__label[data-visible='true'] {
   opacity: 1;
 }
 
-/* Halo kertas (setara paint-order: stroke untuk teks HTML): delapan arah
- * offset solid + lembut, warna --surface. Bukan kotak, tidak punya latar. */
+/* Halo teks warna kertas (text-shadow halus, tanpa kotak kaku) */
 .asia-scene__label-id,
 .asia-scene__label-native,
 .asia-scene__label-region {
   text-shadow:
-    1.5px 0 0 var(--surface),
-    -1.5px 0 0 var(--surface),
-    0 1.5px 0 var(--surface),
-    0 -1.5px 0 var(--surface),
-    1.5px 1.5px 0 var(--surface),
-    -1.5px -1.5px 0 var(--surface),
-    1.5px -1.5px 0 var(--surface),
-    -1.5px 1.5px 0 var(--surface),
-    0 0 6px var(--surface),
-    0 2px 10px var(--surface);
+    0 0 8px var(--paper, #f4ede1),
+    0 0 8px var(--paper, #f4ede1),
+    0 0 4px var(--paper, #f4ede1),
+    0 1px 3px var(--paper, #f4ede1);
 }
 
 .asia-scene__label-id {
-  font-size: var(--text-body);
-  font-weight: var(--weight-semibold);
+  font-size: var(--text-body, 1rem);
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: -0.01em;
 }
 
 .asia-scene__label-native {
-  font-size: var(--text-label);
-  color: var(--ink-muted);
+  font-size: var(--text-label, 0.875rem);
+  font-weight: var(--weight-regular, 400);
+  color: var(--ink-muted, #5c6670);
+  margin-left: 2px;
 }
 
 .asia-scene__label-region {
-  margin-top: 2px;
-  font-size: var(--text-label);
+  font-size: var(--text-label, 0.8125rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: var(--ink-muted, #5c6670);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .asia-scene__label {
     transition: none;
   }
-}
-
-/* --- K9: Panel info negara (posisi samping kontinen) --------------------- */
-
-.asia-scene__panel {
-  position: absolute;
-  top: clamp(24px, var(--panel-anchor-y, 50%), calc(100% - 130px));
-  transform: translateY(-50%);
-  z-index: 15;
-  pointer-events: none;
-  background-color: var(--surface);
-  color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 0;
-  padding: 12px 16px;
-  box-shadow: none;
-  opacity: 0;
-  transition: opacity 120ms var(--ease-standard, ease-out);
-  min-width: 140px;
-  max-width: 220px;
-}
-
-.asia-scene[data-panel-side='left'] .asia-scene__panel,
-.asia-scene__panel[data-side='left'] {
-  left: 24px;
-  right: auto;
-}
-
-.asia-scene[data-panel-side='right'] .asia-scene__panel,
-.asia-scene__panel[data-side='right'] {
-  right: 24px;
-  left: auto;
-}
-
-.asia-scene__panel[data-visible='true'] {
-  opacity: 1;
-}
-
-.asia-scene__panel-header {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 6px;
-}
-
-.asia-scene__panel-name {
-  font-size: var(--text-body, 1rem);
-  font-weight: var(--weight-semibold, 600);
-  line-height: 1.25;
-}
-
-.asia-scene__panel-native {
-  font-size: var(--text-label, 0.8125rem);
-  color: var(--ink-muted, #5c6670);
-}
-
-.asia-scene__panel-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: var(--text-label, 0.8125rem);
-}
-
-.asia-scene__panel-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.asia-scene__panel-label {
-  color: var(--ink-muted, #5c6670);
-}
-
-.asia-scene__panel-value {
-  color: var(--ink);
-  font-weight: var(--weight-medium, 500);
 }
 
 .asia-scene__keyboard-nav {
@@ -251,19 +173,19 @@
   border: 0;
 }
 
-/* --- Overlay Controls & Legend (Sesuai Video Referensi) ------------------ */
+/* --- Overlay Controls & Legend ------------------------------------------- */
 
 .scene-legend {
   position: absolute;
+  right: 48px;
   bottom: 24px;
-  right: 10px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 5px;
+  gap: 4px;
   pointer-events: none;
   font-family: var(--font-text, sans-serif);
-  z-index: 10;
   user-select: none;
 }
 
@@ -274,7 +196,7 @@
 }
 
 .scene-legend__title {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: var(--weight-semibold, 600);
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -286,16 +208,16 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  gap: 8px;
-  font-size: 0.8125rem;
+  gap: 6px;
+  font-size: 0.75rem;
   color: var(--ink, #2c2825);
   line-height: 1.25;
 }
 
 .scene-legend__color {
   display: inline-block;
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 9px;
   border-radius: 1px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
@@ -303,7 +225,7 @@
 
 .scene-controls-hint {
   position: absolute;
-  bottom: 16px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
@@ -316,24 +238,14 @@
   pointer-events: none;
   user-select: none;
   z-index: 10;
+  text-align: center;
 }
 
 @media (max-width: 640px) {
-  .scene-legend {
-    bottom: 46px;
-    right: 14px;
-    gap: 3px;
-  }
-  .scene-legend__item {
-    font-size: 0.75rem;
-    gap: 6px;
-  }
   .scene-controls-hint {
     bottom: 12px;
     font-size: 0.7rem;
     width: 90%;
-    text-align: center;
     white-space: normal;
   }
 }
-

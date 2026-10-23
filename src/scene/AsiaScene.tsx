@@ -19,11 +19,9 @@ import {
   EdgesGeometry,
   Float32BufferAttribute,
   Fog,
-  GridHelper,
   HemisphereLight,
   LineBasicMaterial,
   LineSegments,
-  Material,
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
@@ -49,35 +47,47 @@ import { getWebGLTier } from '@/lib/webgl';
 import '@/styles/scene.css';
 
 /**
- * Pewarnaan wilayah resmi (sesuai video referensi):
- * - West Asia (sa, tr): Terracotta / brick red (#b55a45)
- * - Central Asia (kz, uz): Ochre / khaki (#b89b4f)
- * - South Asia (in): Warm amber / mustard (#c88a38)
- * - Southeast Asia (id, my, sg, th, vn, ph): Sage / moss green (#588b68)
- * - East Asia (cn, jp, kr, mn): Slate blue / muted indigo (#516c8a)
+ * Palet warna elegan terinspirasi dari identitas bendera/nasional masing-masing 15 negara:
+ * - id (Indonesia): Merah terakota & putih hangat (#c23b2b)
+ * - my (Malaysia): Royal navy & red accent (#27496d)
+ * - sg (Singapura): Crimson scarlet (#cf2e2e)
+ * - th (Thailand): Indigo navy (#2d3748)
+ * - vn (Vietnam): Imperial crimson (#b32424)
+ * - ph (Filipina): Royal blue (#29527a)
+ * - cn (Tiongkok): Vermilion gold (#ba2626)
+ * - jp (Jepang): Crimson sun (#c53030)
+ * - kr (Korea Selatan): Taegeuk cobalt (#2b5282)
+ * - in (India): Saffron warm amber (#c66917)
+ * - sa (Arab Saudi): Oasis emerald green (#236b3b)
+ * - tr (Turki): Turkish deep red (#b82323)
+ * - kz (Kazakhstan): Steppe azure blue (#2b7a8a)
+ * - uz (Uzbekistan): Turquoise sky (#286b94)
+ * - mn (Mongolia): Mongolian sky blue (#2b5c8f)
  */
-export const REGION_COLORS: Record<string, string> = {
-  // West Asia
-  sa: '#b55a45',
-  tr: '#b55a45',
-  // Central Asia
-  kz: '#b89b4f',
-  uz: '#b89b4f',
-  // South Asia
-  in: '#c88a38',
+export const COUNTRY_COLORS: Record<string, string> = {
   // Southeast Asia
-  id: '#588b68',
-  my: '#588b68',
-  sg: '#588b68',
-  th: '#588b68',
-  vn: '#588b68',
-  ph: '#588b68',
+  id: '#c23b2b',
+  my: '#27496d',
+  sg: '#cf2e2e',
+  th: '#2d3748',
+  vn: '#b32424',
+  ph: '#29527a',
   // East Asia
-  cn: '#516c8a',
-  jp: '#516c8a',
-  kr: '#516c8a',
-  mn: '#516c8a',
+  cn: '#ba2626',
+  jp: '#c53030',
+  kr: '#2b5282',
+  mn: '#2b5c8f',
+  // South Asia
+  in: '#c66917',
+  // West Asia
+  sa: '#236b3b',
+  tr: '#b82323',
+  // Central Asia
+  kz: '#2b7a8a',
+  uz: '#286b94',
 };
+
+export const REGION_COLORS: Record<string, string> = COUNTRY_COLORS;
 
 export interface CameraPose {
   azimuth: number; // rad, 0 = hero yaw
@@ -158,11 +168,7 @@ export interface AsiaSceneProps {
   highlightProgressRef?: RefObject<number>;
   selectedId?: string | null;
   onHoverCountry?: (hit: CountryHit | string | null) => void;
-  onCountryAnchor?: (
-    id: string,
-    anchor: { x: number; y: number },
-    side: 'left' | 'right',
-  ) => void;
+  onCountryAnchor?: (id: string, anchor: { x: number; y: number }, side: 'left' | 'right') => void;
   onSelectCountry?: (id: string) => void;
   onActivateCountry?: (id: string) => void;
   introEnabled?: boolean;
@@ -334,10 +340,7 @@ function computeSilhouette(meshes: Mesh[], center: Vector3): Float32Array {
       continue;
     }
     for (let i = 0; i < position.count; i += 1) {
-      vertex
-        .fromBufferAttribute(position, i)
-        .applyMatrix4(mesh.matrixWorld)
-        .sub(center);
+      vertex.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld).sub(center);
       xs.push(vertex.x);
       ys.push(vertex.y);
       zs.push(vertex.z);
@@ -430,13 +433,10 @@ export default function AsiaScene({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const panelRef = useRef<HTMLDivElement>(null);
-  const labelIdRef = useRef<HTMLDivElement>(null);
-  const labelNativeRef = useRef<HTMLDivElement>(null);
-  const labelRegionRef = useRef<HTMLDivElement>(null);
-  const panelLangRef = useRef<HTMLSpanElement>(null);
-  const panelScriptRef = useRef<HTMLSpanElement>(null);
-  const panelDepthRef = useRef<HTMLSpanElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const labelIdRef = useRef<HTMLSpanElement>(null);
+  const labelNativeRef = useRef<HTMLSpanElement>(null);
+  const labelRegionRef = useRef<HTMLSpanElement>(null);
 
   const [keyboardActiveIndex, setKeyboardActiveIndex] = useState(0);
   const keyboardButtonsRef = useRef<(HTMLButtonElement | null)[]>([]);
@@ -502,12 +502,8 @@ export default function AsiaScene({
     const pointer = new Vector2();
 
     const styles = window.getComputedStyle(container);
-    const inkColor = new Color(
-      styles.getPropertyValue('--ink').trim() || '#1a1f24',
-    );
-    const accentColor = new Color(
-      styles.getPropertyValue('--accent').trim() || '#176b68',
-    );
+    const inkColor = new Color(styles.getPropertyValue('--ink').trim() || '#1a1f24');
+    const accentColor = new Color(styles.getPropertyValue('--accent').trim() || '#176b68');
     const countryColor = (id: string): Color => {
       const regionHex = REGION_COLORS[id];
       if (regionHex) {
@@ -571,7 +567,6 @@ export default function AsiaScene({
     let targetElevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
     let currentDistance = 220;
     let targetDistance = 220;
-    let baseDistance = 220;
 
     let isDragging = false;
     let dragStartX = 0;
@@ -593,7 +588,15 @@ export default function AsiaScene({
       containerH = Math.max(1, cachedContainerRect.height);
     };
 
-    const panelEl = decorative ? null : (panelRef.current ?? null);
+    let labelTargetX = 0;
+    let labelTargetY = 0;
+    let labelCurX = 0;
+    let labelCurY = 0;
+    let labelW = 120;
+    let labelH = 24;
+    let labelVisible = false;
+
+    const labelEl = decorative ? null : (labelRef.current ?? null);
 
     const center = new Vector3();
     const box = new Box3();
@@ -649,7 +652,6 @@ export default function AsiaScene({
       if (loaded && owner !== 'intro') {
         const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
         fitCamera(0, elevation, 0, 1.0);
-        baseDistance = lastDistance;
         instanceHeroPose.azimuth = 0;
         instanceHeroPose.distance = lastDistance;
         instanceHeroPose.elevation = elevation;
@@ -704,23 +706,18 @@ export default function AsiaScene({
       const screenX = rect.left + (projVec.x * 0.5 + 0.5) * rect.width;
       const screenY = rect.top + (-projVec.y * 0.5 + 0.5) * rect.height;
       const containerRelX = (projVec.x * 0.5 + 0.5) * rect.width;
-      const side: 'left' | 'right' =
-        containerRelX > rect.width / 2 ? 'left' : 'right';
+      const side: 'left' | 'right' = containerRelX > rect.width / 2 ? 'left' : 'right';
       return { screenX, screenY, side };
     };
 
-    const setHovered = (
-      id: string | null,
-      clientX = 0,
-      clientY = 0,
-    ) => {
+    const setHovered = (id: string | null, clientX = 0, clientY = 0) => {
       if (id === hoveredId) {
         return;
       }
       hoveredId = id;
       hoverEmitCount++;
 
-      if (!panelEl) {
+      if (!labelEl) {
         return;
       }
       if (id) {
@@ -733,26 +730,26 @@ export default function AsiaScene({
           labelIdRef.current.textContent = country.nameId;
         }
         if (labelNativeRef.current) {
-          labelNativeRef.current.textContent = country.nameLocal;
+          if (country.nameLocal && country.nameLocal !== country.nameId) {
+            labelNativeRef.current.textContent = ` · ${country.nameLocal}`;
+            labelNativeRef.current.style.display = 'inline';
+          } else {
+            labelNativeRef.current.textContent = '';
+            labelNativeRef.current.style.display = 'none';
+          }
         }
         if (labelRegionRef.current) {
           labelRegionRef.current.textContent = region;
         }
-        if (panelLangRef.current) {
-          panelLangRef.current.textContent = country.language.nameId;
-        }
-        if (panelScriptRef.current) {
-          panelScriptRef.current.textContent = country.language.script;
-        }
-        if (panelDepthRef.current) {
-          panelDepthRef.current.textContent = country.depth;
-        }
+
+        labelW = labelEl.offsetWidth || 120;
+        labelH = labelEl.offsetHeight || 24;
 
         const countryEntry = countriesById.get(id);
         let projSide: 'left' | 'right' = 'left';
         let anchorCoords = {
-          x: Math.round(clientX - cachedContainerRect.left),
-          y: Math.round(clientY - cachedContainerRect.top),
+          x: Math.round(clientX > 0 ? clientX - cachedContainerRect.left : 0),
+          y: Math.round(clientY > 0 ? clientY - cachedContainerRect.top : 0),
         };
 
         if (countryEntry) {
@@ -760,30 +757,38 @@ export default function AsiaScene({
           if (proj) {
             projSide = proj.side;
             const relY = proj.screenY - cachedContainerRect.top;
-            container.style.setProperty(
-              '--panel-anchor-y',
-              `${Math.round(relY)}px`,
-            );
+            const relX = proj.screenX - cachedContainerRect.left;
             anchorCoords = {
-              x: Math.round(proj.screenX - cachedContainerRect.left),
+              x: Math.round(relX),
               y: Math.round(relY),
             };
+            if (clientX <= 0 && clientY <= 0) {
+              labelTargetX = relX;
+              labelTargetY = relY;
+            }
           }
         }
 
-        container.dataset.panelSide = projSide;
+        if (clientX > 0 && clientY > 0) {
+          labelTargetX = clientX - cachedContainerRect.left;
+          labelTargetY = clientY - cachedContainerRect.top;
+        }
+
+        if (!labelVisible) {
+          labelCurX = labelTargetX;
+          labelCurY = labelTargetY;
+        }
+
         container.dataset.hovered = id;
-        panelEl.dataset.side = projSide;
-        panelEl.dataset.panelFor = id;
-        panelEl.dataset.visible = 'true';
+        labelVisible = true;
+        labelEl.dataset.visible = 'true';
 
         const hit = createCountryHit(id, anchorCoords, projSide);
         callbacksRef.current.onHoverCountry?.(hit);
       } else {
-        delete container.dataset.panelSide;
         container.dataset.hovered = '';
-        delete panelEl.dataset.panelFor;
-        panelEl.dataset.visible = 'false';
+        labelVisible = false;
+        labelEl.dataset.visible = 'false';
         callbacksRef.current.onHoverCountry?.(null);
       }
     };
@@ -855,11 +860,11 @@ export default function AsiaScene({
           container.classList.add('asia-scene--dragging');
         }
         if (isDragging) {
-          // Putar horizontal (azimut) dan vertikal (elevasi)
-          targetAzimuth = dragStartAzimuth - dx * 0.007;
-          const minElev = (12 * Math.PI) / 180;
-          const maxElev = (82 * Math.PI) / 180;
-          targetElevation = Math.max(minElev, Math.min(maxElev, dragStartElevation + dy * 0.005));
+          // Putar horizontal (azimut) dan vertikal (elevasi) dengan sensitivitas halus
+          targetAzimuth = dragStartAzimuth - dx * 0.005;
+          const minElev = (14 * Math.PI) / 180;
+          const maxElev = (78 * Math.PI) / 180;
+          targetElevation = Math.max(minElev, Math.min(maxElev, dragStartElevation + dy * 0.004));
           return;
         }
       }
@@ -867,6 +872,10 @@ export default function AsiaScene({
       pointerClientX = event.clientX;
       pointerClientY = event.clientY;
       pointerMoved = true;
+      if (labelVisible) {
+        labelTargetX = event.clientX - cachedContainerRect.left;
+        labelTargetY = event.clientY - cachedContainerRect.top;
+      }
     };
 
     const onPointerLeave = (event: PointerEvent) => {
@@ -897,10 +906,7 @@ export default function AsiaScene({
         return;
       }
 
-      const moved = Math.hypot(
-        event.clientX - pointerDownX,
-        event.clientY - pointerDownY,
-      );
+      const moved = Math.hypot(event.clientX - pointerDownX, event.clientY - pointerDownY);
       if (moved > 8) {
         return;
       }
@@ -914,10 +920,7 @@ export default function AsiaScene({
         for (const country of countries) {
           const proj = projectCountryAnchor(country);
           if (proj) {
-            const d = Math.hypot(
-              event.clientX - proj.screenX,
-              event.clientY - proj.screenY,
-            );
+            const d = Math.hypot(event.clientX - proj.screenX, event.clientY - proj.screenY);
             if (d < nearestDist) {
               nearestDist = d;
               nearestId = country.id;
@@ -955,13 +958,10 @@ export default function AsiaScene({
       event.preventDefault();
       triggerInterrupt();
       userHasControlled = true;
-      const zoomFactor = event.deltaY * 0.16;
-      const minDistance = Math.max(70, baseDistance * 0.45);
-      const maxDistance = Math.min(420, baseDistance * 1.8);
-      targetDistance = Math.max(
-        minDistance,
-        Math.min(maxDistance, targetDistance + zoomFactor),
-      );
+      const zoomFactor = event.deltaY * 0.12;
+      const minDistance = 130;
+      const maxDistance = 320;
+      targetDistance = Math.max(minDistance, Math.min(maxDistance, targetDistance + zoomFactor));
     };
 
     const onDblClick = (event: MouseEvent) => {
@@ -1004,8 +1004,7 @@ export default function AsiaScene({
         };
       },
       intro() {
-        const elapsed =
-          introStartedAt > 0 ? performance.now() - introStartedAt : 0;
+        const elapsed = introStartedAt > 0 ? performance.now() - introStartedAt : 0;
         const progress =
           owner === 'intro'
             ? Math.min(1, Math.max(0, elapsed / INTRO.durationMs))
@@ -1028,8 +1027,8 @@ export default function AsiaScene({
         if (!country) return null;
         const proj = projectCountryAnchor(country);
         if (!proj) return null;
-        const w = panelEl?.offsetWidth || 180;
-        const h = panelEl?.offsetHeight || 120;
+        const w = labelEl?.offsetWidth || 120;
+        const h = labelEl?.offsetHeight || 24;
         return {
           x: Math.round(proj.screenX),
           y: Math.round(proj.screenY),
@@ -1076,9 +1075,7 @@ export default function AsiaScene({
         };
       },
       lit() {
-        return countries
-          .filter((country) => country.hl >= 0.5)
-          .map((country) => country.id);
+        return countries.filter((country) => country.hl >= 0.5).map((country) => country.id);
       },
       highlightCount() {
         return this.lit?.().length ?? 0;
@@ -1224,12 +1221,7 @@ export default function AsiaScene({
     const gltfLoader = new GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
 
-    const fitCamera = (
-      azimuth: number,
-      elevation: number,
-      scroll: number,
-      introZoom = 1.0,
-    ) => {
+    const fitCamera = (azimuth: number, elevation: number, scroll: number, introZoom = 1.0) => {
       const aspect = camera.aspect;
       const tanHalf = Math.tan((FOV * Math.PI) / 360);
       const sx = Math.sin(azimuth);
@@ -1237,8 +1229,7 @@ export default function AsiaScene({
       const sy = Math.sin(elevation);
       const cy = Math.cos(elevation);
       const zoomFactor = (1 - scroll * 0.05) * introZoom;
-      const spanXTarget =
-        window.innerWidth <= 640 ? FIT_INK_SPAN_X_MOBILE : FIT_INK_SPAN_X;
+      const spanXTarget = window.innerWidth <= 640 ? FIT_INK_SPAN_X_MOBILE : FIT_INK_SPAN_X;
 
       fitTarget.set(center.x, center.y, center.z);
       let distance = lastDistance > 50 ? lastDistance : 220;
@@ -1328,11 +1319,7 @@ export default function AsiaScene({
       const anyHovered = hoveredId !== null;
       for (const country of countries) {
         const selected = selectedRef.current === country.id;
-        const hoverAmt = reducedMotion
-          ? hoveredId === country.id
-            ? 1
-            : 0
-          : country.hoverAmt;
+        const hoverAmt = reducedMotion ? (hoveredId === country.id ? 1 : 0) : country.hoverAmt;
         const hl = reducedMotion ? (country.hl > 0 ? 1 : 0) : country.hl;
         const baseColor = countryColor(country.id);
 
@@ -1353,12 +1340,10 @@ export default function AsiaScene({
           // Negara lain: warna wilayah asli
           country.material.color.copy(baseColor);
           country.material.emissive.copy(baseColor);
-          country.material.emissiveIntensity =
-            hoverAmt * 0.16 + hl * 0.3;
+          country.material.emissiveIntensity = hoverAmt * 0.16 + hl * 0.3;
           if (hoverAmt > 0.03) {
             country.outlineMaterial.color.copy(accentColor);
-            country.outlineMaterial.opacity =
-              OUTLINE_OPACITY + hoverAmt * 0.15 + hl * 0.08;
+            country.outlineMaterial.opacity = OUTLINE_OPACITY + hoverAmt * 0.15 + hl * 0.08;
           } else {
             country.outlineMaterial.color.copy(inkColor);
             country.outlineMaterial.opacity = anyHovered
@@ -1386,8 +1371,7 @@ export default function AsiaScene({
 
       // K7 camera ownership handling
       const isDocumentReady =
-        typeof document !== 'undefined' &&
-        document.documentElement.dataset.ready === 'true';
+        typeof document !== 'undefined' && document.documentElement.dataset.ready === 'true';
 
       if (owner === 'boot') {
         if (isDocumentReady) {
@@ -1410,10 +1394,7 @@ export default function AsiaScene({
       }
 
       if (owner === 'intro') {
-        const scrollNow = Math.min(
-          1,
-          Math.max(0, scrollProgressRef?.current ?? 0),
-        );
+        const scrollNow = Math.min(1, Math.max(0, scrollProgressRef?.current ?? 0));
         if (scrollNow > 0.002) {
           owner = 'scroll';
           container.dataset.intro = 'done';
@@ -1448,10 +1429,7 @@ export default function AsiaScene({
 
           placeCameraFromPose(currentPose);
         } else {
-          const scroll = Math.min(
-            1,
-            Math.max(0, scrollProgressRef?.current ?? 0),
-          );
+          const scroll = Math.min(1, Math.max(0, scrollProgressRef?.current ?? 0));
           const MAX_IDLE_RAD = (1.5 * Math.PI) / 180;
           if (
             idleSway !== false &&
@@ -1461,15 +1439,11 @@ export default function AsiaScene({
           ) {
             const swayElapsed = Math.max(0, time - introFinishedAt);
             const ramp = Math.min(1, swayElapsed / 1200);
-            azimuth =
-              Math.sin((swayElapsed / 1000) * ((2 * Math.PI) / 8)) *
-              MAX_IDLE_RAD *
-              ramp;
+            azimuth = Math.sin((swayElapsed / 1000) * ((2 * Math.PI) / 8)) * MAX_IDLE_RAD * ramp;
           } else {
             azimuth = 0;
           }
-          const elevation =
-            ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
+          const elevation = ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
           fitCamera(azimuth, elevation, scroll, 1.0);
 
           currentAzimuth = azimuth;
@@ -1498,10 +1472,7 @@ export default function AsiaScene({
             candidateAt = time;
           }
         }
-        if (
-          candidateId !== hoveredId &&
-          time - candidateAt >= HOVER_HYSTERESIS_MS
-        ) {
+        if (candidateId !== hoveredId && time - candidateAt >= HOVER_HYSTERESIS_MS) {
           setHovered(candidateId, pointerClientX, pointerClientY);
         }
       }
@@ -1519,11 +1490,7 @@ export default function AsiaScene({
                 lastAnchorX = ax;
                 lastAnchorY = ay;
                 lastAnchorEmitTime = time;
-                callbacksRef.current.onCountryAnchor(
-                  hoveredId,
-                  { x: ax, y: ay },
-                  proj.side,
-                );
+                callbacksRef.current.onCountryAnchor(hoveredId, { x: ax, y: ay }, proj.side);
               }
             }
           }
@@ -1564,6 +1531,22 @@ export default function AsiaScene({
       }
 
       applyState();
+
+      // Label kursor floating: posisi via translate3d lerp halus tanpa layout shift React
+      if (labelEl && labelVisible) {
+        const lerpFactor = delta <= 0 ? 1 : 1 - Math.exp(-delta / 0.05);
+        labelCurX += (labelTargetX - labelCurX) * lerpFactor;
+        labelCurY += (labelTargetY - labelCurY) * lerpFactor;
+        const flip = labelCurX + 16 + labelW > containerW - 12;
+        const appliedX = flip ? labelCurX - labelW - 16 : labelCurX + 16;
+        const appliedY = Math.min(
+          Math.max(labelCurY - labelH / 2, 8),
+          Math.max(8, containerH - labelH - 8),
+        );
+        labelEl.style.transform = `translate3d(${Math.round(appliedX * 10) / 10}px, ${Math.round(appliedY * 10) / 10}px, 0)`;
+        labelEl.dataset.flip = flip ? 'true' : 'false';
+      }
+
       renderer.render(scene, camera);
 
       if (!debug.ready) {
@@ -1588,9 +1571,7 @@ export default function AsiaScene({
     };
 
     const init = async () => {
-      const manifestResponse = await fetch(
-        assetUrl('models/asia.manifest.json'),
-      );
+      const manifestResponse = await fetch(assetUrl('models/asia.manifest.json'));
       if (!manifestResponse.ok) {
         throw new Error(`Manifest ${manifestResponse.status}`);
       }
@@ -1621,8 +1602,7 @@ export default function AsiaScene({
           return;
         }
         const iso3 = object.userData.iso_a3;
-        const entry =
-          typeof iso3 === 'string' ? manifestByIso.get(iso3) : undefined;
+        const entry = typeof iso3 === 'string' ? manifestByIso.get(iso3) : undefined;
 
         const geometry = object.geometry;
         geometry.computeBoundingBox();
@@ -1651,8 +1631,7 @@ export default function AsiaScene({
         const position = geometry.getAttribute('position');
         const index = geometry.getIndex();
         const topY = bounds.max.y;
-        const topThreshold =
-          topY - Math.max(0.05, (topY - bounds.min.y) * 0.02);
+        const topThreshold = topY - Math.max(0.05, (topY - bounds.min.y) * 0.02);
         const targetX = (bounds.min.x + bounds.max.x) / 2;
         const targetZ = (bounds.min.z + bounds.max.z) / 2;
         const anchor = new Vector3(targetX, topY, targetZ);
@@ -1670,10 +1649,8 @@ export default function AsiaScene({
             if (ay < topThreshold || by < topThreshold || cy < topThreshold) {
               continue;
             }
-            const px =
-              (position.getX(ia) + position.getX(ib) + position.getX(ic)) / 3;
-            const pz =
-              (position.getZ(ia) + position.getZ(ib) + position.getZ(ic)) / 3;
+            const px = (position.getX(ia) + position.getX(ib) + position.getX(ic)) / 3;
+            const pz = (position.getZ(ia) + position.getZ(ib) + position.getZ(ic)) / 3;
             const dx = px - targetX;
             const dz = pz - targetZ;
             const candidate = dx * dx + dz * dz;
@@ -1795,19 +1772,8 @@ export default function AsiaScene({
       ringMesh.position.set(center.x, baseY + 0.005, center.z);
       scene.add(ringMesh);
 
-      // 3. Garis kisi kartografi halus pada panggung tanah
-      const gridHelper = new GridHelper(600, 16, 0x8c7e6c, 0xb8ad9c);
-      gridHelper.position.set(center.x, baseY + 0.002, center.z);
-      gridHelper.rotation.y = (18 * Math.PI) / 180;
-      if (gridHelper.material instanceof LineBasicMaterial) {
-        gridHelper.material.transparent = true;
-        gridHelper.material.opacity = 0.10;
-        gridHelper.material.depthWrite = false;
-      }
-      scene.add(gridHelper);
-
       // groundLike: semua objek panggung tanah disembunyikan saat measureInk()
-      groundLike.push(ground, ringMesh, gridHelper);
+      groundLike.push(ground, ringMesh);
 
       // K8: Posisi pencahayaan matahari dari NW (azimut 315°, elevasi 48°)
       sun.position.set(center.x - 100, center.y + 140, center.z - 100);
@@ -1826,9 +1792,8 @@ export default function AsiaScene({
       // Ukur HERO_POSE kanonik pertama kali
       const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
       fitCamera(0, elevation, 0, 1.0);
-      baseDistance = lastDistance;
-      targetDistance = lastDistance;
-      currentDistance = lastDistance;
+      targetDistance = Math.max(130, Math.min(320, lastDistance));
+      currentDistance = targetDistance;
       instanceHeroPose.azimuth = 0;
       instanceHeroPose.distance = lastDistance;
       instanceHeroPose.elevation = elevation;
@@ -1903,10 +1868,7 @@ export default function AsiaScene({
           }
         }
         scene.traverse((object) => {
-          if (
-            object instanceof Mesh &&
-            !countries.some((c) => c.mesh === object)
-          ) {
+          if (object instanceof Mesh && !countries.some((c) => c.mesh === object)) {
             object.geometry.dispose();
             const material = object.material;
             if (!Array.isArray(material)) {
@@ -1917,11 +1879,6 @@ export default function AsiaScene({
               ) {
                 material.dispose();
               }
-            }
-          } else if (object instanceof GridHelper) {
-            object.geometry.dispose();
-            if (object.material instanceof Material) {
-              object.material.dispose();
             }
           }
         });
@@ -1954,57 +1911,32 @@ export default function AsiaScene({
     navigate,
   ]);
 
-  const showControlsAndLegend = showOverlays ?? (debugKey !== 'scale');
+  const showControlsAndLegend = showOverlays ?? debugKey !== 'scale';
 
   return (
-    <div
-      className={className ? `asia-scene ${className}` : 'asia-scene'}
-      ref={containerRef}
-    >
-      <canvas
-        ref={canvasRef}
-        className="asia-scene__canvas"
-        aria-hidden="true"
-      />
+    <div className={className ? `asia-scene ${className}` : 'asia-scene'} ref={containerRef}>
+      <canvas ref={canvasRef} className="asia-scene__canvas" aria-hidden="true" />
 
       {showControlsAndLegend && (
         <>
           <div className="scene-legend" aria-label="Legenda Wilayah">
             <span className="scene-legend__title">WILAYAH</span>
             <div className="scene-legend__item">
-              <span
-                className="scene-legend__color"
-                style={{ background: '#b55a45' }}
-              />{' '}
-              West Asia
+              <span className="scene-legend__color" style={{ background: '#b82323' }} /> West Asia
             </div>
             <div className="scene-legend__item">
-              <span
-                className="scene-legend__color"
-                style={{ background: '#b89b4f' }}
-              />{' '}
-              Central Asia
+              <span className="scene-legend__color" style={{ background: '#2b7a8a' }} /> Central
+              Asia
             </div>
             <div className="scene-legend__item">
-              <span
-                className="scene-legend__color"
-                style={{ background: '#c88a38' }}
-              />{' '}
-              South Asia
+              <span className="scene-legend__color" style={{ background: '#c66917' }} /> South Asia
             </div>
             <div className="scene-legend__item">
-              <span
-                className="scene-legend__color"
-                style={{ background: '#588b68' }}
-              />{' '}
-              Southeast Asia
+              <span className="scene-legend__color" style={{ background: '#c23b2b' }} /> Southeast
+              Asia
             </div>
             <div className="scene-legend__item">
-              <span
-                className="scene-legend__color"
-                style={{ background: '#516c8a' }}
-              />{' '}
-              East Asia
+              <span className="scene-legend__color" style={{ background: '#ba2626' }} /> East Asia
             </div>
           </div>
 
@@ -2016,51 +1948,14 @@ export default function AsiaScene({
 
       {!decorative && (
         <>
-          <div
-            ref={panelRef}
-            className="asia-scene__panel asia-scene__label"
-            data-visible="false"
-            data-country-panel="true"
-            aria-hidden="true"
-          >
-            <div className="asia-scene__panel-header">
-              <div
-                className="asia-scene__panel-name asia-scene__label-id"
-                ref={labelIdRef}
-              />
-              <div
-                className="asia-scene__panel-native asia-scene__label-native"
-                ref={labelNativeRef}
-              />
-              <div
-                className="asia-scene__label-region"
-                ref={labelRegionRef}
-                style={{ display: 'none' }}
-              />
-            </div>
-            <div className="asia-scene__panel-body">
-              <div className="asia-scene__panel-row">
-                <span className="asia-scene__panel-label">Bahasa</span>
-                <span
-                  className="asia-scene__panel-value"
-                  ref={panelLangRef}
-                />
-              </div>
-              <div className="asia-scene__panel-row">
-                <span className="asia-scene__panel-label">Aksara</span>
-                <span
-                  className="asia-scene__panel-value"
-                  ref={panelScriptRef}
-                />
-              </div>
-              <div className="asia-scene__panel-row">
-                <span className="asia-scene__panel-label">Kedalaman</span>
-                <span
-                  className="asia-scene__panel-value"
-                  ref={panelDepthRef}
-                />
-              </div>
-            </div>
+          <div ref={labelRef} className="asia-scene__label" data-visible="false" aria-hidden="true">
+            <span className="asia-scene__label-id" ref={labelIdRef} />
+            <span className="asia-scene__label-native" ref={labelNativeRef} />
+            <span
+              className="asia-scene__label-region"
+              ref={labelRegionRef}
+              style={{ display: 'none' }}
+            />
           </div>
 
           <div
@@ -2095,8 +1990,7 @@ export default function AsiaScene({
                     keyboardButtonsRef.current[next]?.focus();
                   } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
                     e.preventDefault();
-                    const prev =
-                      (idx - 1 + allCountries.length) % allCountries.length;
+                    const prev = (idx - 1 + allCountries.length) % allCountries.length;
                     setKeyboardActiveIndex(prev);
                     keyboardButtonsRef.current[prev]?.focus();
                   } else if (e.key === 'Escape') {

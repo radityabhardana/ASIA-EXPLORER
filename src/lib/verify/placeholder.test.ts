@@ -38,8 +38,8 @@ describe('fondasi aplikasi', () => {
       const computed = getComputedStyle(nav);
       expect(computed.position).not.toBe('fixed');
     }
-    const banner = screen.queryByRole('banner');
-    if (banner) {
+    const banners = screen.queryAllByRole('banner');
+    for (const banner of banners) {
       const computed = getComputedStyle(banner);
       expect(computed.position).not.toBe('fixed');
     }

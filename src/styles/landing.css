@@ -47,13 +47,14 @@
   height: 100vh;
 }
 .landing-scene--script {
-  height: 190vh;
-}
-.landing-scene--regional {
-  height: 120vh;
+  height: 150vh;
 }
 .landing-scene--invitation {
   height: 100vh;
+}
+.landing-scene--dashboard {
+  height: auto;
+  min-height: 120vh;
 }
 .landing-scene--footer {
   height: auto;
@@ -435,41 +436,45 @@
   stroke-width: 4;
 }
 
-/* --- Scene 2 — skala: copy atas tengah, benua 3D mengisi sisa tinggi ---- */
+/* --- Scene 2 — skala: copy atas tengah, peta SVG 15 negara mengisi sisa tinggi ---- */
 
 .landing-stage--scale {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: var(--space-3);
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vh, 48px);
   padding-block: var(--space-4);
+  width: 100%;
 }
 
-/* --- Scene 2 — skala scene container ----------------------------------- */
-
+.landing-scale__map-wrap,
 .landing-scale__scene {
   position: relative;
-  /* Lebar tegas: tanpa ini, track grid auto menyusut ke max-content copy
-     sehingga kanvas hanya 270px dan benua tak menempati stage (L2/A3). */
-  width: min(76vw, 1100px);
-  min-height: 0;
+  width: min(84vw, 1020px);
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
 }
 
-.landing-scale__scene .landing-asia {
+.landing-scale__map {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 52vh;
+  filter: drop-shadow(0 10px 28px rgba(44, 38, 30, 0.07));
 }
 
-.landing-scale__scene .asia-scene {
-  height: 100%;
-  aspect-ratio: auto;
-  min-height: 320px;
+.landing-scale__map .landing-map__country {
+  stroke: var(--paper, #f4ede1);
+  stroke-width: 1.2;
 }
 
-.landing-scale__scene .landing-asia__placeholder {
-  height: 100%;
-  aspect-ratio: auto;
-  min-height: 320px;
+.landing-scale__map .landing-map__country:hover {
+  opacity: 1 !important;
+  stroke: var(--ink);
+  stroke-width: 2.2;
 }
 
 /* --- Scene 3 — bahasa: copy di atas, siluet Indonesia full-bleed di bawah  */
@@ -519,28 +524,40 @@
 /* --- Scene 4 — aksara ---------------------------------------------------- */
 
 .landing-stage--script {
-  /* Panggung aksara (K12): headline di atas, pita aksara 15 negara di bawah.
-     Grid P2: teks headline left-aligned di 48px. */
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto 1fr;
-  gap: clamp(24px, 4vh, 48px);
-  padding-top: var(--space-4);
-  padding-bottom: clamp(32px, 8vh, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: stretch;
+  gap: clamp(28px, 5vh, 48px);
+  padding-top: clamp(48px, 9vh, 96px);
+  padding-bottom: var(--space-4);
+  width: 100%;
+}
+
+.landing-stage--script .landing-stage__copy {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.landing-script__band {
+  width: calc(100% + 2 * var(--landing-gutter));
+  margin-inline: calc(-1 * var(--landing-gutter));
+  background: var(--ground, #ede5d5);
+  border-block: 1px solid var(--line);
+  padding: 32px 0;
+  box-shadow: inset 0 1px 3px rgba(44, 38, 30, 0.03);
 }
 
 .landing-script__viewport {
   width: 100%;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .landing-script__marquee {
-  --marquee-gap: clamp(48px, 6vw, 96px);
+  --marquee-gap: clamp(24px, 3vw, 40px);
   display: flex;
   flex-direction: row;
   gap: var(--marquee-gap);
@@ -552,11 +569,11 @@
 .landing-script__track {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: stretch;
   gap: var(--marquee-gap);
   flex-shrink: 0;
   min-width: 100%;
-  animation: landing-marquee 45s linear infinite;
+  animation: landing-marquee 48s linear infinite;
   will-change: transform;
 }
 
@@ -574,47 +591,70 @@
   }
 }
 
-.landing-script__item {
+.landing-script__card {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: var(--space-2);
   flex-shrink: 0;
-  padding: var(--space-2) 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  min-height: auto;
-  text-align: left;
+  width: clamp(240px, 22vw, 300px);
+  padding: clamp(16px, 2.2vh, 22px) clamp(18px, 1.8vw, 24px);
+  background: var(--surface-raised, #fffef9);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: 0 2px 8px rgba(44, 38, 30, 0.04);
+  text-align: start;
   outline: none;
+  transition: transform 200ms var(--ease-standard),
+              box-shadow 200ms var(--ease-standard),
+              border-color 200ms var(--ease-standard);
 }
 
-.landing-script__item:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
+.landing-script__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(44, 38, 30, 0.08);
+  border-color: var(--ink-muted);
 }
 
-.landing-script__item::before {
-  content: none;
+.landing-script__card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.landing-script__card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+  width: 100%;
+}
+
+.landing-script__country {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
 .landing-script__label {
   margin: 0;
-  font-size: var(--text-label);
+  font-size: 11px;
   line-height: var(--leading-label);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--ink-muted);
+  white-space: nowrap;
 }
 
 .landing-script__native {
-  margin: 0;
-  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  margin: var(--space-1) 0;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
   line-height: 1.25;
-  text-align: left;
+  color: var(--ink);
+  font-weight: var(--weight-regular);
   overflow-wrap: normal;
   word-break: keep-all;
   white-space: nowrap;
@@ -624,10 +664,12 @@
   margin: 0;
   font-size: var(--text-sm);
   line-height: 1.4;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   color: var(--ink-secondary);
-  text-align: left;
+  font-style: italic;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .landing-script__meaning {
@@ -658,72 +700,263 @@
   font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
 }
 
-/* --- Scene 5 — regional 6 negara (K13) ---------------------------------- */
+/* --- Scene Dashboard — Showcase Dashboard & Sistem Belajar --------------- */
 
-.landing-stage--regional {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: clamp(24px, 4vh, 48px);
-  padding-top: var(--space-4);
-  padding-bottom: clamp(32px, 8vh, 72px);
-}
-
-.landing-regional__band {
-  width: 100%;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.landing-regional__row {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(8px, 2vw, 32px);
-  width: 100%;
-  align-items: end;
-}
-
-.landing-regional__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  min-width: 0;
-}
-
-.landing-regional__sil-wrap {
-  width: 100%;
-  height: clamp(80px, 18vh, 180px);
+.landing-scene--dashboard {
+  position: relative;
+  min-height: 120vh;
+  padding-block: clamp(64px, 10vh, 120px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.landing-regional__sil {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  display: block;
+.landing-stage--dashboard {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(36px, 6vh, 56px);
+  padding-inline: var(--landing-gutter);
+}
+
+.landing-dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.5vw, 28px);
+  width: 100%;
+}
+
+.landing-dashboard__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: clamp(24px, 3.5vw, 36px);
+  background: var(--surface-raised, #fffef9);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: 0 2px 10px rgba(44, 38, 30, 0.04);
+  transition: transform 220ms var(--ease-standard),
+              box-shadow 220ms var(--ease-standard),
+              border-color 220ms var(--ease-standard);
+}
+
+.landing-dashboard__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(44, 38, 30, 0.08);
+  border-color: var(--ink-muted);
+}
+
+.landing-dashboard__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.landing-dashboard__badge {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.landing-dashboard__pillar {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.landing-dashboard__card-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  font-weight: var(--weight-regular);
+  line-height: 1.25;
   color: var(--ink);
-  opacity: 0.22;
-  transition: opacity 0.3s ease;
 }
 
-.landing-regional__item:hover .landing-regional__sil {
-  opacity: 0.85;
-}
-
-.landing-regional__name {
+.landing-dashboard__card-desc {
   margin: 0;
   font-size: var(--text-label);
   line-height: var(--leading-label);
-  letter-spacing: 0.04em;
-  color: var(--ink-secondary);
+  color: var(--ink-muted);
+  flex-grow: 1;
+}
+
+.landing-dashboard__preview {
+  margin-top: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--ground, #f0eeea);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs, 2px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Pillar 1 preview */
+.landing-dashboard__task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.landing-dashboard__task-pill {
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terracotta, #c05c46);
+}
+
+.landing-dashboard__task-time {
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.landing-dashboard__task-text {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+}
+
+/* Pillar 2 preview: Leitner 5 boxes */
+.landing-dashboard__leitner-boxes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  width: 100%;
+}
+
+.landing-dashboard__leitner-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 2px;
+  background: var(--surface-raised, #fffef9);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs, 2px);
   text-align: center;
-  white-space: nowrap;
+  gap: 2px;
+}
+
+.landing-dashboard__leitner-box:last-child {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface-raised));
+}
+
+.landing-dashboard__leitner-num {
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+}
+
+.landing-dashboard__leitner-interval {
+  font-size: 10px;
+  color: var(--ink-muted);
+}
+
+/* Pillar 3 preview: Scenario branching */
+.landing-dashboard__scenario-q {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.landing-dashboard__scenario-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.landing-dashboard__tag {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: var(--surface-raised, #fffef9);
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs);
+}
+
+/* Pillar 4 preview: Local-first */
+.landing-dashboard__privacy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.landing-dashboard__privacy-status {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+}
+
+.landing-dashboard__privacy-badge {
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.landing-dashboard__privacy-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.landing-dashboard__privacy-btn {
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* CTA */
+.landing-dashboard__actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.landing-dashboard__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-text);
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: var(--radius-sm, 4px);
+  transition: background-color var(--duration-micro) var(--ease-standard),
+              transform var(--duration-micro) var(--ease-standard);
+}
+
+.landing-dashboard__cta:hover {
+  background-color: color-mix(in srgb, var(--accent) 85%, black);
+  transform: translateY(-1px);
+}
+
+.landing-dashboard__cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* --- Scene 6 — undangan interaktif --------------------------------------- */
@@ -1007,19 +1240,8 @@
 
 /* --- Tablet -------------------------------------------------------------- */
 
-/*
- * 768–1023px: stage scene memakai `width: min(76vw, 1100px)` dari aturan dasar.
- * Di lebar ini kolom grid implicit menyusut ke max-content copy sehingga kanvas
- * hanya ~584px dan benua 3D terlalu pendek untuk mengisi 70% tinggi viewport
- * (terukur: unionHvh 0.68 pada skala, 0.64 pada undangan). Kolom eksplisit
- * `minmax(0, 1fr)` mengunci track ke lebar stage, dan scene mengambil lebar
- * penuh track supaya kamera fit menghitung benua dari kanvas yang lebih besar.
- */
 @media (min-width: 768px) and (max-width: 1023px) {
   .landing-stage--scale {
-    grid-template-columns: minmax(0, 1fr);
-    padding-top: 4px;
-    padding-bottom: 0;
     gap: var(--space-4);
   }
 
@@ -1030,17 +1252,19 @@
     gap: var(--space-6);
   }
 
-  .landing-scale__scene,
   .landing-invitation__scene {
     width: 100%;
     min-height: 570px;
   }
 
-  .landing-scale__scene .asia-scene,
-  .landing-scale__scene .landing-asia__placeholder,
   .landing-invitation__scene .asia-scene,
   .landing-invitation__scene .landing-asia__placeholder {
     min-height: 570px;
+  }
+
+  .landing-scale__map-wrap {
+    width: 90vw;
+    max-height: 48vh;
   }
 }
 
@@ -1052,71 +1276,43 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    padding-top: var(--space-4);
+    padding-top: clamp(40px, 8vh, 64px);
     padding-bottom: clamp(24px, 6vh, 48px);
   }
 
-  .landing-script__viewport {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 100%;
-    min-height: 0;
+  .landing-script__band {
+    padding: 20px 0;
   }
 
   .landing-script__marquee {
-    --marquee-gap: clamp(28px, 6vw, 44px);
+    --marquee-gap: clamp(16px, 4vw, 24px);
+  }
+
+  .landing-script__card {
+    width: clamp(200px, 64vw, 260px);
+    padding: 14px 16px;
   }
 
   .landing-script__native {
-    font-size: clamp(2rem, 7vw, 2.75rem);
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
     overflow-wrap: normal;
     word-break: keep-all;
     white-space: nowrap;
   }
 
-  /* Regional mobile: 6 negara sejajar 1 baris, nol overlap */
-  .landing-scene--regional .landing-stage {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding-top: var(--space-4);
-    padding-bottom: clamp(24px, 6vh, 48px);
-  }
-
-  .landing-regional__band {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 100%;
-    min-height: 0;
-  }
-
-  .landing-regional__row {
-    gap: 4px;
-    width: 100%;
-  }
-
-  .landing-regional__sil-wrap {
-    height: clamp(60px, 12vh, 90px);
-  }
-
-  .landing-regional__name {
-    font-size: clamp(9px, 2.5vw, 11px);
-    letter-spacing: 0;
-  }
-
   .landing-stage--scale {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-4);
-    padding-top: 2px;
-    padding-bottom: 0;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
   }
 
-  .landing-scale__scene {
-    width: calc(100% + 2 * var(--landing-gutter));
-    margin-inline: calc(-1 * var(--landing-gutter));
-    min-height: 540px;
+  .landing-scale__map-wrap {
+    width: 100%;
+    max-height: 42vh;
+  }
+
+  .landing-scale__map {
+    max-height: 42vh;
   }
 
   .landing-stage--invitation {
@@ -1154,7 +1350,7 @@
     /* Tanpa pin, tiap scene menggulir sebagai blok statis setinggi section.
        Top-anchored (bukan justify center) supaya teks kunci tiap scene berada
        di dalam viewport pada kuantil gulir 0/25/50/75/100% — di mode terpusat
-       copy bahasa/regional jatuh tepat di tepi lipatan viewport. */
+       copy bahasa jatuh tepat di tepi lipatan viewport. */
     justify-content: flex-start;
     padding-top: clamp(24px, 8vh, 72px);
   }

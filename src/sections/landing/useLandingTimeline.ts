@@ -87,9 +87,14 @@ export function useLandingTimeline({
       for (const element of counters) {
         element.textContent = element.dataset.counter ?? element.textContent;
       }
-      // Sorotan 3D scene Skala ke keadaan akhir: 15 negara.
+      // Sorotan peta SVG / benua scene Skala ke keadaan akhir: 15 negara.
       // eslint-disable-next-line react-hooks/immutability
       highlight.current = 1;
+      for (const mark of rootElement.querySelectorAll<SVGPathElement>(
+        '.landing-scene--scale [data-highlight]',
+      )) {
+        mark.style.opacity = '1';
+      }
       // `progress` adalah ref milik pemanggil (bukan props render). Menulis
       // `.current` di dalam effect adalah pemakaian ref yang sah; aturan
       // immutability tidak bisa membedakan ref dari nilai biasa.
@@ -112,8 +117,8 @@ export function useLandingTimeline({
 
       // Bersihkan inline style sisa build sebelumnya supaya pengukuran
       // geometri tidak terdistorsi offset y/opacity tween yang lama.
-      for (const element of rootElement.querySelectorAll<HTMLElement>(
-        '[data-reveal], .landing-lang__sil',
+      for (const element of rootElement.querySelectorAll<HTMLElement | SVGElement>(
+        '[data-reveal], .landing-lang__sil, .landing-scene--scale [data-highlight]',
       )) {
         element.style.removeProperty('opacity');
         element.style.removeProperty('transform');
@@ -237,23 +242,29 @@ export function useLandingTimeline({
       }
       // .landing-hint tampil lewat [data-intro] (reveal preloader), bukan tween.
 
-      // Scene 2 — skala negara: counter dan sorotan 3D satu sumber di
-      // syncState; teks counter = jumlah negara menyala di benua 3D.
+      // Scene 2 — skala negara: counter dan sorotan peta SVG 15 negara satu sumber di
+      // syncState; teks counter = jumlah negara menyala di peta.
       const scaleWin = measureWindow(
         '.landing-scene--scale',
         '.landing-stage__copy',
       );
       if (scaleWin) {
         reveal('.landing-scene--scale .landing-stage__copy', segment(scaleWin, 0, 0.35));
-        reveal('.landing-scene--scale .landing-scale__scene', segment(scaleWin, 0.1, 0.55));
+        reveal('.landing-scene--scale .landing-scale__map-wrap', segment(scaleWin, 0.08, 0.45));
 
         const counterEl = rootElement.querySelector<HTMLElement>(
           '.landing-scene--scale [data-counter]',
+        );
+        const marks = queryAll<SVGPathElement>(
+          '.landing-scene--scale [data-highlight]',
         );
         const syncSegment = segment(scaleWin, 0.15, 0.85);
         if (counterEl && syncSegment.duration > 0) {
           const syncState = { value: 0 };
           counterEl.textContent = '0';
+          for (const m of marks) {
+            m.style.opacity = '0.2';
+          }
           tl.fromTo(
             syncState,
             { value: 0 },
@@ -268,6 +279,12 @@ export function useLandingTimeline({
                 );
                 counterEl.textContent = String(count);
                 highlight.current = count / 15;
+                for (let i = 0; i < marks.length; i++) {
+                  const mark = marks[i];
+                  if (mark) {
+                    mark.style.opacity = i < count ? '1' : '0.2';
+                  }
+                }
               },
             },
             syncSegment.at,
@@ -315,28 +332,12 @@ export function useLandingTimeline({
           segment(scriptWin, 0, 0.3),
         );
         reveal(
-          '.landing-script__viewport',
+          '.landing-script__band',
           segment(scriptWin, 0.08, 0.32),
         );
       }
 
-      // Scene 5 — regional 6 negara (K13).
-      const regionalWin = measureWindow(
-        '.landing-scene--regional',
-        '.landing-stage__copy',
-      );
-      if (regionalWin) {
-        reveal(
-          '.landing-scene--regional .landing-stage__copy',
-          segment(regionalWin, 0, 0.35),
-        );
-        reveal(
-          '.landing-regional__row',
-          segment(regionalWin, 0.08, 0.35),
-        );
-      }
-
-      // Scene 6 — undangan interaktif.
+      // Scene 5 — undangan interaktif.
       const invitationWin = measureWindow(
         '.landing-scene--invitation',
         '.landing-stage__copy',
@@ -349,6 +350,26 @@ export function useLandingTimeline({
         reveal(
           '.landing-invitation__scene',
           segment(invitationWin, 0.15, 0.85),
+        );
+      }
+
+      // Scene 6 — dashboard & sistem belajar.
+      const dashboardWin = measureWindow(
+        '.landing-scene--dashboard',
+        '.landing-stage__copy',
+      );
+      if (dashboardWin) {
+        reveal(
+          '.landing-scene--dashboard .landing-stage__copy',
+          segment(dashboardWin, 0, 0.35),
+        );
+        reveal(
+          '.landing-dashboard__grid',
+          segment(dashboardWin, 0.08, 0.4),
+        );
+        reveal(
+          '.landing-dashboard__actions',
+          segment(dashboardWin, 0.15, 0.45),
         );
       }
 

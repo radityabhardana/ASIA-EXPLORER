@@ -78,12 +78,12 @@ const LANDING_SCENES = [
   'scale',
   'language',
   'script',
-  'regional',
+  'dashboard',
   'invitation',
 ] as const;
 
 /** Scene yang memuat kanvas 3D. */
-const CANVAS_SCENES = ['hero', 'scale', 'invitation'] as const;
+const CANVAS_SCENES = ['hero', 'invitation'] as const;
 
 /** Id negara yang disapu gerbang 4, urut barat → timur → selatan. */
 const HOVER_ORDER = ['tr', 'sa', 'in', 'th', 'id', 'ph', 'cn', 'jp'] as const;

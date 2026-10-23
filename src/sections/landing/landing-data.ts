@@ -43,37 +43,3 @@ export const SCRIPT_COUNTRY_IDS = [
   'mn',
 ] as const;
 
-export type RegionalLayer = 'back' | 'mid' | 'front';
-
-export type RegionalCountry = {
-  id: string;
-  name: string;
-};
-
-/**
- * Enam negara kawasan Asia Tenggara untuk Scene 5 (K13).
- */
-export const REGIONAL_COUNTRIES: ReadonlyArray<RegionalCountry> = [
-  { id: 'id', name: 'Indonesia' },
-  { id: 'my', name: 'Malaysia' },
-  { id: 'sg', name: 'Singapura' },
-  { id: 'th', name: 'Thailand' },
-  { id: 'vn', name: 'Vietnam' },
-  { id: 'ph', name: 'Filipina' },
-];
-
-/**
- * Enam siluet Asia Tenggara (kompatibilitas layer).
- */
-export const REGIONAL_SILHOUETTES: ReadonlyArray<{
-  id: string;
-  layer: RegionalLayer;
-  ratio: number;
-}> = [
-  { id: 'my', layer: 'back', ratio: 0.85 },
-  { id: 'th', layer: 'back', ratio: 0.85 },
-  { id: 'vn', layer: 'mid', ratio: 1 },
-  { id: 'sg', layer: 'mid', ratio: 1 },
-  { id: 'id', layer: 'front', ratio: 1.15 },
-  { id: 'ph', layer: 'front', ratio: 1.15 },
-];
