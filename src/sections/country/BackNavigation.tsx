@@ -8,15 +8,18 @@ type BackNavigationProps = {
 
 export default function BackNavigation({ leaving, onClick }: BackNavigationProps) {
   return (
-    <Link
-      className="country-back"
-      to="/"
-      onClick={onClick}
-      aria-label="Kembali ke halaman utama"
-      aria-disabled={leaving || undefined}
-      data-leaving={leaving ? 'true' : undefined}
-    >
-      <span>Kembali ke benua</span>
-    </Link>
+    <div className="country-back-bar" aria-hidden="false">
+      <Link
+        className="country-back"
+        to="/"
+        onClick={onClick}
+        aria-label="Kembali ke halaman utama"
+        aria-disabled={leaving || undefined}
+        data-leaving={leaving ? 'true' : undefined}
+      >
+        <span aria-hidden="true">&larr;</span>
+        <span>Kembali ke benua</span>
+      </Link>
+    </div>
   );
 }

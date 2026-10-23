@@ -52,9 +52,6 @@
   isolation: isolate;
   z-index: 2;
 }
-.landing-scene--invitation {
-  height: 100vh;
-}
 .landing-scene--dashboard {
   height: auto;
   min-height: 120vh;
@@ -622,6 +619,12 @@
   border-color: #c4b5a2;
 }
 
+.landing-script__card--speaking {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(184, 35, 35, 0.12);
+  transform: translateY(-4px);
+}
+
 .landing-script__card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -629,12 +632,18 @@
 
 .landing-script__card-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
   border-bottom: 1px solid #e2d7c8;
   padding-bottom: 8px;
   width: 100%;
+}
+
+.landing-script__card-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .landing-script__country {
@@ -652,6 +661,78 @@
   letter-spacing: 0.04em;
   color: var(--ink-muted);
   white-space: nowrap;
+}
+
+.landing-script__audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  border: 1px solid #dcd1c2;
+  background: rgba(253, 251, 247, 0.9);
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 180ms var(--ease-standard);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.landing-script__audio-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: #ffffff;
+  transform: scale(1.08);
+}
+
+.landing-script__audio-btn--active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(184, 35, 35, 0.08);
+}
+
+.landing-script__speaker-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.landing-script__soundwave {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+
+.landing-script__soundwave-bar {
+  width: 2.5px;
+  background-color: var(--accent);
+  border-radius: 1px;
+  animation: soundwave-pulse 0.7s ease-in-out infinite alternate;
+}
+
+.landing-script__soundwave-bar:nth-child(1) {
+  height: 6px;
+  animation-delay: 0s;
+}
+
+.landing-script__soundwave-bar:nth-child(2) {
+  height: 14px;
+  animation-delay: 0.18s;
+}
+
+.landing-script__soundwave-bar:nth-child(3) {
+  height: 8px;
+  animation-delay: 0.36s;
+}
+
+@keyframes soundwave-pulse {
+  0% {
+    transform: scaleY(0.35);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 
 .landing-script__native {
@@ -871,6 +952,14 @@
   border-color: #d4a359;
 }
 
+.landing-dashboard__option-btn--correct {
+  border-color: rgba(72, 187, 120, 0.45);
+}
+
+.landing-dashboard__option-btn--warning {
+  border-color: rgba(237, 137, 54, 0.45);
+}
+
 .landing-dashboard__option-content {
   display: flex;
   align-items: flex-start;
@@ -892,6 +981,16 @@
 .landing-dashboard__option-btn--active .landing-dashboard__option-indicator {
   border-color: #d4a359;
   background: #d4a359;
+}
+
+.landing-dashboard__option-btn--correct .landing-dashboard__option-indicator {
+  border-color: #38a169;
+  background: #38a169;
+}
+
+.landing-dashboard__option-btn--warning .landing-dashboard__option-indicator {
+  border-color: #dd6b20;
+  background: #dd6b20;
 }
 
 .landing-dashboard__option-indicator-inner {
@@ -924,6 +1023,92 @@
   border-radius: 3px;
 }
 
+.landing-dashboard__reason-tag--amber {
+  color: #ed8936;
+  background: rgba(237, 137, 54, 0.12);
+}
+
+/* Interactive Feedback Cards */
+.landing-dashboard__scenario-feedback {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: feedback-slide-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes feedback-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-dashboard__scenario-feedback--success {
+  background: rgba(35, 107, 59, 0.15);
+  border: 1px solid rgba(72, 187, 120, 0.35);
+}
+
+.landing-dashboard__scenario-feedback--warning {
+  background: rgba(198, 105, 23, 0.15);
+  border: 1px solid rgba(237, 137, 54, 0.35);
+}
+
+.landing-dashboard__feedback-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landing-dashboard__feedback-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.landing-dashboard__feedback-badge--success {
+  background: #38a169;
+  color: #fff;
+}
+
+.landing-dashboard__feedback-badge--warning {
+  background: #dd6b20;
+  color: #fff;
+}
+
+.landing-dashboard__feedback-lead {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.landing-dashboard__scenario-feedback--success .landing-dashboard__feedback-lead {
+  color: #68d391;
+}
+
+.landing-dashboard__scenario-feedback--warning .landing-dashboard__feedback-lead {
+  color: #f6ad55;
+}
+
+.landing-dashboard__feedback-text {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #e2d8cc;
+}
+
 /* Spaced Repetition Track */
 .landing-dashboard__leitner-track {
   display: flex;
@@ -946,6 +1131,12 @@
   font-weight: 600;
 }
 
+.landing-dashboard__leitner-meta {
+  font-size: 11px;
+  color: #d4a359;
+  font-weight: 500;
+}
+
 .landing-dashboard__leitner-boxes {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -964,12 +1155,22 @@
   border-radius: 4px;
   text-align: center;
   gap: 3px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  font-family: inherit;
+}
+
+.landing-dashboard__leitner-box:hover {
+  background: #38322c;
+  border-color: #564c42;
+  transform: translateY(-2px);
 }
 
 .landing-dashboard__leitner-box--active {
   background: #342c23;
   border-color: #d4a359;
   box-shadow: 0 0 10px rgba(212, 163, 89, 0.2);
+  transform: translateY(-2px);
 }
 
 .landing-dashboard__leitner-num {
@@ -1125,42 +1326,6 @@
   outline-offset: 3px;
 }
 
-/* --- Scene 6 — undangan interaktif --------------------------------------- */
-
-.landing-stage--invitation {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  justify-items: center;
-  gap: var(--space-3);
-  padding-block: var(--space-4);
-}
-
-.landing-invitation__scene {
-  position: relative;
-  width: 100%;
-  max-width: 1440px;
-  margin-inline: auto;
-  height: 75vh;
-  min-height: 520px;
-}
-
-.landing-invitation__scene .landing-asia {
-  width: 100%;
-  height: 100%;
-}
-
-.landing-invitation__scene .asia-scene {
-  height: 100%;
-  aspect-ratio: auto;
-  min-height: 320px;
-}
-
-.landing-invitation__scene .landing-asia__placeholder {
-  height: 100%;
-  aspect-ratio: auto;
-  min-height: 320px;
-}
-
 /* --- Dialog negara ------------------------------------------------------- */
 
 .landing-dialog {
@@ -1271,116 +1436,39 @@
   outline-offset: 2px;
 }
 
-/* --- Scene 7 — footer: indeks negara + wordmark --------------------------- */
+/* --- Scene 7 — footer: wordmark dan hak cipta --------------------------- */
 
 .landing-stage--footer {
   height: auto;
-  /* Floor per tinggi viewport + 64px tetap: (1) gate P2.3 menuntut indeks
-     footer bisa ditarik ke top ≈160 (±40) dengan scroll nyata — butuh
-     headroom ≥ (vh − 112) di bawah indeks; (2) pada reduced-motion, fraksi
-     gulir 0.75 menuntut copy invitation sudah masuk viewport — butuh docH
-     lebih tinggi. Floor 88vh+64 memenuhi keduanya untuk vh 768–1024 tanpa
-     mengubah geometri mobile 375 (isi 1 kolom lebih tinggi dari floor). */
-  min-height: calc(88vh + 64px);
-  overflow: visible;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: var(--space-4);
-  padding-block-start: var(--space-6);
-  /* Ruang gulir ekstra di bawah wordmark: gate P2.3 menuntut indeks footer
-     bisa ditarik ke top ≈160 (±40) dengan scroll nyata. Tanpa ruang ini
-     dokumen berakhir sebelum indeks mencapai posisi itu di viewport ≥768. */
-  padding-block-end: clamp(96px, 12vh, 132px);
-}
-
-.landing-footer__index {
-  width: 100%;
+  min-height: 28vh;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-}
-
-.landing-footer__index-title {
-  margin: 0;
-  font-size: var(--text-h2);
-  line-height: var(--leading-h2);
-  font-weight: var(--weight-semibold);
-  color: var(--ink);
-}
-
-.landing-footer__index-nav {
-  width: 100%;
-}
-
-.landing-footer__index-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-block-start: 1px solid var(--line);
-}
-
-.landing-footer__index-list li {
-  border-block-end: 1px solid var(--line);
-  border-inline-end: 1px solid var(--line);
-}
-
-.landing-footer__index-list li:nth-child(3n) {
-  border-inline-end: none;
-}
-
-.landing-footer__index-button {
-  width: 100%;
-  min-height: 44px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: var(--space-2) var(--space-3);
-  border: none;
-  background-color: transparent;
-  color: var(--ink);
-  font-size: var(--text-body);
-  text-align: start;
-  cursor: pointer;
-  transition: color var(--duration-micro) var(--ease-standard);
-}
-
-.landing-footer__index-button:hover {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-
-.landing-footer__index-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.landing-footer__index-button:active {
-  color: var(--accent);
-}
-
-.landing-footer__index-name {
-  font-weight: var(--weight-semibold);
-}
-
-.landing-footer__index-depth {
-  margin-top: 2px;
-  font-size: var(--text-label);
-  font-weight: var(--weight-regular);
-  color: var(--ink-muted);
-  letter-spacing: 0.02em;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding-block: clamp(48px, 8vh, 96px);
+  padding-inline: var(--landing-gutter);
 }
 
 .landing-footer__mark {
-  margin: auto 0 0;
+  margin: 0;
   font-family: var(--font-display);
-  letter-spacing: 0.18em;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--ink);
+  font-weight: var(--weight-regular);
+}
+
+.landing-footer__copyright {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
   color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  max-width: 580px;
 }
 
 /* --- Wadah scene 3D (fallback svg) --------------------------------------- */
@@ -1412,23 +1500,6 @@
 @media (min-width: 768px) and (max-width: 1023px) {
   .landing-stage--scale {
     gap: var(--space-4);
-  }
-
-  .landing-stage--invitation {
-    grid-template-columns: minmax(0, 1fr);
-    padding-top: 4px;
-    padding-bottom: 0;
-    gap: var(--space-6);
-  }
-
-  .landing-invitation__scene {
-    width: 100%;
-    min-height: 570px;
-  }
-
-  .landing-invitation__scene .asia-scene,
-  .landing-invitation__scene .landing-asia__placeholder {
-    min-height: 570px;
   }
 
   .landing-scale__map-wrap {
@@ -1484,27 +1555,6 @@
 
   .landing-scale__map {
     max-height: 42vh;
-  }
-
-  .landing-stage--invitation {
-    grid-template-columns: minmax(0, 1fr);
-    gap: calc(var(--space-6) + 12px);
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .landing-invitation__scene {
-    width: calc(100% + 2 * var(--landing-gutter));
-    margin-inline: calc(-1 * var(--landing-gutter));
-    min-height: 540px;
-  }
-
-  .landing-footer__index-list {
-    grid-template-columns: 1fr;
-  }
-
-  .landing-footer__index-list li {
-    border-inline-end: none;
   }
 
   .landing-lang__sil {

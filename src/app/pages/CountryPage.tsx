@@ -56,7 +56,12 @@ export default function CountryPage() {
     <article
       className={className}
       data-country={country.id}
-      style={{ backgroundColor: theme.base }}
+      style={
+        {
+          backgroundColor: theme.base,
+          '--country-base': theme.base,
+        } as React.CSSProperties
+      }
       aria-labelledby="country-title"
     >
       {/* Adaptive Background: concentric contours & low-chroma palette */}

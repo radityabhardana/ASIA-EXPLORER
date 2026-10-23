@@ -47,9 +47,10 @@ function getHeroPhoto(countryId: string): ImageItem | undefined {
 export default function MosaicGallery() {
   return (
     <section
-      id="pilihan-negara"
+      id="peta"
       className="landing-scene landing-scene--mosaic"
       aria-labelledby="landing-mosaic-heading"
+      tabIndex={-1}
     >
       <div className="landing-stage landing-stage--mosaic">
         <div className="landing-stage__copy landing-center" data-reveal>

@@ -152,41 +152,43 @@
   white-space: nowrap;
   will-change: transform;
   opacity: 0;
-  transition: opacity 120ms var(--ease-standard, ease-out);
+  transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
-  align-items: baseline;
-  background: transparent;
-  border: none;
-  padding: 0;
-  box-shadow: none;
+  align-items: center;
+  gap: 6px;
+  background: rgba(244, 237, 225, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(140, 115, 85, 0.22);
+  border-radius: 9999px;
+  padding: 5px 12px 5px 10px;
+  box-shadow: 0 4px 16px rgba(45, 35, 25, 0.08), 0 1px 3px rgba(45, 35, 25, 0.06);
 }
 
 .asia-scene__label[data-visible='true'] {
   opacity: 1;
 }
 
-/* Halo teks warna kertas (text-shadow halus, tanpa kotak kaku) */
-.asia-scene__label-id,
-.asia-scene__label-native,
-.asia-scene__label-region {
-  text-shadow:
-    0 0 8px var(--paper, #f4ede1),
-    0 0 8px var(--paper, #f4ede1),
-    0 0 4px var(--paper, #f4ede1),
-    0 1px 3px var(--paper, #f4ede1);
+.asia-scene__label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent, #b82323);
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .asia-scene__label-id {
-  font-size: var(--text-body, 1rem);
+  font-size: var(--text-body, 0.9375rem);
   font-weight: var(--weight-semibold, 600);
   letter-spacing: -0.01em;
+  color: var(--ink, #1a1f24);
 }
 
 .asia-scene__label-native {
   font-size: var(--text-label, 0.875rem);
   font-weight: var(--weight-regular, 400);
   color: var(--ink-muted, #5c6670);
-  margin-left: 2px;
 }
 
 .asia-scene__label-region {

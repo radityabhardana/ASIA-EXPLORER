@@ -362,39 +362,51 @@
   }
 }
 
-/* --- Navigasi kembali (Fixed, background --surface, underlined text, NO border/radius/arrow) --- */
+/* --- Navigasi kembali (Fixed top bar with gradient protective mask) --- */
+
+.country-back-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding-inline: 48px;
+  z-index: var(--z-overlay);
+  background-color: var(--country-base, var(--surface));
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 12px rgba(44, 38, 30, 0.04);
+  pointer-events: none;
+}
 
 .country-back {
-  position: fixed;
-  inset-block-start: 16px;
-  inset-inline-start: 48px;
-  z-index: var(--z-overlay);
+  pointer-events: auto;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  min-width: 44px;
-  padding: 10px 0;
-  border: 0;
-  border-radius: 0;
-  background-color: var(--surface);
-  color: var(--ink-muted);
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: 9999px;
+  background-color: var(--surface-raised, #fffef9);
+  color: var(--ink);
   font-family: var(--font-text);
   font-size: var(--text-label);
-  line-height: var(--leading-label);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  box-shadow: none;
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(44, 38, 30, 0.06);
   cursor: pointer;
-  transition:
-    color var(--duration-micro) var(--ease-standard),
-    text-decoration-color var(--duration-micro) var(--ease-standard);
+  transition: all var(--duration-micro) var(--ease-standard);
 }
 
 .country-back:hover {
+  background-color: #ffffff;
+  border-color: var(--ink-muted);
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(44, 38, 30, 0.1);
 }
 
 .country-back:focus-visible {
@@ -411,9 +423,9 @@
 }
 
 @media (max-width: 1023px) {
-  .country-back {
-    inset-inline-start: var(--gutter-mobile);
-    inset-block-start: 16px;
+  .country-back-bar {
+    padding-inline: var(--gutter-mobile);
+    height: 60px;
   }
 }
 

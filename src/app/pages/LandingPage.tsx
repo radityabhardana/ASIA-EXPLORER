@@ -12,7 +12,6 @@ import Silhouette from '@/sections/landing/Silhouette';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import {
   SCRIPT_COUNTRY_IDS,
-  countries,
   countryEntry,
 } from '@/sections/landing/landing-data';
 import { useLandingTimeline } from '@/sections/landing/useLandingTimeline';

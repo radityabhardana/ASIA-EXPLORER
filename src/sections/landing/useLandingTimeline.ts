@@ -342,22 +342,6 @@ export function useLandingTimeline({
         );
       }
 
-      // Scene 5 — undangan interaktif.
-      const invitationWin = measureWindow(
-        '.landing-scene--invitation',
-        '.landing-stage__copy',
-      );
-      if (invitationWin) {
-        reveal(
-          '.landing-scene--invitation .landing-stage__copy',
-          segment(invitationWin, 0, 0.4),
-        );
-        reveal(
-          '.landing-invitation__scene',
-          segment(invitationWin, 0.15, 0.85),
-        );
-      }
-
       // Scene 6 — dashboard & sistem belajar.
       const dashboardWin = measureWindow(
         '.landing-scene--dashboard',
@@ -398,16 +382,19 @@ export function useLandingTimeline({
         );
       }
 
-      // Scene 7 — footer (indeks + wordmark).
+      // Scene 7 — footer (wordmark dan hak cipta).
       const footerWin = measureWindow(
         '.landing-scene--footer',
-        '.landing-footer__index',
+        '.landing-footer__mark',
       );
       if (footerWin) {
-        reveal('.landing-footer__index', segment(footerWin, 0, 0.3));
         reveal(
           '.landing-footer__mark',
-          segment(footerWin, 0.15, 0.5),
+          segment(footerWin, 0, 0.4),
+        );
+        reveal(
+          '.landing-footer__copyright',
+          segment(footerWin, 0.1, 0.5),
         );
       }
 
