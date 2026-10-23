@@ -221,66 +221,6 @@ test.describe('gates P0', () => {
     }
   });
 
-  test('overlap: cultural headline vs both layers -> 0 intersection px²', async ({
-    page,
-    isMobile,
-  }) => {
-    test.skip(isMobile, 'Pengujian desktop 1440');
-    test.setTimeout(45_000);
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/');
-    await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
-      null,
-      { timeout: 30_000 },
-    );
-
-    const total = await page.evaluate(
-      () => document.documentElement.scrollHeight - window.innerHeight,
-    );
-    await page.evaluate(
-      (y) => window.scrollTo(0, y),
-      Math.round(total * (620 / 920) + 200),
-    );
-    await page.waitForTimeout(500);
-
-    const overlap = await page.evaluate(() => {
-      const r = (sel: string) => {
-        const el = document.querySelector(sel);
-        if (!el) return null;
-        const b = el.getBoundingClientRect();
-        return { l: b.left, t: b.top, r: b.right, b: b.bottom };
-      };
-      const inter = (
-        a: { l: number; t: number; r: number; b: number } | null,
-        b: { l: number; t: number; r: number; b: number } | null,
-      ) => {
-        if (!a || !b) return 0;
-        const w = Math.min(a.r, b.r) - Math.max(a.l, b.l);
-        const h = Math.min(a.b, b.b) - Math.max(a.t, b.t);
-        return w > 0 && h > 0 ? Math.round(w * h) : 0;
-      };
-
-      const head = r('.landing-scene--cultural .landing-display');
-      const tr = r('.landing-cultural__layer--tr');
-      const th = r('.landing-cultural__layer--th');
-      const labelTr = r('.landing-cultural__label--tr');
-      const labelTh = r('.landing-cultural__label--th');
-
-      return {
-        headTr: inter(head, tr),
-        headTh: inter(head, th),
-        labelTr: inter(labelTr, tr),
-        labelTh: inter(labelTh, th),
-      };
-    });
-
-    expect(overlap.headTr).toBe(0);
-    expect(overlap.headTh).toBe(0);
-    expect(overlap.labelTr).toBe(0);
-    expect(overlap.labelTh).toBe(0);
-  });
-
   test('grid: left-aligned scene blocks at 48 ±1 at 1440, dan stage content box left = 48', async ({
     page,
     isMobile,
@@ -316,9 +256,7 @@ test.describe('gates P0', () => {
 
       const leftAlignedSelectors = [
         '.landing-scene--hero .landing-hero__copy',
-        '.landing-scene--scale .landing-stage__copy',
         '.landing-scene--script .landing-stage__copy',
-        '.landing-scene--footer .landing-footer__copy',
       ];
 
       const blockLefts = leftAlignedSelectors.map((sel) => {
@@ -341,7 +279,7 @@ test.describe('gates P0', () => {
     }
   });
 
-  test('counter: counter text === number of lit marks at 5 fractions, final 15/15 (3x loop)', async ({
+  test('counter: counter text === jumlah negara menyala di benua 3D, final 15/15 (3x loop)', async ({
     page,
     isMobile,
   }) => {
@@ -350,204 +288,59 @@ test.describe('gates P0', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
     await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
+      () => window.__asiakin_scenes?.scale?.ready === true,
       null,
       { timeout: 30_000 },
     );
+    // Intro descent masih berjalan ~1.6 s; tunggu sampai tinta stabil.
+    await page.waitForTimeout(1800);
 
     const total = await page.evaluate(
       () => document.documentElement.scrollHeight - window.innerHeight,
     );
 
-    const fractions = [0.105, 0.12, 0.135, 0.15, 0.175];
+    const fractions = [0.03, 0.05, 0.065, 0.08, 0.095];
 
     for (let run = 1; run <= 3; run++) {
       for (const f of fractions) {
         await page.evaluate((y) => window.scrollTo(0, y), Math.round(total * f));
-        await page.waitForTimeout(100);
+        await page.waitForTimeout(400);
 
         const sample = await page.evaluate(() => {
+          const scene = window.__asiakin_scenes?.scale;
           const counterEl = document.querySelector(
             '.landing-scene--scale [data-counter]',
           );
-          const marks = [
-            ...document.querySelectorAll(
-              '.landing-scene--scale [data-highlight]',
-            ),
-          ];
-          const lit = marks.filter(
-            (m) => Number(getComputedStyle(m).opacity) > 0.85,
-          ).length;
           const counterNum = parseInt(counterEl?.textContent?.trim() ?? '0', 10);
-          return { counterNum, lit };
+          const lit = scene?.lit?.() ?? [];
+          return { counterNum, litCount: lit.length, progress: scene?.highlightProgress?.() ?? -1 };
         });
 
-        expect(sample.counterNum).toBe(sample.lit);
+        expect(
+          sample.counterNum,
+          `counter ${sample.counterNum} vs lit ${sample.litCount}`,
+        ).toBe(sample.litCount);
       }
 
       await page.evaluate(
         (y) => window.scrollTo(0, y),
-        Math.round(total * 0.18),
+        Math.round(total * 0.125),
       );
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(400);
 
       const finalSample = await page.evaluate(() => {
+        const scene = window.__asiakin_scenes?.scale;
         const counterEl = document.querySelector(
           '.landing-scene--scale [data-counter]',
         );
-        const marks = [
-          ...document.querySelectorAll(
-            '.landing-scene--scale [data-highlight]',
-          ),
-        ];
-        const lit = marks.filter(
-          (m) => Number(getComputedStyle(m).opacity) > 0.85,
-        ).length;
         const counterNum = parseInt(counterEl?.textContent?.trim() ?? '0', 10);
-        return { counterNum, lit, totalMarks: marks.length };
+        const lit = scene?.lit?.() ?? [];
+        return { counterNum, litCount: lit.length, highlightCount: scene?.highlightCount?.() ?? -1 };
       });
 
       expect(finalSample.counterNum).toBe(15);
-      expect(finalSample.lit).toBe(15);
-      expect(finalSample.totalMarks).toBe(15);
-    }
-  });
-
-  test('cultural scene at rest diptych & footer sources distinctness', async ({
-    page,
-    isMobile,
-  }) => {
-    test.skip(isMobile, 'Pengujian desktop 1440');
-    test.setTimeout(45_000);
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/');
-    await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
-      null,
-      { timeout: 30_000 },
-    );
-
-    // Scroll to scene 6 at rest (scrollY 5670)
-    await page.evaluate(() => window.scrollTo(0, 5670));
-    await page.waitForTimeout(800);
-
-    const s6 = await page.evaluate(() => {
-      const r = (sel: string) => {
-        const el = document.querySelector(sel);
-        if (!el) return null;
-        const b = el.getBoundingClientRect();
-        return { l: b.left, t: b.top, r: b.right, b: b.bottom, w: b.width, h: b.height };
-      };
-
-      const head = r('.landing-scene--cultural .landing-display');
-      const colTr = r('.landing-cultural__col--tr');
-      const colTh = r('.landing-cultural__col--th');
-      const tr = r('.landing-cultural__layer--tr');
-      const th = r('.landing-cultural__layer--th');
-      const labelTr = r('.landing-cultural__label--tr');
-      const labelTh = r('.landing-cultural__label--th');
-      const iconTr = r('.landing-cultural__icon--cezve');
-      const iconTh = r('.landing-cultural__icon--wai');
-
-      return { head, colTr, colTh, tr, th, labelTr, labelTh, iconTr, iconTh };
-    });
-
-    const { head, colTr, colTh, tr, th, labelTr, labelTh, iconTr, iconTh } = s6;
-    expect(head).not.toBeNull();
-    expect(colTr).not.toBeNull();
-    expect(colTh).not.toBeNull();
-    expect(tr).not.toBeNull();
-    expect(th).not.toBeNull();
-    expect(labelTr).not.toBeNull();
-    expect(labelTh).not.toBeNull();
-    expect(iconTr).not.toBeNull();
-    expect(iconTh).not.toBeNull();
-
-    // 1. Column edges: A = 48->672, B = 768->1392 (96px gutter)
-    expect(Math.abs(colTr!.l - 48)).toBeLessThanOrEqual(1);
-    expect(Math.abs(colTr!.r - 672)).toBeLessThanOrEqual(1);
-    expect(Math.abs(colTh!.l - 768)).toBeLessThanOrEqual(1);
-    expect(Math.abs(colTh!.r - 1392)).toBeLessThanOrEqual(1);
-
-    // 2. Silhouettes optically centred in column, heights 360-440, within 60px of each other
-    expect(tr!.h).toBeGreaterThanOrEqual(360);
-    expect(tr!.h).toBeLessThanOrEqual(440);
-    expect(th!.h).toBeGreaterThanOrEqual(360);
-    expect(th!.h).toBeLessThanOrEqual(440);
-    expect(Math.abs(tr!.h - th!.h)).toBeLessThanOrEqual(60);
-
-    const colTrCenter = (colTr!.l + colTr!.r) / 2;
-    const trCenter = (tr!.l + tr!.r) / 2;
-    expect(Math.abs(colTrCenter - trCenter)).toBeLessThanOrEqual(2);
-
-    const colThCenter = (colTh!.l + colTh!.r) / 2;
-    const thCenter = (th!.l + th!.r) / 2;
-    expect(Math.abs(colThCenter - thCenter)).toBeLessThanOrEqual(2);
-
-    // 3. Headline top 96-140, centred in grid; headline ∩ each silhouette = 0 px²
-    expect(head!.t).toBeGreaterThanOrEqual(96);
-    expect(head!.t).toBeLessThanOrEqual(140);
-    expect(head!.b).toBeLessThan(tr!.t);
-    expect(head!.b).toBeLessThan(th!.t);
-
-    // 4. Captions share one baseline: bottom between 700 and 760, within 2px of each other, width <= column width
-    expect(labelTr!.b).toBeGreaterThanOrEqual(700);
-    expect(labelTr!.b).toBeLessThanOrEqual(760);
-    expect(labelTh!.b).toBeGreaterThanOrEqual(700);
-    expect(labelTh!.b).toBeLessThanOrEqual(760);
-    expect(Math.abs(labelTr!.b - labelTh!.b)).toBeLessThanOrEqual(2);
-
-    expect(labelTr!.w).toBeLessThanOrEqual(colTr!.w + 1);
-    expect(labelTh!.w).toBeLessThanOrEqual(colTh!.w + 1);
-    expect(Math.abs(labelTr!.l - colTr!.l)).toBeLessThanOrEqual(1);
-    expect(Math.abs(labelTh!.l - colTh!.l)).toBeLessThanOrEqual(1);
-
-    // 5. Icons become inline emblems inside caption row: 24-32px, inside caption bbox
-    expect(iconTr!.w).toBeGreaterThanOrEqual(24);
-    expect(iconTr!.w).toBeLessThanOrEqual(32);
-    expect(iconTh!.w).toBeGreaterThanOrEqual(24);
-    expect(iconTh!.w).toBeLessThanOrEqual(32);
-
-    expect(iconTr!.l).toBeGreaterThanOrEqual(labelTr!.l - 1);
-    expect(iconTr!.r).toBeLessThanOrEqual(labelTr!.r + 1);
-    expect(iconTr!.t).toBeGreaterThanOrEqual(labelTr!.t - 1);
-    expect(iconTr!.b).toBeLessThanOrEqual(labelTr!.b + 1);
-
-    expect(iconTh!.l).toBeGreaterThanOrEqual(labelTh!.l - 1);
-    expect(iconTh!.r).toBeLessThanOrEqual(labelTh!.r + 1);
-    expect(iconTh!.t).toBeGreaterThanOrEqual(labelTh!.t - 1);
-    expect(iconTh!.b).toBeLessThanOrEqual(labelTh!.b + 1);
-
-    // 6. Bottom gap below captions 48-140; no element outside 0...900
-    const bottomGap = 900 - Math.max(labelTr!.b, labelTh!.b);
-    expect(bottomGap).toBeGreaterThanOrEqual(48);
-    expect(bottomGap).toBeLessThanOrEqual(140);
-
-    const elements = [head!, tr!, th!, labelTr!, labelTh!, iconTr!, iconTh!];
-    for (const el of elements) {
-      expect(el.t).toBeGreaterThanOrEqual(0);
-      expect(el.b).toBeLessThanOrEqual(900);
-    }
-
-    // 7. Footer assertion: no country row renders the same source label twice, and 15 rows * >=2 links
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-    await page.waitForTimeout(500);
-
-    const footerCheck = await page.evaluate(() => {
-      const rows = [...document.querySelectorAll('.landing-footer__source-item')];
-      const rowDetails = rows.map((row) => {
-        const country = row.querySelector('.landing-footer__source-country')?.textContent?.trim();
-        const links = [...row.querySelectorAll('a')].map((a) => a.textContent?.trim());
-        return { country, links };
-      });
-      return rowDetails;
-    });
-
-    expect(footerCheck.length).toBe(15);
-    for (const row of footerCheck) {
-      expect(row.links.length).toBeGreaterThanOrEqual(2);
-      const uniqueLinks = new Set(row.links);
-      expect(uniqueLinks.size).toBe(row.links.length);
+      expect(finalSample.litCount).toBe(15);
+      expect(finalSample.highlightCount).toBe(15);
     }
   });
 
@@ -613,7 +406,6 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
     'language',
     'script',
     'regional',
-    'cultural',
     'invitation',
     'footer',
   ];
@@ -629,7 +421,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
   const sampleScene = (name: string): RevealSample | null => {
     const selector =
       name === 'footer'
-        ? '.landing-scene--footer .landing-footer__copy'
+        ? '.landing-scene--footer .landing-footer__index'
         : `.landing-scene--${name} .landing-stage__copy`;
     const section = document.querySelector(`.landing-scene--${name}`);
     const copy = document.querySelector(selector);
@@ -652,7 +444,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
   const revealSettled = (name: string): boolean => {
     const selector =
       name === 'footer'
-        ? '.landing-scene--footer .landing-footer__copy'
+        ? '.landing-scene--footer .landing-footer__index'
         : `.landing-scene--${name} .landing-stage__copy`;
     const section = document.querySelector(`.landing-scene--${name}`);
     const copy = document.querySelector(selector);
@@ -701,7 +493,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
         const target = await page.evaluate((name) => {
           const copySelector =
             name === 'footer'
-              ? '.landing-scene--footer .landing-footer__copy'
+              ? '.landing-scene--footer .landing-footer__index'
               : `.landing-scene--${name} .landing-stage__copy`;
           const section = document.querySelector(`.landing-scene--${name}`);
           const stage = section?.querySelector('.landing-stage') ?? null;
@@ -730,7 +522,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
           copyTopNow = await page.evaluate((name) => {
             const copySelector =
               name === 'footer'
-                ? '.landing-scene--footer .landing-footer__copy'
+                ? '.landing-scene--footer .landing-footer__index'
                 : `.landing-scene--${name} .landing-stage__copy`;
             const copy = document.querySelector(copySelector);
             return copy ? Math.round(copy.getBoundingClientRect().top) : null;
@@ -763,7 +555,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
           const why = await page.evaluate((name) => {
             const copySelector =
               name === 'footer'
-                ? '.landing-scene--footer .landing-footer__copy'
+                ? '.landing-scene--footer .landing-footer__index'
                 : `.landing-scene--${name} .landing-stage__copy`;
             const section = document.querySelector(`.landing-scene--${name}`);
             const copy = document.querySelector(copySelector);
@@ -834,7 +626,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
             name === 'hero'
               ? '.landing-scene--hero .landing-hero__copy'
               : name === 'footer'
-                ? '.landing-scene--footer .landing-footer__copy'
+                ? '.landing-scene--footer .landing-footer__index'
                 : `.landing-scene--${name} .landing-stage__copy`;
           const copy = document.querySelector(copySelector);
           if (!section || !copy) return null;
@@ -862,7 +654,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
               name === 'hero'
                 ? '.landing-scene--hero .landing-hero__copy'
                 : name === 'footer'
-                  ? '.landing-scene--footer .landing-footer__copy'
+                  ? '.landing-scene--footer .landing-footer__index'
                   : `.landing-scene--${name} .landing-stage__copy`;
             const copy = document.querySelector(copySelector);
             return copy ? Number(getComputedStyle(copy).opacity) : 1;
@@ -874,139 +666,5 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
         }
       }
     }
-  });
-
-  test('cultural mobile 375: dua vignette tampil, tanpa bleed, tanpa tabrakan, caption di gutter 16', async ({
-    page,
-    isMobile,
-  }) => {
-    test.skip(!isMobile, 'Viewport 375 disediakan proyek mobile.');
-    test.setTimeout(90_000);
-    await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto('/');
-    await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
-      null,
-      { timeout: 45_000 },
-    );
-
-    const target = await page.evaluate(() => {
-      const section = document.querySelector('.landing-scene--cultural');
-      const stage = section?.querySelector('.landing-stage') ?? null;
-      const copy = document.querySelector(
-        '.landing-scene--cultural .landing-stage__copy',
-      );
-      if (!section || !stage || !copy) return null;
-      const sTop = section.getBoundingClientRect().top + window.scrollY;
-      const rel =
-        copy.getBoundingClientRect().top - stage.getBoundingClientRect().top;
-      const limit =
-        document.documentElement.scrollHeight - window.innerHeight;
-      return Math.max(0, Math.min(limit, Math.round(sTop + rel - 160)));
-    });
-    expect(target).not.toBeNull();
-    await page.evaluate((y) => window.scrollTo(0, y), target!);
-
-    const gate = await page
-      .waitForFunction(
-        () => {
-          const copy = document.querySelector(
-            '.landing-scene--cultural .landing-stage__copy',
-          );
-          if (!copy) return false;
-          if (Math.abs(copy.getBoundingClientRect().top - 160) > 40) {
-            return false;
-          }
-          return Number(getComputedStyle(copy).opacity) >= 0.95;
-        },
-        null,
-        { timeout: 3_000 },
-      )
-      .then(() => true)
-      .catch(() => false);
-    expect(gate, 'copy cultural belum ter-reveal').toBe(true);
-
-    const cultural = await page.evaluate(() => {
-      const rect = (el: Element | null) => {
-        if (!el) return null;
-        const b = el.getBoundingClientRect();
-        return {
-          left: b.left,
-          right: b.right,
-          top: b.top,
-          bottom: b.bottom,
-          width: b.width,
-          height: b.height,
-        };
-      };
-      const display = (el: Element | null) =>
-        el ? getComputedStyle(el).display : 'none';
-      const inter = (
-        a: ReturnType<typeof rect> | null,
-        b: ReturnType<typeof rect> | null,
-      ) => {
-        if (!a || !b) return null;
-        const w = Math.min(a.right, b.right) - Math.max(a.left, b.left);
-        const h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
-        return w > 0 && h > 0 ? Math.round(w * h) : 0;
-      };
-      const head = rect(
-        document.querySelector('.landing-scene--cultural .landing-display'),
-      );
-      const tr = rect(document.querySelector('.landing-cultural__layer--tr'));
-      const th = rect(document.querySelector('.landing-cultural__layer--th'));
-      const trDisplay = display(
-        document.querySelector('.landing-cultural__layer--tr'),
-      );
-      const thDisplay = display(
-        document.querySelector('.landing-cultural__layer--th'),
-      );
-      const labelTr = rect(
-        document.querySelector('.landing-cultural__label--tr'),
-      );
-      const labelTh = rect(
-        document.querySelector('.landing-cultural__label--th'),
-      );
-      return {
-        head,
-        tr,
-        th,
-        trDisplay,
-        thDisplay,
-        labelTr,
-        labelTh,
-        headTrOverlap: inter(head, tr),
-        headThOverlap: inter(head, th),
-        innerWidth: window.innerWidth,
-        scrollWidth: document.documentElement.scrollWidth,
-      };
-    });
-
-    // 1. Kedua vignette dirender (non-zero box, display != none).
-    expect(cultural.tr).not.toBeNull();
-    expect(cultural.th).not.toBeNull();
-    expect(cultural.trDisplay).not.toBe('none');
-    expect(cultural.thDisplay).not.toBe('none');
-    expect(cultural.tr!.width).toBeGreaterThan(0);
-    expect(cultural.tr!.height).toBeGreaterThan(0);
-    expect(cultural.th!.width).toBeGreaterThan(0);
-    expect(cultural.th!.height).toBeGreaterThan(0);
-
-    // 2. Tidak ada horizontal bleed: left ≥ 0, right ≤ innerWidth.
-    expect(cultural.tr!.left).toBeGreaterThanOrEqual(0);
-    expect(cultural.tr!.right).toBeLessThanOrEqual(cultural.innerWidth + 1);
-    expect(cultural.th!.left).toBeGreaterThanOrEqual(0);
-    expect(cultural.th!.right).toBeLessThanOrEqual(cultural.innerWidth + 1);
-
-    // 3. Headline ∩ layer = 0 px².
-    expect(cultural.headTrOverlap).toBe(0);
-    expect(cultural.headThOverlap).toBe(0);
-
-    // 4. Caption rata kiri pada gutter 16 ±1.
-    expect(Math.abs(cultural.labelTr!.left - 16)).toBeLessThanOrEqual(1);
-    expect(Math.abs(cultural.labelTh!.left - 16)).toBeLessThanOrEqual(1);
-
-    // 5. Tanpa overflow horizontal.
-    expect(cultural.scrollWidth).toBe(cultural.innerWidth);
   });
 });

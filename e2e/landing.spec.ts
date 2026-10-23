@@ -56,8 +56,8 @@ async function goToFraction(page: Page, fraction: number): Promise<void> {
 }
 
 async function waitForScene(page: Page): Promise<void> {
-  // Scene 1 dan 7 memakai satu modul; global debug ditulis ulang oleh mount
-  // terakhir, jadi cukup menunggu salah satunya siap.
+  // Registry debugKey mempertahankan scene hero di window.__asiakin_scene
+  // meski scene lain mount kemudian; cukup menunggu hero siap.
   await page
     .waitForFunction(() => window.__asiakin_scene?.ready === true, null, {
       timeout: 45_000,
@@ -124,12 +124,12 @@ test.describe('landing visual', () => {
       ).toHaveText('Asia Explorer');
       await waitForScene(page);
 
-      // §0.8: tinggi total minimal 920vh (scene 1-7 = 840vh, scene 8 footer ukuran konten).
+      // Tahap A: 7 scene = 100+120+100+190+120+100 vh (730) + footer ~80 vh.
       const height = await page.evaluate(() => {
         const vh = window.innerHeight;
         return { scrollHeight: document.documentElement.scrollHeight, vh };
       });
-      expect(height.scrollHeight).toBeGreaterThanOrEqual(Math.floor(height.vh * 9.2));
+      expect(height.scrollHeight).toBeGreaterThanOrEqual(Math.floor(height.vh * 7.8));
 
       for (const fraction of FRACTIONS) {
         await goToFraction(page, fraction);
@@ -246,7 +246,7 @@ test.describe('reduced motion', () => {
       const state = await page.evaluate(() => {
         const headings = Array.from(
           document.querySelectorAll<HTMLElement>(
-            'h1, h2, h3, .landing-display, .landing-hero__title, .landing-script__card, .landing-cultural__label, .landing-ethos__text, .landing-footer__mark',
+            'h1, h2, h3, .landing-display, .landing-hero__title, .landing-script__card, .landing-footer__mark',
           ),
         );
         return headings.map((node) => {

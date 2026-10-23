@@ -3,6 +3,8 @@ import { mapEntry } from './landing-data';
 type SilhouetteProps = {
   id: string;
   className?: string;
+  /** `slice` mengisi kotak sepenuhnya (memotong sisi) untuk band full-bleed. */
+  fit?: 'meet' | 'slice';
 };
 
 /**
@@ -10,7 +12,7 @@ type SilhouetteProps = {
  * `viewBox` dipotong ke bbox entri supaya siluet mengisi ruangnya, bukan
  * mengambang di tengah kotak 1000×1000.
  */
-export default function Silhouette({ id, className }: SilhouetteProps) {
+export default function Silhouette({ id, className, fit = 'meet' }: SilhouetteProps) {
   const entry = mapEntry(id);
   if (!entry) {
     return null;
@@ -32,7 +34,7 @@ export default function Silhouette({ id, className }: SilhouetteProps) {
     <svg
       className={className ? `landing-sil ${className}` : 'landing-sil'}
       viewBox={viewBox}
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio={`xMidYMid ${fit}`}
       role="presentation"
       aria-hidden="true"
       focusable="false"

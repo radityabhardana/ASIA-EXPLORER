@@ -5,16 +5,12 @@ import { scrollToSection } from '@/lib/motion';
 import { differs, profileFor } from '@/sections/country/scripts';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryDialog from '@/sections/landing/CountryDialog';
-import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import Silhouette from '@/sections/landing/Silhouette';
-import { CezveIcon, WaiIcon } from '@/sections/landing/icons';
 import {
-  COUNTRY_SOURCES,
   REGIONAL_SILHOUETTES,
   SCRIPT_COUNTRY_IDS,
   countries,
   countryEntry,
-  sourceDomainLabel,
 } from '@/sections/landing/landing-data';
 import { useLandingTimeline } from '@/sections/landing/useLandingTimeline';
 import '@/styles/landing.css';
@@ -28,13 +24,24 @@ export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
   const heroProgressRef = useRef(0);
+  // Scene skala statis: kamera tetap, hanya sorotan yang beranimasi.
+  const scaleProgressRef = useRef(0);
   // Scene 7 statis saat interaktif (§3): progres tetap, kamera tidak berubah.
   const invitationProgressRef = useRef(0.5);
+  /**
+   * Sumber sorotan tunggal scene Skala: tween GSAP menulis 0..1 di sini dan
+   * teks counter dalam satu onUpdate — jumlah tinta 3D selalu = teks counter.
+   */
+  const scaleHighlightRef = useRef(1);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
 
-  useLandingTimeline({ root: rootRef, progress: heroProgressRef });
+  useLandingTimeline({
+    root: rootRef,
+    progress: heroProgressRef,
+    highlight: scaleHighlightRef,
+  });
 
   // Hero intro triggered by preloader exit or immediate if preloader skipped.
   useEffect(() => {
@@ -123,6 +130,7 @@ export default function LandingPage() {
           <div className="landing-hero__scene" data-intro>
             <AsiaSceneLazy
               decorative
+              debugKey="hero"
               label="Peta Asia"
               scrollProgressRef={heroProgressRef}
             />
@@ -134,15 +142,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 2 — skala negara */}
+      {/* Scene 2 — skala negara: benua 3D yang sama dengan hero, 15 negara menyala */}
       <section
         className="landing-scene landing-scene--scale landing-scene--pinned"
         aria-labelledby="landing-scale-heading"
       >
-        <div className="landing-stage landing-stage--split">
-          <div className="landing-stage__copy" data-reveal>
+        <div className="landing-stage landing-stage--scale">
+          <div className="landing-stage__copy landing-center" data-reveal>
             <h2
-              className="landing-display landing-display--stat"
+              className="landing-display landing-display--stat landing-display--wide"
               id="landing-scale-heading"
             >
               <span className="landing-display__number" data-counter="15">
@@ -155,8 +163,14 @@ export default function LandingPage() {
             <p className="landing-note">Dari Turki sampai Jepang.</p>
           </div>
 
-          <div className="landing-map-wrap" data-reveal>
-            <CountryMapSvg />
+          <div className="landing-scale__scene" data-reveal>
+            <AsiaSceneLazy
+              decorative
+              debugKey="scale"
+              label="Peta Asia, 15 negara tersorot"
+              scrollProgressRef={scaleProgressRef}
+              highlightProgressRef={scaleHighlightRef}
+            />
           </div>
         </div>
       </section>
@@ -168,7 +182,7 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--language">
           <div className="landing-lang__sil">
-            <Silhouette id="id" className="landing-lang__shape" />
+            <Silhouette id="id" className="landing-lang__shape" fit="slice" />
           </div>
 
           <div className="landing-stage__copy landing-center" data-reveal>
@@ -243,26 +257,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 5 — tapestry regional */}
+      {/* Scene 5 — tapestry regional (di-pin: headline di atas, siluet mengisi sisanya) */}
       <section
-        className="landing-scene landing-scene--regional"
+        className="landing-scene landing-scene--regional landing-scene--pinned"
         aria-labelledby="landing-regional-heading"
       >
         <div className="landing-stage landing-stage--regional">
-          <div className="landing-regional__layers" aria-hidden="true">
-            {REGIONAL_SILHOUETTES.map((layer) => (
-              <div
-                key={layer.id}
-                className={`landing-regional__layer landing-regional__layer--${layer.id}`}
-                data-parallax={layer.ratio}
-              >
-                <div className="landing-regional__reveal" data-reveal>
-                  <Silhouette id={layer.id} />
-                </div>
-              </div>
-            ))}
-          </div>
-
           <div className="landing-stage__copy landing-center" data-reveal>
             <h2
               className="landing-display"
@@ -271,75 +271,25 @@ export default function LandingPage() {
               Asia Tenggara, ratusan cara menyapa
             </h2>
           </div>
-        </div>
-      </section>
 
-      {/* Scene 6 — vignette budaya */}
-      <section
-        className="landing-scene landing-scene--cultural landing-scene--pinned"
-        aria-labelledby="landing-cultural-heading"
-      >
-        <div className="landing-stage landing-stage--cultural">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display"
-              id="landing-cultural-heading"
-            >
-              Setiap negara punya caranya sendiri
-            </h2>
-          </div>
-
-          <div className="landing-cultural__diptych">
-            <div className="landing-cultural__col landing-cultural__col--tr">
-              <div
-                className="landing-cultural__layer landing-cultural__layer--tr"
-                data-parallax="0.92"
-              >
-                <div className="landing-cultural__reveal" data-reveal>
-                  <Silhouette id="tr" />
-                </div>
-              </div>
-              <p
-                className="landing-cultural__label landing-cultural__label--tr"
-                data-reveal
-              >
-                <span
-                  className="landing-cultural__icon landing-cultural__icon--cezve"
-                  aria-hidden="true"
+          <div className="landing-regional__band">
+            <div className="landing-regional__layers" aria-hidden="true">
+              {REGIONAL_SILHOUETTES.map((layer) => (
+                <div
+                  key={layer.id}
+                  className={`landing-regional__layer landing-regional__layer--${layer.id}`}
                 >
-                  <CezveIcon />
-                </span>
-                <span className="landing-cultural__text">Turki, kopi Turki, cezve</span>
-              </p>
-            </div>
-
-            <div className="landing-cultural__col landing-cultural__col--th">
-              <div
-                className="landing-cultural__layer landing-cultural__layer--th"
-                data-parallax="1.08"
-              >
-                <div className="landing-cultural__reveal" data-reveal>
-                  <Silhouette id="th" />
+                  <div className="landing-regional__reveal" data-reveal>
+                    <Silhouette id={layer.id} />
+                  </div>
                 </div>
-              </div>
-              <p
-                className="landing-cultural__label landing-cultural__label--th"
-                data-reveal
-              >
-                <span
-                  className="landing-cultural__icon landing-cultural__icon--wai"
-                  aria-hidden="true"
-                >
-                  <WaiIcon />
-                </span>
-                <span className="landing-cultural__text">Thailand, wai, salam hormat</span>
-              </p>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Scene 7 — undangan interaktif */}
+      {/* Scene 6 — undangan interaktif */}
       <section
         id="peta"
         ref={mapSectionRef}
@@ -357,13 +307,13 @@ export default function LandingPage() {
               Pilih negara, mulai penjelajahan
             </h2>
             <p className="landing-note">
-              Sentuh atau arahkan kursor ke negara di benua, atau pakai daftar
-              di bawah halaman.
+              Sentuh atau arahkan kursor ke negara di benua.
             </p>
           </div>
 
           <div className="landing-invitation__scene" data-reveal>
             <AsiaSceneLazy
+              debugKey="invitation"
               label="Peta Asia interaktif"
               describedBy="landing-map-help"
               scrollProgressRef={invitationProgressRef}
@@ -380,7 +330,7 @@ export default function LandingPage() {
             aria-atomic="true"
           >
             {hoverCountry
-              ? `${hoverCountry.nameId} — ${hoverCountry.language.nameId}`
+              ? `${hoverCountry.nameId}, ${hoverCountry.language.nameId}`
               : ''}
           </div>
           <p id="landing-map-help" className="visually-hidden">
@@ -394,43 +344,16 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 8 — footer */}
+      {/* Scene 7 — footer: indeks negara + wordmark */}
       <footer
         className="landing-scene landing-scene--footer"
         aria-labelledby="landing-footer-heading"
       >
         <div className="landing-stage landing-stage--footer">
-          <div className="landing-footer__copy" data-reveal>
-            <h2 className="landing-display" id="landing-footer-heading">
-              Sumber data
-            </h2>
-            <p className="landing-note">
-              Rujukan 15 negara:
-            </p>
-          </div>
-
-          <ul className="landing-footer__links" data-reveal>
-            {COUNTRY_SOURCES.map((country) => (
-              <li key={country.id} className="landing-footer__source-item">
-                <span className="landing-footer__source-country">{country.nameId}:</span>{' '}
-                {country.sources.map((source, idx) => (
-                  <span key={source.url}>
-                    {idx > 0 ? ', ' : ''}
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      {sourceDomainLabel(source.url, source.what)}
-                    </a>
-                  </span>
-                ))}
-              </li>
-            ))}
-          </ul>
-
           <div className="landing-footer__index" data-reveal>
-            <h3 className="landing-footer__index-title">15 negara</h3>
+            <h2 className="landing-footer__index-title" id="landing-footer-heading">
+              Pilih negara
+            </h2>
             <nav className="landing-footer__index-nav" aria-label="Indeks negara">
               <ul className="landing-footer__index-list">
                 {countries.map((country) => (

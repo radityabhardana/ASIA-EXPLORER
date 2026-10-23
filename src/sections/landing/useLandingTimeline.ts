@@ -22,6 +22,12 @@ type LandingTimelineOptions = {
   root: RefObject<HTMLDivElement | null>;
   /** Dibaca `AsiaScene` per frame; ditulis dari progres ScrollTrigger. */
   progress: RefObject<number>;
+  /**
+   * Sorotan 3D scene Skala (0..1). Tween sinkronisasi menulis ref ini DAN
+   * teks counter dalam satu onUpdate — jumlah negara menyala selalu sama
+   * dengan angka counter (audit A4).
+   */
+  highlight: RefObject<number>;
 };
 
 type ScrollWindow = {
@@ -34,7 +40,7 @@ type ScrollWindow = {
 /**
  * Jendela reveal tidak bisa lagi pakai pecahan vh desktop yang di-hard-code:
  * tinggi scene relatif terhadap doc berubah per leviewport (mobile 375 punya
- * doc 8986 px, bukan 920vh). Jendela kini diukur dari geometri DOM nyata:
+ * doc ~810vh, bukan 920vh). Jendela kini diukur dari geometri DOM nyata:
  * - mulai saat tepi atas scene berada ~78% dari atas viewport;
  * - selesai sebelum blok copy menyentuh 20% teratas viewport;
  * - jendela dipotong maksimum 60% viewport dan minimum 20% viewport.
@@ -46,11 +52,15 @@ const WINDOW_RATIO_MIN = 0.2;
 
 /**
  * Satu timeline GSAP untuk seluruh halaman, di-scrub langsung oleh scroll.
- * Semua tween hanya menyentuh transform/opacity (plus textContent counter),
- * dan tidak membaca layout di dalam loop scroll. Timing tiap scene diukur
- * ulang saat resize / orientasi / pergantian breakpoint.
+ * Semua tween hanya menyentuh transform/opacity (plus textContent counter
+ * dan ref sorotan), dan tidak membaca layout di dalam loop scroll. Timing
+ * tiap scene diukur ulang saat resize / orientasi / pergantian breakpoint.
  */
-export function useLandingTimeline({ root, progress }: LandingTimelineOptions): void {
+export function useLandingTimeline({
+  root,
+  progress,
+  highlight,
+}: LandingTimelineOptions): void {
   useEffect(() => {
     const rootElement = root.current;
     if (!rootElement) {
@@ -69,7 +79,7 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
 
     const setFinalState = () => {
       for (const element of rootElement.querySelectorAll<HTMLElement>(
-        '[data-reveal], [data-highlight]',
+        '[data-reveal]',
       )) {
         element.style.opacity = '1';
         element.style.transform = 'none';
@@ -77,6 +87,9 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       for (const element of counters) {
         element.textContent = element.dataset.counter ?? element.textContent;
       }
+      // Sorotan 3D scene Skala ke keadaan akhir: 15 negara.
+      // eslint-disable-next-line react-hooks/immutability
+      highlight.current = 1;
       // `progress` adalah ref milik pemanggil (bukan props render). Menulis
       // `.current` di dalam effect adalah pemakaian ref yang sah; aturan
       // immutability tidak bisa membedakan ref dari nilai biasa.
@@ -100,7 +113,7 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       // Bersihkan inline style sisa build sebelumnya supaya pengukuran
       // geometri tidak terdistorsi offset y/opacity tween yang lama.
       for (const element of rootElement.querySelectorAll<HTMLElement>(
-        '[data-reveal], [data-highlight], .landing-lang__sil',
+        '[data-reveal], .landing-lang__sil',
       )) {
         element.style.removeProperty('opacity');
         element.style.removeProperty('transform');
@@ -222,27 +235,25 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       if (heroCopy.length > 0) {
         tl.set(heroCopy, { opacity: 1, y: 0 }, 0);
       }
-      reveal('.landing-hero__hint', { at: 0.05, duration: 0.02 });
+      // .landing-hint tampil lewat [data-intro] (reveal preloader), bukan tween.
 
-      // Scene 2 — skala negara.
+      // Scene 2 — skala negara: counter dan sorotan 3D satu sumber di
+      // syncState; teks counter = jumlah negara menyala di benua 3D.
       const scaleWin = measureWindow(
         '.landing-scene--scale',
         '.landing-stage__copy',
       );
       if (scaleWin) {
         reveal('.landing-scene--scale .landing-stage__copy', segment(scaleWin, 0, 0.35));
-        reveal('.landing-scene--scale .landing-map-wrap', segment(scaleWin, 0.1, 0.55));
+        reveal('.landing-scene--scale .landing-scale__scene', segment(scaleWin, 0.1, 0.55));
 
         const counterEl = rootElement.querySelector<HTMLElement>(
           '.landing-scene--scale [data-counter]',
         );
-        const highlights = queryAll<SVGElement>(
-          '.landing-scene--scale [data-highlight]',
-        );
-
         const syncSegment = segment(scaleWin, 0.15, 0.85);
-        if (counterEl || highlights.length > 0) {
+        if (counterEl && syncSegment.duration > 0) {
           const syncState = { value: 0 };
+          counterEl.textContent = '0';
           tl.fromTo(
             syncState,
             { value: 0 },
@@ -255,12 +266,8 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
                   15,
                   Math.max(0, Math.round(syncState.value)),
                 );
-                if (counterEl) {
-                  counterEl.textContent = String(count);
-                }
-                for (let i = 0; i < highlights.length; i++) {
-                  highlights[i]!.style.opacity = i < count ? '1' : '0.16';
-                }
+                counterEl.textContent = String(count);
+                highlight.current = count / 15;
               },
             },
             syncSegment.at,
@@ -314,7 +321,7 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
         );
       }
 
-      // Scene 5 — tapestry regional.
+      // Scene 5 — tapestry regional (di-pin, tanpa parallax).
       const regionalWin = measureWindow(
         '.landing-scene--regional',
         '.landing-stage__copy',
@@ -329,69 +336,9 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
           segment(regionalWin, 0.08, 0.45),
           regionalWin.w * 0.05,
         );
-        if (!isMobile) {
-          for (const layer of queryAll<HTMLElement>(
-            '.landing-scene--regional [data-parallax]',
-          )) {
-            const ratio = Number(layer.dataset.parallax ?? '1');
-            // Parallax desktop memakai jadwal timeline unit yang diterima
-            // (P2.2): proporsional terhadap doc, bukan jendela reveal scene.
-            tl.fromTo(
-              layer,
-              { y: 0 },
-              {
-                y: `${(55 * (ratio - 1)).toFixed(2)}vh`,
-                duration: 0.12,
-                ease: 'none',
-              },
-              510 / 920,
-            );
-          }
-        }
       }
 
-      // Scene 6 — vignette budaya.
-      const culturalWin = measureWindow(
-        '.landing-scene--cultural',
-        '.landing-stage__copy',
-      );
-      if (culturalWin) {
-        reveal(
-          '.landing-scene--cultural .landing-stage__copy',
-          segment(culturalWin, 0, 0.35),
-        );
-        reveal(
-          '.landing-cultural__reveal',
-          segment(culturalWin, 0.1, 0.4),
-          culturalWin.w * 0.05,
-        );
-        reveal(
-          '.landing-cultural__icon',
-          segment(culturalWin, 0.25, 0.45),
-          culturalWin.w * 0.05,
-        );
-        if (!isMobile) {
-          for (const layer of queryAll<HTMLElement>(
-            '.landing-scene--cultural [data-parallax]',
-          )) {
-            const ratio = Number(layer.dataset.parallax ?? '1');
-            // Timing yang diterima: mulai 620/920, selesai 200 px skrol
-            // sebelum sampel gate P0 = jarak caption/layer yang diterima.
-            tl.fromTo(
-              layer,
-              { y: 0 },
-              {
-                y: `${(55 * (ratio - 1)).toFixed(2)}vh`,
-                duration: 0.13,
-                ease: 'none',
-              },
-              620 / 920,
-            );
-          }
-        }
-      }
-
-      // Scene 7 — undangan interaktif.
+      // Scene 6 — undangan interaktif.
       const invitationWin = measureWindow(
         '.landing-scene--invitation',
         '.landing-stage__copy',
@@ -407,17 +354,16 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
         );
       }
 
-      // Scene 8 — sumber data.
+      // Scene 7 — footer (indeks + wordmark).
       const footerWin = measureWindow(
         '.landing-scene--footer',
-        '.landing-footer__copy',
+        '.landing-footer__index',
       );
       if (footerWin) {
-        reveal('.landing-footer__copy', segment(footerWin, 0, 0.3));
+        reveal('.landing-footer__index', segment(footerWin, 0, 0.3));
         reveal(
-          '.landing-footer__links li',
-          segment(footerWin, 0.1, 0.8),
-          footerWin.w * 0.03,
+          '.landing-footer__mark',
+          segment(footerWin, 0.15, 0.5),
         );
       }
 
@@ -433,7 +379,33 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       });
     };
 
-    build();
+    /**
+     * Timeline dibangun setelah font selesai dimuat (audit putaran koreksi
+     * 1): tinggi teks dan posisi scene bisa bergeser saat font selesai
+     * di-swap, dan jendela reveal yang diukur dari geometri DOM nyata
+     * menjadi basi bila dibangun sebelum itu. `document.fonts.ready` hanya
+     * menggulirkan ScrollTrigger.refresh() tanpa membangun ulang tween
+     * lama, jadi ukur window dari geometri final lewat build di sini.
+     */
+    let cancelled = false;
+    let fontsSettled: Promise<void> | null = null;
+    const buildWhenFontsSettle = async (): Promise<void> => {
+      if (!fontsSettled) {
+        fontsSettled = document.fonts.ready
+          .catch(() => undefined)
+          .then(() => undefined);
+      }
+      await fontsSettled;
+      if (cancelled) {
+        return;
+      }
+      build();
+      if (trigger) {
+        ScrollTrigger.refresh();
+      }
+    };
+
+    void buildWhenFontsSettle();
 
     const rebuild = () => {
       if (trigger) {
@@ -442,10 +414,7 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       }
       timeline?.kill();
       timeline = null;
-      build();
-      if (trigger) {
-        ScrollTrigger.refresh();
-      }
+      void buildWhenFontsSettle();
     };
 
     const handleMotionChange = () => rebuild();
@@ -469,13 +438,6 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
     window.addEventListener('resize', scheduleRebuild);
     window.addEventListener('orientationchange', scheduleRebuild);
 
-    let cancelled = false;
-    void document.fonts.ready.then(() => {
-      if (!cancelled) {
-        ScrollTrigger.refresh();
-      }
-    });
-
     return () => {
       cancelled = true;
       reducedQuery?.removeEventListener('change', handleMotionChange);
@@ -490,5 +452,5 @@ export function useLandingTimeline({ root, progress }: LandingTimelineOptions): 
       trigger?.kill();
       timeline?.kill();
     };
-  }, [root, progress]);
+  }, [root, progress, highlight]);
 }

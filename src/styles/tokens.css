@@ -36,6 +36,9 @@
   --country-kz: #7a8fa8;
   --country-uz: #8fa88e;
   --country-mn: #98786a;
+  /* Mesh konteks non-negara di GLB (daratan yang bukan 15 negara).
+     Tanah liat tenang, sedikit lebih gelap dari --ground (L4). */
+  --country-context: #e0dbcc;
 
   /* --- Tipografi -------------------------------------------------------- */
   --font-display: 'Crimson Pro', Georgia, 'Times New Roman', serif;
