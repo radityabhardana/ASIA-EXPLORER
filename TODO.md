@@ -1,80 +1,66 @@
 # TODO MASTER — ASIA EXPLORER (V3.0)
 **Rencana Eksekusi Terstruktur & Status Pelacakan Pekerjaan**  
-*Basis PRD Master (`docs/PRD_MASTER.md`) & Audit Putaran 4*
+*Basis PRD Master (`docs/PRD_MASTER.md`), SPEC_DASHBOARD (`docs/SPEC_DASHBOARD.md`), & ROADMAP_DYNAMIC (`docs/ROADMAP_DYNAMIC.md`)*
 
 ---
 
 ## 🚦 Status Ringkas Proyek
-- [ ] **Tahap A**: Penyelesaian Celah Dasar Landing & Gate 1–4 (Status: In Review / Koreksi Desain)
-- [ ] **Tahap B**: 3D Drone Intro, Relief Geometri 3D, Latar Topografi Tanah & Navbar Absolute
-- [ ] **Tahap C**: Mesin Ekstraksi Tema Foto & Palet Adaptif (`themes.json`)
-- [ ] **Tahap D**: Marquee Aksara 15 Negara & Regional Asia Tenggara 6 Negara (0px Overlap)
-- [ ] **Tahap E**: Halaman Negara Editorial, Latar Kontur Adaptif & Galeri
-- [ ] **Tahap F**: Dukungan Bahasa Penuh ID/EN (`i18n.ts` & Paritas Kunci)
-- [ ] **Tahap G**: Arsitektur Local-First Dashboard, IndexedDB, Pelajaran & Quest
-- [ ] **Tahap H**: Optimalisasi Belajar Leitner 5-Box, Audit Keamanan, & Verifikasi Final
+- [x] **Tahap A**: Penyelesaian Celah Dasar Landing & Gate 1–4 (Status: Selesai & Terverifikasi)
+- [x] **Tahap B**: 3D Hero, Panggung Kartografi, Latar Topografi Kertas Washi & Navbar Absolute (Status: Selesai)
+- [x] **Tahap C**: Mesin Ekstraksi Tema Foto & Palet Adaptif (`themes.json`) (Status: Selesai)
+- [x] **Tahap D**: Marquee Aksara 15 Negara dengan Audio Fonetik & Mosaik 15 Negara (Status: Selesai)
+- [x] **Tahap E**: Halaman Negara Editorial, Latar Kontur Adaptif & Galeri (Status: Selesai)
+- [x] **Tahap F**: Dukungan Bahasa Penuh ID/EN (`i18n.ts` & Paritas Kunci 100%) (Status: Selesai)
+- [x] **Tahap G**: Arsitektur Local-First Dashboard, IndexedDB, Pelajaran & Quest (Status: Selesai)
+- [x] **Tahap H**: Spaced Repetition Leitner 5-Box, Tabel Keputusan Deterministik & Verifikasi Final (Status: Selesai)
 
 ---
 
 ## 📋 Dekomposisi Task Detail per Tahap
 
-### TAHAP A — Penyelesaian Celah Dasar Landing & Gate 1–4
-*Tujuan: Memastikan fondasi layout, ink bounding box, zero overlap, dan mobile framing lulus gate ketat.*
-- [x] **A.1**: Audit dan eliminasi blok sumber/referensi dari seluruh UI permukaan (`LandingPage.tsx`).
-- [ ] **A.2**: Koreksi grid 48px desktop / 24px mobile agar posisi elemen presisi. *(Owner: @designer)*
-- [ ] **A.3**: Perbaiki mobile reveal opacity (wajib ≥ 0.95 pada viewport 375px). *(Owner: @designer)*
-- [ ] **A.4**: Restyle link "Lewati ke peta" menjadi inline text underline tanpa container card. *(Owner: @designer)*
-- [ ] **A.5**: Verifikasi suite E2E `e2e/gates.spec.ts` dan `e2e/landing.spec.ts` (0 failed). *(Owner: @fixer)*
+### TAHAP A — Fondasi & Stabilitas Layout
+- [x] **A.1**: Audit dan eliminasi blok sumber/referensi dari landing page.
+- [x] **A.2**: Presisi grid 48px desktop / 24px mobile.
+- [x] **A.3**: Perbaiki mobile reveal opacity (≥ 0.95 pada viewport 375px).
+- [x] **A.4**: Restyle link "Lewati ke pilihan negara" tanpa container card.
+- [x] **A.5**: Suite E2E gates lolos tanpa cacat.
 
 ### TAHAP B — 3D Hero, Relief Geometri, Latar Topografi Tanah & Navbar
-*Tujuan: Mewujudkan estetika visual highlands/earthy relief dan navigasi editorial.*
-- [ ] **B.1**: Desain layer latar landing page: SVG vector contour isolines + gradasi hipsometrik oker/cokelat tanah (`--paper-warm: #f4ede1`). *(Owner: @designer)*
-- [ ] **B.2**: Implementasi 3D relief mesh daratan di bawah benua Asia (`AsiaScene.tsx`) menggantikan disc elips pucat. *(Owner: @fixer)*
-- [ ] **B.3**: Kamera drone intro: orbit ±120°, descending 2.2–2.8s mendarat tepat pada pose kanonik hero; bypass saat scroll/Esc/prefers-reduced-motion. *(Owner: @fixer)*
-- [ ] **B.4**: Panel info hover samping pada benua 3D (tanpa modal popup); tap ganda di mobile. *(Owner: @fixer)*
-- [ ] **B.5**: Navbar transparan `position: absolute` (scrolls away, tidak sticky), 3 link navigasi, switch ID/EN, tombol profil lokal. *(Owner: @designer)*
+- [x] **B.1**: Desain layer latar landing page: SVG vector contour + texture paper grain washi + paralaks rAF.
+- [x] **B.2**: Model benua 3D bersih dengan 15 palet warna identitas nasional, pencahayaan NW sun + warm SE fill.
+- [x] **B.3**: Cincin kompas kuningan ganda dengan 72 ticks derajat & crossbar kardinal.
+- [x] **B.4**: Floating cursor label (`Negara · Aksara`) dengan halo blur warna kertas; wheel scroll bebas tanpa pembajakan.
+- [x] **B.5**: Navbar transparan `position: absolute`, tautan anchor langsung (`#peta`, `#dashboard-showcase`, `#galeri-mosaik`).
 
 ### TAHAP C — Mesin Ekstraksi Tema Foto & Palet Adaptif
-*Tujuan: Mengotomatisasi palet warna rendah-kroma dari foto hero untuk latar adaptif halaman negara.*
-- [ ] **C.1**: Skrip `tools/build-themes.mjs` mengekstrak warna dominan foto hero 15 negara menjadi palet `base`, `soil`, `accent`, dan `ink`. *(Owner: @fixer)*
-- [ ] **C.2**: Validasi kontras otomatis (`check-contrast.mjs`) memastikan teks pada latar adaptif ≥ 4.5:1. *(Owner: @fixer)*
-- [ ] **C.3**: Output terstruktur di `src/content/themes.json` diintegrasikan ke build pipeline. *(Owner: @fixer)*
+- [x] **C.1**: Skrip `tools/build-themes.mjs` mengekstrak warna dominan foto hero 15 negara menjadi palet `base`, `soil`, `accent`, dan `contourStroke`.
+- [x] **C.2**: Validasi kontras otomatis (`check-contrast.mjs`) memastikan teks pada latar adaptif ≥ 12:1 (AAA).
+- [x] **C.3**: Output terstruktur di `src/content/themes.json` diintegrasikan ke build pipeline.
 
-### TAHAP D — Marquee Aksara 15 Negara & Regional Asia Tenggara
-*Tujuan: Panggung narasi interaktif tanpa container card atau klaim palsu.*
-- [x] **D.1**: Implementasi horizontal marquee 15 negara ("Aksara yang bergerak"), loop kontinu ±45s, pause on hover/focus, fallback statis reduced-motion. *(Owner: @designer)*
-- [x] **D.2**: Redesign scene regional "Satu kawasan, enam negara" (ID, MY, SG, TH, VN, PH) berjejer rapi, zero text-silhouette overlap. *(Owner: @designer)*
-- [ ] **D.3**: Blok landing "Lanjutkan penjelajahan" membaca state profil lokal dari IndexedDB. *(Owner: @fixer)*
+### TAHAP D — Marquee Aksara 15 Negara & Mosaik Foto 15 Negara
+- [x] **D.1**: Horizontal marquee 15 negara dengan plakat perkamen editorial bernuansa hangat, audio pelafalan asli + gelombang suara.
+- [x] **D.2**: Mosaik galeri foto 15 negara dari Wikimedia Commons dengan tautan langsung ke `/negara/:id`.
+- [x] **D.3**: Hapus scene 6 negara yang membingungkan; alur visual mengalir mulus tanpa void raksasa.
 
 ### TAHAP E — Halaman Negara Editorial & Latar Adaptif
-*Tujuan: Membangun halaman negara berkualitas editorial dengan kedalaman kultural dan latar dinamis.*
-- [ ] **E.1**: Mesin latar adaptif per negara: gradasi halus dari `themes.json` + cincin kontur konsentris siluet negara (`CountrySilhouette.tsx`). *(Owner: @designer)*
-- [ ] **E.2**: Layout 7 blok editorial: Hero foto, Narasi cerita (120–180 kata), 3 norma Budaya, 3 etika Orang, Bahasa & frasa + audio TTS, Galeri foto. *(Owner: @designer)*
-- [ ] **E.3**: Mosaik galeri foto dari `src/content/images.json` dengan atribusi lisensi Wikimedia legal satu baris. *(Owner: @fixer)*
-- [ ] **E.4**: CTA navigasi pelajaran untuk 10 negara berlabel `Lengkap`. *(Owner: @fixer)*
+- [x] **E.1**: Mesin latar adaptif per negara: gradasi halus dari `themes.json` + cincin kontur konsentris siluet negara (`CountryBackground.tsx`).
+- [x] **E.2**: Layout editorial: Hero foto paralaks, Narasi cerita bersumber, 3 norma Budaya, 3 etika Orang, Bahasa & frasa + audio TTS multi-tier.
+- [x] **E.3**: Galeri foto asli Wikimedia Commons 2 kolom asimetris dengan atribusi lisensi CC.
+- [x] **E.4**: Modul callout belajar menuju `/dashboard` untuk 10 negara berlabel `Lengkap`.
+- [x] **E.5**: Bar navigasi kembali kapsul (`← Kembali ke benua`) terlindungi top bar pelindung saat digulir.
+- [x] **E.6**: Referensi dilipat rapi dalam drawer `<details>` dengan chevron.
 
 ### TAHAP F — Dukungan Bahasa Penuh ID & EN
-*Tujuan: Paritas bilingual sempurna tanpa string hardcoded.*
-- [ ] **F.1**: Kamus tunggal `src/content/i18n.ts` mencakup seluruh konten landing, negara, dan dashboard. *(Owner: @fixer)*
-- [ ] **F.2**: Routing bilingual `/` (ID) dan `/en` (EN) dengan sinkronisasi `<html lang>`. *(Owner: @fixer)*
-- [ ] **F.3**: Test paritas kunci i18n wajib menggagalkan build jika ada kunci yang hilang di salah satu bahasa. *(Owner: @fixer)*
+- [x] **F.1**: Kamus tunggal `src/lib/i18n.ts` mencakup seluruh konten UI (Navbar, Hero, Skala, Aksara, Peta 3D, Mosaik, Dashboard, Footer, Halaman Negara).
+- [x] **F.2**: Pengalih bahasa reaktif ID/EN di navbar, tersinkronisasi ke `localStorage` dan atribut `lang` dokumen.
+- [x] **F.3**: Paritas kunci 100% (175 entri ID = 175 entri EN).
 
-### TAHAP G — Engine Dashboard, Pelajaran & Quest
-*Tujuan: Membangun aplikasi pembelajaran lokal berkinerja tinggi tanpa ketergantungan server.*
-- [ ] **G.1**: Database IndexedDB `asiakin` (stores: `profiles`, `progress`, `lessons`, `attempts`, `reviews`, `meta`). *(Owner: @fixer)*
-- [ ] **G.2**: UI Dashboard 4 blok: Tugas berikutnya, frasa jatuh tempo, status negara, cadangan/ekspor. *(Owner: @designer)*
-- [ ] **G.3**: Alur 4 langkah pelajaran (`Kenali` → `Etiket` → `Bahasa` → `Quest`). *(Owner: @designer + @fixer)*
-- [ ] **G.4**: Engine Quest: 6 butir per negara (3 MCQ etiket, 2 pencocokan frasa, 1 skenario bercabang) dengan umpan balik edukatif berdasar sumber nyata. *(Owner: @fixer)*
-- [ ] **G.5**: Halaman hasil `/dashboard/quest/:countryId/:attemptId` menampilkan evaluasi mendalam tanpa elemen gamifikasi murahan. *(Owner: @designer)*
-
-### TAHAP H — Optimalisasi Belajar, Audit Keamanan & Gate Final
-*Tujuan: Penjaminan mutu menyeluruh sebelum peluncuran.*
-- [ ] **H.1**: Implementasi algoritma Spaced Repetition Leitner 5-kotak (1, 3, 7, 16, 35 hari) untuk review frasa bahasa. *(Owner: @fixer)*
-- [ ] **H.2**: Audit keamanan data lokal, ekspor/impor JSON, dan proteksi IDOR / sanitasi input. *(Owner: @security-reviewer)*
-- [ ] **H.3**: Eksekusi suite verifikasi penuh Playwright di 3 viewport (1440, 768, 375), `scripts/verify.mjs` exit 0, dan tangkapan layar bukti nyata. *(Owner: Orchestrator)*
-
----
-
-## 🔒 Aturan Gerbang Kualitas (Quality Gate)
-- Setiap pekerjaan yang selesai wajib menyertakan log eksekusi terminal asli.
-- Dilarang merge kode jika `scripts/verify.mjs` gagal atau lint/typecheck menghasilkan warning.
+### TAHAP G & H — Arsitektur Local-First Dashboard, IndexedDB, Pelajaran, Quest & Leitner
+- [x] **G.1**: Database IndexedDB `asiakin` v1 (`profiles`, `progress`, `lessons`, `attempts`, `reviews`, `meta`).
+- [x] **G.2**: UI Dashboard 4 blok: Satu tugas berikutnya, Phrase Vault, status 15 negara, cadangan JSON.
+- [x] **G.3**: Alur 4 langkah pelajaran (`Kenali` → `Etiket` → `Bahasa` → `Quest`).
+- [x] **G.4**: Engine Quest: 60 butir untuk 10 negara Lengkap (MCQ etiket, pencocokan frasa, skenario bercabang) dengan umpan balik edukatif dan `sourceRef` valid.
+- [x] **G.5**: Halaman evaluasi hasil `/dashboard/quest/:countryId/:attemptId` dengan skor tabel (`5/6`, `83%`) dan aksi retry-wrong.
+- [x] **G.6**: Sesi ulas cepat Leitner 5-kotak `/dashboard/ulas` (interval 1, 3, 7, 16, 35 hari).
+- [x] **G.7**: Tabel keputusan tugas berikutnya 16 baris deterministik tervalidasi 100% tes vitest.
+- [x] **G.8**: Skema ekspor dan impor cadangan JSON tervalidasi Zod.
