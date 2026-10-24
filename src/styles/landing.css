@@ -343,6 +343,7 @@
 .landing-hero__scene canvas,
 .landing-hero__scene .asia-scene__canvas {
   pointer-events: auto;
+  touch-action: pan-y;
 }
 
 .landing-hero__scene .landing-asia,
@@ -1710,7 +1711,6 @@
   border: 1px solid rgba(44, 38, 30, 0.12);
   outline: none;
   aspect-ratio: 16 / 10;
-  min-height: 250px;
   transition: transform 260ms var(--ease-standard),
               box-shadow 260ms var(--ease-standard),
               border-color 260ms var(--ease-standard);
@@ -1725,28 +1725,6 @@
 .landing-mosaic__card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-}
-
-/* 15 Countries Editorial Asymmetric 3-Column Layout */
-.landing-mosaic__card--id {
-  grid-column: span 2;
-}
-
-.landing-mosaic__card--th {
-  grid-column: span 2;
-}
-
-.landing-mosaic__card--jp {
-  grid-column: span 2;
-}
-
-.landing-mosaic__card--sa {
-  grid-column: span 2;
-}
-
-.landing-mosaic__card--mn {
-  grid-column: span 3;
-  aspect-ratio: 24 / 9;
 }
 
 .landing-mosaic__media {
@@ -1778,7 +1756,7 @@
 }
 
 .landing-mosaic__card:hover .landing-mosaic__img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .landing-mosaic__scrim {
@@ -1786,9 +1764,9 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(16, 14, 12, 0.85) 0%,
-    rgba(16, 14, 12, 0.4) 25%,
-    transparent 60%
+    rgba(16, 14, 12, 0.88) 0%,
+    rgba(16, 14, 12, 0.45) 18%,
+    rgba(16, 14, 12, 0) 25%
   );
   pointer-events: none;
 }
@@ -1800,7 +1778,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(16px, 2.2vw, 24px);
+  padding: clamp(14px, 1.8vw, 20px);
   pointer-events: none;
 }
 
@@ -1817,7 +1795,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fffef9;
-  background: rgba(16, 14, 12, 0.45);
+  background: rgba(16, 14, 12, 0.55);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 3px 8px;
@@ -1829,6 +1807,7 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: #fffef9;
   background: rgba(192, 92, 70, 0.9);
   padding: 3px 8px;
@@ -1838,29 +1817,29 @@
 .landing-mosaic__titles {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .landing-mosaic__native {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
   color: #f7f1e6;
   line-height: 1.2;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .landing-mosaic__name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
   font-weight: 600;
   line-height: 1.15;
   color: #ffffff;
   display: flex;
   align-items: center;
   gap: 8px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
 }
 
 .landing-mosaic__arrow {
@@ -1872,16 +1851,6 @@
 .landing-mosaic__card:hover .landing-mosaic__arrow {
   opacity: 1;
   transform: translateX(4px);
-}
-
-.landing-mosaic__greeting {
-  margin: 0;
-  font-size: 11.5px;
-  color: rgba(255, 254, 249, 0.9);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .landing-mosaic__legal {
@@ -1897,27 +1866,12 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-
-  .landing-mosaic__card--id,
-  .landing-mosaic__card--th,
-  .landing-mosaic__card--jp,
-  .landing-mosaic__card--sa,
-  .landing-mosaic__card--mn {
-    grid-column: span 1;
-    aspect-ratio: 16 / 10;
-  }
 }
 
 @media (max-width: 639px) {
   .landing-mosaic__grid {
     grid-template-columns: 1fr;
     gap: 14px;
-  }
-
-  .landing-mosaic__card {
-    grid-column: span 1 !important;
-    aspect-ratio: 16 / 10 !important;
-    min-height: 0;
   }
 }
 

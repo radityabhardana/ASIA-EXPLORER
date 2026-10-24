@@ -10,6 +10,11 @@ import ProfileDialog from './components/ProfileDialog';
 
 export const APP_ROOT_ID = 'app-root';
 
+// Cegah konflik scroll restoration otomatis browser dengan Lenis/ScrollTrigger
+if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
 export default function App() {
   return (
     <div id={APP_ROOT_ID} className="app-shell">

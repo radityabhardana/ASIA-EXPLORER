@@ -46,6 +46,7 @@
 .landing-hero__scene canvas,
 .landing-hero__scene .asia-scene__canvas {
   pointer-events: auto !important;
+  touch-action: pan-y !important;
 }
 
 .landing-hero__scene .landing-asia,

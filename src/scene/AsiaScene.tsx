@@ -853,11 +853,6 @@ export default function AsiaScene({
       dragStartElevation = targetElevation;
       isDragging = false;
       pointerDownValid = true;
-      try {
-        canvas.setPointerCapture(event.pointerId);
-      } catch {
-        // ignore
-      }
     };
 
     const onPointerMove = (event: PointerEvent) => {
@@ -866,11 +861,27 @@ export default function AsiaScene({
       if (pointerDownValid) {
         const dx = event.clientX - dragStartX;
         const dy = event.clientY - dragStartY;
-        if (!isDragging && Math.hypot(dx, dy) > 4) {
+
+        // Pada layar sentuh / gesture vertikal: batalkan drag jika gerakan dominan vertikal agar halaman bisa digulir
+        if (event.pointerType !== 'mouse' && !isDragging) {
+          if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 5) {
+            pointerDownValid = false;
+            return;
+          }
+        }
+
+        if (!isDragging && Math.hypot(dx, dy) > 6) {
           isDragging = true;
           userHasControlled = true;
           triggerInterrupt();
           container.classList.add('asia-scene--dragging');
+          if (event.pointerType === 'mouse') {
+            try {
+              canvas.setPointerCapture(event.pointerId);
+            } catch {
+              // ignore
+            }
+          }
         }
         if (isDragging) {
           // Putar horizontal (azimut) dan vertikal (elevasi) dengan sensitivitas halus
@@ -961,17 +972,37 @@ export default function AsiaScene({
     };
 
     const onWheel = (event: WheelEvent) => {
-      // Hanya izinkan zoom bila tombol Ctrl ditekan (pola umum peta interaktif web)
-      // Normal mouse wheel scrolling TIDAK PERNAH di-intercept / di-preventDefault
+      if (!event.ctrlKey) {
+        // Normal mouse wheel scrolling: 100% non-blocking, biarkan browser & Lenis scroll bebas
+        return;
+      }
+      triggerInterrupt();
+      userHasControlled = true;
+      const zoomFactor = event.deltaY * 0.12;
+      targetDistance = Math.max(
+        MIN_CAMERA_DISTANCE,
+        Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
+      );
+    };
+
+    let ctrlWheelAttached = false;
+    const onCtrlWheel = (event: WheelEvent) => {
       if (event.ctrlKey) {
         event.preventDefault();
-        triggerInterrupt();
-        userHasControlled = true;
-        const zoomFactor = event.deltaY * 0.12;
-        targetDistance = Math.max(
-          MIN_CAMERA_DISTANCE,
-          Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
-        );
+      }
+    };
+
+    const attachCtrlWheel = () => {
+      if (!ctrlWheelAttached) {
+        canvas.addEventListener('wheel', onCtrlWheel, { passive: false });
+        ctrlWheelAttached = true;
+      }
+    };
+
+    const detachCtrlWheel = () => {
+      if (ctrlWheelAttached) {
+        canvas.removeEventListener('wheel', onCtrlWheel);
+        ctrlWheelAttached = false;
       }
     };
 
@@ -992,18 +1023,29 @@ export default function AsiaScene({
       if (event.key === 'Escape' || event.key === ' ') {
         triggerInterrupt();
       }
+      if (event.key === 'Control') {
+        attachCtrlWheel();
+      }
+    };
+
+    const onKeyUp = (event: KeyboardEvent) => {
+      if (event.key === 'Control') {
+        detachCtrlWheel();
+      }
     };
 
     window.addEventListener('scroll', updateCachedRect, { passive: true });
     window.addEventListener('touchmove', triggerInterrupt, { passive: true });
     window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+    window.addEventListener('blur', detachCtrlWheel);
 
     canvas.addEventListener('pointermove', onPointerMove);
     canvas.addEventListener('pointerleave', onPointerLeave);
     canvas.addEventListener('pointerdown', onPointerDown);
     canvas.addEventListener('pointerup', onPointerUp);
     canvas.addEventListener('pointercancel', onPointerLeave);
-    canvas.addEventListener('wheel', onWheel, { passive: false });
+    canvas.addEventListener('wheel', onWheel, { passive: true });
     canvas.addEventListener('dblclick', onDblClick);
 
     const debug: AsiaSceneDebug = {
@@ -1932,11 +1974,14 @@ export default function AsiaScene({
 
     return () => {
       disposed = true;
+      detachCtrlWheel();
       motionQuery.removeEventListener('change', onMotionChange);
       resizeObserver.disconnect();
       window.removeEventListener('scroll', updateCachedRect);
       window.removeEventListener('touchmove', triggerInterrupt);
       window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('blur', detachCtrlWheel);
 
       canvas.removeEventListener('pointermove', onPointerMove);
       canvas.removeEventListener('pointerleave', onPointerLeave);

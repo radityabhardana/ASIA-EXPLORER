@@ -127,7 +127,7 @@ export default function MosaicGallery() {
                 <div className="landing-mosaic__content">
                   <div className="landing-mosaic__badge-row">
                     <span className="landing-mosaic__region">{country.region}</span>
-                    <span className="landing-mosaic__depth">{country.depth}</span>
+                    <span className="landing-mosaic__depth">{country.depth.toUpperCase()}</span>
                   </div>
                   <div className="landing-mosaic__titles">
                     <p className="landing-mosaic__native">{country.nameLocal}</p>
@@ -137,9 +137,6 @@ export default function MosaicGallery() {
                         &rarr;
                       </span>
                     </h3>
-                    <p className="landing-mosaic__greeting">
-                      {country.greeting.native} &middot; {country.language.nameId}
-                    </p>
                   </div>
                 </div>
               </Link>

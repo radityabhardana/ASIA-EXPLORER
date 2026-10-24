@@ -61,6 +61,7 @@ export default function Preloader() {
   const [exiting, setExiting] = useState(false);
   const minTimerRef = useRef<number | null>(null);
   const maxTimerRef = useRef<number | null>(null);
+  const completeExitRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (!visible) {
@@ -72,9 +73,11 @@ export default function Preloader() {
     let mounted = true;
     let minTimeElapsed = false;
     let sceneIsReady = false;
+    let exitingInitiated = false;
 
     const completeExit = () => {
-      if (!mounted) return;
+      if (!mounted || exitingInitiated) return;
+      exitingInitiated = true;
       if (minTimerRef.current) {
         clearTimeout(minTimerRef.current);
         minTimerRef.current = null;
@@ -94,6 +97,8 @@ export default function Preloader() {
         setVisible(false);
       }, 700);
     };
+
+    completeExitRef.current = completeExit;
 
     const tryExit = () => {
       if (minTimeElapsed && sceneIsReady) {
@@ -120,6 +125,16 @@ export default function Preloader() {
 
     window.addEventListener('asiakin:scene-ready', handleSceneReady);
 
+    // Pengguna scroll/sentuh/tekan tombol saat intro: langsung tutup tanpa menahan
+    const handleUserIntent = () => {
+      completeExit();
+    };
+    window.addEventListener('wheel', handleUserIntent, { passive: true });
+    window.addEventListener('scroll', handleUserIntent, { passive: true });
+    window.addEventListener('touchstart', handleUserIntent, { passive: true });
+    window.addEventListener('touchmove', handleUserIntent, { passive: true });
+    window.addEventListener('keydown', handleUserIntent, { passive: true });
+
     // Minimum display duration (~1.2s) for intro readability
     minTimerRef.current = window.setTimeout(() => {
       minTimeElapsed = true;
@@ -135,7 +150,13 @@ export default function Preloader() {
 
     return () => {
       mounted = false;
+      completeExitRef.current = null;
       window.removeEventListener('asiakin:scene-ready', handleSceneReady);
+      window.removeEventListener('wheel', handleUserIntent);
+      window.removeEventListener('scroll', handleUserIntent);
+      window.removeEventListener('touchstart', handleUserIntent);
+      window.removeEventListener('touchmove', handleUserIntent);
+      window.removeEventListener('keydown', handleUserIntent);
       if (minTimerRef.current) clearTimeout(minTimerRef.current);
       if (maxTimerRef.current) clearTimeout(maxTimerRef.current);
     };
@@ -151,6 +172,9 @@ export default function Preloader() {
       role="status"
       aria-live="polite"
       aria-label="Memuat Asia Explorer"
+      onWheel={() => completeExitRef.current?.()}
+      onTouchStart={() => completeExitRef.current?.()}
+      onTouchMove={() => completeExitRef.current?.()}
     >
       <div className="preloader__content">
         <span className="preloader__eyebrow">BENUA ASIA</span>

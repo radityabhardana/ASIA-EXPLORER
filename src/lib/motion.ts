@@ -4,7 +4,7 @@
  * Pola resmi Lenis + GSAP:
  *   lenis.on('scroll', ScrollTrigger.update)
  *   gsap.ticker.add((time) => lenis.raf(time * 1000))
- *   gsap.ticker.lagSmoothing(0)
+ *   gsap.ticker.lagSmoothing(500, 33)
  *
  * `prefers-reduced-motion: reduce` -> Lenis tidak dibuat sama sekali; progres
  * tetap dihitung dari event scroll native. `destroyScrollEngine()` tersedia
@@ -27,6 +27,10 @@ import {
   subscribeScrollProgress,
 } from './scroll-progress';
 import type { ScrollProgressListener } from './scroll-progress';
+
+if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 const SCROLL_DURATION_SECONDS = 0.6;
@@ -110,7 +114,7 @@ function startLenis(state: ScrollEngine): void {
     lenis.raf(time * 1000);
   };
   gsap.ticker.add(tick);
-  gsap.ticker.lagSmoothing(0);
+  gsap.ticker.lagSmoothing(500, 33);
 
   state.lenis = lenis;
   state.tick = tick;
@@ -133,6 +137,10 @@ function stopLenis(state: ScrollEngine): void {
 function startEngine(): void {
   if (engine || typeof window === 'undefined' || typeof document === 'undefined') {
     return;
+  }
+
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
   }
 
   const state: ScrollEngine = {

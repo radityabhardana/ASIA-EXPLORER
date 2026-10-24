@@ -115,6 +115,15 @@ export function useLandingTimeline({
         return;
       }
 
+      if (trigger) {
+        trigger.kill();
+        trigger = null;
+      }
+      if (timeline) {
+        timeline.kill();
+        timeline = null;
+      }
+
       // Bersihkan inline style sisa build sebelumnya supaya pengukuran
       // geometri tidak terdistorsi offset y/opacity tween yang lama.
       for (const element of rootElement.querySelectorAll<HTMLElement | SVGElement>(
@@ -336,54 +345,43 @@ export function useLandingTimeline({
         );
       }
 
+      ScrollTrigger.clearScrollMemory?.();
       trigger = ScrollTrigger.create({
         trigger: rootElement,
         start: 'top top',
         end: 'bottom bottom',
         scrub: true,
         animation: tl,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           progress.current = self.progress;
         },
       });
     };
 
-    /**
-     * Timeline dibangun setelah font selesai dimuat (audit putaran koreksi
-     * 1): tinggi teks dan posisi scene bisa bergeser saat font selesai
-     * di-swap, dan jendela reveal yang diukur dari geometri DOM nyata
-     * menjadi basi bila dibangun sebelum itu. `document.fonts.ready` hanya
-     * menggulirkan ScrollTrigger.refresh() tanpa membangun ulang tween
-     * lama, jadi ukur window dari geometri final lewat build di sini.
-     */
     let cancelled = false;
-    let fontsSettled: Promise<void> | null = null;
-    const buildWhenFontsSettle = async (): Promise<void> => {
-      if (!fontsSettled) {
-        fontsSettled = document.fonts.ready
-          .catch(() => undefined)
-          .then(() => undefined);
-      }
-      await fontsSettled;
+
+    // 1. Bangun timeline dan ScrollTrigger seketika saat mount (mencegah delay scroll)
+    build();
+
+    // 2. Saat font selesai dimuat, JANGAN bangun ulang timeline dari 0 (mencegah "mental balik ke atas").
+    // Cukup panggil ScrollTrigger.refresh() untuk menyelaraskan geometri.
+    if (typeof document !== 'undefined' && 'fonts' in document) {
+      document.fonts.ready
+        .then(() => {
+          if (!cancelled && trigger) {
+            ScrollTrigger.refresh();
+          }
+        })
+        .catch(() => undefined);
+    }
+
+    const rebuild = () => {
       if (cancelled) {
         return;
       }
       build();
-      if (trigger) {
-        ScrollTrigger.refresh();
-      }
-    };
-
-    void buildWhenFontsSettle();
-
-    const rebuild = () => {
-      if (trigger) {
-        trigger.kill();
-        trigger = null;
-      }
-      timeline?.kill();
-      timeline = null;
-      void buildWhenFontsSettle();
+      ScrollTrigger.refresh();
     };
 
     const handleMotionChange = () => rebuild();

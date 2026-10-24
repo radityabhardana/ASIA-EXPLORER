@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 
 import themesData from '@/content/themes.json';
 import { contrastRatio } from '@/lib/color';
-import Silhouette from '@/sections/landing/Silhouette';
 
 export interface CountryThemePalette {
   base: string;
@@ -43,7 +42,7 @@ type CountryBackgroundProps = {
   countryId: string;
 };
 
-const CONTOUR_SCALES = [1.0, 0.86, 0.72, 0.58, 0.44];
+const CONTOUR_SCALES = [1.0, 0.84, 0.68, 0.52];
 
 export default function CountryBackground({ countryId }: CountryBackgroundProps) {
   const theme = useMemo(() => getCountryTheme(countryId), [countryId]);
@@ -51,7 +50,9 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
   // Contrast verification: --ink (#1a1f24) against theme.base guaranteed >= 12:1 (AAA)
   const inkContrast = useMemo(() => contrastRatio('#1a1f24', theme.base), [theme.base]);
   if (import.meta.env.DEV && inkContrast < 12) {
-    console.warn(`[CountryBackground] Warning: ink vs base contrast ratio is ${inkContrast.toFixed(2)} (< 12:1) for country ${countryId}`);
+    console.warn(
+      `[CountryBackground] Warning: ink vs base contrast ratio is ${inkContrast.toFixed(2)} (< 12:1) for country ${countryId}`,
+    );
   }
 
   return (
@@ -67,14 +68,15 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
         } as React.CSSProperties
       }
     >
+      {/* 1. Subtle warm wash */}
       <div className="country-background__wash" />
 
-      {/* Concentric contour rings & delicate contour silhouettes behind the reading column */}
+      {/* 2. Concentric faint cartographic survey rings (NO dark filled blobs) */}
       <div className="country-background__contours">
         {CONTOUR_SCALES.map((scale, index) => {
           const falloffOpacity = Math.max(
-            0.03,
-            theme.contourOpacity * (1 - index * 0.18),
+            0.02,
+            Math.min(0.08, theme.contourOpacity * (0.5 - index * 0.1)),
           );
           return (
             <div
@@ -85,12 +87,27 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
                 opacity: Number(falloffOpacity.toFixed(3)),
               }}
             >
-              <Silhouette id={countryId} className="country-background__silhouette" />
+              <svg
+                viewBox="0 0 800 800"
+                className="country-background__ring-svg"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="400"
+                  cy="400"
+                  r={350}
+                  stroke={theme.contourStroke}
+                  strokeWidth="0.8"
+                  strokeDasharray={index % 2 === 0 ? '4 8' : 'none'}
+                  fill="none"
+                />
+              </svg>
             </div>
           );
         })}
 
-        {/* Concentric cartographic topographic isolines */}
+        {/* Delicate topographic survey marks */}
         <svg
           className="country-background__topo-svg"
           viewBox="0 0 1000 1000"
@@ -100,34 +117,49 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
           <ellipse
             cx="500"
             cy="500"
-            rx="240"
-            ry="200"
+            rx="280"
+            ry="240"
             stroke={theme.contourStroke}
-            strokeWidth="1.2"
+            strokeWidth="0.75"
             strokeDasharray="4 6"
-            opacity={Number((theme.contourOpacity * 0.8).toFixed(3))}
+            opacity="0.06"
           />
           <ellipse
             cx="500"
             cy="500"
-            rx="360"
-            ry="300"
+            rx="420"
+            ry="360"
             stroke={theme.contourStroke}
-            strokeWidth="1.2"
-            opacity={Number((theme.contourOpacity * 0.6).toFixed(3))}
-          />
-          <ellipse
-            cx="500"
-            cy="500"
-            rx="460"
-            ry="390"
-            stroke={theme.contourStroke}
-            strokeWidth="1.2"
-            strokeDasharray="2 4"
-            opacity={Number((theme.contourOpacity * 0.4).toFixed(3))}
+            strokeWidth="0.75"
+            opacity="0.04"
           />
         </svg>
       </div>
+
+      {/* 3. Archival handmade washi paper grain texture */}
+      <svg
+        className="country-background__grain"
+        width="100%"
+        height="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <filter id="country-paper-grain" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.65"
+              numOctaves="3"
+              stitchTiles="stitch"
+              result="noise"
+            />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0 0.10  0 0 0 0.035 0"
+            />
+          </filter>
+        </defs>
+        <rect width="100%" height="100%" filter="url(#country-paper-grain)" fill="none" />
+      </svg>
     </div>
   );
 }
