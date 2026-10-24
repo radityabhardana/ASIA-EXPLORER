@@ -3,9 +3,20 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import CountryPage from './pages/CountryPage';
 import LandingPage from './pages/LandingPage';
+import DashboardPage from './pages/DashboardPage';
+import LessonPage from './pages/LessonPage';
+import QuestPage from './pages/QuestPage';
+import QuestResultPage from './pages/QuestResultPage';
+import ReviewPage from './pages/ReviewPage';
+import { RequireLengkap, RequireProfile } from '@/lib/profile';
 
 export const LANDING_PATH = '/';
 export const COUNTRY_PATH = '/negara/:id';
+export const DASHBOARD_PATH = '/dashboard';
+export const LESSON_PATH = '/dashboard/pelajaran/:countryId/:step';
+export const QUEST_PATH = '/dashboard/quest/:countryId';
+export const QUEST_RESULT_PATH = '/dashboard/quest/:countryId/:attemptId';
+export const REVIEW_PATH = '/dashboard/ulas';
 export const SCENE_LAB_PATH = '/lab/scene';
 
 /** Rute lab hanya ada di DEV; di build produksi cabang ini ter-eliminasi. */
@@ -17,12 +28,87 @@ function LegacyCountryRedirect() {
   return <Navigate to={`/negara/${id ?? ''}`} replace />;
 }
 
+function LessonDefaultRedirect() {
+  const { countryId } = useParams();
+  return <Navigate to={`/dashboard/pelajaran/${countryId ?? ''}/kenali`} replace />;
+}
+
 export function AppRoutes() {
   return (
     <Routes>
+      {/* Rute Publik */}
       <Route path={LANDING_PATH} element={<LandingPage />} />
+      <Route path="/en" element={<LandingPage />} />
       <Route path={COUNTRY_PATH} element={<CountryPage />} />
+      <Route path="/en/negara/:id" element={<CountryPage />} />
       <Route path="/country/:id" element={<LegacyCountryRedirect />} />
+
+      {/* Rute Dashboard & Belajar (Di bawah gerbang RequireProfile) */}
+      <Route
+        path={DASHBOARD_PATH}
+        element={
+          <RequireProfile>
+            <DashboardPage />
+          </RequireProfile>
+        }
+      />
+      <Route
+        path="/en/dashboard"
+        element={
+          <RequireProfile>
+            <DashboardPage />
+          </RequireProfile>
+        }
+      />
+
+      {/* Pelajaran */}
+      <Route
+        path="/dashboard/pelajaran/:countryId"
+        element={<LessonDefaultRedirect />}
+      />
+      <Route
+        path={LESSON_PATH}
+        element={
+          <RequireProfile>
+            <RequireLengkap>
+              <LessonPage />
+            </RequireLengkap>
+          </RequireProfile>
+        }
+      />
+
+      {/* Quest */}
+      <Route
+        path={QUEST_PATH}
+        element={
+          <RequireProfile>
+            <RequireLengkap>
+              <QuestPage />
+            </RequireLengkap>
+          </RequireProfile>
+        }
+      />
+
+      {/* Hasil Quest (K21 deep link) */}
+      <Route
+        path={QUEST_RESULT_PATH}
+        element={
+          <RequireProfile>
+            <QuestResultPage />
+          </RequireProfile>
+        }
+      />
+
+      {/* Sesi Ulas Leitner */}
+      <Route
+        path={REVIEW_PATH}
+        element={
+          <RequireProfile>
+            <ReviewPage />
+          </RequireProfile>
+        }
+      />
+
       {SceneLab ? (
         <Route
           path={SCENE_LAB_PATH}
@@ -33,6 +119,7 @@ export function AppRoutes() {
           }
         />
       ) : null}
+
       <Route path="*" element={<Navigate to={LANDING_PATH} replace />} />
     </Routes>
   );

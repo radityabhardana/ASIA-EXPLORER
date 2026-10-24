@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent } from 'react';
 
 import { useI18n } from '@/lib/i18n';
+import { useProfile } from '@/lib/profile';
 import { scrollToSection } from '@/lib/motion';
 
 export interface NavbarProps {
@@ -11,6 +12,7 @@ export interface NavbarProps {
 export default function Navbar({ onScrollToMap }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { locale, t, toggleLocale } = useI18n();
+  const { profile } = useProfile();
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileToggleRef = useRef<HTMLButtonElement>(null);
@@ -145,12 +147,18 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
             </span>
           </button>
 
-          <a href="/dashboard" className="navbar__link navbar__link--subtle">
-            {t('nav.signin')}
+          <a
+            href={profile ? '/dashboard' : '/?profil=buat'}
+            className="navbar__link navbar__link--subtle"
+          >
+            {profile ? profile.displayName : t('nav.signin')}
           </a>
 
-          <a href="/dashboard" className="navbar__link navbar__link--register">
-            {t('nav.register')}
+          <a
+            href={profile ? '/dashboard' : '/?profil=buat'}
+            className="navbar__link navbar__link--register"
+          >
+            {profile ? t('nav.dashboard') : t('nav.register')}
           </a>
 
           {/* Mobile hamburger toggle */}
@@ -251,18 +259,18 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
 
             <div className="navbar__mobile-actions">
               <a
-                href="/dashboard"
+                href={profile ? '/dashboard' : '/?profil=buat'}
                 className="navbar__mobile-link navbar__mobile-link--subtle"
                 onClick={() => setMobileOpen(false)}
               >
-                {t('nav.signin')}
+                {profile ? profile.displayName : t('nav.signin')}
               </a>
               <a
-                href="/dashboard"
+                href={profile ? '/dashboard' : '/?profil=buat'}
                 className="navbar__mobile-link navbar__mobile-link--register"
                 onClick={() => setMobileOpen(false)}
               >
-                {t('nav.register')}
+                {profile ? t('nav.dashboard') : t('nav.register')}
               </a>
             </div>
           </div>
