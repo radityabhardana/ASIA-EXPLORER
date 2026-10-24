@@ -95,12 +95,9 @@ export default function MosaicGallery() {
                 className={`landing-mosaic__card landing-mosaic__card--${country.id}`}
                 aria-label={`${country.nameId} (${country.nameLocal}) - Kawasan ${country.region}`}
               >
-                <div
-                  className="landing-mosaic__media"
-                  style={{ backgroundColor: photo?.dominant ?? '#26221e' }}
-                >
+                <div className="landing-mosaic__media">
                   {fallbackSrc ? (
-                    <picture>
+                    <picture className="landing-mosaic__picture">
                       {avifSrcSet && (
                         <source
                           type="image/avif"

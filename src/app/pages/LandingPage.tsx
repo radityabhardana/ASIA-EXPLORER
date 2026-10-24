@@ -519,168 +519,183 @@ export default function LandingPage() {
                 </span>
               </div>
 
-              {/* Active Quest Scenario preview */}
-              <div className="landing-dashboard__scenario-box">
-                <div className="landing-dashboard__scenario-header">
-                  <span className="landing-dashboard__scenario-badge">
-                    {t('dashboard.scenarioBadge')}
-                  </span>
-                  <span className="landing-dashboard__scenario-location">
-                    {t('dashboard.scenarioLocation')}
-                  </span>
-                </div>
-                <h3 className="landing-dashboard__scenario-title">
-                  {t('dashboard.scenarioTitle')}
-                </h3>
-                <div
-                  className="landing-dashboard__scenario-options"
-                  role="radiogroup"
-                  aria-label="Pilihan respon etiket"
-                >
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={selectedScenarioOption === 0}
-                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 0 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--correct' : ''}`}
-                    onClick={() => setSelectedScenarioOption(0)}
+              <div className="landing-dashboard__console-content">
+                {/* Active Quest Scenario preview */}
+                <div className="landing-dashboard__scenario-box">
+                  <div className="landing-dashboard__scenario-header">
+                    <span className="landing-dashboard__scenario-badge">
+                      {t('dashboard.scenarioBadge')}
+                    </span>
+                    <span className="landing-dashboard__scenario-location">
+                      {t('dashboard.scenarioLocation')}
+                    </span>
+                  </div>
+                  <h3 className="landing-dashboard__scenario-title">
+                    {t('dashboard.scenarioTitle')}
+                  </h3>
+                  <div
+                    className="landing-dashboard__scenario-options"
+                    role="radiogroup"
+                    aria-label="Pilihan respon etiket"
                   >
-                    <div className="landing-dashboard__option-content">
-                      <span className="landing-dashboard__option-indicator" aria-hidden="true">
-                        {selectedScenarioOption === 0 && (
-                          <span className="landing-dashboard__option-indicator-inner" />
-                        )}
-                      </span>
-                      <span className="landing-dashboard__option-text">
-                        {t('dashboard.scenarioOpt1')}
-                      </span>
-                    </div>
-                    {selectedScenarioOption === 0 && (
-                      <div className="landing-dashboard__option-tags">
-                        <span className="landing-dashboard__reason-tag">
-                          {t('dashboard.tagHierarchy')}
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={selectedScenarioOption === 0}
+                      className={`landing-dashboard__option-btn ${selectedScenarioOption === 0 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--correct' : ''}`}
+                      onClick={() => setSelectedScenarioOption(0)}
+                    >
+                      <div className="landing-dashboard__option-content">
+                        <span className="landing-dashboard__option-indicator" aria-hidden="true">
+                          {selectedScenarioOption === 0 ? (
+                            <svg
+                              viewBox="0 0 14 14"
+                              width="10"
+                              height="10"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <polyline points="2.5 7 5.5 10 11.5 4" />
+                            </svg>
+                          ) : (
+                            <span className="landing-dashboard__option-indicator-inner" />
+                          )}
                         </span>
-                        <span className="landing-dashboard__reason-tag">
-                          {t('dashboard.tagSocial')}
+                        <span className="landing-dashboard__option-text">
+                          {t('dashboard.scenarioOpt1')}
                         </span>
                       </div>
-                    )}
-                  </button>
-
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={selectedScenarioOption === 1}
-                    className={`landing-dashboard__option-btn ${selectedScenarioOption === 1 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--warning' : ''}`}
-                    onClick={() => setSelectedScenarioOption(1)}
-                  >
-                    <div className="landing-dashboard__option-content">
-                      <span className="landing-dashboard__option-indicator" aria-hidden="true">
-                        {selectedScenarioOption === 1 && (
-                          <span className="landing-dashboard__option-indicator-inner" />
-                        )}
-                      </span>
-                      <span className="landing-dashboard__option-text">
-                        {t('dashboard.scenarioOpt2')}
-                      </span>
-                    </div>
-                    {selectedScenarioOption === 1 && (
-                      <div className="landing-dashboard__option-tags">
-                        <span className="landing-dashboard__reason-tag landing-dashboard__reason-tag--amber">
-                          {t('dashboard.tagViolation')}
-                        </span>
-                      </div>
-                    )}
-                  </button>
-                </div>
-
-                {/* Interactive Feedback Cards */}
-                {selectedScenarioOption === 0 && (
-                  <div
-                    className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--success"
-                    role="status"
-                    aria-live="polite"
-                  >
-                    <div className="landing-dashboard__feedback-header">
-                      <span
-                        className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--success"
-                        aria-hidden="true"
-                      >
-                        ✓
-                      </span>
-                      <strong className="landing-dashboard__feedback-lead">
-                        {t('dashboard.scenarioCorrectLead')}
-                      </strong>
-                    </div>
-                    <p className="landing-dashboard__feedback-text">
-                      {t('dashboard.scenarioCorrectText')}
-                    </p>
-                  </div>
-                )}
-
-                {selectedScenarioOption === 1 && (
-                  <div
-                    className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--warning"
-                    role="status"
-                    aria-live="polite"
-                  >
-                    <div className="landing-dashboard__feedback-header">
-                      <span
-                        className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--warning"
-                        aria-hidden="true"
-                      >
-                        !
-                      </span>
-                      <strong className="landing-dashboard__feedback-lead">
-                        {t('dashboard.scenarioWarnLead')}
-                      </strong>
-                    </div>
-                    <p className="landing-dashboard__feedback-text">
-                      {t('dashboard.scenarioWarnText')}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Spaced Repetition track: 5 Leitner review boxes */}
-              <div className="landing-dashboard__leitner-track">
-                <div className="landing-dashboard__leitner-header">
-                  <span className="landing-dashboard__leitner-label">
-                    {t('dashboard.leitnerTitle')}
-                  </span>
-                  <span className="landing-dashboard__leitner-meta">
-                    {t('dashboard.leitnerInterval')} {activeLeitnerItem.days}{' '}
-                    {t('dashboard.leitnerDays')} &middot; {activeLeitnerItem.duePhrases}{' '}
-                    {t('dashboard.leitnerPhrasesReady')}
-                  </span>
-                </div>
-                <div
-                  className="landing-dashboard__leitner-boxes"
-                  role="tablist"
-                  aria-label="Kotak ulasan Spaced Repetition"
-                >
-                  {leitnerItems.map((item) => {
-                    const isActive = activeLeitnerBox === item.box;
-                    return (
-                      <button
-                        key={item.box}
-                        type="button"
-                        role="tab"
-                        aria-selected={isActive}
-                        className={`landing-dashboard__leitner-box ${isActive ? 'landing-dashboard__leitner-box--active' : ''}`}
-                        title={item.label}
-                        onClick={() => setActiveLeitnerBox(item.box)}
-                        onMouseEnter={() => setActiveLeitnerBox(item.box)}
-                      >
-                        <span className="landing-dashboard__leitner-num">{item.box}</span>
-                        <span className="landing-dashboard__leitner-interval">{item.interval}</span>
-                        {isActive && (
-                          <span className="landing-dashboard__leitner-status">
-                            &bull; {item.duePhrases} {t('dashboard.leitnerPhrasesUnit')}
+                      {selectedScenarioOption === 0 && (
+                        <div className="landing-dashboard__option-tags">
+                          <span className="landing-dashboard__reason-tag">
+                            {t('dashboard.tagHierarchy')}
                           </span>
-                        )}
-                      </button>
-                    );
-                  })}
+                          <span className="landing-dashboard__reason-tag">
+                            {t('dashboard.tagSocial')}
+                          </span>
+                        </div>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={selectedScenarioOption === 1}
+                      className={`landing-dashboard__option-btn ${selectedScenarioOption === 1 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--warning' : ''}`}
+                      onClick={() => setSelectedScenarioOption(1)}
+                    >
+                      <div className="landing-dashboard__option-content">
+                        <span className="landing-dashboard__option-indicator" aria-hidden="true">
+                          {selectedScenarioOption === 1 && (
+                            <span className="landing-dashboard__option-indicator-inner" />
+                          )}
+                        </span>
+                        <span className="landing-dashboard__option-text">
+                          {t('dashboard.scenarioOpt2')}
+                        </span>
+                      </div>
+                      {selectedScenarioOption === 1 && (
+                        <div className="landing-dashboard__option-tags">
+                          <span className="landing-dashboard__reason-tag landing-dashboard__reason-tag--amber">
+                            {t('dashboard.tagViolation')}
+                          </span>
+                        </div>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Interactive Feedback Cards */}
+                  {selectedScenarioOption === 0 && (
+                    <div
+                      className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--success"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <div className="landing-dashboard__feedback-header">
+                        <span
+                          className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--success"
+                          aria-hidden="true"
+                        >
+                          ✓
+                        </span>
+                        <strong className="landing-dashboard__feedback-lead">
+                          {t('dashboard.scenarioCorrectLead')}
+                        </strong>
+                      </div>
+                      <p className="landing-dashboard__feedback-text">
+                        {t('dashboard.scenarioCorrectText')}
+                      </p>
+                    </div>
+                  )}
+
+                  {selectedScenarioOption === 1 && (
+                    <div
+                      className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--warning"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <div className="landing-dashboard__feedback-header">
+                        <span
+                          className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--warning"
+                          aria-hidden="true"
+                        >
+                          !
+                        </span>
+                        <strong className="landing-dashboard__feedback-lead">
+                          {t('dashboard.scenarioWarnLead')}
+                        </strong>
+                      </div>
+                      <p className="landing-dashboard__feedback-text">
+                        {t('dashboard.scenarioWarnText')}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Spaced Repetition track: 5 Leitner review boxes */}
+                <div className="landing-dashboard__leitner-track">
+                  <div className="landing-dashboard__leitner-header">
+                    <span className="landing-dashboard__leitner-label">
+                      {t('dashboard.leitnerTitle')}
+                    </span>
+                    <span className="landing-dashboard__leitner-meta">
+                      {t('dashboard.leitnerInterval')} {activeLeitnerItem.days}{' '}
+                      {t('dashboard.leitnerDays')} &middot; {activeLeitnerItem.duePhrases}{' '}
+                      {t('dashboard.leitnerPhrasesReady')}
+                    </span>
+                  </div>
+                  <div
+                    className="landing-dashboard__leitner-boxes"
+                    role="tablist"
+                    aria-label="Kotak ulasan Spaced Repetition"
+                  >
+                    {leitnerItems.map((item) => {
+                      const isActive = activeLeitnerBox === item.box;
+                      return (
+                        <button
+                          key={item.box}
+                          type="button"
+                          role="tab"
+                          aria-selected={isActive}
+                          className={`landing-dashboard__leitner-box ${isActive ? 'landing-dashboard__leitner-box--active' : ''}`}
+                          title={item.label}
+                          onClick={() => setActiveLeitnerBox(item.box)}
+                          onMouseEnter={() => setActiveLeitnerBox(item.box)}
+                        >
+                          <span className="landing-dashboard__leitner-num">{item.box}</span>
+                          <span className="landing-dashboard__leitner-interval">{item.interval}</span>
+                          {isActive && (
+                            <span className="landing-dashboard__leitner-status">
+                              &bull; {item.duePhrases} {t('dashboard.leitnerPhrasesUnit')}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 

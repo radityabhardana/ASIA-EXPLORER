@@ -40,6 +40,12 @@
   top: 0 !important;
   transform: none !important;
   overflow: visible !important;
+  pointer-events: none !important;
+}
+
+.landing-hero__scene canvas,
+.landing-hero__scene .asia-scene__canvas {
+  pointer-events: auto !important;
 }
 
 .landing-hero__scene .landing-asia,
@@ -49,6 +55,7 @@
   min-height: 0 !important;
   aspect-ratio: auto !important;
   overflow: visible !important;
+  pointer-events: none !important;
 }
 
 .landing-invitation__scene {
@@ -79,7 +86,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  touch-action: none;
+  touch-action: pan-y;
   cursor: grab;
 }
 

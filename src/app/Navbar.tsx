@@ -105,20 +105,20 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
             </li>
             <li>
               <a
-                href="#dashboard-showcase"
-                className="navbar__link"
-                onClick={handleAnchorClick('#dashboard-showcase')}
-              >
-                {t('nav.dashboard')}
-              </a>
-            </li>
-            <li>
-              <a
                 href="#galeri-mosaik"
                 className="navbar__link"
                 onClick={handleAnchorClick('#galeri-mosaik')}
               >
                 {t('nav.countries')}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#dashboard-showcase"
+                className="navbar__link"
+                onClick={handleAnchorClick('#dashboard-showcase')}
+              >
+                {t('nav.dashboard')}
               </a>
             </li>
           </ul>
@@ -228,20 +228,20 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
               </li>
               <li>
                 <a
-                  href="#dashboard-showcase"
-                  className="navbar__mobile-link"
-                  onClick={handleAnchorClick('#dashboard-showcase')}
-                >
-                  {t('nav.dashboard')}
-                </a>
-              </li>
-              <li>
-                <a
                   href="#galeri-mosaik"
                   className="navbar__mobile-link"
                   onClick={handleAnchorClick('#galeri-mosaik')}
                 >
                   {t('nav.countries')}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#dashboard-showcase"
+                  className="navbar__mobile-link"
+                  onClick={handleAnchorClick('#dashboard-showcase')}
+                >
+                  {t('nav.dashboard')}
                 </a>
               </li>
             </ul>
