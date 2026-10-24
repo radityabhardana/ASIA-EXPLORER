@@ -71,7 +71,7 @@ export default function CountryPage() {
 
       <BackNavigation leaving={leaving} onClick={handleBackClick} label={t('country.back')} />
 
-      {/* 1. Photo Hero with Parallax & Rich Typography */}
+      {/* 1. Immersive Wide Hero Banner with Parallax & Overlaid Country Identity */}
       <CountryHero country={country} profile={profile} />
 
       {/* Visual & locator sidebar: sticky on desktop, inline block below hero on <900px */}

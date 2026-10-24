@@ -106,25 +106,26 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
       : (webp1600?.file ?? webp960?.file ?? '');
 
   const fallbackImg = webp1600?.file ?? webp960?.file ?? photo?.webp[0]?.file ?? '';
+  const showDistinctLocalName = country.nameLocal !== country.nameId;
 
   return (
     <header className="country-hero" ref={heroRef}>
-      {photo && (
-        <div className="country-hero__visual-frame">
+      <div className="country-hero__visual-frame">
+        {photo && (
           <div className="country-hero__media" ref={mediaRef}>
             <picture className="country-hero__picture">
               {avifSrcSet && (
                 <source
                   type="image/avif"
                   srcSet={avifSrcSet}
-                  sizes="(max-width: 900px) 100vw, (max-width: 1440px) 68ch, 960px"
+                  sizes="(max-width: 900px) 100vw, (max-width: 1440px) 100vw, 1200px"
                 />
               )}
               {webpSrcSet && (
                 <source
                   type="image/webp"
                   srcSet={webpSrcSet}
-                  sizes="(max-width: 900px) 100vw, (max-width: 1440px) 68ch, 960px"
+                  sizes="(max-width: 900px) 100vw, (max-width: 1440px) 100vw, 1200px"
                 />
               )}
               <img
@@ -141,16 +142,38 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
               />
             </picture>
           </div>
+        )}
 
-          {/* Scrim overlay for editorial contrast */}
-          <div className="country-hero__scrim" aria-hidden="true" />
+        {/* Scrim overlay for editorial contrast */}
+        <div className="country-hero__scrim" aria-hidden="true" />
 
-          {/* Large authentic native script watermark */}
-          <div className="country-hero__watermark" aria-hidden="true">
-            <NativeText profile={profile}>{country.nameLocal}</NativeText>
-          </div>
+        {/* Large authentic native script watermark */}
+        <div className="country-hero__watermark" aria-hidden="true">
+          <NativeText profile={profile}>{country.nameLocal}</NativeText>
+        </div>
 
-          {/* Photographer credit and CC license in subtle caption bar at bottom corner */}
+        {/* Overlay country identity directly on banner */}
+        <div className="country-hero__inner">
+          {showDistinctLocalName && (
+            <p className="country-hero__local">
+              <NativeText profile={profile}>{country.nameLocal}</NativeText>
+            </p>
+          )}
+          <h1 id="country-title" className="country-hero__name">
+            {country.nameId}
+          </h1>
+          <p className="country-hero__meta">
+            <span className="country-hero__region">{country.region}</span>
+            <span className="country-hero__sep" aria-hidden="true">
+              {' '}
+              ·{' '}
+            </span>
+            <span className="country-honesty-marker">{country.depth}</span>
+          </p>
+        </div>
+
+        {/* Photographer credit and CC license badge in bottom corner */}
+        {photo && (
           <figcaption className="country-hero__caption">
             <span className="country-hero__caption-credit">
               Foto: {photo.credit.author} ·{' '}
@@ -164,22 +187,7 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
               </a>
             </span>
           </figcaption>
-        </div>
-      )}
-
-      {/* Rich typography display */}
-      <div className="country-hero__inner">
-        <p className="country-hero__local">
-          <NativeText profile={profile}>{country.nameLocal}</NativeText>
-        </p>
-        <h1 id="country-title" className="country-hero__name">
-          {country.nameId}
-        </h1>
-        <p className="country-hero__meta">
-          <span className="country-hero__region">{country.region}</span>
-          <span className="country-hero__sep" aria-hidden="true"> · </span>
-          <span className="country-honesty-marker">{country.depth}</span>
-        </p>
+        )}
       </div>
     </header>
   );

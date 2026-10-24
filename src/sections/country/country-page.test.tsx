@@ -6,6 +6,7 @@ import { countries, getCountry } from '@/content/countries';
 import CountryPage from '@/app/pages/CountryPage';
 import { contrastRatio } from '@/lib/color';
 import CountryBackground, { getCountryTheme } from './CountryBackground';
+import BackNavigation from './BackNavigation';
 import CountryGallery, { getCountryPhotos } from './CountryGallery';
 import CountryHero, { getHeroPhoto } from './CountryHero';
 import LanguageBlock from './LanguageBlock';
@@ -90,7 +91,45 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
     });
   });
 
-  describe('2. Photo Hero with Parallax (CountryHero.tsx)', () => {
+  describe('2. Smart Back Navigation (BackNavigation.tsx)', () => {
+    it('mengatur data-hidden sesuai scroll window (hide saat scroll down >80px, reveal saat up / <60px)', () => {
+      const { container } = render(
+        <MemoryRouter>
+          <BackNavigation leaving={false} onClick={vi.fn()} />
+        </MemoryRouter>,
+      );
+
+      const navBar = container.querySelector('.country-back-bar');
+      expect(navBar?.getAttribute('data-hidden')).toBe('false');
+
+      // Scroll down to 120px (>80px and > prevScrollY)
+      window.scrollY = 120;
+      fireEvent.scroll(window);
+      expect(navBar?.getAttribute('data-hidden')).toBe('true');
+
+      // Scroll up to 90px (< prevScrollY)
+      window.scrollY = 90;
+      fireEvent.scroll(window);
+      expect(navBar?.getAttribute('data-hidden')).toBe('false');
+
+      // Scroll down to 200px
+      window.scrollY = 200;
+      fireEvent.scroll(window);
+      expect(navBar?.getAttribute('data-hidden')).toBe('true');
+
+      // Focus on the link reveals the bar
+      const link = container.querySelector('.country-back');
+      fireEvent.focus(link!);
+      expect(navBar?.getAttribute('data-hidden')).toBe('false');
+
+      // Scroll to near top (<60px)
+      window.scrollY = 40;
+      fireEvent.scroll(window);
+      expect(navBar?.getAttribute('data-hidden')).toBe('false');
+    });
+  });
+
+  describe('3. Photo Hero with Parallax (CountryHero.tsx)', () => {
     it('mengambil foto hero dari images.json dan merender picture tag serta kredit', () => {
       const jp = getCountry('jp')!;
       const profile = profileFor(jp);
@@ -122,6 +161,31 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
       const caption = container.querySelector('.country-hero__caption');
       expect(caption?.textContent).toContain(heroPhoto!.credit.author);
       expect(caption?.textContent).toContain(heroPhoto!.credit.license);
+    });
+
+    it('merender overlay identitas negara langsung di dalam visual-frame banner tanpa duplikasi nama Indonesia', () => {
+      const id = getCountry('id')!;
+      const profile = profileFor(id);
+
+      const { container } = render(<CountryHero country={id} profile={profile} />);
+
+      const visualFrame = container.querySelector('.country-hero__visual-frame');
+      expect(visualFrame).not.toBeNull();
+
+      // country-hero__inner sits directly inside visual frame
+      const inner = visualFrame?.querySelector('.country-hero__inner');
+      expect(inner).not.toBeNull();
+
+      // Heading 1 has nameId
+      const heading = inner?.querySelector('h1.country-hero__name');
+      expect(heading?.textContent).toBe('Indonesia');
+
+      // Because nameLocal === nameId for Indonesia, no duplicate country-hero__local is rendered
+      expect(container.querySelector('.country-hero__local')).toBeNull();
+
+      // But watermark is rendered
+      const watermark = container.querySelector('.country-hero__watermark');
+      expect(watermark?.textContent).toContain('Indonesia');
     });
   });
 
