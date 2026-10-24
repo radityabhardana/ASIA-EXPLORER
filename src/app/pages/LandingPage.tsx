@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
+import Navbar from '@/app/Navbar';
+import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import { speak } from '@/lib/speech';
 import { differs, profileFor } from '@/sections/country/scripts';
-import Navbar from '@/app/Navbar';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CountryMapSvg from '@/sections/landing/CountryMapSvg';
 import MosaicGallery from '@/sections/landing/MosaicGallery';
@@ -22,14 +23,6 @@ const scriptCountries = SCRIPT_COUNTRY_IDS.flatMap((id) => {
   return country ? [country] : [];
 });
 
-const LEITNER_ITEMS = [
-  { box: 1, interval: '1h', days: 1, duePhrases: 18, label: 'Kotak 1: Interval 1 hari · 18 frasa siap ulas' },
-  { box: 2, interval: '3h', days: 3, duePhrases: 9, label: 'Kotak 2: Interval 3 hari · 9 frasa siap ulas' },
-  { box: 3, interval: '7h', days: 7, duePhrases: 12, label: 'Kotak 3: Interval 7 hari · 12 frasa siap ulas' },
-  { box: 4, interval: '16h', days: 16, duePhrases: 4, label: 'Kotak 4: Interval 16 hari · 4 frasa siap ulas' },
-  { box: 5, interval: '35h', days: 35, duePhrases: 2, label: 'Kotak 5: Interval 35 hari · 2 frasa siap ulas' },
-];
-
 export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
@@ -44,6 +37,61 @@ export default function LandingPage() {
   const [selectedScenarioOption, setSelectedScenarioOption] = useState<number>(0);
   const [activeLeitnerBox, setActiveLeitnerBox] = useState<number>(3);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
+
+  const { locale, t } = useI18n();
+
+  const leitnerItems = [
+    {
+      box: 1,
+      interval: '1h',
+      days: 1,
+      duePhrases: 18,
+      label:
+        locale === 'id'
+          ? 'Kotak 1: Interval 1 hari · 18 frasa siap ulas'
+          : 'Box 1: 1-day interval · 18 phrases due',
+    },
+    {
+      box: 2,
+      interval: '3h',
+      days: 3,
+      duePhrases: 9,
+      label:
+        locale === 'id'
+          ? 'Kotak 2: Interval 3 hari · 9 frasa siap ulas'
+          : 'Box 2: 3-day interval · 9 phrases due',
+    },
+    {
+      box: 3,
+      interval: '7h',
+      days: 7,
+      duePhrases: 12,
+      label:
+        locale === 'id'
+          ? 'Kotak 3: Interval 7 hari · 12 frasa siap ulas'
+          : 'Box 3: 7-day interval · 12 phrases due',
+    },
+    {
+      box: 4,
+      interval: '16h',
+      days: 16,
+      duePhrases: 4,
+      label:
+        locale === 'id'
+          ? 'Kotak 4: Interval 16 hari · 4 frasa siap ulas'
+          : 'Box 4: 16-day interval · 4 phrases due',
+    },
+    {
+      box: 5,
+      interval: '35h',
+      days: 35,
+      duePhrases: 2,
+      label:
+        locale === 'id'
+          ? 'Kotak 5: Interval 35 hari · 2 frasa siap ulas'
+          : 'Box 5: 35-day interval · 2 phrases due',
+    },
+  ];
 
   useLandingTimeline({
     root: rootRef,
@@ -91,17 +139,17 @@ export default function LandingPage() {
   };
 
   const activeLeitnerItem =
-    LEITNER_ITEMS.find((b) => b.box === activeLeitnerBox) ?? LEITNER_ITEMS[2]!;
+    leitnerItems.find((b) => b.box === activeLeitnerBox) ?? leitnerItems[2]!;
 
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
       <TopoBackground />
       <a className="landing-skip skip-link" href="#peta" onClick={handleSkipToMap}>
-        Lewati ke pilihan negara
+        {t('hero.skipLink')}
       </a>
       <Navbar onScrollToMap={handleSkipToMap} />
 
-      {/* Scene 1 — hero */}
+      {/* Scene 1 — Hero */}
       <section className="landing-scene landing-scene--hero" aria-labelledby="landing-title">
         <div className="landing-stage landing-stage--hero">
           <div className="landing-hero__ground" aria-hidden="true">
@@ -142,7 +190,7 @@ export default function LandingPage() {
           </div>
 
           <div className="landing-hero__copy" data-intro>
-            <p className="landing-hero__eyebrow">PETA INTERAKTIF · 15 NEGARA</p>
+            <p className="landing-hero__eyebrow">{t('hero.eyebrow')}</p>
             <span className="landing-hero__accent-bar" aria-hidden="true" />
             <h1 className="landing-hero__title" id="landing-title">
               Asia Explorer
@@ -152,15 +200,17 @@ export default function LandingPage() {
           <div className="landing-hero__scene" data-intro>
             <AsiaSceneLazy
               debugKey="hero"
-              label="Peta Asia interaktif"
+              label={t('hero.eyebrow')}
               scrollProgressRef={heroProgressRef}
               showOverlays={true}
+              interactiveClick={false}
+              controlsHintText={t('hero.hint')}
             />
           </div>
         </div>
       </section>
 
-      {/* Scene 2 — skala negara: proyeksi peta SVG 15 negara dengan sorotan tersinkronisasi */}
+      {/* Scene 2 — Skala: proyeksi peta SVG 15 negara dengan sorotan tersinkronisasi */}
       <section
         className="landing-scene landing-scene--scale landing-scene--pinned"
         aria-labelledby="landing-scale-heading"
@@ -174,9 +224,9 @@ export default function LandingPage() {
               <span className="landing-display__number" data-counter="15">
                 15
               </span>
-              <span className="landing-display__words">negara dalam cakupan</span>
+              <span className="landing-display__words">{t('scale.statWords')}</span>
             </h2>
-            <p className="landing-note">Dari Turki sampai Jepang.</p>
+            <p className="landing-note">{t('scale.note')}</p>
           </div>
 
           <div className="landing-scale__map-wrap" data-reveal>
@@ -185,16 +235,16 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 4 — panggung aksara (K12) */}
+      {/* Scene 3 — Aksara: pita sapaan 15 negara */}
       <section
         className="landing-scene landing-scene--script"
         aria-labelledby="landing-script-heading"
       >
         <div className="landing-stage landing-stage--script">
           <div className="landing-stage__copy" data-reveal>
-            <p className="landing-kicker">TIPOGRAFI ASIA</p>
+            <p className="landing-kicker">{t('script.kicker')}</p>
             <h2 className="landing-display" id="landing-script-heading">
-              Satu Sapaan, Lima Belas Aksara
+              {t('script.heading')}
             </h2>
           </div>
 
@@ -203,7 +253,7 @@ export default function LandingPage() {
               <div
                 className="landing-script__marquee"
                 tabIndex={-1}
-                aria-label="Pita aksara 15 negara"
+                aria-label={locale === 'id' ? 'Pita aksara 15 negara' : '15-country script band'}
               >
                 <div className="landing-script__track">
                   {scriptCountries.map((country) => {
@@ -214,7 +264,11 @@ export default function LandingPage() {
                         key={country.id}
                         className={`landing-script__item landing-script__card ${isSpeaking ? 'landing-script__card--speaking' : ''}`}
                         tabIndex={0}
-                        aria-label={`${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}. Ketuk untuk mendengarkan pengucapan.`}
+                        aria-label={
+                          locale === 'id'
+                            ? `${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}. Ketuk untuk mendengarkan pengucapan.`
+                            : `${country.nameId}: ${country.greeting.native}, ${country.language.nameId} language. Tap to listen.`
+                        }
                         onClick={() =>
                           speakGreeting(
                             country.id,
@@ -248,7 +302,11 @@ export default function LandingPage() {
                           <button
                             type="button"
                             className={`landing-script__audio-btn ${isSpeaking ? 'landing-script__audio-btn--active' : ''}`}
-                            aria-label={`Dengarkan pengucapan sapaan ${country.nameId}`}
+                            aria-label={
+                              locale === 'id'
+                                ? `Dengarkan pengucapan sapaan ${country.nameId}`
+                                : `Listen to greeting pronunciation ${country.nameId}`
+                            }
                             onClick={(e) => {
                               e.stopPropagation();
                               speakGreeting(
@@ -335,7 +393,11 @@ export default function LandingPage() {
                             type="button"
                             tabIndex={-1}
                             className={`landing-script__audio-btn ${isSpeaking ? 'landing-script__audio-btn--active' : ''}`}
-                            aria-label={`Dengarkan pengucapan sapaan ${country.nameId}`}
+                            aria-label={
+                              locale === 'id'
+                                ? `Dengarkan pengucapan sapaan ${country.nameId}`
+                                : `Listen to greeting pronunciation ${country.nameId}`
+                            }
                             onClick={(e) => {
                               e.stopPropagation();
                               speakGreeting(
@@ -395,7 +457,40 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 6 — Dashboard & Sistem Belajar */}
+      {/* Scene 4 — Pilih Negara (Peta Interaktif 3D) */}
+      <section
+        id="peta"
+        ref={mapSectionRef}
+        tabIndex={-1}
+        className="landing-scene landing-scene--invitation"
+        aria-labelledby="landing-invitation-heading"
+      >
+        <div className="landing-stage landing-stage--invitation">
+          <div className="landing-stage__copy landing-center" data-reveal>
+            <p className="landing-kicker">{t('invitation.kicker')}</p>
+            <h2 className="landing-display" id="landing-invitation-heading">
+              {t('invitation.heading')}
+            </h2>
+            <p className="landing-note">{t('invitation.note')}</p>
+          </div>
+
+          <div className="landing-invitation__scene" data-reveal>
+            <AsiaSceneLazy
+              debugKey="invitation"
+              label={t('invitation.heading')}
+              scrollProgressRef={invitationProgressRef}
+              showOverlays={true}
+              interactiveClick={true}
+              controlsHintText={t('invitation.hint')}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Scene 5 — Mosaik Galeri (15 Negara, Satu Benua) */}
+      <MosaicGallery />
+
+      {/* Scene 6 — Dashboard Showcase (Studio Belajar & Progres Budaya) */}
       <section
         id="dashboard-showcase"
         className="landing-scene landing-scene--dashboard"
@@ -403,13 +498,11 @@ export default function LandingPage() {
       >
         <div className="landing-stage landing-stage--dashboard">
           <div className="landing-stage__copy landing-center" data-reveal>
-            <p className="landing-kicker">RUANG BELAJAR</p>
+            <p className="landing-kicker">{t('dashboard.kicker')}</p>
             <h2 className="landing-display" id="landing-dashboard-heading">
-              Studio Belajar &amp; Progres Budaya
+              {t('dashboard.heading')}
             </h2>
-            <p className="landing-note">
-              Simpan pemahaman etiket dan rawat memori aksara secara mandiri di perambanmu.
-            </p>
+            <p className="landing-note">{t('dashboard.note')}</p>
           </div>
 
           <div className="landing-dashboard__grid" data-reveal>
@@ -422,18 +515,22 @@ export default function LandingPage() {
                   <span className="landing-dashboard__console-dot landing-dashboard__console-dot--green" />
                 </div>
                 <span className="landing-dashboard__console-title">
-                  asiakin-engine v3.0 &middot; Kyoto, Jepang &middot; Progres 5/6
+                  {t('dashboard.consoleTitle')}
                 </span>
               </div>
 
               {/* Active Quest Scenario preview */}
               <div className="landing-dashboard__scenario-box">
                 <div className="landing-dashboard__scenario-header">
-                  <span className="landing-dashboard__scenario-badge">SKENARIO ETIKET BUDAYA</span>
-                  <span className="landing-dashboard__scenario-location">Tokyo, Jepang</span>
+                  <span className="landing-dashboard__scenario-badge">
+                    {t('dashboard.scenarioBadge')}
+                  </span>
+                  <span className="landing-dashboard__scenario-location">
+                    {t('dashboard.scenarioLocation')}
+                  </span>
                 </div>
                 <h3 className="landing-dashboard__scenario-title">
-                  &ldquo;Etiket Menyerahkan Kartu Nama (Meishi) di Tokyo&rdquo;
+                  {t('dashboard.scenarioTitle')}
                 </h3>
                 <div
                   className="landing-dashboard__scenario-options"
@@ -454,13 +551,17 @@ export default function LandingPage() {
                         )}
                       </span>
                       <span className="landing-dashboard__option-text">
-                        Pegang dua sudut atas dengan kedua tangan, teks menghadap penerima, bungkukkan badan 15 derajat.
+                        {t('dashboard.scenarioOpt1')}
                       </span>
                     </div>
                     {selectedScenarioOption === 0 && (
                       <div className="landing-dashboard__option-tags">
-                        <span className="landing-dashboard__reason-tag">Penghormatan Hierarki</span>
-                        <span className="landing-dashboard__reason-tag">Konteks Sosial</span>
+                        <span className="landing-dashboard__reason-tag">
+                          {t('dashboard.tagHierarchy')}
+                        </span>
+                        <span className="landing-dashboard__reason-tag">
+                          {t('dashboard.tagSocial')}
+                        </span>
                       </div>
                     )}
                   </button>
@@ -479,13 +580,13 @@ export default function LandingPage() {
                         )}
                       </span>
                       <span className="landing-dashboard__option-text">
-                        Serahkan santai dengan satu tangan ke atas meja rapat lalu simpan langsung ke saku.
+                        {t('dashboard.scenarioOpt2')}
                       </span>
                     </div>
                     {selectedScenarioOption === 1 && (
                       <div className="landing-dashboard__option-tags">
                         <span className="landing-dashboard__reason-tag landing-dashboard__reason-tag--amber">
-                          Pelanggaran Norma Formal
+                          {t('dashboard.tagViolation')}
                         </span>
                       </div>
                     )}
@@ -506,10 +607,12 @@ export default function LandingPage() {
                       >
                         ✓
                       </span>
-                      <strong className="landing-dashboard__feedback-lead">Benar!</strong>
+                      <strong className="landing-dashboard__feedback-lead">
+                        {t('dashboard.scenarioCorrectLead')}
+                      </strong>
                     </div>
                     <p className="landing-dashboard__feedback-text">
-                      Di Jepang, kartu nama (meishi) dianggap sebagai representasi fisik kehormatan rekan bisnismu. Menerima dengan dua tangan menunjukkan rasa hormat penuh.
+                      {t('dashboard.scenarioCorrectText')}
                     </p>
                   </div>
                 )}
@@ -527,10 +630,12 @@ export default function LandingPage() {
                       >
                         !
                       </span>
-                      <strong className="landing-dashboard__feedback-lead">Kurang tepat.</strong>
+                      <strong className="landing-dashboard__feedback-lead">
+                        {t('dashboard.scenarioWarnLead')}
+                      </strong>
                     </div>
                     <p className="landing-dashboard__feedback-text">
-                      Menyerahkan kartu nama dengan satu tangan atau langsung mengantonginya dianggap meremehkan pemilik kartu.
+                      {t('dashboard.scenarioWarnText')}
                     </p>
                   </div>
                 )}
@@ -539,9 +644,13 @@ export default function LandingPage() {
               {/* Spaced Repetition track: 5 Leitner review boxes */}
               <div className="landing-dashboard__leitner-track">
                 <div className="landing-dashboard__leitner-header">
-                  <span className="landing-dashboard__leitner-label">Phrase Vault Spaced Repetition</span>
+                  <span className="landing-dashboard__leitner-label">
+                    {t('dashboard.leitnerTitle')}
+                  </span>
                   <span className="landing-dashboard__leitner-meta">
-                    Interval {activeLeitnerItem.days} Hari &middot; {activeLeitnerItem.duePhrases} Frasa Siap
+                    {t('dashboard.leitnerInterval')} {activeLeitnerItem.days}{' '}
+                    {t('dashboard.leitnerDays')} &middot; {activeLeitnerItem.duePhrases}{' '}
+                    {t('dashboard.leitnerPhrasesReady')}
                   </span>
                 </div>
                 <div
@@ -549,7 +658,7 @@ export default function LandingPage() {
                   role="tablist"
                   aria-label="Kotak ulasan Spaced Repetition"
                 >
-                  {LEITNER_ITEMS.map((item) => {
+                  {leitnerItems.map((item) => {
                     const isActive = activeLeitnerBox === item.box;
                     return (
                       <button
@@ -566,7 +675,7 @@ export default function LandingPage() {
                         <span className="landing-dashboard__leitner-interval">{item.interval}</span>
                         {isActive && (
                           <span className="landing-dashboard__leitner-status">
-                            &bull; {item.duePhrases} Frasa
+                            &bull; {item.duePhrases} {t('dashboard.leitnerPhrasesUnit')}
                           </span>
                         )}
                       </button>
@@ -579,9 +688,9 @@ export default function LandingPage() {
               <div className="landing-dashboard__status-bar">
                 <div className="landing-dashboard__status-indicator">
                   <span className="landing-dashboard__status-pulse" aria-hidden="true" />
-                  <span>Tersimpan Lokal di IndexedDB</span>
+                  <span>{t('dashboard.statusLocal')}</span>
                 </div>
-                <span>0 Pelacak &middot; Siap Ekspor JSON</span>
+                <span>{t('dashboard.statusMeta')}</span>
               </div>
             </div>
 
@@ -590,46 +699,38 @@ export default function LandingPage() {
               <article className="landing-dashboard__pillar-item">
                 <span className="landing-dashboard__pillar-num">01</span>
                 <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">Kurikulum Cerdas</h3>
-                  <p className="landing-dashboard__pillar-desc">
-                    Satu tugas harian dipilih deterministik tanpa rasa bingung &mdash; selesaikan etiket, ulas frasa, atau jelajahi negara baru.
-                  </p>
+                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p1Title')}</h3>
+                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p1Desc')}</p>
                 </div>
               </article>
 
               <article className="landing-dashboard__pillar-item">
                 <span className="landing-dashboard__pillar-num">02</span>
                 <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">Phrase Vault 5-Tingkat</h3>
-                  <p className="landing-dashboard__pillar-desc">
-                    Spaced repetition berbasis interval 1h, 3h, 7h, 16h, dan 35h mengulang frasa kunci sebelum terlupakan.
-                  </p>
+                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p2Title')}</h3>
+                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p2Desc')}</p>
                 </div>
               </article>
 
               <article className="landing-dashboard__pillar-item">
                 <span className="landing-dashboard__pillar-num">03</span>
                 <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">Etiket Berakar Sebab</h3>
-                  <p className="landing-dashboard__pillar-desc">
-                    Bukan pilihan ganda buta. Pelajari norma budaya asli beserta latar belakang sosial dan hierarki kultural.
-                  </p>
+                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p3Title')}</h3>
+                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p3Desc')}</p>
                 </div>
               </article>
 
               <article className="landing-dashboard__pillar-item">
                 <span className="landing-dashboard__pillar-num">04</span>
                 <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">Kedaulatan Data Penuh</h3>
-                  <p className="landing-dashboard__pillar-desc">
-                    100% tersimpan di perambanmu melalui IndexedDB, tanpa pelacak analitik, bebas ekspor dan impor berkas JSON kapan saja.
-                  </p>
+                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p4Title')}</h3>
+                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p4Desc')}</p>
                 </div>
               </article>
 
               <div className="landing-dashboard__actions">
                 <Link to="/dashboard" className="landing-dashboard__cta">
-                  Buka Dashboard <span aria-hidden="true">&rarr;</span>
+                  {t('dashboard.cta')} <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
             </div>
@@ -637,38 +738,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Scene 5 — Peta Interaktif & Pilih Negara */}
-      <section
-        id="peta"
-        ref={mapSectionRef}
-        tabIndex={-1}
-        className="landing-scene landing-scene--invitation"
-        aria-labelledby="landing-invitation-heading"
-      >
-        <div className="landing-stage landing-stage--invitation">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <p className="landing-kicker">PETA INTERAKTIF</p>
-            <h2 className="landing-display" id="landing-invitation-heading">
-              Pilih Negara, Mulai Penjelajahan
-            </h2>
-            <p className="landing-note">Sentuh atau arahkan kursor ke benua 3D untuk menjelajahi 15 negara.</p>
-          </div>
-
-          <div className="landing-invitation__scene" data-reveal>
-            <AsiaSceneLazy
-              debugKey="invitation"
-              label="Peta Asia interaktif"
-              scrollProgressRef={invitationProgressRef}
-              showOverlays={true}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Scene Mosaik — 15 Negara, Satu Benua */}
-      <MosaicGallery />
-
-      {/* Scene 7 — footer: wordmark dan catatan hak cipta */}
+      {/* Scene 7 — Footer: wordmark dan catatan hak cipta */}
       <footer
         className="landing-scene landing-scene--footer"
         aria-labelledby="landing-footer-heading"
@@ -677,9 +747,7 @@ export default function LandingPage() {
           <p className="landing-footer__mark" id="landing-footer-heading">
             Asia Explorer
           </p>
-          <p className="landing-footer__copyright">
-            &copy; 2026 Asia Explorer &middot; Ekspedisi tipografi, etiket, dan kartografi 15 negara.
-          </p>
+          <p className="landing-footer__copyright">{t('footer.copyright')}</p>
         </div>
       </footer>
     </div>

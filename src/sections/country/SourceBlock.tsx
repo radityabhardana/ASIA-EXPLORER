@@ -1,4 +1,5 @@
 import type { Country } from '@/content/countries';
+import { useI18n } from '@/lib/i18n';
 
 type SourceBlockProps = {
   sources: Country['sources'];
@@ -7,19 +8,20 @@ type SourceBlockProps = {
 };
 
 export default function SourceBlock({ sources, needsVerification }: SourceBlockProps) {
+  const { t } = useI18n();
   const hasVerification = needsVerification && needsVerification.length > 0;
 
   return (
     <footer className="country-block country-sources" aria-labelledby="country-sources-title">
       <div className="country-block__inner">
         <h2 id="country-sources-title" className="visually-hidden">
-          Referensi dan Sumber Data
+          {t('country.sourcesLabel')}
         </h2>
 
         <details className="country-sources-details">
           <summary className="country-sources-summary">
             <span className="country-sources-summary__label">
-              Referensi & Sumber Data ({sources.length})
+              {t('country.sourcesLabel')} ({sources.length})
             </span>
             <span className="country-sources-summary__chevron" aria-hidden="true">
               ▾
@@ -45,7 +47,7 @@ export default function SourceBlock({ sources, needsVerification }: SourceBlockP
                           rel="noopener noreferrer"
                         >
                           <span className="country-sources__link-url">{source.url}</span>
-                          <span className="country-sources__verified-badge">Terverifikasi</span>
+                          <span className="country-sources__verified-badge">{t('country.verifiedBadge')}</span>
                         </a>
                       </div>
                     ) : (

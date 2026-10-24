@@ -261,15 +261,10 @@ export function useLandingTimeline({
             },
             syncSegment.at,
           );
-          tl.to(
-            '.landing-scene--scale',
-            { opacity: 0, duration: segment(scaleWin, 0.85, 0.98).duration },
-            segment(scaleWin, 0.85, 0.98).at,
-          );
         }
       }
 
-      // Scene 4 — marquee aksara (K12).
+      // Scene 3 — marquee aksara (K12).
       const scriptWin = measureWindow(
         '.landing-scene--script',
         '.landing-stage__copy',
@@ -282,6 +277,42 @@ export function useLandingTimeline({
         reveal(
           '.landing-script__band',
           segment(scriptWin, 0.08, 0.32),
+        );
+      }
+
+      // Scene 4 — peta interaktif (undangan penjelajahan / pilih negara).
+      const invitationWin = measureWindow(
+        '.landing-scene--invitation',
+        '.landing-stage__copy',
+      );
+      if (invitationWin) {
+        reveal(
+          '.landing-scene--invitation .landing-stage__copy',
+          segment(invitationWin, 0, 0.4),
+        );
+        reveal(
+          '.landing-invitation__scene',
+          segment(invitationWin, 0.15, 0.85),
+        );
+      }
+
+      // Scene 5 — Scene Mosaic (15 Negara, Satu Benua).
+      const mosaicWin = measureWindow(
+        '.landing-scene--mosaic',
+        '.landing-stage__copy',
+      );
+      if (mosaicWin) {
+        reveal(
+          '.landing-scene--mosaic .landing-stage__copy',
+          segment(mosaicWin, 0, 0.35),
+        );
+        reveal(
+          '.landing-mosaic__grid',
+          segment(mosaicWin, 0.06, 0.4),
+        );
+        reveal(
+          '.landing-mosaic__legal',
+          segment(mosaicWin, 0.12, 0.45),
         );
       }
 
@@ -302,42 +333,6 @@ export function useLandingTimeline({
         reveal(
           '.landing-dashboard__actions',
           segment(dashboardWin, 0.15, 0.45),
-        );
-      }
-
-      // Scene 5 — peta interaktif (undangan penjelajahan).
-      const invitationWin = measureWindow(
-        '.landing-scene--invitation',
-        '.landing-stage__copy',
-      );
-      if (invitationWin) {
-        reveal(
-          '.landing-scene--invitation .landing-stage__copy',
-          segment(invitationWin, 0, 0.4),
-        );
-        reveal(
-          '.landing-invitation__scene',
-          segment(invitationWin, 0.15, 0.85),
-        );
-      }
-
-      // Scene Mosaic — 15 Negara, Satu Benua
-      const mosaicWin = measureWindow(
-        '.landing-scene--mosaic',
-        '.landing-stage__copy',
-      );
-      if (mosaicWin) {
-        reveal(
-          '.landing-scene--mosaic .landing-stage__copy',
-          segment(mosaicWin, 0, 0.35),
-        );
-        reveal(
-          '.landing-mosaic__grid',
-          segment(mosaicWin, 0.06, 0.4),
-        );
-        reveal(
-          '.landing-mosaic__legal',
-          segment(mosaicWin, 0.12, 0.45),
         );
       }
 

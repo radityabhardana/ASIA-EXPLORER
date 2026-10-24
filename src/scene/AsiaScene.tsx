@@ -9,6 +9,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   AmbientLight,
   Box3,
@@ -65,25 +66,25 @@ import '@/styles/scene.css';
  */
 export const COUNTRY_COLORS: Record<string, string> = {
   // Southeast Asia
-  id: '#c53a2a',
-  my: '#244b78',
-  sg: '#d42b2b',
-  th: '#283852',
-  vn: '#b82323',
-  ph: '#205085',
+  id: '#c53a2a', // Indonesian crimson vermilion
+  my: '#385a48', // Malaysian forest pine
+  sg: '#cf3d32', // Singapore coral red
+  th: '#6b4a6d', // Thai royal plum
+  vn: '#b82e26', // Vietnam lacquer red
+  ph: '#bf7d28', // Philippine golden amber
   // East Asia
-  cn: '#be2424',
-  jp: '#cb2d2d',
-  kr: '#25528c',
-  mn: '#286299',
+  cn: '#b83324', // China imperial vermilion
+  jp: '#c83232', // Japan sun crimson
+  kr: '#4a5450', // Korea celadon slate umber
+  mn: '#9c7c4e', // Mongolian steppe sand
   // South Asia
-  in: '#d06a1c',
+  in: '#cc6e25', // India saffron terracotta
   // West Asia
-  sa: '#1f6d38',
-  tr: '#bd2020',
+  sa: '#2e663d', // Saudi oasis olive green
+  tr: '#a63629', // Turkish anatolian rust
   // Central Asia
-  kz: '#257e90',
-  uz: '#23739e',
+  kz: '#948057', // Kazakh steppe loess khaki
+  uz: '#a38753', // Uzbek sandstone ochre
 };
 
 export const REGION_COLORS: Record<string, string> = COUNTRY_COLORS;
@@ -183,6 +184,10 @@ export interface AsiaSceneProps {
   className?: string;
   /** Tampilkan overlay legenda wilayah dan petunjuk kontrol. */
   showOverlays?: boolean;
+  /** Apakah klik negara menavigasi ke /negara/:id (aktif di section pilih negara, nonaktif di hero) */
+  interactiveClick?: boolean;
+  /** Kustom teks petunjuk kontrol di tengah bawah */
+  controlsHintText?: string;
 }
 
 export interface InkMeasurement {
@@ -430,7 +435,10 @@ export default function AsiaScene({
   fitTargetNdcY = 0,
   className,
   showOverlays,
+  interactiveClick = false,
+  controlsHintText,
 }: AsiaSceneProps) {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -448,6 +456,8 @@ export default function AsiaScene({
     onSelectCountry,
     onActivateCountry,
     onUnavailable,
+    interactiveClick,
+    navigate,
   });
   const selectedRef = useRef<string | null>(selectedId ?? null);
 
@@ -458,6 +468,8 @@ export default function AsiaScene({
       onSelectCountry,
       onActivateCountry,
       onUnavailable,
+      interactiveClick,
+      navigate,
     };
   });
 
@@ -938,6 +950,9 @@ export default function AsiaScene({
         callbacksRef.current.onSelectCountry?.(id);
         callbacksRef.current.onActivateCountry?.(id);
         setHovered(id, event.clientX, event.clientY);
+        if (callbacksRef.current.interactiveClick) {
+          callbacksRef.current.navigate(`/negara/${id}`);
+        }
       } else {
         selectedRef.current = null;
         callbacksRef.current.onSelectCountry?.(null as unknown as string);
@@ -967,6 +982,9 @@ export default function AsiaScene({
         callbacksRef.current.onSelectCountry?.(id);
         callbacksRef.current.onActivateCountry?.(id);
         setHovered(id, event.clientX, event.clientY);
+        if (callbacksRef.current.interactiveClick) {
+          callbacksRef.current.navigate(`/negara/${id}`);
+        }
       }
     };
 
@@ -2028,26 +2046,26 @@ export default function AsiaScene({
           <div className="scene-legend" aria-label="Legenda Wilayah">
             <span className="scene-legend__title">WILAYAH</span>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#bd2020' }} /> West Asia
+              <span className="scene-legend__color" style={{ background: '#a63629' }} /> West Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#257e90' }} /> Central
+              <span className="scene-legend__color" style={{ background: '#948057' }} /> Central
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#d06a1c' }} /> South Asia
+              <span className="scene-legend__color" style={{ background: '#cc6e25' }} /> South Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#c53a2a' }} /> Southeast
+              <span className="scene-legend__color" style={{ background: '#385a48' }} /> Southeast
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#be2424' }} /> East Asia
+              <span className="scene-legend__color" style={{ background: '#b83324' }} /> East Asia
             </div>
           </div>
 
           <p className="scene-controls-hint">
-            Tarik untuk memutar · Klik negara untuk fokus
+            {controlsHintText || 'Tarik untuk memutar · Klik negara untuk fokus'}
           </p>
         </>
       )}
@@ -2088,6 +2106,9 @@ export default function AsiaScene({
                 onClick={() => {
                   callbacksRef.current.onActivateCountry?.(c.id);
                   callbacksRef.current.onSelectCountry?.(c.id);
+                  if (interactiveClick) {
+                    navigate(`/negara/${c.id}`);
+                  }
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent } from 'react';
+
+import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 
 export interface NavbarProps {
@@ -8,43 +10,32 @@ export interface NavbarProps {
 
 export default function Navbar({ onScrollToMap }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [lang, setLang] = useState<'id' | 'en'>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('asiakin_lang');
-      if (saved === 'en' || saved === 'id') return saved;
-      if (document.documentElement.lang === 'en') return 'en';
-    }
-    return 'id';
-  });
+  const { locale, t, toggleLocale } = useI18n();
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileToggleRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Sync lang to documentElement & localStorage
-  const handleToggleLang = () => {
-    const nextLang = lang === 'id' ? 'en' : 'id';
-    setLang(nextLang);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('asiakin_lang', nextLang);
-      document.documentElement.lang = nextLang;
-      window.dispatchEvent(new CustomEvent('asiakin:langchange', { detail: { lang: nextLang } }));
-    }
-  };
+  const handleAnchorClick =
+    (selector: string) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
+      const isLanding =
+        typeof window !== 'undefined' &&
+        (window.location.pathname === '/' || window.location.pathname === '');
 
-  const handleScrollClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
-    if (onScrollToMap) {
-      onScrollToMap(event);
-    } else {
-      event.preventDefault();
-      scrollToSection('#peta');
-      const target = document.getElementById('peta');
-      if (target) {
-        target.focus({ preventScroll: true });
+      if (isLanding) {
+        event.preventDefault();
+        if (selector === '#peta' && onScrollToMap) {
+          onScrollToMap(event);
+        } else {
+          scrollToSection(selector);
+          const target = document.querySelector(selector) as HTMLElement | null;
+          if (target) {
+            target.focus({ preventScroll: true });
+          }
+        }
       }
-    }
-    setMobileOpen(false);
-  };
+      setMobileOpen(false);
+    };
 
   // Keyboard navigation & focus trap for mobile drawer
   useEffect(() => {
@@ -102,18 +93,30 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
         <nav className="navbar__nav" aria-label="Navigasi utama">
           <ul className="navbar__links">
             <li>
-              <a href="#peta" className="navbar__link" onClick={handleScrollClick}>
-                Jelajah
+              <a
+                href="#peta"
+                className="navbar__link"
+                onClick={handleAnchorClick('#peta')}
+              >
+                {t('nav.explore')}
               </a>
             </li>
             <li>
-              <a href="/dashboard" className="navbar__link">
-                Dashboard
+              <a
+                href="#dashboard-showcase"
+                className="navbar__link"
+                onClick={handleAnchorClick('#dashboard-showcase')}
+              >
+                {t('nav.dashboard')}
               </a>
             </li>
             <li>
-              <a href="/negara" className="navbar__link">
-                Negara
+              <a
+                href="#galeri-mosaik"
+                className="navbar__link"
+                onClick={handleAnchorClick('#galeri-mosaik')}
+              >
+                {t('nav.countries')}
               </a>
             </li>
           </ul>
@@ -124,30 +127,30 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
           <button
             type="button"
             className="navbar__lang-btn"
-            aria-label={
-              lang === 'id'
-                ? 'Beralih ke Bahasa Inggris (Switch to English)'
-                : 'Beralih ke Bahasa Indonesia'
-            }
-            onClick={handleToggleLang}
+            aria-label={t('nav.langAria')}
+            onClick={toggleLocale}
           >
-            <span className={`navbar__lang-opt ${lang === 'id' ? 'navbar__lang-opt--active' : ''}`}>
+            <span
+              className={`navbar__lang-opt ${locale === 'id' ? 'navbar__lang-opt--active' : ''}`}
+            >
               ID
             </span>
             <span className="navbar__lang-sep" aria-hidden="true">
               /
             </span>
-            <span className={`navbar__lang-opt ${lang === 'en' ? 'navbar__lang-opt--active' : ''}`}>
+            <span
+              className={`navbar__lang-opt ${locale === 'en' ? 'navbar__lang-opt--active' : ''}`}
+            >
               EN
             </span>
           </button>
 
           <a href="/dashboard" className="navbar__link navbar__link--subtle">
-            Masuk
+            {t('nav.signin')}
           </a>
 
           <a href="/dashboard" className="navbar__link navbar__link--register">
-            Daftar
+            {t('nav.register')}
           </a>
 
           {/* Mobile hamburger toggle */}
@@ -207,26 +210,30 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
           <nav className="navbar__mobile-nav" aria-label="Navigasi ponsel">
             <ul className="navbar__mobile-links">
               <li>
-                <a href="#peta" className="navbar__mobile-link" onClick={handleScrollClick}>
-                  Jelajah
+                <a
+                  href="#peta"
+                  className="navbar__mobile-link"
+                  onClick={handleAnchorClick('#peta')}
+                >
+                  {t('nav.explore')}
                 </a>
               </li>
               <li>
                 <a
-                  href="/dashboard"
+                  href="#dashboard-showcase"
                   className="navbar__mobile-link"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={handleAnchorClick('#dashboard-showcase')}
                 >
-                  Dashboard
+                  {t('nav.dashboard')}
                 </a>
               </li>
               <li>
                 <a
-                  href="/negara"
+                  href="#galeri-mosaik"
                   className="navbar__mobile-link"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={handleAnchorClick('#galeri-mosaik')}
                 >
-                  Negara
+                  {t('nav.countries')}
                 </a>
               </li>
             </ul>
@@ -236,9 +243,10 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
             <button
               type="button"
               className="navbar__lang-btn navbar__lang-btn--mobile"
-              onClick={handleToggleLang}
+              aria-label={t('nav.langAria')}
+              onClick={toggleLocale}
             >
-              <span>Bahasa: {lang === 'id' ? 'ID (Indonesia)' : 'EN (English)'}</span>
+              <span>{locale === 'id' ? 'Bahasa: ID (Indonesia)' : 'Language: EN (English)'}</span>
             </button>
 
             <div className="navbar__mobile-actions">
@@ -247,14 +255,14 @@ export default function Navbar({ onScrollToMap }: NavbarProps) {
                 className="navbar__mobile-link navbar__mobile-link--subtle"
                 onClick={() => setMobileOpen(false)}
               >
-                Masuk
+                {t('nav.signin')}
               </a>
               <a
                 href="/dashboard"
                 className="navbar__mobile-link navbar__mobile-link--register"
                 onClick={() => setMobileOpen(false)}
               >
-                Daftar
+                {t('nav.register')}
               </a>
             </div>
           </div>

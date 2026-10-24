@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import type { Country } from '@/content/countries';
+import { useI18n } from '@/lib/i18n';
 import { cancelSpeech, isSpeechSupported, speak } from '@/lib/speech';
 
 import NativeText from './NativeText';
@@ -16,6 +17,7 @@ type PlaybackStatus = 'idle' | 'speaking' | 'error';
 
 export default function LanguageBlock({ country, profile }: LanguageBlockProps) {
   const { language, phrases, greeting } = country;
+  const { t } = useI18n();
   const [status, setStatus] = useState<PlaybackStatus>('idle');
   const [activeSpeechText, setActiveSpeechText] = useState<string | null>(null);
   const supported = isSpeechSupported();
@@ -62,7 +64,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
     <section className="country-block country-language" aria-labelledby="country-language-title">
       <div className="country-block__inner">
         <h2 id="country-language-title" className="country-language__title">
-          Bahasa
+          {t('country.language')}
         </h2>
         <p className="country-language__name">{language.nameId}</p>
         {differs(language.nativeName, language.nameId) && (
@@ -103,7 +105,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
                 onClick={handleListenGreeting}
                 aria-label={`Dengarkan sapaan dalam ${language.nameId}`}
               >
-                🔊 Dengarkan
+                🔊 {t('country.listen')}
               </button>
             </div>
           )}
@@ -113,7 +115,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
         </div>
 
         {/* Tiga frasa */}
-        <h3 className="country-phrases__title">Tiga frasa</h3>
+        <h3 className="country-phrases__title">{t('country.threePhrases')}</h3>
         <ol className="country-phrases">
           {phrases.map((phrase, index) => (
             <li className="country-phrases__item" key={`${phrase.native}-${index}`}>
@@ -126,7 +128,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
                     onClick={() => handlePlay(phrase.native, phrase.id, phrase.roman)}
                     aria-label={`Dengarkan pengucapan ${phrase.id}: ${phrase.native}`}
                   >
-                    🔊 Dengarkan
+                    🔊 {t('country.listen')}
                   </button>
                 )}
               </div>

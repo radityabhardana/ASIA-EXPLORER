@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import imagesData from '@/content/images.json';
+import { useI18n } from '@/lib/i18n';
 import { countries } from '@/sections/landing/landing-data';
 
 interface ImageFormat {
@@ -45,6 +46,8 @@ function getHeroPhoto(countryId: string): ImageItem | undefined {
 }
 
 export default function MosaicGallery() {
+  const { locale, t } = useI18n();
+
   return (
     <section
       id="galeri-mosaik"
@@ -54,12 +57,12 @@ export default function MosaicGallery() {
     >
       <div className="landing-stage landing-stage--mosaic">
         <div className="landing-stage__copy landing-center" data-reveal>
-          <p className="landing-kicker">PILIHAN NEGARA</p>
+          <p className="landing-kicker">{t('mosaic.kicker')}</p>
           <h2 className="landing-display" id="landing-mosaic-heading">
-            15 Negara, Satu Benua
+            {t('mosaic.heading')}
           </h2>
           <p className="landing-note">
-            Pilih negara untuk menjelajahi cerita, etiket, dan aksara.
+            {t('mosaic.note')}
           </p>
         </div>
 
@@ -81,7 +84,9 @@ export default function MosaicGallery() {
                 : webp960?.file;
 
             const fallbackSrc = webp960?.file ?? photo?.avif[0]?.file ?? '';
-            const altText = photo?.alt.id ?? `Lanskap editorial ${country.nameId}`;
+            const altText =
+              (locale === 'en' ? photo?.alt.en : photo?.alt.id) ??
+              `Lanskap editorial ${country.nameId}`;
 
             return (
               <Link
@@ -146,7 +151,7 @@ export default function MosaicGallery() {
         </div>
 
         <p className="landing-mosaic__legal" data-reveal>
-          Foto kurasi dokumentasi Wikimedia Commons berlisensi terbuka (CC BY-SA / CC0).
+          {t('mosaic.legal')}
         </p>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { getCountry } from '@/content/countries';
+import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
 import CountryBackground, { getCountryTheme } from '@/sections/country/CountryBackground';
@@ -21,6 +22,7 @@ export default function CountryPage() {
   const { id } = useParams();
   const country = id === undefined ? undefined : getCountry(id);
   const { leaving, handleBackClick } = useExitToLanding();
+  const { t } = useI18n();
 
   useEffect(() => {
     scrollToSection(0, { immediate: true });
@@ -67,7 +69,7 @@ export default function CountryPage() {
       {/* Adaptive Background: concentric contours & low-chroma palette */}
       <CountryBackground countryId={country.id} />
 
-      <BackNavigation leaving={leaving} onClick={handleBackClick} />
+      <BackNavigation leaving={leaving} onClick={handleBackClick} label={t('country.back')} />
 
       {/* 1. Photo Hero with Parallax & Rich Typography */}
       <CountryHero country={country} profile={profile} />
@@ -84,10 +86,10 @@ export default function CountryPage() {
         <StoryBlock country={country} />
 
         {/* 3. Budaya */}
-        <NoteBlock id="country-culture-title" title="Budaya" text={country.cultureNote} />
+        <NoteBlock id="country-culture-title" title={t('country.culture')} text={country.cultureNote} />
 
         {/* 4. Orang */}
-        <NoteBlock id="country-people-title" title="Orang" text={country.peopleNote} />
+        <NoteBlock id="country-people-title" title={t('country.people')} text={country.peopleNote} />
 
         {/* 5. Bahasa & Audio Pronunciation */}
         <LanguageBlock country={country} profile={profile} />
@@ -103,19 +105,19 @@ export default function CountryPage() {
           >
             <div className="country-block__inner country-dashboard-callout__inner">
               <div className="country-dashboard-callout__body">
-                <p className="country-dashboard-callout__kicker">MODUL INTERAKTIF</p>
+                <p className="country-dashboard-callout__kicker">{t('country.dashboardCalloutKicker')}</p>
                 <h2
                   id="country-dashboard-callout-title"
                   className="country-dashboard-callout__title"
                 >
-                  Uji Pemahaman: Etiket & Frasa {country.nameId}
+                  {t('country.dashboardCalloutTitle')} {country.nameId}
                 </h2>
                 <p className="country-dashboard-callout__description">
-                  Ikuti skenario budaya bercabang dan simpan frasa ke Phrase Vault di perambanmu.
+                  {t('country.dashboardCalloutDesc')}
                 </p>
               </div>
               <Link to="/dashboard" className="country-dashboard-callout__cta">
-                Mulai Pelajaran di Dashboard →
+                {t('country.dashboardCalloutCta')}
               </Link>
             </div>
           </section>
