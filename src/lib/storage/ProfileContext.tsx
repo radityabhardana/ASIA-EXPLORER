@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState, useCallback } fr
 import type { Profile, Progress } from './types';
 import { getAllProfiles, getProfile, getProgress, saveProfile, saveProgress } from './db';
 import { getStoredLocale } from '@/lib/i18n';
+import { onAuthChange, signOutUser } from '@/lib/auth';
 
 export type ProfileStatus = 'loading' | 'none' | 'ready';
 
@@ -79,7 +80,42 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     let mounted = true;
-    void (async () => {
+
+    const unsubscribe = onAuthChange(async (firebaseUser) => {
+      if (!mounted) return;
+      if (firebaseUser) {
+        try {
+          let active = await getProfile(firebaseUser.uid);
+          if (!active) {
+            const name =
+              firebaseUser.displayName?.trim() ||
+              firebaseUser.email?.split('@')[0] ||
+              'Penjelajah';
+            active = {
+              id: firebaseUser.uid,
+              displayName: name,
+              createdAt: Date.now(),
+              locale: getStoredLocale(),
+            };
+            await saveProfile(active);
+            await saveProgress({ profileId: active.id, countries: {} });
+          }
+          if (!mounted) return;
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(ACTIVE_PROFILE_STORAGE_KEY, active.id);
+          }
+          setProfile(active);
+          const prog = await getProgress(active.id);
+          if (!mounted) return;
+          setProgress(prog ?? null);
+          setStatus('ready');
+          return;
+        } catch {
+          // fallback to local check below
+        }
+      }
+
+      // If no firebaseUser, check local storage / IndexedDB
       try {
         const savedId =
           typeof window !== 'undefined'
@@ -122,10 +158,11 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
           setStatus('none');
         }
       }
-    })();
+    });
 
     return () => {
       mounted = false;
+      unsubscribe();
     };
   }, []);
 
@@ -164,6 +201,11 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOut = useCallback(async () => {
+    try {
+      await signOutUser();
+    } catch {
+      // ignore
+    }
     if (typeof window !== 'undefined') {
       localStorage.removeItem(ACTIVE_PROFILE_STORAGE_KEY);
     }

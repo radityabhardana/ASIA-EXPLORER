@@ -7,6 +7,7 @@ import {
   getAIRecommendations,
   type OptimizerSettings,
   type Recommendation,
+  type ProgressData,
 } from '@/lib/aiOptimizer';
 import '@/styles/optimizer.css';
 
@@ -14,12 +15,7 @@ interface OptimizerWidgetProps {
   profileId: string;
   dna: LearningDNA | null;
   weakSpots: WeakSpot[];
-  progress: {
-    countries: Record<
-      string,
-      { lessonsCompleted?: string[]; questAttempts?: number }
-    >;
-  } | null;
+  progress: ProgressData;
 }
 
 const PRIORITY_ICON: Record<Recommendation['priority'], string> = {

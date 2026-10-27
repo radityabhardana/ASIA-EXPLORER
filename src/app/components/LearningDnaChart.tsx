@@ -27,11 +27,15 @@ export default function LearningDnaChart({ dna, size = 300 }: LearningDnaChartPr
   return (
     <div
       style={{
-        background: '#1e293b',
-        border: '1px solid rgba(245, 158, 11, 0.3)',
+        background: '#0f172a',
+        border: '1px solid #1e293b',
         borderRadius: 12,
         padding: 24,
-        display: 'inline-block',
+        width: '100%',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <p
@@ -43,9 +47,9 @@ export default function LearningDnaChart({ dna, size = 300 }: LearningDnaChartPr
           textAlign: 'center',
         }}
       >
-        Learning DNA
+        🧬 Learning DNA
       </p>
-      <ResponsiveContainer width={size} height={size}>
+      <ResponsiveContainer width="100%" height={size}>
         <RadarChart data={data}>
           <PolarGrid stroke="rgba(245,158,11,0.2)" />
           <PolarAngleAxis

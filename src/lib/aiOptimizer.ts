@@ -1,5 +1,6 @@
 import type { LearningDNA } from '@/lib/learningDna';
 import type { WeakSpot } from '@/lib/learningDna';
+import type { Progress } from '@/lib/storage/types';
 
 export interface OptimizerSettings {
   mode: 'manual' | 'ai';
@@ -30,12 +31,7 @@ export interface Recommendation {
   priority: 'high' | 'medium' | 'low';
 }
 
-type ProgressData = {
-  countries: Record<
-    string,
-    { lessonsCompleted?: string[]; questAttempts?: number }
-  >;
-} | null;
+export type ProgressData = Progress | { countries?: Record<string, any> } | null;
 
 export function getManualRecommendations(
   dna: LearningDNA | null,
@@ -62,11 +58,13 @@ export function getManualRecommendations(
     });
   }
 
-  if (progress) {
+  if (progress && progress.countries) {
     for (const [countryId, data] of Object.entries(progress.countries)) {
+      const cData = data as any;
       const hasLesson =
-        Array.isArray(data.lessonsCompleted) && data.lessonsCompleted.length > 0;
-      const questDone = (data.questAttempts ?? 0) > 0;
+        cData.lessonCompletedAt != null ||
+        (Array.isArray(cData.lessonsCompleted) && cData.lessonsCompleted.length > 0);
+      const questDone = (cData.questAttempts ?? 0) > 0;
       if (hasLesson && !questDone) {
         recs.push({
           type: 'quest',

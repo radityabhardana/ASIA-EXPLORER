@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
@@ -148,27 +149,27 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
           </button>
 
           {profile ? (
-            <a
-              href="/dashboard"
+            <Link
+              to="/dashboard"
               className="navbar__link navbar__link--register"
             >
               {profile.displayName}
-            </a>
+            </Link>
           ) : (
             <>
-              <a
-                href="/?profil=buat"
+              <Link
+                to="/login"
                 className="navbar__link navbar__link--subtle"
               >
                 {t('nav.signin')}
-              </a>
+              </Link>
 
-              <a
-                href="/?profil=buat"
+              <Link
+                to="/register"
                 className="navbar__link navbar__link--register"
               >
                 {t('nav.register')}
-              </a>
+              </Link>
             </>
           )}
 
@@ -270,29 +271,29 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
 
             <div className="navbar__mobile-actions">
               {profile ? (
-                <a
-                  href="/dashboard"
+                <Link
+                  to="/dashboard"
                   className="navbar__mobile-link navbar__mobile-link--register"
                   onClick={() => setMobileOpen(false)}
                 >
                   {profile.displayName}
-                </a>
+                </Link>
               ) : (
                 <>
-                  <a
-                    href="/?profil=buat"
+                  <Link
+                    to="/login"
                     className="navbar__mobile-link navbar__mobile-link--subtle"
                     onClick={() => setMobileOpen(false)}
                   >
                     {t('nav.signin')}
-                  </a>
-                  <a
-                    href="/?profil=buat"
+                  </Link>
+                  <Link
+                    to="/register"
                     className="navbar__mobile-link navbar__mobile-link--register"
                     onClick={() => setMobileOpen(false)}
                   >
                     {t('nav.register')}
-                  </a>
+                  </Link>
                 </>
               )}
             </div>

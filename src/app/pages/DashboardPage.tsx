@@ -24,10 +24,15 @@ import {
 } from '@/lib/storage/db';
 import { getTodayStr, INTERVALS } from '@/lib/storage/leitner';
 import { resolveNextTaskFromState } from '@/lib/storage/decision';
+import DashboardSidebar from '@/app/components/DashboardSidebar';
+import WordOfDayWidget from '@/app/components/WordOfDayWidget';
+import LearningDnaChart from '@/app/components/LearningDnaChart';
+import OptimizerWidget from '@/app/components/OptimizerWidget';
+import { computeLearningDNA, computeWeakSpots } from '@/lib/learningDna';
 import '@/styles/dashboard.css';
 
 export default function DashboardPage() {
-  const { profile } = useProfile();
+  const { profile, signOut } = useProfile();
   const { t } = useI18n();
   const navigate = useNavigate();
 
@@ -36,6 +41,7 @@ export default function DashboardPage() {
   const [lessons, setLessons] = useState<LessonProgress[]>([]);
   const [reviews, setReviews] = useState<PhraseReview[]>([]);
   const [dueReviews, setDueReviews] = useState<PhraseReview[]>([]);
+  const [rawAttempts, setRawAttempts] = useState<Attempt[]>([]);
   const [openAttempt, setOpenAttempt] = useState<Attempt | null>(null);
 
   const [importStatus, setImportStatus] = useState<string | null>(null);
@@ -63,6 +69,7 @@ export default function DashboardPage() {
         setLessons(les);
         setReviews(revs);
         setDueReviews(due);
+        setRawAttempts(attempts);
         const inProgress = attempts.find((a) => a.finishedAt === null) ?? null;
         setOpenAttempt(inProgress);
         setLoading(false);
@@ -79,6 +86,78 @@ export default function DashboardPage() {
   const loadData = useCallback(() => {
     setRefreshTrigger((prev) => prev + 1);
   }, []);
+
+  // Total XP & Streak
+  const [bonusXP, setBonusXP] = useState(() => {
+    if (typeof window === 'undefined') return 0;
+    return Number(localStorage.getItem(`xp_bonus_${profileId}`) ?? '0');
+  });
+
+  const handleEarnXP = useCallback(
+    (amount: number) => {
+      setBonusXP((prev) => {
+        const next = prev + amount;
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(`xp_bonus_${profileId}`, String(next));
+        }
+        return next;
+      });
+    },
+    [profileId],
+  );
+
+  const totalXP = useMemo(() => {
+    let xp = 0;
+    for (const l of lessons) {
+      xp += (l.stepsDone?.length ?? 0) * 25;
+    }
+    for (const a of rawAttempts) {
+      if (a.finishedAt) {
+        const correctCount = a.answers.filter((ans) => ans.correct).length;
+        xp += correctCount * 10;
+      }
+    }
+    return xp + bonusXP;
+  }, [lessons, rawAttempts, bonusXP]);
+
+  const streakDays = useMemo(() => {
+    if (typeof window === 'undefined') return 1;
+    const saved = localStorage.getItem(`streak_${profileId}`);
+    return saved ? Number(saved) : 1;
+  }, [profileId]);
+
+  // Compute Learning DNA & Weak Spots
+  const dna = useMemo(() => {
+    return computeLearningDNA(
+      profileId,
+      rawAttempts.map((a) => {
+        const correct = a.answers.filter((ans) => ans.correct).length;
+        const total = a.itemIds.length || a.answers.length || 10;
+        return {
+          correct,
+          total,
+          durationMs:
+            a.durationMs ??
+            (a.finishedAt && a.startedAt ? a.finishedAt - a.startedAt : undefined),
+          type: 'quiz',
+        };
+      }),
+    );
+  }, [profileId, rawAttempts]);
+
+  const weakSpots = useMemo(() => {
+    return computeWeakSpots(
+      rawAttempts.map((a) => {
+        const correct = a.answers.filter((ans) => ans.correct).length;
+        const total = a.itemIds.length || a.answers.length || 10;
+        return {
+          topic: a.countryId,
+          correct,
+          total,
+        };
+      }),
+    );
+  }, [rawAttempts]);
 
   // Determine single next task via deterministic decision table
   const nextTask = resolveNextTaskFromState({
@@ -172,233 +251,308 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="dashboard-page">
-        <div className="dashboard-container">
-          <div className="dashboard-loading" role="status">
-            <p className="dashboard-loading__text">{t('profile.loading')}</p>
+      <div className="dashboard-layout">
+        <DashboardSidebar
+          profile={profile}
+          totalXP={totalXP}
+          streakDays={streakDays}
+          onSignOut={signOut}
+        />
+        <main className="dashboard-main">
+          <div className="dashboard-container">
+            <div className="dashboard-loading" role="status">
+              <p className="dashboard-loading__text">{t('profile.loading')}</p>
+            </div>
           </div>
-        </div>
+        </main>
       </div>
     );
   }
 
   return (
-    <div className="dashboard-page">
-      <div className="dashboard-container">
-        {/* Header Konteks */}
-        <header className="dashboard-header">
-          <span className="dashboard-header__eyebrow">{t('dashboard.kicker')}</span>
-          <h1 className="dashboard-header__title">
-            {profile ? `${profile.displayName} · ${t('dashboard.pageTitle')}` : t('dashboard.pageTitle')}
-          </h1>
-          <p className="dashboard-header__desc">{t('dashboard.pageDesc')}</p>
-        </header>
+    <div className="dashboard-layout">
+      <DashboardSidebar
+        profile={profile}
+        totalXP={totalXP}
+        streakDays={streakDays}
+        onSignOut={signOut}
+      />
 
-        {/* Blok 1: Satu Tugas Berikutnya */}
-        <section className="dashboard-hero-task" aria-labelledby="hero-task-title">
-          <div className="dashboard-hero-task__kicker">{t('dashboard.taskHeader')}</div>
+      <main className="dashboard-main">
+        <div className="dashboard-container">
+          {/* Header Konteks */}
+          <header className="dashboard-header">
+            <span className="dashboard-header__eyebrow">
+              {t('dashboard.kicker')}
+            </span>
+            <h1 className="dashboard-header__title">
+              {profile
+                ? `Selamat Datang, ${profile.displayName} 👋`
+                : t('dashboard.pageTitle')}
+            </h1>
+            <p className="dashboard-header__desc">{t('dashboard.pageDesc')}</p>
+          </header>
 
-          {nextTask.type === 'resume-session' && (
-            <div>
-              <h2 id="hero-task-title" className="dashboard-hero-task__headline">
-                {t('dashboard.taskResume')}
-              </h2>
-              <p className="dashboard-hero-task__explanation">
-                {t('dashboard.taskResumeDesc')}
-              </p>
-              <button
-                type="button"
-                className="dashboard-btn dashboard-btn--primary"
-                onClick={() => {
-                  if (nextTask.countryId) {
-                    navigate(`/dashboard/quest/${nextTask.countryId}`);
-                  }
-                }}
-              >
-                {t('dashboard.taskResumeBtn')} &rarr;
-              </button>
-            </div>
-          )}
-
-          {nextTask.type === 'review-phrases' && (
-            <div>
-              <h2 id="hero-task-title" className="dashboard-hero-task__headline">
-                {t('dashboard.taskReview')}
-              </h2>
-              <p className="dashboard-hero-task__explanation">
-                {t('dashboard.taskReviewDesc')} ({dueReviews.length} {t('dashboard.dueCount')})
-              </p>
-              <button
-                type="button"
-                className="dashboard-btn dashboard-btn--primary"
-                onClick={() => navigate('/dashboard/ulas')}
-              >
-                {t('dashboard.taskReviewBtn')} &rarr;
-              </button>
-            </div>
-          )}
-
-          {nextTask.type === 'new-lesson' && (
-            <div>
-              <h2 id="hero-task-title" className="dashboard-hero-task__headline">
-                {t('dashboard.taskNewLesson')}: {getCountry(nextTask.countryId ?? '')?.nameId ?? nextTask.countryId}
-              </h2>
-              <p className="dashboard-hero-task__explanation">
-                {t('dashboard.taskNewLessonDesc')}
-              </p>
-              <button
-                type="button"
-                className="dashboard-btn dashboard-btn--primary"
-                onClick={() => {
-                  if (nextTask.countryId) {
-                    navigate(`/dashboard/pelajaran/${nextTask.countryId}/kenali`);
-                  }
-                }}
-              >
-                {t('dashboard.taskNewLessonBtn')} &rarr;
-              </button>
-            </div>
-          )}
-
-          {nextTask.type === 'read-story' && (
-            <div>
-              <h2 id="hero-task-title" className="dashboard-hero-task__headline">
-                {t('dashboard.taskStory')}: {getCountry(nextTask.countryId ?? '')?.nameId ?? nextTask.countryId}
-              </h2>
-              <p className="dashboard-hero-task__explanation">
-                {t('dashboard.taskStoryDesc')}
-              </p>
-              <button
-                type="button"
-                className="dashboard-btn dashboard-btn--primary"
-                onClick={() => {
-                  if (nextTask.countryId) {
-                    navigate(`/negara/${nextTask.countryId}`);
-                  }
-                }}
-              >
-                {t('dashboard.taskStoryBtn')} &rarr;
-              </button>
-            </div>
-          )}
-
-          {nextTask.type === 'all-done' && (
-            <div>
-              <h2 id="hero-task-title" className="dashboard-hero-task__headline">
-                {t('dashboard.taskAllDone')}
-              </h2>
-              <p className="dashboard-hero-task__explanation">
-                {t('dashboard.taskAllDoneDesc')}
-              </p>
-              <button
-                type="button"
-                className="dashboard-btn dashboard-btn--secondary"
-                onClick={() => navigate('/')}
-              >
-                {t('dashboard.taskAllDoneBtn')} &rarr;
-              </button>
-            </div>
-          )}
-        </section>
-
-        {/* Blok 2: Phrase Vault & Leitner */}
-        <section className="dashboard-vault" aria-labelledby="vault-heading">
-          <h2 id="vault-heading" className="dashboard-header__title">
-            {t('dashboard.vaultTitle')}
-          </h2>
-          <p className="dashboard-header__desc">{t('dashboard.vaultDesc')}</p>
-
-          <div className="dashboard-vault__track">
-            {boxCounts.map((count, index) => (
-              <div key={index} className="dashboard-vault__box">
-                <span className="dashboard-vault__box-num">
-                  {t(`dashboard.box${(index + 1) as 1 | 2 | 3 | 4 | 5}`)}
-                </span>
-                <span className="dashboard-vault__box-interval">
-                  {INTERVALS[index]} hari
-                </span>
-                <span className="dashboard-vault__box-count">
-                  {count} frasa
-                </span>
+          {/* Baris 1: Hero Task & Word of Day */}
+          <div className="dashboard-grid-2col">
+            <section
+              className="dashboard-card dashboard-hero-task"
+              aria-labelledby="hero-task-title"
+            >
+              <div className="dashboard-hero-task__kicker">
+                🎯 {t('dashboard.taskHeader')}
               </div>
-            ))}
+
+              {nextTask.type === 'resume-session' && (
+                <div>
+                  <h2 id="hero-task-title" className="dashboard-hero-task__headline">
+                    {t('dashboard.taskResume')}
+                  </h2>
+                  <p className="dashboard-hero-task__explanation">
+                    {t('dashboard.taskResumeDesc')}
+                  </p>
+                  <button
+                    type="button"
+                    className="dashboard-btn dashboard-btn--primary"
+                    onClick={() => {
+                      if (nextTask.countryId) {
+                        navigate(`/dashboard/quest/${nextTask.countryId}`);
+                      }
+                    }}
+                  >
+                    {t('dashboard.taskResumeBtn')} &rarr;
+                  </button>
+                </div>
+              )}
+
+              {nextTask.type === 'review-phrases' && (
+                <div>
+                  <h2 id="hero-task-title" className="dashboard-hero-task__headline">
+                    {t('dashboard.taskReview')}
+                  </h2>
+                  <p className="dashboard-hero-task__explanation">
+                    {t('dashboard.taskReviewDesc')} ({dueReviews.length}{' '}
+                    {t('dashboard.dueCount')})
+                  </p>
+                  <button
+                    type="button"
+                    className="dashboard-btn dashboard-btn--primary"
+                    onClick={() => navigate('/dashboard/ulas')}
+                  >
+                    {t('dashboard.taskReviewBtn')} &rarr;
+                  </button>
+                </div>
+              )}
+
+              {nextTask.type === 'new-lesson' && (
+                <div>
+                  <h2 id="hero-task-title" className="dashboard-hero-task__headline">
+                    {t('dashboard.taskNewLesson')}:{' '}
+                    {getCountry(nextTask.countryId ?? '')?.nameId ??
+                      nextTask.countryId}
+                  </h2>
+                  <p className="dashboard-hero-task__explanation">
+                    {t('dashboard.taskNewLessonDesc')}
+                  </p>
+                  <button
+                    type="button"
+                    className="dashboard-btn dashboard-btn--primary"
+                    onClick={() => {
+                      if (nextTask.countryId) {
+                        navigate(
+                          `/dashboard/pelajaran/${nextTask.countryId}/kenali`,
+                        );
+                      }
+                    }}
+                  >
+                    {t('dashboard.taskNewLessonBtn')} &rarr;
+                  </button>
+                </div>
+              )}
+
+              {nextTask.type === 'read-story' && (
+                <div>
+                  <h2 id="hero-task-title" className="dashboard-hero-task__headline">
+                    {t('dashboard.taskStory')}:{' '}
+                    {getCountry(nextTask.countryId ?? '')?.nameId ??
+                      nextTask.countryId}
+                  </h2>
+                  <p className="dashboard-hero-task__explanation">
+                    {t('dashboard.taskStoryDesc')}
+                  </p>
+                  <button
+                    type="button"
+                    className="dashboard-btn dashboard-btn--primary"
+                    onClick={() => {
+                      if (nextTask.countryId) {
+                        navigate(`/negara/${nextTask.countryId}`);
+                      }
+                    }}
+                  >
+                    {t('dashboard.taskStoryBtn')} &rarr;
+                  </button>
+                </div>
+              )}
+
+              {nextTask.type === 'all-done' && (
+                <div>
+                  <h2 id="hero-task-title" className="dashboard-hero-task__headline">
+                    {t('dashboard.taskAllDone')}
+                  </h2>
+                  <p className="dashboard-hero-task__explanation">
+                    {t('dashboard.taskAllDoneDesc')}
+                  </p>
+                  <button
+                    type="button"
+                    className="dashboard-btn dashboard-btn--secondary"
+                    onClick={() => navigate('/')}
+                  >
+                    {t('dashboard.taskAllDoneBtn')} &rarr;
+                  </button>
+                </div>
+              )}
+            </section>
+
+            <WordOfDayWidget onEarnXP={handleEarnXP} />
           </div>
 
-          {dueReviews.length > 0 ? (
-            <div>
-              <ul className="dashboard-due-list">
-                {dueReviews.map((rev) => {
-                  const [cId, pIdxStr] = rev.phraseId.split(':');
-                  const pIdx = Number(pIdxStr ?? '0');
-                  const country = getCountry(cId ?? '');
-                  const phrase = country?.phrases[pIdx];
+          {/* Baris 2: Learning DNA & AI Optimizer */}
+          <div className="dashboard-section-header">
+            <span className="dashboard-section-badge">OPTIMASI BELAJAR</span>
+            <h2 className="dashboard-section-title">
+              Analisis Gaya Belajar & Rekomendasi
+            </h2>
+            <p className="dashboard-section-desc">
+              Pola kekuatan belajarmu dianalisis secara cerdas. Kamu bisa memilih optimasi manual mandiri atau bantuan AI.
+            </p>
+          </div>
 
-                  return (
-                    <li key={rev.phraseId} className="dashboard-due-item">
-                      <div>
-                        <span className="dashboard-due-item__script">
-                          {phrase?.native ?? rev.phraseId}
-                        </span>
-                        {phrase?.roman && phrase.roman !== phrase.native ? (
-                          <span className="dashboard-due-item__roman">
-                            ({phrase.roman})
-                          </span>
-                        ) : null}
-                        <div className="dashboard-due-item__meaning">
-                          {phrase?.id ? `${phrase.id} · ${country?.nameId ?? ''}` : country?.nameId}
-                        </div>
-                      </div>
-                      <div className="dashboard-due-item__meta">
-                        Kotak {rev.box} · Jatuh tempo: {rev.dueDay}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-              <button
-                type="button"
-                className="dashboard-btn dashboard-btn--accent"
-                onClick={() => navigate('/dashboard/ulas')}
-              >
-                {t('dashboard.startReview')} ({dueReviews.length}) &rarr;
-              </button>
+          <div className="dashboard-grid-2col">
+            <LearningDnaChart dna={dna} size={280} />
+            <OptimizerWidget
+              profileId={profileId}
+              dna={dna}
+              weakSpots={weakSpots}
+              progress={progress}
+            />
+          </div>
+
+          {/* Blok 2: Phrase Vault & Leitner */}
+          <section className="dashboard-vault" aria-labelledby="vault-heading">
+            <div className="dashboard-section-header">
+              <span className="dashboard-section-badge">SPACED REPETITION</span>
+              <h2 id="vault-heading" className="dashboard-section-title">
+                {t('dashboard.vaultTitle')}
+              </h2>
+              <p className="dashboard-section-desc">{t('dashboard.vaultDesc')}</p>
             </div>
-          ) : (
-            <p className="dashboard-sovereignty__status">{t('dashboard.noDue')}</p>
-          )}
-        </section>
 
-        {/* Blok 3: Daftar Negara & Progres */}
-        <section className="dashboard-countries" aria-labelledby="countries-heading">
-          <h2 id="countries-heading" className="dashboard-header__title">
-            {t('dashboard.countriesTitle')}
-          </h2>
+            <div className="dashboard-vault__track">
+              {boxCounts.map((count, index) => (
+                <div key={index} className="dashboard-vault__box">
+                  <span className="dashboard-vault__box-num">
+                    {t(`dashboard.box${(index + 1) as 1 | 2 | 3 | 4 | 5}`)}
+                  </span>
+                  <span className="dashboard-vault__box-interval">
+                    {INTERVALS[index]} hari
+                  </span>
+                  <span className="dashboard-vault__box-count">
+                    {count} frasa
+                  </span>
+                </div>
+              ))}
+            </div>
 
-          <ul className="dashboard-country-list">
-            {countries.map((country) => {
-              const isLengkap = isLengkapCountry(country.id);
-              const lesson = lessonByCountry.get(country.id);
-              const stepsDone = lesson?.stepsDone ?? [];
+            {dueReviews.length > 0 ? (
+              <div className="dashboard-card" style={{ marginTop: 16 }}>
+                <ul className="dashboard-due-list">
+                  {dueReviews.map((rev) => {
+                    const [cId, pIdxStr] = rev.phraseId.split(':');
+                    const pIdx = Number(pIdxStr ?? '0');
+                    const country = getCountry(cId ?? '');
+                    const phrase = country?.phrases[pIdx];
 
-              return (
-                <li key={country.id} className="dashboard-country-row">
-                  <div className="dashboard-country-row__info">
-                    <h3 className="dashboard-country-row__name">
-                      <Link to={`/negara/${country.id}`}>
-                        {country.nameId}
-                      </Link>
-                    </h3>
-                    <div className="dashboard-country-row__meta">
-                      <span>{country.region}</span>
-                      <span>·</span>
-                      <span>{country.greeting.native}</span>
+                    return (
+                      <li key={rev.phraseId} className="dashboard-due-item">
+                        <div>
+                          <span className="dashboard-due-item__script">
+                            {phrase?.native ?? rev.phraseId}
+                          </span>
+                          {phrase?.roman && phrase.roman !== phrase.native ? (
+                            <span className="dashboard-due-item__roman">
+                              ({phrase.roman})
+                            </span>
+                          ) : null}
+                          <div className="dashboard-due-item__meaning">
+                            {phrase?.id
+                              ? `${phrase.id} · ${country?.nameId ?? ''}`
+                              : country?.nameId}
+                          </div>
+                        </div>
+                        <div className="dashboard-due-item__meta">
+                          Kotak {rev.box} · Jatuh tempo: {rev.dueDay}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <button
+                  type="button"
+                  className="dashboard-btn dashboard-btn--accent"
+                  style={{ marginTop: 16 }}
+                  onClick={() => navigate('/dashboard/ulas')}
+                >
+                  {t('dashboard.startReview')} ({dueReviews.length}) &rarr;
+                </button>
+              </div>
+            ) : (
+              <p className="dashboard-sovereignty__status">
+                {t('dashboard.noDue')}
+              </p>
+            )}
+          </section>
+
+          {/* Blok 3: Daftar Negara & Progres */}
+          <section
+            className="dashboard-countries"
+            aria-labelledby="countries-heading"
+          >
+            <div className="dashboard-section-header">
+              <span className="dashboard-section-badge">MODUL NEGARA</span>
+              <h2 id="countries-heading" className="dashboard-section-title">
+                {t('dashboard.countriesTitle')}
+              </h2>
+            </div>
+
+            <ul className="dashboard-country-list">
+              {countries.map((country) => {
+                const isLengkap = isLengkapCountry(country.id);
+                const lesson = lessonByCountry.get(country.id);
+                const stepsDone = lesson?.stepsDone ?? [];
+
+                return (
+                  <li key={country.id} className="dashboard-country-row">
+                    <div className="dashboard-country-row__info">
+                      <h3 className="dashboard-country-row__name">
+                        <Link to={`/negara/${country.id}`}>
+                          {country.nameId}
+                        </Link>
+                      </h3>
+                      <div className="dashboard-country-row__meta">
+                        <span>{country.region}</span>
+                        <span>·</span>
+                        <span>{country.greeting.native}</span>
+                      </div>
                     </div>
-                  </div>
 
-                  {isLengkap ? (
-                    <div className="dashboard-country-row__steps" aria-label={`Langkah pelajaran ${country.nameId}`}>
-                      {(['kenali', 'etiket', 'bahasa', 'quest'] as const).map(
-                        (stepKey, sIdx) => {
+                    {isLengkap ? (
+                      <div
+                        className="dashboard-country-row__steps"
+                        aria-label={`Langkah pelajaran ${country.nameId}`}
+                      >
+                        {(
+                          ['kenali', 'etiket', 'bahasa', 'quest'] as const
+                        ).map((stepKey, sIdx) => {
                           const done = stepsDone.includes(stepKey);
                           const stepNumber = sIdx + 1;
                           return (
@@ -411,87 +565,93 @@ export default function DashboardPage() {
                               {stepNumber}. {stepKey}
                             </span>
                           );
-                        },
+                        })}
+                      </div>
+                    ) : (
+                      <span className="dashboard-step-pill">
+                        {t('dashboard.exploration')}
+                      </span>
+                    )}
+
+                    <div className="dashboard-country-row__actions">
+                      {isLengkap ? (
+                        <Link
+                          to={`/dashboard/pelajaran/${country.id}/kenali`}
+                          className="dashboard-btn dashboard-btn--secondary dashboard-btn--small"
+                        >
+                          {t('dashboard.startOrResume')}
+                        </Link>
+                      ) : (
+                        <Link
+                          to={`/negara/${country.id}`}
+                          className="dashboard-btn dashboard-btn--secondary dashboard-btn--small"
+                        >
+                          {t('dashboard.openAtlas')}
+                        </Link>
                       )}
                     </div>
-                  ) : (
-                    <span className="dashboard-step-pill">
-                      {t('dashboard.exploration')}
-                    </span>
-                  )}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
 
-                  <div className="dashboard-country-row__actions">
-                    {isLengkap ? (
-                      <Link
-                        to={`/dashboard/pelajaran/${country.id}/kenali`}
-                        className="dashboard-btn dashboard-btn--secondary dashboard-btn--small"
-                      >
-                        {t('dashboard.startOrResume')}
-                      </Link>
-                    ) : (
-                      <Link
-                        to={`/negara/${country.id}`}
-                        className="dashboard-btn dashboard-btn--secondary dashboard-btn--small"
-                      >
-                        {t('dashboard.openAtlas')}
-                      </Link>
-                    )}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+          {/* Blok 4: Data & Kedaulatan (Local-First) */}
+          <section
+            className="dashboard-sovereignty"
+            aria-labelledby="sovereignty-heading"
+          >
+            <div className="dashboard-section-header">
+              <span className="dashboard-section-badge">MANAJEMEN DATA</span>
+              <h2 id="sovereignty-heading" className="dashboard-section-title">
+                {t('dashboard.sovereigntyTitle')}
+              </h2>
+              <p className="dashboard-section-desc">
+                {t('dashboard.sovereigntyDesc')}
+              </p>
+            </div>
 
-        {/* Blok 4: Data & Kedaulatan (Local-First) */}
-        <section className="dashboard-sovereignty" aria-labelledby="sovereignty-heading">
-          <h2 id="sovereignty-heading" className="dashboard-header__title">
-            {t('dashboard.sovereigntyTitle')}
-          </h2>
-          <p className="dashboard-sovereignty__status">
-            {t('dashboard.sovereigntyDesc')}
-          </p>
+            {importStatus ? (
+              <p className="dashboard-hero-task__explanation" role="alert">
+                {importStatus}
+              </p>
+            ) : null}
 
-          {importStatus ? (
-            <p className="dashboard-hero-task__explanation" role="alert">
-              {importStatus}
-            </p>
-          ) : null}
+            <div className="dashboard-sovereignty__actions">
+              <button
+                type="button"
+                className="dashboard-btn dashboard-btn--secondary"
+                onClick={handleExport}
+              >
+                📥 {t('dashboard.exportBtn')}
+              </button>
 
-          <div className="dashboard-sovereignty__actions">
-            <button
-              type="button"
-              className="dashboard-btn dashboard-btn--secondary"
-              onClick={handleExport}
-            >
-              {t('dashboard.exportBtn')}
-            </button>
+              <button
+                type="button"
+                className="dashboard-btn dashboard-btn--secondary"
+                onClick={handleImportClick}
+              >
+                📤 {t('dashboard.importBtn')}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
 
-            <button
-              type="button"
-              className="dashboard-btn dashboard-btn--secondary"
-              onClick={handleImportClick}
-            >
-              {t('dashboard.importBtn')}
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".json"
-              style={{ display: 'none' }}
-              onChange={handleFileChange}
-            />
-
-            <button
-              type="button"
-              className="dashboard-btn dashboard-btn--danger"
-              onClick={handleResetProgress}
-            >
-              {t('dashboard.resetBtn')}
-            </button>
-          </div>
-        </section>
-      </div>
+              <button
+                type="button"
+                className="dashboard-btn dashboard-btn--danger"
+                onClick={handleResetProgress}
+              >
+                ⚠️ {t('dashboard.resetBtn')}
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
   );
 }

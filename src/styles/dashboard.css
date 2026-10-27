@@ -992,3 +992,354 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+/* -----------------------------------------------------------------------------
+ * Dashboard Layout with Sidebar (Modern Dark & Asian Aesthetics)
+ * ----------------------------------------------------------------------------- */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0b0f19;
+  color: #e2e8f0;
+  font-family: var(--font-text, system-ui, sans-serif);
+}
+
+.dashboard-main {
+  margin-left: 240px;
+  flex: 1;
+  min-height: 100vh;
+  padding: 40px 48px 96px;
+  box-sizing: border-box;
+  background-color: #0b0f19;
+  max-width: calc(100vw - 240px);
+}
+
+@media (max-width: 900px) {
+  .dashboard-main {
+    margin-left: 0;
+    max-width: 100vw;
+    padding: 24px 16px 80px;
+  }
+}
+
+.dashboard-layout .dashboard-container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.dashboard-layout .dashboard-header {
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.dashboard-layout .dashboard-header__eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  margin-bottom: 12px;
+}
+
+.dashboard-layout .dashboard-header__title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.dashboard-layout .dashboard-header__desc {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 2-Column Grid */
+.dashboard-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 36px;
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .dashboard-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-layout .dashboard-hero-task {
+  border: 1.5px solid #d97706;
+  margin-bottom: 0;
+  padding: 24px;
+}
+
+.dashboard-layout .dashboard-hero-task__kicker {
+  color: #fbbf24;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.dashboard-layout .dashboard-hero-task__headline {
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.dashboard-layout .dashboard-hero-task__explanation {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+/* Section Header & Badges */
+.dashboard-section-header {
+  margin: 40px 0 20px;
+}
+
+.dashboard-section-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  margin-bottom: 6px;
+}
+
+.dashboard-section-title {
+  color: #f8fafc;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.dashboard-section-desc {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  margin: 0;
+  max-width: 70ch;
+}
+
+/* Vault Track in Dark */
+.dashboard-layout .dashboard-vault {
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+.dashboard-layout .dashboard-vault__track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+
+@media (max-width: 640px) {
+  .dashboard-layout .dashboard-vault__track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dashboard-layout .dashboard-vault__box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.dashboard-layout .dashboard-vault__box:hover {
+  border-color: #f59e0b;
+}
+
+.dashboard-layout .dashboard-vault__box-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.dashboard-layout .dashboard-vault__box-interval {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.dashboard-layout .dashboard-vault__box-count {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-top: 8px;
+}
+
+.dashboard-layout .dashboard-due-list {
+  border-top: 1px solid #1e293b;
+}
+
+.dashboard-layout .dashboard-due-item {
+  border-bottom: 1px solid #1e293b;
+  color: #e2e8f0;
+}
+
+.dashboard-layout .dashboard-due-item__script {
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.dashboard-layout .dashboard-due-item__roman {
+  color: #94a3b8;
+}
+
+.dashboard-layout .dashboard-due-item__meaning {
+  color: #cbd5e1;
+}
+
+.dashboard-layout .dashboard-due-item__meta {
+  color: #64748b;
+}
+
+/* Countries in Dark */
+.dashboard-layout .dashboard-countries {
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+.dashboard-layout .dashboard-country-list {
+  border-top: none;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-layout .dashboard-country-row {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 0;
+  transition: all 0.2s ease;
+}
+
+.dashboard-layout .dashboard-country-row:hover {
+  border-color: #334155;
+  background: #131d35;
+}
+
+.dashboard-layout .dashboard-country-row__name {
+  color: #f8fafc;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.dashboard-layout .dashboard-country-row__name a {
+  color: #f8fafc;
+  text-decoration: none;
+}
+
+.dashboard-layout .dashboard-country-row__name a:hover {
+  color: #f59e0b;
+}
+
+.dashboard-layout .dashboard-country-row__meta {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.dashboard-layout .dashboard-step-pill {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+}
+
+.dashboard-layout .dashboard-step-pill--done {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+/* Sovereignty in Dark */
+.dashboard-layout .dashboard-sovereignty__status {
+  color: #94a3b8;
+}
+
+/* Buttons in Dark Dashboard */
+.dashboard-layout .dashboard-btn--primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.dashboard-layout .dashboard-btn--primary:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.dashboard-layout .dashboard-btn--secondary {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #e2e8f0;
+  border-radius: 8px;
+}
+
+.dashboard-layout .dashboard-btn--secondary:hover {
+  background: #334155;
+  color: #fff;
+}
+
+.dashboard-layout .dashboard-btn--accent {
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+}
+
+.dashboard-layout .dashboard-btn--danger {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  border-radius: 8px;
+}
+
+.dashboard-layout .dashboard-btn--danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.dashboard-layout .dashboard-btn--small {
+  border-radius: 6px;
+  padding: 6px 14px;
+}
