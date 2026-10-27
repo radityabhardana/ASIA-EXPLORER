@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
+import AuthPage from './pages/AuthPage';
 import CountryPage from './pages/CountryPage';
 import LandingPage from './pages/LandingPage';
 import DashboardPage from './pages/DashboardPage';
@@ -8,9 +9,13 @@ import LessonPage from './pages/LessonPage';
 import QuestPage from './pages/QuestPage';
 import QuestResultPage from './pages/QuestResultPage';
 import ReviewPage from './pages/ReviewPage';
+import MapPage from './pages/MapPage';
+import ProfilePage from './pages/ProfilePage';
 import { RequireLengkap, RequireProfile } from '@/lib/profile';
 
 export const LANDING_PATH = '/';
+export const LOGIN_PATH = '/login';
+export const REGISTER_PATH = '/register';
 export const COUNTRY_PATH = '/negara/:id';
 export const DASHBOARD_PATH = '/dashboard';
 export const LESSON_PATH = '/dashboard/pelajaran/:countryId/:step';
@@ -36,6 +41,10 @@ function LessonDefaultRedirect() {
 export function AppRoutes() {
   return (
     <Routes>
+      {/* Rute Auth */}
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage defaultTab="register" />} />
+
       {/* Rute Publik */}
       <Route path={LANDING_PATH} element={<LandingPage />} />
       <Route path="/en" element={<LandingPage />} />
@@ -105,6 +114,26 @@ export function AppRoutes() {
         element={
           <RequireProfile>
             <ReviewPage />
+          </RequireProfile>
+        }
+      />
+
+      {/* Peta */}
+      <Route
+        path="/dashboard/peta"
+        element={
+          <RequireProfile>
+            <MapPage />
+          </RequireProfile>
+        }
+      />
+
+      {/* Profil */}
+      <Route
+        path="/dashboard/profil"
+        element={
+          <RequireProfile>
+            <ProfilePage />
           </RequireProfile>
         }
       />

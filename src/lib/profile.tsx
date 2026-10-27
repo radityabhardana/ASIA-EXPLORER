@@ -26,7 +26,7 @@ export function RequireProfile({ children }: { children: React.ReactNode }) {
   }
 
   if (status === 'none') {
-    return <Navigate to="/?profil=buat" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return <>{children}</>;
