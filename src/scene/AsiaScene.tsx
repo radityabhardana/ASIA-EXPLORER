@@ -180,6 +180,7 @@ export interface AsiaSceneProps {
   onCountryAnchor?: (id: string, anchor: { x: number; y: number }, side: 'left' | 'right') => void;
   onSelectCountry?: (id: string) => void;
   onActivateCountry?: (id: string) => void;
+  onHeadingChange?: (heading: number) => void;
   introEnabled?: boolean;
   idleSway?: boolean;
   /** WebGL gagal dibuat atau model tidak bisa dimuat. */
@@ -224,6 +225,8 @@ export interface AsiaSceneDebug {
   highlightCount?(): number;
   highlightProgress?(): number;
   pose(): CameraPose;
+  getHeading?(): number;
+  resetNorth?(): void;
   intro(): {
     state: 'boot' | 'intro' | 'scroll' | 'reduced' | 'skipped' | 'done';
     progress: number;
@@ -286,7 +289,7 @@ const FOV = 38;
 const ELEVATION_FROM_HORIZONTAL = 52;
 const DPR_MAX = 1.5;
 
-const HOVER_LIFT = 0.6;
+const HOVER_LIFT = 1.0;
 const SELECT_LIFT = 1.4;
 const LIFT_TAU = 0.11;
 const GLOW_TAU = 0.12;
@@ -468,6 +471,7 @@ export default function AsiaScene({
   onCountryAnchor,
   onSelectCountry,
   onActivateCountry,
+  onHeadingChange,
   introEnabled = true,
   idleSway = true,
   onUnavailable,
@@ -496,6 +500,7 @@ export default function AsiaScene({
     onCountryAnchor,
     onSelectCountry,
     onActivateCountry,
+    onHeadingChange,
     onUnavailable,
     interactiveClick,
     navigate,
@@ -515,6 +520,7 @@ export default function AsiaScene({
       onCountryAnchor,
       onSelectCountry,
       onActivateCountry,
+      onHeadingChange,
       onUnavailable,
       interactiveClick,
       navigate,
@@ -942,10 +948,32 @@ export default function AsiaScene({
       }
     };
 
+    let recenterTimer = 0;
+
+    const cancelAutoRecenter = () => {
+      window.clearTimeout(recenterTimer);
+    };
+
+    const scheduleAutoRecenter = () => {
+      window.clearTimeout(recenterTimer);
+      if (selectedRef.current !== null || focusActiveRef.current !== null) {
+        return;
+      }
+      recenterTimer = window.setTimeout(() => {
+        if (selectedRef.current === null && focusActiveRef.current === null) {
+          targetAzimuth = 0;
+          targetElevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+          targetDistance = instanceHeroPose.distance;
+          userHasControlled = false;
+        }
+      }, 1400);
+    };
+
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0 && event.pointerType === 'mouse') {
         return;
       }
+      cancelAutoRecenter();
       triggerInterrupt();
       pointerDownX = event.clientX;
       pointerDownY = event.clientY;
@@ -1005,6 +1033,10 @@ export default function AsiaScene({
     };
 
     const onPointerLeave = (event: PointerEvent) => {
+      if (isDragging) {
+        isDragging = false;
+        scheduleAutoRecenter();
+      }
       if (event.pointerType !== 'mouse' && event.type !== 'pointercancel') {
         return;
       }
@@ -1029,6 +1061,7 @@ export default function AsiaScene({
 
       if (isDragging) {
         isDragging = false;
+        scheduleAutoRecenter();
         return;
       }
 
@@ -1085,6 +1118,7 @@ export default function AsiaScene({
         MIN_CAMERA_DISTANCE,
         Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
       );
+      scheduleAutoRecenter();
     };
 
     let ctrlWheelAttached = false;
@@ -1109,6 +1143,7 @@ export default function AsiaScene({
     };
 
     const onDblClick = (event: MouseEvent) => {
+      cancelAutoRecenter();
       const id = pickAt(event.clientX, event.clientY);
       if (id) {
         selectedRef.current = id;
@@ -1163,6 +1198,13 @@ export default function AsiaScene({
           ty: currentPose.ty,
           tz: currentPose.tz,
         };
+      },
+      getHeading(): number {
+        const deg = (currentPose.azimuth * 180) / Math.PI;
+        return (((deg + 180) % 360) + 360) % 360 - 180;
+      },
+      resetNorth(): void {
+        targetAzimuth = 0;
       },
       intro() {
         const elapsed = introStartedAt > 0 ? performance.now() - introStartedAt : 0;
@@ -1533,6 +1575,7 @@ export default function AsiaScene({
     let lastFitScale = 1;
     let lastSpanX = 0;
     let lastSpanY = 0;
+    let lastHeadingDispatched = -999;
 
     const tick = (time: number) => {
       frameCount++;
@@ -1803,6 +1846,19 @@ export default function AsiaScene({
       }
 
       renderer.render(scene, camera);
+
+      const headingDeg =
+        (((currentPose.azimuth * 180) / Math.PI + 180) % 360 + 360) % 360 - 180;
+      if (Math.abs(headingDeg - lastHeadingDispatched) > 0.2) {
+        lastHeadingDispatched = headingDeg;
+        callbacksRef.current.onHeadingChange?.(headingDeg);
+        container.dispatchEvent(
+          new CustomEvent('asiakin:heading-change', {
+            bubbles: true,
+            detail: { heading: headingDeg },
+          }),
+        );
+      }
 
       if (!debug.ready) {
         debug.ready = true;
@@ -2173,6 +2229,7 @@ export default function AsiaScene({
 
     return () => {
       disposed = true;
+      cancelAutoRecenter();
       focusActiveRef.current = null;
       detachCtrlWheel();
       motionQuery.removeEventListener('change', onMotionChange);

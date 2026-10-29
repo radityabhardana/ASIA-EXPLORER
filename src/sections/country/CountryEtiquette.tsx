@@ -8,6 +8,7 @@ interface CountryEtiquetteProps {
 
 interface EtiquetteRule {
   index: string;
+  badge: string;
   type: 'do' | 'dont' | 'norm';
   title: string;
   instruction: string;
@@ -22,6 +23,7 @@ const CURATED_ETIQUETTE: Record<
     id: [
       {
         index: '01',
+        badge: 'PANDUAN UTAMA',
         type: 'do',
         title: 'Penghormatan Usia & Tradisi Salim',
         instruction:
@@ -31,8 +33,9 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '02',
-        type: 'do',
-        title: 'Adab Tangan Kanan & Sentuhan Santun',
+        badge: 'KERAMAHAN',
+        type: 'norm',
+        title: 'Tata Krama Jamuan & Adab Tangan Kanan',
         instruction:
           'Selalu gunakan tangan kanan untuk menyerahkan barang, uang, makanan, atau bersalaman. Saat bersalaman, sertai dengan anggukan kepala dan senyum tulus.',
         philosophy:
@@ -40,6 +43,7 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '03',
+        badge: 'PANTANGAN LAPANGAN',
         type: 'dont',
         title: 'Pantangan Alas Kaki & Tangan Kiri',
         instruction:
@@ -51,6 +55,7 @@ const CURATED_ETIQUETTE: Record<
     en: [
       {
         index: '01',
+        badge: 'PRIMARY PROTOCOL',
         type: 'do',
         title: 'Respect for Elders & Salim Gesture',
         instruction:
@@ -60,8 +65,9 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '02',
-        type: 'do',
-        title: 'Right-Hand Courtesy & Modest Bow',
+        badge: 'HOSPITALITY',
+        type: 'norm',
+        title: 'Right-Hand Courtesy & Hospitality',
         instruction:
           'Always give, receive, eat, and shake hands using your right hand, accompanied by a polite nod and pleasant warmth.',
         philosophy:
@@ -69,6 +75,7 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '03',
+        badge: 'FIELD TABOOS',
         type: 'dont',
         title: 'Footwear in Homes & Left-Hand Taboo',
         instruction:
@@ -82,6 +89,7 @@ const CURATED_ETIQUETTE: Record<
     id: [
       {
         index: '01',
+        badge: 'PANDUAN UTAMA',
         type: 'do',
         title: 'Seni Membungkuk Sesuai Derajat (Ojigi)',
         instruction:
@@ -91,7 +99,8 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '02',
-        type: 'do',
+        badge: 'KERAMAHAN',
+        type: 'norm',
         title: 'Pertukaran Kartu Nama Meishi Dua Tangan',
         instruction:
           'Pegang dua sudut atas meishi dengan kedua tangan, teks menghadap penerima. Pelajari kartu dengan seksama sebelum meletakkannya rapi di meja, jangan pernah mengantonginya langsung.',
@@ -100,6 +109,7 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '03',
+        badge: 'PANTANGAN LAPANGAN',
         type: 'dont',
         title: 'Pantangan Sumpit Tegak & Alas Kaki Genkan',
         instruction:
@@ -111,6 +121,7 @@ const CURATED_ETIQUETTE: Record<
     en: [
       {
         index: '01',
+        badge: 'PRIMARY PROTOCOL',
         type: 'do',
         title: 'Hierarchical Art of Bowing (Ojigi)',
         instruction:
@@ -120,7 +131,8 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '02',
-        type: 'do',
+        badge: 'HOSPITALITY',
+        type: 'norm',
         title: 'Two-Handed Business Card Protocol (Meishi)',
         instruction:
           'Present and receive business cards with both hands, text facing the recipient. Study it intently before placing it neatly on the table; never cram it into pockets.',
@@ -129,6 +141,7 @@ const CURATED_ETIQUETTE: Record<
       },
       {
         index: '03',
+        badge: 'FIELD TABOOS',
         type: 'dont',
         title: 'Vertical Chopsticks Taboo & Genkan Footwear',
         instruction:
@@ -140,57 +153,113 @@ const CURATED_ETIQUETTE: Record<
   },
 };
 
+function cleanSentence(s?: string): string {
+  if (!s) return '';
+  const str = s.trim().replace(/[.!?]+$/, '');
+  return str.length > 0 ? `${str}.` : '';
+}
+
 function extractRulesFromNotes(country: Country, locale: Locale): EtiquetteRule[] {
-  const note = country.peopleNote || '';
-  const sentences = note
+  const isEn = locale === 'en';
+  const name = country.nameId;
+  const greet = country.greeting || { native: '', roman: '', meaningId: '', register: '' };
+  const people = country.peopleNote || '';
+  const story = country.story?.text || '';
+
+  const allSentences = `${people}. ${story}`
     .split(/(?<=[.!?])\s+|;\s+/)
     .map((s) => s.trim().replace(/[.!?]+$/, ''))
     .filter((s) => s.length > 8);
 
-  const defaultTitlesId = [
-    'Adab Sapaan & Penghormatan Hierarki',
-    'Tata Krama Gestur & Keramahan Bertamu',
-    'Pantangan Perilaku & Etiket Tempat Tinggal',
+  // 1. Greeting & hierarchy
+  const greetGesture = allSentences.find(
+    (s) =>
+      /(?:sapa|salam|jabat|tangan di dada|bungkuk|wai|ojigi|namaste|salim|mano|el öpmek|tua|sesepuh|derajat|apni|aap|hajur|mingalaba|greet|bow|handshake|elder|hand on heart)/i.test(
+        s,
+      ) && !/(?:sepatu|alas kaki|shoe|footwear|sumpit|chopstick)/i.test(s),
+  );
+
+  let p1Instruction = '';
+  if (isEn) {
+    p1Instruction = greet.native
+      ? `Open encounters with the respectful greeting «${greet.native}» (${greet.roman}), meaning "${greet.meaningId}". ${greetGesture ? `${cleanSentence(greetGesture)} ` : ''}${greet.register || ''}`.trim()
+      : (greetGesture ? cleanSentence(greetGesture) : 'Observe formal greetings and show deference to elders.');
+  } else {
+    p1Instruction = greet.native
+      ? `Awali perjumpaan dengan sapaan hormat «${greet.native}» (${greet.roman}), yang bermakna "${greet.meaningId}". ${greetGesture ? `${cleanSentence(greetGesture)} ` : ''}${greet.register || ''}`.trim()
+      : (greetGesture ? cleanSentence(greetGesture) : 'Patuhi norma adat dan dahulukan menyapa yang lebih tua.');
+  }
+
+  // 2. Hospitality & table manners
+  const hospSentence = allSentences.find(
+    (s) =>
+      /(?:jamu|teh|kopi|makan|hidangan|cangkir|piring|tuan rumah|dua tangan|tangan kanan|suguh|terima|sendok|supra|gahwa|chai|tea|coffee|guest|host|two hands|right hand|serve|dish)/i.test(
+        s,
+      ) && !/(?:sepatu|alas kaki|shoe|footwear|kepala|head|ambang|threshold)/i.test(s),
+  );
+
+  let p2Instruction = '';
+  if (isEn) {
+    p2Instruction = hospSentence
+      ? `${cleanSentence(hospSentence)} Always use the right hand or both hands when giving, receiving, or dining.`
+      : 'When hosted, graciously accept offerings of tea or refreshments using your right hand to honor the host’s hospitality.';
+  } else {
+    p2Instruction = hospSentence
+      ? `${cleanSentence(hospSentence)} Selalu gunakan tangan kanan atau kedua belah tangan saat menerima, menyerahkan, atau menyantap hidangan.`
+      : 'Saat bertamu, sambut sajian minuman atau hidangan dengan takzim memakai tangan kanan sebagai tanda menghormati kemurahan hati tuan rumah.';
+  }
+
+  // 3. Cultural taboos & decorum
+  const tabooSentence = allSentences.find(
+    (s) =>
+      /(?:sepatu|alas kaki|ambang|kepala|telapak kaki|dilarang|jangan|tidak boleh|bukan telunjuk|ibu jari|sumpit|kontak fisik|shoe|footwear|threshold|head|sole|feet|never|taboo|avoid|chopstick)/i.test(
+        s,
+      ),
+  );
+
+  let p3Instruction = '';
+  if (isEn) {
+    p3Instruction = tabooSentence
+      ? `${cleanSentence(tabooSentence)} Maintaining spatial boundaries and abstaining from offensive physical gestures is essential.`
+      : 'Always remove outdoor footwear before entering private residences or sacred sanctuaries, and refrain from pointing aggressively.';
+  } else {
+    p3Instruction = tabooSentence
+      ? `${cleanSentence(tabooSentence)} Menjaga tata susila ruang tempat tinggal dan menahan diri dari gestur tabu adalah keharusan mutlak.`
+      : 'Wajib menanggalkan alas kaki sebelum melangkah ke area dalam kediaman atau tempat suci, serta hindari menunjuk dengan telunjuk.';
+  }
+
+  return [
+    {
+      index: '01',
+      badge: isEn ? 'PRIMARY PROTOCOL' : 'PANDUAN UTAMA',
+      type: 'do',
+      title: isEn ? 'Greeting Protocol & Respect for Hierarchy' : 'Adab Sapaan & Penghormatan Hierarki',
+      instruction: p1Instruction,
+      philosophy: isEn
+        ? `Acknowledging generational seniority and social dignity forms the foundation of communal harmony in ${name}.`
+        : `Menghormati garis usia dan martabat lawan bicara merupakan fondasi utama keselarasan sosial di tengah masyarakat ${name}.`,
+    },
+    {
+      index: '02',
+      badge: isEn ? 'HOSPITALITY' : 'KERAMAHAN',
+      type: 'norm',
+      title: isEn ? 'Hospitality & Table Manners' : 'Tata Krama Keramahan & Jamuan',
+      instruction: p2Instruction,
+      philosophy: isEn
+        ? 'Dining hospitality is regarded as an authentic covenant of goodwill and mutual trust.'
+        : 'Jamuan makan dan minum dipandang sebagai sakramen keterbukaan hati; menghormati sajian tuan rumah mempererat tali persaudaraan.',
+    },
+    {
+      index: '03',
+      badge: isEn ? 'FIELD TABOOS' : 'PANTANGAN LAPANGAN',
+      type: 'dont',
+      title: isEn ? 'Cultural Taboos & Sacred Decorum' : 'Pantangan Perilaku & Tabu Tempat Tinggal',
+      instruction: p3Instruction,
+      philosophy: isEn
+        ? 'Preserving household sanctity and bodily reverence safeguards the host’s honor.'
+        : 'Menjaga kesucian batas hunian dan menghormati kesakralan tubuh adalah benteng kehormatan adat setempat.',
+    },
   ];
-
-  const defaultTitlesEn = [
-    'Greeting Protocol & Respect for Hierarchy',
-    'Gestural Etiquette & Hospitality Courtesies',
-    'Cultural Taboos & Household Decorum',
-  ];
-
-  const defaultPhilosophiesId = [
-    'Menegaskan keharmonisan sosial lewat pengakuan martabat dan urutan usia.',
-    'Menjaga kesucian interaksi melalui gestur fisik yang santun dan penuh pertimbangan.',
-    'Menghormati batas-batas privasi dan tata ruang tradisional masyarakat setempat.',
-  ];
-
-  const defaultPhilosophiesEn = [
-    'Reinforcing communal harmony through respect for age and social precedence.',
-    'Preserving interpersonal warmth through mindful physical gestures and hospitality.',
-    'Respecting traditional boundaries of domestic tranquility and sacred decorum.',
-  ];
-
-  return [0, 1, 2].map((idx) => {
-    const rawInstruction = sentences[idx] || sentences[0] || (locale === 'id' ? 'Patuhi norma adat setempat saat berinteraksi dengan warga.' : 'Observe local customary rules when engaging with residents.');
-    const ruleType: 'do' | 'dont' | 'norm' =
-      rawInstruction.toLowerCase().includes('jangan') ||
-      rawInstruction.toLowerCase().includes('tidak') ||
-      rawInstruction.toLowerCase().includes('never') ||
-      rawInstruction.toLowerCase().includes('avoid')
-        ? 'dont'
-        : idx === 0
-          ? 'do'
-          : 'norm';
-
-    return {
-      index: String(idx + 1).padStart(2, '0'),
-      type: ruleType,
-      title: locale === 'id' ? defaultTitlesId[idx]! : defaultTitlesEn[idx]!,
-      instruction: rawInstruction.endsWith('.') ? rawInstruction : `${rawInstruction}.`,
-      philosophy: locale === 'id' ? defaultPhilosophiesId[idx]! : defaultPhilosophiesEn[idx]!,
-    };
-  });
 }
 
 export default function CountryEtiquette({ country, locale = 'id' }: CountryEtiquetteProps) {
@@ -222,9 +291,6 @@ export default function CountryEtiquette({ country, locale = 'id' }: CountryEtiq
 
         <div className="country-etiquette__grid">
           {rules.map((rule) => {
-            const isDo = rule.type === 'do';
-            const isDont = rule.type === 'dont';
-
             return (
               <article
                 key={rule.index}
@@ -235,25 +301,9 @@ export default function CountryEtiquette({ country, locale = 'id' }: CountryEtiq
                     KAIDAH {rule.index}
                   </span>
                   <span
-                    className={`country-etiquette__badge ${
-                      isDo
-                        ? 'country-etiquette__badge--do'
-                        : isDont
-                          ? 'country-etiquette__badge--dont'
-                          : 'country-etiquette__badge--norm'
-                    }`}
+                    className={`country-etiquette__badge country-etiquette__badge--${rule.type}`}
                   >
-                    {isDo
-                      ? locale === 'id'
-                        ? '✓ Dianjurkan'
-                        : '✓ Courteous'
-                      : isDont
-                        ? locale === 'id'
-                          ? '✕ Pantangan'
-                          : '✕ Cultural Taboo'
-                        : locale === 'id'
-                          ? '◆ Tata Krama'
-                          : '◆ Field Protocol'}
+                    {rule.badge}
                   </span>
                 </div>
 

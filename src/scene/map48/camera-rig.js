@@ -110,6 +110,11 @@ export class CameraRig {
     return this._tween !== null;
   }
 
+  /** Hentikan animasi kamera aktif dan pulihkan kendali controls. */
+  stop() {
+    this._clear();
+  }
+
   _clear() {
     if (this._tween) {
       cancelTween(this._tween);
@@ -190,19 +195,24 @@ export class CameraRig {
   }
 
   /** Mengembalikan rotasi kamera ke arah Utara di Atas (North-Up). */
-  resetNorth(onComplete) {
+  resetNorth(optionsOrCb) {
+    const options =
+      typeof optionsOrCb === 'function' ? { onComplete: optionsOrCb } : optionsOrCb || {};
+    const { duration = 0.8, ease = easing.outCubic, onComplete } = options;
     const offset = this.camera.position.clone().sub(this.controls.target);
     const sph = new Spherical().setFromVector3(offset);
     const ov = getOverview(this.camera.aspect);
-    this.flyTo({ phi: ov.phi, theta: ov.theta }, { duration: 0.8, onComplete });
+    this.flyTo({ phi: ov.phi, theta: ov.theta }, { duration, ease, onComplete });
   }
 
-  /** Mendapatkan sudut deviasi orientasi kamera terhadap utara dalam derajat. */
+  /** Mendapatkan sudut deviasi orientasi kamera terhadap utara dalam derajat [-180..180]. */
   getHeading() {
     const offset = this.camera.position.clone().sub(this.controls.target);
     const sph = new Spherical().setFromVector3(offset);
     const ov = getOverview(this.camera.aspect);
-    return ((sph.theta - ov.theta) * 180) / Math.PI;
+    let diff = ((sph.theta - ov.theta) * 180) / Math.PI;
+    diff = (((diff + 180) % 360) + 360) % 360 - 180;
+    return diff;
   }
 
   /** Terbang ke koordinat bidang X/Z (misal pusat kawasan). */
@@ -215,7 +225,7 @@ export class CameraRig {
     const ov = getOverview(this.camera.aspect);
     const options =
       typeof optionsOrCb === 'function' ? { onComplete: optionsOrCb } : optionsOrCb || {};
-    const { duration = 1.05, onComplete } = options;
+    const { duration = 1.05, ease = easing.inOutCubic, onComplete } = options;
     this.flyTo(
       {
         target: ov.target,
@@ -223,7 +233,7 @@ export class CameraRig {
         phi: ov.phi,
         theta: ov.theta,
       },
-      { duration, onComplete },
+      { duration, ease, onComplete },
     );
   }
 

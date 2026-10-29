@@ -95,7 +95,7 @@ export default function CountryPage() {
         <CountryFactsheet country={country} locale={contentLocale} />
 
         {/* 3. Cerita */}
-        <StoryBlock country={country} />
+        <StoryBlock country={country} locale={contentLocale} />
 
         {/* 4. Kaidah Etiket Lapangan (Tiga Aturan Sopan Santun Budaya) */}
         <CountryEtiquette country={country} locale={contentLocale} />

@@ -144,7 +144,7 @@ export default function AsiaSceneLazy({
         mounted = await mountPanelMap(stage, {
           interactive: !decorative,
           onSelect: (code) =>
-            callbacksRef.current.onSelectCountry?.(countryIdOf(code)),
+            callbacksRef.current.onSelectCountry?.(code ? countryIdOf(code) : null),
           onHover: (code) =>
             callbacksRef.current.onHoverCountry?.(
               code ? countryIdOf(code) : null,
@@ -203,18 +203,42 @@ export default function AsiaSceneLazy({
     if (status !== 'ready' || decorative || dimension !== '3d') return;
     let animId = 0;
     let lastHeading = -999;
-    const checkHeading = () => {
-      const h = instanceRef.current?.getHeading?.() ?? 0;
-      if (Math.abs(h - lastHeading) > 0.3) {
+    const stage = stageRef.current;
+
+    const applyHeading = (h: number) => {
+      if (Math.abs(h - lastHeading) > 0.2) {
         lastHeading = h;
         if (compassNeedleRef.current) {
           compassNeedleRef.current.style.transform = `rotate(${-h}deg)`;
         }
       }
+    };
+
+    const handleHeadingEvent = (e: Event) => {
+      const custom = e as CustomEvent<{ heading: number }>;
+      const h = custom.detail?.heading;
+      if (typeof h === 'number') {
+        applyHeading(h);
+      }
+    };
+
+    if (stage) {
+      stage.addEventListener('asiakin:heading-change', handleHeadingEvent);
+    }
+
+    const checkHeading = () => {
+      const h = instanceRef.current?.getHeading?.() ?? 0;
+      applyHeading(h);
       animId = requestAnimationFrame(checkHeading);
     };
     animId = requestAnimationFrame(checkHeading);
-    return () => cancelAnimationFrame(animId);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      if (stage) {
+        stage.removeEventListener('asiakin:heading-change', handleHeadingEvent);
+      }
+    };
   }, [status, decorative, dimension]);
 
   const [nudgePulse, setNudgePulse] = useState(false);

@@ -344,19 +344,27 @@ export function buildCountries(featureCollection, projection) {
 }
 
 /**
- * Animasi per-frame negara: rise intro (drop -> 0), lift hover/fokus,
- * dan transisi warna (base -> hover). Semua smoothing eksponensial.
+ * Animasi per-frame negara: rise intro (drop -> 0), tactile hover elevation (lift Y 1.0),
+ * dan sculpted bas-relief highlight. Transisi lerp halus di render loop.
  */
 export function animateCountries(countries, dt, hover, focus) {
   for (const c of countries) {
-    const lit = c === hover || c === focus;
-    c.hoverS += ((lit ? 1 : 0) - c.hoverS) * Math.min(1, dt * 9);
-    const liftTarget = c === focus ? 0.8 : lit ? 0.45 : 0;
-    c.liftS += (liftTarget - c.liftS) * Math.min(1, dt * 10);
+    const isHovered = c === hover;
+    const isFocused = c === focus;
+    const lit = isHovered || isFocused;
+
+    // Hover smoothing (0..1)
+    c.hoverS += ((lit ? 1 : 0) - c.hoverS) * 0.15;
+
+    // Tactile relief lift: hover terangkat halus di sumbu Y (targetY = 1.0, fokus = 1.25)
+    const targetY = isFocused ? 1.25 : isHovered ? 1.0 : 0;
+    c.liftS += (targetY - c.liftS) * 0.15;
     c.group.position.y = -INTRO_DROP * (1 - c.riseK) + c.liftS + (c.elevation || 0) * c.riseK;
 
+    // Efek timbul mikro (sculpted bas-relief): transisi warna, emissive rim glow, & kilau marmer
     c.material.color.lerpColors(c.baseColor, c.hoverColor, c.hoverS);
-    c.material.emissive.copy(c.baseColor).multiplyScalar(0.24 * c.hoverS);
-    c.line.material.opacity = 0.65 * c.riseK + 0.3 * c.hoverS;
+    c.material.emissive.copy(c.hoverColor).multiplyScalar(0.28 * c.hoverS);
+    c.material.roughness = 0.44 - 0.12 * c.hoverS;
+    c.line.material.opacity = 0.65 * c.riseK + 0.35 * c.hoverS;
   }
 }

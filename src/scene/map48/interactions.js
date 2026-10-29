@@ -14,6 +14,8 @@ export function createInteraction({
   onHoverChange,
   onCountryPick,
   onBackgroundPick,
+  onDragStart,
+  onDragEnd,
 }) {
   const raycaster = new Raycaster();
   const ndc = new Vector2(-2, -2);
@@ -21,6 +23,7 @@ export function createInteraction({
   let dirty = false;
   let lastCast = 0;
   let down = null;
+  let hasDragged = false;
 
   function setPointer(event) {
     const rect = canvas.getBoundingClientRect();
@@ -37,15 +40,30 @@ export function createInteraction({
   function onPointerMove(event) {
     setPointer(event);
     dirty = true;
+    if (down && !hasDragged) {
+      if (Math.hypot(event.clientX - down.x, event.clientY - down.y) > 6) {
+        hasDragged = true;
+      }
+    }
   }
 
   function onPointerLeave() {
     ndc.set(-2, -2);
     dirty = true;
+    if (down && hasDragged) {
+      down = null;
+      hasDragged = false;
+      onDragEnd?.();
+    } else {
+      down = null;
+      hasDragged = false;
+    }
   }
 
   function onPointerDown(event) {
     down = { x: event.clientX, y: event.clientY, t: performance.now() };
+    hasDragged = false;
+    onDragStart?.();
   }
 
   function onPointerUp(event) {
@@ -53,9 +71,14 @@ export function createInteraction({
     const dx = event.clientX - down.x;
     const dy = event.clientY - down.y;
     const hold = performance.now() - down.t;
+    const wasDragged = hasDragged || Math.hypot(dx, dy) > 6 || hold > 650;
     down = null;
+    hasDragged = false;
+    if (wasDragged) {
+      onDragEnd?.();
+      return; // itu drag, bukan klik
+    }
     if (!isReady() || isBusy()) return;
-    if (Math.hypot(dx, dy) > 6 || hold > 650) return; // itu drag, bukan klik
     setPointer(event);
     const meta = cast();
     if (meta) onCountryPick(meta);

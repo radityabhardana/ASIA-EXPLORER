@@ -776,19 +776,117 @@
   }
 }
 
-/* --- 2. Cerita (Main Reading Column, 120-180 words) ----------------------- */
+/* --- 2. Cerita (Editorial Narrative Layout) ------------------------------- */
 
 .country-story {
   padding-block: var(--space-4);
 }
 
+.country-story__inner {
+  position: relative;
+}
+
+.country-story__header {
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid rgba(26, 31, 36, 0.1);
+}
+
+.country-story__kicker-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.country-story__mark {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #8c5332;
+}
+
+.country-story__kicker {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8c5332;
+}
+
 .country-story__title {
-  margin: 0 0 var(--space-2) 0;
+  margin: 0 0 4px 0;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: var(--text-h2);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-h2);
+}
+
+.country-story__subtitle {
+  margin: 0;
+  color: var(--ink-muted, #4a5568);
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.country-story__body {
+  max-width: 68ch;
+}
+
+.country-story__lead {
+  margin: 0 0 var(--space-3) 0;
+  font-family: var(--font-text);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--ink);
+  padding: 0.75rem 1.125rem;
+  border-inline-start: 3px solid #8c5332;
+  background: rgba(251, 248, 242, 0.7);
+  border-radius: 0 4px 4px 0;
+}
+
+.country-story__paragraph {
+  margin: 0 0 var(--space-3) 0;
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 1.03125rem;
+  line-height: 1.75;
+}
+
+.country-story__quote {
+  position: relative;
+  margin: calc(var(--space-4) * 0.75) 0;
+  padding: 1.25rem 1.75rem;
+  background: rgba(251, 248, 242, 0.95);
+  border: 1px solid rgba(140, 83, 50, 0.18);
+  border-inline-start: 4px solid #8c5332;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 8px rgba(26, 31, 36, 0.03);
+}
+
+.country-story__quote-text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.country-story__quote-cite {
+  display: block;
+  margin-top: 0.625rem;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8c5332;
 }
 
 .country-story__text {
@@ -800,10 +898,10 @@
   line-height: 1.7;
 }
 
-/* --- 3 & 4. Budaya dan Orang (NoteBlock) ----------------------------------- */
+/* --- 3 & 4. Budaya dan Orang (NoteBlock: Lithograph Archive Plate) --------- */
 
 .country-note {
-  padding-block: var(--space-4);
+  padding-block: var(--space-3);
 }
 
 .country-note h2 {
@@ -817,11 +915,89 @@
 
 .country-note__text {
   margin: 0;
-  max-width: 65ch;
+  max-width: 68ch;
   color: var(--ink);
   font-family: var(--font-text);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
+  font-size: 1.03125rem;
+  line-height: 1.75;
+}
+
+.country-archive-plate__inner {
+  background: rgba(251, 248, 242, 0.95);
+  border: 1px solid rgba(26, 31, 36, 0.14);
+  border-radius: 4px;
+  padding: clamp(20px, 3.2vw, 28px);
+  box-shadow: 0 4px 16px rgba(26, 31, 36, 0.03);
+  position: relative;
+  background-image:
+    radial-gradient(rgba(140, 83, 50, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.country-archive-plate__header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(26, 31, 36, 0.1);
+}
+
+.country-archive-plate__stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(140, 83, 50, 0.08);
+  border: 1px solid rgba(140, 83, 50, 0.22);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.country-archive-plate__seal {
+  font-family: var(--font-display, serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #8c5332;
+  line-height: 1;
+}
+
+.country-archive-plate__kicker {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8c5332;
+  margin: 0;
+}
+
+.country-archive-plate__title {
+  margin: 0 0 4px 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+}
+
+.country-archive-plate__subtitle {
+  margin: 0;
+  color: var(--ink-muted, #4a5568);
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.country-archive-plate__body {
+  position: relative;
+}
+
+.country-archive-plate__text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 1.03125rem;
+  line-height: 1.75;
 }
 
 /* --- 5. Bahasa (greeting, 3 phrases, audio control) ----------------------- */
@@ -1859,31 +2035,32 @@
 }
 
 .country-etiquette__badge {
-  font-family: var(--font-text);
+  font-family: var(--font-mono, monospace);
   font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 2px 7px;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
   border-radius: 2px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .country-etiquette__badge--do {
   color: #0f766e;
-  background: rgba(15, 118, 110, 0.08);
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  background: rgba(15, 118, 110, 0.09);
+  border: 1px solid rgba(15, 118, 110, 0.25);
 }
 
 .country-etiquette__badge--dont {
-  color: var(--terracotta, #b84d37);
-  background: rgba(184, 77, 55, 0.08);
-  border: 1px solid rgba(184, 77, 55, 0.2);
+  color: #b84d37;
+  background: rgba(184, 77, 55, 0.09);
+  border: 1px solid rgba(184, 77, 55, 0.25);
 }
 
 .country-etiquette__badge--norm {
-  color: #2b3a4a;
-  background: rgba(43, 58, 74, 0.08);
-  border: 1px solid rgba(43, 58, 74, 0.2);
+  color: #1e3a5f;
+  background: rgba(30, 58, 95, 0.09);
+  border: 1px solid rgba(30, 58, 95, 0.24);
 }
 
 .country-etiquette__card-title {

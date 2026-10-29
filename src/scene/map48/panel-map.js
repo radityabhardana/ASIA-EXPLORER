@@ -18,7 +18,7 @@ import { buildCountries, animateCountries } from './countries.js';
 import { createScene } from './environment.js';
 import { attachLabels } from './labels.js';
 import { createControls, clampControlsTarget } from './controls.js';
-import { CameraRig, OVERVIEW, getOverview, updateTweens } from './camera-rig.js';
+import { CameraRig, OVERVIEW, easing, getOverview, updateTweens } from './camera-rig.js';
 import { createInteraction } from './interactions.js';
 import { INK, hoverTint } from './palette.js';
 
@@ -352,17 +352,63 @@ export async function mountPanelMap(
     }, IDLE_MS);
   }
 
-  if (!reduceMotion) {
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.45; // drift pelan, bukan orbit penuh
-    controls.addEventListener('start', () => {
-      controls.autoRotate = false;
-      clearTimeout(idleTimer);
-    });
-    controls.addEventListener('end', armIdle);
+  const RECENTER_DELAY_MS = 1400;
+  let recenterTimer = 0;
+  let isRecentering = false;
+  let controlsMoved = false;
+
+  function cancelAutoRecenter() {
+    clearTimeout(recenterTimer);
+    if (isRecentering) {
+      isRecentering = false;
+      rig.stop();
+    }
   }
 
+  function scheduleAutoRecenter() {
+    clearTimeout(recenterTimer);
+    // Jika sebuah negara sedang dalam kondisi terpilih (focused on a country with preview open),
+    // JANGAN auto-recenter sampai preview ditutup atau user klik background.
+    if (currentFocusCode !== null || paused || destroyed) return;
+
+    recenterTimer = setTimeout(() => {
+      if (destroyed || currentFocusCode !== null || paused || flying) return;
+      isRecentering = true;
+      rig.overview({
+        duration: 1.25,
+        ease: easing.outCubic,
+        onComplete: () => {
+          isRecentering = false;
+          if (!reduceMotion && !paused && hover === null) {
+            armIdle();
+          }
+        },
+      });
+    }, RECENTER_DELAY_MS);
+  }
+
+  controls.autoRotate = !reduceMotion;
+  controls.autoRotateSpeed = 0.45; // drift pelan, bukan orbit penuh
+  controls.addEventListener('start', () => {
+    cancelAutoRecenter();
+    controlsMoved = false;
+    controls.autoRotate = false;
+    clearTimeout(idleTimer);
+  });
+  controls.addEventListener('change', () => {
+    controlsMoved = true;
+  });
+  controls.addEventListener('end', () => {
+    if (controlsMoved) {
+      controlsMoved = false;
+      scheduleAutoRecenter();
+    } else if (!reduceMotion && !paused && hover === null) {
+      armIdle();
+    }
+  });
+
   function pickCountry(country) {
+    cancelAutoRecenter();
     if (currentFocusCode === country.code) return;
     if (reduceMotion) {
       window.setTimeout(() => onSelect?.(country.code), 0);
@@ -386,26 +432,50 @@ export async function mountPanelMap(
     });
   }
 
+  function handleBackgroundPick() {
+    cancelAutoRecenter();
+    if (currentFocusCode !== null) {
+      currentFocusCode = null;
+      lastFocusCountry = null;
+      if (activeArc) {
+        activeArc.dispose();
+        activeArc = null;
+      }
+      if (activeBeacon) {
+        activeBeacon.dispose();
+        activeBeacon = null;
+      }
+      onSelect?.(null);
+      rig.overview({ duration: 1.25, ease: easing.outCubic });
+    } else {
+      rig.overview({ duration: 1.25, ease: easing.outCubic });
+    }
+  }
+
   const interaction = interactive
     ? createInteraction({
         canvas,
         camera: env.camera,
         meshes: list.flatMap((c) => (c.proxyMesh ? [c.mesh, c.proxyMesh] : [c.mesh])),
         isReady: () => !destroyed,
-        isBusy: () => rig.moving,
+        isBusy: () => rig.moving && !isRecentering,
         onHoverChange: handleHover,
         onCountryPick: pickCountry,
-        onBackgroundPick: () => {},
+        onBackgroundPick: handleBackgroundPick,
+        onDragStart: cancelAutoRecenter,
+        onDragEnd: scheduleAutoRecenter,
       })
     : null;
 
   // Smart Zoom handler: Ctrl/Cmd + Wheel zooms 3D map without hijacking regular page scroll
   const onWheel = (e) => {
+    cancelAutoRecenter();
     if (!interactive) return;
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
       const step = e.deltaY < 0 ? 1 : -1;
       rig.zoom(step, { duration: 0.22 });
+      scheduleAutoRecenter();
     } else {
       // User is scrolling normally: allow page scroll and trigger hint event
       stage.dispatchEvent(new CustomEvent('asiakin:map-scroll-hint', { bubbles: true }));
@@ -497,10 +567,14 @@ export async function mountPanelMap(
     camera: env.camera,
     controls,
     rig,
+    getHeading: () => rig.getHeading(),
+    resetNorth: () => rig.resetNorth(),
   };
   if (import.meta.env.DEV) {
     window.__asiakin_map48 = debug;
   }
+
+  let lastDispatchedHeading = -999;
 
   function frame() {
     const now = performance.now();
@@ -516,6 +590,18 @@ export async function mountPanelMap(
     if (!reduceMotion) env.update(dt, now / 1000);
     updateTweens(dt);
     interaction?.update(now);
+
+    const heading = rig.getHeading();
+    if (Math.abs(heading - lastDispatchedHeading) > 0.2) {
+      lastDispatchedHeading = heading;
+      stage.dispatchEvent(
+        new CustomEvent('asiakin:heading-change', {
+          bubbles: true,
+          detail: { heading },
+        }),
+      );
+    }
+
     env.render();
 
     if (!debug.ready) {
@@ -571,6 +657,7 @@ export async function mountPanelMap(
       activeBeacon = null;
     }
     clearTimeout(idleTimer);
+    cancelAutoRecenter();
     stop();
     resizeObserver.disconnect();
     visibility.disconnect();
@@ -604,6 +691,7 @@ export async function mountPanelMap(
     resize,
     destroy,
     overview: () => {
+      cancelAutoRecenter();
       flying = false;
       currentFocusCode = null;
       lastFocusCountry = null;
@@ -615,9 +703,10 @@ export async function mountPanelMap(
         activeBeacon.dispose();
         activeBeacon = null;
       }
-      rig.overview();
+      rig.overview({ duration: 1.25, ease: easing.outCubic });
     },
     focus: (code) => {
+      cancelAutoRecenter();
       if (currentFocusCode === code) return;
       currentFocusCode = code;
       const c = list.find((item) => item.code === code);

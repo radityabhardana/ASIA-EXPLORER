@@ -24,7 +24,7 @@ export interface PanelMapInstance {
 export interface MountPanelMapOptions {
   visited?: string[];
   today?: string | null;
-  onSelect?: (code: string) => void;
+  onSelect?: (code: string | null) => void;
   /** Dipanggil saat hover berubah; null saat keluar dari semua negara. */
   onHover?: (code: string | null) => void;
   interactive?: boolean;
