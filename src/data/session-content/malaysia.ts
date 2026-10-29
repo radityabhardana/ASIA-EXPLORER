@@ -1,7 +1,7 @@
 import type { SessionContent } from '@/lib/storage/types';
 
 const content: SessionContent = {
-  countryId: 'malaysia',
+  countryId: 'my',
   audioQuests: [
     {
       id: 'my-aq-1',
