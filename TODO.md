@@ -5,10 +5,10 @@ Halaman negara bersih tanpa siluet hitam/arsiran mengganggu, layout editorial ra
 ## Task Board
 | ID | Task | Owner Agent | Status | Bukti / Verifikasi |
 |---|---|---|---|---|
-| T1 | Desain ulang latar & sidebar halaman negara (hapus arsiran hitam & siluet mengganggu) | @designer | ✅ Done | `5f9a3de` & `docs/shots_intro_verify/121-country-in-no-black-blob.png` |
-| T2 | Audit layout mobile & desktop halaman negara agar cerita tidak tertutup | @designer | ✅ Done | `docs/shots_intro_verify/122-country-in-text-clean.png` & `123-country-in-mobile-clean.png` (Playwright 14/14 pass) |
-| T3 | Verifikasi test suite, contrast, & build 100% | @fixer | ✅ Done | `typecheck`, `lint` (0 warn), `vitest` (10/10 files, 92 tests pass), `scripts/verify.mjs` (9/9 steps pass) |
-| T4 | Push repo GitHub bersih | @fixer | ✅ Done | `origin/main` sinkron di GitHub |
+| T1 | Desain ulang latar & sidebar halaman negara (hapus arsiran hitam & siluet mengganggu) | @designer | ✅ Done | `CountryPortrait.tsx` (arsiran hitam dihapus total), `CountryBackground.tsx` (grain noise & siluet gelap dibersihkan) |
+| T2 | Audit layout mobile & desktop halaman negara agar cerita tidak tertutup | @designer | ✅ Done | `CountryPage.tsx` & `RegionLocator.tsx` bersatu jadi 1 kartu editorial; mobile (<600px) hero 240px & map 125px rapi |
+| T3 | Verifikasi test suite, contrast, & build 100% | @fixer | ✅ Done | `npm run verify`: 9/9 step lulus (typecheck, lint 0 warn, vitest 100/100, build, contrast >=14:1) |
+| T4 | Push repo GitHub bersih | @fixer | ⏳ Queued | Siap commit & sinkronisasi branch main |
 
 ## Blokir & Risiko
 - Tidak ada blokir aktif.
