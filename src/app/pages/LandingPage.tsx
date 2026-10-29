@@ -17,6 +17,8 @@ import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CartographicGround from '@/sections/landing/CartographicGround';
 import CountryPreviewPanel from '@/sections/landing/CountryPreviewPanel';
 import DailyChallengeExpedition from '@/sections/landing/DailyChallengeExpedition';
+import EtiquetteFieldGuide from '@/sections/landing/EtiquetteFieldGuide';
+import ExpeditionMasterySection from '@/sections/landing/ExpeditionMasterySection';
 import RegionExpeditionGallery from '@/sections/landing/RegionExpeditionGallery';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import '@/styles/landing.css';
@@ -58,7 +60,11 @@ export default function LandingPage() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+    setIsTouchDevice(isTouch);
   }, []);
 
   // Hitung geodetic transit metric saat berpindah negara fokus
@@ -593,7 +599,15 @@ export default function LandingPage() {
         onSelectCountry={handleSelectCountry}
       />
 
-      {/* Scene 4 — Footer: wordmark dan catatan hak cipta */}
+      {/* Scene 4 — Panduan Etiket & Norma Budaya (Field Guide 48 Bangsa) */}
+      <EtiquetteFieldGuide
+        onSelectCountry={handleSelectCountry}
+      />
+
+      {/* Scene 5 — Sains Memori, Quest & Jalur Belajar */}
+      <ExpeditionMasterySection />
+
+      {/* Scene 6 — Footer: wordmark dan catatan hak cipta */}
       <footer
         className="landing-scene landing-scene--footer"
         aria-labelledby="landing-footer-heading"

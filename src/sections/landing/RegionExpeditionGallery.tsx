@@ -331,9 +331,20 @@ export default function RegionExpeditionGallery({ onSelectCountry }: RegionExped
                     ? `Buka Lembar Lapangan: ${featuredMeta?.name}`
                     : `Open Field Profile: ${featuredMeta?.name}`}
                 </span>
-                <span className="region-spotlight__action-icon" aria-hidden="true">
-                  →
-                </span>
+                <svg
+                  className="region-spotlight__action-icon"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
               </button>
             </div>
           </article>
@@ -388,7 +399,19 @@ export default function RegionExpeditionGallery({ onSelectCountry }: RegionExped
                       </span>
                       <span className="region-card__explore-link">
                         <span>{locale === 'id' ? 'Buka' : 'View'}</span>
-                        <span aria-hidden="true">→</span>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
                       </span>
                     </div>
                   </div>

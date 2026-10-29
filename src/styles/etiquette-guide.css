@@ -1,0 +1,336 @@
+/* ============================================================
+   Panduan Etiket Lapangan & Norma Budaya (EtiquetteFieldGuide)
+   Editorial Luxury: Komparasi etiket santun vs pantangan tabu
+   di 48 negara Asia.
+   ============================================================ */
+
+.etiquette-guide {
+  position: relative;
+  width: 100%;
+  padding: clamp(64px, 10vh, 120px) clamp(24px, 5vw, 72px);
+  background-color: var(--ground, #f4f0e8);
+  border-top: 1px solid var(--line, #ded8ce);
+  box-sizing: border-box;
+}
+
+.etiquette-guide__container {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vh, 48px);
+}
+
+/* Header */
+.etiquette-guide__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 780px;
+}
+
+.etiquette-guide__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b84d37);
+  margin: 0;
+}
+
+.etiquette-guide__eyebrow-line {
+  display: inline-block;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--terracotta, #b84d37);
+}
+
+.etiquette-guide__title {
+  font-family: var(--font-display, serif);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+.etiquette-guide__title-accent {
+  font-style: italic;
+  color: var(--terracotta, #b84d37);
+}
+
+.etiquette-guide__lead {
+  font-family: var(--font-text, sans-serif);
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--ink-muted, #3a4552);
+  margin: 0;
+}
+
+/* Category Filter Tabs */
+.etiquette-guide__categories {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 14px 2px;
+  scrollbar-width: none;
+}
+
+.etiquette-guide__categories::-webkit-scrollbar {
+  display: none;
+}
+
+.etiquette-guide__cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 999px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-muted, #3a4552);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(15, 20, 26, 0.04);
+}
+
+.etiquette-guide__cat-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  transition: transform 0.22s ease;
+}
+
+.etiquette-guide__cat-btn:hover {
+  color: var(--ink, #0f141a);
+  border-color: var(--ink, #0f141a);
+  transform: translateY(-1px);
+}
+
+.etiquette-guide__cat-btn:hover .etiquette-guide__cat-icon {
+  transform: scale(1.08);
+}
+
+.etiquette-guide__cat-btn--active {
+  background: var(--terracotta, #b84d37);
+  color: #ffffff;
+  border-color: var(--terracotta, #b84d37);
+  box-shadow: 0 4px 16px rgba(184, 77, 55, 0.25);
+}
+
+.etiquette-guide__cat-btn--active:hover {
+  color: #ffffff;
+}
+
+/* Grid Kartu Etiket */
+.etiquette-guide__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.etiquette-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 20px;
+  padding: 24px;
+  gap: 18px;
+  box-shadow: 0 6px 24px rgba(15, 20, 26, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.etiquette-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--terracotta, #b84d37);
+  box-shadow: 0 14px 36px rgba(15, 20, 26, 0.08);
+}
+
+.etiquette-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.etiquette-card__badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.etiquette-card__region-tag {
+  font-family: var(--font-text, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b84d37);
+}
+
+.etiquette-card__country-pill {
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  background: var(--ground, #f4f0e8);
+  border-radius: 999px;
+  color: var(--ink, #0f141a);
+}
+
+.etiquette-card__title {
+  font-family: var(--font-display, serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink, #0f141a);
+  margin: 4px 0 0;
+}
+
+/* Aturan Do vs Don't */
+.etiquette-card__rules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.etiquette-card__rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.etiquette-card__rule--do {
+  background: rgba(34, 197, 94, 0.08);
+  border-left: 3px solid #16a34a;
+  color: #14532d;
+}
+
+.etiquette-card__rule--dont {
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 3px solid #dc2626;
+  color: #7f1d1d;
+}
+
+.etiquette-card__rule-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.etiquette-card__rule--do .etiquette-card__rule-icon {
+  background: rgba(22, 163, 74, 0.15);
+  color: #15803d;
+}
+
+.etiquette-card__rule--dont .etiquette-card__rule-icon {
+  background: rgba(220, 38, 38, 0.15);
+  color: #b91c1c;
+}
+
+.etiquette-card__rule-svg {
+  stroke: currentColor;
+}
+
+/* Filosofi & Konteks Budaya */
+.etiquette-card__philosophy {
+  padding: 12px;
+  background: var(--ground, #f4f0e8);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.etiquette-card__philosophy-label {
+  font-family: var(--font-text, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted, #3a4552);
+}
+
+.etiquette-card__philosophy-text {
+  font-family: var(--font-text, sans-serif);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+/* Footer Card */
+.etiquette-card__footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--line, #ded8ce);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.etiquette-card__action-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--terracotta, #b84d37);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.etiquette-card__action-btn:hover {
+  color: #8c3220;
+  gap: 9px;
+}
+
+.etiquette-card__action-arrow {
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.etiquette-card__action-btn:hover .etiquette-card__action-arrow {
+  transform: translateX(2px);
+}
+
+@media (max-width: 1024px) {
+  .etiquette-guide__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .etiquette-guide__grid {
+    grid-template-columns: 1fr;
+  }
+  .etiquette-guide {
+    padding: 48px 16px;
+  }
+}
+

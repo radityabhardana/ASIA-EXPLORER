@@ -68,7 +68,11 @@ export default function AsiaSceneLazy({
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+    setIsTouchDevice(isTouch);
   }, []);
 
   const switchDimension = (nextDim: MapDimension) => {

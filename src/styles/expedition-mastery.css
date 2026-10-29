@@ -1,0 +1,344 @@
+/* ============================================================
+   Sains Memori & Jalur Ekspedisi (ExpeditionMasterySection)
+   Editorial Luxury: Leitner 5-box spaced repetition, quest progression,
+   dan call-to-action yang megah.
+   ============================================================ */
+
+.expedition-mastery {
+  position: relative;
+  width: 100%;
+  padding: clamp(64px, 10vh, 120px) clamp(24px, 5vw, 72px);
+  background-color: var(--surface, #fbf9f5);
+  border-top: 1px solid var(--line, #ded8ce);
+  box-sizing: border-box;
+}
+
+.expedition-mastery__container {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vh, 64px);
+}
+
+/* Header */
+.expedition-mastery__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 780px;
+}
+
+.expedition-mastery__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b84d37);
+  margin: 0;
+}
+
+.expedition-mastery__eyebrow-line {
+  display: inline-block;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--terracotta, #b84d37);
+}
+
+.expedition-mastery__title {
+  font-family: var(--font-display, serif);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+.expedition-mastery__title-accent {
+  font-style: italic;
+  color: var(--terracotta, #b84d37);
+}
+
+.expedition-mastery__lead {
+  font-family: var(--font-text, sans-serif);
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--ink-muted, #3a4552);
+  margin: 0;
+}
+
+/* 3 Pilar Pembelajaran (Double-bezel Bento) */
+.expedition-mastery__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.mastery-pillar {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 20px;
+  padding: 28px;
+  gap: 18px;
+  box-shadow: 0 4px 20px rgba(15, 20, 26, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.mastery-pillar:hover {
+  transform: translateY(-3px);
+  border-color: var(--terracotta, #b84d37);
+  box-shadow: 0 12px 32px rgba(184, 77, 55, 0.08);
+}
+
+.mastery-pillar__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--terracotta, #b84d37);
+}
+
+.mastery-pillar__badge-icon {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+.mastery-pillar__title {
+  font-family: var(--font-display, serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+.mastery-pillar__desc {
+  font-family: var(--font-text, sans-serif);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-muted, #3a4552);
+  margin: 0;
+}
+
+/* Visual Leitner 5-Box Step */
+.leitner-visual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 16px 12px;
+  background: var(--ground, #f4f0e8);
+  border-radius: 12px;
+  margin-top: auto;
+}
+
+.leitner-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.leitner-box__icon {
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 6px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink, #0f141a);
+}
+
+.leitner-box--active .leitner-box__icon {
+  background: var(--terracotta, #b84d37);
+  border-color: var(--terracotta, #b84d37);
+  color: #ffffff;
+}
+
+.leitner-box__label {
+  font-family: var(--font-text, sans-serif);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--ink-muted, #3a4552);
+  text-align: center;
+}
+
+.leitner-arrow {
+  color: var(--ink-muted, #3a4552);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* Visual Quest Progression Ranks */
+.ranks-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--ground, #f4f0e8);
+  border-radius: 12px;
+  margin-top: auto;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-text, sans-serif);
+  font-size: 11.5px;
+}
+
+.rank-item__name {
+  font-weight: 600;
+  color: var(--ink, #0f141a);
+}
+
+.rank-item__level {
+  font-size: 10px;
+  color: var(--terracotta, #b84d37);
+  font-weight: 700;
+  padding: 2px 6px;
+  background: rgba(184, 77, 55, 0.1);
+  border-radius: 999px;
+}
+
+/* Call To Action Box (Banner Megah Penutup) */
+.mastery-cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: clamp(32px, 5vw, 48px) clamp(32px, 6vw, 64px);
+  background: linear-gradient(135deg, #1b2430 0%, #0f141a 100%);
+  border-radius: 28px;
+  color: #ffffff;
+  box-shadow: 0 16px 48px rgba(15, 20, 26, 0.2);
+  box-sizing: border-box;
+}
+
+.mastery-cta-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 680px;
+}
+
+.mastery-cta-banner__title {
+  font-family: var(--font-display, serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff !important;
+  margin: 0;
+}
+
+.mastery-cta-banner__title-accent {
+  font-style: italic;
+  color: #e8a598;
+}
+
+.mastery-cta-banner__desc {
+  font-family: var(--font-text, sans-serif);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.mastery-cta-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.mastery-cta-banner__primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--terracotta, #b84d37);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 6px 20px rgba(184, 77, 55, 0.4);
+}
+
+.mastery-cta-banner__primary-btn:hover {
+  background: #c9573f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184, 77, 55, 0.5);
+}
+
+.mastery-cta-banner__secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.mastery-cta-banner__secondary-btn:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1024px) {
+  .expedition-mastery__pillars {
+    grid-template-columns: 1fr;
+  }
+  .mastery-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .expedition-mastery {
+    padding: 48px 16px;
+  }
+  .mastery-cta-banner__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mastery-cta-banner__primary-btn,
+  .mastery-cta-banner__secondary-btn {
+    justify-content: center;
+  }
+}
