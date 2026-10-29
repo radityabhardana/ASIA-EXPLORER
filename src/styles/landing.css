@@ -374,122 +374,97 @@
   color: var(--ink-muted);
 }
 
-.landing-hero__actions {
+/* Indeks Karakter Benua (Museum Architectural Data Block) */
+.landing-hero__census {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line, #ded8ce);
+  max-width: 420px;
+  pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+  .landing-hero__census {
+    display: none;
+  }
+}
+
+.landing-hero__census-head {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 16px;
-  pointer-events: auto;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.landing-hero__cta-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 18px;
-  background: linear-gradient(180deg, #c0523b 0%, #ad4631 100%);
-  color: #ffffff;
-  border: 1px solid #943725;
-  border-radius: 4px;
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    0 3px 8px -2px rgba(184, 77, 55, 0.35),
-    0 1px 2px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1),
-    background 140ms ease;
-}
-
-.landing-hero__cta-primary:hover {
-  background: linear-gradient(180deg, #c95941 0%, #b34a34 100%);
-  border-color: #8c3221;
-  transform: translateY(-1.5px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.38),
-    0 6px 16px -3px rgba(184, 77, 55, 0.45),
-    0 2px 4px rgba(0, 0, 0, 0.12);
-}
-
-.landing-hero__cta-primary:active {
-  transform: translateY(1.5px);
-  background: #a13d29;
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.25),
-    0 1px 2px rgba(26, 31, 36, 0.15);
-}
-
-.landing-hero__cta-primary:focus-visible {
-  outline: 2px solid var(--ink, #1a1f24);
-  outline-offset: 2px;
-}
-
-.landing-hero__cta-icon {
-  font-size: 12px;
-}
-
-.landing-hero__cta-arrow {
+.landing-hero__census-pip {
   display: inline-block;
-  transition: transform 180ms ease;
-  font-size: 12px;
+  width: 5px;
+  height: 5px;
+  background: var(--terracotta, #b84d37);
+  border-radius: 1px;
 }
 
-.landing-hero__cta-primary:hover .landing-hero__cta-arrow {
-  transform: translateY(2px);
-}
-
-.landing-hero__cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 15px;
-  background: #fbf8f2;
+.landing-hero__census-label {
+  font-family: var(--font-text, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--ink, #0f141a);
-  border: 1px solid #d4cabb;
+  flex: 1;
+}
+
+.landing-hero__census-code {
+  font-family: var(--font-text, monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted, #3a4552);
+}
+
+.landing-hero__census-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line, #ded8ce);
+  border: 1px solid var(--line, #ded8ce);
   border-radius: 4px;
-  font-family: var(--font-text);
-  font-size: 12px;
+  overflow: hidden;
+}
+
+.landing-hero__census-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--surface-raised, #ffffff);
+  padding: 8px 12px;
+  transition: background-color 0.18s ease;
+}
+
+.landing-hero__census-item:hover {
+  background: var(--surface, #fbf9f5);
+}
+
+.landing-hero__census-num {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  box-shadow:
-    inset 0 1px 0 #ffffff,
-    0 2px 5px -1px rgba(26, 31, 36, 0.08);
-  transition:
-    transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 140ms ease,
-    background-color 140ms ease;
+  color: var(--terracotta, #b84d37);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
-.landing-hero__cta-secondary:hover {
-  background: #ffffff;
-  border-color: #1a1f24;
-  color: #1a1f24;
-  transform: translateY(-1.5px);
-  box-shadow:
-    inset 0 1px 0 #ffffff,
-    0 5px 12px -2px rgba(26, 31, 36, 0.15);
+.landing-hero__census-name {
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink-muted, #3a4552);
 }
 
-.landing-hero__cta-secondary:active {
-  transform: translateY(1.5px);
-  background: #f0ebd9;
-  box-shadow: inset 0 2px 4px rgba(26, 31, 36, 0.12);
-}
-
-.landing-hero__cta-secondary:focus-visible {
-  outline: 2px solid var(--terracotta, #b84d37);
-  outline-offset: 2px;
-}
-
-/* 3 Pilar Kemampuan Platform (Museum-Grade Editorial Clarity) */
+/* Fallback / Backward Compatibility */
 .landing-hero__pillars {
   display: flex;
   flex-direction: column;
@@ -881,21 +856,8 @@
     max-width: 32ch;
   }
 
-  .landing-hero__actions {
-    margin-top: 12px;
-    gap: 8px;
-    flex-wrap: nowrap;
-  }
-
-  .landing-hero__cta-primary,
-  .landing-hero__cta-secondary {
-    padding: 7px 11px;
-    font-size: 11px;
-    white-space: nowrap;
-  }
-
   .landing-hero__search-wrap {
-    margin-top: 10px;
+    margin-top: 14px;
     max-width: 100%;
   }
 
@@ -3469,7 +3431,7 @@
 
 .landing-hero__search-wrap {
   position: relative;
-  margin-top: 14px;
+  margin-top: 18px;
   width: 100%;
   max-width: 410px;
   pointer-events: auto;

@@ -256,7 +256,7 @@ const DEEP_PROFILES: Record<string, DeepCultureProfile> = {
       nameEn: 'Gotong Royong (Mutual Aid) & Tepaselira',
       nativeName: 'Gotong Royong · Tepaselira',
       essenceId:
-        'Gotong royong adalah memikul beban bersama tanpa pamrih upah; tepaselira adalah kemampuan menenggang rasa dan menyelami perasaan sesama.',
+        'Gotong royong adalah memikul beban bersama tanpa pamrih upah; tepaselira adalah kemampuan menenggang rasa dan memahami rasa sesama.',
       essenceEn:
         'Gotong royong is selfless community heavy-lifting; tepaselira is tender empathetic calibration before word or deed.',
       descId:

@@ -25,6 +25,40 @@ interface EtiquetteItem {
   philosophyEn: string;
 }
 
+interface CategoryTab {
+  id: 'greetings' | 'dining' | 'hospitality' | 'gestures';
+  sectionCode: string;
+  labelId: string;
+  labelEn: string;
+}
+
+const CATEGORIES: CategoryTab[] = [
+  {
+    id: 'greetings',
+    sectionCode: '§ 01',
+    labelId: 'Menyapa & Hormat',
+    labelEn: 'Greetings & Respect',
+  },
+  {
+    id: 'dining',
+    sectionCode: '§ 02',
+    labelId: 'Jamuan & Santap',
+    labelEn: 'Dining & Banquets',
+  },
+  {
+    id: 'hospitality',
+    sectionCode: '§ 03',
+    labelId: 'Ruang & Hunian',
+    labelEn: 'Thresholds & Living',
+  },
+  {
+    id: 'gestures',
+    sectionCode: '§ 04',
+    labelId: 'Gestur & Isyarat',
+    labelEn: 'Gestures & Demeanor',
+  },
+];
+
 const ETIQUETTE_DATA: EtiquetteItem[] = [
   // 1. Greetings (Menyapa)
   {
@@ -241,7 +275,8 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
         <div className="etiquette-guide__header">
           <p className="etiquette-guide__eyebrow">
             <span className="etiquette-guide__eyebrow-line" aria-hidden="true" />
-            {locale === 'id' ? 'Panduan Etiket & Norma Budaya' : 'Cultural Etiquette Field Guide'}
+            <span className="etiquette-guide__eyebrow-code" aria-hidden="true">[FOLIO · ETI-48]</span>
+            <span>{locale === 'id' ? 'Risalah Adab & Kelaziman Lapangan' : 'Field Protocol & Behavioral Ledger'}</span>
           </p>
           <h2 id="etiquette-guide-title" className="etiquette-guide__title">
             {locale === 'id' ? (
@@ -256,120 +291,40 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
           </h2>
           <p className="etiquette-guide__lead">
             {locale === 'id'
-              ? 'Menjelajahi Asia bukan sekadar memandang peta, melainkan memahami jiwa dan rasa hormat masyarakatnya. Pelajari komparasi etiket nyata di 48 negara agar Anda diterima bak kerabat hangat.'
-              : 'Traveling across Asia is more than reading maps—it is understanding the soul of its people. Learn authentic cultural do’s and don’ts to navigate 48 nations with confidence and grace.'}
+              ? 'Menjelajahi Asia bukan sekadar memandang bentang peta, melainkan memahami jiwa dan rasa hormat masyarakatnya. Pelajari komparasi etiket nyata di 48 negara agar kehadiran Anda disambut dengan ketulusan.'
+              : 'Navigating Asia is more than surveying terrain—it is understanding the soul and courtesies of its people. Study verified behavioral protocols across 48 nations to travel with grace and respect.'}
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="etiquette-guide__categories" role="tablist" aria-label="Kategori Etiket">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'greetings'}
-            className={`etiquette-guide__cat-btn ${activeCategory === 'greetings' ? 'etiquette-guide__cat-btn--active' : ''}`}
-            onClick={() => setActiveCategory('greetings')}
-          >
-            <svg
-              className="etiquette-guide__cat-icon"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m11 17 2 2a1 1 0 0 0 1.4 0l4.6-4.6a2 2 0 0 0 0-2.8l-3.4-3.4a2 2 0 0 0-2.8 0L9.4 11.6" />
-              <path d="m13 7.4-1.4-1.4a2 2 0 0 0-2.8 0L5.4 9.4a2 2 0 0 0 0 2.8l3.4 3.4" />
-              <path d="m2 15 4-4" />
-              <path d="m22 9-4 4" />
-            </svg>
-            <span>{locale === 'id' ? 'Seni Menyapa & Hormat' : 'Greetings & Respect'}</span>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'dining'}
-            className={`etiquette-guide__cat-btn ${activeCategory === 'dining' ? 'etiquette-guide__cat-btn--active' : ''}`}
-            onClick={() => setActiveCategory('dining')}
-          >
-            <svg
-              className="etiquette-guide__cat-icon"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
-              <path d="M3 8h14v7a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
-              <line x1="6" y1="2" x2="6" y2="4" />
-              <line x1="10" y1="2" x2="10" y2="4" />
-              <line x1="14" y1="2" x2="14" y2="4" />
-            </svg>
-            <span>{locale === 'id' ? 'Meja Makan & Jamuan' : 'Dining & Table Manners'}</span>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'hospitality'}
-            className={`etiquette-guide__cat-btn ${activeCategory === 'hospitality' ? 'etiquette-guide__cat-btn--active' : ''}`}
-            onClick={() => setActiveCategory('hospitality')}
-          >
-            <svg
-              className="etiquette-guide__cat-icon"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M3 21h18" />
-              <path d="M5 21V9l7-5 7 5v12" />
-              <path d="M9 21v-7a3 3 0 0 1 6 0v7" />
-            </svg>
-            <span>{locale === 'id' ? 'Bertamu & Alas Kaki' : 'Home & Hospitality'}</span>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === 'gestures'}
-            className={`etiquette-guide__cat-btn ${activeCategory === 'gestures' ? 'etiquette-guide__cat-btn--active' : ''}`}
-            onClick={() => setActiveCategory('gestures')}
-          >
-            <svg
-              className="etiquette-guide__cat-icon"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-            </svg>
-            <span>{locale === 'id' ? 'Gestur Santun & Tabu' : 'Gestures & Taboos'}</span>
-          </button>
+        {/* Category Tabs: Indeks Klasifikasi Arsip Berpenomoran Vintage */}
+        <div
+          className="etiquette-guide__categories"
+          role="tablist"
+          aria-label={locale === 'id' ? 'Klasifikasi Arsip Etiket' : 'Etiquette Archive Classification'}
+        >
+          {CATEGORIES.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`etiquette-guide__cat-btn ${isActive ? 'etiquette-guide__cat-btn--active' : ''}`}
+                onClick={() => setActiveCategory(cat.id)}
+              >
+                <span className="etiquette-guide__cat-section" aria-hidden="true">
+                  {cat.sectionCode}
+                </span>
+                <span className="etiquette-guide__cat-label">
+                  {locale === 'id' ? cat.labelId : cat.labelEn}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Grid Kartu Etiket */}
+        {/* Grid Kartu Etiket (Litograf Archival Ledger Plates) */}
         <div className="etiquette-guide__grid">
           {filteredItems.map((item) => (
             <article
@@ -381,8 +336,10 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
               }}
             >
               <div className="etiquette-card__header">
-                <div className="etiquette-card__badge-row">
-                  <span className="etiquette-card__region-tag">{item.regionLabel}</span>
+                <div className="etiquette-card__plate-row">
+                  <span className="etiquette-card__folio-tag">
+                    [FOLIO · {item.countryId.toUpperCase()} · {item.regionLabel.toUpperCase()}]
+                  </span>
                   <span className="etiquette-card__country-pill">{item.countryName}</span>
                 </div>
                 <h3 className="etiquette-card__title">
@@ -390,52 +347,36 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
                 </h3>
               </div>
 
-              {/* Aturan Anjuran vs Pantangan */}
+              {/* Aturan Adab Kelaziman vs Tabu Perilaku (Editorial Tipografis) */}
               <div className="etiquette-card__rules">
                 <div className="etiquette-card__rule etiquette-card__rule--do">
-                  <span className="etiquette-card__rule-icon" aria-hidden="true">
-                    <svg
-                      className="etiquette-card__rule-svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="2.5 8.5 6 12 13.5 4.5" />
-                    </svg>
-                  </span>
-                  <span>{locale === 'id' ? item.doTextId : item.doTextEn}</span>
+                  <div className="etiquette-card__rule-tag">
+                    <span className="etiquette-card__rule-indicator" aria-hidden="true" />
+                    <span>{locale === 'id' ? 'ADAB KELAZIMAN' : 'PROPER PROTOCOL'}</span>
+                  </div>
+                  <p className="etiquette-card__rule-text">
+                    {locale === 'id' ? item.doTextId : item.doTextEn}
+                  </p>
                 </div>
                 <div className="etiquette-card__rule etiquette-card__rule--dont">
-                  <span className="etiquette-card__rule-icon" aria-hidden="true">
-                    <svg
-                      className="etiquette-card__rule-svg"
-                      width="11"
-                      height="11"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="3.5" y1="3.5" x2="12.5" y2="12.5" />
-                      <line x1="12.5" y1="3.5" x2="3.5" y2="12.5" />
-                    </svg>
-                  </span>
-                  <span>{locale === 'id' ? item.dontTextId : item.dontTextEn}</span>
+                  <div className="etiquette-card__rule-tag">
+                    <span className="etiquette-card__rule-indicator" aria-hidden="true" />
+                    <span>{locale === 'id' ? 'TABU PERILAKU' : 'FIELD TABOO'}</span>
+                  </div>
+                  <p className="etiquette-card__rule-text">
+                    {locale === 'id' ? item.dontTextId : item.dontTextEn}
+                  </p>
                 </div>
               </div>
 
               {/* Filosofi di Balik Norma */}
               <div className="etiquette-card__philosophy">
-                <span className="etiquette-card__philosophy-label">
-                  {locale === 'id' ? 'Falsafah Budaya' : 'Cultural Wisdom'}
-                </span>
+                <div className="etiquette-card__philosophy-header">
+                  <span className="etiquette-card__philosophy-mark" aria-hidden="true">¶</span>
+                  <span className="etiquette-card__philosophy-label">
+                    {locale === 'id' ? 'Falsafah Budaya' : 'Cultural Wisdom'}
+                  </span>
+                </div>
                 <p className="etiquette-card__philosophy-text">
                   "{locale === 'id' ? item.philosophyId : item.philosophyEn}"
                 </p>
@@ -453,8 +394,8 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
                 >
                   <span>
                     {locale === 'id'
-                      ? `Lihat Profil ${item.countryName}`
-                      : `Explore ${item.countryName}`}
+                      ? `Lihat Lembar Profil ${item.countryName}`
+                      : `View ${item.countryName} Dossier`}
                   </span>
                   <svg
                     className="etiquette-card__action-arrow"
@@ -463,7 +404,7 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
                     viewBox="0 0 16 16"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"

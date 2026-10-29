@@ -59,8 +59,8 @@ const REGION_SPHERES: SphereData[] = [
         descEn: 'Communal solidarity and living in harmony with seasonal sea cycles.',
       },
       {
-        labelId: 'Mahakarya Budaya',
-        labelEn: 'Heritage Marvels',
+        labelId: 'Pusaka Peradaban',
+        labelEn: 'Living Heritage',
         descId: 'Candi megah Borobudur, kota kuno Ayutthaya, dan teluk karst purba Ha Long.',
         descEn: 'Borobudur stone sanctuary, ancient Ayutthaya, and ancient Ha Long karst bays.',
       },
@@ -110,7 +110,7 @@ const REGION_SPHERES: SphereData[] = [
     narrativeId:
       'Membentang dari benteng salju abadi Himalaya hingga dataran subur Sungai Gangga dan Indus. Tempat lahirnya tradisi filsafat luhur, monumen megah arsitektur batu marmer, dan kekayaan rempah benua.',
     narrativeEn:
-      'From eternal snowcapped Himalayan summits to the fertile alluvial plains of the Ganges and Indus. Cradle of ancient philosophy, intricate stone marvels, and continental spice heritage.',
+      'From eternal snowcapped Himalayan summits to the fertile alluvial plains of the Ganges and Indus. Cradle of ancient philosophy, intricate stone architecture, and continental spice heritage.',
     featuredCountryId: 'in',
     spotlightCountryIds: ['np', 'lk', 'bt', 'pk'],
     traits: [
@@ -161,8 +161,8 @@ const REGION_SPHERES: SphereData[] = [
         descEn: 'Endurance across endless dunes, loyalty to word, and intricate sacred fractal geometry.',
       },
       {
-        labelId: 'Keajaiban Cadas',
-        labelEn: 'Rock-Hewn Wonders',
+        labelId: 'Pahatan Cadas Kuno',
+        labelEn: 'Ancient Rock Architecture',
         descId: 'Makam batu Hegra AlUla, lembah tufa Cappadocia, dan gerbang Al-Khazneh di ngarai Petra.',
         descEn: 'Hegra carved monoliths in AlUla, Cappadocia fairy chimneys, and Petra canyon gates.',
       },
@@ -195,8 +195,8 @@ const REGION_SPHERES: SphereData[] = [
         descEn: 'Deep reverence for horses, yurt craftsmanship, and living beneath the eternal open sky.',
       },
       {
-        labelId: 'Mahakarya Jalur Sutra',
-        labelEn: 'Silk Road Marvels',
+        labelId: 'Pusaka Jalur Sutra',
+        labelEn: 'Silk Road Heritage',
         descId: 'Alun-alun madrasah Registan Samarkand, ngarai merah Charyn Canyon, dan danau biru Iskanderkul.',
         descEn: 'Registan madrasah square in Samarkand, Charyn Canyon sandstone, and glacial Lake Iskanderkul.',
       },

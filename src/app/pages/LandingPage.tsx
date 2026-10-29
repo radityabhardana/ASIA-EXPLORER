@@ -318,43 +318,6 @@ export default function LandingPage() {
             </h1>
             <p className="landing-hero__tagline">{t('hero.tagline')}</p>
 
-            {/* Tombol Aksi Utama (Mulai Tantangan) */}
-            <div className="landing-hero__actions">
-              <button
-                type="button"
-                className="landing-hero__cta-primary"
-                onClick={() => scrollToSection('#tantangan-harian')}
-              >
-                <svg
-                  className="landing-hero__cta-icon"
-                  width="13"
-                  height="13"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <path d="M8.5 1.5L2.5 9h5l-1 5.5 6-7.5h-5l1-5.5z" />
-                </svg>
-                <span>{t('hero.ctaQuiz')}</span>
-                <svg
-                  className="landing-hero__cta-arrow"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <path d="M8 3v10M4 9l4 4 4-4" />
-                </svg>
-              </button>
-            </div>
-
             {/* Input Pencarian 48 Negara Terintegrasi */}
             <div className="landing-hero__search-wrap">
               <div
@@ -489,30 +452,44 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* 3 Pilar Kemampuan Platform (Jelas, Terukur, & Padat Nilai) */}
+            {/* Indeks Karakter Benua (Arsitektural & Faktual) */}
             <div
-              className="landing-hero__pillars"
-              aria-label={locale === 'id' ? 'Fitur utama Asia Explorer' : 'Core features of Asia Explorer'}
+              className="landing-hero__census"
+              aria-label={locale === 'id' ? 'Indeks Karakter Benua Asia' : 'Continental Character Index'}
             >
-              <div className="landing-hero__pillar">
-                <span className="landing-hero__pillar-num">01</span>
-                <div className="landing-hero__pillar-text">
-                  <strong className="landing-hero__pillar-title">{t('hero.pillar1Title')}</strong>
-                  <p className="landing-hero__pillar-desc">{t('hero.pillar1Desc')}</p>
-                </div>
+              <div className="landing-hero__census-head">
+                <span className="landing-hero__census-pip" aria-hidden="true" />
+                <span className="landing-hero__census-label">
+                  {locale === 'id' ? 'Indeks Karakter Benua' : 'Continental Character Index'}
+                </span>
+                <span className="landing-hero__census-code" aria-hidden="true">
+                  [ARC · 48]
+                </span>
               </div>
-              <div className="landing-hero__pillar">
-                <span className="landing-hero__pillar-num">02</span>
-                <div className="landing-hero__pillar-text">
-                  <strong className="landing-hero__pillar-title">{t('hero.pillar2Title')}</strong>
-                  <p className="landing-hero__pillar-desc">{t('hero.pillar2Desc')}</p>
+              <div className="landing-hero__census-grid">
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">48</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Bangsa Berdaulat' : 'Sovereign Nations'}
+                  </span>
                 </div>
-              </div>
-              <div className="landing-hero__pillar">
-                <span className="landing-hero__pillar-num">03</span>
-                <div className="landing-hero__pillar-text">
-                  <strong className="landing-hero__pillar-title">{t('hero.pillar3Title')}</strong>
-                  <p className="landing-hero__pillar-desc">{t('hero.pillar3Desc')}</p>
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">5</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Zona Kawasan Budaya' : 'Cultural Regions'}
+                  </span>
+                </div>
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">18</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Rumpun Aksara Asli' : 'Native Script Families'}
+                  </span>
+                </div>
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">700+</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Bahasa & Dialek Lokal' : 'Living Languages'}
+                  </span>
                 </div>
               </div>
             </div>
