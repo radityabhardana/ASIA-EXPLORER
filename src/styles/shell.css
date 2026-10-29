@@ -173,6 +173,11 @@
   text-decoration: none;
   position: relative;
   padding-block: 4px;
+  padding-inline: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  line-height: inherit;
   transition: color var(--duration-micro) var(--ease-standard);
 }
 
