@@ -47,6 +47,10 @@ export function getHeroPhoto(countryId: string): CountryPhoto | undefined {
   return countryPhotos.find((photo) => photo.role === 'hero') ?? countryPhotos[0];
 }
 
+export function getCountryPhotos(countryId: string): CountryPhoto[] {
+  return typedImages.countries[countryId] ?? [];
+}
+
 export function photoObjectPosition(photo: CountryPhoto): string {
   return `${Math.round(photo.focus.x * 100)}% ${Math.round(photo.focus.y * 100)}%`;
 }

@@ -1,4 +1,4 @@
-import { MOUSE } from 'three';
+import { MOUSE, TOUCH } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const PADDING = 26; // margin target clamp di luar tepi peta
@@ -8,6 +8,7 @@ const PADDING = 26; // margin target clamp di luar tepi peta
  * - Tarik biasa: GESER (PAN) peta di bidang datar X/Z layaknya atlas fisik.
  * - Tahan Ctrl + tarik: PUTAR (ROTATE) sudut pandang 3D untuk melihat relief.
  * - Tahan Ctrl + gulir: ZOOM IN / OUT ke posisi kursor.
+ * - Mobile touch: 1 jari PUTAR (ROTATE), 2 jari ZOOM & PAN (DOLLY_PAN).
  */
 export function createControls(camera, domElement, worldHalf) {
   const controls = new OrbitControls(camera, domElement);
@@ -21,8 +22,8 @@ export function createControls(camera, domElement, worldHalf) {
   controls.zoomToCursor = true;
   controls.minDistance = 20;
   controls.maxDistance = 560;
-  controls.minPolarAngle = 0.3; // tidak tembus tanah dari atas
-  controls.maxPolarAngle = 1.3; // tidak mepet horizon
+  controls.minPolarAngle = 0.45; // tidak tembus tanah dari atas
+  controls.maxPolarAngle = 1.25; // tidak mepet horizon atau terbalik
   controls.targetBounds = {
     x: worldHalf.halfX + PADDING,
     z: worldHalf.halfZ + PADDING,
@@ -33,6 +34,12 @@ export function createControls(camera, domElement, worldHalf) {
     LEFT: MOUSE.PAN,
     MIDDLE: MOUSE.DOLLY,
     RIGHT: MOUSE.ROTATE,
+  };
+
+  // Touch gesture eksplisit: 1 jari rotasi, 2 jari zoom + geser
+  controls.touches = {
+    ONE: TOUCH.ROTATE,
+    TWO: TOUCH.DOLLY_PAN,
   };
 
   return controls;

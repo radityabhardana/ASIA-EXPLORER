@@ -3,17 +3,17 @@ import { Spherical, Vector3 } from 'three';
 /** Posisi overview default (perspektif arsitektural kartografi).
  *  Desktop & Laptop: benua Asia diposisikan presisi di titik tengah visual (optical center)
  *  antara batas kanan kolom editorial kiri dan tepi kanan layar (rata tengah seimbang).
- *  Mobile portrait: radius disesuaikan aspek rasio agar seluruh 48 negara tampil utuh
- *  tanpa terpotong di tepi kiri/kanan. */
+ *  Mobile portrait: pivot rotasi tepat di pusat benua (0, 0, 0) agar on-axis spin
+ *  tanpa offside/terlempar saat diputar satu jari, radius adaptif terhadap aspect ratio. */
 export function getOverview(aspect = 16 / 9) {
   const isMobile = aspect < 1.15;
   if (isMobile) {
-    const radius = Math.round(184 / aspect);
+    const radius = Math.round(168 / Math.max(0.42, aspect));
     return {
       radius,
-      phi: 1.05,
+      phi: 1.04,
       theta: 0,
-      target: new Vector3(0, 0, -58),
+      target: new Vector3(0, 0, 0),
     };
   }
 

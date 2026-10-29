@@ -1,8 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
-import { Color, MeshStandardMaterial, PerspectiveCamera, Vector3 } from 'three';
+import { Color, MeshStandardMaterial, PerspectiveCamera, TOUCH, Vector3 } from 'three';
 import { CameraRig, getOverview } from './camera-rig.js';
 import { animateCountries } from './countries.js';
 import { createInteraction } from './interactions.js';
+import { createControls } from './controls.js';
 
 describe('CameraRig heading and recenter', () => {
   it('calculates 0 degree heading when camera is at overview orientation', () => {
@@ -17,6 +18,24 @@ describe('CameraRig heading and recenter', () => {
 
     const heading = rig.getHeading();
     expect(Math.abs(heading)).toBeLessThan(0.001);
+  });
+
+  it('calculates 0 degree heading on mobile overview orientation', () => {
+    const mobileAspect = 393 / 852; // iPhone 16 viewport
+    const camera = new PerspectiveCamera(45, mobileAspect, 1, 1000);
+    const controls = {
+      target: new Vector3(0, 0, 0),
+      enabled: true,
+    };
+    const rig = new CameraRig(camera, controls);
+    const ov = getOverview(mobileAspect);
+    rig.place(ov);
+
+    const heading = rig.getHeading();
+    expect(Math.abs(heading)).toBeLessThan(0.001);
+    expect(controls.target.x).toBe(0);
+    expect(controls.target.y).toBe(0);
+    expect(controls.target.z).toBe(0);
   });
 
   it('normalizes heading to [-180, 180] degrees', () => {
@@ -50,6 +69,55 @@ describe('CameraRig heading and recenter', () => {
 
     expect(rig.moving).toBe(false);
     expect(controls.enabled).toBe(true);
+  });
+});
+
+describe('getOverview mobile vs desktop framing', () => {
+  it('places mobile pivot exactly at continent center (0, 0, 0) with on-axis rotation', () => {
+    const mobileAspect = 9 / 16;
+    const ov = getOverview(mobileAspect);
+
+    expect(ov.target.x).toBe(0);
+    expect(ov.target.y).toBe(0);
+    expect(ov.target.z).toBe(0);
+    expect(ov.theta).toBe(0);
+    expect(ov.phi).toBe(1.04);
+    expect(ov.radius).toBe(Math.round(168 / (9 / 16)));
+  });
+
+  it('clamps extreme narrow mobile aspect ratios to 0.42 minimum divisor', () => {
+    const narrowAspect = 0.35;
+    const ov = getOverview(narrowAspect);
+
+    expect(ov.radius).toBe(Math.round(168 / 0.42));
+    expect(ov.target.x).toBe(0);
+    expect(ov.target.z).toBe(0);
+  });
+
+  it('maintains desktop editorial column offset for wide screens', () => {
+    const desktopAspect = 16 / 9;
+    const ov = getOverview(desktopAspect);
+
+    expect(ov.theta).toBe(0.08);
+    expect(ov.phi).toBe(1.05);
+    expect(ov.target.x).toBeLessThan(0); // shifted left to balance left editorial card
+    expect(ov.target.z).toBe(0);
+  });
+});
+
+describe('controls configuration for mobile touch and polar limits', () => {
+  it('configures explicit touch gestures and safe polar angles', () => {
+    const camera = new PerspectiveCamera(45, 1, 1, 1000);
+    const domElement = document.createElement('canvas');
+    const worldHalf = { halfX: 100, halfZ: 100 };
+    const controls = createControls(camera, domElement, worldHalf);
+
+    expect(controls.touches.ONE).toBe(TOUCH.ROTATE);
+    expect(controls.touches.TWO).toBe(TOUCH.DOLLY_PAN);
+    expect(controls.minPolarAngle).toBe(0.45);
+    expect(controls.maxPolarAngle).toBe(1.25);
+
+    controls.dispose();
   });
 });
 

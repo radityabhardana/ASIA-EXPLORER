@@ -75,6 +75,14 @@ export const DICTIONARY = {
     'preview.close': 'Tutup pratinjau negara',
     'preview.live': 'pratinjau dibuka',
     'preview.photoFallback': 'Lanskap editorial',
+    'preview.prevPhoto': 'Foto sebelumnya',
+    'preview.nextPhoto': 'Foto selanjutnya',
+    'preview.jumpToPhoto': 'Pilih foto',
+    'preview.photoCounter': 'Navigasi galeri foto',
+    'preview.photoRoleHero': 'Lansekap',
+    'preview.photoRoleLife': 'Kehidupan',
+    'preview.photoRoleFood': 'Kuliner',
+    'preview.photoRoleScript': 'Aksara & Pusaka',
     'map.fallbackNote':
       'Peta 3D tidak bisa dimuat di perangkat ini. Pilih negara dari daftar.',
 
@@ -360,8 +368,28 @@ export const DICTIONARY = {
     'directory.listenGreeting': 'Listen to greeting',
 
     // Preview
+    'preview.eyebrow': 'FIELD DOSSIER',
+    'preview.regionLabel': 'Country preview',
+    'preview.depthFull': 'Complete',
+    'preview.depthExplore': 'Exploration',
     'preview.greeting': 'Native greeting',
     'preview.listenGreeting': 'Listen to greeting',
+    'preview.ctaFull': 'Open dossier',
+    'preview.ctaExplore': 'Quick glance',
+    'preview.exploreNote': 'Brief notes. Full etiquette guide coming soon.',
+    'preview.credit': 'Photo',
+    'preview.creditSource': 'Wikimedia Commons',
+    'preview.close': 'Close country preview',
+    'preview.live': 'preview opened',
+    'preview.photoFallback': 'Editorial landscape',
+    'preview.prevPhoto': 'Previous photo',
+    'preview.nextPhoto': 'Next photo',
+    'preview.jumpToPhoto': 'Select photo',
+    'preview.photoCounter': 'Photo gallery navigation',
+    'preview.photoRoleHero': 'Landscape',
+    'preview.photoRoleLife': 'City & Life',
+    'preview.photoRoleFood': 'Cuisine',
+    'preview.photoRoleScript': 'Script & Heritage',
 
     // Hero
     'hero.skipLink': 'Skip to country selection',

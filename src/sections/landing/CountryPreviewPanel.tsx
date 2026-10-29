@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { countries, countryById } from '@/content/countries';
 import type { Country } from '@/content/countries';
 import { iso3For } from '@/content/countries48';
+import { playParchmentClick } from '@/lib/audio';
 import { COUNTRY_COORDINATES, formatDMS } from '@/lib/geo-coords';
 import { useI18n } from '@/lib/i18n';
 import { cancelSpeech, speak } from '@/lib/speech';
 import { differs, profileFor } from '@/sections/country/scripts';
-import { getHeroPhoto, photoObjectPosition } from './photos';
+import { getCountryPhotos, photoObjectPosition } from './photos';
 
 type CountryPreviewPanelProps = {
   countryId: string;
@@ -91,24 +92,102 @@ export default function CountryPreviewPanel({
           </span>
         </div>
 
-        <PreviewBody country={country} />
+        <PreviewBody key={country.id} country={country} isOpen={open} />
       </div>
     </aside>
   );
 }
 
-function PreviewBody({ country }: { country: Country }) {
+function PreviewBody({ country, isOpen }: { country: Country; isOpen: boolean }) {
   const { locale, t } = useI18n();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
-  const photo = getHeroPhoto(country.id);
+  const photos = getCountryPhotos(country.id);
   const profile = profileFor(country);
+
+  useEffect(() => {
+    if (photos.length > 1) {
+      photos.forEach((p) => {
+        const src = p.webp.find((f) => f.w === 960)?.file ?? p.webp[0]?.file;
+        if (src) {
+          const img = new Image();
+          img.src = src;
+        }
+      });
+    }
+  }, [country.id, photos]);
 
   useEffect(() => {
     return () => {
       cancelSpeech();
     };
   }, [country.id]);
+
+  const hasMultiple = photos.length > 1;
+  const safeIndex = photos.length > 0 ? Math.min(photoIndex, photos.length - 1) : 0;
+  const photo = photos[safeIndex];
+
+  const handlePrev = useCallback(() => {
+    if (photos.length <= 1) return;
+    playParchmentClick();
+    setPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length);
+  }, [photos.length]);
+
+  const handleNext = useCallback(() => {
+    if (photos.length <= 1) return;
+    playParchmentClick();
+    setPhotoIndex((prev) => (prev + 1) % photos.length);
+  }, [photos.length]);
+
+  const handleSelectPhoto = useCallback((idx: number) => {
+    if (idx === photoIndex) return;
+    playParchmentClick();
+    setPhotoIndex(idx);
+  }, [photoIndex]);
+
+  useEffect(() => {
+    if (!isOpen || !hasMultiple) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target?.tagName === 'INPUT' ||
+        target?.tagName === 'TEXTAREA' ||
+        target?.isContentEditable
+      ) {
+        return;
+      }
+
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, hasMultiple, handlePrev, handleNext]);
+
+  const getRoleLabel = (role: string): string => {
+    switch (role) {
+      case 'hero':
+        return t('preview.photoRoleHero');
+      case 'life':
+        return t('preview.photoRoleLife');
+      case 'food':
+        return t('preview.photoRoleFood');
+      case 'script':
+        return t('preview.photoRoleScript');
+      default:
+        return role;
+    }
+  };
 
   const handlePlayAudio = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -158,6 +237,8 @@ function PreviewBody({ country }: { country: Country }) {
       : webpSmall?.file;
 
   const fallbackSrc = webpSmall?.file ?? avifSmall?.file ?? '';
+  const currentRoleLabel = photo ? getRoleLabel(photo.role) : '';
+  const counterText = `${String(safeIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`;
 
   const greetingRomanDiffers = differs(
     country.greeting.native,
@@ -188,6 +269,72 @@ function PreviewBody({ country }: { country: Country }) {
               className="country-preview__frame"
               style={{ backgroundColor: photo.dominant }}
             >
+              <div className="country-preview__photo-pill" aria-hidden="true">
+                <span className="country-preview__photo-role">{currentRoleLabel}</span>
+                {hasMultiple ? (
+                  <>
+                    <span className="country-preview__photo-sep">·</span>
+                    <span className="country-preview__photo-counter">{counterText}</span>
+                  </>
+                ) : null}
+              </div>
+
+              {hasMultiple ? (
+                <>
+                  <button
+                    type="button"
+                    className="country-preview__photo-nav country-preview__photo-nav--prev"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handlePrev();
+                    }}
+                    aria-label={t('preview.prevPhoto')}
+                    title={t('preview.prevPhoto')}
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M10 13L5 8l5-5" />
+                    </svg>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="country-preview__photo-nav country-preview__photo-nav--next"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleNext();
+                    }}
+                    aria-label={t('preview.nextPhoto')}
+                    title={t('preview.nextPhoto')}
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M6 3l5 5-5 5" />
+                    </svg>
+                  </button>
+                </>
+              ) : null}
+
               <picture className="country-preview__picture">
                 {avifSrcSet ? (
                   <source
@@ -204,6 +351,7 @@ function PreviewBody({ country }: { country: Country }) {
                   />
                 ) : null}
                 <img
+                  key={photo.slug}
                   className="country-preview__img"
                   src={fallbackSrc}
                   alt={altText}
@@ -213,6 +361,36 @@ function PreviewBody({ country }: { country: Country }) {
                 />
               </picture>
             </div>
+
+            {hasMultiple ? (
+              <div
+                className="country-preview__dots"
+                role="tablist"
+                aria-label={`${t('preview.photoCounter')}: ${country.nameId}`}
+              >
+                {photos.map((p, idx) => {
+                  const isCurrent = idx === safeIndex;
+                  const dotRoleLabel = getRoleLabel(p.role);
+                  return (
+                    <button
+                      key={p.slug || idx}
+                      type="button"
+                      role="tab"
+                      aria-selected={isCurrent}
+                      className={`country-preview__dot ${isCurrent ? 'country-preview__dot--active' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleSelectPhoto(idx);
+                      }}
+                      aria-label={`${t('preview.jumpToPhoto')} ${idx + 1} (${dotRoleLabel})`}
+                      title={`${dotRoleLabel} (${idx + 1}/${photos.length})`}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
+
             <figcaption className="country-preview__credit">
               <span>
                 {t('preview.credit')}: {photo.credit.author} ·{' '}
