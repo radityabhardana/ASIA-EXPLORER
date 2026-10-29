@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 import { countryById } from '@/content/countries';
+import { playParchmentClick } from '@/lib/audio';
 import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
@@ -11,6 +12,7 @@ import CountryFactsheet from '@/sections/country/CountryFactsheet';
 import CountryGallery from '@/sections/country/CountryGallery';
 import CountryHero from '@/sections/country/CountryHero';
 import CountryNeighbors from '@/sections/country/CountryNeighbors';
+import CulturalComparisonMatrix from '@/sections/landing/CulturalComparisonMatrix';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
 import RegionLocator from '@/sections/country/RegionLocator';
@@ -29,6 +31,7 @@ export default function CountryPage() {
   const country = id === undefined ? undefined : countryById(id, contentLocale);
   const { leaving, handleBackClick } = useExitToLanding();
   const { t } = useI18n();
+  const [comparisonOpen, setComparisonOpen] = useState(false);
 
   useEffect(() => {
     scrollToSection(0, { immediate: true });
@@ -141,6 +144,40 @@ export default function CountryPage() {
         {/* 10. Jelajah Negara Terdekat & Kawasan Serumpun */}
         <CountryNeighbors currentCountry={country} locale={contentLocale} />
 
+        {/* 10b. Komparasi Lintas Peradaban Callout */}
+        <section
+          className="country-block country-compare-callout"
+          aria-labelledby="country-compare-callout-title"
+        >
+          <div className="country-block__inner country-compare-callout__inner">
+            <div className="country-compare-callout__body">
+              <p className="country-compare-callout__kicker">
+                {t('country.compareKicker')}
+              </p>
+              <h2
+                id="country-compare-callout-title"
+                className="country-compare-callout__title"
+              >
+                {t('country.compareTitle')}
+              </h2>
+              <p className="country-compare-callout__description">
+                {t('country.compareDesc')}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="country-compare-callout__cta"
+              onClick={() => {
+                playParchmentClick();
+                setComparisonOpen(true);
+              }}
+            >
+              <span>{t('country.compareCta')}</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
         {/* 11. Foldable Provenance / Sources */}
         <SourceBlock
           sources={country.sources}
@@ -148,6 +185,13 @@ export default function CountryPage() {
           depth={country.depth}
         />
       </div>
+
+      {/* Cultural Comparison Matrix Slide-over Modal */}
+      <CulturalComparisonMatrix
+        open={comparisonOpen}
+        onClose={() => setComparisonOpen(false)}
+        initialCountryA={country.id}
+      />
     </article>
   );
 }

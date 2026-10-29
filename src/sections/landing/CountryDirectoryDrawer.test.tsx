@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import Navbar from '@/app/Navbar';
 import { ProfileProvider } from '@/lib/profile';
+import * as speech from '@/lib/speech';
 import CountryDirectoryDrawer from './CountryDirectoryDrawer';
 
 describe('CountryDirectoryDrawer (Atlas Direktori 48 Bangsa)', () => {
@@ -88,6 +89,46 @@ describe('CountryDirectoryDrawer (Atlas Direktori 48 Bangsa)', () => {
 
     const indonesiaLink = screen.getByLabelText(/Telusuri Profil: Indonesia/i);
     expect(indonesiaLink.getAttribute('href')).toBe('/negara/id');
+  });
+
+  it('merender tombol audio sapaan (.country-dir-card__audio-btn) pada setiap kartu', () => {
+    const handleClose = vi.fn();
+    const { container } = render(
+      <MemoryRouter>
+        <CountryDirectoryDrawer open={true} onClose={handleClose} />
+      </MemoryRouter>,
+    );
+
+    const audioButtons = container.querySelectorAll('.country-dir-card__audio-btn');
+    expect(audioButtons.length).toBe(48);
+  });
+
+  it('memutar sapaan asli saat tombol audio sapaan diklik tanpa menutup drawer', () => {
+    const speakSpy = vi.spyOn(speech, 'speak').mockImplementation((_text, options) => {
+      options?.onEnd?.();
+      return true;
+    });
+    const handleClose = vi.fn();
+    const handleSelect = vi.fn();
+    const { container } = render(
+      <MemoryRouter>
+        <CountryDirectoryDrawer
+          open={true}
+          onClose={handleClose}
+          onSelectCountry={handleSelect}
+        />
+      </MemoryRouter>,
+    );
+
+    const firstAudioBtn = container.querySelector('.country-dir-card__audio-btn') as HTMLButtonElement;
+    expect(firstAudioBtn).not.toBeNull();
+
+    fireEvent.click(firstAudioBtn);
+
+    expect(speakSpy).toHaveBeenCalled();
+    expect(handleClose).not.toHaveBeenCalled();
+    expect(handleSelect).not.toHaveBeenCalled();
+    speakSpy.mockRestore();
   });
 });
 

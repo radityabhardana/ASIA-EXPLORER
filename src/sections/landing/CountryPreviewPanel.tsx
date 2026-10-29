@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { countries, countryById } from '@/content/countries';
@@ -6,6 +6,7 @@ import type { Country } from '@/content/countries';
 import { iso3For } from '@/content/countries48';
 import { COUNTRY_COORDINATES, formatDMS } from '@/lib/geo-coords';
 import { useI18n } from '@/lib/i18n';
+import { cancelSpeech, speak } from '@/lib/speech';
 import { differs, profileFor } from '@/sections/country/scripts';
 import { getHeroPhoto, photoObjectPosition } from './photos';
 
@@ -98,9 +99,39 @@ export default function CountryPreviewPanel({
 
 function PreviewBody({ country }: { country: Country }) {
   const { locale, t } = useI18n();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const photo = getHeroPhoto(country.id);
   const profile = profileFor(country);
+
+  useEffect(() => {
+    return () => {
+      cancelSpeech();
+    };
+  }, [country.id]);
+
+  const handlePlayAudio = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isPlaying) {
+      cancelSpeech();
+      setIsPlaying(false);
+      return;
+    }
+
+    setIsPlaying(true);
+    const ok = speak(country.greeting.native, {
+      lang: profile.speechLang,
+      fallbackText: country.greeting.roman,
+      onEnd: () => setIsPlaying(false),
+      onError: () => setIsPlaying(false),
+    });
+
+    if (!ok) {
+      setIsPlaying(false);
+    }
+  };
   const position = photo ? photoObjectPosition(photo) : '50% 40%';
   const depthLabel =
     country.depth === 'Lengkap'
@@ -238,9 +269,42 @@ function PreviewBody({ country }: { country: Country }) {
           <p className="country-preview__teaser">{country.peopleNote}</p>
 
           <blockquote className="country-preview__greeting">
-            <span className="country-preview__greeting-label">
-              {t('preview.greeting')}
-            </span>
+            <div className="country-preview__greeting-header">
+              <span className="country-preview__greeting-label">
+                {t('preview.greeting')}
+              </span>
+              <button
+                type="button"
+                className={`country-preview__audio-btn ${isPlaying ? 'country-preview__audio-btn--playing' : ''}`}
+                onClick={handlePlayAudio}
+                aria-label={`${t('preview.listenGreeting')}: ${country.nameId} (${country.greeting.native})`}
+                title={`${t('preview.listenGreeting')}: ${country.greeting.native}`}
+              >
+                {isPlaying ? (
+                  <span className="country-preview__soundwave" aria-hidden="true">
+                    <span className="country-preview__soundwave-bar" />
+                    <span className="country-preview__soundwave-bar" />
+                    <span className="country-preview__soundwave-bar" />
+                  </span>
+                ) : (
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                  </svg>
+                )}
+              </button>
+            </div>
             <span
               className="country-preview__greeting-native"
               lang={profile.lang}

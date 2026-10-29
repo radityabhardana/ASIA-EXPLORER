@@ -473,7 +473,78 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 110px;
+  max-width: 105px;
+}
+
+.country-dir-card__audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid rgba(26, 31, 36, 0.12);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--dir-ink-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.country-dir-card__audio-btn:hover {
+  color: var(--dir-ink);
+  border-color: rgba(26, 31, 36, 0.3);
+  background: rgba(26, 31, 36, 0.05);
+}
+
+.country-dir-card__audio-btn:focus-visible {
+  outline: 2px solid var(--accent, #a02020);
+  outline-offset: 1px;
+}
+
+.country-dir-card__audio-btn--playing {
+  color: var(--accent, #a02020);
+  border-color: var(--accent, #a02020);
+  background: rgba(160, 32, 32, 0.08);
+}
+
+.country-dir-soundwave {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5px;
+  height: 10px;
+}
+
+.country-dir-soundwave__bar {
+  width: 1.8px;
+  background-color: currentColor;
+  border-radius: 0.5px;
+  animation: soundwave-pulse 0.7s ease-in-out infinite alternate;
+}
+
+.country-dir-soundwave__bar:nth-child(1) {
+  height: 4px;
+  animation-delay: 0s;
+}
+
+.country-dir-soundwave__bar:nth-child(2) {
+  height: 10px;
+  animation-delay: 0.18s;
+}
+
+.country-dir-soundwave__bar:nth-child(3) {
+  height: 6px;
+  animation-delay: 0.36s;
+}
+
+@keyframes soundwave-pulse {
+  0% {
+    transform: scaleY(0.35);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 
 .country-dir-card__badges {

@@ -9,9 +9,14 @@ import { useProfile } from '@/lib/profile';
 export interface NavbarProps {
   onScrollToMap?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
   onOpenCountryDirectory?: () => void;
+  onOpenComparison?: () => void;
 }
 
-export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: NavbarProps = {}) {
+export default function Navbar({
+  onScrollToMap,
+  onOpenCountryDirectory,
+  onOpenComparison,
+}: NavbarProps = {}) {
   void onScrollToMap;
   const [mobileOpen, setMobileOpen] = useState(false);
   const { locale, t, toggleLocale } = useI18n();
@@ -130,6 +135,23 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
               >
                 {t('nav.etiquette')}
               </a>
+            </li>
+            <li>
+              <button
+                type="button"
+                className="navbar__link navbar__link--btn"
+                onClick={() => {
+                  playParchmentClick();
+                  if (onOpenComparison) {
+                    onOpenComparison();
+                  } else {
+                    window.location.href = '/?bandingkan=1';
+                  }
+                }}
+                aria-label={t('nav.compareAria')}
+              >
+                {t('nav.compare')}
+              </button>
             </li>
             <li>
               <a
@@ -368,6 +390,24 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
                 >
                   {t('nav.etiquette')}
                 </a>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="navbar__mobile-link navbar__mobile-link--btn"
+                  onClick={() => {
+                    playParchmentClick();
+                    setMobileOpen(false);
+                    if (onOpenComparison) {
+                      onOpenComparison();
+                    } else {
+                      window.location.href = '/?bandingkan=1';
+                    }
+                  }}
+                  aria-label={t('nav.compareAria')}
+                >
+                  <span>{t('nav.compare')}</span>
+                </button>
               </li>
               <li>
                 <button

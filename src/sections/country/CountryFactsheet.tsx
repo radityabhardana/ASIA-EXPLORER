@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import type { Country } from '@/content/countries';
 import { COUNTRIES, iso3For } from '@/content/countries48';
 import {
@@ -7,6 +9,9 @@ import {
   haversineDistanceKm,
 } from '@/lib/geo-coords';
 import type { Locale } from '@/lib/i18n';
+import { useI18n } from '@/lib/i18n';
+import { cancelSpeech, speak } from '@/lib/speech';
+import { differs, profileFor } from '@/sections/country/scripts';
 
 interface CountryFactsheetProps {
   country: Country;
@@ -82,7 +87,41 @@ const DEMOGRAPHY_MAP: Record<string, { id: string; en: string }> = {
   mn: { id: '~3,4 Juta Jiwa · Stepa Altaik & Gurun Gobi', en: '~3.4 Million · Altai Steppe & Gobi Desert' },
 };
 
-export default function CountryFactsheet({ country, locale = 'id' }: CountryFactsheetProps) {
+export default function CountryFactsheet({
+  country,
+  locale: propLocale,
+}: CountryFactsheetProps) {
+  const { locale: activeLocale, t } = useI18n();
+  const locale = propLocale ?? activeLocale;
+  const [isPlaying, setIsPlaying] = useState(false);
+  const profile = profileFor(country);
+
+  useEffect(() => {
+    return () => {
+      cancelSpeech();
+    };
+  }, [country.id]);
+
+  const handlePlayAudio = () => {
+    if (isPlaying) {
+      cancelSpeech();
+      setIsPlaying(false);
+      return;
+    }
+
+    setIsPlaying(true);
+    const ok = speak(country.greeting.native, {
+      lang: profile.speechLang,
+      fallbackText: country.greeting.roman,
+      onEnd: () => setIsPlaying(false),
+      onError: () => setIsPlaying(false),
+    });
+
+    if (!ok) {
+      setIsPlaying(false);
+    }
+  };
+
   const iso3 = (country.iso3 || iso3For(country.id) || country.id).toUpperCase();
   const c48 = COUNTRIES[iso3];
   const coords = COUNTRY_COORDINATES[iso3];
@@ -167,11 +206,69 @@ export default function CountryFactsheet({ country, locale = 'id' }: CountryFact
 
           {/* 5. Bahasa & Aksara */}
           <div className="country-factsheet__cell">
-            <dt className="country-factsheet__label">
-              {locale === 'id' ? 'Bahasa & Aksara' : 'Language & Script'}
-            </dt>
+            <div className="country-factsheet__label-row">
+              <dt className="country-factsheet__label">
+                {locale === 'id' ? 'Bahasa & Aksara' : 'Language & Script'}
+              </dt>
+              <button
+                type="button"
+                className={`country-factsheet__audio-btn ${isPlaying ? 'country-factsheet__audio-btn--playing' : ''}`}
+                onClick={handlePlayAudio}
+                aria-label={`${t('country.factsheetListen')}: ${country.nameId} (${country.greeting.native})`}
+                title={`${t('country.factsheetListen')}: ${country.greeting.native}`}
+              >
+                {isPlaying ? (
+                  <span className="country-factsheet__soundwave" aria-hidden="true">
+                    <span className="country-factsheet__soundwave-bar" />
+                    <span className="country-factsheet__soundwave-bar" />
+                    <span className="country-factsheet__soundwave-bar" />
+                  </span>
+                ) : (
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                  </svg>
+                )}
+                <span className="country-factsheet__audio-text">
+                  {isPlaying ? t('country.factsheetPlaying') : t('country.factsheetListen')}
+                </span>
+              </button>
+            </div>
             <dd className="country-factsheet__value">
-              {country.language.nameId} · {country.language.script}
+              <span className="country-factsheet__lang-name">
+                {country.language.nameId} · {country.language.script}
+              </span>
+              {country.greeting?.native && (
+                <span className="country-factsheet__greeting-hint">
+                  <span className="country-factsheet__greeting-kicker">
+                    {t('country.factsheetGreetingLabel')}
+                  </span>{' '}
+                  <span
+                    className="country-factsheet__greeting-native"
+                    lang={profile.lang}
+                    dir={profile.dir}
+                  >
+                    {country.greeting.native}
+                  </span>
+                  {differs(country.greeting.native, country.greeting.roman) && (
+                    <span className="country-factsheet__greeting-roman">
+                      {' '}
+                      ({country.greeting.roman})
+                    </span>
+                  )}
+                </span>
+              )}
             </dd>
           </div>
 

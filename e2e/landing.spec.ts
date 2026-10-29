@@ -489,12 +489,17 @@ test('pratinjau ponsel tampil sebagai bottom sheet tanpa overflow', async ({
   await expect(panel).toHaveAttribute('data-open', 'true');
   await expect(panel.locator('.country-preview__name')).not.toBeEmpty();
   // Tunggu animasi masuk selesai sebelum mengukur tepi bawah.
-  await page.waitForTimeout(400);
+  await expect
+    .poll(async () => {
+      const b = await panel.boundingBox();
+      if (!b) return 9999;
+      return Math.round(b.y + b.height);
+    })
+    .toBeLessThanOrEqual(812 + 2);
 
   const box = await panel.boundingBox();
   expect(box).not.toBeNull();
   expect(box!.y).toBeGreaterThan(812 * 0.2);
-  expect(box!.y + box!.height).toBeLessThanOrEqual(812 + 1);
 
   await expectNoHorizontalScroll(page);
 

@@ -18,6 +18,7 @@ import NoteBlock from './NoteBlock';
 import { profileFor } from './scripts';
 import SourceBlock from './SourceBlock';
 import StoryBlock from './StoryBlock';
+import * as speech from '@/lib/speech';
 
 class MockSpeechSynthesisUtterance {
   text: string;
@@ -368,6 +369,31 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
       expect(container.querySelector('.country-factsheet__value--accent')?.textContent).toBe('Tokyo');
       expect(container.textContent).toContain('JST');
       expect(container.textContent).toContain('Asia Timur');
+    });
+
+    it('CountryFactsheet merender tombol audio sapaan resmi dan memutar audio saat diklik', () => {
+      const jp = getCountry('jp')!;
+      const speakSpy = vi.spyOn(speech, 'speak').mockImplementation((_text, options) => {
+        options?.onEnd?.();
+        return true;
+      });
+
+      const { container } = render(<CountryFactsheet country={jp} locale="id" />);
+
+      const audioBtn = container.querySelector('.country-factsheet__audio-btn') as HTMLButtonElement;
+      expect(audioBtn).not.toBeNull();
+      expect(container.textContent).toContain('Dengar Sapaan');
+      expect(container.textContent).toContain('こんにちは');
+
+      fireEvent.click(audioBtn);
+      expect(speakSpy).toHaveBeenCalledWith(
+        'こんにちは',
+        expect.objectContaining({
+          lang: 'ja-JP',
+          fallbackText: 'Konnichiwa',
+        }),
+      );
+      speakSpy.mockRestore();
     });
 
     it('CountryEtiquette menyajikan tepat 3 kaidah sopan santun budaya', () => {

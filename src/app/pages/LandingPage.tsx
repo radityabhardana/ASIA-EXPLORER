@@ -18,6 +18,7 @@ import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CartographicGround from '@/sections/landing/CartographicGround';
 import CountryDirectoryDrawer from '@/sections/landing/CountryDirectoryDrawer';
 import CountryPreviewPanel from '@/sections/landing/CountryPreviewPanel';
+import CulturalComparisonMatrix from '@/sections/landing/CulturalComparisonMatrix';
 import DailyChallengeExpedition from '@/sections/landing/DailyChallengeExpedition';
 import EtiquetteFieldGuide from '@/sections/landing/EtiquetteFieldGuide';
 import ExpeditionMasterySection from '@/sections/landing/ExpeditionMasterySection';
@@ -41,6 +42,10 @@ export default function LandingPage() {
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [panelCountryId, setPanelCountryId] = useState<string | null>(null);
   const [directoryOpen, setDirectoryOpen] = useState(false);
+  const [comparisonOpen, setComparisonOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).has('bandingkan');
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
@@ -281,6 +286,7 @@ export default function LandingPage() {
       <Navbar
         onScrollToMap={handleSkipToMap}
         onOpenCountryDirectory={() => setDirectoryOpen(true)}
+        onOpenComparison={() => setComparisonOpen(true)}
       />
 
       {/* Scene 1 — Hero: Peta Interaktif 48 Negara + Search Cerdas */}
@@ -296,7 +302,7 @@ export default function LandingPage() {
 
           <div className="landing-hero__copy" data-intro>
             <div className="landing-hero__eyebrow-wrap">
-              <p className="landing-hero__eyebrow">{t('hero.eyebrow')}</p>
+              <p className="landing-hero__eyebrow landing-hero__kicker">{t('hero.eyebrow')}</p>
             </div>
             <span className="landing-hero__accent-bar" aria-hidden="true" />
             <h1 className="landing-hero__title" id="landing-title">
@@ -598,6 +604,13 @@ export default function LandingPage() {
         open={directoryOpen}
         onClose={() => setDirectoryOpen(false)}
         onSelectCountry={handleSelectCountry}
+      />
+
+      {/* Matriks Komparasi Lintas Peradaban */}
+      <CulturalComparisonMatrix
+        open={comparisonOpen}
+        onClose={() => setComparisonOpen(false)}
+        initialCountryA={panelCountryId || 'jp'}
       />
 
       {/* Scene 6 — Footer: wordmark dan catatan hak cipta */}

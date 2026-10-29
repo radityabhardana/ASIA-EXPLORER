@@ -6,6 +6,8 @@ import type { Country } from '@/content/countries';
 import { COUNTRIES } from '@/content/countries48';
 import { playParchmentClick } from '@/lib/audio';
 import { useI18n } from '@/lib/i18n';
+import { cancelSpeech, speak } from '@/lib/speech';
+import { profileFor } from '@/sections/country/scripts';
 import '@/styles/country-directory.css';
 
 export interface CountryDirectoryDrawerProps {
@@ -68,7 +70,10 @@ export default function CountryDirectoryDrawer({
 
   // Kelola fokus dan scroll lock saat drawer terbuka
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      cancelSpeech();
+      return;
+    }
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -398,12 +403,46 @@ interface CountryCardProps {
 
 function CountryCard({ country, onClose, onSelectCountry }: CountryCardProps) {
   const { t } = useI18n();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const profile = profileFor(country);
   const c48 = COUNTRIES[country.iso3];
   const flag = getFlagEmoji(country.id);
   const isComplete = country.depth === 'Lengkap';
   const capital = c48?.capital || '-';
-  const nativeGreet = c48?.greet?.text || country.nameLocal;
+  const nativeGreet = country.greeting?.native || c48?.greet?.text || country.nameLocal;
+  const romanGreet = country.greeting?.roman || c48?.greet?.latin || '';
   const cultureExcerpt = c48?.fact || country.cultureNote;
+
+  useEffect(() => {
+    return () => {
+      if (isPlaying) {
+        cancelSpeech();
+      }
+    };
+  }, [isPlaying]);
+
+  const handlePlayAudio = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isPlaying) {
+      cancelSpeech();
+      setIsPlaying(false);
+      return;
+    }
+
+    setIsPlaying(true);
+    const ok = speak(nativeGreet, {
+      lang: profile.speechLang,
+      fallbackText: romanGreet,
+      onEnd: () => setIsPlaying(false),
+      onError: () => setIsPlaying(false),
+    });
+
+    if (!ok) {
+      setIsPlaying(false);
+    }
+  };
 
   const handlePreviewMap = () => {
     playParchmentClick();
@@ -422,9 +461,42 @@ function CountryCard({ country, onClose, onSelectCountry }: CountryCardProps) {
             <span
               className="country-dir-card__native"
               title={nativeGreet}
+              lang={profile.lang}
+              dir={profile.dir}
             >
               {nativeGreet}
             </span>
+            <button
+              type="button"
+              className={`country-dir-card__audio-btn ${isPlaying ? 'country-dir-card__audio-btn--playing' : ''}`}
+              onClick={handlePlayAudio}
+              aria-label={`${t('directory.listenGreeting')}: ${country.nameId} (${nativeGreet})`}
+              title={`${t('directory.listenGreeting')}: ${nativeGreet}`}
+            >
+              {isPlaying ? (
+                <span className="country-dir-soundwave" aria-hidden="true">
+                  <span className="country-dir-soundwave__bar" />
+                  <span className="country-dir-soundwave__bar" />
+                  <span className="country-dir-soundwave__bar" />
+                </span>
+              ) : (
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                </svg>
+              )}
+            </button>
           </div>
 
           <div className="country-dir-card__badges">

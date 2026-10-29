@@ -1488,6 +1488,96 @@
   outline-offset: 2px;
 }
 
+/* --- 7b. Trans-Civilizational Cultural Comparison Callout ----------------- */
+
+.country-compare-callout {
+  padding-block: var(--space-4);
+  margin-block: var(--space-4);
+  border-block-start: 1px solid var(--line);
+}
+
+.country-compare-callout__inner {
+  padding: var(--space-4);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--terracotta, #c85a32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.country-compare-callout__kicker {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--terracotta, #c85a32);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.country-compare-callout__title {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+}
+
+.country-compare-callout__description {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  max-width: 60ch;
+}
+
+.country-compare-callout__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 11px 22px;
+  background: linear-gradient(180deg, #2b333a 0%, #1a1f24 100%);
+  color: #fffef9;
+  font-family: var(--font-text);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 1px solid #0f141a;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 3px 8px -2px rgba(26, 31, 36, 0.3);
+  transition:
+    transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 140ms ease;
+  gap: 8px;
+}
+
+.country-compare-callout__cta:hover {
+  background: linear-gradient(180deg, #37414a 0%, #222930 100%);
+  color: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 6px 14px -3px rgba(26, 31, 36, 0.4);
+}
+
+.country-compare-callout__cta:active {
+  transform: translateY(1.5px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.country-compare-callout__cta:focus-visible {
+  outline: 2px solid var(--terracotta, #c85a32);
+  outline-offset: 2px;
+}
+
 /* --- 8. Sumber (Foldable Provenance Drawer) -------------------------------- */
 
 .country-sources {
@@ -1893,6 +1983,114 @@
 
 .country-factsheet__cell--full {
   grid-column: 1 / -1;
+}
+
+.country-factsheet__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.country-factsheet__audio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  background: rgba(23, 107, 104, 0.06);
+  border: 1px solid rgba(23, 107, 104, 0.22);
+  border-radius: 12px;
+  color: #176b68;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.country-factsheet__audio-btn:hover {
+  background: rgba(23, 107, 104, 0.12);
+  border-color: #176b68;
+}
+
+.country-factsheet__audio-btn:focus-visible {
+  outline: 2px solid #176b68;
+  outline-offset: 1px;
+}
+
+.country-factsheet__audio-btn--playing {
+  background: #176b68;
+  color: #ffffff;
+  border-color: #176b68;
+  box-shadow: 0 0 0 2px rgba(23, 107, 104, 0.2);
+}
+
+.country-factsheet__audio-text {
+  user-select: none;
+}
+
+.country-factsheet__soundwave {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5px;
+  height: 10px;
+}
+
+.country-factsheet__soundwave-bar {
+  width: 1.8px;
+  background-color: currentColor;
+  border-radius: 0.5px;
+  animation: soundwave-pulse 0.7s ease-in-out infinite alternate;
+}
+
+.country-factsheet__soundwave-bar:nth-child(1) {
+  height: 4px;
+  animation-delay: 0s;
+}
+
+.country-factsheet__soundwave-bar:nth-child(2) {
+  height: 10px;
+  animation-delay: 0.18s;
+}
+
+.country-factsheet__soundwave-bar:nth-child(3) {
+  height: 6px;
+  animation-delay: 0.36s;
+}
+
+@keyframes soundwave-pulse {
+  0% {
+    transform: scaleY(0.35);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.country-factsheet__greeting-hint {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ink-muted, #4a5568);
+  margin-top: 3px;
+}
+
+.country-factsheet__greeting-kicker {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-subtle, #718096);
+}
+
+.country-factsheet__greeting-native {
+  font-weight: 600;
+  color: var(--ink, #1a1f24);
+}
+
+.country-factsheet__greeting-roman {
+  font-style: italic;
+  color: var(--ink-muted, #4a5568);
 }
 
 .country-factsheet__label {
