@@ -189,7 +189,7 @@ test('skip link dan navigasi ekspedisi 48 negara', async ({ page }) => {
   await expect(page.locator('#peta')).toHaveCount(1);
 
   // Navigasi ekspedisi 48 negara via pintas kawasan
-  const seaBtn = page.getByRole('button', { name: 'Asia Tenggara' });
+  const seaBtn = page.getByRole('button', { name: 'Asia Tenggara', exact: true });
   await expect(seaBtn).toBeVisible();
   await seaBtn.click();
 

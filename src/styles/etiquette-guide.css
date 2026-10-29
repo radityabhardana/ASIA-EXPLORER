@@ -150,12 +150,22 @@
   gap: 18px;
   box-shadow: 0 6px 24px rgba(15, 20, 26, 0.04);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
 .etiquette-card:hover {
   transform: translateY(-3px);
   border-color: var(--terracotta, #b84d37);
   box-shadow: 0 14px 36px rgba(15, 20, 26, 0.08);
+}
+
+.etiquette-card:hover .etiquette-card__action-btn {
+  color: #8c3220;
+  gap: 9px;
+}
+
+.etiquette-card:hover .etiquette-card__action-arrow {
+  transform: translateX(2px);
 }
 
 .etiquette-card__header {

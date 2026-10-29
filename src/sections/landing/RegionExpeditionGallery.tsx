@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { COUNTRIES, iso3For } from '@/content/countries48';
 import { useI18n } from '@/lib/i18n';
@@ -7,6 +8,7 @@ import '@/styles/region-gallery.css';
 
 interface RegionExpeditionGalleryProps {
   onSelectCountry?: (id: string) => void;
+  onOpenDirectory?: () => void;
 }
 
 interface SphereData {
@@ -201,7 +203,11 @@ const REGION_SPHERES: SphereData[] = [
   },
 ];
 
-export default function RegionExpeditionGallery({ onSelectCountry }: RegionExpeditionGalleryProps) {
+export default function RegionExpeditionGallery({
+  onSelectCountry,
+  onOpenDirectory,
+}: RegionExpeditionGalleryProps) {
+  const navigate = useNavigate();
   const { locale } = useI18n();
   const [activeSphereId, setActiveSphereId] = useState<string>('sea');
 
@@ -324,7 +330,10 @@ export default function RegionExpeditionGallery({ onSelectCountry }: RegionExped
               <button
                 type="button"
                 className="region-spotlight__action-btn"
-                onClick={() => onSelectCountry?.(activeSphere.featuredCountryId)}
+                onClick={() => {
+                  onSelectCountry?.(activeSphere.featuredCountryId);
+                  navigate('/negara/' + activeSphere.featuredCountryId);
+                }}
               >
                 <span>
                   {locale === 'id'
@@ -364,11 +373,15 @@ export default function RegionExpeditionGallery({ onSelectCountry }: RegionExped
                   role="button"
                   tabIndex={0}
                   aria-label={`${meta.name} — ${meta.capital}`}
-                  onClick={() => onSelectCountry?.(cId)}
+                  onClick={() => {
+                    onSelectCountry?.(cId);
+                    navigate('/negara/' + cId);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       onSelectCountry?.(cId);
+                      navigate('/negara/' + cId);
                     }
                   }}
                 >
@@ -420,6 +433,42 @@ export default function RegionExpeditionGallery({ onSelectCountry }: RegionExped
             })}
           </div>
         </div>
+
+        {onOpenDirectory ? (
+          <div className="region-expedition__directory-cta">
+            <p className="region-expedition__directory-prompt">
+              {locale === 'id'
+                ? `Menampilkan spotlight ${activeSphere.nameId}. Jelajahi seluruh ${activeSphere.count} negara di kawasan ini dan 48 bangsa Asia.`
+                : `Showing ${activeSphere.nameEn} spotlight. Explore all ${activeSphere.count} nations in this region and 48 Asian nations.`}
+            </p>
+            <button
+              type="button"
+              className="region-expedition__directory-btn"
+              onClick={onOpenDirectory}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20" />
+              </svg>
+              <span>
+                {locale === 'id'
+                  ? 'Buka Direktori Lengkap 48 Negara'
+                  : 'Open Full 48 Nations Directory'}
+              </span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   );

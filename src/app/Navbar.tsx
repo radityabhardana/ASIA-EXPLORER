@@ -7,9 +7,10 @@ import { useProfile } from '@/lib/profile';
 
 export interface NavbarProps {
   onScrollToMap?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
+  onOpenCountryDirectory?: () => void;
 }
 
-export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
+export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: NavbarProps = {}) {
   void onScrollToMap;
   const [mobileOpen, setMobileOpen] = useState(false);
   const { locale, t, toggleLocale } = useI18n();
@@ -23,7 +24,9 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
     (selector: string) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
       const isLanding =
         typeof window !== 'undefined' &&
-        (window.location.pathname === '/' || window.location.pathname === '');
+        (window.location.pathname === '/' ||
+          window.location.pathname === '' ||
+          window.location.pathname === '/en');
 
       if (isLanding) {
         event.preventDefault();
@@ -105,11 +108,20 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
             </li>
             <li>
               <a
-                href="#tantangan-harian"
+                href="#kawasan"
                 className="navbar__link"
-                onClick={handleAnchorClick('#tantangan-harian')}
+                onClick={handleAnchorClick('#kawasan')}
               >
-                {t('nav.challenge')}
+                {t('nav.regions')}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#etiket"
+                className="navbar__link"
+                onClick={handleAnchorClick('#etiket')}
+              >
+                {t('nav.etiquette')}
               </a>
             </li>
             <li>
@@ -123,8 +135,36 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
           </ul>
         </nav>
 
-        {/* Right actions: ID / EN switcher, Masuk, Daftar & Mobile Toggle */}
+        {/* Right actions: Atlas Direktori 48, ID / EN switcher, Masuk, Daftar & Mobile Toggle */}
         <div className="navbar__actions">
+          {/* Tombol Atlas Direktori 48 Bangsa */}
+          <button
+            type="button"
+            className="navbar__atlas-btn"
+            onClick={onOpenCountryDirectory}
+            aria-label={t('nav.directoryAria')}
+          >
+            <svg
+              className="navbar__atlas-icon"
+              viewBox="0 0 24 24"
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20" />
+            </svg>
+            <span className="navbar__atlas-label">{t('nav.directory')}</span>
+            <span className="navbar__atlas-count" aria-hidden="true">
+              48
+            </span>
+          </button>
+
           <button
             type="button"
             className="navbar__lang-btn"
@@ -235,6 +275,41 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
                 >
                   {t('nav.explore')}
                 </a>
+              </li>
+              <li>
+                <a
+                  href="#kawasan"
+                  className="navbar__mobile-link"
+                  onClick={handleAnchorClick('#kawasan')}
+                >
+                  {t('nav.regions')}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#etiket"
+                  className="navbar__mobile-link"
+                  onClick={handleAnchorClick('#etiket')}
+                >
+                  {t('nav.etiquette')}
+                </a>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="navbar__mobile-link navbar__mobile-link--btn"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onOpenCountryDirectory?.();
+                  }}
+                >
+                  <span className="navbar__mobile-atlas-wrap">
+                    <span>{t('nav.directory')}</span>
+                    <span className="navbar__atlas-count" aria-hidden="true">
+                      48
+                    </span>
+                  </span>
+                </button>
               </li>
               <li>
                 <a

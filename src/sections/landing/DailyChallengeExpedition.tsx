@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import type { Locale } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
@@ -179,6 +179,7 @@ export default function DailyChallengeExpedition({
   locale,
   onExploreCountry,
 }: DailyChallengeExpeditionProps) {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -375,19 +376,20 @@ export default function DailyChallengeExpedition({
                           : 'Finish & View Score'}
                     </span>
                   </button>
-                  {onExploreCountry && (
-                    <button
-                      type="button"
-                      className="daily-quest__btn-ghost"
-                      onClick={() => onExploreCountry(currentQuestion.countryCode)}
-                    >
-                      <span>
-                        {locale === 'id'
-                          ? `Fokus Kamera ke ${currentQuestion.countryName}`
-                          : `Focus Camera on ${currentQuestion.countryNameEn}`}
-                      </span>
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    className="daily-quest__btn-ghost"
+                    onClick={() => {
+                      onExploreCountry?.(currentQuestion.countryCode);
+                      navigate('/negara/' + currentQuestion.countryCode);
+                    }}
+                  >
+                    <span>
+                      {locale === 'id'
+                        ? `Buka Lembar Lapangan: ${currentQuestion.countryName}`
+                        : `Open Field Profile: ${currentQuestion.countryNameEn}`}
+                    </span>
+                  </button>
                 </div>
               )}
             </div>

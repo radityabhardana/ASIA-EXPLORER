@@ -514,3 +514,55 @@
     padding: 48px 16px;
   }
 }
+
+/* --- Atlas Directory CTA Bridge ----------------------------------------- */
+.region-expedition__directory-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+  padding: 16px 20px;
+  background-color: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: var(--radius-xs, 2px);
+}
+
+.region-expedition__directory-prompt {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  color: var(--ink-muted, #3a4552);
+  line-height: 1.5;
+}
+
+.region-expedition__directory-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent, #176b68);
+  background-color: var(--ground, #f4f0e8);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: var(--radius-pill, 9999px);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-micro) var(--ease-standard),
+    border-color var(--duration-micro) var(--ease-standard),
+    transform var(--duration-micro) var(--ease-standard);
+}
+
+.region-expedition__directory-btn:hover {
+  background-color: #ede3d4;
+  border-color: var(--accent, #176b68);
+  transform: translateY(-1px);
+}
+
+.region-expedition__directory-btn:focus-visible {
+  outline: 2px solid var(--accent, #176b68);
+  outline-offset: 2px;
+}

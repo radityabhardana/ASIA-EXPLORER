@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useI18n } from '@/lib/i18n';
 import '@/styles/etiquette-guide.css';
@@ -227,6 +228,7 @@ const ETIQUETTE_DATA: EtiquetteItem[] = [
 ];
 
 export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldGuideProps) {
+  const navigate = useNavigate();
   const { locale } = useI18n();
   const [activeCategory, setActiveCategory] = useState<'greetings' | 'dining' | 'hospitality' | 'gestures'>('greetings');
 
@@ -370,7 +372,14 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
         {/* Grid Kartu Etiket */}
         <div className="etiquette-guide__grid">
           {filteredItems.map((item) => (
-            <article key={item.id} className="etiquette-card">
+            <article
+              key={item.id}
+              className="etiquette-card"
+              onClick={() => {
+                onSelectCountry?.(item.countryId);
+                navigate('/negara/' + item.countryId);
+              }}
+            >
               <div className="etiquette-card__header">
                 <div className="etiquette-card__badge-row">
                   <span className="etiquette-card__region-tag">{item.regionLabel}</span>
@@ -436,7 +445,11 @@ export default function EtiquetteFieldGuide({ onSelectCountry }: EtiquetteFieldG
                 <button
                   type="button"
                   className="etiquette-card__action-btn"
-                  onClick={() => onSelectCountry?.(item.countryId)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectCountry?.(item.countryId);
+                    navigate('/negara/' + item.countryId);
+                  }}
                 >
                   <span>
                     {locale === 'id'

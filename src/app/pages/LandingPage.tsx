@@ -15,6 +15,7 @@ import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CartographicGround from '@/sections/landing/CartographicGround';
+import CountryDirectoryDrawer from '@/sections/landing/CountryDirectoryDrawer';
 import CountryPreviewPanel from '@/sections/landing/CountryPreviewPanel';
 import DailyChallengeExpedition from '@/sections/landing/DailyChallengeExpedition';
 import EtiquetteFieldGuide from '@/sections/landing/EtiquetteFieldGuide';
@@ -38,6 +39,7 @@ export default function LandingPage() {
   const [ready, setReady] = useState(false);
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [panelCountryId, setPanelCountryId] = useState<string | null>(null);
+  const [directoryOpen, setDirectoryOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
@@ -273,7 +275,10 @@ export default function LandingPage() {
       <a className="landing-skip skip-link" href="#peta" onClick={handleSkipToMap}>
         {t('hero.skipLink')}
       </a>
-      <Navbar onScrollToMap={handleSkipToMap} />
+      <Navbar
+        onScrollToMap={handleSkipToMap}
+        onOpenCountryDirectory={() => setDirectoryOpen(true)}
+      />
 
       {/* Scene 1 — Hero: Peta Interaktif 48 Negara + Search Cerdas */}
       <section
@@ -569,21 +574,25 @@ export default function LandingPage() {
       {/* Scene 2 — Tantangan Harian Interaktif (Playable 60s Quiz ala Worldly) */}
       <DailyChallengeExpedition
         locale={locale}
-        onExploreCountry={handleSelectCountry}
       />
 
       {/* Scene 3 — Ekspedisi 5 Kawasan Budaya Asia (Curated Spheres) */}
       <RegionExpeditionGallery
-        onSelectCountry={handleSelectCountry}
+        onOpenDirectory={() => setDirectoryOpen(true)}
       />
 
       {/* Scene 4 — Panduan Etiket & Norma Budaya (Field Guide 48 Bangsa) */}
-      <EtiquetteFieldGuide
-        onSelectCountry={handleSelectCountry}
-      />
+      <EtiquetteFieldGuide />
 
       {/* Scene 5 — Sains Memori, Quest & Jalur Belajar */}
       <ExpeditionMasterySection />
+
+      {/* Atlas Direktori 48 Bangsa Drawer */}
+      <CountryDirectoryDrawer
+        open={directoryOpen}
+        onClose={() => setDirectoryOpen(false)}
+        onSelectCountry={handleSelectCountry}
+      />
 
       {/* Scene 6 — Footer: wordmark dan catatan hak cipta */}
       <footer
