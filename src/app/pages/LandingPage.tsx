@@ -17,6 +17,7 @@ import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
 import CartographicGround from '@/sections/landing/CartographicGround';
 import CountryPreviewPanel from '@/sections/landing/CountryPreviewPanel';
 import DailyChallengeExpedition from '@/sections/landing/DailyChallengeExpedition';
+import RegionExpeditionGallery from '@/sections/landing/RegionExpeditionGallery';
 import TopoBackground from '@/sections/landing/TopoBackground';
 import '@/styles/landing.css';
 
@@ -587,7 +588,12 @@ export default function LandingPage() {
         onExploreCountry={handleSelectCountry}
       />
 
-      {/* Scene 3 — Footer: wordmark dan catatan hak cipta */}
+      {/* Scene 3 — Ekspedisi 5 Kawasan Budaya Asia (Curated Spheres) */}
+      <RegionExpeditionGallery
+        onSelectCountry={handleSelectCountry}
+      />
+
+      {/* Scene 4 — Footer: wordmark dan catatan hak cipta */}
       <footer
         className="landing-scene landing-scene--footer"
         aria-labelledby="landing-footer-heading"

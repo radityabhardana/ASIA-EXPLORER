@@ -216,7 +216,7 @@ const AsiaMap2D = forwardRef<AsiaMap2DRef, AsiaMap2DProps>(function AsiaMap2D(
 
   return (
     <div
-      className={`asia-map-2d ${interactive ? 'is-interactive' : ''} ${className}`}
+      className={`asia-map-2d landing-map--interactive ${interactive ? 'is-interactive' : ''} ${className}`}
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}

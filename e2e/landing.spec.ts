@@ -146,9 +146,9 @@ test.describe('landing visual', () => {
           sceneCount: document.querySelectorAll('.landing-scene').length,
         };
       });
-      expect(height.sceneCount).toBe(5);
+      expect(height.sceneCount).toBe(2);
       expect(height.scrollHeight).toBeGreaterThanOrEqual(
-        Math.floor(height.vh * 4.4),
+        Math.floor(height.vh * 1.5),
       );
 
       for (const fraction of FRACTIONS) {
@@ -161,25 +161,14 @@ test.describe('landing visual', () => {
         });
       }
 
-      // Check completion markers at 100% scroll (footer visible).
-      if (viewport.width === 1440) {
-        const markers = await page.evaluate(() => {
-          const text = document.body.innerText;
-          return {
-            lengkap: (text.match(/lengkap/gi) || []).length,
-            penjelajahan: (text.match(/penjelajahan/gi) || []).length,
-          };
-        });
-        expect(markers.lengkap).toBe(10);
-        expect(markers.penjelajahan).toBe(5);
-      }
+      // 48-nation streamlined architecture (Hero + Daily Challenge)
     }
 
     expect(errors).toEqual([]);
   });
 });
 
-test('skip link, 15 kartu negara di mosaik, dan navigasi', async ({ page }) => {
+test('skip link dan navigasi ekspedisi 48 negara', async ({ page }) => {
   test.setTimeout(90_000);
   const errors = collectErrors(page);
 
@@ -198,18 +187,21 @@ test('skip link, 15 kartu negara di mosaik, dan navigasi', async ({ page }) => {
   await page.keyboard.press('Enter');
   await expect(page.locator('#peta')).toBeFocused();
   await expect(page.locator('#peta')).toHaveCount(1);
-  await expect(page.locator('.landing-scene--invitation')).toHaveCount(0);
-  await expect(page.locator('.landing-invitation__scene')).toHaveCount(0);
 
-  // Katalog 15 negara hidup di mosaik; kartu adalah tautan langsung.
-  const cards = page.locator('.landing-mosaic__card');
-  await expect(cards).toHaveCount(15);
+  // Navigasi ekspedisi 48 negara via pintas kawasan
+  const seaBtn = page.getByRole('button', { name: 'Asia Tenggara' });
+  await expect(seaBtn).toBeVisible();
+  await seaBtn.click();
 
-  const indonesia = page.locator('.landing-mosaic__card[href="/negara/id"]');
-  await expect(indonesia).toHaveAttribute('aria-label', /Indonesia/);
-  await indonesia.focus();
-  await expect(indonesia).toBeFocused();
-  await page.keyboard.press('Enter');
+  const preview = page.locator('.country-preview');
+  await expect(preview).toHaveAttribute('data-open', 'true');
+  await expect(preview.locator('.country-preview__name')).toHaveText('Indonesia');
+
+  // Klik tombol buka cerita menuju detail negara
+  const cta = preview.getByRole('link', { name: /Buka cerita|Lihat sekilas/ });
+  await expect(cta).toBeVisible();
+  await cta.click();
+
   await expect(page).toHaveURL(/\/negara\/id$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Indonesia');
 
