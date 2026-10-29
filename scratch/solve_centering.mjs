@@ -103,3 +103,4 @@ console.log('--- Solving for Perfect Centering ---');
 solveOptimalTargetX(1440, 900);
 solveOptimalTargetX(1280, 800);
 solveOptimalTargetX(1024, 602);
+

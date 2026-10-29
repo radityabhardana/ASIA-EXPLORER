@@ -119,11 +119,11 @@
   }
 }
 
-/* Pada Desktop: posisikan di area 64% sebelah kanan agar seimbang dengan kolom teks kiri */
+/* Pada Desktop & Laptop: posisikan tepat di sisa area sebelah kanan kolom teks */
 @media (min-width: 1024px) {
   .landing-hero__scene .landing-asia__stage--2d {
-    left: 36%;
-    width: 64%;
+    left: calc(min(88vw, 440px) + clamp(32px, 4vw, 56px));
+    width: calc(100% - (min(88vw, 440px) + clamp(32px, 4vw, 56px)));
     padding: 32px 48px 48px 16px;
   }
 }

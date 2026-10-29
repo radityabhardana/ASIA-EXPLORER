@@ -152,7 +152,7 @@ export default function TopoBackground() {
 
         {/* --- Central Dawn Aura (Parallax Plane 0) --- */}
         <g ref={dawnRef} style={{ willChange: 'transform' }}>
-          <ellipse cx="915" cy="460" rx="680" ry="400" fill="url(#expedition-dawn)" />
+          <ellipse cx="960" cy="460" rx="680" ry="400" fill="url(#expedition-dawn)" />
         </g>
 
         {/* --- Flowing Antique Cartographic Contours (Parallax Plane 1) --- */}
