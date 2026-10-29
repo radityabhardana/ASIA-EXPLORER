@@ -43,7 +43,7 @@ export default function BackNavigation({ leaving, onClick, label }: BackNavigati
     <div
       className="country-back-bar"
       data-hidden={hidden ? 'true' : 'false'}
-      aria-hidden={hidden ? 'true' : 'false'}
+      aria-hidden="false"
     >
       <Link
         className="country-back"

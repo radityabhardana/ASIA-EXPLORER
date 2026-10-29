@@ -9,7 +9,7 @@ import '@/styles/asia-map-2d.css';
 export interface AsiaMap2DProps {
   selectedId?: string | null;
   focusCountryId?: string | null;
-  onSelectCountry?: (id: string) => void;
+  onSelectCountry?: (id: string | null) => void;
   onHoverCountry?: (id: string | null) => void;
   interactive?: boolean;
   className?: string;
@@ -56,17 +56,22 @@ const AsiaMap2D = forwardRef<AsiaMap2DRef, AsiaMap2DProps>(function AsiaMap2D(
 
   const activeTargetId = focusCountryId ?? selectedId;
 
-  // Zoom to country when activeTargetId changes
+  // Zoom to country when activeTargetId changes, or smoothly reset to overview when null
   useEffect(() => {
     if (!activeTargetId) {
+      setTransform({ k: 1, x: 0, y: 0 });
       return;
     }
     const country = atlasData.countries.find((c) => c.id === activeTargetId);
-    if (!country) return;
+    if (!country) {
+      setTransform({ k: 1, x: 0, y: 0 });
+      return;
+    }
 
     const [cx = 500, cy = 360] = country.centroid;
-    const targetK = 2.4;
-    // Pusatkan centroid negara ke tengah tampilan (500, 360)
+    // Zoom proporsional yang seimbang (1.7x): negara fokus terpusat tajam,
+    // negara tetangga tetap terlihat dan mudah diklik untuk berpindah.
+    const targetK = 1.7;
     const targetX = 500 - cx * targetK;
     const targetY = 360 - cy * targetK;
 
@@ -189,9 +194,26 @@ const AsiaMap2D = forwardRef<AsiaMap2DRef, AsiaMap2DProps>(function AsiaMap2D(
     }
   };
 
-  const handleCountryClick = (c: typeof atlasData.countries[0]) => {
+  const handleCountryClick = (c: typeof atlasData.countries[0], e: ReactMouseEvent) => {
+    e.stopPropagation();
     if (hasDragged.current) return;
-    onSelectCountry?.(c.id);
+    if (activeTargetId === c.id) {
+      // Klik ulang negara yang sama -> deselect & zoom out ke overview
+      onSelectCountry?.(null);
+      handleReset();
+    } else {
+      onSelectCountry?.(c.id);
+    }
+  };
+
+  const handleSvgClick = (e: ReactMouseEvent) => {
+    if (hasDragged.current) return;
+    const targetEl = e.target as HTMLElement;
+    // Klik di area kosong / lautan (bukan poligon negara) -> deselect & zoom out
+    if (!targetEl.classList.contains('asia-map-2d__path')) {
+      onSelectCountry?.(null);
+      handleReset();
+    }
   };
 
   const handleCountryHover = (c: typeof atlasData.countries[0] | null, e?: ReactMouseEvent) => {
@@ -210,7 +232,12 @@ const AsiaMap2D = forwardRef<AsiaMap2DRef, AsiaMap2DProps>(function AsiaMap2D(
   const onKeyDown = (e: React.KeyboardEvent, c: typeof atlasData.countries[0]) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      onSelectCountry?.(c.id);
+      if (activeTargetId === c.id) {
+        onSelectCountry?.(null);
+        handleReset();
+      } else {
+        onSelectCountry?.(c.id);
+      }
     }
   };
 
@@ -231,18 +258,9 @@ const AsiaMap2D = forwardRef<AsiaMap2DRef, AsiaMap2DProps>(function AsiaMap2D(
         className="asia-map-2d__svg"
         preserveAspectRatio="xMidYMid meet"
         role="group"
+        onClick={handleSvgClick}
         aria-label={locale === 'id' ? 'Peta Vektor 2D Benua Asia 48 Negara' : '2D Vector Map of Asian Continent 48 Nations'}
       >
-        <defs>
-          {/* Filter bayangan halus untuk negara yang sedang terpilih */}
-          <filter id="country-active-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#b84d37" floodOpacity="0.45" />
-          </filter>
-          <filter id="country-hover-shadow" x="-10%" y="-10%" width="120%" height="120%">
-            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0f141a" floodOpacity="0.25" />
-          </filter>
-        </defs>
-
         {/* Lapisan transform pan & zoom */}
         <g
           className="asia-map-2d__viewport"
@@ -277,7 +295,7 @@ const AsiaMap2D = forwardRef<AsiaMap2DRef, AsiaMap2DProps>(function AsiaMap2D(
                   tabIndex={interactive ? 0 : -1}
                   aria-label={`${displayName} · ${c.capital} (${c.region})`}
                   aria-pressed={isSelected}
-                  onClick={() => handleCountryClick(c)}
+                  onClick={(e) => handleCountryClick(c, e)}
                   onMouseEnter={(e) => handleCountryHover(c, e)}
                   onMouseLeave={() => handleCountryHover(null)}
                   onFocus={() => handleCountryHover(c)}

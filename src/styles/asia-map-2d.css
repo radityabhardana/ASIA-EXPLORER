@@ -30,12 +30,14 @@
 }
 
 .asia-map-2d__viewport {
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  transform-origin: 0 0;
   pointer-events: auto;
 }
 
 .asia-map-2d:active .asia-map-2d__viewport {
-  transition: none; /* Responsif instan saat dragging */
+  transition: none !important; /* Responsif instan tanpa jeda saat dragging */
 }
 
 /* Graticule dekoratif archival */
@@ -64,28 +66,27 @@
   stroke-dasharray: 2 5;
 }
 
-/* Poligon Negara */
+/* Poligon Negara (60fps tanpa filter drop-shadow yang membebani GPU/CPU) */
 .asia-map-2d__path {
   stroke: var(--paper, #fbf9f5);
   stroke-width: 0.95px;
   stroke-linejoin: round;
   cursor: pointer;
-  transition: fill 0.18s ease, stroke 0.18s ease, stroke-width 0.18s ease, filter 0.18s ease;
+  transition: fill 0.15s ease, stroke 0.15s ease, fill-opacity 0.15s ease;
   vector-effect: non-scaling-stroke;
 }
 
 .asia-map-2d__path:hover,
 .asia-map-2d__path.is-hovered {
-  filter: brightness(1.18) drop-shadow(0 2px 5px rgba(15, 20, 26, 0.2));
+  fill-opacity: 0.9;
   stroke: var(--ink, #0f141a);
-  stroke-width: 1.4px;
+  stroke-width: 1.6px;
 }
 
 .asia-map-2d__path.is-selected {
   fill: var(--terracotta, #b84d37) !important;
   stroke: #ffffff;
-  stroke-width: 2px;
-  filter: drop-shadow(0 4px 12px rgba(184, 77, 55, 0.5));
+  stroke-width: 2.2px;
 }
 
 .asia-map-2d__path:focus-visible {

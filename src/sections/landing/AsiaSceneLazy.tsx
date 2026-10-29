@@ -14,11 +14,12 @@ import AsiaMap2D, { type AsiaMap2DRef } from './AsiaMap2D';
 import LatitudeRail from './LatitudeRail';
 import '@/styles/scene-lazy.css';
 
-type AsiaSceneLazyProps = Omit<AsiaSceneProps, 'className'> & {
+type AsiaSceneLazyProps = Omit<AsiaSceneProps, 'className' | 'onSelectCountry'> & {
   label: string;
   describedBy?: string;
   /** Scene 1 hanya visual; jangan menambah landmark kedua di halaman. */
   decorative?: boolean;
+  onSelectCountry?: (id: string | null) => void;
 };
 
 type MapStatus = 'pending' | 'ready' | 'fallback';
@@ -253,6 +254,7 @@ export default function AsiaSceneLazy({
   };
 
   const handleResetOverview = () => {
+    callbacksRef.current.onSelectCountry?.(null);
     if (dimension === '3d') {
       instanceRef.current?.overview();
     } else {

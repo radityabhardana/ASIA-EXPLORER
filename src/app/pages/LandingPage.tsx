@@ -303,7 +303,7 @@ export default function LandingPage() {
             </h1>
             <p className="landing-hero__tagline">{t('hero.tagline')}</p>
 
-            {/* Tombol Aksi Utama (Mulai Tantangan & Cari Negara) */}
+            {/* Tombol Aksi Utama (Mulai Tantangan) */}
             <div className="landing-hero__actions">
               <button
                 type="button"
@@ -337,29 +337,6 @@ export default function LandingPage() {
                 >
                   <path d="M8 3v10M4 9l4 4 4-4" />
                 </svg>
-              </button>
-              <button
-                type="button"
-                className="landing-hero__cta-secondary"
-                onClick={() => searchInputRef.current?.focus()}
-              >
-                <svg
-                  className="landing-hero__cta-icon"
-                  width="13"
-                  height="13"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <circle cx="8.5" cy="8.5" r="5.5" />
-                  <line x1="13" y1="13" x2="17.5" y2="17.5" />
-                </svg>
-                <span>{t('hero.ctaSearch')}</span>
               </button>
             </div>
 

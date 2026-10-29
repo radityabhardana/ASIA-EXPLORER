@@ -395,9 +395,9 @@
 }
 
 .country-back-bar[data-hidden='true'] {
-  transform: translateY(-120%);
-  opacity: 0;
-  pointer-events: none;
+  transform: translateY(0);
+  opacity: 0.88;
+  pointer-events: auto;
 }
 
 .country-back {

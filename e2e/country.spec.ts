@@ -96,13 +96,13 @@ for (const country of COUNTRIES) {
         expect(words).toBeLessThanOrEqual(45);
       }
 
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(150);
+
       const back = page.getByRole('link', { name: 'Kembali ke halaman utama' });
       await expect(back).toBeVisible();
       const backBox = await back.boundingBox();
       expect(backBox?.height ?? 0).toBeGreaterThanOrEqual(44);
-
-      await page.evaluate(() => window.scrollTo(0, 0));
-      await page.waitForTimeout(150);
       await page.screenshot({
         path: `${SHOT_DIR}/${country.id}-${viewport.width}x${viewport.height}.png`,
         fullPage: true,

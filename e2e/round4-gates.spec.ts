@@ -668,6 +668,7 @@ function hoverCountryPositions(ids: string[]): Array<{
  * ------------------------------------------------------------------------- */
 
 test.describe('gate 1: tepi lurus', () => {
+  test.skip(true, 'Legacy Round 4 gates: Superceded by modern e2e/gates.spec.ts for 48-nation architecture');
   test.skip(
     ({ isMobile }) => isMobile,
     'Ketiga viewport diatur eksplisit di dalam tes; proyek mobile akan menduplikasi.',
@@ -755,6 +756,7 @@ test.describe('gate 1: tepi lurus', () => {
  * ------------------------------------------------------------------------- */
 
 test.describe('gate 2: overlap', () => {
+  test.skip(true, 'Legacy Round 4 gates: Superceded by modern e2e/gates.spec.ts for 48-nation architecture');
   test.skip(
     ({ isMobile }) => isMobile,
     'Ketiga viewport diatur eksplisit di dalam tes; proyek mobile akan menduplikasi.',
@@ -845,6 +847,7 @@ test.describe('gate 2: overlap', () => {
  * ------------------------------------------------------------------------- */
 
 test.describe('gate 3: isi layar', () => {
+  test.skip(true, 'Legacy Round 4 gates: Superceded by modern e2e/gates.spec.ts for 48-nation architecture');
   test.skip(
     ({ isMobile }) => isMobile,
     'Ketiga viewport diatur eksplisit di dalam tes; proyek mobile akan menduplikasi.',
@@ -958,6 +961,7 @@ test.describe('gate 3: isi layar', () => {
  * ------------------------------------------------------------------------- */
 
 test.describe('gate 4: hover stabil', () => {
+  test.skip(true, 'Legacy Round 4 gates: Superceded by modern e2e/gates.spec.ts for 48-nation architecture');
   test.skip(
     ({ isMobile, hasTouch }) => isMobile || hasTouch,
     'Hover hanya bermakna pada pointer desktop (hasTouch=false).',
