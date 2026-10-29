@@ -1,38 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
 import { signInWithEmail, registerWithEmail, signInWithGoogle } from '@/lib/auth';
+import AuthInteractiveMap from '@/app/components/AuthInteractiveMap';
 import '@/styles/auth.css';
-
-interface Slide {
-  country: string;
-  tagline: string;
-  emoji: string;
-  color: string;
-}
-
-const slides: Slide[] = [
-  { country: 'Jepang', tagline: 'Pelajari Aksara Hiragana', emoji: '🗾', color: '#c0392b' },
-  { country: 'Korea', tagline: 'Kenali Budaya Hangul', emoji: '🇰🇷', color: '#2c3e50' },
-  { country: 'Indonesia', tagline: 'Jelajahi Nusantara', emoji: '🏝️', color: '#27ae60' },
-  { country: 'India', tagline: 'Temukan Aksara Devanagari', emoji: '🕌', color: '#e67e22' },
-  { country: 'Arab Saudi', tagline: 'Kuasai Huruf Arab', emoji: '🌙', color: '#8e44ad' },
-];
 
 interface AuthPageProps {
   defaultTab?: 'login' | 'register';
 }
 
 export default function AuthPage({ defaultTab = 'login' }: AuthPageProps) {
-  const [activeSlide, setActiveSlide] = useState(0);
   const [tab, setTab] = useState<'login' | 'register'>(defaultTab);
-
-  // Slide auto-rotate
-  useEffect(() => {
-    const id = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
 
   // Sync tab with defaultTab prop changes (e.g. route change)
   useEffect(() => {
@@ -41,56 +19,42 @@ export default function AuthPage({ defaultTab = 'login' }: AuthPageProps) {
 
   return (
     <div className="auth-page">
-      {/* ── Visual panel ── */}
+      {/* ── Visual panel with Interactive Asia Map ── */}
       <div className="auth-visual">
-        {slides.map((slide, i) => (
-          <div
-            key={slide.country}
-            className={`auth-slide${i === activeSlide ? ' auth-slide--active' : ''}`}
-          >
-            <span className="auth-slide__emoji">{slide.emoji}</span>
-            <p className="auth-slide__country">{slide.country}</p>
-            <p className="auth-slide__tagline">{slide.tagline}</p>
-            <span className="auth-slide__accent" style={{ background: slide.color }} />
-          </div>
-        ))}
-        <div className="auth-dots" role="tablist" aria-label="Slide navigation">
-          {slides.map((slide, i) => (
-            <button
-              key={slide.country}
-              className={`auth-dot${i === activeSlide ? ' auth-dot--active' : ''}`}
-              onClick={() => setActiveSlide(i)}
-              aria-label={`Slide ${slide.country}`}
-              aria-selected={i === activeSlide}
-              role="tab"
-            />
-          ))}
-        </div>
+        <AuthInteractiveMap />
       </div>
 
       {/* ── Form panel ── */}
       <div className="auth-form-panel">
         <div className="auth-form-inner">
-          <div className="auth-logo">
-            Asia<span>Explorer</span>
+          <div className="auth-header-wrap">
+            <h1 className="auth-logo">
+              Asia<span>Explorer</span>
+            </h1>
+            <p className="auth-subtitle">
+              Portal Pembelajaran Mandiri Bahasa & Etiket Asia
+            </p>
           </div>
 
+          {/* Tab switcher */}
           <div className="auth-tabs" role="tablist">
             <button
-              className={`auth-tab${tab === 'login' ? ' auth-tab--active' : ''}`}
-              onClick={() => setTab('login')}
+              type="button"
               role="tab"
               aria-selected={tab === 'login'}
+              className={`auth-tab${tab === 'login' ? ' auth-tab--active' : ''}`}
+              onClick={() => setTab('login')}
             >
-              Masuk
+              Masuk Sesi
             </button>
             <button
-              className={`auth-tab${tab === 'register' ? ' auth-tab--active' : ''}`}
-              onClick={() => setTab('register')}
+              type="button"
               role="tab"
               aria-selected={tab === 'register'}
+              className={`auth-tab${tab === 'register' ? ' auth-tab--active' : ''}`}
+              onClick={() => setTab('register')}
             >
-              Daftar
+              Buat Profil
             </button>
           </div>
 
@@ -118,13 +82,13 @@ function LoginForm() {
       try {
         await signInWithEmail(email, password);
         navigate('/dashboard');
-      } catch (err) {
-        setError(friendlyError(err));
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : 'Gagal masuk. Periksa email & password.');
       } finally {
         setLoading(false);
       }
     },
-    [email, password, navigate],
+    [email, password, navigate]
   );
 
   const handleGoogle = useCallback(async () => {
@@ -133,15 +97,15 @@ function LoginForm() {
     try {
       await signInWithGoogle();
       navigate('/dashboard');
-    } catch (err) {
-      setError(friendlyError(err));
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Gagal masuk dengan Google.');
     } finally {
       setLoading(false);
     }
   }, [navigate]);
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form className="auth-form" onSubmit={handleSubmit}>
       {error && <div className="auth-error" role="alert">{error}</div>}
 
       <div className="auth-field">
@@ -150,7 +114,7 @@ function LoginForm() {
           id="login-email"
           type="email"
           className="auth-input"
-          placeholder="kamu@email.com"
+          placeholder="nama@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -176,12 +140,12 @@ function LoginForm() {
           onClick={() => setShowPw((v) => !v)}
           aria-label={showPw ? 'Sembunyikan password' : 'Tampilkan password'}
         >
-          {showPw ? '🙈' : '👁️'}
+          {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
         </button>
       </div>
 
       <button type="submit" className="auth-btn" disabled={loading}>
-        {loading ? 'Masuk...' : 'Masuk'}
+        {loading ? 'Memproses Sesi...' : 'Masuk ke Studio'}
       </button>
 
       <div className="auth-divider">atau</div>
@@ -210,15 +174,15 @@ function RegisterForm() {
       setError('');
       setLoading(true);
       try {
-        await registerWithEmail(name, email, password);
+        await registerWithEmail(email, password, name);
         navigate('/dashboard');
-      } catch (err) {
-        setError(friendlyError(err));
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : 'Gagal mendaftar. Coba lagi.');
       } finally {
         setLoading(false);
       }
     },
-    [name, email, password, navigate],
+    [email, password, name, navigate]
   );
 
   const handleGoogle = useCallback(async () => {
@@ -227,24 +191,24 @@ function RegisterForm() {
     try {
       await signInWithGoogle();
       navigate('/dashboard');
-    } catch (err) {
-      setError(friendlyError(err));
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Gagal mendaftar dengan Google.');
     } finally {
       setLoading(false);
     }
   }, [navigate]);
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form className="auth-form" onSubmit={handleSubmit}>
       {error && <div className="auth-error" role="alert">{error}</div>}
 
       <div className="auth-field">
-        <label className="auth-label" htmlFor="reg-name">Nama</label>
+        <label className="auth-label" htmlFor="reg-name">Nama Panggilan</label>
         <input
           id="reg-name"
           type="text"
           className="auth-input"
-          placeholder="Nama kamu"
+          placeholder="mis. Budi Santoso"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -258,7 +222,7 @@ function RegisterForm() {
           id="reg-email"
           type="email"
           className="auth-input"
-          placeholder="kamu@email.com"
+          placeholder="nama@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -285,12 +249,12 @@ function RegisterForm() {
           onClick={() => setShowPw((v) => !v)}
           aria-label={showPw ? 'Sembunyikan password' : 'Tampilkan password'}
         >
-          {showPw ? '🙈' : '👁️'}
+          {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
         </button>
       </div>
 
       <button type="submit" className="auth-btn" disabled={loading}>
-        {loading ? 'Mendaftar...' : 'Daftar'}
+        {loading ? 'Membuat Profil...' : 'Daftar & Mulai Eksplorasi'}
       </button>
 
       <div className="auth-divider">atau</div>
@@ -309,7 +273,7 @@ function GoogleIcon() {
     <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
       <path
         fill="#4285F4"
-        d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"
+        d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.616z"
       />
       <path
         fill="#34A853"
@@ -317,7 +281,7 @@ function GoogleIcon() {
       />
       <path
         fill="#FBBC05"
-        d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"
+        d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"
       />
       <path
         fill="#EA4335"
@@ -325,29 +289,4 @@ function GoogleIcon() {
       />
     </svg>
   );
-}
-
-function friendlyError(err: unknown): string {
-  if (err instanceof Error) {
-    const msg = err.message;
-    if (msg.includes('user-not-found') || msg.includes('wrong-password') || msg.includes('invalid-credential')) {
-      return 'Email atau password salah.';
-    }
-    if (msg.includes('email-already-in-use')) {
-      return 'Email sudah terdaftar. Coba masuk.';
-    }
-    if (msg.includes('weak-password')) {
-      return 'Password terlalu lemah. Gunakan minimal 6 karakter.';
-    }
-    if (msg.includes('invalid-email')) {
-      return 'Format email tidak valid.';
-    }
-    if (msg.includes('popup-closed-by-user') || msg.includes('cancelled-popup-request')) {
-      return 'Login dibatalkan.';
-    }
-    if (msg.includes('network-request-failed')) {
-      return 'Gagal terhubung. Periksa koneksi internet kamu.';
-    }
-  }
-  return 'Terjadi kesalahan. Coba lagi.';
 }

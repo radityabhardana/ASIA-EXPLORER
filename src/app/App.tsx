@@ -7,6 +7,7 @@ import ScrollProgressBar from './ScrollProgressBar';
 import { AppRoutes } from './routes';
 import { ProfileProvider } from '@/lib/profile';
 import ProfileDialog from './components/ProfileDialog';
+import ScrollController from './components/ScrollController';
 
 export const APP_ROOT_ID = 'app-root';
 
@@ -24,6 +25,7 @@ export default function App() {
       </a>
       <ScrollProgressBar />
       <BrowserRouter>
+        <ScrollController />
         <ProfileProvider>
           <main id="konten" className="app-main" tabIndex={-1}>
             <AppRoutes />

@@ -1,26 +1,28 @@
 import { useState } from 'react';
+import { BookOpen, Volume2, Sparkles, Check } from 'lucide-react';
 import { XP_REWARDS } from '@/lib/xp';
+import { speak, isSpeechSupported } from '@/lib/speech';
 
 interface WordOfDayWidgetProps {
   onEarnXP?: (amount: number) => void;
 }
 
 const WORDS = [
-  { word: 'こんにちは', romanization: 'Konnichiwa', meaning: 'Halo', country: 'Jepang', lang: 'ja' },
-  { word: '안녕하세요', romanization: 'Annyeonghaseyo', meaning: 'Halo', country: 'Korea', lang: 'ko' },
-  { word: 'ありがとう', romanization: 'Arigatou', meaning: 'Terima kasih', country: 'Jepang', lang: 'ja' },
-  { word: '谢谢', romanization: 'Xièxiè', meaning: 'Terima kasih', country: 'China', lang: 'zh' },
-  { word: 'สวัสดี', romanization: 'Sawasdee', meaning: 'Halo', country: 'Thailand', lang: 'th' },
-  { word: 'شكراً', romanization: 'Shukran', meaning: 'Terima kasih', country: 'Arab Saudi', lang: 'ar' },
-  { word: 'नमस्ते', romanization: 'Namaste', meaning: 'Halo', country: 'India', lang: 'hi' },
-  { word: 'Salamat', romanization: 'Salamat', meaning: 'Terima kasih', country: 'Filipina', lang: 'fil' },
-  { word: 'Xin chào', romanization: 'Sin Chao', meaning: 'Halo', country: 'Vietnam', lang: 'vi' },
-  { word: 'Terima kasih', romanization: 'Terima kasih', meaning: 'Terima kasih', country: 'Indonesia', lang: 'id' },
-  { word: 'ສະບາຍດີ', romanization: 'Sabaidee', meaning: 'Halo', country: 'Laos', lang: 'lo' },
-  { word: 'ขอบคุณ', romanization: 'Khob khun', meaning: 'Terima kasih', country: 'Thailand', lang: 'th' },
-  { word: 'Matur nuwun', romanization: 'Matur nuwun', meaning: 'Terima kasih (Jawa)', country: 'Indonesia', lang: 'jv' },
-  { word: 'رحمت', romanization: 'Rahmat', meaning: 'Terima kasih', country: 'Uzbekistan', lang: 'uz' },
-  { word: 'Баярлалаа', romanization: 'Bayarlalaa', meaning: 'Terima kasih', country: 'Mongolia', lang: 'mn' },
+  { word: 'こんにちは', romanization: 'Konnichiwa', meaning: 'Halo', country: 'Jepang', lang: 'ja-JP' },
+  { word: '안녕하세요', romanization: 'Annyeonghaseyo', meaning: 'Halo', country: 'Korea', lang: 'ko-KR' },
+  { word: 'ありがとう', romanization: 'Arigatou', meaning: 'Terima kasih', country: 'Jepang', lang: 'ja-JP' },
+  { word: '谢谢', romanization: 'Xièxiè', meaning: 'Terima kasih', country: 'China', lang: 'zh-CN' },
+  { word: 'สวัสดี', romanization: 'Sawasdee', meaning: 'Halo', country: 'Thailand', lang: 'th-TH' },
+  { word: 'شكراً', romanization: 'Shukran', meaning: 'Terima kasih', country: 'Arab Saudi', lang: 'ar-SA' },
+  { word: 'नमस्ते', romanization: 'Namaste', meaning: 'Halo', country: 'India', lang: 'hi-IN' },
+  { word: 'Salamat', romanization: 'Salamat', meaning: 'Terima kasih', country: 'Filipina', lang: 'fil-PH' },
+  { word: 'Xin chào', romanization: 'Sin Chao', meaning: 'Halo', country: 'Vietnam', lang: 'vi-VN' },
+  { word: 'Terima kasih', romanization: 'Terima kasih', meaning: 'Terima kasih', country: 'Indonesia', lang: 'id-ID' },
+  { word: 'ສະບາຍດີ', romanization: 'Sabaidee', meaning: 'Halo', country: 'Laos', lang: 'lo-LA' },
+  { word: 'ขอบคุณ', romanization: 'Khob khun', meaning: 'Terima kasih', country: 'Thailand', lang: 'th-TH' },
+  { word: 'Matur nuwun', romanization: 'Matur nuwun', meaning: 'Terima kasih (Jawa)', country: 'Indonesia', lang: 'jv-ID' },
+  { word: 'رحمت', romanization: 'Rahmat', meaning: 'Terima kasih', country: 'Uzbekistan', lang: 'uz-UZ' },
+  { word: 'Баярлалаа', romanization: 'Bayarlalaa', meaning: 'Terima kasih', country: 'Mongolia', lang: 'mn-MN' },
 ] as const;
 
 function getTodayDateStr(): string {
@@ -34,13 +36,22 @@ export default function WordOfDayWidget({ onEarnXP }: WordOfDayWidgetProps) {
   const dateStr = getTodayDateStr();
   const claimKey = `wod_claimed_${dateStr}`;
 
-  const [claimed, setClaimed] = useState(() => !!localStorage.getItem(claimKey));
+  const [claimed, setClaimed] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !!localStorage.getItem(claimKey);
+  });
+  const [speaking, setSpeaking] = useState(false);
 
   function handleSpeak() {
-    if (!window.speechSynthesis) return;
-    const utt = new SpeechSynthesisUtterance(entry.word);
-    utt.lang = entry.lang;
-    window.speechSynthesis.speak(utt);
+    if (!isSpeechSupported() || speaking) return;
+    setSpeaking(true);
+    speak(entry.word, {
+      lang: entry.lang,
+      fallbackText: entry.romanization,
+      rate: 0.9,
+      onEnd: () => setSpeaking(false),
+      onError: () => setSpeaking(false),
+    });
   }
 
   function handleClaim() {
@@ -51,80 +62,61 @@ export default function WordOfDayWidget({ onEarnXP }: WordOfDayWidgetProps) {
   }
 
   return (
-    <div className="wod-card" style={{
-      background: '#0f172a',
-      border: '1.5px solid #d97706',
-      borderRadius: 12,
-      padding: '20px 24px',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 10,
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ color: '#fbbf24', fontWeight: 700, fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-          📖 Kata Hari Ini
-        </span>
-        <span style={{
-          background: '#1e293b',
-          color: '#94a3b8',
-          fontSize: 11,
-          padding: '2px 8px',
-          borderRadius: 999,
-        }}>
-          {entry.country}
-        </span>
+    <div className="dashboard-console-card wod-widget">
+      {/* Console Top Header */}
+      <div className="dashboard-console-card__header">
+        <div className="dashboard-console-card__title-wrap">
+          <BookOpen size={15} className="dashboard-console-card__icon" aria-hidden="true" />
+          <span className="dashboard-console-card__title">Kata Hari Ini</span>
+        </div>
+        <span className="dashboard-console-card__badge">{entry.country}</span>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ fontSize: 36, color: '#f1f5f9', fontWeight: 700, lineHeight: 1.2 }}>
-          {entry.word}
-        </span>
+      {/* Script & Pronunciation */}
+      <div className="wod-widget__content">
+        <div className="wod-widget__main-row">
+          <span className="wod-widget__native" lang={entry.lang.split('-')[0]}>
+            {entry.word}
+          </span>
+          <button
+            type="button"
+            onClick={handleSpeak}
+            className={`dashboard-btn-icon ${speaking ? 'dashboard-btn-icon--active' : ''}`}
+            aria-label={`Dengarkan pengucapan kata ${entry.word}`}
+            title="Dengarkan pengucapan"
+          >
+            <Volume2 size={16} strokeWidth={2} />
+          </button>
+        </div>
+
+        <div className="wod-widget__meta">
+          <span className="wod-widget__roman">{entry.romanization}</span>
+          <span className="wod-widget__separator">·</span>
+          <span className="wod-widget__meaning">{entry.meaning}</span>
+        </div>
+      </div>
+
+      {/* Action Claim */}
+      <div className="wod-widget__footer">
         <button
-          onClick={handleSpeak}
-          style={{
-            background: '#1e293b',
-            border: 'none',
-            borderRadius: 8,
-            color: '#94a3b8',
-            fontSize: 18,
-            padding: '6px 10px',
-            cursor: 'pointer',
-            transition: 'color 0.15s',
-          }}
-          aria-label="Dengarkan pengucapan"
-          title="Dengarkan"
           type="button"
+          onClick={handleClaim}
+          disabled={claimed}
+          className={`dashboard-btn ${claimed ? 'dashboard-btn--claimed' : 'dashboard-btn--accent'}`}
         >
-          🔊
+          {claimed ? (
+            <>
+              <Check size={14} strokeWidth={2.5} />
+              <span>XP Diklaim</span>
+            </>
+          ) : (
+            <>
+              <Sparkles size={14} strokeWidth={2} />
+              <span>Klaim +{XP_REWARDS.wordOfDay} XP</span>
+            </>
+          )}
         </button>
       </div>
-
-      <div style={{ color: '#94a3b8', fontSize: 14 }}>
-        <span style={{ color: '#fde68a' }}>{entry.romanization}</span>
-        {' · '}
-        {entry.meaning}
-      </div>
-
-      <button
-        onClick={handleClaim}
-        disabled={claimed}
-        type="button"
-        style={{
-          marginTop: 4,
-          alignSelf: 'flex-start',
-          background: claimed ? '#1e293b' : '#d97706',
-          color: claimed ? '#64748b' : '#fff',
-          border: 'none',
-          borderRadius: 8,
-          padding: '8px 16px',
-          fontSize: 13,
-          fontWeight: 600,
-          cursor: claimed ? 'default' : 'pointer',
-          transition: 'background 0.15s',
-        }}
-      >
-        {claimed ? '✅ XP Diklaim' : `Klaim +${XP_REWARDS.wordOfDay} XP`}
-      </button>
     </div>
   );
 }

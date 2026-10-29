@@ -8,12 +8,14 @@ type BackNavigationProps = {
   leaving: boolean;
   onClick: (event: MouseEvent<HTMLAnchorElement>) => void;
   label?: string;
+  to?: string;
 };
 
-export default function BackNavigation({ leaving, onClick, label }: BackNavigationProps) {
+export default function BackNavigation({ leaving, onClick, label, to = '/' }: BackNavigationProps) {
   const { locale, t } = useI18n();
   const text = label ?? t('country.back');
-  const ariaLabel = locale === 'en' ? 'Return to home' : 'Kembali ke halaman utama';
+  const ariaLabel =
+    label ?? (locale === 'en' ? 'Return to previous page' : 'Kembali ke halaman sebelumnya');
 
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
@@ -55,7 +57,7 @@ export default function BackNavigation({ leaving, onClick, label }: BackNavigati
     >
       <Link
         className="country-back"
-        to="/"
+        to={to}
         onClick={onClick}
         onFocus={() => setHidden(false)}
         aria-label={ariaLabel}

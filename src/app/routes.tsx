@@ -7,10 +7,13 @@ import LandingPage from './pages/LandingPage';
 import DashboardPage from './pages/DashboardPage';
 import LessonPage from './pages/LessonPage';
 import QuestPage from './pages/QuestPage';
+import QuestHubPage from './pages/QuestHubPage';
 import QuestResultPage from './pages/QuestResultPage';
 import ReviewPage from './pages/ReviewPage';
 import MapPage from './pages/MapPage';
 import ProfilePage from './pages/ProfilePage';
+import CountryModulesPage from './pages/CountryModulesPage';
+import SessionPage from './pages/SessionPage';
 import { RequireLengkap, RequireProfile } from '@/lib/profile';
 
 export const LANDING_PATH = '/';
@@ -18,9 +21,12 @@ export const LOGIN_PATH = '/login';
 export const REGISTER_PATH = '/register';
 export const COUNTRY_PATH = '/negara/:id';
 export const DASHBOARD_PATH = '/dashboard';
+export const COUNTRY_MODULES_PATH = '/dashboard/negara';
 export const LESSON_PATH = '/dashboard/pelajaran/:countryId/:step';
 export const QUEST_PATH = '/dashboard/quest/:countryId';
+export const QUEST_HUB_PATH = '/dashboard/quest';
 export const QUEST_RESULT_PATH = '/dashboard/quest/:countryId/:attemptId';
+export const SESSION_PATH = '/dashboard/session/:countryId';
 export const REVIEW_PATH = '/dashboard/ulas';
 export const SCENE_LAB_PATH = '/lab/scene';
 
@@ -70,6 +76,28 @@ export function AppRoutes() {
         }
       />
 
+      {/* Modul Negara */}
+      <Route
+        path={COUNTRY_MODULES_PATH}
+        element={
+          <RequireProfile>
+            <CountryModulesPage />
+          </RequireProfile>
+        }
+      />
+      <Route
+        path="/dashboard/modul"
+        element={<Navigate to={COUNTRY_MODULES_PATH} replace />}
+      />
+      <Route
+        path="/en/dashboard/negara"
+        element={
+          <RequireProfile>
+            <CountryModulesPage />
+          </RequireProfile>
+        }
+      />
+
       {/* Pelajaran */}
       <Route
         path="/dashboard/pelajaran/:countryId"
@@ -82,6 +110,16 @@ export function AppRoutes() {
             <RequireLengkap>
               <LessonPage />
             </RequireLengkap>
+          </RequireProfile>
+        }
+      />
+
+      {/* Quest Hub */}
+      <Route
+        path={QUEST_HUB_PATH}
+        element={
+          <RequireProfile>
+            <QuestHubPage />
           </RequireProfile>
         }
       />
@@ -104,6 +142,16 @@ export function AppRoutes() {
         element={
           <RequireProfile>
             <QuestResultPage />
+          </RequireProfile>
+        }
+      />
+
+      {/* Sesi Interaktif (Story → Audio Quest → Build) */}
+      <Route
+        path={SESSION_PATH}
+        element={
+          <RequireProfile>
+            <SessionPage />
           </RequireProfile>
         }
       />

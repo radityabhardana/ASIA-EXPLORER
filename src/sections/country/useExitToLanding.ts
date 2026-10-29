@@ -7,7 +7,7 @@ import { prefersReducedMotion } from '@/lib/motion';
 /** Harus sama dengan `--duration-transition` di tokens.css. */
 const EXIT_MS = 200;
 
-export function useExitToLanding() {
+export function useExitToLanding(targetPath: string = '/') {
   const navigate = useNavigate();
   const [leaving, setLeaving] = useState(false);
   const leavingRef = useRef(false);
@@ -35,17 +35,17 @@ export function useExitToLanding() {
 
       event.preventDefault();
       if (prefersReducedMotion()) {
-        navigate('/');
+        navigate(targetPath);
         return;
       }
 
       leavingRef.current = true;
       setLeaving(true);
       timerRef.current = window.setTimeout(() => {
-        navigate('/');
+        navigate(targetPath);
       }, EXIT_MS);
     },
-    [navigate],
+    [navigate, targetPath],
   );
 
   return { leaving, handleBackClick };

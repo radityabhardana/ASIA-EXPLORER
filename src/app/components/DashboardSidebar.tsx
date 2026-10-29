@@ -1,4 +1,17 @@
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import {
+  Compass,
+  Globe,
+  Swords,
+  Layers,
+  Map,
+  User,
+  LogOut,
+  Sparkles,
+  Menu,
+  X,
+} from 'lucide-react';
 import { getLevelInfo, getXPProgress } from '@/lib/xp';
 import '@/styles/dashboard-sidebar.css';
 
@@ -10,18 +23,24 @@ interface DashboardSidebarProps {
 }
 
 const NAV_ITEMS = [
-  { icon: '🏠', label: 'Beranda', to: '/dashboard' },
-  { icon: '🌏', label: 'Negara', to: '/dashboard' },
-  { icon: '⚔️', label: 'Quest', to: '/dashboard' },
-  { icon: '🔄', label: 'Ulasan', to: '/dashboard/ulas' },
-  { icon: '🗺️', label: 'Peta', to: '/dashboard/peta' },
-  { icon: '👤', label: 'Profil', to: '/dashboard/profil' },
+  { icon: Compass, label: 'Beranda', to: '/dashboard' },
+  { icon: Globe, label: 'Modul Negara', to: '/dashboard/negara' },
+  { icon: Swords, label: 'Quest Budaya', to: '/dashboard/quest' },
+  { icon: Layers, label: 'Ulasan Frasa', to: '/dashboard/ulas' },
+  { icon: Map, label: 'Peta Interaktif', to: '/dashboard/peta' },
+  { icon: User, label: 'Profil & DNA', to: '/dashboard/profil' },
 ] as const;
 
 function getAvatarColor(name: string): string {
   const colors = [
-    '#7c3aed', '#2563eb', '#059669', '#dc2626',
-    '#d97706', '#0891b2', '#be185d', '#65a30d',
+    '#176b68', // Jade
+    '#c05c46', // Terracotta
+    '#2c5282', // Sapphire
+    '#7b341e', // Umber
+    '#4a5568', // Slate
+    '#285e61', // Deep Teal
+    '#744210', // Ochre
+    '#6b46c1', // Plum
   ];
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
@@ -42,11 +61,18 @@ export default function DashboardSidebar({
   streakDays: _streakDays,
   onSignOut,
 }: DashboardSidebarProps) {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Close mobile drawer whenever location changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname, hash]);
+
   const levelInfo = getLevelInfo(totalXP);
   const progress = getXPProgress(totalXP);
 
-  const displayName = profile?.displayName ?? 'Pengguna';
+  const displayName = profile?.displayName ?? 'Penjelajah';
   const initials = getInitials(displayName);
   const avatarColor = getAvatarColor(displayName);
 
@@ -54,28 +80,104 @@ export default function DashboardSidebar({
   const xpNeeded = levelInfo.xpNext - levelInfo.xpRequired;
 
   return (
-    <nav className="dsidebar" aria-label="Navigasi utama">
-      <div className="dsidebar__header">
-        <div
-          className="dsidebar__avatar"
-          style={{ backgroundColor: avatarColor }}
-          aria-hidden="true"
+    <>
+      {/* Mobile Top Header Bar (only visible on <= 900px) */}
+      <header className="dsidebar-mobile-bar" role="banner">
+        <button
+          type="button"
+          className="dsidebar-mobile-toggle"
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label={isOpen ? 'Tutup navigasi' : 'Buka navigasi'}
+          aria-expanded={isOpen}
         >
-          {initials}
-        </div>
-        <span className="dsidebar__name" title={displayName}>{displayName}</span>
-        <span className="dsidebar__level">Lv.{levelInfo.level} {levelInfo.name}</span>
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
 
-        <div className="dsidebar__xp-section">
-          <div className="dsidebar__xp-label">
-            <span>XP</span>
-            <span>
-              {levelInfo.level < 7
-                ? `${xpInLevel} / ${xpNeeded} XP`
-                : `${totalXP} XP (Max)`}
+        <Link to="/" className="dsidebar-mobile-brand">
+          <span className="dsidebar__brand-name">Asia Explorer</span>
+          <span className="dsidebar__brand-badge">STUDIO</span>
+        </Link>
+
+        <div className="dsidebar-mobile-user">
+          <div
+            className="dsidebar__avatar dsidebar__avatar--small"
+            style={{ backgroundColor: avatarColor }}
+            aria-hidden="true"
+          >
+            {initials}
+          </div>
+        </div>
+      </header>
+
+      {/* Backdrop overlay for mobile drawer */}
+      {isOpen && (
+        <div
+          className="dsidebar-backdrop"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Sidebar (Desktop fixed sidebar, Mobile slide-in drawer) */}
+      <aside
+        className={`dsidebar ${isOpen ? 'dsidebar--open' : ''}`}
+        aria-label="Navigasi utama"
+      >
+        {/* Brand Header */}
+        <div className="dsidebar__brand">
+          <Link to="/" className="dsidebar__brand-link" title="Kembali ke Beranda">
+            <span className="dsidebar__brand-name">Asia Explorer</span>
+            <span className="dsidebar__brand-badge">STUDIO</span>
+          </Link>
+          <button
+            type="button"
+            className="dsidebar-mobile-close"
+            onClick={() => setIsOpen(false)}
+            aria-label="Tutup menu navigasi"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+      {/* User Identity Card */}
+      <div className="dsidebar__profile-card">
+        <div className="dsidebar__profile-top">
+          <div
+            className="dsidebar__avatar"
+            style={{ backgroundColor: avatarColor }}
+            aria-hidden="true"
+          >
+            {initials}
+          </div>
+          <div className="dsidebar__profile-info">
+            <span className="dsidebar__name" title={displayName}>
+              {displayName}
+            </span>
+            <span className="dsidebar__level-pill">
+              <Sparkles size={11} className="dsidebar__level-icon" />
+              Lv.{levelInfo.level} {levelInfo.name}
             </span>
           </div>
-          <div className="dsidebar__xp-bar" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+        </div>
+
+        {/* XP Progress Bar */}
+        <div className="dsidebar__xp-section">
+          <div className="dsidebar__xp-label">
+            <span>Kemajuan Level</span>
+            <span className="dsidebar__xp-value">
+              {levelInfo.level < 7
+                ? `${xpInLevel} / ${xpNeeded} XP`
+                : `${totalXP} XP (Maksimal)`}
+            </span>
+          </div>
+          <div
+            className="dsidebar__xp-bar"
+            role="progressbar"
+            aria-valuenow={Math.round(progress * 100)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Kemajuan XP level"
+          >
             <div
               className="dsidebar__xp-bar-fill"
               style={{ width: `${Math.round(progress * 100)}%` }}
@@ -84,11 +186,19 @@ export default function DashboardSidebar({
         </div>
       </div>
 
-      <div className="dsidebar__nav">
-        {NAV_ITEMS.map(({ icon, label, to }) => {
-          const isActive = to === '/dashboard'
-            ? pathname === '/dashboard'
-            : pathname.startsWith(to);
+      {/* Navigation List */}
+      <nav className="dsidebar__nav" aria-label="Menu navigasi">
+        <div className="dsidebar__nav-section-title">Navigasi</div>
+        {NAV_ITEMS.map(({ icon: Icon, label, to }) => {
+          let isActive = false;
+          if (to === '/dashboard') {
+            isActive = pathname === '/dashboard' && !hash;
+          } else if (to === '/dashboard/negara') {
+            isActive = pathname === '/dashboard/negara' || (pathname === '/dashboard' && hash === '#negara');
+          } else {
+            isActive = pathname.startsWith(to);
+          }
+
           return (
             <Link
               key={label}
@@ -96,19 +206,26 @@ export default function DashboardSidebar({
               className={`dsidebar__nav-link${isActive ? ' dsidebar__nav-link--active' : ''}`}
               aria-current={isActive ? 'page' : undefined}
             >
-              <span className="dsidebar__nav-icon">{icon}</span>
-              {label}
+              <span className="dsidebar__nav-icon-wrap" aria-hidden="true">
+                <Icon size={18} strokeWidth={1.8} />
+              </span>
+              <span className="dsidebar__nav-text">{label}</span>
+              {isActive && <span className="dsidebar__nav-indicator" aria-hidden="true" />}
             </Link>
           );
         })}
-      </div>
+      </nav>
 
+      {/* Footer Sign Out */}
       <div className="dsidebar__footer">
         <button className="dsidebar__signout" onClick={onSignOut} type="button">
-          <span className="dsidebar__nav-icon">🚪</span>
-          Keluar
+          <span className="dsidebar__nav-icon-wrap" aria-hidden="true">
+            <LogOut size={17} strokeWidth={1.8} />
+          </span>
+          <span>Keluar Sesi</span>
         </button>
       </div>
-    </nav>
+      </aside>
+    </>
   );
 }

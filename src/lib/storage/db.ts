@@ -6,10 +6,11 @@ import type {
   PhraseReview,
   Profile,
   Progress,
+  SessionAttempt,
 } from './types';
 
 export const DB_NAME = 'asiakin';
-export const CURRENT_SCHEMA = 1;
+export const CURRENT_SCHEMA = 2;
 
 let cachedDb: IDBDatabase | null = null;
 let customIdbFactory: IDBFactory | null = null;
@@ -66,6 +67,14 @@ export function openDatabase(): Promise<IDBDatabase> {
         }
         if (!db.objectStoreNames.contains('meta')) {
           db.createObjectStore('meta', { keyPath: 'key' });
+        }
+      }
+
+      if (oldVersion < 2) {
+        if (!db.objectStoreNames.contains('sessionAttempts')) {
+          const store = db.createObjectStore('sessionAttempts', { keyPath: 'id' });
+          store.createIndex('byProfile', ['profileId', 'startedAt'], { unique: false });
+          store.createIndex('byCountry', ['profileId', 'countryId', 'startedAt'], { unique: false });
         }
       }
     };
@@ -445,3 +454,43 @@ export async function replaceProfileData(backup: BackupData): Promise<void> {
 export const getAllReviews = getReviewsByProfile;
 export const exportAll = exportProfileData;
 export const importAll = replaceProfileData;
+
+// -----------------------------------------------------------------------------
+// Session Attempts Store
+// -----------------------------------------------------------------------------
+
+export async function getSessionAttempt(id: string): Promise<SessionAttempt | undefined> {
+  const db = await openDatabase();
+  const tx = db.transaction('sessionAttempts', 'readonly');
+  const store = tx.objectStore('sessionAttempts');
+  return reqToPromise<SessionAttempt | undefined>(store.get(id));
+}
+
+export async function getSessionAttemptsByCountry(
+  profileId: string,
+  countryId: string,
+): Promise<SessionAttempt[]> {
+  const db = await openDatabase();
+  const tx = db.transaction('sessionAttempts', 'readonly');
+  const store = tx.objectStore('sessionAttempts');
+  const index = store.index('byCountry');
+  const range = IDBKeyRange.bound([profileId, countryId, 0], [profileId, countryId, Infinity]);
+  return reqToPromise<SessionAttempt[]>(index.getAll(range));
+}
+
+export async function saveSessionAttempt(attempt: SessionAttempt): Promise<void> {
+  const db = await openDatabase();
+  const tx = db.transaction('sessionAttempts', 'readwrite');
+  const store = tx.objectStore('sessionAttempts');
+  store.put(attempt);
+  await txToPromise(tx);
+}
+
+export async function getLastSessionAttempt(
+  profileId: string,
+  countryId: string,
+): Promise<SessionAttempt | undefined> {
+  const all = await getSessionAttemptsByCountry(profileId, countryId);
+  if (all.length === 0) return undefined;
+  return all.reduce((best, a) => (a.startedAt > best.startedAt ? a : best));
+}

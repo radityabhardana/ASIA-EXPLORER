@@ -127,6 +127,23 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
       fireEvent.scroll(window);
       expect(navBar?.getAttribute('data-hidden')).toBe('false');
     });
+
+    it('mendukung kustomisasi tujuan (to) dan label untuk kembali ke dashboard/pelajaran', () => {
+      const { container } = render(
+        <MemoryRouter>
+          <BackNavigation
+            leaving={false}
+            onClick={vi.fn()}
+            to="/dashboard/pelajaran/jp/kenali"
+            label="Kembali ke Pelajaran"
+          />
+        </MemoryRouter>,
+      );
+
+      const link = container.querySelector('.country-back');
+      expect(link?.getAttribute('href')).toBe('/dashboard/pelajaran/jp/kenali');
+      expect(link?.textContent).toContain('Kembali ke Pelajaran');
+    });
   });
 
   describe('3. Photo Hero with Parallax (CountryHero.tsx)', () => {

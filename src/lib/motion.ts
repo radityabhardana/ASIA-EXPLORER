@@ -94,9 +94,8 @@ function startLenis(state: ScrollEngine): void {
   const lenis = new Lenis({
     autoRaf: false,
     smoothWheel: true,
-    // Resize ditangani listener window di startEngine (satu sumber), jadi
-    // ResizeObserver internal Lenis tidak dipakai.
-    autoResize: false,
+    // Gunakan ResizeObserver bawaan Lenis agar resize dinamis saat komponen React render/fetch selesai
+    autoResize: true,
     // Kita mematikan Lenis sendiri saat reduced-motion aktif.
     respectReducedMotion: false,
   });
@@ -209,6 +208,33 @@ export function releaseScrollEngine(): void {
   mounts = Math.max(0, mounts - 1);
   if (mounts === 0) {
     destroyScrollEngine();
+  }
+}
+
+/** Matikan Lenis sementara (mis. di dashboard/modal/peta) agar scroll native bebas dan tidak dicegat. */
+export function pauseLenis(): void {
+  if (engine?.lenis) {
+    stopLenis(engine);
+  }
+}
+
+/** Hidupkan kembali Lenis (mis. saat kembali ke halaman landing untuk 3D globe timeline). */
+export function resumeLenis(): void {
+  if (engine && !engine.lenis && !prefersReducedMotion()) {
+    startLenis(engine);
+    const activeLenis = engine.lenis as Lenis | null;
+    activeLenis?.resize();
+  }
+}
+
+/** Perbarui dimensi scroll engine & ScrollTrigger setelah DOM render dinamis. */
+export function refreshScrollEngine(): void {
+  if (engine?.lenis) {
+    engine.lenis.resize();
+  }
+  measureProgress();
+  if (scrollTriggerRegistered) {
+    ScrollTrigger.refresh();
   }
 }
 

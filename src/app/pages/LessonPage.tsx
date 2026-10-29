@@ -244,6 +244,7 @@ export default function LessonPage() {
               </p>
               <Link
                 to={`/negara/${countryId}`}
+                state={{ from: `/dashboard/pelajaran/${countryId}/${currentStep}` }}
                 className="lesson-story-link"
                 onFocus={() => setKenaliInteracted(true)}
               >

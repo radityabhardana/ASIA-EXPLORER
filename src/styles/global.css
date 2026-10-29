@@ -14,8 +14,8 @@ html {
   color-scheme: light;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  /* Tidak ada `scroll-behavior: smooth` — Lenis yang memegang scroll (lihat
-     src/lib/motion.ts), dan prefers-reduced-motion mematikan Lenis. */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 html,
@@ -27,6 +27,7 @@ body,
 
 body {
   min-height: 100dvh;
+  overflow-x: hidden;
   background-color: var(--surface);
   color: var(--ink);
   font-family: var(--font-text);

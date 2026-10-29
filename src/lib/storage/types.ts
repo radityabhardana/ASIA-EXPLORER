@@ -53,6 +53,7 @@ export interface CountryProgress {
   lastSeenAt: number;
   lessonCompletedAt: number | null;
   storySeen: boolean;
+  sessionCompletedAt?: number;
 }
 
 export interface Progress {
@@ -133,4 +134,70 @@ export interface NextTaskDecision {
   title: string;
   description: string;
   href: string;
+}
+
+// ─── Session System ──────────────────────────────────────────────────────────
+
+export type AudioChallengeType =
+  | 'hear-identify'
+  | 'script-match'
+  | 'language-detect'
+  | 'syllable-count';
+
+export type BuildChallengeType =
+  | 'sentence-order'
+  | 'sentence-fill'
+  | 'translation-build';
+
+export interface TileOption {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+}
+
+export interface AudioChallenge {
+  id: string;
+  type: AudioChallengeType;
+  audioText: string;      // spoken via speak()
+  audioLang: string;      // BCP-47
+  tiles: TileOption[];    // always 4 options
+  correctIndex: number;
+  feedback: string;       // shown after answer
+}
+
+export interface BuildChallenge {
+  id: string;
+  type: BuildChallengeType;
+  audioText: string;      // spoken via speak()
+  audioLang: string;
+  correctOrder: string[]; // e.g. ['saya', 'belajar', 'bahasa', 'Indonesia']
+  distractors: string[];  // wrong tiles added to bank
+  hint1Target: number;    // index in correctOrder of hardest tile
+}
+
+export interface SessionContent {
+  countryId: string;
+  audioQuests: AudioChallenge[];   // 3 challenges
+  buildChallenges: BuildChallenge[]; // 2 challenges
+}
+
+export interface SessionChallengeResult {
+  challengeId: string;
+  correct: boolean;
+  hintsUsed: number;
+  elapsedMs: number;
+}
+
+export interface SessionAttempt {
+  id: string;
+  profileId: string;
+  countryId: string;
+  phase1Completed: boolean;
+  audioQuestResults: SessionChallengeResult[];
+  buildResults: SessionChallengeResult[];
+  xpEarned: number;
+  streakPeak: number;
+  startedAt: number;
+  completedAt: number | null;
+  badgeUnlocked: boolean;
 }

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 import { getCountry } from '@/content/countries';
 import { useI18n } from '@/lib/i18n';
@@ -21,8 +21,34 @@ import '@/styles/country.css';
 export default function CountryPage() {
   const { id } = useParams();
   const country = id === undefined ? undefined : getCountry(id);
-  const { leaving, handleBackClick } = useExitToLanding();
-  const { t } = useI18n();
+  const location = useLocation();
+
+  const returnTo = useMemo(() => {
+    const fromState = (location.state as { from?: string } | null)?.from;
+    if (fromState && typeof fromState === 'string' && fromState.startsWith('/')) {
+      return fromState;
+    }
+    return '/';
+  }, [location.state]);
+
+  const { leaving, handleBackClick } = useExitToLanding(returnTo);
+  const { locale, t } = useI18n();
+
+  const backLabel = useMemo(() => {
+    if (returnTo.includes('/dashboard/pelajaran')) {
+      return locale === 'en' ? 'Back to Lesson' : 'Kembali ke Pelajaran';
+    }
+    if (returnTo.includes('/dashboard/negara')) {
+      return locale === 'en' ? 'Back to Country Modules' : 'Kembali ke Modul Negara';
+    }
+    if (returnTo.includes('/dashboard/peta')) {
+      return locale === 'en' ? 'Back to Map' : 'Kembali ke Peta';
+    }
+    if (returnTo.includes('/dashboard')) {
+      return locale === 'en' ? 'Back to Dashboard' : 'Kembali ke Dashboard';
+    }
+    return t('country.back');
+  }, [returnTo, locale, t]);
 
   useEffect(() => {
     scrollToSection(0, { immediate: true });
@@ -42,8 +68,8 @@ export default function CountryPage() {
           <p className="country-missing__text">
             Kode negara ini tidak ada dalam data ASIAKIN. Kembali ke peta dan pilih negara lain.
           </p>
-          <Link className="country-missing__link" to="/">
-            Kembali ke beranda
+          <Link className="country-missing__link" to={returnTo}>
+            {returnTo.includes('/dashboard') ? 'Kembali ke Dashboard' : 'Kembali ke beranda'}
           </Link>
         </div>
       </article>
@@ -69,7 +95,12 @@ export default function CountryPage() {
       {/* Adaptive Background: concentric contours & low-chroma palette */}
       <CountryBackground countryId={country.id} />
 
-      <BackNavigation leaving={leaving} onClick={handleBackClick} label={t('country.back')} />
+      <BackNavigation
+        leaving={leaving}
+        onClick={handleBackClick}
+        label={backLabel}
+        to={returnTo}
+      />
 
       {/* 1. Immersive Wide Hero Banner with Parallax & Overlaid Country Identity */}
       <CountryHero country={country} profile={profile} />
