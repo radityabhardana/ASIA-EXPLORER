@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent } from 'react';
 
+import { playParchmentClick, useAudioState } from '@/lib/audio';
 import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import { useProfile } from '@/lib/profile';
@@ -15,6 +16,12 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
   const [mobileOpen, setMobileOpen] = useState(false);
   const { locale, t, toggleLocale } = useI18n();
   const { profile } = useProfile();
+  const { muted: audioMuted, toggle: toggleAudioMuted } = useAudioState();
+
+  const handleToggleAudio = () => {
+    playParchmentClick();
+    toggleAudioMuted();
+  };
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileToggleRef = useRef<HTMLButtonElement>(null);
@@ -141,7 +148,10 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
           <button
             type="button"
             className="navbar__atlas-btn"
-            onClick={onOpenCountryDirectory}
+            onClick={() => {
+              playParchmentClick();
+              onOpenCountryDirectory?.();
+            }}
             aria-label={t('nav.directoryAria')}
           >
             <svg
@@ -169,7 +179,10 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
             type="button"
             className="navbar__lang-btn"
             aria-label={t('nav.langAria')}
-            onClick={toggleLocale}
+            onClick={() => {
+              playParchmentClick();
+              toggleLocale();
+            }}
           >
             <span
               className={`navbar__lang-opt ${locale === 'id' ? 'navbar__lang-opt--active' : ''}`}
@@ -184,6 +197,64 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
             >
               EN
             </span>
+          </button>
+
+          <button
+            type="button"
+            className={`navbar__audio-btn ${audioMuted ? 'navbar__audio-btn--muted' : 'navbar__audio-btn--active'}`}
+            aria-label={
+              audioMuted
+                ? locale === 'id'
+                  ? 'Nyalakan audio taktil'
+                  : 'Unmute tactile audio'
+                : locale === 'id'
+                  ? 'Bisukan audio taktil'
+                  : 'Mute tactile audio'
+            }
+            title={
+              audioMuted
+                ? locale === 'id'
+                  ? 'Nyalakan audio'
+                  : 'Unmute audio'
+                : locale === 'id'
+                  ? 'Bisukan audio'
+                  : 'Mute audio'
+            }
+            onClick={handleToggleAudio}
+          >
+            {audioMuted ? (
+              <svg
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            ) : (
+              <svg
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+            )}
           </button>
 
           {profile ? (
@@ -219,7 +290,10 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
             aria-expanded={mobileOpen}
             aria-controls="navbar-mobile-drawer"
             aria-label={mobileOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
-            onClick={() => setMobileOpen((prev) => !prev)}
+            onClick={() => {
+              playParchmentClick();
+              setMobileOpen((prev) => !prev);
+            }}
           >
             <span className="navbar__toggle-line" />
             <span className="navbar__toggle-line" />
@@ -244,6 +318,7 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
               className="navbar__mobile-close"
               aria-label="Tutup menu"
               onClick={() => {
+                playParchmentClick();
                 setMobileOpen(false);
                 mobileToggleRef.current?.focus();
               }}
@@ -340,6 +415,61 @@ export default function Navbar({ onScrollToMap, onOpenCountryDirectory }: Navbar
               onClick={toggleLocale}
             >
               <span>{locale === 'id' ? 'Bahasa: ID (Indonesia)' : 'Language: EN (English)'}</span>
+            </button>
+
+            <button
+              type="button"
+              className="navbar__audio-btn navbar__audio-btn--mobile"
+              aria-label={
+                audioMuted
+                  ? locale === 'id'
+                    ? 'Nyalakan audio taktil'
+                    : 'Unmute tactile audio'
+                  : locale === 'id'
+                    ? 'Bisukan audio taktil'
+                    : 'Mute tactile audio'
+              }
+              onClick={handleToggleAudio}
+            >
+              {audioMuted ? (
+                <>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                  </svg>
+                  <span>{locale === 'id' ? 'Audio: Bisu' : 'Audio: Muted'}</span>
+                </>
+              ) : (
+                <>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                  </svg>
+                  <span>{locale === 'id' ? 'Audio: Aktif' : 'Audio: Active'}</span>
+                </>
+              )}
             </button>
 
             <div className="navbar__mobile-actions">

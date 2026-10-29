@@ -8,8 +8,11 @@ import CountryPage from '@/app/pages/CountryPage';
 import { contrastRatio } from '@/lib/color';
 import CountryBackground, { getCountryTheme } from './CountryBackground';
 import BackNavigation from './BackNavigation';
+import CountryEtiquette from './CountryEtiquette';
+import CountryFactsheet from './CountryFactsheet';
 import CountryGallery, { getCountryPhotos } from './CountryGallery';
 import CountryHero, { getHeroPhoto } from './CountryHero';
+import CountryNeighbors from './CountryNeighbors';
 import LanguageBlock from './LanguageBlock';
 import { profileFor } from './scripts';
 import SourceBlock from './SourceBlock';
@@ -324,6 +327,71 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
         screen.queryByRole('link', { name: /Mulai Pelajaran di Dashboard →/i }),
       ).not.toBeInTheDocument();
       expect(container.querySelector('.country-dashboard-callout')).toBeNull();
+    });
+
+    it('merender Lembar Fakta Lapangan, Kaidah Etiket, dan Jelajah Negara Terdekat di CountryPage', () => {
+      const { container } = render(
+        <MemoryRouter initialEntries={['/negara/jp']}>
+          <Routes>
+            <Route path="/negara/:id" element={<CountryPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      // Factsheet
+      const factsheet = container.querySelector('.country-factsheet');
+      expect(factsheet).not.toBeNull();
+      expect(factsheet?.textContent).toContain('Tokyo');
+      expect(factsheet?.textContent).toContain('Asia Timur');
+
+      // 3 Kaidah Etiket
+      const etiquette = container.querySelector('.country-etiquette');
+      expect(etiquette).not.toBeNull();
+      const rules = container.querySelectorAll('.country-etiquette__card');
+      expect(rules.length).toBe(3);
+
+      // Jelajah Negara Terdekat
+      const neighbors = container.querySelector('.country-neighbors');
+      expect(neighbors).not.toBeNull();
+      const neighborCards = container.querySelectorAll('.country-neighbor-card');
+      expect(neighborCards.length).toBe(3);
+    });
+  });
+
+  describe('7. Modular Cultural Blocks: Factsheet, Etiquette, & Neighbors', () => {
+    it('CountryFactsheet merender data geodetik dan ibu kota dengan benar', () => {
+      const jp = getCountry('jp')!;
+      const { container } = render(<CountryFactsheet country={jp} locale="id" />);
+
+      expect(container.querySelector('.country-factsheet__value--accent')?.textContent).toBe('Tokyo');
+      expect(container.textContent).toContain('JST');
+      expect(container.textContent).toContain('Asia Timur');
+    });
+
+    it('CountryEtiquette menyajikan tepat 3 kaidah sopan santun budaya', () => {
+      const id = getCountry('id')!;
+      const { container } = render(<CountryEtiquette country={id} locale="id" />);
+
+      const cards = container.querySelectorAll('.country-etiquette__card');
+      expect(cards.length).toBe(3);
+      expect(container.textContent).toContain('KAIDAH 01');
+      expect(container.textContent).toContain('KAIDAH 02');
+      expect(container.textContent).toContain('KAIDAH 03');
+    });
+
+    it('CountryNeighbors menghubungkan ke 3 negara tetangga serumpun', () => {
+      const jp = getCountry('jp')!;
+      const { container } = render(
+        <MemoryRouter>
+          <CountryNeighbors currentCountry={jp} locale="id" />
+        </MemoryRouter>,
+      );
+
+      const links = container.querySelectorAll('.country-neighbor-card');
+      expect(links.length).toBe(3);
+      for (const link of links) {
+        expect(link.getAttribute('href')).toMatch(/^\/negara\/[a-z]{2}$/);
+      }
     });
   });
 });

@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import {
+  playParchmentClick,
+  playStampFailure,
+  playStampSuccess,
+} from '@/lib/audio';
 import type { Locale } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 
@@ -190,6 +195,7 @@ export default function DailyChallengeExpedition({
 
   const handleSelectOption = (optionId: string) => {
     if (hasSubmitted) return;
+    playParchmentClick();
     setSelectedOptionId(optionId);
   };
 
@@ -198,11 +204,15 @@ export default function DailyChallengeExpedition({
     setHasSubmitted(true);
     const chosen = currentQuestion.options.find((o) => o.id === selectedOptionId);
     if (chosen?.isCorrect) {
+      playStampSuccess();
       setScore((prev) => prev + 100);
+    } else {
+      playStampFailure();
     }
   };
 
   const handleNextQuestion = () => {
+    playParchmentClick();
     if (currentIndex < QUESTIONS.length - 1) {
       setCurrentIndex((prev) => prev + 1);
       setSelectedOptionId(null);
@@ -213,6 +223,7 @@ export default function DailyChallengeExpedition({
   };
 
   const handleRestart = () => {
+    playParchmentClick();
     setCurrentIndex(0);
     setSelectedOptionId(null);
     setHasSubmitted(false);
@@ -249,16 +260,24 @@ export default function DailyChallengeExpedition({
           </p>
         </div>
 
-        {/* Kartu Tantangan Interaktif */}
+        {/* Kartu Tantangan Interaktif: Buku Catatan Ekspedisi */}
         {!isCompleted ? (
-          <div className="daily-quest__card" role="region" aria-label="Kuis Tantangan Harian">
+          <div className="daily-quest__card daily-quest__card--logbook" role="region" aria-label="Buku Catatan Ekspedisi Lapangan">
+            {/* Folio Ledger Header */}
+            <div className="daily-quest__folio-tab">
+              <span className="daily-quest__folio-title">
+                {locale === 'id' ? 'BUKU CATATAN EKSPEDISI · ARSIP LAPANGAN' : 'FIELD EXPEDITION PASSPORT · LOGBOOK'}
+              </span>
+              <span className="daily-quest__folio-code">DOC #EXP-0{currentIndex + 1}</span>
+            </div>
+
             {/* Bar Progres Kuis */}
             <div className="daily-quest__meta-bar">
               <div className="daily-quest__step-indicator">
                 <span className="daily-quest__step-current">
                   {locale === 'id'
-                    ? `Pertanyaan ${currentIndex + 1} dari ${QUESTIONS.length}`
-                    : `Question ${currentIndex + 1} of ${QUESTIONS.length}`}
+                    ? `Studi Kasus 0${currentIndex + 1} / 0${QUESTIONS.length}`
+                    : `Field Dossier 0${currentIndex + 1} / 0${QUESTIONS.length}`}
                 </span>
                 <span className="daily-quest__meta-sep">·</span>
                 <span className="daily-quest__category">
@@ -285,10 +304,11 @@ export default function DailyChallengeExpedition({
               {locale === 'id' ? currentQuestion.question : currentQuestion.questionEn}
             </h3>
 
-            {/* Daftar Pilihan Jawaban */}
+            {/* Daftar Pilihan Jawaban (Border 1px halus, nomor monospaced vintage 01, 02, 03, 04) */}
             <div className="daily-quest__options" role="radiogroup">
-              {currentQuestion.options.map((opt) => {
+              {currentQuestion.options.map((opt, optIndex) => {
                 const isSelected = selectedOptionId === opt.id;
+                const formattedNum = String(optIndex + 1).padStart(2, '0');
                 let optionStateClass = '';
                 if (hasSubmitted) {
                   if (opt.isCorrect) {
@@ -310,8 +330,8 @@ export default function DailyChallengeExpedition({
                     className={`daily-quest__option ${optionStateClass}`}
                     onClick={() => handleSelectOption(opt.id)}
                   >
-                    <span className="daily-quest__option-key">
-                      {opt.id.toUpperCase()}
+                    <span className="daily-quest__option-key" aria-hidden="true">
+                      {formattedNum}
                     </span>
                     <span className="daily-quest__option-text">
                       {locale === 'id' ? opt.text : opt.textEn}
@@ -331,20 +351,54 @@ export default function DailyChallengeExpedition({
               })}
             </div>
 
-            {/* Umpan Balik Penjelasan Jawaban Terverifikasi */}
+            {/* Verifikasi Stempel Litograf Timbul & Kartu Telaah Antropologis */}
             {hasSubmitted && selectedOption && (
-              <div
-                className={`daily-quest__feedback ${selectedOption.isCorrect ? 'daily-quest__feedback--correct' : 'daily-quest__feedback--wrong'}`}
-                role="alert"
-              >
-                <div className="daily-quest__feedback-header">
-                  <span className="daily-quest__feedback-icon" aria-hidden="true">
-                    {selectedOption.isCorrect ? '✓ Tepat Sekali (+100 XP)' : '✕ Kurang Tepat'}
+              <div className="daily-quest__verification" role="status" aria-live="polite">
+                <div
+                  className={`daily-quest__stamp ${
+                    selectedOption.isCorrect
+                      ? 'daily-quest__stamp--verified'
+                      : 'daily-quest__stamp--rejected'
+                  }`}
+                >
+                  <div className="daily-quest__stamp-frame">
+                    <span className="daily-quest__stamp-icon" aria-hidden="true">
+                      {selectedOption.isCorrect ? '★' : '✕'}
+                    </span>
+                    <span className="daily-quest__stamp-label">
+                      {selectedOption.isCorrect
+                        ? locale === 'id'
+                          ? 'STAMP: TERVERIFIKASI'
+                          : 'STAMP: VERIFIED AUTHENTIC'
+                        : locale === 'id'
+                          ? 'STAMP: KELIRU'
+                          : 'STAMP: FIELD ANOMALY'}
+                    </span>
+                  </div>
+                  <span className="daily-quest__stamp-sub">
+                    {selectedOption.isCorrect
+                      ? locale === 'id'
+                        ? 'Diverifikasi Kurator Lapangan (+100 XP)'
+                        : 'Certified by Field Curator (+100 XP)'
+                      : locale === 'id'
+                        ? 'Penyimpangan Protokol Lapangan (0 XP)'
+                        : 'Protocol Deviation Recorded (0 XP)'}
                   </span>
                 </div>
-                <p className="daily-quest__feedback-body">
-                  {locale === 'id' ? selectedOption.explanation : selectedOption.explanationEn}
-                </p>
+
+                <div className="daily-quest__anthro-card">
+                  <div className="daily-quest__anthro-header">
+                    <span className="daily-quest__anthro-mark" aria-hidden="true" />
+                    <span className="daily-quest__anthro-kicker">
+                      {locale === 'id'
+                        ? 'TELAAH ANTROPOLOGIS & KAIDAH BUDAYA'
+                        : 'FIELD ANTHROPOLOGICAL ANALYSIS'}
+                    </span>
+                  </div>
+                  <p className="daily-quest__anthro-body">
+                    {locale === 'id' ? selectedOption.explanation : selectedOption.explanationEn}
+                  </p>
+                </div>
               </div>
             )}
 
@@ -380,6 +434,7 @@ export default function DailyChallengeExpedition({
                     type="button"
                     className="daily-quest__btn-ghost"
                     onClick={() => {
+                      playParchmentClick();
                       onExploreCountry?.(currentQuestion.countryCode);
                       navigate('/negara/' + currentQuestion.countryCode);
                     }}
@@ -428,11 +483,18 @@ export default function DailyChallengeExpedition({
               <button
                 type="button"
                 className="daily-quest__btn-primary"
-                onClick={() => scrollToSection('#peta')}
+                onClick={() => {
+                  playParchmentClick();
+                  scrollToSection('#peta');
+                }}
               >
                 <span>{locale === 'id' ? 'Kembali ke Peta Atlas ↑' : 'Back to Atlas Map ↑'}</span>
               </button>
-              <Link to="/dashboard" className="daily-quest__btn-secondary">
+              <Link
+                to="/dashboard"
+                className="daily-quest__btn-secondary"
+                onClick={() => playParchmentClick()}
+              >
                 <span>{locale === 'id' ? 'Buka Dashboard Pembelajaran' : 'Open Learning Dashboard'}</span>
               </Link>
               <button

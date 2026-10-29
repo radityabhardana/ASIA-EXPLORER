@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { COUNTRIES, iso3For } from '@/content/countries48';
+import { playParchmentClick } from '@/lib/audio';
 import { useI18n } from '@/lib/i18n';
 import { getHeroPhoto, photoObjectPosition } from './photos';
 import '@/styles/region-gallery.css';
@@ -262,7 +263,10 @@ export default function RegionExpeditionGallery({
                 role="tab"
                 aria-selected={isActive}
                 className={`region-expedition__tab-btn ${isActive ? 'region-expedition__tab-btn--active' : ''}`}
-                onClick={() => setActiveSphereId(sphere.id)}
+                onClick={() => {
+                  playParchmentClick();
+                  setActiveSphereId(sphere.id);
+                }}
               >
                 <span>{locale === 'id' ? sphere.nameId : sphere.nameEn}</span>
                 <span className="region-expedition__tab-count">
@@ -331,6 +335,7 @@ export default function RegionExpeditionGallery({
                 type="button"
                 className="region-spotlight__action-btn"
                 onClick={() => {
+                  playParchmentClick();
                   onSelectCountry?.(activeSphere.featuredCountryId);
                   navigate('/negara/' + activeSphere.featuredCountryId);
                 }}
@@ -374,12 +379,14 @@ export default function RegionExpeditionGallery({
                   tabIndex={0}
                   aria-label={`${meta.name} — ${meta.capital}`}
                   onClick={() => {
+                    playParchmentClick();
                     onSelectCountry?.(cId);
                     navigate('/negara/' + cId);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
+                      playParchmentClick();
                       onSelectCountry?.(cId);
                       navigate('/negara/' + cId);
                     }
@@ -444,7 +451,10 @@ export default function RegionExpeditionGallery({
             <button
               type="button"
               className="region-expedition__directory-btn"
-              onClick={onOpenDirectory}
+              onClick={() => {
+                playParchmentClick();
+                onOpenDirectory();
+              }}
             >
               <svg
                 width="14"

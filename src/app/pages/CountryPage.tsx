@@ -6,8 +6,11 @@ import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
 import CountryBackground, { getCountryTheme } from '@/sections/country/CountryBackground';
+import CountryEtiquette from '@/sections/country/CountryEtiquette';
+import CountryFactsheet from '@/sections/country/CountryFactsheet';
 import CountryGallery from '@/sections/country/CountryGallery';
 import CountryHero from '@/sections/country/CountryHero';
+import CountryNeighbors from '@/sections/country/CountryNeighbors';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
 import RegionLocator from '@/sections/country/RegionLocator';
@@ -86,24 +89,30 @@ export default function CountryPage() {
         />
       </aside>
 
-      {/* Main reading column: Cerita, Budaya, Orang, Bahasa, Galeri, Dashboard, Sumber */}
+      {/* Main reading column: Factsheet, Cerita, Kaidah Etiket, Budaya, Orang, Bahasa, Galeri, Dashboard, Tetangga, Sumber */}
       <div className="country-body">
-        {/* 2. Cerita */}
+        {/* 2. Lembar Fakta Lapangan (Geodesi, Ibu Kota, Waktu, Demografi) */}
+        <CountryFactsheet country={country} locale={contentLocale} />
+
+        {/* 3. Cerita */}
         <StoryBlock country={country} />
 
-        {/* 3. Budaya */}
+        {/* 4. Kaidah Etiket Lapangan (Tiga Aturan Sopan Santun Budaya) */}
+        <CountryEtiquette country={country} locale={contentLocale} />
+
+        {/* 5. Budaya */}
         <NoteBlock id="country-culture-title" title={t('country.culture')} text={country.cultureNote} />
 
-        {/* 4. Orang */}
+        {/* 6. Orang */}
         <NoteBlock id="country-people-title" title={t('country.people')} text={country.peopleNote} />
 
-        {/* 5. Bahasa & Audio Pronunciation */}
+        {/* 7. Bahasa & Audio Pronunciation */}
         <LanguageBlock country={country} profile={profile} />
 
-        {/* 6. Country Photo Gallery */}
+        {/* 8. Country Photo Gallery */}
         <CountryGallery countryId={country.id} countryName={country.nameId} />
 
-        {/* 7. Learning Dashboard Link (for Lengkap countries) */}
+        {/* 9. Learning Dashboard Link (for Lengkap countries) */}
         {country.depth === 'Lengkap' && (
           <section
             className="country-block country-dashboard-callout"
@@ -129,7 +138,10 @@ export default function CountryPage() {
           </section>
         )}
 
-        {/* 8. Foldable Provenance / Sources */}
+        {/* 10. Jelajah Negara Terdekat & Kawasan Serumpun */}
+        <CountryNeighbors currentCountry={country} locale={contentLocale} />
+
+        {/* 11. Foldable Provenance / Sources */}
         <SourceBlock
           sources={country.sources}
           needsVerification={country.needsVerification}

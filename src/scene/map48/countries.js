@@ -245,7 +245,7 @@ export function buildCountries(featureCollection, projection) {
     const line = new LineSegments(
       lineGeo,
       new LineBasicMaterial({
-        color: 0x222a35,
+        color: 0x14181f,
         transparent: true,
         opacity: 0,
         depthWrite: false,
@@ -311,7 +311,7 @@ export function buildCountries(featureCollection, projection) {
       line,
       material,
       baseColor,
-      hoverColor: hoverTint(baseColor),
+      hoverColor: hoverTint(baseColor, props.region, props.code),
       center,
       anchor,
       focusDist: diag * 1.35,
@@ -357,6 +357,6 @@ export function animateCountries(countries, dt, hover, focus) {
 
     c.material.color.lerpColors(c.baseColor, c.hoverColor, c.hoverS);
     c.material.emissive.copy(c.baseColor).multiplyScalar(0.24 * c.hoverS);
-    c.line.material.opacity = 0.42 * c.riseK + 0.45 * c.hoverS;
+    c.line.material.opacity = 0.65 * c.riseK + 0.3 * c.hoverS;
   }
 }

@@ -1,19 +1,21 @@
-# TODO — Audit & Elevasi Profesional Pull 48 Negara · update: 2026-10-29 19:05 oleh @orchestrator
+# TODO — Elevasi Awwwards-Grade Editorial Atlas · update: 2026-10-29 19:58 oleh @orchestrator
 ## Goal
-Perbaiki flow navigasi halaman negara yang terputus, integrasikan direktori 48 negara lengkap, rapikan navbar dan mobile UX, bersihkan zombie code, dan verifikasi 100% exit code 0.
+Menaikkan kelas Asia Explorer dari web informatif biasa menjadi Awwwards-grade editorial cultural atlas: palet mineral bercahaya pada peta 3D, paspor ekspedisi interaktif untuk tantangan harian, tombol bertekstur taktil litograf analog (anti-slop/anti-flat), data lapangan lengkap di halaman negara, dan sound design Web Audio sintetis.
 
 ## Task Board
 | ID | Task | Owner Agent | Status | Bukti / Verifikasi |
 |---|---|---|---|---|
-| T1 | Wire direct navigation ke `/negara/:id` dari RegionExpeditionGallery, EtiquetteFieldGuide, & DailyChallenge | @fixer | ✅ Done | RegionExpeditionGallery.tsx:327,370, EtiquetteFieldGuide.tsx, vitest 112/112 exit 0 |
-| T2 | Audit & sinkronisasi Navbar (Jelajah `#peta`, Kawasan `#kawasan`, Etiket `#etiket`, Dashboard `/dashboard`) | @designer | ✅ Done | Navbar.tsx:98-160, pill atlas 48 negara, mobile drawer |
-| T3 | Desain & integrasikan "Atlas Direktori 48 Bangsa" drawer (5 kawasan, filter, direct link) | @designer | ✅ Done | CountryDirectoryDrawer.tsx, country-directory.css, test pass |
-| T4 | Bersihkan zombie code (MosaicGallery, CountryDialog, ExpeditionChallenge) & hapus duplikasi asset | @fixer | ✅ Done | 24 file & assets/3d-48-negara dihapus, tsc/eslint/test exit 0 |
-| T5 | Audit mobile & desktop visual flow (375px, 768px, 1440px) | @qa-verifier | ✅ Done | Playwright e2e 41/41 passing di 375px & 1440px, visual responsive lolos |
-| T6 | Jalankan seluruh verifikasi (typecheck, lint, test, build, contrast, verify.mjs) exit 0 & push git | @fixer | ✅ Done | scripts/verify.mjs 10/10 gate pass exit 0, atomic commit & push main |
+| T1 | Audit komparasi Awwwards & benchmark web profesional vs Asia Explorer | orchestrator | ✅ Done | scratch/audit-* screenshots, visual gap cataloged |
+| T2 | Fix Drawer z-index overlap & perbaiki styling paspor ledger 48 negara | @designer | ✅ Done | country-directory.css: z-index 10005, background solid, overlay clean |
+| T3 | Elevasi Tantangan Harian menjadi "Paspor Ekspedisi Lapangan" (stempel verifikasi, umpan balik kultural) | @designer | ✅ Done | DailyChallengeExpedition.tsx, paspor logbook, index cards 01-04 |
+| T4 | Perkaya Halaman Negara (`CountryPage.tsx`): Factsheet Geodetik, Etiket Lapangan, Tetangga Regional, hilangkan duplikat aksara | @designer | ✅ Done | CountryHero.tsx:1 watermark, CountryPage.tsx factsheet + etiket + tetangga |
+| T5 | Tingkatkan palet warna mineral 3D continent (Jade, Cinnabar, Terracotta, Lapis, Bronze) & atmosfer pencahayaan | @fixer | ✅ Done | palette.js: Celadon #2f6854, Cinnabar #8c3832, Terracotta #94582b, Lapis #465a73, Bronze #665c3b |
+| T6 | Tambahkan Web Audio sound engine (klik taktil, transisi geodetik, tone tantangan) dengan audio toggle di Navbar | @fixer | ✅ Done | src/lib/audio.ts, Web Audio API synthesis, Navbar audio toggle, localStorage |
+| T7 | Desain tombol & interaktif fisik analog (bevel mikro, letterpress inset, active-press, paspor stamp pills) | @designer | ✅ Done | landing.css, country.css, shell.css, country-directory.css |
+| T8 | Verifikasi penuh (Playwright 375/768/1440px, vitest, verify.mjs) & push ke GitHub | @fixer | ✅ Done | node scripts/verify.mjs exit 0 (10 gates pass), vitest 120/120 pass, Playwright 41/41 pass |
 
 ## Blokir & Risiko
-- Tidak ada blokir. Pipeline 100% hijau.
+- Tidak ada blokir aktif. Seluruh pipeline lolos exit code 0.
 
 ## Ringkasan
-Progress 6/6 done · Lane aktif: 0 · Blocked: 0
+Progress 8/8 done · Lane aktif: 0 · Blocked: 0

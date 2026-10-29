@@ -314,7 +314,7 @@ export async function mountPanelMap(
       if (country.visited === on) continue;
       country.visited = on;
       country.baseColor.copy(originalColors.get(country.code)).lerp(INK, on ? VISITED_TINT : 0);
-      country.hoverColor = hoverTint(country.baseColor);
+      country.hoverColor = hoverTint(country.baseColor, country.region, country.code);
     }
   }
   setVisited(visited);

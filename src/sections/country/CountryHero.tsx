@@ -159,7 +159,7 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
         {/* Scrim overlay for editorial contrast */}
         <div className="country-hero__scrim" aria-hidden="true" />
 
-        {/* Large authentic native script watermark */}
+        {/* Large authentic native script watermark (subtle right corner) */}
         <div className="country-hero__watermark" aria-hidden="true">
           <NativeText profile={profile}>{country.nameLocal}</NativeText>
         </div>

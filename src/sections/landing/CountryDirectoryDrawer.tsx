@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { countriesFor } from '@/content/countries';
 import type { Country } from '@/content/countries';
 import { COUNTRIES } from '@/content/countries48';
+import { playParchmentClick } from '@/lib/audio';
 import { useI18n } from '@/lib/i18n';
 import '@/styles/country-directory.css';
 
@@ -146,11 +147,13 @@ export default function CountryDirectoryDrawer({
   }, [filteredCountries]);
 
   const handleClearSearch = () => {
+    playParchmentClick();
     setSearchQuery('');
     searchInputRef.current?.focus();
   };
 
   const handleResetFilters = () => {
+    playParchmentClick();
     setSearchQuery('');
     setSelectedRegion('all');
     searchInputRef.current?.focus();
@@ -158,11 +161,14 @@ export default function CountryDirectoryDrawer({
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop Overlay */}
       <div
-        className="country-dir-backdrop"
+        className="country-dir-backdrop country-dir-overlay"
         data-open={open ? 'true' : 'false'}
-        onClick={onClose}
+        onClick={() => {
+          playParchmentClick();
+          onClose();
+        }}
         aria-hidden="true"
       />
 
@@ -188,7 +194,10 @@ export default function CountryDirectoryDrawer({
               ref={closeButtonRef}
               type="button"
               className="country-dir-close-btn"
-              onClick={onClose}
+              onClick={() => {
+                playParchmentClick();
+                onClose();
+              }}
               aria-label={t('directory.close')}
             >
               <svg
@@ -298,7 +307,10 @@ export default function CountryDirectoryDrawer({
             <button
               type="button"
               className={`country-dir-filter-pill ${selectedRegion === 'all' ? 'country-dir-filter-pill--active' : ''}`}
-              onClick={() => setSelectedRegion('all')}
+              onClick={() => {
+                playParchmentClick();
+                setSelectedRegion('all');
+              }}
               aria-pressed={selectedRegion === 'all'}
             >
               <span>{t('directory.filterAll')}</span>
@@ -312,7 +324,10 @@ export default function CountryDirectoryDrawer({
                   key={reg.id}
                   type="button"
                   className={`country-dir-filter-pill ${isActive ? 'country-dir-filter-pill--active' : ''}`}
-                  onClick={() => setSelectedRegion(isActive ? 'all' : reg.nameId)}
+                  onClick={() => {
+                    playParchmentClick();
+                    setSelectedRegion(isActive ? 'all' : reg.nameId);
+                  }}
                   aria-pressed={isActive}
                 >
                   <span>{locale === 'id' ? reg.nameId : reg.nameEn}</span>
@@ -391,6 +406,7 @@ function CountryCard({ country, onClose, onSelectCountry }: CountryCardProps) {
   const cultureExcerpt = c48?.fact || country.cultureNote;
 
   const handlePreviewMap = () => {
+    playParchmentClick();
     onClose();
     onSelectCountry?.(country.id);
   };
@@ -436,7 +452,10 @@ function CountryCard({ country, onClose, onSelectCountry }: CountryCardProps) {
       <div className="country-dir-card__actions">
         <Link
           to={`/negara/${country.id}`}
-          onClick={onClose}
+          onClick={() => {
+            playParchmentClick();
+            onClose();
+          }}
           className="country-dir-card__link"
           aria-label={`${t('directory.openCountry')}: ${country.nameId}`}
         >

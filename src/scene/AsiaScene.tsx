@@ -65,26 +65,26 @@ import '@/styles/scene.css';
  * - uz (Uzbekistan): Uzbek turquoise (#23739e)
  */
 export const COUNTRY_COLORS: Record<string, string> = {
-  // Southeast Asia
-  id: '#c53a2a', // Indonesian crimson vermilion
-  my: '#385a48', // Malaysian forest pine
-  sg: '#cf3d32', // Singapore coral red
-  th: '#6b4a6d', // Thai royal plum
-  vn: '#b82e26', // Vietnam lacquer red
-  ph: '#bf7d28', // Philippine golden amber
-  // East Asia
-  cn: '#b83324', // China imperial vermilion
-  jp: '#c83232', // Japan sun crimson
-  kr: '#4a5450', // Korea celadon slate umber
-  mn: '#9c7c4e', // Mongolian steppe sand
-  // South Asia
-  in: '#cc6e25', // India saffron terracotta
-  // West Asia
-  sa: '#2e663d', // Saudi oasis olive green
-  tr: '#a63629', // Turkish anatolian rust
-  // Central Asia
-  kz: '#948057', // Kazakh steppe loess khaki
-  uz: '#a38753', // Uzbek sandstone ochre
+  // Southeast Asia - Celadon / Giok Tropis (#2f6854 hover #3a8067)
+  id: '#2f6854',
+  my: '#346f5b',
+  sg: '#387862',
+  th: '#2b624f',
+  vn: '#2f6854',
+  ph: '#326c58',
+  // East Asia - Lacquer Cinnabar / Merah Kekaisaran (#8c3832 hover #a6423b)
+  cn: '#8c3832',
+  jp: '#943c35',
+  kr: '#84342f',
+  mn: '#9a423b',
+  // South Asia - Saffron Terracotta / Rempah Purba (#94582b hover #ad6733)
+  in: '#94582b',
+  // West Asia - Lapis Lazuli & Gurun Pasir (#465a73 hover #556d8c)
+  sa: '#465a73',
+  tr: '#4d637e',
+  // Central Asia - Steppe Bronze / Perunggu Jalur Sutra (#665c3b hover #7d7048)
+  kz: '#665c3b',
+  uz: '#6f6440',
 };
 
 export const REGION_COLORS: Record<string, string> = COUNTRY_COLORS;
@@ -299,7 +299,7 @@ const FIT_INK_SAFETY = 1.04;
 const HOVER_HYSTERESIS_MS = 130;
 const MATERIAL_ROUGHNESS = 0.42;
 const MATERIAL_METALNESS = 0.08;
-const OUTLINE_OPACITY = 0.45;
+const OUTLINE_OPACITY = 0.65;
 const MIN_CAMERA_DISTANCE = 130;
 const MAX_CAMERA_DISTANCE = 320;
 
@@ -2291,21 +2291,21 @@ export default function AsiaScene({
           <div className="scene-legend" aria-label="Legenda Wilayah">
             <span className="scene-legend__title">WILAYAH</span>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#a63629' }} /> West Asia
+              <span className="scene-legend__color" style={{ background: '#465a73' }} /> West Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#948057' }} /> Central
+              <span className="scene-legend__color" style={{ background: '#665c3b' }} /> Central
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#cc6e25' }} /> South Asia
+              <span className="scene-legend__color" style={{ background: '#94582b' }} /> South Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#385a48' }} /> Southeast
+              <span className="scene-legend__color" style={{ background: '#2f6854' }} /> Southeast
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#b83324' }} /> East Asia
+              <span className="scene-legend__color" style={{ background: '#8c3832' }} /> East Asia
             </div>
           </div>
 

@@ -4,6 +4,7 @@ import type { MouseEvent } from 'react';
 import Navbar from '@/app/Navbar';
 import { countries } from '@/content/countries';
 import { COUNTRIES, ISO3_TO_ISO2, iso3For } from '@/content/countries48';
+import { playParchmentClick, playTransitSweep } from '@/lib/audio';
 import {
   COUNTRY_COORDINATES,
   formatDMS,
@@ -172,11 +173,13 @@ export default function LandingPage() {
       window.clearTimeout(previewExitTimer.current);
       previewExitTimer.current = null;
     }
+    playTransitSweep();
     setPreviewId(id);
     setPanelCountryId(id);
   }, []);
 
   const closeCountryPreview = useCallback(() => {
+    playParchmentClick();
     setPreviewId(null);
     if (previewExitTimer.current !== null) {
       window.clearTimeout(previewExitTimer.current);
@@ -578,7 +581,10 @@ export default function LandingPage() {
 
       {/* Scene 3 — Ekspedisi 5 Kawasan Budaya Asia (Curated Spheres) */}
       <RegionExpeditionGallery
-        onOpenDirectory={() => setDirectoryOpen(true)}
+        onOpenDirectory={() => {
+          playParchmentClick();
+          setDirectoryOpen(true);
+        }}
       />
 
       {/* Scene 4 — Panduan Etiket & Norma Budaya (Field Guide 48 Bangsa) */}
