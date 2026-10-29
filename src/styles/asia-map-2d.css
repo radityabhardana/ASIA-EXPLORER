@@ -1,0 +1,133 @@
+/* ============================================================
+   Peta Vektor 2D Benua Asia 48 Negara (AsiaMap2D)
+   Ringan, presisi Lambert equal-area, 0 WebGL, 60fps di HP kentang.
+   ============================================================ */
+
+.asia-map-2d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-x pan-y;
+}
+
+.asia-map-2d.is-interactive {
+  cursor: grab;
+}
+
+.asia-map-2d.is-interactive:active {
+  cursor: grabbing;
+}
+
+.asia-map-2d__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.asia-map-2d__viewport {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.asia-map-2d:active .asia-map-2d__viewport {
+  transition: none; /* Responsif instan saat dragging */
+}
+
+/* Graticule dekoratif archival */
+.asia-map-2d__graticule,
+.asia-map-2d__graticule * {
+  pointer-events: none !important;
+  opacity: 0.45;
+}
+
+.asia-map-2d__ring {
+  fill: none;
+  stroke: var(--ink, #0f141a);
+  stroke-opacity: 0.08;
+  stroke-width: 0.85px;
+}
+
+.asia-map-2d__ring--inner {
+  stroke-dasharray: 4 6;
+  stroke-opacity: 0.05;
+}
+
+.asia-map-2d__axis {
+  stroke: var(--ink, #0f141a);
+  stroke-opacity: 0.05;
+  stroke-width: 0.65px;
+  stroke-dasharray: 2 5;
+}
+
+/* Poligon Negara */
+.asia-map-2d__path {
+  stroke: var(--paper, #fbf9f5);
+  stroke-width: 0.95px;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: fill 0.18s ease, stroke 0.18s ease, stroke-width 0.18s ease, filter 0.18s ease;
+  vector-effect: non-scaling-stroke;
+}
+
+.asia-map-2d__path:hover,
+.asia-map-2d__path.is-hovered {
+  filter: brightness(1.18) drop-shadow(0 2px 5px rgba(15, 20, 26, 0.2));
+  stroke: var(--ink, #0f141a);
+  stroke-width: 1.4px;
+}
+
+.asia-map-2d__path.is-selected {
+  fill: var(--terracotta, #b84d37) !important;
+  stroke: #ffffff;
+  stroke-width: 2px;
+  filter: drop-shadow(0 4px 12px rgba(184, 77, 55, 0.5));
+}
+
+.asia-map-2d__path:focus-visible {
+  outline: none;
+  stroke: var(--terracotta, #b84d37);
+  stroke-width: 2.4px;
+}
+
+/* Tooltip mengambang saat hover negara */
+.asia-map-2d__tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+  transform: translate(-50%, -100%);
+  transition: transform 0.08s ease-out, opacity 0.15s ease;
+}
+
+.asia-map-2d__tooltip-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 12px 4px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(15, 20, 26, 0.12);
+  white-space: nowrap;
+}
+
+.asia-map-2d__tooltip-title {
+  font-family: var(--font-text, sans-serif);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink, #0f141a);
+  letter-spacing: 0.01em;
+}
+
+.asia-map-2d__tooltip-sub {
+  font-family: var(--font-text, sans-serif);
+  font-size: 9.5px;
+  color: var(--ink-muted, #5a6470);
+  margin-top: 1px;
+}

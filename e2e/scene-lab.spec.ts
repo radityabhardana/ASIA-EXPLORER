@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+﻿import { expect, test } from '@playwright/test';
 
 /*
  * Bukti visual + fungsional scene 3D (lane L6).
@@ -13,7 +13,7 @@ const SETTLE = () =>
 
 test.skip(({ isMobile }) => Boolean(isMobile), 'Screenshot memakai viewport eksplisit.');
 
-test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page }) => {
+test('lab scene: picking raycast, 48 negara, screenshot 3 ukuran', async ({ page }) => {
   test.setTimeout(90_000);
   const consoleErrors: string[] = [];
 
@@ -29,7 +29,7 @@ test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/lab/scene');
 
-  await page.waitForFunction(() => window.__asiakin_scene?.ready === true, null, {
+  await page.waitForFunction(() => window.__asiakin_map48?.ready === true, null, {
     timeout: 45_000,
   });
 
@@ -39,14 +39,14 @@ test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page
    * di laut. Tunggu sampai proyeksi diam dulu.
    */
   await page.evaluate(async () => {
-    const scene = window.__asiakin_scene;
+    const scene = window.__asiakin_map48;
     if (!scene) {
       return;
     }
-    let previous = scene.projected('jp');
+    let previous = scene.projected('JPN');
     for (let attempt = 0; attempt < 40; attempt += 1) {
       await new Promise((resolve) => setTimeout(resolve, 120));
-      const current = scene.projected('jp');
+      const current = scene.projected('JPN');
       if (
         previous &&
         current &&
@@ -60,12 +60,12 @@ test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page
   });
 
   const countryCount = await page.evaluate(
-    () => window.__asiakin_scene?.countryCount ?? -1,
+    () => window.__asiakin_map48?.countryCount ?? -1,
   );
-  expect(countryCount).toBe(15);
+  expect(countryCount).toBe(48);
 
   const projected = await page.evaluate(
-    () => window.__asiakin_scene?.projected('jp') ?? null,
+    () => window.__asiakin_map48?.projected('JPN') ?? null,
   );
   expect(projected).not.toBeNull();
   if (!projected) {
@@ -101,3 +101,4 @@ test('lab scene: picking raycast, 15 negara, screenshot 3 ukuran', async ({ page
 
   expect(consoleErrors).toEqual([]);
 });
+

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import themesData from '@/content/themes.json';
+import { regionByCountryId } from '@/content/regions';
 import { contrastRatio } from '@/lib/color';
 
 export interface CountryThemePalette {
@@ -34,8 +35,55 @@ const DEFAULT_THEME: CountryThemePalette = {
   },
 };
 
+/**
+ * Tema cadangan deterministik untuk negara yang belum punya entri di
+ * `themes.json` (33 dari 48 belum punya foto). Diturunkan dari wilayah supaya
+ * tetap berbeda antar kawasan; `DEFAULT_THEME` dipakai kalau wilayah tak
+ * dikenal. Semua base cukup terang untuk kontras --ink >= 12:1.
+ */
+const REGION_FALLBACK: Record<string, CountryThemePalette> = {
+  'Asia Tenggara': {
+    base: '#f1f3f2',
+    soil: '#6b9b8e',
+    accent: '#4f8a7d',
+    contourStroke: '#5c88a3',
+    contourOpacity: 0.16,
+  },
+  'Asia Timur': {
+    base: '#f2f1f3',
+    soil: '#8f7a94',
+    accent: '#8d6f9c',
+    contourStroke: '#7a7fa3',
+    contourOpacity: 0.16,
+  },
+  'Asia Selatan': {
+    base: '#f3f0ec',
+    soil: '#b3874f',
+    accent: '#c07a2e',
+    contourStroke: '#a3805c',
+    contourOpacity: 0.16,
+  },
+  'Asia Barat': {
+    base: '#f2f1ef',
+    soil: '#8a9a6a',
+    accent: '#7d8f5a',
+    contourStroke: '#8a9a6a',
+    contourOpacity: 0.16,
+  },
+  'Asia Tengah': {
+    base: '#f0f2f4',
+    soil: '#5f7f97',
+    accent: '#4f7f9e',
+    contourStroke: '#5f7f97',
+    contourOpacity: 0.16,
+  },
+};
+
 export function getCountryTheme(countryId: string): CountryThemePalette {
-  return typedThemes.countries[countryId] ?? DEFAULT_THEME;
+  const explicit = typedThemes.countries[countryId];
+  if (explicit) return explicit;
+  const region = regionByCountryId.get(countryId);
+  return (region && REGION_FALLBACK[region]) || DEFAULT_THEME;
 }
 
 type CountryBackgroundProps = {

@@ -1,0 +1,628 @@
+[
+  {
+    "id": "af",
+    "iso3": "AFG",
+    "name_id": "Afghanistan",
+    "name_local": "افغانستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Dari language",
+      "native_name": "دری",
+      "script": "Perso-Arabic script (Afghan variant)",
+      "family": "Indo-European (Iranian branch)",
+      "note": "Dari and Pashto are both official; Dari serves as the lingua franca and the main language of urban life."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "تشکر",
+        "roman": "Tashakor"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ببخشین",
+        "roman": "Bebakhshin"
+      },
+      {
+        "id": "Goodbye",
+        "native": "خدا حافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "culture_note": "Hospitality is upheld through the nanawati tradition, the right to grant asylum to those seeking refuge: turning away a guest or a refugee is seen as staining the honour of one's family and community.",
+    "people_note": "On meeting, the right hand is shaken and then placed over the heart as a sign of sincerity; men and women generally do not shake hands in public, and the eldest is greeted first.",
+    "story": {
+      "text": "Tea is offered to a guest before any other business is raised. In Afghan homes the host pours and offers tea first as a mark of respect, even when the visitor arrives without warning. The country has two official languages, Dari and Pashto, both Indo-European and both written in an adapted Arabic script. Dari serves as the interethnic lingua franca and the main language of city life, while Pashto dominates the south and east. The most common greeting is Salam, short for assalamu alaikum, answered with wa alaikum assalam. Meeting etiquette requires everyone to stand when an elder enters the room. A handshake uses the right hand, often followed by placing the palm over the heart. Afterwards host and guest ask after each other before reaching the main business, because haste is considered impolite.",
+      "sources": [
+        {
+          "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+          "what": "Greeting salaam alaykum, right-hand shake then hand on heart, no cross-gender handshake, nanawati tradition"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+          "what": "Dari and Pashto as official languages; Dari as the interethnic lingua franca"
+        },
+        {
+          "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+          "what": "tashakor = thank you; khodaa haafez = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+        "what": "Greeting salaam alaykum, right-hand shake then hand on heart, no cross-gender handshake, nanawati tradition"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+        "what": "Dari and Pashto as official languages; Dari as the interethnic lingua franca"
+      },
+      {
+        "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+        "what": "tashakor = thank you; khodaa haafez = goodbye"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dari",
+        "what": "Dari as a variety of Persian spoken in Afghanistan"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Spelling for 'excuse me' in Dari differs between sources (ببخشین vs ببخشید)"
+    ]
+  },
+  {
+    "id": "bd",
+    "iso3": "BGD",
+    "name_id": "Bangladesh",
+    "name_local": "বাংলাদেশ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "আসসালামু আলাইকুম",
+      "roman": "Assalamu alaikum",
+      "meaning_id": "Peace be upon you",
+      "register": "neutral, common in Bangladesh"
+    },
+    "language": {
+      "name_id": "Bengali language",
+      "native_name": "বাংলা",
+      "script": "Bengali (Bangla) script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Bengali is the official language of Bangladesh; its everyday spoken forms differ from the formal written register."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ধন্যবাদ",
+        "roman": "Dhonnobad"
+      },
+      {
+        "id": "Excuse me",
+        "native": "মাফ করবেন",
+        "roman": "Māf korben"
+      },
+      {
+        "id": "Goodbye",
+        "native": "বিদায়",
+        "roman": "Biday"
+      }
+    ],
+    "culture_note": "The greeting assalamu alaikum is the everyday salutation of the Muslim majority, while nomoshkar is used by Hindus with palms pressed together; the choice of words marks religious identity, not the time of day.",
+    "people_note": "Older people are greeted first using the respectful form apni rather than tumi; touching another person's head or pointing with a single finger is considered impolite.",
+    "story": {
+      "text": "The shared dish is set in the middle of the mat before the rice is served. In many Bangladeshi homes people eat directly with the right hand, without a spoon, and each person takes food from the common bowl only from the nearest side. Bengali is the sole official language of the country and belongs to the Indo-Aryan branch of the Indo-European family, written in its own distinctive Bengali script. The everyday greeting of the majority is Assalamu alaikum, answered with wa alaikum assalam. Speech carries graded levels of politeness: apni for someone you respect, tumi for peers, and tui only for those very close. These choices quietly mark social distance. Local Hindus greet one another with nomoshkar, pressing both palms together in front of the chest. The word biday feels heavy, closer to a final farewell, so everyday partings are more often spoken as abar dekha hobe, meaning we will meet again.",
+      "sources": [
+        {
+          "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+          "what": "Bangladesh greetings: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+          "what": "dhonnobad = thank you; maph korben = sorry; the tumi and apni registers"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bengali_language",
+          "what": "Bengali as the official language of Bangladesh, Indo-Aryan family"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+        "what": "Bangladesh greetings: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+        "what": "dhonnobad = thank you; maph korben = sorry; the tumi and apni registers"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_language",
+        "what": "Bengali as the official language of Bangladesh, Indo-Aryan family"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_alphabet",
+        "what": "The Bengali script and how it is written"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The tui/tumi/apni register choices come from a community dictionary and have not been checked with a native speaker"
+    ]
+  },
+  {
+    "id": "bt",
+    "iso3": "BTN",
+    "name_id": "Bhutan",
+    "name_local": "འབྲུག་ཡུལ།",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "སྐུ་གཟུགས་བཟང་པོ་ལགས།",
+      "roman": "Kuzu zangpo la",
+      "meaning_id": "Hello (polite)",
+      "register": "polite; the particle la marks respect"
+    },
+    "language": {
+      "name_id": "Dzongkha language",
+      "native_name": "རྫོང་ཁ་",
+      "script": "Tibetan script (Dzongkha variant)",
+      "family": "Sino-Tibetan (Tibeto-Burman branch)",
+      "note": "Dzongkha is the national language of Bhutan, written in the Tibetan script; its development is overseen by the Dzongkha Development Commission."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "བཀའ་དྲིན་ཆེ།",
+        "roman": "Kadrin chhe"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ཙིགཔ་མ་ཟ།",
+        "roman": "Tsip maza"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ལོག་ཤུལ་ལས་འབྱལ་གེ།",
+        "roman": "Lok shu ley jel gey"
+      }
+    ],
+    "culture_note": "Tashi delek, a distinctively Bhutanese good wish, is often offered together with a white silk scarf (khadar) to honoured guests; accepting it with both hands and a slight bow is a mark of respect.",
+    "people_note": "Before entering a home or temple, shoes are removed; sitting with the soles of the feet pointing at a statue or another person is considered disrespectful, and sacred items are handed over with both hands.",
+    "story": {
+      "text": "A white silk scarf is draped over the guest's shoulder. In Bhutan a host welcomes an honoured person with a khadar, a strip of silk, as a wish for a long life. Dzongkha, the national language, belongs to the Sino-Tibetan family and is written in the Tibetan script, which runs from left to right. It uses the same script as Tibet, yet its spelling and vocabulary are distinctively Bhutanese. The polite greeting is Kuzu zangpo la, with the particle la at the end marking the respect always shown to elders. The form without la is reserved for close friends. The words for thank you, kadrin chhe, are said after receiving help or a gift. Etiquette for accepting anything requires both hands, or the right hand supported by the left forearm. Before entering a home or a temple, footwear must be removed at the threshold, and the soles of the feet are never pointed at a person or a statue.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+          "what": "Kuzu zangpo la, kadrin chhe, and everyday Dzongkha phrases"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Dzongkha",
+          "what": "Dzongkha as the national language of Bhutan, Tibetan script, Sino-Tibetan family"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Khadar",
+          "what": "Khadar, the silk scarf offered to a guest as a mark of respect"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+        "what": "Kuzu zangpo la, kadrin chhe, and everyday Dzongkha phrases"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dzongkha",
+        "what": "Dzongkha as the national language of Bhutan, Tibetan script, Sino-Tibetan family"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Khadar",
+        "what": "Khadar, the silk scarf offered to a guest as a mark of respect"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tibetan_script",
+        "what": "The Tibetan script used to write Dzongkha"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Dzongkha script spelling for 'Tsip maza' (excuse me) and 'Lok shu ley jel gey' (goodbye) needs checking with a native speaker",
+      "The Dzongkha phrases come from a phrasebook and have not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "ir",
+    "iso3": "IRN",
+    "name_id": "Iran",
+    "name_local": "ایران",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Persian language",
+      "native_name": "فارسی",
+      "script": "Perso-Arabic script",
+      "family": "Indo-European (Iranian branch)",
+      "note": "Persian is the official language of Iran; the Arabic script was extended with letters for the sounds p, g, ch and zh."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ممنون",
+        "roman": "Mamnun"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ببخشید",
+        "roman": "Bebakhshid"
+      },
+      {
+        "id": "Goodbye",
+        "native": "خداحافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "culture_note": "Taarof, a layered system of politeness, has people offer goods or help and then decline several times; politely refusing the first offer is itself courteous, not a real refusal.",
+    "people_note": "Men and women rarely shake hands in public; greetings are made with a hand placed over the heart and a slight nod, and older people are always greeted first.",
+    "story": {
+      "text": "A guest declines an offered sweet twice before finally accepting it. This pattern is called taarof, a layered Iranian etiquette that governs almost every conversation: the first, second and third offers are part of a ritual of courtesy rather than a genuine refusal. The official language of the country is Persian, a member of the Iranian branch of the Indo-European family. The Arabic script was borrowed to write it, then extended with letters for sounds Arabic lacks, such as p, g, ch and zh. The everyday greeting is salam, a shortened form used at any hour, morning or night. The most common word of thanks is mamnun, while bebakhshid is used to draw attention or to apologise. In public, men and women generally do not shake hands; they greet one another with a palm over the heart and a slight bow of the head. As the new year approaches, homes are swept clean to welcome Nowruz, the spring festival.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Persian_language",
+          "what": "Persian as the official language of Iran, the modified Arabic script, Indo-European family"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Taarof",
+          "what": "Taarof as Iran's layered system of politeness"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nowruz",
+          "what": "Nowruz as the spring new year festival"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_language",
+        "what": "Persian as the official language of Iran, the modified Arabic script, Indo-European family"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Taarof",
+        "what": "Taarof as Iran's layered system of politeness"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_alphabet",
+        "what": "The additional letters p, g, ch, zh in the Persian alphabet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nowruz as the spring new year festival"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The claim that men and women generally do not shake hands in public comes from general cultural encyclopaedia material"
+    ]
+  },
+  {
+    "id": "lk",
+    "iso3": "LKA",
+    "name_id": "Sri Lanka",
+    "name_local": "ශ්‍රී ලංකාව",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "ආයුබෝවන්",
+      "roman": "Āyubōwan",
+      "meaning_id": "Hello (literally: may you live long)",
+      "register": "neutral, somewhat formal"
+    },
+    "language": {
+      "name_id": "Sinhala language",
+      "native_name": "සිංහල",
+      "script": "Sinhala script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Sinhala is the majority and an official language; Tamil is also official and widely spoken in the north and east."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ස්තූතියි",
+        "roman": "Sthūthiyi"
+      },
+      {
+        "id": "Excuse me",
+        "native": "සමාවෙන්න",
+        "roman": "Samāwenna"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ගිහින් එන්නම්",
+        "roman": "Gihin ennam"
+      }
+    ],
+    "culture_note": "At Buddhist temples, visitors remove their shoes and cover their shoulders and knees; Buddha statues are not touched or climbed, and turning one's back to a statue for a photo is considered disrespectful.",
+    "people_note": "The head is considered the most sacred part and is not touched, while the feet are the lowest; give and receive with the right hand, and a sideways nod of the head actually means yes.",
+    "story": {
+      "text": "The palms are pressed together in front of the chest, then the head is bowed slightly. In Sri Lanka Ayubowan is more than a hello; it is a wish that the person greeted may live long. The same word serves throughout the day and can also be a farewell. The country has two official languages, Sinhala, spoken by the majority, and Tamil in the north and east. Sinhala belongs to the Indo-Aryan branch of the Indo-European family and is written in the rounded Sinhala script. Thank you is sthuthiyi, and samawenna is used to apologise or to get attention. In social life the head is regarded as the most sacred part and must not be touched, while objects are given and received with the right hand. Curiously, a sideways tilt of the head, rather than a downward nod, actually means yes. Before entering a Buddhist temple, shoes are removed and shoulders and knees are covered.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+          "what": "Sinhala as an official language of Sri Lanka, Indo-Aryan family, Sinhala script"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+          "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+          "what": "Temple-visit norms: removing shoes, covering shoulders and knees"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+        "what": "Sinhala as an official language of Sri Lanka, Indo-Aryan family, Sinhala script"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+        "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+        "what": "Temple-visit norms: removing shoes, covering shoulders and knees"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sri_Lanka",
+        "what": "The two official languages, Sinhala and Tamil"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The sideways head nod meaning yes needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "mv",
+    "iso3": "MDV",
+    "name_id": "Maldives",
+    "name_local": "ދިވެހިރާއްޖެ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "އައްސަލާމު ޢަލައިކުމް",
+      "roman": "Assalaamu alaikum",
+      "meaning_id": "Peace be upon you",
+      "register": "neutral, a common Islamic greeting"
+    },
+    "language": {
+      "name_id": "Dhivehi language",
+      "native_name": "ދިވެހި",
+      "script": "Thaana script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Dhivehi is the official language of the Maldives, written in the Thaana script, which is read from right to left."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ޝުކުރިއްޔާ",
+        "roman": "Shukuriyyaa"
+      },
+      {
+        "id": "Excuse me",
+        "native": "މަޢާފް ކުރޭ",
+        "roman": "Ma'aaf kurey"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ދަނީ",
+        "roman": "Dhanee"
+      }
+    ],
+    "culture_note": "The Maldives is a Muslim country, so alcohol and pork are not sold on inhabited islands; modest dress is respected, and swimwear is worn only on designated beaches.",
+    "people_note": "The Islamic greeting assalaamu alaikum is common between residents; a guest is offered tea and small snacks (hedhikaa) first, and people normally eat from their own plate.",
+    "story": {
+      "text": "A cup of tea and a small plate of snacks are served before any conversation begins. In the Maldives, welcoming a guest with hedhikaa, savoury bites such as fish cutlets and samosas, lies at the heart of local hospitality. This island nation's official language is Dhivehi, an Indo-Aryan language written in the Thaana script. Thaana is unusual because it is read from right to left, and its first nine letters come from Arabic numerals while the next nine come from old local numerals. Because most residents are Muslim, the everyday greeting is assalaamu alaikum, answered with wa alaikum assalaam. Thank you is shukuriyyaa, and ma'aaf kurey is used to apologise or to get attention. The informal word for parting, dhanee, is heard more often than the formal form. Alcohol is not sold on inhabited islands, and visitors are expected to dress modestly away from the beach.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+          "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+          "what": "Dhivehi as the official language, Indo-Aryan family, Thaana script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Thaana",
+          "what": "Thaana read right to left, its letters from Arabic and old local numerals"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+        "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+        "what": "Dhivehi as the official language, Indo-Aryan family, Thaana script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Thaana",
+        "what": "Thaana read right to left, its letters from Arabic and old local numerals"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_the_Maldives",
+        "what": "A Muslim country, alcohol rules, and dress norms"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The detail about the origin of Thaana letters comes from general encyclopaedia material",
+      "The informal register of 'dhanee' needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "np",
+    "iso3": "NPL",
+    "name_id": "Nepal",
+    "name_local": "नेपाल",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaning_id": "Hello / respectful greeting",
+      "register": "neutral, both formal and everyday"
+    },
+    "language": {
+      "name_id": "Nepali language",
+      "native_name": "नेपाली",
+      "script": "Devanagari script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Nepali is the official language of Nepal, written in the same Devanagari script as Hindi."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "धन्यवाद",
+        "roman": "Dhanyabād"
+      },
+      {
+        "id": "Excuse me",
+        "native": "माफ गर्नुहोस्",
+        "roman": "Māph garnuhos"
+      },
+      {
+        "id": "Goodbye",
+        "native": "फेरि भेटौंला",
+        "roman": "Pheri bheṭaunlā"
+      }
+    ],
+    "culture_note": "At Hindu temples, visitors remove their shoes and walk clockwise around the stupa; beef is not eaten because cattle are revered in Nepal's Hindu tradition.",
+    "people_note": "Older people are addressed with namaskar and the respectful particle hajur; goods and food are received with the right hand, and touching a person with the foot is considered impolite.",
+    "story": {
+      "text": "Both palms are pressed together, then the word namaste is said. In Nepal this greeting is used both for meeting and parting, at any hour of the day. The official language is Nepali, a member of the Indo-Aryan branch of the Indo-European family, written in the same Devanagari script as Hindi. Thank you is dhanyabad, and maaph garnuhos is used to apologise or to get attention. Levels of respect are marked by pronouns: tapai for someone you honour, timi for a peer. When meeting an elder, Nepalis often add hajur, a respectful particle that signals courtesy. A friendly farewell is usually pheri bhetaunla, meaning we will meet again, rather than goodbye. Before entering a home or a temple, shoes are removed, and objects are given and received with the right hand. Cattle are revered, so beef is not eaten.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Nepali_language",
+          "what": "Nepali as the official language of Nepal, Indo-Aryan family, Devanagari script"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+          "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+          "what": "Temple norms, footwear, and the reverence for cattle"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepali_language",
+        "what": "Nepali as the official language of Nepal, Indo-Aryan family, Devanagari script"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+        "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+        "what": "Temple norms, footwear, and the reverence for cattle"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepal",
+        "what": "The official language of Nepal"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The claim that cattle are revered and beef is not eaten comes from general encyclopaedia material, not a Nepali primary source"
+    ]
+  },
+  {
+    "id": "pk",
+    "iso3": "PAK",
+    "name_id": "Pakistan",
+    "name_local": "پاکستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "السلام علیکم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Peace be upon you",
+      "register": "neutral, the standard greeting"
+    },
+    "language": {
+      "name_id": "Urdu language",
+      "native_name": "اردو",
+      "script": "Perso-Arabic script (Nastaliq style)",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Urdu is the official language of Pakistan, written in the flowing Nastaliq style of the Arabic script, from right to left."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شکریہ",
+        "roman": "Shukriyā"
+      },
+      {
+        "id": "Excuse me",
+        "native": "معاف کیجیے",
+        "roman": "Māf kījiye"
+      },
+      {
+        "id": "Goodbye",
+        "native": "خدا حافظ",
+        "roman": "Khudā hāfiz"
+      }
+    ],
+    "culture_note": "The greeting assalamu alaikum is the standard salutation across ethnic groups; it is normally followed by questions about health and family, because greeting without asking after someone feels rushed.",
+    "people_note": "Men shake hands with other men, but men and women do not shake hands; older people are addressed with the respectful pronoun aap rather than tum.",
+    "story": {
+      "text": "A hand is placed over the heart after a handshake. In Pakistan a man greets another man with assalamu alaikum and a handshake, then lays his palm on his chest as a sign of sincerity. The official language is Urdu, a member of the Indo-Aryan branch of the Indo-European family, written in the flowing Nastaliq style of the Arabic script, which runs from right to left. Thank you is shukriya, and maaf kijiye is used to apologise or to get attention. Respect is marked by pronouns: aap for someone you honour, tum only for those much younger or very close. A common farewell is khuda hafiz, literally meaning may God be your protector. Local etiquette forbids men and women from shaking hands in public. Before turning to business, people usually ask first about health and family, since going straight to the point is considered impolite.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Urdu",
+          "what": "Urdu as the official language of Pakistan, Indo-Aryan family, Nastaliq script"
+        },
+        {
+          "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+          "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+        },
+        {
+          "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+          "what": "Same-sex handshakes, no cross-gender handshake, the respectful aap register"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu",
+        "what": "Urdu as the official language of Pakistan, Indo-Aryan family, Nastaliq script"
+      },
+      {
+        "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+        "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+      },
+      {
+        "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+        "what": "Same-sex handshakes, no cross-gender handshake, the respectful aap register"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu_alphabet",
+        "what": "The Urdu alphabet in Nastaliq style, written right to left"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The claim that men and women do not shake hands comes from a language guide and has not been checked with a native speaker"
+    ]
+  }
+]

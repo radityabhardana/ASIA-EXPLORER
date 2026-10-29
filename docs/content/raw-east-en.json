@@ -1,0 +1,518 @@
+[
+  {
+    "id": "cn",
+    "iso3": "CHN",
+    "name_id": "China",
+    "name_local": "中国",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "你好",
+      "roman": "Nǐ hǎo",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Chinese language (Mandarin)",
+      "native_name": "普通话",
+      "script": "Standardised Han characters (hanzi)",
+      "family": "Sino-Tibetan",
+      "note": "Putonghua (Mandarin) is the official state language; other Chinese varieties are not always mutually intelligible."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "谢谢",
+        "roman": "Xièxie"
+      },
+      {
+        "id": "Excuse me",
+        "native": "请问",
+        "roman": "Qǐngwèn"
+      },
+      {
+        "id": "Goodbye",
+        "native": "再见",
+        "roman": "Zàijiàn"
+      }
+    ],
+    "culture_note": "The round dining table is chosen because it has no sharp corners, symbolising smooth relations; a guest's seating position is determined by status, age, and closeness to the host.",
+    "people_note": "A light handshake or a nod; guests are seated according to status and age, the seat of honour to the host's right; drinks are poured for others first.",
+    "story": {
+      "text": "Tea is poured into the guest's cup first. A host in China only fills his own cup afterwards, as a sign of respect for the gathering. National law of the People's Republic of China establishes Putonghua, of the Sino-Tibetan family, as the official spoken language. Standard Han characters are its official script. Under Article 9 of the language law, Putonghua is rooted in the Beijing dialect and taught nationwide. Its purpose is to bridge regional varieties such as Yue, Wu, and Min, which are not mutually intelligible in speech, with the help of the Pinyin orthographic system. A meeting between people opens with the neutral greeting Ni hao. Meeting etiquette is expressed through a light handshake without a firm grip, or simply a polite nod of the head. Age and rank hierarchy govern social manners strictly. The oldest or highest-status person is always greeted first and invited to sit first. At a banquet on a round table, the guest of honour is placed to the host's right, facing the entrance of the room.",
+      "sources": [
+        {
+          "url": "http://en.moe.gov.cn/Resources/Laws_and_Policies/201506/t20150626_191388.html",
+          "what": "Article 9: Putonghua and standard Han characters used by state organs as the official language"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Chinese-languages",
+          "what": "Sino-Tibetan family; Chinese varieties not mutually intelligible; Pinyin"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7122949/",
+          "what": "Round table, seating by status/age, light handshake, pouring drinks for others"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E4%BD%A0%E5%A5%BD",
+          "what": "你好 = hello; pinyin nǐ hǎo"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%B0%A2%E8%B0%A2",
+          "what": "谢谢 = thank you; pinyin xièxie"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%AF%B7%E9%97%AE",
+          "what": "请问 = excuse me, may I ask; pinyin qǐngwèn"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E5%86%8D%E8%A7%81",
+          "what": "再见 = goodbye; pinyin zàijiàn"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "http://en.moe.gov.cn/Resources/Laws_and_Policies/201506/t20150626_191388.html",
+        "what": "Article 9: Putonghua and standard Han characters used by state organs as the official language"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Chinese-languages",
+        "what": "Sino-Tibetan family; Chinese varieties not mutually intelligible; Pinyin"
+      },
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7122949/",
+        "what": "Round table, seating by status/age, light handshake, pouring drinks for others"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E4%BD%A0%E5%A5%BD",
+        "what": "你好 = hello; pinyin nǐ hǎo"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%B0%A2%E8%B0%A2",
+        "what": "谢谢 = thank you; pinyin xièxie"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%AF%B7%E9%97%AE",
+        "what": "请问 = excuse me, may I ask; pinyin qǐngwèn"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E5%86%8D%E8%A7%81",
+        "what": "再见 = goodbye; pinyin zàijiàn"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The register of the greeting 你好 has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "jp",
+    "iso3": "JPN",
+    "name_id": "Japan",
+    "name_local": "日本",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "こんにちは",
+      "roman": "Konnichiwa",
+      "meaning_id": "Hello",
+      "register": "neutral, used during the day"
+    },
+    "language": {
+      "name_id": "Japanese language",
+      "native_name": "日本語",
+      "script": "Hiragana, katakana, kanji",
+      "family": "Japonic",
+      "note": "The national official language; the Kagoshima and Tohoku dialects are not mutually intelligible with Tokyo speakers."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ありがとう",
+        "roman": "Arigatou"
+      },
+      {
+        "id": "Excuse me",
+        "native": "すみません",
+        "roman": "Sumimasen"
+      },
+      {
+        "id": "Goodbye",
+        "native": "さようなら",
+        "roman": "Sayounara"
+      }
+    ],
+    "culture_note": "Japan has 15 national holidays; Shōgatsu (New Year) is the most important celebration, marked by visits to temples and shrines.",
+    "people_note": "Bowing when greeting; hugs and handshakes are rare. Shoes are removed at the threshold, changed for indoor slippers, and special slippers are worn in the toilet.",
+    "story": {
+      "text": "The angle of the body marks the level of respect. A slight bow of about 15 degrees is used for a casual greeting to a peer. A bow of 30 degrees or more is given when greeting an elder, a superior, or a guest of honour. Japanese social etiquette avoids direct physical contact such as a firm handshake or an embrace. Bowing (ojigi) is instead the main greeting. The national official language is Japanese, of the Japonic family. Its writing system combines three kinds of script in an integrated way. Kanji are taken from Chinese characters to record the basic meaning of nouns or verbs. Hiragana is the phonetic syllabic script for grammatical markers and native vocabulary. Katakana is used to write words borrowed from foreign languages. Face-to-face communication during the day commonly opens with the greeting Konnichiwa. Outdoor shoes are always taken off at the threshold (genkan) and replaced with special slippers before stepping onto the interior floor or a tatami surface.",
+      "sources": [
+        {
+          "url": "https://www.ethnologue.com/language/jpn/",
+          "what": "The national official language of Japan; Japonic family"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Japanese-writing-system",
+          "what": "Three scripts: kanji, hiragana, katakana"
+        },
+        {
+          "url": "https://www.japan.travel/id/guide/understanding-and-mastering-japanese-manners-and-etiquette/",
+          "what": "Bowing as a greeting, rare physical contact, removing shoes at the threshold"
+        },
+        {
+          "url": "https://www.britannica.com/place/Japan/Daily-life-and-social-customs",
+          "what": "15 national holidays; Shōgatsu the most important celebration"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E4%BB%8A%E6%97%A5%E3%81%AF",
+          "what": "今日は read konnichiwa, a daytime greeting"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89",
+          "what": "さようなら = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.ethnologue.com/language/jpn/",
+        "what": "The national official language of Japan; Japonic family"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Japanese-writing-system",
+        "what": "Three scripts: kanji, hiragana, katakana"
+      },
+      {
+        "url": "https://www.japan.travel/id/guide/understanding-and-mastering-japanese-manners-and-etiquette/",
+        "what": "Bowing as a greeting, rare physical contact, removing shoes at the threshold"
+      },
+      {
+        "url": "https://www.britannica.com/place/Japan/Daily-life-and-social-customs",
+        "what": "15 national holidays; Shōgatsu the most important celebration"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E4%BB%8A%E6%97%A5%E3%81%AF",
+        "what": "今日は read konnichiwa, a daytime greeting"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89",
+        "what": "さようなら = goodbye"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "さようなら carries a final/formal connotation, not an everyday greeting"
+    ]
+  },
+  {
+    "id": "kr",
+    "iso3": "KOR",
+    "name_id": "South Korea",
+    "name_local": "한국",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하세요",
+      "roman": "Annyeonghaseyo",
+      "meaning_id": "Hello",
+      "register": "polite informal (haeyo-che)"
+    },
+    "language": {
+      "name_id": "Korean language",
+      "native_name": "한국어",
+      "script": "Hangul",
+      "family": "Koreanic",
+      "note": "The official language of South Korea; its genealogical relationship with other languages is not agreed upon."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "감사합니다",
+        "roman": "Gamsahamnida"
+      },
+      {
+        "id": "Excuse me",
+        "native": "저기요",
+        "roman": "Jeogiyo"
+      },
+      {
+        "id": "Goodbye",
+        "native": "안녕히 계세요",
+        "roman": "Annyeonghi gyeseyo"
+      }
+    ],
+    "culture_note": "Hangul came into use in 1443 and was originally called Ŏnmun; the script is arranged in syllable blocks, not a linear string of letters.",
+    "people_note": "A brief bow and giving or receiving with both hands; older people are greeted first, and eating begins after the eldest.",
+    "story": {
+      "text": "The spoon of the eldest diner moves first. At a family meal together in South Korea, the food may only be started after the eldest member lifts his spoon. The official language is Korean, of the Koreanic family, written in Hangul, a phonetic alphabetic script created in 1443 during the Joseon Dynasty to overcome the complexity of Chinese logographic characters. Hangul's vowel and consonant symbols are arranged in structured syllable blocks, not a linear string of letters. In everyday life, people greet one another with the polite phrase Annyeonghaseyo from the haeyo-che speech level. Meeting etiquette is strictly governed by the courtesy of respecting age and social rank. The greeting is a brief bow of the head and back, and the younger person greets the older one first. When handing over a document, giving a gift, or shaking hands formally, people use both hands. Alternatively, the left hand supports the right wrist.",
+      "sources": [
+        {
+          "url": "https://www.ethnologue.com/language/kor/",
+          "what": "The national official language of South Korea; Koreanic family"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Korean-language",
+          "what": "Hangul since 1443, syllable blocks, disputed language kinship"
+        },
+        {
+          "url": "https://english.visitseoul.net/etiquette",
+          "what": "Brief bow, two hands, age hierarchy"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94",
+          "what": "안녕하세요 = hello; polite informal form"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4",
+          "what": "감사합니다 = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%9E%88_%EA%B3%84%EC%84%B8%EC%9A%94",
+          "what": "안녕히 계세요 = goodbye, said by the one leaving"
+        },
+        {
+          "url": "https://glosbe.com/ko/en/%EC%A0%80%EA%B8%B0%EC%9A%94",
+          "what": "저기요 = excuse me to get attention"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.ethnologue.com/language/kor/",
+        "what": "The national official language of South Korea; Koreanic family"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Korean-language",
+        "what": "Hangul since 1443, syllable blocks, disputed language kinship"
+      },
+      {
+        "url": "https://english.visitseoul.net/etiquette",
+        "what": "Brief bow, two hands, age hierarchy"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94",
+        "what": "안녕하세요 = hello; polite informal form"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4",
+        "what": "감사합니다 = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%9E%88_%EA%B3%84%EC%84%B8%EC%9A%94",
+        "what": "안녕히 계세요 = goodbye, said by the one leaving"
+      },
+      {
+        "url": "https://glosbe.com/ko/en/%EC%A0%80%EA%B8%B0%EC%9A%94",
+        "what": "저기요 = excuse me to get attention"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "저기요 is better rendered as 'excuse me, may I have your attention' than as 'sorry'"
+    ]
+  },
+  {
+    "id": "in",
+    "iso3": "IND",
+    "name_id": "India",
+    "name_local": "भारत",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaning_id": "Hello / respectful greeting",
+      "register": "neutral, both formal and everyday"
+    },
+    "language": {
+      "name_id": "Hindi language",
+      "native_name": "हिन्दी",
+      "script": "Devanagari",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Hindi was chosen rather than English: the official language of the Union and the largest L1 speaker base in India."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "धन्यवाद",
+        "roman": "Dhanyavād"
+      },
+      {
+        "id": "Excuse me",
+        "native": "माफ़ कीजिए",
+        "roman": "Māf kījie"
+      },
+      {
+        "id": "Goodbye",
+        "native": "अलविदा",
+        "roman": "Alvidā"
+      }
+    ],
+    "culture_note": "India has hundreds of languages from several unrelated families; Hindi and English hold the status of official languages of the Union.",
+    "people_note": "The namaste greeting with palms pressed together; receiving and eating with the right hand; a handshake with the opposite sex is not always accepted.",
+    "story": {
+      "text": "The namaste greeting is delivered without touching anyone. The posture is called anjali mudra: both palms are pressed together upright in front of the chest, accompanied by a slight bow of the head. This gesture serves as a gender-neutral greeting of respect, without any need for direct physical contact. The words Namaste or Namaskar are used widely across the country. The Government of the Union of India designates Hindi, of the Indo-Aryan branch of the Indo-European family, as the official language of the state. It stands alongside English as the administrative working language under the provisions of the constitution. Hindi is written in the phonetic Devanagari script. This script runs from left to right, with a characteristic horizontal line above the letters. Norms of politeness give priority to the right hand. That hand is used to eat food, receive payment, or hand objects to others, while the left hand is avoided in social interaction. Footwear is always removed outside before stepping into a dwelling or a house of worship.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Hindi-language",
+          "what": "Indo-Aryan family, Devanagari script, official language of India"
+        },
+        {
+          "url": "https://www.britannica.com/place/India",
+          "what": "Hindi and English as official languages; hundreds of languages from different families"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87",
+          "what": "नमस्ते = a greeting for hello/goodbye"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%A7%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%BE%E0%A4%A6",
+          "what": "धन्यवाद = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%AE%E0%A4%BE%E0%A4%AB%E0%A4%BC_%E0%A4%95%E0%A5%80%E0%A4%9C%E0%A4%BF%E0%A4%8F",
+          "what": "माफ़ कीजिए = excuse me/sorry (formal)"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%85%E0%A4%B2%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE",
+          "what": "अलविदा = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Hindi-language",
+        "what": "Indo-Aryan family, Devanagari script, official language of India"
+      },
+      {
+        "url": "https://www.britannica.com/place/India",
+        "what": "Hindi and English as official languages; hundreds of languages from different families"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87",
+        "what": "नमस्ते = a greeting for hello/goodbye"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%A7%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%BE%E0%A4%A6",
+        "what": "धन्यवाद = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%AE%E0%A4%BE%E0%A4%AB%E0%A4%BC_%E0%A4%95%E0%A5%80%E0%A4%9C%E0%A4%BF%E0%A4%8F",
+        "what": "माफ़ कीजिए = excuse me/sorry (formal)"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%85%E0%A4%B2%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE",
+        "what": "अलविदा = goodbye"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The people_note is supported by only one source",
+      "The coverage of India's national languages is simplified"
+    ]
+  },
+  {
+    "id": "mn",
+    "iso3": "MNG",
+    "name_id": "Mongolia",
+    "name_local": "Монгол улс",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "Сайн байна уу?",
+      "roman": "Sain baina uu",
+      "meaning_id": "How are you? / Hello",
+      "register": "neutral; use та with older people"
+    },
+    "language": {
+      "name_id": "Mongolian language",
+      "native_name": "Монгол хэл",
+      "script": "Cyrillic; traditional Mongolian script",
+      "family": "Mongolic",
+      "note": "Khalkha forms the basis of the official language; Cyrillic has been used since 1946 and the traditional script is being revived."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Баярлалаа",
+        "roman": "Bayarlalaa"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Уучлаарай",
+        "roman": "Uuchlaarai"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Баяртай",
+        "roman": "Bayartai"
+      }
+    ],
+    "culture_note": "The traditional Mongolian script is written vertically, originates from Sogdian via Uyghur, and is scheduled to return as the official script in 2025.",
+    "people_note": "Greet the eldest first; handshakes are common. Do not step on the threshold of a ger, receive food with the right hand, and taste the host's food.",
+    "story": {
+      "text": "The threshold of the tent must not be stepped on. The etiquette for visiting a ger (the traditional Mongolian tent) strictly forbids visitors from stepping on the wooden threshold, as it is believed to bring bad fortune to the owner of the tent. A guest receives a cup of tea or a bowl of processed milk with the right hand, with the right elbow supported gently by the left palm. The Khalkha dialect of the Mongolic family forms the foundation of the national language. Since 1946, under Soviet influence, the language has been written in a Cyrillic alphabet of 35 letters containing special phonetic characters such as ө and ү. The traditional Mongolian script, written vertically from top to bottom and rooted in the Sogdian alphabet through the Old Uyghur script, is still taught and preserved as a symbol of national history. The friendly everyday greeting is Sain baina uu, answered briefly with Sain. Older people are always greeted first before the younger generation shakes hands firmly with one another.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Mongol-language",
+          "what": "Khalkha the basis of the official language; vertical traditional script from Sogdian via Uyghur"
+        },
+        {
+          "url": "https://www.britannica.com/summary/Mongolian-languages",
+          "what": "Cyrillic introduced in 1946; the old script revived in the 1990s"
+        },
+        {
+          "url": "https://commisceo-global.com/culture-guides/mongolia/",
+          "what": "Greet the eldest first; do not step on the ger threshold; receive food with the right hand"
+        },
+        {
+          "url": "https://glosbe.com/mn/en/%D1%81%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B0%D0%B9%D0%BD%D0%B0%20%D1%83%D1%83",
+          "what": "сайн байна уу = hello"
+        },
+        {
+          "url": "https://glosbe.com/mn/en/%D0%B1%D0%B0%D1%8F%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0",
+          "what": "баярлалаа = thank you"
+        },
+        {
+          "url": "https://glosbe.com/mn/en/%D1%83%D1%83%D1%87%D0%BB%D0%B0%D0%B0%D1%80%D0%B0%D0%B9",
+          "what": "уучлаарай = sorry/excuse me"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D0%B1%D0%B0%D1%8F%D1%80%D1%82%D0%B0%D0%B9",
+          "what": "баяртай = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Mongol-language",
+        "what": "Khalkha the basis of the official language; vertical traditional script from Sogdian via Uyghur"
+      },
+      {
+        "url": "https://www.britannica.com/summary/Mongolian-languages",
+        "what": "Cyrillic introduced in 1946; the old script revived in the 1990s"
+      },
+      {
+        "url": "https://commisceo-global.com/culture-guides/mongolia/",
+        "what": "Greet the eldest first; do not step on the ger threshold; receive food with the right hand"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D1%81%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B0%D0%B9%D0%BD%D0%B0%20%D1%83%D1%83",
+        "what": "сайн байна уу = hello"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D0%B1%D0%B0%D1%8F%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0",
+        "what": "баярлалаа = thank you"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D1%83%D1%83%D1%87%D0%BB%D0%B0%D0%B0%D1%80%D0%B0%D0%B9",
+        "what": "уучлаарай = sorry/excuse me"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D0%B1%D0%B0%D1%8F%D1%80%D1%82%D0%B0%D0%B9",
+        "what": "баяртай = goodbye"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The status of the traditional script for 2025-2026 has not been confirmed",
+      "The people_note is sourced from a commercial cultural guide"
+    ]
+  }
+]

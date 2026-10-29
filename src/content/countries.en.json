@@ -1,0 +1,3982 @@
+[
+  {
+    "id": "id",
+    "iso3": "IDN",
+    "nameId": "Indonesia",
+    "nameLocal": "Indonesia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat pagi",
+      "roman": "Selamat pagi",
+      "meaningId": "A greeting of good morning",
+      "register": "Formal. Used specifically in the morning; midday and evening use 'Selamat siang'/'Selamat malam'. In casual situations people use 'Halo' or 'Hai', so 'Selamat pagi' is not an all-purpose neutral greeting."
+    },
+    "language": {
+      "nameId": "Indonesian language",
+      "nativeName": "Bahasa Indonesia",
+      "script": "Latin (Rumi)",
+      "family": "Austronesian (Malayo-Polynesian)",
+      "note": "Standardised from Johor-Riau Malay; developed by Badan Bahasa."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Terima kasih",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "sorry",
+        "native": "Maaf",
+        "roman": "Maaf"
+      },
+      {
+        "id": "goodbye",
+        "native": "Sampai jumpa",
+        "roman": "Sampai jumpa"
+      }
+    ],
+    "cultureNote": "Indonesia records 718 regional languages from 2,560 observation points, concentrated in eastern Indonesia. Indonesian serves as the unifying language above that diversity.",
+    "peopleNote": "Greetings use Bapak/Ibu for those who are older. A handshake with the right hand is accompanied by a nod; some people perform the salim. Shoes are removed when entering a house.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "A handshake with the right hand and a nod of the head — that is how people open a formal meeting in Indonesia. Greetings are tied to the time of day: Selamat pagi, Selamat siang, or Selamat malam, while casual company is fine with Halo. With someone older or of higher standing, a speaker must use the title Bapak or Ibu before the name. The official language of the state is Indonesian. It is rooted in Malay and belongs to the Austronesian family. This unifying language is standardised in the Latin script under the guidance of the Agency for Language Development and Cultivation. The agency's official survey recorded 718 regional languages from 2,560 observation points across the archipelago. In family life and traditional communities the salim tradition is still alive: touching the back of an elder's hand to one's own forehead as a sign of reverence. When visiting a home, footwear must be removed at the threshold, and the left hand must not be used to hand over objects.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Indonesian_language",
+          "what": "Language name, official status, origin from Malay"
+        },
+        {
+          "url": "https://badanbahasa.kemendikdasmen.go.id/artikel-detail/4540/masa-depan-bahasa-daerah",
+          "what": "718 regional languages from 2,560 observation points"
+        },
+        {
+          "url": "https://uiii.ac.id/basic-norms-language",
+          "what": "Bapak/Ibu greeting, right hand, 'Selamat pagi'"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Etiquette_in_Indonesia",
+          "what": "Salim, right hand, shoes removed"
+        },
+        {
+          "url": "https://theculturalatlas.org/indonesian-culture/indonesian-culture-etiquette",
+          "what": "Norms for greeting and interaction with elders"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Indonesian_language",
+        "what": "Language name, official status, origin from Malay"
+      },
+      {
+        "url": "https://badanbahasa.kemendikdasmen.go.id/artikel-detail/4540/masa-depan-bahasa-daerah",
+        "what": "718 regional languages from 2,560 observation points"
+      },
+      {
+        "url": "https://uiii.ac.id/basic-norms-language",
+        "what": "Bapak/Ibu greeting, right hand, 'Selamat pagi'"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Etiquette_in_Indonesia",
+        "what": "Salim, right hand, shoes removed"
+      },
+      {
+        "url": "https://theculturalatlas.org/indonesian-culture/indonesian-culture-etiquette",
+        "what": "Norms for greeting and interaction with elders"
+      }
+    ],
+    "needsVerification": [
+      "The time range of 'Selamat pagi' is not taken from an official Badan Bahasa guideline",
+      "The KBBI failed to load during research (DNS), so the dictionary definition was not quoted directly"
+    ]
+  },
+  {
+    "id": "my",
+    "iso3": "MYS",
+    "nameId": "Malaysia",
+    "nameLocal": "Malaysia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat sejahtera",
+      "roman": "Selamat sejahtera",
+      "meaningId": "A wish of well-being / respectful salutation",
+      "register": "Formal and religiously neutral. Common as the opening of speeches and official events; in daily conversation people more often use 'Hai'/'Helo' or 'Assalamualaikum'."
+    },
+    "language": {
+      "nameId": "Malay language",
+      "nativeName": "Bahasa Melayu",
+      "script": "Latin (Rumi) and Arabic (Jawi)",
+      "family": "Austronesian (Malayo-Polynesian)",
+      "note": "The national language under Article 152; developed by Dewan Bahasa dan Pustaka."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Terima kasih",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "sorry",
+        "native": "Maaf",
+        "roman": "Maaf"
+      },
+      {
+        "id": "goodbye",
+        "native": "Selamat tinggal",
+        "roman": "Selamat tinggal"
+      }
+    ],
+    "cultureNote": "Article 152 of the Federal Constitution establishes Malay as the national language, written in Rumi and Jawi. Jawi is still used, especially for heritage and religious matters.",
+    "peopleNote": "Shaking hands with the right hand or both hands; bowing slightly when passing an elder. Shoes are removed in the house. Pointing is done with the thumb, not the index finger.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "The index finger is not used for pointing in Malaysia. To indicate a direction or a person, people use a neatly folded right thumb. The national language is protected by law: Article 152 of the Federal Constitution of Malaysia establishes Malay, of the Austronesian family, as the national language. Its cultivation and standardisation are carried out by Dewan Bahasa dan Pustaka. The writing uses two official scripts. The Latin alphabet, called Rumi, is used for general administration, while the Arabic-based Jawi script serves Islamic religious affairs and heritage documents. At formal state forums, a speaker addresses the audience with Selamat sejahtera, an expression neutral from a religious standpoint. The greeting Assalamualaikum and the casual Helo are heard more often in daily communities. When shaking hands, people use the right hand or cup both hands, then draw the palm close to the chest. Passing in front of an elder, the body is bent slightly as a sign of respect. Guests remove their shoes on the veranda before entering the inner rooms of the house.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Malay_language",
+          "what": "Language name, Rumi and Jawi, Austronesian family, Article 152"
+        },
+        {
+          "url": "https://prpm.dbp.gov.my/cari1?keyword=terima%20kasih",
+          "what": "Headword 'terima kasih'"
+        },
+        {
+          "url": "https://prpm.dbp.gov.my/cari1?keyword=maaf",
+          "what": "Headword 'maaf'"
+        },
+        {
+          "url": "https://theculturalatlas.org/malaysian-culture/malaysian-culture-etiquette",
+          "what": "Handshake, shoes removed, pointing with the thumb"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Malay_language",
+        "what": "Language name, Rumi and Jawi, Austronesian family, Article 152"
+      },
+      {
+        "url": "https://prpm.dbp.gov.my/cari1?keyword=terima%20kasih",
+        "what": "Headword 'terima kasih'"
+      },
+      {
+        "url": "https://prpm.dbp.gov.my/cari1?keyword=maaf",
+        "what": "Headword 'maaf'"
+      },
+      {
+        "url": "https://theculturalatlas.org/malaysian-culture/malaysian-culture-etiquette",
+        "what": "Handshake, shoes removed, pointing with the thumb"
+      }
+    ],
+    "needsVerification": [
+      "The status of 'Selamat sejahtera' as a daily greeting versus a speech opener has not been verified from an official government site",
+      "PRPM contains no headword entry for 'salam sejahtera' or 'selamat tinggal'"
+    ]
+  },
+  {
+    "id": "sg",
+    "iso3": "SGP",
+    "nameId": "Singapore",
+    "nameLocal": "Singapore",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Hello",
+      "roman": "Hello",
+      "meaningId": "Hello",
+      "register": "English is chosen because it is the main working language and the interethnic lingua franca. Malay is the national language but its role is ceremonial; Mandarin and Tamil are official yet used within their own communities."
+    },
+    "language": {
+      "nameId": "English language",
+      "nativeName": "English",
+      "script": "Latin",
+      "family": "Indo-European (Germanic)",
+      "note": "The main working language; Malay is the ceremonial national language; Mandarin and Tamil are also official."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Thank you",
+        "roman": "Thank you"
+      },
+      {
+        "id": "sorry",
+        "native": "Sorry",
+        "roman": "Sorry"
+      },
+      {
+        "id": "goodbye",
+        "native": "Goodbye",
+        "roman": "Goodbye"
+      }
+    ],
+    "cultureNote": "Singapore's hawker culture was inscribed on the UNESCO Representative List of the Intangible Cultural Heritage of Humanity on 16 December 2020. Hawker centres serve as a shared eating space across ethnic groups.",
+    "peopleNote": "Shoes are removed before entering a house. Gifts are given with both hands. A hawker table is reserved with a packet of tissues. Punctuality is valued.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The greeting is Hello. In Singapore, the question of whether the other person has eaten often follows it — a sign of mutual care. The Constitution of the Republic of Singapore recognises four official languages: English, Malay, Mandarin, and Tamil, to serve a plural society. Article 153A establishes Malay as the national language with a ceremonial role in the national anthem and state symbols. English is the working language of administration, the medium of instruction, and the interethnic lingua franca. Writing uses the Latin alphabet, Chinese hanzi, and the Tamil script. A light handshake with the right hand is common in formal settings. Senior citizens often shake with two hands, the second hand touching the wrist of the person they are speaking to. With the opposite sex in certain Malay or Indian communities, physical contact is avoided until the woman offers her hand first. Guests remove their shoes at the front door of a house and hand over gifts with both hands.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Languages_of_Singapore",
+          "what": "Four official languages; Malay the national language; English the working language"
+        },
+        {
+          "url": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+          "what": "Hawker culture inscribed 16 December 2020"
+        },
+        {
+          "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-etiquette",
+          "what": "Shoes, gifts with both hands, tissue to reserve a seat, punctuality"
+        },
+        {
+          "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-greetings",
+          "what": "Handshake etiquette and interethnic greetings in Singapore"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Singapore",
+        "what": "Four official languages; Malay the national language; English the working language"
+      },
+      {
+        "url": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+        "what": "Hawker culture inscribed 16 December 2020"
+      },
+      {
+        "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-etiquette",
+        "what": "Shoes, gifts with both hands, tissue to reserve a seat, punctuality"
+      }
+    ],
+    "needsVerification": [
+      "The choice of 'Hello' is an editorial decision, not a quotation from a single official source"
+    ]
+  },
+  {
+    "id": "th",
+    "iso3": "THA",
+    "nameId": "Thailand",
+    "nameLocal": "ประเทศไทย",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "สวัสดี",
+      "roman": "sawatdi",
+      "meaningId": "Hello / greeting",
+      "register": "Neutral to formal. The particle ครับ (male speaker) or ค่ะ (female speaker) is added at the end of a sentence for politeness."
+    },
+    "language": {
+      "nameId": "Thai language",
+      "nativeName": "ภาษาไทย",
+      "script": "Thai script",
+      "family": "Kra-Dai",
+      "note": "A tonal language without inflection; the particles ครับ/ค่ะ mark politeness."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "ขอบคุณ",
+        "roman": "khopkhun"
+      },
+      {
+        "id": "sorry",
+        "native": "ขอโทษ",
+        "roman": "kho thot"
+      },
+      {
+        "id": "goodbye",
+        "native": "ลาก่อน",
+        "roman": "la kon"
+      }
+    ],
+    "cultureNote": "The Thai script was adapted from the Khmer script; the oldest Thai inscription dates to 1292 CE. The writing system is still in use today.",
+    "peopleNote": "The wai is used to greet and to take leave; the younger person initiates it. Shoes are removed at home and in temples. The head is not touched; feet are not pointed at people.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Both palms are pressed together in front of the chest while the head bows — that is how Thais open the wai greeting. The younger person begins first. The level of respect shows in the position of the palms. Honouring a monk, the thumbs touch between the eyebrows. Greeting elders and teachers, the palms stop at the tip of the nose. For peers, the two hands rest low in front of the chest. Two taboos hold: the head is sacred and must not be touched by others, and the foot's sole must not point at another person. The official language of the country is Thai, of the Kra-Dai family, a tonal language written in the Thai script. That script was adapted from the ancient Khmer script, and its oldest stone inscription dates to 1292 CE. The national greeting sawatdi was only standardised officially in the early 1940s. Politeness is marked by a sentence-final particle: khrap for men, kha for women. Footwear is always removed before entering a house or temple.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Thai_language",
+          "what": "Kra-Dai family, Thai script, 1292 CE inscription, khrap/kha particles"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/สวัสดี",
+          "what": "Royal Institute romanisation"
+        },
+        {
+          "url": "https://thailandfoundation.or.th/wai-the-thai-greeting/",
+          "what": "The wai for greeting and taking leave"
+        },
+        {
+          "url": "https://thailand.iom.int/sites/g/files/tmzbdl1371/files/documents/Tips%2520for%2520Migrant%2520Workers%2520on%2520the%2520Culture%2520of%2520Thailand_ENG.pdf",
+          "what": "Shoes removed, head and foot taboos"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Thai_language",
+        "what": "Kra-Dai family, Thai script, 1292 CE inscription, khrap/kha particles"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/สวัสดี",
+        "what": "Royal Institute romanisation"
+      },
+      {
+        "url": "https://thailandfoundation.or.th/wai-the-thai-greeting/",
+        "what": "The wai for greeting and taking leave"
+      },
+      {
+        "url": "https://thailand.iom.int/sites/g/files/tmzbdl1371/files/documents/Tips%2520for%2520Migrant%2520Workers%2520on%2520the%2520Culture%2520of%2520Thailand_ENG.pdf",
+        "what": "Shoes removed, head and foot taboos"
+      }
+    ],
+    "needsVerification": [
+      "The RTGS romanisation does not mark tone"
+    ]
+  },
+  {
+    "id": "vn",
+    "iso3": "VNM",
+    "nameId": "Vietnam",
+    "nameLocal": "Việt Nam",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Xin chào",
+      "roman": "Xin chào",
+      "meaningId": "Hello / greeting",
+      "register": "Somewhat formal. In daily conversation people use just 'chào', often with a kinship term added according to the age of the person addressed (anh, chị, em, ông, bà)."
+    },
+    "language": {
+      "nameId": "Vietnamese language",
+      "nativeName": "Tiếng Việt",
+      "script": "Latin (chữ Quốc ngữ)",
+      "family": "Austroasiatic (Vietic branch)",
+      "note": "Six tones; a diacritic Latin orthography replaced chữ Nôm."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Cảm ơn",
+        "roman": "Cảm ơn"
+      },
+      {
+        "id": "sorry",
+        "native": "Xin lỗi",
+        "roman": "Xin lỗi"
+      },
+      {
+        "id": "goodbye",
+        "native": "Tạm biệt",
+        "roman": "Tạm biệt"
+      }
+    ],
+    "cultureNote": "Chữ Quốc ngữ, a Latin orthography based on the work of 17th-century Portuguese missionaries, replaced chữ Nôm and became the official script in the early 20th century.",
+    "peopleNote": "Give and receive with both hands. The head is not touched; objects are not passed over the head. Greetings use kinship terms according to age and status.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Objects are always handed over with both hands, and the head must not be touched. Those two basic rules of courtesy apply in Vietnam. Greetings are graded by age: the younger person greets the older first, usually with chào combined with a kinship term such as anh, chị, em, or ông according to the age of the person addressed. The formal form is Xin chào. The foundation of it all is Vietnamese, of the Austroasiatic family, Vietic branch. This tonal language has six phonemic tone contours and is written in a diacritic Latin orthography called chữ Quốc ngữ. This script, devised by 17th-century Jesuit missionaries, replaced the chữ Nôm script in the early 20th century. A man's handshake is accompanied by a slight nod of the head, while formal situations use both hands when shaking. Towards a senior figure, a person bows from the base of the shoulders and lowers the direction of the gaze. Shoes are left at the entrance of the house.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Vietnamese_language",
+          "what": "Language name, chữ Quốc ngữ, Austroasiatic-Vietic family"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/xin_chào",
+          "what": "Formal form and daily use of 'chào' plus kinship terms"
+        },
+        {
+          "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-etiquette",
+          "what": "Two hands, head taboo, deference to age"
+        },
+        {
+          "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-greetings",
+          "what": "The spoken greeting Xin chào, kinship terms, and bowing etiquette"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Vietnamese_language",
+        "what": "Language name, chữ Quốc ngữ, Austroasiatic-Vietic family"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/xin_chào",
+        "what": "Formal form and daily use of 'chào' plus kinship terms"
+      },
+      {
+        "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-etiquette",
+        "what": "Two hands, head taboo, deference to age"
+      }
+    ],
+    "needsVerification": [
+      "'Tạm biệt' is formal/literary; an everyday equivalent has not been settled"
+    ]
+  },
+  {
+    "id": "ph",
+    "iso3": "PHL",
+    "nameId": "Philippines",
+    "nameLocal": "Pilipinas",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Kumusta",
+      "roman": "Kumusta",
+      "meaningId": "Hello / how are you",
+      "register": "neutral; respectful form: Kumusta po"
+    },
+    "language": {
+      "nameId": "Filipino language",
+      "nativeName": "Filipino",
+      "script": "Latin (Alpabetong Filipino, 28 letters)",
+      "family": "Austronesian (Malayo-Polynesian, Central Philippine)",
+      "note": "The official name of the national language; based on Tagalog, enriched by other Philippine languages."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Salamat",
+        "roman": "Salamat"
+      },
+      {
+        "id": "Excuse me when passing",
+        "native": "Makikiraan po",
+        "roman": "Makikiraan po"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Paalam",
+        "roman": "Paalam"
+      }
+    ],
+    "cultureNote": "The 1987 Constitution, Article XIV, establishes Filipino as the national language; the name was chosen because it encompasses elements of regional languages, not only Tagalog.",
+    "peopleNote": "The respectful particle po/opo is used with older people. Pagmamano, taking an elder's right hand and touching it to the forehead, is still common. Shoes are removed when entering a house.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "An elder's right hand is taken and its back pressed to one's own forehead. This gesture is called pagmamano or mano po, the highest respect for the older generation in the Philippines. In speech, respect passes through the particle po or opo: with someone older, Kumusta becomes Kumusta po. Kumusta itself is borrowed from Spanish and serves as the everyday greeting. The state sets the language base: Article XIV Section 6 of the 1987 Constitution makes Filipino the national language of the Republic of the Philippines, alongside English. Its development is carried out by the Komisyon sa Wikang Filipino. Its grammar is based on Tagalog, of the Austronesian family, Central Philippine branch. Its official spelling, the Alpabetong Filipino, has 28 Latin letters: the 26 of the basic alphabet plus ñ and the digraph ng. Direction is not pointed with a finger either: in casual company people use a pursed-lip gesture, and raised eyebrows serve as a silent greeting. Entering someone's house, shoes come off at the front door; guests bring a gift when visiting relatives.",
+      "sources": [
+        {
+          "url": "https://kwf.gov.ph/tungkol-sa-kwf/",
+          "what": "National language mandate"
+        },
+        {
+          "url": "https://glottolog.org/resource/languoid/id/taga1270",
+          "what": "Classification of Tagalog"
+        },
+        {
+          "url": "https://www.tagalognow.com/learn/mano-po-and-filipino-etiquette/",
+          "what": "po/opo etiquette and pagmamano"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Pilipino-language",
+          "what": "Standardised form of Tagalog, official language alongside English, Austronesian family"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://kwf.gov.ph/tungkol-sa-kwf/",
+        "what": "National language mandate"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/taga1270",
+        "what": "Classification of Tagalog"
+      },
+      {
+        "url": "https://www.tagalognow.com/learn/mano-po-and-filipino-etiquette/",
+        "what": "po/opo etiquette and pagmamano"
+      }
+    ],
+    "needsVerification": [
+      "The spelling varies: Kumusta / Kamusta"
+    ]
+  },
+  {
+    "id": "cn",
+    "iso3": "CHN",
+    "nameId": "China",
+    "nameLocal": "中国",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "你好",
+      "roman": "Nǐ hǎo",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Chinese language (Mandarin)",
+      "nativeName": "普通话",
+      "script": "Standardised Han characters (hanzi)",
+      "family": "Sino-Tibetan",
+      "note": "Putonghua (Mandarin) is the official state language; other Chinese varieties are not always mutually intelligible."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "谢谢",
+        "roman": "Xièxie"
+      },
+      {
+        "id": "Excuse me",
+        "native": "请问",
+        "roman": "Qǐngwèn"
+      },
+      {
+        "id": "Goodbye",
+        "native": "再见",
+        "roman": "Zàijiàn"
+      }
+    ],
+    "cultureNote": "The round dining table is chosen because it has no sharp corners, symbolising smooth relations; a guest's seating position is determined by status, age, and closeness to the host.",
+    "peopleNote": "A light handshake or a nod; guests are seated according to status and age, the seat of honour to the host's right; drinks are poured for others first.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Tea is poured into the guest's cup first. A host in China only fills his own cup afterwards, as a sign of respect for the gathering. National law of the People's Republic of China establishes Putonghua, of the Sino-Tibetan family, as the official spoken language. Standard Han characters are its official script. Under Article 9 of the language law, Putonghua is rooted in the Beijing dialect and taught nationwide. Its purpose is to bridge regional varieties such as Yue, Wu, and Min, which are not mutually intelligible in speech, with the help of the Pinyin orthographic system. A meeting between people opens with the neutral greeting Ni hao. Meeting etiquette is expressed through a light handshake without a firm grip, or simply a polite nod of the head. Age and rank hierarchy govern social manners strictly. The oldest or highest-status person is always greeted first and invited to sit first. At a banquet on a round table, the guest of honour is placed to the host's right, facing the entrance of the room.",
+      "sources": [
+        {
+          "url": "http://en.moe.gov.cn/Resources/Laws_and_Policies/201506/t20150626_191388.html",
+          "what": "Article 9: Putonghua and standard Han characters used by state organs as the official language"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Chinese-languages",
+          "what": "Sino-Tibetan family; Chinese varieties not mutually intelligible; Pinyin"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7122949/",
+          "what": "Round table, seating by status/age, light handshake, pouring drinks for others"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E4%BD%A0%E5%A5%BD",
+          "what": "你好 = hello; pinyin nǐ hǎo"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%B0%A2%E8%B0%A2",
+          "what": "谢谢 = thank you; pinyin xièxie"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%AF%B7%E9%97%AE",
+          "what": "请问 = excuse me, may I ask; pinyin qǐngwèn"
+        },
+        {
+          "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E5%86%8D%E8%A7%81",
+          "what": "再见 = goodbye; pinyin zàijiàn"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "http://en.moe.gov.cn/Resources/Laws_and_Policies/201506/t20150626_191388.html",
+        "what": "Article 9: Putonghua and standard Han characters used by state organs as the official language"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Chinese-languages",
+        "what": "Sino-Tibetan family; Chinese varieties not mutually intelligible; Pinyin"
+      },
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7122949/",
+        "what": "Round table, seating by status/age, light handshake, pouring drinks for others"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E4%BD%A0%E5%A5%BD",
+        "what": "你好 = hello; pinyin nǐ hǎo"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%B0%A2%E8%B0%A2",
+        "what": "谢谢 = thank you; pinyin xièxie"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E8%AF%B7%E9%97%AE",
+        "what": "请问 = excuse me, may I ask; pinyin qǐngwèn"
+      },
+      {
+        "url": "https://www.mdbg.net/chinese/dictionary?wdqb=%E5%86%8D%E8%A7%81",
+        "what": "再见 = goodbye; pinyin zàijiàn"
+      }
+    ],
+    "needsVerification": [
+      "The register of the greeting 你好 has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "jp",
+    "iso3": "JPN",
+    "nameId": "Japan",
+    "nameLocal": "日本",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "こんにちは",
+      "roman": "Konnichiwa",
+      "meaningId": "Hello",
+      "register": "neutral, used during the day"
+    },
+    "language": {
+      "nameId": "Japanese language",
+      "nativeName": "日本語",
+      "script": "Hiragana, katakana, kanji",
+      "family": "Japonic",
+      "note": "The national official language; the Kagoshima and Tohoku dialects are not mutually intelligible with Tokyo speakers."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ありがとう",
+        "roman": "Arigatou"
+      },
+      {
+        "id": "Excuse me",
+        "native": "すみません",
+        "roman": "Sumimasen"
+      },
+      {
+        "id": "Goodbye",
+        "native": "さようなら",
+        "roman": "Sayounara"
+      }
+    ],
+    "cultureNote": "Japan has 15 national holidays; Shōgatsu (New Year) is the most important celebration, marked by visits to temples and shrines.",
+    "peopleNote": "Bowing when greeting; hugs and handshakes are rare. Shoes are removed at the threshold, changed for indoor slippers, and special slippers are worn in the toilet.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The angle of the body marks the level of respect. A slight bow of about 15 degrees is used for a casual greeting to a peer. A bow of 30 degrees or more is given when greeting an elder, a superior, or a guest of honour. Japanese social etiquette avoids direct physical contact such as a firm handshake or an embrace. Bowing (ojigi) is instead the main greeting. The national official language is Japanese, of the Japonic family. Its writing system combines three kinds of script in an integrated way. Kanji are taken from Chinese characters to record the basic meaning of nouns or verbs. Hiragana is the phonetic syllabic script for grammatical markers and native vocabulary. Katakana is used to write words borrowed from foreign languages. Face-to-face communication during the day commonly opens with the greeting Konnichiwa. Outdoor shoes are always taken off at the threshold (genkan) and replaced with special slippers before stepping onto the interior floor or a tatami surface.",
+      "sources": [
+        {
+          "url": "https://www.ethnologue.com/language/jpn/",
+          "what": "The national official language of Japan; Japonic family"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Japanese-writing-system",
+          "what": "Three scripts: kanji, hiragana, katakana"
+        },
+        {
+          "url": "https://www.japan.travel/id/guide/understanding-and-mastering-japanese-manners-and-etiquette/",
+          "what": "Bowing as a greeting, rare physical contact, removing shoes at the threshold"
+        },
+        {
+          "url": "https://www.britannica.com/place/Japan/Daily-life-and-social-customs",
+          "what": "15 national holidays; Shōgatsu the most important celebration"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E4%BB%8A%E6%97%A5%E3%81%AF",
+          "what": "今日は read konnichiwa, a daytime greeting"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89",
+          "what": "さようなら = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.ethnologue.com/language/jpn/",
+        "what": "The national official language of Japan; Japonic family"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Japanese-writing-system",
+        "what": "Three scripts: kanji, hiragana, katakana"
+      },
+      {
+        "url": "https://www.japan.travel/id/guide/understanding-and-mastering-japanese-manners-and-etiquette/",
+        "what": "Bowing as a greeting, rare physical contact, removing shoes at the threshold"
+      },
+      {
+        "url": "https://www.britannica.com/place/Japan/Daily-life-and-social-customs",
+        "what": "15 national holidays; Shōgatsu the most important celebration"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E4%BB%8A%E6%97%A5%E3%81%AF",
+        "what": "今日は read konnichiwa, a daytime greeting"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E3%81%95%E3%82%88%E3%81%86%E3%81%AA%E3%82%89",
+        "what": "さようなら = goodbye"
+      }
+    ],
+    "needsVerification": [
+      "さようなら carries a final/formal connotation, not an everyday greeting"
+    ]
+  },
+  {
+    "id": "kr",
+    "iso3": "KOR",
+    "nameId": "South Korea",
+    "nameLocal": "한국",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하세요",
+      "roman": "Annyeonghaseyo",
+      "meaningId": "Hello",
+      "register": "polite informal (haeyo-che)"
+    },
+    "language": {
+      "nameId": "Korean language",
+      "nativeName": "한국어",
+      "script": "Hangul",
+      "family": "Koreanic",
+      "note": "The official language of South Korea; its genealogical relationship with other languages is not agreed upon."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "감사합니다",
+        "roman": "Gamsahamnida"
+      },
+      {
+        "id": "Excuse me",
+        "native": "저기요",
+        "roman": "Jeogiyo"
+      },
+      {
+        "id": "Goodbye",
+        "native": "안녕히 계세요",
+        "roman": "Annyeonghi gyeseyo"
+      }
+    ],
+    "cultureNote": "Hangul came into use in 1443 and was originally called Ŏnmun; the script is arranged in syllable blocks, not a linear string of letters.",
+    "peopleNote": "A brief bow and giving or receiving with both hands; older people are greeted first, and eating begins after the eldest.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The spoon of the eldest diner moves first. At a family meal together in South Korea, the food may only be started after the eldest member lifts his spoon. The official language is Korean, of the Koreanic family, written in Hangul, a phonetic alphabetic script created in 1443 during the Joseon Dynasty to overcome the complexity of Chinese logographic characters. Hangul's vowel and consonant symbols are arranged in structured syllable blocks, not a linear string of letters. In everyday life, people greet one another with the polite phrase Annyeonghaseyo from the haeyo-che speech level. Meeting etiquette is strictly governed by the courtesy of respecting age and social rank. The greeting is a brief bow of the head and back, and the younger person greets the older one first. When handing over a document, giving a gift, or shaking hands formally, people use both hands. Alternatively, the left hand supports the right wrist.",
+      "sources": [
+        {
+          "url": "https://www.ethnologue.com/language/kor/",
+          "what": "The national official language of South Korea; Koreanic family"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Korean-language",
+          "what": "Hangul since 1443, syllable blocks, disputed language kinship"
+        },
+        {
+          "url": "https://english.visitseoul.net/etiquette",
+          "what": "Brief bow, two hands, age hierarchy"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94",
+          "what": "안녕하세요 = hello; polite informal form"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4",
+          "what": "감사합니다 = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%9E%88_%EA%B3%84%EC%84%B8%EC%9A%94",
+          "what": "안녕히 계세요 = goodbye, said by the one leaving"
+        },
+        {
+          "url": "https://glosbe.com/ko/en/%EC%A0%80%EA%B8%B0%EC%9A%94",
+          "what": "저기요 = excuse me to get attention"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.ethnologue.com/language/kor/",
+        "what": "The national official language of South Korea; Koreanic family"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Korean-language",
+        "what": "Hangul since 1443, syllable blocks, disputed language kinship"
+      },
+      {
+        "url": "https://english.visitseoul.net/etiquette",
+        "what": "Brief bow, two hands, age hierarchy"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94",
+        "what": "안녕하세요 = hello; polite informal form"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4",
+        "what": "감사합니다 = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%EC%95%88%EB%85%95%ED%9E%88_%EA%B3%84%EC%84%B8%EC%9A%94",
+        "what": "안녕히 계세요 = goodbye, said by the one leaving"
+      },
+      {
+        "url": "https://glosbe.com/ko/en/%EC%A0%80%EA%B8%B0%EC%9A%94",
+        "what": "저기요 = excuse me to get attention"
+      }
+    ],
+    "needsVerification": [
+      "저기요 is better rendered as 'excuse me, may I have your attention' than as 'sorry'"
+    ]
+  },
+  {
+    "id": "in",
+    "iso3": "IND",
+    "nameId": "India",
+    "nameLocal": "भारत",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaningId": "Hello / respectful greeting",
+      "register": "neutral, both formal and everyday"
+    },
+    "language": {
+      "nameId": "Hindi language",
+      "nativeName": "हिन्दी",
+      "script": "Devanagari",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Hindi was chosen rather than English: the official language of the Union and the largest L1 speaker base in India."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "धन्यवाद",
+        "roman": "Dhanyavād"
+      },
+      {
+        "id": "Excuse me",
+        "native": "माफ़ कीजिए",
+        "roman": "Māf kījie"
+      },
+      {
+        "id": "Goodbye",
+        "native": "अलविदा",
+        "roman": "Alvidā"
+      }
+    ],
+    "cultureNote": "India has hundreds of languages from several unrelated families; Hindi and English hold the status of official languages of the Union.",
+    "peopleNote": "The namaste greeting with palms pressed together; receiving and eating with the right hand; a handshake with the opposite sex is not always accepted.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "The namaste greeting is delivered without touching anyone. The posture is called anjali mudra: both palms are pressed together upright in front of the chest, accompanied by a slight bow of the head. This gesture serves as a gender-neutral greeting of respect, without any need for direct physical contact. The words Namaste or Namaskar are used widely across the country. The Government of the Union of India designates Hindi, of the Indo-Aryan branch of the Indo-European family, as the official language of the state. It stands alongside English as the administrative working language under the provisions of the constitution. Hindi is written in the phonetic Devanagari script. This script runs from left to right, with a characteristic horizontal line above the letters. Norms of politeness give priority to the right hand. That hand is used to eat food, receive payment, or hand objects to others, while the left hand is avoided in social interaction. Footwear is always removed outside before stepping into a dwelling or a house of worship.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Hindi-language",
+          "what": "Indo-Aryan family, Devanagari script, official language of India"
+        },
+        {
+          "url": "https://www.britannica.com/place/India",
+          "what": "Hindi and English as official languages; hundreds of languages from different families"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87",
+          "what": "नमस्ते = a greeting for hello/goodbye"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%A7%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%BE%E0%A4%A6",
+          "what": "धन्यवाद = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%AE%E0%A4%BE%E0%A4%AB%E0%A4%BC_%E0%A4%95%E0%A5%80%E0%A4%9C%E0%A4%BF%E0%A4%8F",
+          "what": "माफ़ कीजिए = excuse me/sorry (formal)"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E0%A4%85%E0%A4%B2%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE",
+          "what": "अलविदा = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Hindi-language",
+        "what": "Indo-Aryan family, Devanagari script, official language of India"
+      },
+      {
+        "url": "https://www.britannica.com/place/India",
+        "what": "Hindi and English as official languages; hundreds of languages from different families"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87",
+        "what": "नमस्ते = a greeting for hello/goodbye"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%A7%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%B5%E0%A4%BE%E0%A4%A6",
+        "what": "धन्यवाद = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%AE%E0%A4%BE%E0%A4%AB%E0%A4%BC_%E0%A4%95%E0%A5%80%E0%A4%9C%E0%A4%BF%E0%A4%8F",
+        "what": "माफ़ कीजिए = excuse me/sorry (formal)"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E0%A4%85%E0%A4%B2%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE",
+        "what": "अलविदा = goodbye"
+      }
+    ],
+    "needsVerification": [
+      "The people_note is supported by only one source",
+      "The coverage of India's national languages is simplified"
+    ]
+  },
+  {
+    "id": "sa",
+    "iso3": "SAU",
+    "nameId": "Saudi Arabia",
+    "nameLocal": "المملكة العربية السعودية",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Peace be upon you",
+      "register": "formal-neutral; the reply is Wa ʿalaykum as-salām"
+    },
+    "language": {
+      "nameId": "Arabic language",
+      "nativeName": "العربية",
+      "script": "Arabic",
+      "family": "Afroasiatic (Semitic)",
+      "note": "The official language; written in Modern Standard Arabic, conversation uses the Najdi/Hijazi dialects."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Arabic is the official language and the state calendar is the Hijri one. Arabic coffee is served in small cups together with dates as a sign of hospitality.",
+    "peopleNote": "Eat and give with the right hand. Shoes are removed in the home and the majlis. Guests greet the eldest first. Wait for a woman to offer her hand.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The host serves Arabic coffee in small cups (finjān) together with dates. A guest in Saudi Arabia returns that courtesy with the right hand: receiving the cup, drinking, and eating only with the right hand. When visiting, shoes are removed before stepping onto the carpet of the majlis room. The official language is Arabic, of the Afroasiatic family, Semitic branch, written in an Arabic script that flows from right to left. Modern Standard Arabic is used for administration and official literature, while daily conversation flows through local dialects such as Najdi and Hijazi. A meeting opens with As-salāmu ʿalaykum, answered with Wa ʿalaykum as-salām. Speakers often address a peer with the honorific Abu followed by the name of his eldest son. Men shake hands with the right hand; towards an elder, respect is shown with a kiss on the forehead. Between men and women, physical contact is avoided unless the woman offers her hand first. A male guest simply nods politely.",
+      "sources": [
+        {
+          "url": "https://my.gov.sa/en/about-kingdom",
+          "what": "Official language and Hijri calendar"
+        },
+        {
+          "url": "https://culturalatlas.sbs.com.au/saudi-arabian-culture/saudi-arabian-culture-etiquette",
+          "what": "Guest etiquette, right hand, gender interaction"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee, finjān, dates"
+        },
+        {
+          "url": "https://theculturalatlas.org/saudi-arabian-culture/saudi-arabian-culture-greetings",
+          "what": "The greeting As-salāmu ʿalaykum, right-hand handshake, gender etiquette"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://my.gov.sa/en/about-kingdom",
+        "what": "Official language and Hijri calendar"
+      },
+      {
+        "url": "https://culturalatlas.sbs.com.au/saudi-arabian-culture/saudi-arabian-culture-etiquette",
+        "what": "Guest etiquette, right hand, gender interaction"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee, finjān, dates"
+      }
+    ],
+    "needsVerification": [
+      "The phrases use Modern Standard Arabic; the dialects differ"
+    ]
+  },
+  {
+    "id": "tr",
+    "iso3": "TUR",
+    "nameId": "Turkey",
+    "nameLocal": "Türkiye",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Merhaba",
+      "roman": "Merhaba",
+      "meaningId": "Hello",
+      "register": "neutral"
+    },
+    "language": {
+      "nameId": "Turkish language",
+      "nativeName": "Türkçe",
+      "script": "Latin (Turkish alphabet, 29 letters)",
+      "family": "Turkic (Oghuz branch)",
+      "note": "The 29-letter Latin alphabet was adopted in 1928; it does not use q, w, x, but has ı, ş, ğ, ç, ö, ü."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Teşekkürler",
+        "roman": "Teşekkürler"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "Affedersiniz",
+        "roman": "Affedersiniz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Hoşça kal",
+        "roman": "Hoşça kal"
+      }
+    ],
+    "cultureNote": "The Latin alphabet was introduced on 1 November 1928. Turkish coffee is brewed in a cezve and served in a small cup.",
+    "peopleNote": "Shoes are removed at the door and guests wear slippers. The younger person kisses an elder's right hand and then touches it to the forehead. Give something with the right hand or both hands.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Greeting an elder or an elderly relative in Turkey means performing el öpmek: the elder's right hand is kissed, then its back is touched to one's own forehead, a sign of reverence and a request for a blessing. In formal meetings, greeting takes the form of a firm handshake with the right hand. The official language is Turkish, of the Turkic family, Oghuz branch. Its spelling is regulated by the Türk Dil Kurumu and written in a special 29-letter Latin alphabet, introduced with the script reform on 1 November 1928. The letters q, w, and x are not used; in their place come ç, ğ, ı, ö, ş, and ü. A common neutral greeting is Merhaba, alongside the religious greeting Selamün aleyküm and the greeting question Nasılsınız. A person's first name is usually followed by the honorific Bey for men and Hanım for women. Guests remove their outdoor footwear at the entrance of the house and change into terlik slippers provided by the host.",
+      "sources": [
+        {
+          "url": "https://tdk.gov.tr/icerik/yazim-kurallari/ses-harf-ve-alfabe/",
+          "what": "The 29-letter Turkish alphabet"
+        },
+        {
+          "url": "https://glottolog.org/resource/languoid/id/nucl1301",
+          "what": "Oghuz Turkic classification"
+        },
+        {
+          "url": "https://culturalatlas.sbs.com.au/turkish-culture/turkish-culture-etiquette",
+          "what": "el öpmek and guest slippers"
+        },
+        {
+          "url": "https://theculturalatlas.org/turkish-culture/turkish-culture-greetings",
+          "what": "The greeting Merhaba, el öpmek, the titles Bey and Hanım"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://tdk.gov.tr/icerik/yazim-kurallari/ses-harf-ve-alfabe/",
+        "what": "The 29-letter Turkish alphabet"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/nucl1301",
+        "what": "Oghuz Turkic classification"
+      },
+      {
+        "url": "https://culturalatlas.sbs.com.au/turkish-culture/turkish-culture-etiquette",
+        "what": "el öpmek and guest slippers"
+      }
+    ],
+    "needsVerification": [
+      "Hoşça kal is said by the one leaving; the host replies Güle güle"
+    ]
+  },
+  {
+    "id": "kz",
+    "iso3": "KAZ",
+    "nameId": "Kazakhstan",
+    "nameLocal": "Қазақстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Сәлеметсіз бе",
+      "roman": "Sälemetsiz be",
+      "meaningId": "Hello (formal)",
+      "register": "formal; casual: Сәлем (Sälem)"
+    },
+    "language": {
+      "nameId": "Kazakh language",
+      "nativeName": "Қазақ тілі",
+      "script": "Cyrillic; Latin being introduced, not yet final",
+      "family": "Turkic (Kipchak branch)",
+      "note": "Kazakh is the state language; Russian is officially used in state institutions."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Рахмет",
+        "roman": "Rahmet"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "Кешіріңіз",
+        "roman": "Keshiriñiz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Сау болыңыз",
+        "roman": "Sau bolıñız"
+      }
+    ],
+    "cultureNote": "Nauryz is celebrated on 21 March and was inscribed by UNESCO in 2016. The dish Nauryz köje is cooked to welcome the new year.",
+    "peopleNote": "The younger person greets first. Men shake hands, sometimes with two hands or the left hand on the chest. Shoes are removed at the door. Elders are not addressed by their first name.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "The tea bowl is never filled to the brim. At the dastarkhan (dining spread), a Kazakh host pours hot tea into a goblet-shaped ceramic bowl only half full, so that the serving can always be topped up while still warm — that is how a guest is honoured. The state language is Kazakh, of the Kipchak branch of the Turkic family, an agglutinative language with vowel harmony. It has been written in the Cyrillic alphabet since the Soviet era, after earlier use of Arabic script and a Latin variant, and in 2017 the government set a plan to transition back to the Latin alphabet. The respectful greeting Sälemetsiz be is used with an individual, Sälemetsizder me with an audience, and Sälem in familiar situations. The younger person greets the older one first. Men shake hands with the right hand or cup both hands; women greet verbally or embrace close relatives. Guests remove their outdoor shoes at the entrance of the home.",
+      "sources": [
+        {
+          "url": "https://glottolog.org/resource/languoid/id/kaza1248",
+          "what": "Kipchak Turkic classification"
+        },
+        {
+          "url": "https://welcome.kz/en/important/visiting-kazakh-family",
+          "what": "Visiting etiquette"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nowruz",
+          "what": "Nauryz on 21 March, UNESCO 2016"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Kazakh-language",
+          "what": "Kipchak Turkic family, agglutinative, history of Cyrillic and Latin scripts"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://glottolog.org/resource/languoid/id/kaza1248",
+        "what": "Kipchak Turkic classification"
+      },
+      {
+        "url": "https://welcome.kz/en/important/visiting-kazakh-family",
+        "what": "Visiting etiquette"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nauryz on 21 March, UNESCO 2016"
+      }
+    ],
+    "needsVerification": [
+      "The Latin transliteration is not yet standardised"
+    ]
+  },
+  {
+    "id": "uz",
+    "iso3": "UZB",
+    "nameId": "Uzbekistan",
+    "nameLocal": "Oʻzbekiston",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Assalomu alaykum",
+      "roman": "Assalomu alaykum",
+      "meaningId": "Peace be upon you",
+      "register": "formal-neutral; casual: Salom"
+    },
+    "language": {
+      "nameId": "Uzbek language",
+      "nativeName": "Oʻzbekcha",
+      "script": "Latin official; Cyrillic still in use",
+      "family": "Turkic (Karluk branch)",
+      "note": "Latin official since 1993; Cyrillic still circulates in the media and among older people."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Rahmat",
+        "roman": "Rahmat"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "Kechirasiz",
+        "roman": "Kechirasiz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Xayr",
+        "roman": "Xayr"
+      }
+    ],
+    "cultureNote": "Palov (osh) is the national rice dish served to guests. Navruz is celebrated on 21 March and was inscribed by UNESCO in 2016.",
+    "peopleNote": "When greeting, the right hand is placed on the chest. Men shake hands; wait for a woman to offer her hand. Shoes are removed at the door. The seat farthest from the door is the place of honour.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The seat farthest from the door holds the highest honour. In an Uzbek home, that seating area is reserved for the eldest or the principal guest. The official language is Uzbek, of the Karluk branch of the Turkic family. After passing through the era of Arabic and Cyrillic script, a law dated 2 September 1993 established the adoption of a Latin alphabet consisting of 26 basic letters plus special combinations such as sh, ch, ng, oʻ, and gʻ. The everyday polite greeting used with anyone is Assalomu alaykum, while the casual greeting between peers is Salom. When delivering a greeting, a person places the right palm on the left chest while bowing the head slightly as a sign of inner sincerity. Handshakes are exchanged only between men. With a woman, a speaker waits for her to offer her hand first or simply greets her with a hand-to-chest gesture. Visiting customs require outdoor shoes to be removed at the threshold.",
+      "sources": [
+        {
+          "url": "https://lex.uz/en/docs/112283",
+          "what": "Official language law"
+        },
+        {
+          "url": "https://glottolog.org/resource/languoid/id/uzbe1247",
+          "what": "Karluk Turkic classification"
+        },
+        {
+          "url": "https://exploreuzbekistan.uz/en/travel/phrasebook/",
+          "what": "Greeting phrases"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Uzbek-language",
+          "what": "Karluk Turkic family, base dialect, 1993 Latin alphabet"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://lex.uz/en/docs/112283",
+        "what": "Official language law"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/uzbe1247",
+        "what": "Karluk Turkic classification"
+      },
+      {
+        "url": "https://exploreuzbekistan.uz/en/travel/phrasebook/",
+        "what": "Greeting phrases"
+      }
+    ],
+    "needsVerification": [
+      "The Latin spelling uses ʻ (oʻ, gʻ)"
+    ]
+  },
+  {
+    "id": "mn",
+    "iso3": "MNG",
+    "nameId": "Mongolia",
+    "nameLocal": "Монгол улс",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "Сайн байна уу?",
+      "roman": "Sain baina uu",
+      "meaningId": "How are you? / Hello",
+      "register": "neutral; use та with older people"
+    },
+    "language": {
+      "nameId": "Mongolian language",
+      "nativeName": "Монгол хэл",
+      "script": "Cyrillic; traditional Mongolian script",
+      "family": "Mongolic",
+      "note": "Khalkha forms the basis of the official language; Cyrillic has been used since 1946 and the traditional script is being revived."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Баярлалаа",
+        "roman": "Bayarlalaa"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Уучлаарай",
+        "roman": "Uuchlaarai"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Баяртай",
+        "roman": "Bayartai"
+      }
+    ],
+    "cultureNote": "The traditional Mongolian script is written vertically, originates from Sogdian via Uyghur, and is scheduled to return as the official script in 2025.",
+    "peopleNote": "Greet the eldest first; handshakes are common. Do not step on the threshold of a ger, receive food with the right hand, and taste the host's food.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "The threshold of the tent must not be stepped on. The etiquette for visiting a ger (the traditional Mongolian tent) strictly forbids visitors from stepping on the wooden threshold, as it is believed to bring bad fortune to the owner of the tent. A guest receives a cup of tea or a bowl of processed milk with the right hand, with the right elbow supported gently by the left palm. The Khalkha dialect of the Mongolic family forms the foundation of the national language. Since 1946, under Soviet influence, the language has been written in a Cyrillic alphabet of 35 letters containing special phonetic characters such as ө and ү. The traditional Mongolian script, written vertically from top to bottom and rooted in the Sogdian alphabet through the Old Uyghur script, is still taught and preserved as a symbol of national history. The friendly everyday greeting is Sain baina uu, answered briefly with Sain. Older people are always greeted first before the younger generation shakes hands firmly with one another.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Mongol-language",
+          "what": "Khalkha the basis of the official language; vertical traditional script from Sogdian via Uyghur"
+        },
+        {
+          "url": "https://www.britannica.com/summary/Mongolian-languages",
+          "what": "Cyrillic introduced in 1946; the old script revived in the 1990s"
+        },
+        {
+          "url": "https://commisceo-global.com/culture-guides/mongolia/",
+          "what": "Greet the eldest first; do not step on the ger threshold; receive food with the right hand"
+        },
+        {
+          "url": "https://glosbe.com/mn/en/%D1%81%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B0%D0%B9%D0%BD%D0%B0%20%D1%83%D1%83",
+          "what": "сайн байна уу = hello"
+        },
+        {
+          "url": "https://glosbe.com/mn/en/%D0%B1%D0%B0%D1%8F%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0",
+          "what": "баярлалаа = thank you"
+        },
+        {
+          "url": "https://glosbe.com/mn/en/%D1%83%D1%83%D1%87%D0%BB%D0%B0%D0%B0%D1%80%D0%B0%D0%B9",
+          "what": "уучлаарай = sorry/excuse me"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D0%B1%D0%B0%D1%8F%D1%80%D1%82%D0%B0%D0%B9",
+          "what": "баяртай = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Mongol-language",
+        "what": "Khalkha the basis of the official language; vertical traditional script from Sogdian via Uyghur"
+      },
+      {
+        "url": "https://www.britannica.com/summary/Mongolian-languages",
+        "what": "Cyrillic introduced in 1946; the old script revived in the 1990s"
+      },
+      {
+        "url": "https://commisceo-global.com/culture-guides/mongolia/",
+        "what": "Greet the eldest first; do not step on the ger threshold; receive food with the right hand"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D1%81%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B0%D0%B9%D0%BD%D0%B0%20%D1%83%D1%83",
+        "what": "сайн байна уу = hello"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D0%B1%D0%B0%D1%8F%D1%80%D0%BB%D0%B0%D0%BB%D0%B0%D0%B0",
+        "what": "баярлалаа = thank you"
+      },
+      {
+        "url": "https://glosbe.com/mn/en/%D1%83%D1%83%D1%87%D0%BB%D0%B0%D0%B0%D1%80%D0%B0%D0%B9",
+        "what": "уучлаарай = sorry/excuse me"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D0%B1%D0%B0%D1%8F%D1%80%D1%82%D0%B0%D0%B9",
+        "what": "баяртай = goodbye"
+      }
+    ],
+    "needsVerification": [
+      "The status of the traditional script for 2025-2026 has not been confirmed",
+      "The people_note is sourced from a commercial cultural guide"
+    ]
+  },
+  {
+    "id": "bn",
+    "iso3": "BRN",
+    "nameId": "Brunei",
+    "nameLocal": "بروني دارالسلام",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salam",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Malay (Brunei Malay)",
+      "nativeName": "Bahasa Melayu / بهاس ملايو",
+      "script": "Rumi (Latin script) and Jawi (Arabic-Malay script)",
+      "family": "Austronesian (Malayo-Polynesian)",
+      "note": "Malay is the official language, while Brunei Malay is the everyday spoken variety. Rumi is widely used, and Jawi remains official for institutional names and signage."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "تريما کاسيه",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "Excuse me",
+        "native": "معاف",
+        "roman": "Maaf"
+      },
+      {
+        "id": "Goodbye",
+        "native": "سلامت تيڠݢل",
+        "roman": "Selamat tinggal"
+      }
+    ],
+    "cultureNote": "Brunei keeps the Jawi script alongside the Latin Rumi alphabet. Ministry names and street signs are often written in both scripts, because Jawi is seen as guarding the country's Malay-Islamic identity.",
+    "peopleNote": "When greeting, Bruneians give a light handshake and then touch the chest with the right hand; they point with the thumb, not the index finger. Guests remove their shoes at home and greet the eldest first.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "At Kampong Ayer, wooden houses stand on stilts above the Brunei River. A guest arrives by boat, removes his shoes at the steps, and greets the eldest person in the house first. His greeting is brief: \"Salam\" or \"Assalamualaikum\". After a light handshake, he touches his right palm to his chest as a sign of respect. The official language of Brunei is Malay, but in daily conversation people speak the Brunei Malay variety. The relationship between the two is called diglossia: standard Malay is used in schools and official ceremonies, while Brunei Malay serves as the lingua franca of markets and homes. The country also keeps the Jawi script alongside the Latin Rumi alphabet. Ministry names and street signs are often written twice, once in Rumi and once in Jawi. To point at something, Bruneians use the thumb with the other fingers folded, never the index finger. When food is served, guests are encouraged to taste a little so the host does not feel refused.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Brunei_Malay",
+          "what": "Brunei Malay dominant in daily speech, living in diglossia with standard Malay"
+        },
+        {
+          "url": "https://commisceo-global.com/country-guides/brunei-guide/",
+          "what": "Greet the eldest first, light handshake then touch the chest, give and receive with the right hand, remove shoes"
+        },
+        {
+          "url": "https://rumikejawi.com/ucapan-jawi/",
+          "what": "Jawi spelling for thank you (تريما کاسيه) and the greeting"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Brunei_Malay",
+        "what": "Brunei Malay dominant in daily speech, living in diglossia with standard Malay"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Brunei",
+        "what": "Malay as official language, Jawi and Rumi scripts, Malay-Islamic customs"
+      },
+      {
+        "url": "https://commisceo-global.com/country-guides/brunei-guide/",
+        "what": "Greeting etiquette, right hand, removing shoes, respect for elders"
+      },
+      {
+        "url": "https://rumikejawi.com/ucapan-jawi/",
+        "what": "Jawi spelling for thank you (تريما کاسيه) and the greeting"
+      }
+    ],
+    "needsVerification": [
+      "Jawi spelling for 'Selamat tinggal' (سلامت تيڠݢل) needs checking with a native speaker",
+      "The register of 'Salam' versus 'Assalamualaikum' has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "kh",
+    "iso3": "KHM",
+    "nameId": "Cambodia",
+    "nameLocal": "កម្ពុជា",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "សួស្តី",
+      "roman": "Suostei",
+      "meaningId": "Hello",
+      "register": "neutral, everyday"
+    },
+    "language": {
+      "nameId": "Khmer",
+      "nativeName": "ភាសាខ្មែរ",
+      "script": "Khmer script (abugida descended from Brahmi)",
+      "family": "Austroasiatic (Mon-Khmer)",
+      "note": "Khmer is the official language of Cambodia and is a non-tonal language. Its polite register borrows heavily from Pali and Sanskrit."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "អរគុណ",
+        "roman": "Arkun"
+      },
+      {
+        "id": "Excuse me",
+        "native": "សុំទោស",
+        "roman": "Som toh"
+      },
+      {
+        "id": "Goodbye",
+        "native": "លាហើយ",
+        "roman": "Lea haey"
+      }
+    ],
+    "cultureNote": "Cambodians greet with the sompeah, both palms pressed together in front of the chest. The height of the hands follows the status of the person greeted, because the gesture expresses the level of respect.",
+    "peopleNote": "Younger people greet first, and objects are given or received with the right hand. Touching another person's head is considered rude, and women should avoid sitting too close to a monk.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In front of the gates of Angkor Wat, a guide welcomes a visitor with the sompeah: both palms pressed together in front of the chest, the back slightly bowed. The height of the hands follows the status of the person being greeted. The official language of Cambodia is Khmer, a member of the Austroasiatic family that is not tonal, unlike the tonal languages of its neighbours. Khmer is written in the Khmer script, an abugida descended from the Brahmi script of southern India and used since at least the seventh century. In that script, vowels appear as marks around a consonant, and consonant clusters take a subscript form. The everyday greeting is suostei, while chumreap suor is used with elders or officials. Khmer polite vocabulary borrows heavily from Pali and Sanskrit through the influence of Buddhism and Hinduism. Courtesy toward monks is highly valued: the hands are raised to eyebrow level, and women should avoid touching or sitting too close to a monk.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Khmer_language",
+          "what": "Austroasiatic family, non-tonal language, Khmer abugida since the 7th century, Pali-Sanskrit borrowings"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Sampeah",
+          "what": "Sompeah as a palms-together greeting, with hand height marking the degree of respect"
+        },
+        {
+          "url": "https://preply.com/en/blog/khmer-greetings-phrases-guide/",
+          "what": "Suostei as the everyday greeting, chumreap suor as the polite form, sompeah to monks at eyebrow level"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Khmer_language",
+        "what": "Austroasiatic family, non-tonal language, Khmer abugida, Pali-Sanskrit borrowings"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sampeah",
+        "what": "Sompeah as a palms-together greeting"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Cambodia",
+        "what": "Etiquette and respect toward monks"
+      },
+      {
+        "url": "https://bhasaly.com/khmer-phrases",
+        "what": "The phrases suostei, arkun, som toh, lea haey with their meanings"
+      }
+    ],
+    "needsVerification": [
+      "Mapping 'Excuse me' to som toh (which means sorry/excuse me) needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "la",
+    "iso3": "LAO",
+    "nameId": "Laos",
+    "nameLocal": "ລາວ",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "ສະບາຍດີ",
+      "roman": "Sabaidee",
+      "meaningId": "Hello",
+      "register": "neutral, used at any time"
+    },
+    "language": {
+      "nameId": "Lao",
+      "nativeName": "ພາສາລາວ",
+      "script": "Lao script (abugida descended from Brahmi)",
+      "family": "Kra-Dai (Tai-Kadai)",
+      "note": "Lao is the official language of Laos and is a tonal language. It is related to Thai and has absorbed many words from Pali."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ຂອບໃຈ",
+        "roman": "Khop chai"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ຂໍໂທດ",
+        "roman": "Kho thot"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ລາກ່ອນ",
+        "roman": "La kon"
+      }
+    ],
+    "cultureNote": "Lao people greet with the nop, palms pressed together at chest or chin height. The value of 'sabai', a sense of ease and calm, makes the greeting sabaidee a wish for the other person's well-being as well.",
+    "peopleNote": "Younger people or those of lower status greet first. Shoes are removed before entering a home or temple, and no one steps over a person who is sitting or lying down.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Every morning in Luang Prabang, monks walk in procession to receive offerings of sticky rice from residents. The official language of Laos is Lao, a member of the Kra-Dai family, which is tonal and related to Thai. Lao is written in the Lao script, a rounded and flowing abugida descended from Brahmi. The most common greeting is sabaidee. Literally it means something like 'well and good', since sabai means comfortable or healthy and dee means good. It can be used at any time of day, morning or evening, with anyone. Lao people greet with the nop: both palms pressed together at chest or chin height, accompanied by a nod. Age difference determines how high the hands are held. On entering a home or temple, shoes are removed, and a person does not step over someone who is sitting. Meals are usually shared at a low table, with sticky rice as the staple food, eaten by hand.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Lao_language",
+          "what": "Kra-Dai family, tonal language, Lao abugida, Pali borrowings"
+        },
+        {
+          "url": "https://laolessons.com/greetings-in-lao/",
+          "what": "Sabaidee means 'well and good' and is used as a greeting throughout the day"
+        },
+        {
+          "url": "https://www.laos-guide-999.com/learn-lao.html",
+          "what": "The phrases khop chai, kho thot, la kon and the nop as a greeting"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Lao_language",
+        "what": "Kra-Dai family, tonal language, Lao abugida"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Laos",
+        "what": "The nop as a greeting, removing shoes at home, respect for elders"
+      },
+      {
+        "url": "https://laolessons.com/greetings-in-lao/",
+        "what": "Meaning of sabaidee and basic greeting phrases"
+      },
+      {
+        "url": "https://www.laos-guide-999.com/learn-lao.html",
+        "what": "List of phrases for thank you, excuse me, and goodbye"
+      }
+    ],
+    "needsVerification": [
+      "The detail that nop hand height varies with age has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "mm",
+    "iso3": "MMR",
+    "nameId": "Myanmar",
+    "nameLocal": "မြန်မာ",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "မင်္ဂလာပါ",
+      "roman": "Mingalaba",
+      "meaningId": "Hello",
+      "register": "neutral, with a slight bow"
+    },
+    "language": {
+      "nameId": "Burmese (Myanmar)",
+      "nativeName": "မြန်မာဘာသာ",
+      "script": "Burmese script (Mon-Burmese)",
+      "family": "Sino-Tibetan (Tibeto-Burman)",
+      "note": "Burmese is the official language of Myanmar and is a tonal language. It distinguishes a literary register for writing from a spoken register for conversation."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ကျေးဇူးတင်ပါတယ်",
+        "roman": "Kyay zu tin ba de"
+      },
+      {
+        "id": "Excuse me",
+        "native": "တောင်းပန်ပါတယ်",
+        "roman": "Taung pan ba de"
+      },
+      {
+        "id": "Goodbye",
+        "native": "သွားတော့မယ်",
+        "roman": "Thwa daw me"
+      }
+    ],
+    "cultureNote": "Burmese people generally do not use family names. Instead, honorifics such as U for men and Daw for women are placed before the name, because the title marks age and respect.",
+    "peopleNote": "The greeting mingalaba comes with a slight bow, and objects are given or received with the right hand. Touching another person's head is considered rude, and monks are addressed in a more refined register.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In the courtyard of Shwedagon Pagoda, people greet each other with mingalaba and a slight bow. The word comes from Pali mangala, meaning a blessing or something that brings good fortune. The official language of Myanmar is Burmese, a member of the Sino-Tibetan family, in the Tibeto-Burman branch. It is tonal and distinguishes two registers: a literary form for formal writing and a spoken form for conversation. The Burmese script is round and circular, said to be so because it was once written on palm leaves that would tear if straight lines were used. Burmese people generally do not use family names. Instead, honorifics such as U for adult men and Daw for women are placed before the name. Social etiquette emphasises respect for elders and monks. Objects are given and received with the right hand, while touching another person's head is considered rude. Monks are addressed in a more refined register.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Burmese_language",
+          "what": "Sino-Tibetan family, Tibeto-Burman branch, tonal language, diglossia of literary and spoken registers, Burmese script"
+        },
+        {
+          "url": "https://worldly.academy/words/burmese",
+          "what": "Mingalaba as a greeting; kyay zu tin ba de thank you; thwa daw me goodbye"
+        },
+        {
+          "url": "https://phrasary.com/burmese",
+          "what": "The round Burmese script and basic greeting phrases"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Burmese_language",
+        "what": "Sino-Tibetan family, tonal language, diglossia, Burmese script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Myanmar",
+        "what": "The U and Daw honorifics, respect for elders and monks"
+      },
+      {
+        "url": "https://worldly.academy/words/burmese",
+        "what": "The phrases mingalaba, thank you, and goodbye"
+      },
+      {
+        "url": "https://phrasary.com/burmese",
+        "what": "List of greeting phrases and a note on the Burmese script"
+      }
+    ],
+    "needsVerification": [
+      "The link between the round Burmese script and palm leaves is folk tradition, not linguistic evidence"
+    ]
+  },
+  {
+    "id": "tl",
+    "iso3": "TLS",
+    "nameId": "Timor-Leste",
+    "nameLocal": "Timor-Leste",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Bondia",
+      "roman": "Bondia",
+      "meaningId": "Hello / good morning",
+      "register": "neutral, used from morning until midday"
+    },
+    "language": {
+      "nameId": "Tetum",
+      "nativeName": "Tetun",
+      "script": "Latin alphabet (official INL spelling)",
+      "family": "Austronesian (Malayo-Polynesian)",
+      "note": "Tetum is the lingua franca and an official language alongside Portuguese. Many words are borrowed from Portuguese, including the expression for thank you."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Obrigadu",
+        "roman": "Obrigadu"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Deskulpa",
+        "roman": "Deskulpa"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Ate logu",
+        "roman": "Ate logu"
+      }
+    ],
+    "cultureNote": "The Catholic Church used Tetum as its liturgical language during the Indonesian occupation, so the language became a marker of national identity. Today Tetum and Portuguese are both official languages.",
+    "peopleNote": "Greetings change with the time of day: bondia in the morning, botarde in the afternoon, and bonoiti at night. A light handshake is common, and younger people greet their elders first.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "At a market in Dili, a seller greets the morning with bondia. The word is borrowed from Portuguese bom dia, 'good morning'. The official languages of Timor-Leste are Tetum and Portuguese. Tetum serves as the lingua franca, while Portuguese is used in law and education. Tetum is written in the Latin alphabet with an official spelling set by the National Institute of Linguistics in 2004. Centuries of Portuguese influence left many loanwords, including the expression for thank you. That is why thanking follows the Portuguese pattern and agrees with the speaker: a man says obrigadu, a woman says obrigada. The everyday apology is deskulpa. Greetings change with the time of day: bondia in the morning, botarde in the afternoon, and bonoiti at night. Younger people greet their elders first, and handshakes are given with a light touch.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tetum_language",
+          "what": "Tetum of the Austronesian family, an official language of Timor-Leste, Latin alphabet, Portuguese borrowings including obrigadu/obrigada"
+        },
+        {
+          "url": "https://visiteasttimor.com/plan/speak-tetum/",
+          "what": "Bondia, obrigadu/obrigada by speaker's gender, deskulpa, atelogu, official spelling by INL"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Timor-Leste",
+          "what": "Tetum and Portuguese as official languages"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Tetum_language",
+        "what": "Tetum of the Austronesian family, official Latin spelling, Portuguese and Malay borrowings"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Timor-Leste",
+        "what": "Tetum and Portuguese as the country's official languages"
+      },
+      {
+        "url": "https://visiteasttimor.com/plan/speak-tetum/",
+        "what": "Everyday greeting phrases and the obrigadu/obrigada rule"
+      }
+    ],
+    "needsVerification": [
+      "The use of obrigadu/obrigada without gender agreement in practice is still loose and needs checking with a native speaker",
+      "The claim about the role of Portuguese in law and education has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "kp",
+    "iso3": "PRK",
+    "nameId": "North Korea",
+    "nameLocal": "조선",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하십니까",
+      "roman": "Annyeonghasimnikka",
+      "meaningId": "Hello",
+      "register": "formal polite, used with elders"
+    },
+    "language": {
+      "nameId": "Korean",
+      "nativeName": "조선말",
+      "script": "Hangul (called Chosŏn'gŭl / 조선글 in North Korea)",
+      "family": "Koreanic",
+      "note": "The official language of North Korea is Korean. Its standard variety, Munhwao, is based on the Pyongyang dialect and tends to avoid loanwords."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "고맙습니다",
+        "roman": "Gomapseumnida"
+      },
+      {
+        "id": "Excuse me",
+        "native": "실례합니다",
+        "roman": "Sillyehamnida"
+      },
+      {
+        "id": "Goodbye",
+        "native": "안녕히 가십시오",
+        "roman": "Annyeonghi gasipsio"
+      }
+    ],
+    "cultureNote": "Hangul was created in 1443 during the Joseon Dynasty so that ordinary people could read and write. In North Korea the script is called Chosŏn'gŭl and serves as a national symbol of pride.",
+    "peopleNote": "Younger people greet their elders first with a bow. Objects are given or received with both hands, and the polite speech register is used with people who are older or of higher status.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "At a school in Pyongyang, pupils greet their teacher with the polite phrase annyeonghasimnikka and a bow. The official language of North Korea is Korean, which its speakers call chosonmal. The standard variety is called Munhwao, 'cultural language', and is based on the Pyongyang dialect. Korean is generally placed in the Koreanic family, though its relation to other families is still debated. The language is written in Hangul, a native script created in 1443 during the Joseon Dynasty so that ordinary people could read and write. In North Korea the script is called Chosŏn'gŭl. Hangul is not an ordinary alphabet but a featural script: the shapes of its consonants imitate the position of the mouth and tongue when the sound is made. To give thanks, North Koreans more often use gomapseumnida, which has a native Korean root, while gamsahamnida, from Sino-Korean, is also understood. The farewell to someone leaving is annyeonghi gasipsio.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/North_Korean_standard_language",
+          "what": "Munhwao based on the Pyongyang dialect as the North Korean standard, written in Chosŏn'gŭl"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hangul",
+          "what": "Hangul created in 1443, a featural script whose consonant shapes resemble the speech organs"
+        },
+        {
+          "url": "https://shunculture.com/category/democratic-peoples-republic-of-korea/phrases",
+          "what": "Annyeonghasimnikka as the formal greeting and gomapseumnida as thanks with a native Korean root"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/North_Korean_standard_language",
+        "what": "The Munhwao standard and its Pyongyang-dialect basis"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hangul",
+        "what": "The origin and features of the Hangul script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_North_Korea",
+        "what": "Customs of respecting elders and the use of polite speech"
+      },
+      {
+        "url": "https://shunculture.com/category/democratic-peoples-republic-of-korea/phrases",
+        "what": "Phrases for greeting, thank you, and farewell"
+      }
+    ],
+    "needsVerification": [
+      "The romanisation used is the South Korean system; North Korea has its own system",
+      "The spelling Chosŏn'gŭl with diacritics needs checking against the official North Korean romanisation"
+    ]
+  },
+  {
+    "id": "af",
+    "iso3": "AFG",
+    "nameId": "Afghanistan",
+    "nameLocal": "افغانستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Dari language",
+      "nativeName": "دری",
+      "script": "Perso-Arabic script (Afghan variant)",
+      "family": "Indo-European (Iranian branch)",
+      "note": "Dari and Pashto are both official; Dari serves as the lingua franca and the main language of urban life."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "تشکر",
+        "roman": "Tashakor"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ببخشین",
+        "roman": "Bebakhshin"
+      },
+      {
+        "id": "Goodbye",
+        "native": "خدا حافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "cultureNote": "Hospitality is upheld through the nanawati tradition, the right to grant asylum to those seeking refuge: turning away a guest or a refugee is seen as staining the honour of one's family and community.",
+    "peopleNote": "On meeting, the right hand is shaken and then placed over the heart as a sign of sincerity; men and women generally do not shake hands in public, and the eldest is greeted first.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Tea is offered to a guest before any other business is raised. In Afghan homes the host pours and offers tea first as a mark of respect, even when the visitor arrives without warning. The country has two official languages, Dari and Pashto, both Indo-European and both written in an adapted Arabic script. Dari serves as the interethnic lingua franca and the main language of city life, while Pashto dominates the south and east. The most common greeting is Salam, short for assalamu alaikum, answered with wa alaikum assalam. Meeting etiquette requires everyone to stand when an elder enters the room. A handshake uses the right hand, often followed by placing the palm over the heart. Afterwards host and guest ask after each other before reaching the main business, because haste is considered impolite.",
+      "sources": [
+        {
+          "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+          "what": "Greeting salaam alaykum, right-hand shake then hand on heart, no cross-gender handshake, nanawati tradition"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+          "what": "Dari and Pashto as official languages; Dari as the interethnic lingua franca"
+        },
+        {
+          "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+          "what": "tashakor = thank you; khodaa haafez = goodbye"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+        "what": "Greeting salaam alaykum, right-hand shake then hand on heart, no cross-gender handshake, nanawati tradition"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+        "what": "Dari and Pashto as official languages; Dari as the interethnic lingua franca"
+      },
+      {
+        "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+        "what": "tashakor = thank you; khodaa haafez = goodbye"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dari",
+        "what": "Dari as a variety of Persian spoken in Afghanistan"
+      }
+    ],
+    "needsVerification": [
+      "Spelling for 'excuse me' in Dari differs between sources (ببخشین vs ببخشید)"
+    ]
+  },
+  {
+    "id": "bd",
+    "iso3": "BGD",
+    "nameId": "Bangladesh",
+    "nameLocal": "বাংলাদেশ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "আসসালামু আলাইকুম",
+      "roman": "Assalamu alaikum",
+      "meaningId": "Peace be upon you",
+      "register": "neutral, common in Bangladesh"
+    },
+    "language": {
+      "nameId": "Bengali language",
+      "nativeName": "বাংলা",
+      "script": "Bengali (Bangla) script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Bengali is the official language of Bangladesh; its everyday spoken forms differ from the formal written register."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ধন্যবাদ",
+        "roman": "Dhonnobad"
+      },
+      {
+        "id": "Excuse me",
+        "native": "মাফ করবেন",
+        "roman": "Māf korben"
+      },
+      {
+        "id": "Goodbye",
+        "native": "বিদায়",
+        "roman": "Biday"
+      }
+    ],
+    "cultureNote": "The greeting assalamu alaikum is the everyday salutation of the Muslim majority, while nomoshkar is used by Hindus with palms pressed together; the choice of words marks religious identity, not the time of day.",
+    "peopleNote": "Older people are greeted first using the respectful form apni rather than tumi; touching another person's head or pointing with a single finger is considered impolite.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The shared dish is set in the middle of the mat before the rice is served. In many Bangladeshi homes people eat directly with the right hand, without a spoon, and each person takes food from the common bowl only from the nearest side. Bengali is the sole official language of the country and belongs to the Indo-Aryan branch of the Indo-European family, written in its own distinctive Bengali script. The everyday greeting of the majority is Assalamu alaikum, answered with wa alaikum assalam. Speech carries graded levels of politeness: apni for someone you respect, tumi for peers, and tui only for those very close. These choices quietly mark social distance. Local Hindus greet one another with nomoshkar, pressing both palms together in front of the chest. The word biday feels heavy, closer to a final farewell, so everyday partings are more often spoken as abar dekha hobe, meaning we will meet again.",
+      "sources": [
+        {
+          "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+          "what": "Bangladesh greetings: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+          "what": "dhonnobad = thank you; maph korben = sorry; the tumi and apni registers"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bengali_language",
+          "what": "Bengali as the official language of Bangladesh, Indo-Aryan family"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+        "what": "Bangladesh greetings: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+        "what": "dhonnobad = thank you; maph korben = sorry; the tumi and apni registers"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_language",
+        "what": "Bengali as the official language of Bangladesh, Indo-Aryan family"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_alphabet",
+        "what": "The Bengali script and how it is written"
+      }
+    ],
+    "needsVerification": [
+      "The tui/tumi/apni register choices come from a community dictionary and have not been checked with a native speaker"
+    ]
+  },
+  {
+    "id": "bt",
+    "iso3": "BTN",
+    "nameId": "Bhutan",
+    "nameLocal": "འབྲུག་ཡུལ།",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "སྐུ་གཟུགས་བཟང་པོ་ལགས།",
+      "roman": "Kuzu zangpo la",
+      "meaningId": "Hello (polite)",
+      "register": "polite; the particle la marks respect"
+    },
+    "language": {
+      "nameId": "Dzongkha language",
+      "nativeName": "རྫོང་ཁ་",
+      "script": "Tibetan script (Dzongkha variant)",
+      "family": "Sino-Tibetan (Tibeto-Burman branch)",
+      "note": "Dzongkha is the national language of Bhutan, written in the Tibetan script; its development is overseen by the Dzongkha Development Commission."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "བཀའ་དྲིན་ཆེ།",
+        "roman": "Kadrin chhe"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ཙིགཔ་མ་ཟ།",
+        "roman": "Tsip maza"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ལོག་ཤུལ་ལས་འབྱལ་གེ།",
+        "roman": "Lok shu ley jel gey"
+      }
+    ],
+    "cultureNote": "Tashi delek, a distinctively Bhutanese good wish, is often offered together with a white silk scarf (khadar) to honoured guests; accepting it with both hands and a slight bow is a mark of respect.",
+    "peopleNote": "Before entering a home or temple, shoes are removed; sitting with the soles of the feet pointing at a statue or another person is considered disrespectful, and sacred items are handed over with both hands.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "A white silk scarf is draped over the guest's shoulder. In Bhutan a host welcomes an honoured person with a khadar, a strip of silk, as a wish for a long life. Dzongkha, the national language, belongs to the Sino-Tibetan family and is written in the Tibetan script, which runs from left to right. It uses the same script as Tibet, yet its spelling and vocabulary are distinctively Bhutanese. The polite greeting is Kuzu zangpo la, with the particle la at the end marking the respect always shown to elders. The form without la is reserved for close friends. The words for thank you, kadrin chhe, are said after receiving help or a gift. Etiquette for accepting anything requires both hands, or the right hand supported by the left forearm. Before entering a home or a temple, footwear must be removed at the threshold, and the soles of the feet are never pointed at a person or a statue.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+          "what": "Kuzu zangpo la, kadrin chhe, and everyday Dzongkha phrases"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Dzongkha",
+          "what": "Dzongkha as the national language of Bhutan, Tibetan script, Sino-Tibetan family"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Khadar",
+          "what": "Khadar, the silk scarf offered to a guest as a mark of respect"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+        "what": "Kuzu zangpo la, kadrin chhe, and everyday Dzongkha phrases"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dzongkha",
+        "what": "Dzongkha as the national language of Bhutan, Tibetan script, Sino-Tibetan family"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Khadar",
+        "what": "Khadar, the silk scarf offered to a guest as a mark of respect"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tibetan_script",
+        "what": "The Tibetan script used to write Dzongkha"
+      }
+    ],
+    "needsVerification": [
+      "Dzongkha script spelling for 'Tsip maza' (excuse me) and 'Lok shu ley jel gey' (goodbye) needs checking with a native speaker",
+      "The Dzongkha phrases come from a phrasebook and have not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "ir",
+    "iso3": "IRN",
+    "nameId": "Iran",
+    "nameLocal": "ایران",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Persian language",
+      "nativeName": "فارسی",
+      "script": "Perso-Arabic script",
+      "family": "Indo-European (Iranian branch)",
+      "note": "Persian is the official language of Iran; the Arabic script was extended with letters for the sounds p, g, ch and zh."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ممنون",
+        "roman": "Mamnun"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ببخشید",
+        "roman": "Bebakhshid"
+      },
+      {
+        "id": "Goodbye",
+        "native": "خداحافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "cultureNote": "Taarof, a layered system of politeness, has people offer goods or help and then decline several times; politely refusing the first offer is itself courteous, not a real refusal.",
+    "peopleNote": "Men and women rarely shake hands in public; greetings are made with a hand placed over the heart and a slight nod, and older people are always greeted first.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "A guest declines an offered sweet twice before finally accepting it. This pattern is called taarof, a layered Iranian etiquette that governs almost every conversation: the first, second and third offers are part of a ritual of courtesy rather than a genuine refusal. The official language of the country is Persian, a member of the Iranian branch of the Indo-European family. The Arabic script was borrowed to write it, then extended with letters for sounds Arabic lacks, such as p, g, ch and zh. The everyday greeting is salam, a shortened form used at any hour, morning or night. The most common word of thanks is mamnun, while bebakhshid is used to draw attention or to apologise. In public, men and women generally do not shake hands; they greet one another with a palm over the heart and a slight bow of the head. As the new year approaches, homes are swept clean to welcome Nowruz, the spring festival.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Persian_language",
+          "what": "Persian as the official language of Iran, the modified Arabic script, Indo-European family"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Taarof",
+          "what": "Taarof as Iran's layered system of politeness"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nowruz",
+          "what": "Nowruz as the spring new year festival"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_language",
+        "what": "Persian as the official language of Iran, the modified Arabic script, Indo-European family"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Taarof",
+        "what": "Taarof as Iran's layered system of politeness"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_alphabet",
+        "what": "The additional letters p, g, ch, zh in the Persian alphabet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nowruz as the spring new year festival"
+      }
+    ],
+    "needsVerification": [
+      "The claim that men and women generally do not shake hands in public comes from general cultural encyclopaedia material"
+    ]
+  },
+  {
+    "id": "mv",
+    "iso3": "MDV",
+    "nameId": "Maldives",
+    "nameLocal": "ދިވެހިރާއްޖެ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "އައްސަލާމު ޢަލައިކުމް",
+      "roman": "Assalaamu alaikum",
+      "meaningId": "Peace be upon you",
+      "register": "neutral, a common Islamic greeting"
+    },
+    "language": {
+      "nameId": "Dhivehi language",
+      "nativeName": "ދިވެހި",
+      "script": "Thaana script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Dhivehi is the official language of the Maldives, written in the Thaana script, which is read from right to left."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ޝުކުރިއްޔާ",
+        "roman": "Shukuriyyaa"
+      },
+      {
+        "id": "Excuse me",
+        "native": "މަޢާފް ކުރޭ",
+        "roman": "Ma'aaf kurey"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ދަނީ",
+        "roman": "Dhanee"
+      }
+    ],
+    "cultureNote": "The Maldives is a Muslim country, so alcohol and pork are not sold on inhabited islands; modest dress is respected, and swimwear is worn only on designated beaches.",
+    "peopleNote": "The Islamic greeting assalaamu alaikum is common between residents; a guest is offered tea and small snacks (hedhikaa) first, and people normally eat from their own plate.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "A cup of tea and a small plate of snacks are served before any conversation begins. In the Maldives, welcoming a guest with hedhikaa, savoury bites such as fish cutlets and samosas, lies at the heart of local hospitality. This island nation's official language is Dhivehi, an Indo-Aryan language written in the Thaana script. Thaana is unusual because it is read from right to left, and its first nine letters come from Arabic numerals while the next nine come from old local numerals. Because most residents are Muslim, the everyday greeting is assalaamu alaikum, answered with wa alaikum assalaam. Thank you is shukuriyyaa, and ma'aaf kurey is used to apologise or to get attention. The informal word for parting, dhanee, is heard more often than the formal form. Alcohol is not sold on inhabited islands, and visitors are expected to dress modestly away from the beach.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+          "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+          "what": "Dhivehi as the official language, Indo-Aryan family, Thaana script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Thaana",
+          "what": "Thaana read right to left, its letters from Arabic and old local numerals"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+        "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+        "what": "Dhivehi as the official language, Indo-Aryan family, Thaana script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Thaana",
+        "what": "Thaana read right to left, its letters from Arabic and old local numerals"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_the_Maldives",
+        "what": "A Muslim country, alcohol rules, and dress norms"
+      }
+    ],
+    "needsVerification": [
+      "The detail about the origin of Thaana letters comes from general encyclopaedia material",
+      "The informal register of 'dhanee' needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "np",
+    "iso3": "NPL",
+    "nameId": "Nepal",
+    "nameLocal": "नेपाल",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaningId": "Hello / respectful greeting",
+      "register": "neutral, both formal and everyday"
+    },
+    "language": {
+      "nameId": "Nepali language",
+      "nativeName": "नेपाली",
+      "script": "Devanagari script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Nepali is the official language of Nepal, written in the same Devanagari script as Hindi."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "धन्यवाद",
+        "roman": "Dhanyabād"
+      },
+      {
+        "id": "Excuse me",
+        "native": "माफ गर्नुहोस्",
+        "roman": "Māph garnuhos"
+      },
+      {
+        "id": "Goodbye",
+        "native": "फेरि भेटौंला",
+        "roman": "Pheri bheṭaunlā"
+      }
+    ],
+    "cultureNote": "At Hindu temples, visitors remove their shoes and walk clockwise around the stupa; beef is not eaten because cattle are revered in Nepal's Hindu tradition.",
+    "peopleNote": "Older people are addressed with namaskar and the respectful particle hajur; goods and food are received with the right hand, and touching a person with the foot is considered impolite.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Both palms are pressed together, then the word namaste is said. In Nepal this greeting is used both for meeting and parting, at any hour of the day. The official language is Nepali, a member of the Indo-Aryan branch of the Indo-European family, written in the same Devanagari script as Hindi. Thank you is dhanyabad, and maaph garnuhos is used to apologise or to get attention. Levels of respect are marked by pronouns: tapai for someone you honour, timi for a peer. When meeting an elder, Nepalis often add hajur, a respectful particle that signals courtesy. A friendly farewell is usually pheri bhetaunla, meaning we will meet again, rather than goodbye. Before entering a home or a temple, shoes are removed, and objects are given and received with the right hand. Cattle are revered, so beef is not eaten.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Nepali_language",
+          "what": "Nepali as the official language of Nepal, Indo-Aryan family, Devanagari script"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+          "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+          "what": "Temple norms, footwear, and the reverence for cattle"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepali_language",
+        "what": "Nepali as the official language of Nepal, Indo-Aryan family, Devanagari script"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+        "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+        "what": "Temple norms, footwear, and the reverence for cattle"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepal",
+        "what": "The official language of Nepal"
+      }
+    ],
+    "needsVerification": [
+      "The claim that cattle are revered and beef is not eaten comes from general encyclopaedia material, not a Nepali primary source"
+    ]
+  },
+  {
+    "id": "pk",
+    "iso3": "PAK",
+    "nameId": "Pakistan",
+    "nameLocal": "پاکستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "السلام علیکم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Peace be upon you",
+      "register": "neutral, the standard greeting"
+    },
+    "language": {
+      "nameId": "Urdu language",
+      "nativeName": "اردو",
+      "script": "Perso-Arabic script (Nastaliq style)",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Urdu is the official language of Pakistan, written in the flowing Nastaliq style of the Arabic script, from right to left."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شکریہ",
+        "roman": "Shukriyā"
+      },
+      {
+        "id": "Excuse me",
+        "native": "معاف کیجیے",
+        "roman": "Māf kījiye"
+      },
+      {
+        "id": "Goodbye",
+        "native": "خدا حافظ",
+        "roman": "Khudā hāfiz"
+      }
+    ],
+    "cultureNote": "The greeting assalamu alaikum is the standard salutation across ethnic groups; it is normally followed by questions about health and family, because greeting without asking after someone feels rushed.",
+    "peopleNote": "Men shake hands with other men, but men and women do not shake hands; older people are addressed with the respectful pronoun aap rather than tum.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "A hand is placed over the heart after a handshake. In Pakistan a man greets another man with assalamu alaikum and a handshake, then lays his palm on his chest as a sign of sincerity. The official language is Urdu, a member of the Indo-Aryan branch of the Indo-European family, written in the flowing Nastaliq style of the Arabic script, which runs from right to left. Thank you is shukriya, and maaf kijiye is used to apologise or to get attention. Respect is marked by pronouns: aap for someone you honour, tum only for those much younger or very close. A common farewell is khuda hafiz, literally meaning may God be your protector. Local etiquette forbids men and women from shaking hands in public. Before turning to business, people usually ask first about health and family, since going straight to the point is considered impolite.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Urdu",
+          "what": "Urdu as the official language of Pakistan, Indo-Aryan family, Nastaliq script"
+        },
+        {
+          "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+          "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+        },
+        {
+          "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+          "what": "Same-sex handshakes, no cross-gender handshake, the respectful aap register"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu",
+        "what": "Urdu as the official language of Pakistan, Indo-Aryan family, Nastaliq script"
+      },
+      {
+        "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+        "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+      },
+      {
+        "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+        "what": "Same-sex handshakes, no cross-gender handshake, the respectful aap register"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu_alphabet",
+        "what": "The Urdu alphabet in Nastaliq style, written right to left"
+      }
+    ],
+    "needsVerification": [
+      "The claim that men and women do not shake hands comes from a language guide and has not been checked with a native speaker"
+    ]
+  },
+  {
+    "id": "lk",
+    "iso3": "LKA",
+    "nameId": "Sri Lanka",
+    "nameLocal": "ශ්‍රී ලංකාව",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "ආයුබෝවන්",
+      "roman": "Āyubōwan",
+      "meaningId": "Hello (literally: may you live long)",
+      "register": "neutral, somewhat formal"
+    },
+    "language": {
+      "nameId": "Sinhala language",
+      "nativeName": "සිංහල",
+      "script": "Sinhala script",
+      "family": "Indo-Aryan (Indo-European)",
+      "note": "Sinhala is the majority and an official language; Tamil is also official and widely spoken in the north and east."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "ස්තූතියි",
+        "roman": "Sthūthiyi"
+      },
+      {
+        "id": "Excuse me",
+        "native": "සමාවෙන්න",
+        "roman": "Samāwenna"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ගිහින් එන්නම්",
+        "roman": "Gihin ennam"
+      }
+    ],
+    "cultureNote": "At Buddhist temples, visitors remove their shoes and cover their shoulders and knees; Buddha statues are not touched or climbed, and turning one's back to a statue for a photo is considered disrespectful.",
+    "peopleNote": "The head is considered the most sacred part and is not touched, while the feet are the lowest; give and receive with the right hand, and a sideways nod of the head actually means yes.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "The palms are pressed together in front of the chest, then the head is bowed slightly. In Sri Lanka Ayubowan is more than a hello; it is a wish that the person greeted may live long. The same word serves throughout the day and can also be a farewell. The country has two official languages, Sinhala, spoken by the majority, and Tamil in the north and east. Sinhala belongs to the Indo-Aryan branch of the Indo-European family and is written in the rounded Sinhala script. Thank you is sthuthiyi, and samawenna is used to apologise or to get attention. In social life the head is regarded as the most sacred part and must not be touched, while objects are given and received with the right hand. Curiously, a sideways tilt of the head, rather than a downward nod, actually means yes. Before entering a Buddhist temple, shoes are removed and shoulders and knees are covered.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+          "what": "Sinhala as an official language of Sri Lanka, Indo-Aryan family, Sinhala script"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+          "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+          "what": "Temple-visit norms: removing shoes, covering shoulders and knees"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+        "what": "Sinhala as an official language of Sri Lanka, Indo-Aryan family, Sinhala script"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+        "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+        "what": "Temple-visit norms: removing shoes, covering shoulders and knees"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sri_Lanka",
+        "what": "The two official languages, Sinhala and Tamil"
+      }
+    ],
+    "needsVerification": [
+      "The sideways head nod meaning yes needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "am",
+    "iso3": "ARM",
+    "nameId": "Armenia",
+    "nameLocal": "Հայաստան",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Բարև",
+      "roman": "Barev",
+      "meaningId": "Hello",
+      "register": "neutral, familiar; polite form «Բարև ձեզ»"
+    },
+    "language": {
+      "nameId": "Armenian",
+      "nativeName": "Հայերեն (Hayeren)",
+      "script": "Armenian alphabet, 36 letters, left to right (created by Mashtots, c. 405 CE)",
+      "family": "Indo-European (its own branch)",
+      "note": "The official language of Armenia; it has two written standards, Eastern Armenian (Yerevan) and Western Armenian, which lives on in the diaspora."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Շնորհակալություն",
+        "roman": "Shnorhakalutyun"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Կներեք",
+        "roman": "Knerek"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Ցտեսություն",
+        "roman": "Tstesutyun"
+      }
+    ],
+    "cultureNote": "The Armenian alphabet was inscribed on UNESCO's Intangible Cultural Heritage list in 2019. For Armenians the alphabet is more than a writing tool: it is a national symbol, uniting the homeland and the diaspora through a single writing system.",
+    "peopleNote": "Men usually shake hands when greeting, while relatives and close friends exchange two cheek kisses. The younger greets the elder first. Guests are offered coffee or tea, and receiving something with the right hand is considered polite.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Behind a wooden desk in 405 CE, Mesrop Mashtots carved a line of new signs for the first time. He devised the Armenian alphabet, 36 letters written left to right and partly modelled on the Greek sequence. According to Britannica, Armenian forms its own branch of the Indo-European family and is not closely related to the Iranian or Turkic languages around it. The script was soon used to translate the Bible and marked a golden age of Armenian literature. From the 1920s Soviet spelling was slightly reformed, while the Western Armenian diaspora kept the traditional spelling, so one language has two written standards: Eastern Armenian in Yerevan and Western Armenian abroad. On the streets of Yerevan the everyday greeting is «Բարև» (Barev); with someone unfamiliar people use the polite «Բարև ձեզ». As a rule the younger greets the elder first. When visiting a home, guests take off their shoes and accept coffee from the host as a sign of respect.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Armenian-language",
+          "what": "Armenian is a separate branch of Indo-European; Mashtots created the alphabet in 405 CE with 36 signs, writing direction following Greek"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Armenian_alphabet",
+          "what": "The Armenian alphabet was developed by Mashtots around 405 CE; written left to right; official script of Armenia"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D5%A2%D5%A1%D6%80%D6%87",
+          "what": "Բարև = hello; polite form «Բարև ձեզ»"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Armenian-language",
+        "what": "Armenian is a separate branch of Indo-European; Mashtots created the alphabet in 405 CE with 36 signs, writing direction following Greek"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Armenian_alphabet",
+        "what": "The Armenian alphabet was developed by Mashtots around 405 CE; written left to right; official script of Armenia"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D5%A2%D5%A1%D6%80%D6%87",
+        "what": "Բարև = hello; polite form «Բարև ձեզ»"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D5%B7%D5%B6%D5%B8%D6%80%D5%B0%D5%A1%D5%AF%D5%A1%D5%AC%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6",
+        "what": "Շնորհակալություն = thank you"
+      }
+    ],
+    "needsVerification": [
+      "The romanisation of Կներեք and Ցտեսություն has not been checked against a dictionary source",
+      "The shoe-removal and double-cheek-kiss etiquette comes from common practice, not a primary source"
+    ]
+  },
+  {
+    "id": "az",
+    "iso3": "AZE",
+    "nameId": "Azerbaijan",
+    "nameLocal": "Azərbaycan",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Salam",
+      "roman": "Salam",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Azerbaijani",
+      "nativeName": "Azərbaycan dili",
+      "script": "Latin script since 1991; Cyrillic and Arabic in other regions",
+      "family": "Turkic (Oghuz branch)",
+      "note": "The official language of the Republic of Azerbaijan; the variety spoken in Iran is still written in the Arabic script and is called South Azerbaijani."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Təşəkkür edirəm",
+        "roman": "Təşəkkür edirəm"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Bağışlayın",
+        "roman": "Bağışlayın"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Sağ ol",
+        "roman": "Sağ ol"
+      }
+    ],
+    "cultureNote": "Tea is the main welcoming drink. The host pours it into a pear-shaped glass called armudu and serves it with jam or sugar lumps; letting a guest's glass stay empty is considered unfriendly.",
+    "peopleNote": "Men shake hands when they meet, while women often just nod or place a hand on the chest. The older person is greeted first. At home, shoes are removed and guests usually bring a small gift for the host.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Tea is poured into a pear-shaped glass called armudu before any conversation begins. In a Baku tea house the host rarely lets a guest's glass stay empty; strong tea is served with jam, nuts, or lumps of sugar. Azerbaijani belongs to the Oghuz branch of the Turkic family, related to Turkish and Turkmen. According to Britannica, the language used the Arabic script until the early 20th century, then switched to the Cyrillic alphabet from 1939 under Soviet rule. After independence in 1991 the Republic of Azerbaijan returned to a Latin alphabet, while speakers in Iran still write in Arabic script. The everyday greeting is simply «Salam». At the door of a home, guests remove their shoes and bring a small gift of fruit or sweets for the host. Elders are greeted first, and men's handshakes usually come with eye contact and a brief clasp of both hands.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Azerbaijani-language",
+          "what": "Turkic language, Oghuz branch; Arabic script until the 20th century, Cyrillic in 1939, Latin since 1992"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Azerbaijani_language",
+          "what": "Oghuz Turkic; Latin script since 1991 in the Republic of Azerbaijan; the Iranian variety uses Arabic script"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/salam",
+          "what": "salam = hello (Azerbaijani)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Azerbaijani-language",
+        "what": "Turkic language, Oghuz branch; Arabic script until the 20th century, Cyrillic in 1939, Latin since 1992"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Azerbaijani_language",
+        "what": "Oghuz Turkic; Latin script since 1991 in the Republic of Azerbaijan; the Iranian variety uses Arabic script"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/salam",
+        "what": "salam = hello (Azerbaijani)"
+      }
+    ],
+    "needsVerification": [
+      "The romanisation of Təşəkkür edirəm, Bağışlayın, and Sağ ol has not been checked against a dictionary source",
+      "The custom of bringing a small gift when visiting comes from common practice, not a primary source"
+    ]
+  },
+  {
+    "id": "bh",
+    "iso3": "BHR",
+    "nameId": "Bahrain",
+    "nameLocal": "البحرين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Peace be upon you (hello)",
+      "register": "neutral, with religious overtones"
+    },
+    "language": {
+      "nameId": "Arabic",
+      "nativeName": "العربية",
+      "script": "Arabic script (abjad, 28 letters, right to left)",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "The official language of Bahrain; the local Bahrani and Gulf Arabic dialects coexist, while Modern Standard Arabic is used in the media and official documents."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Bahrain's constitution declares the family the cornerstone of society, so large family gatherings and hosting at home hold an important place. Arabic coffee, gahwa, is served with dates to welcome a guest.",
+    "peopleNote": "Handshakes are common between people of the same gender; with the opposite gender, one waits for the other to extend a hand first. A guest is greeted and invited to sit before the host. Receiving food or drink with the right hand is considered polite.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Unsweetened coffee is poured from a copper pot into a small handleless cup. In Bahrain, serving gahwa, or Arabic coffee, with dates is how a host welcomes a guest; an empty cup is refilled at once until the guest shakes the cup to signal that it is enough. Arabic is the official language of this island nation. According to Britannica, Bahrain lies in the Persian Gulf with Manama as its capital, and its constitution affirms the family as the cornerstone of society. On the street two varieties of Arabic coexist: the Bahrani dialect typical of the older population and the Gulf Arabic spoken in the cities. Modern Standard Arabic appears in the media, official documents, and schools. The most common greeting is «السلام عليكم» (as-salāmu ʿalaykum), a wish of peace, answered with «وعليكم السلام». Guests usually receive food or drink with the right hand, while the left hand is considered less proper.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Bahrain",
+          "what": "Arabic is the official language; Manama is the capital; the constitution calls the family the cornerstone of society"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+          "what": "The Bahrani Arabic dialect coexists with Gulf Arabic; it uses the Arabic script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Modern Standard Arabic is used in the media and documents; a diglossic situation across the Arab world"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Bahrain",
+        "what": "Arabic is the official language; Manama is the capital; the constitution calls the family the cornerstone of society"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+        "what": "The Bahrani Arabic dialect coexists with Gulf Arabic; it uses the Arabic script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Modern Standard Arabic is used in the media and documents; a diglossic situation across the Arab world"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = goodbye / farewell"
+      }
+    ],
+    "needsVerification": [
+      "The cross-gender handshake etiquette and the order of greeting have not been checked against a primary source",
+      "The dialect a visitor hears may differ from city to city"
+    ]
+  },
+  {
+    "id": "ge",
+    "iso3": "GEO",
+    "nameId": "Georgia",
+    "nameLocal": "საქართველო",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "გამარჯობა",
+      "roman": "Gamarjoba",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Georgian",
+      "nativeName": "ქართული (Kartuli)",
+      "script": "Georgian script; Mkhedruli with 33 letters, no upper or lower case",
+      "family": "Kartvelian (South Caucasus)",
+      "note": "The official language of Georgia; it is unrelated to the main language families around it and has its own distinctive script."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "მადლობა",
+        "roman": "Madloba"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ბოდიში",
+        "roman": "Bodishi"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ნახვამდის",
+        "roman": "Nakhvamdis"
+      }
+    ],
+    "cultureNote": "A supra feast is led by the tamada, who orders the toasts, from peace to the memory of ancestors. Guests do not drink before the tamada leads, because each glass is raised to a theme rather than simply to clink.",
+    "peopleNote": "Men shake hands when they meet, while close friends exchange cheek kisses. The older person is greeted first. A guest is treated as a blessing, so food or drink is often offered before the guest has even sat down.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "A wine glass is raised high as the tamada, the feast leader, gives the first toast. The Georgian supra tradition orders the meal: each glass is raised to a theme, from peace to the memory of ancestors, and guests do not drink before the tamada leads. Georgian belongs to the Kartvelian family and is unrelated to the Indo-European and Turkic languages around it. The distinctive Mkhedruli script, which has no upper or lower case, is the everyday alphabet, while two older church scripts still appear in manuscripts and icons. According to Britannica, Georgian literary tradition goes back to the 5th century. On the streets of Tbilisi the everyday greeting is «გამარჯობა» (Gamarjoba). Elders are greeted first, and a handshake is the usual greeting between men meeting for the first time.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Georgian-language",
+          "what": "Official language of Georgia; Kartvelian family; literary tradition since the 5th century; Mkhedruli is the current script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Georgian_language",
+          "what": "Kartvelian; official language of Georgia; Mkhedruli without upper/lower case"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Georgian_scripts",
+          "what": "Three Georgian scripts; Mkhedruli with 33 letters; UNESCO cultural heritage 2016"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90",
+          "what": "გამარჯობა = hello"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E1%83%9B%E1%83%90%E1%83%93%E1%83%9A%E1%83%9D%E1%83%91%E1%83%90",
+          "what": "მადლობა = thank you"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Georgian-language",
+        "what": "Official language of Georgia; Kartvelian family; literary tradition since the 5th century; Mkhedruli is the current script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Georgian_language",
+        "what": "Kartvelian; official language of Georgia; Mkhedruli without upper/lower case"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Georgian_scripts",
+        "what": "Three Georgian scripts; Mkhedruli with 33 letters; UNESCO cultural heritage 2016"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90",
+        "what": "გამარჯობა = hello"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E1%83%9B%E1%83%90%E1%83%93%E1%83%9A%E1%83%9D%E1%83%91%E1%83%90",
+        "what": "მადლობა = thank you"
+      }
+    ],
+    "needsVerification": [
+      "The romanisation of ბოდიში and ნახვამდის has not been checked against a dictionary source",
+      "The cheek-kiss and handshake etiquette comes from common practice"
+    ]
+  },
+  {
+    "id": "iq",
+    "iso3": "IRQ",
+    "nameId": "Iraq",
+    "nameLocal": "العراق",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Peace be upon you (hello)",
+      "register": "neutral, with religious overtones"
+    },
+    "language": {
+      "nameId": "Arabic",
+      "nativeName": "العربية",
+      "script": "Arabic script (abjad, 28 letters, right to left)",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Arabic and Kurdish are the two official languages of Iraq; the Baghdadi dialect, called the Iraqi dialect, is the everyday lingua franca."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Strong sweet tea is the welcoming drink, served in a small glass without milk and often with date pastries. Honouring the guest, diyafa, is an important value, so refusing a host's offer again and again is seen as impolite.",
+    "peopleNote": "People of the same gender shake hands and sometimes exchange cheek kisses; with the opposite gender, physical contact is not always made. Receiving and handing over items with the right hand is considered polite. The older person is greeted first.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Steam rises from a small glass of strong tea at a cafe on the bank of the Tigris in Baghdad. Sweet, dark tea, chai, is the welcoming drink, served without milk and often with date pastries. Iraq designates Arabic and Kurdish as its two official languages. Everyday conversation in Baghdad uses Mesopotamian Arabic, commonly called the Iraqi dialect, which its speakers regard as fairly close to classical Arabic. Modern Standard Arabic is used for documents, books, and news broadcasts; this situation is known as diglossia. According to Britannica, Baghdad has been a seat of government since the Abbasid Caliphate and is now a city of tens of millions. The everyday greeting is «السلام عليكم» (as-salāmu ʿalaykum). Guests generally take food with the right hand, while eating or handing over items with the left hand is avoided.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Iraq",
+          "what": "Arabic and Kurdish are the official languages; Baghdad is the capital; the land of Mesopotamia"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+          "what": "The Mesopotamian/Baghdadi dialect is Iraq's lingua franca; two varieties, Gelet and Qeltu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Modern Standard Arabic is used in documents and the news; a diglossic situation"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+          "what": "شكراً = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+          "what": "مع السلامة = goodbye / farewell"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Iraq",
+        "what": "Arabic and Kurdish are the official languages; Baghdad is the capital; the land of Mesopotamia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+        "what": "The Mesopotamian/Baghdadi dialect is Iraq's lingua franca; two varieties, Gelet and Qeltu"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Modern Standard Arabic is used in documents and the news; a diglossic situation"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = goodbye / farewell"
+      }
+    ],
+    "needsVerification": [
+      "The right-hand and cheek-kiss etiquette comes from common practice, not a primary source",
+      "Variation between city dialects is simplified into the Baghdadi dialect"
+    ]
+  },
+  {
+    "id": "il",
+    "iso3": "ISR",
+    "nameId": "Israel",
+    "nameLocal": "ישראל",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "שלום",
+      "roman": "Shalom",
+      "meaningId": "Hello / peace",
+      "register": "neutral, used both as a greeting and a farewell"
+    },
+    "language": {
+      "nameId": "Hebrew",
+      "nativeName": "עברית (Ivrit)",
+      "script": "Hebrew alphabet, 22 letters, abjad written right to left",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "The official language of Israel; revived as a spoken language from the late 19th century, while Arabic holds special status."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "תודה",
+        "roman": "Todá"
+      },
+      {
+        "id": "Excuse me",
+        "native": "סליחה",
+        "roman": "Slicha"
+      },
+      {
+        "id": "Goodbye",
+        "native": "להתראות",
+        "roman": "Lehitraot"
+      }
+    ],
+    "cultureNote": "Welcoming Shabbat, families gather on Friday evening to light candles and eat together. Before the Sabbath many shops close early, and in some areas public transport stops until Saturday evening.",
+    "peopleNote": "The word «Shalom» serves both as a greeting and a farewell. A handshake is the usual greeting, but some religious people avoid physical contact with the opposite gender, so it is best to wait for a hand to be offered. Speech tends to be direct and outspoken.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "On a Friday afternoon the Mahane Yehuda market in Jerusalem empties as many people hurry home for Shabbat. Modern Hebrew is the official language of Israel and the only ancient language successfully revived as an everyday spoken tongue, led by Eliezer Ben-Yehuda in the late 19th century. Hebrew belongs to the Afro-Asiatic family, Semitic branch, and differs from the European languages of the Jewish diaspora. The Hebrew script is an abjad of 22 letters written right to left; its letters originally recorded only consonants, while vowels were added as small marks that tend to disappear in everyday writing. The word «שלום» (Shalom) means peace and also serves as both greeting and farewell. A handshake is the usual greeting on meeting, and asking direct questions is considered normal rather than rude.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Hebrew-language",
+          "what": "Northwest Semitic language; official language of Israel; 22 letters, written right to left"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+          "what": "Official language of Israel; revived as a spoken language; Afro-Asiatic, Semitic branch"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hebrew_alphabet",
+          "what": "The Hebrew alphabet has 22 letters, an abjad written right to left; derived from the Aramaic script"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D7%A9%D7%9C%D7%95%D7%9D",
+          "what": "שלום = peace; used as both a greeting and a farewell"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Hebrew-language",
+        "what": "Northwest Semitic language; official language of Israel; 22 letters, written right to left"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+        "what": "Official language of Israel; revived as a spoken language; Afro-Asiatic, Semitic branch"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hebrew_alphabet",
+        "what": "The Hebrew alphabet has 22 letters, an abjad written right to left; derived from the Aramaic script"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%A9%D7%9C%D7%95%D7%9D",
+        "what": "שלום = peace; used as both a greeting and a farewell"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%AA%D7%95%D7%93%D7%94",
+        "what": "תודה = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%94",
+        "what": "סליחה = sorry / excuse me"
+      }
+    ],
+    "needsVerification": [
+      "The romanisation of תודה, סליחה, and להתראות has not been checked against a dictionary source",
+      "The etiquette about physical contact with the opposite gender applies to some groups and is not universal"
+    ]
+  },
+  {
+    "id": "kw",
+    "iso3": "KWT",
+    "nameId": "Kuwait",
+    "nameLocal": "الكويت",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "هلا والله",
+      "roman": "Hala wallah",
+      "meaningId": "Hello",
+      "register": "friendly, typically Gulf"
+    },
+    "language": {
+      "nameId": "Arabic (Kuwaiti dialect)",
+      "nativeName": "كويتي",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Kuwaiti Arabic belongs to the Gulf group; its vocabulary absorbed Persian, Turkish, English, and Hindi words through the country's maritime and trading history."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "يعطيك العافية",
+        "roman": "Yaʿṭīk al-ʿāfiya"
+      },
+      {
+        "id": "Excuse me",
+        "native": "لو سمحت",
+        "roman": "Law samaḥt"
+      },
+      {
+        "id": "Goodbye",
+        "native": "الله وياك",
+        "roman": "Allāh wiyyāk"
+      }
+    ],
+    "cultureNote": "The diwaniya, a separate front sitting room, is where men gather to discuss family and neighbourhood matters. Hosting guests is seen as an honour, so coffee and dates are served before long conversation.",
+    "peopleNote": "Begin with the eldest when greeting. Use the right hand to eat and to give. Accepting the coffee served honours the host. Relaxed talk and shared stories are common in social life.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "In Kuwait, male guests are often received in the diwaniya, a separate front room set aside for gatherings. Arabic coffee is poured from a pot and served with dates; the guest accepts the small cup with the right hand. Everyday speech is Kuwaiti Arabic, part of the Gulf Arabic group. The old port city of Kuwait was a trading crossroads, so its dialect absorbed many words from Persian, Turkish, English, and Hindi. Its distinctive sounds are easy to hear: q becomes g and k becomes ch, including in qahwa, heard as gahwa. Kuwait's soap-opera industry made this accent familiar as far away as Tunisia and Jordan. Society is diglossic: Modern Standard Arabic serves school and administration, while Kuwaiti Arabic is used at home and is seen as a marker of identity.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+          "what": "Kuwaiti Arabic is Gulf Arabic; Persian, Turkish, English, and Hindi loanwords; soap operas spread the accent"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee is served with dates; the cup is received and returned with the right hand"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+          "what": "Kuwaiti culture and the tradition of hosting guests"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+        "what": "Kuwaiti Arabic is Gulf Arabic; Persian, Turkish, English, and Hindi loanwords; soap operas spread the accent"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "The Gulf Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee is served with dates; the cup is received and returned with the right hand"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+        "what": "Kuwaiti culture and the tradition of hosting guests"
+      }
+    ],
+    "needsVerification": [
+      "The diwaniya tradition has not been traced to a dedicated primary source",
+      "The register of the greeting هلا والله needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "lb",
+    "iso3": "LBN",
+    "nameId": "Lebanon",
+    "nameLocal": "لبنان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "مرحبا",
+      "roman": "Marhaba",
+      "meaningId": "Hello",
+      "register": "neutral, widely used in the Levant"
+    },
+    "language": {
+      "nameId": "Arabic (Lebanese dialect)",
+      "nativeName": "العربية اللبنانية",
+      "script": "Arabic script; conversation often mixed with French and English words",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Lebanese Arabic belongs to the Levantine Arabic group; French loanwords are common because of history and education."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "تسلم",
+        "roman": "Tislam"
+      },
+      {
+        "id": "Excuse me",
+        "native": "بعد إذنك",
+        "roman": "Baʿd iznak"
+      },
+      {
+        "id": "Goodbye",
+        "native": "بسلامة",
+        "roman": "Bslāme"
+      }
+    ],
+    "cultureNote": "Hosting is seen as an honour, so dinner invitations often come early in a friendship. Lateness is tolerated: about twenty minutes is still considered normal, and guests usually bring sweets.",
+    "peopleNote": "Greet the household in order of age, starting with the eldest. Accept offered tea or coffee as a sign of respect. Avoid crossing your legs so your foot points at someone.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In Beirut, guests arriving at a home usually greet the household in order of age, starting with the oldest. The host serves Levantine coffee, finely ground and scented with cardamom, brewed in a long-handled pot called a rakwa. In rural areas and Bedouin camps, a larger long-spouted pot known as a bakraj is used. Before modern cafes spread, Arab coffeehouses served as places of discussion; some called them schools of the wise. The official language is Modern Standard Arabic, but daily talk uses Lebanese Arabic, part of the Levantine group, often mixed with French words. Speakers therefore switch easily between two registers. Guest etiquette expects visitors to taste every dish served as a sign of respect. Refusing an offer of coffee or tea can seem to slight the host's honour, so accepting is considered more polite.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+          "what": "Guest etiquette: greeting by age, accepting what is offered, loose punctuality, not pointing the feet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+          "what": "Lebanese Arabic belongs to the Levantine group"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Levantine cardamom coffee; the rakwa and bakraj pots; coffeehouses as centres of discussion"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+        "what": "Guest etiquette: greeting by age, accepting what is offered, loose punctuality, not pointing the feet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+        "what": "Lebanese Arabic belongs to the Levantine group"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "The Levantine Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Levantine cardamom coffee; the rakwa and bakraj pots; coffeehouses as centres of discussion"
+      }
+    ],
+    "needsVerification": [
+      "The degree of French code-switching varies by generation and region"
+    ]
+  },
+  {
+    "id": "om",
+    "iso3": "OMN",
+    "nameId": "Oman",
+    "nameLocal": "عُمان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Arabic (Omani dialect)",
+      "nativeName": "اللهجة العمانية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Besides Omani Arabic, Modern South Arabian languages such as Mehri and Soqotri are also spoken in the south of the country."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "مشكور",
+        "roman": "Masykūr"
+      },
+      {
+        "id": "Excuse me",
+        "native": "من فضلك",
+        "roman": "Min faḍlak"
+      },
+      {
+        "id": "Goodbye",
+        "native": "إلى اللقاء",
+        "roman": "Ilā al-liqāʾ"
+      }
+    ],
+    "cultureNote": "The khanjar, a curved dagger, is worn by Omani men at weddings and national occasions; its craft and customs were inscribed by UNESCO in 2022. Omani coffee is scented with cardamom and served with dates or halwa.",
+    "peopleNote": "Receive and give with the right hand. Guests greet the eldest person first. At a gathering, the food served should be tasted. Honorific titles for elders are common as a mark of good manners.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In Muscat, a host welcomes guests with Omani coffee served alongside dates or halwa, a chewy sweet. The coffee is poured from a dallah, a long-spouted pot, into small cups; guests receive and return the cup with the right hand. Omani men wear the khanjar, a curved dagger, at official events such as weddings and national occasions; the craft and customs around it were inscribed by UNESCO in 2022. The official language is Modern Standard Arabic, while daily talk uses Omani Arabic. In the south, communities also speak Modern South Arabian languages such as Mehri and Soqotri, a branch of the Afro-Asiatic family distinct from Arabic. The majlis, the room where neighbours and family gather, was recognised by UNESCO as intangible cultural heritage in 2015, with Oman among the nominating states. At the table, food is taken with the right hand.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+          "what": "Omani cardamom coffee with dates or halwa; the khanjar worn at weddings and national occasions, UNESCO 2022"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+          "what": "Omani Arabic and its sound features"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Oman as a nominating state"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+        "what": "Omani cardamom coffee with dates or halwa; the khanjar worn at weddings and national occasions, UNESCO 2022"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+        "what": "Omani Arabic and its sound features"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_South_Arabian_languages",
+        "what": "Modern South Arabian languages such as Mehri and Soqotri"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Oman as a nominating state"
+      }
+    ],
+    "needsVerification": [
+      "Details of local hosting traditions can differ between regions"
+    ]
+  },
+  {
+    "id": "ps",
+    "iso3": "PSE",
+    "nameId": "Palestine",
+    "nameLocal": "فلسطين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلين",
+      "roman": "Ahlēn",
+      "meaningId": "Hello",
+      "register": "friendly, typical of the Levant"
+    },
+    "language": {
+      "nameId": "Arabic (Palestinian dialect)",
+      "nativeName": "العربية الفلسطينية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Palestinian Arabic belongs to the Levantine Arabic group; pronunciation varies between cities, villages, and Bedouin communities."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً جزيلاً",
+        "roman": "Syukran jazīlan"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "الله معك",
+        "roman": "Allāh maʿak"
+      }
+    ],
+    "cultureNote": "Guests are welcomed with ahlan wa sahlan. Near the end of a visit, the host offers a goodbye coffee; guests take their leave after drinking it. Repeatedly praising a possession is avoided, as it is believed to invite the evil eye.",
+    "peopleNote": "Honour elders: stand when they enter and offer them a seat. Accept an offer after the host insists a second time. Use the right hand to eat and to give.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In Ramallah, guests are welcomed with the phrase ahlan wa sahlan, then shown to a seat. The host serves tea, then pastries, then coffee, following a long-established order. The bitter, cardamom-scented coffee is more than a drink; it marks the visit. Near the end of a visit, the host offers a goodbye coffee; guests take their leave after drinking it, since refusing may prolong the stay. Everyday speech here is Palestinian Arabic, part of the Levantine group, while Modern Standard Arabic is used in school and official documents. People honour their elders by standing when they enter a room and offering them a seat. Other etiquette: accept things with the right hand, and avoid praising a personal possession repeatedly, as this is believed to invite envy, the evil eye known as the ain.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+          "what": "Guest etiquette: the order of refreshments, goodbye coffee, honouring elders, the evil eye, the right hand"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+          "what": "Palestinian Arabic belongs to the Levantine group"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Cardamom Arabic coffee and the etiquette of serving it"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+        "what": "Guest etiquette: the order of refreshments, goodbye coffee, honouring elders, the evil eye, the right hand"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+        "what": "Palestinian Arabic belongs to the Levantine group"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "The Levantine Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Cardamom Arabic coffee and the etiquette of serving it"
+      }
+    ],
+    "needsVerification": [
+      "Customs differ between Muslim and Christian families and between regions"
+    ]
+  },
+  {
+    "id": "qa",
+    "iso3": "QAT",
+    "nameId": "Qatar",
+    "nameLocal": "قطر",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "حياك الله",
+      "roman": "Ḥayyāk Allāh",
+      "meaningId": "Hello (may God keep you)",
+      "register": "warm, typically Gulf"
+    },
+    "language": {
+      "nameId": "Arabic (Gulf dialect)",
+      "nativeName": "اللهجة القطرية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Qatari Arabic belongs to the Gulf Arabic group; Modern Standard Arabic is used in media such as Al Jazeera and in administration."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "جزاك الله خير",
+        "roman": "Jazāk Allāh khayr"
+      },
+      {
+        "id": "Excuse me",
+        "native": "لو تسمح",
+        "roman": "Law tismaḥ"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "The majlis, a sitting room lined with cushions along the walls, has been listed by UNESCO as intangible heritage since 2015. There neighbours and family gather, and Arabic coffee with dates is served around the guests.",
+    "peopleNote": "Receive and give with the right hand. Greet the eldest person first. Accept the coffee offered as a mark of respect. A calm tone and not raising one's voice are considered polite.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "At Souq Waqif, the old market in Doha, Arabic coffee is poured from a long-spouted pot into small cups. Dates are served alongside. Guests accept the cup with the right hand and return it the same way. Hosts often greet a visitor with hayyak Allah, literally may God keep you, as a warm opening. Family and neighbours gather in the majlis, a sitting room lined with cushions along the walls; it has been listed by UNESCO as intangible heritage since 2015. Daily conversation in Qatar uses Gulf Arabic, while Modern Standard Arabic is used in school, official letters, and news broadcasts such as Al Jazeera. This is the situation of diglossia, two registers living side by side. The sound q commonly shifts to g and k to ch, a trait heard both on the street and in the market.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+          "what": "The Gulf dialect, diglossia with Modern Standard Arabic, the shifts of q and k"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Qatar as a nominating state"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee poured from a pot into small cups, served with dates, received with the right hand"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "The Gulf dialect, diglossia with Modern Standard Arabic, the shifts of q and k"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qatari_Arabic",
+        "what": "Qatari Arabic as part of Gulf Arabic"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Souq_Waqif",
+        "what": "Souq Waqif, the old market in Doha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Qatar as a nominating state"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee poured from a pot into small cups, served with dates, received with the right hand"
+      }
+    ],
+    "needsVerification": [
+      "The register of the greeting حياك الله has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "cy",
+    "iso3": "CYP",
+    "nameId": "Cyprus",
+    "nameLocal": "Κύπρος",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Γεια σας",
+      "roman": "Yia sas",
+      "meaningId": "Hello",
+      "register": "polite (respectful plural form); familiar form: «γεια σου»"
+    },
+    "language": {
+      "nameId": "Greek",
+      "nativeName": "Ελληνικά",
+      "script": "Greek alphabet, 24 letters, left to right",
+      "family": "Indo-European (Hellenic)",
+      "note": "Greek is the dominant official language; Turkish is co-official in the Republic of Cyprus and dominant in the north. The Cypriot dialect differs noticeably from Standard Greek."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Ευχαριστώ",
+        "roman": "Efcharistó"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Συγγνώμη",
+        "roman": "Sygnómi"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Αντίο",
+        "roman": "Adío"
+      }
+    ],
+    "cultureNote": "Meze, a spread of small dishes shared by everyone, is the characteristic Cypriot way of dining. Hosts often urge guests to take more with the call «kopiaste», roughly \"please eat plenty\", because repeatedly refusing is seen as impolite.",
+    "peopleNote": "A friendly greeting between friends usually comes with two cheek kisses, while a formal introduction is just a handshake. The older person is greeted first. Cafes serve as social spaces where people sit for a long time and chat.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In an old coffee shop in Nicosia, a glass of Greek coffee is sipped slowly while the owner greets every customer with «Γεια σας» (Yia sas). The Republic of Cyprus has two official languages, Greek and Turkish, with Greek spoken by the majority. Daily conversation in the southern cities often uses Cypriot Greek, a dialect different enough from Standard Modern Greek that listeners from Athens need time to tune their ear. This situation is called diglossia: the vernacular variety is used daily, while the standard appears in the news and documents. The Greek alphabet is more than two thousand years old and runs left to right with 24 letters. At the table, food arrives as meze, many small dishes shared among everyone. A friendly greeting between friends usually comes with two cheek kisses.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Cyprus",
+          "what": "Greek and Turkish are official languages; Nicosia/Lefkosia is the capital"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Cypriot_Greek",
+          "what": "Cypriot Greek dialect; diglossia with Standard Greek; uses the Greek alphabet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Greek_alphabet",
+          "what": "The Greek alphabet has 24 letters and runs left to right"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%CE%B3%CE%B5%CE%B9%CE%B1_%CF%83%CE%B1%CF%82",
+          "what": "γεια σας = hello/goodbye (respectful plural form)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Cyprus",
+        "what": "Greek and Turkish are official languages; Nicosia/Lefkosia is the capital"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Cypriot_Greek",
+        "what": "Cypriot Greek dialect; diglossia with Standard Greek; uses the Greek alphabet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Greek_alphabet",
+        "what": "The Greek alphabet has 24 letters and runs left to right"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B3%CE%B5%CE%B9%CE%B1_%CF%83%CE%B1%CF%82",
+        "what": "γεια σας = hello/goodbye (respectful plural form)"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B5%CF%85%CF%87%CE%B1%CF%81%CE%B9%CF%83%CF%84%CF%8E",
+        "what": "ευχαριστώ = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CF%83%CF%85%CE%B3%CE%B3%CE%BD%CF%8E%CE%BC%CE%B7",
+        "what": "συγγνώμη = sorry / excuse me"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B1%CE%BD%CF%84%CE%AF%CE%BF",
+        "what": "αντίο = goodbye"
+      }
+    ],
+    "needsVerification": [
+      "The two-cheek-kiss etiquette and the «kopiaste» call come from common practice, not a primary source",
+      "The coverage of official languages in the northern area is simplified"
+    ]
+  },
+  {
+    "id": "sy",
+    "iso3": "SYR",
+    "nameId": "Syria",
+    "nameLocal": "سوريا",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "شلونك",
+      "roman": "Shlōnak",
+      "meaningId": "Hello (how are you)",
+      "register": "friendly, typical of the Levant"
+    },
+    "language": {
+      "nameId": "Arabic (Syrian dialect)",
+      "nativeName": "العربية السورية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Syrian Arabic belongs to the Levantine Arabic group; its vocabulary absorbed Turkish and French words."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "يسلمو",
+        "roman": "Yislamu"
+      },
+      {
+        "id": "Excuse me",
+        "native": "إذا بتسمح",
+        "roman": "Idhā bitismaḥ"
+      },
+      {
+        "id": "Goodbye",
+        "native": "بخاطرك",
+        "roman": "Bkhāṭrak"
+      }
+    ],
+    "cultureNote": "Guests may arrive without an invitation; the host is expected to stop work and offer the best hospitality. Refusing an offer once, then accepting after insistence, is the polite custom.",
+    "peopleNote": "Stand when an elder enters a room. Use the right hand to eat and to give. Do not point the soles of your feet at others. Speaking softly is considered courteous.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In Damascus, if a neighbour arrives without an invitation, the host is expected to stop work and offer the best hospitality. The custom works like this: an offer is accepted only after insistence, since a first refusal is itself a mark of good manners. Coffee is brewed strong and scented with cardamom, poured from a rakwa in the city or a long-spouted bakraj among Bedouin. The small cup is filled only partly so the host can pour again. Daily speech is Syrian Arabic, part of the Levantine group, which absorbed Turkish and French words from the region's long history. Modern Standard Arabic remains in use for official documents and teaching. At the table, the guest takes the place of honour, and elders are invited to start first. Every dish should be tasted. Speaking softly and not pointing one's feet at others are also part of social etiquette.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+          "what": "Etiquette: unannounced guests, refusing then accepting an offer, standing for elders, not pointing the feet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+          "what": "Syrian Arabic belongs to the Levantine group"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Levantine cardamom coffee; the rakwa and bakraj pots"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+        "what": "Etiquette: unannounced guests, refusing then accepting an offer, standing for elders, not pointing the feet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+        "what": "Syrian Arabic belongs to the Levantine group"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "The Levantine Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Levantine cardamom coffee; the rakwa and bakraj pots"
+      }
+    ],
+    "needsVerification": [
+      "The use of Turkish and French loanwords varies by generation"
+    ]
+  },
+  {
+    "id": "ae",
+    "iso3": "ARE",
+    "nameId": "United Arab Emirates",
+    "nameLocal": "الإمارات العربية المتحدة",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلاً وسهلاً",
+      "roman": "Ahlan wa sahlan",
+      "meaningId": "Hello",
+      "register": "warm, used to welcome guests"
+    },
+    "language": {
+      "nameId": "Arabic (Emirati dialect)",
+      "nativeName": "اللهجة الإماراتية",
+      "script": "Arabic script, written right to left",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Emirati Arabic, or Al Ramsa, belongs to the Gulf Arabic group; Modern Standard Arabic is used in school and official documents."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عن إذنك",
+        "roman": "ʿAn idhnak"
+      },
+      {
+        "id": "Goodbye",
+        "native": "في أمان الله",
+        "roman": "Fī amān Allāh"
+      }
+    ],
+    "cultureNote": "The majlis, a sitting room and family gathering place, has been listed by UNESCO as intangible cultural heritage since 2015. Arabic coffee is served with dates, and pouring for the guest first is a mark of honour.",
+    "peopleNote": "Receive and give things with the right hand. Shoes are removed before entering a home or a majlis. Guests greet the eldest person first. With the opposite gender, wait for the woman to offer her hand first.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "When a guest steps into the majlis, the cushion-lined sitting room, the host in the United Arab Emirates serves Arabic coffee. It is poured from a dallah, a long-necked brass pot, into a small handleless cup called a finjan. Dates are set beside it to offset the bitterness. The cup is filled only halfway, and the guest receives it with the right hand, then returns it the same way; declining a refill is done with a slight hand gesture. Everyday speech here is Emirati Arabic, which its speakers call Al Ramsa and which belongs to the Gulf Arabic group. In school and official documents, Modern Standard Arabic is used. The sound q, pronounced q in Standard Arabic, becomes g in this dialect, so qahwa is heard as gahwa. The majlis itself, a sitting room and family gathering place, has been listed by UNESCO as intangible cultural heritage since 2015.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+          "what": "Emirati, or Al Ramsa, is Gulf Arabic; the sound q becomes g"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee, dallah, finjan, dates, and the etiquette of pouring for guests"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis as a sitting room, listed by UNESCO in 2015 with the UAE, Oman, Qatar, and Saudi Arabia"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+        "what": "Emirati, or Al Ramsa, is Gulf Arabic; the sound q becomes g"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee, dallah, finjan, dates, and the etiquette of pouring for guests"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis as a sitting room, listed by UNESCO in 2015 with the UAE, Oman, Qatar, and Saudi Arabia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic",
+        "what": "Arabic, an Afro-Asiatic Semitic language; Modern Standard Arabic"
+      }
+    ],
+    "needsVerification": [
+      "The register of the greeting أهلاً وسهلاً has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "ye",
+    "iso3": "YEM",
+    "nameId": "Yemen",
+    "nameLocal": "اليمن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "كيف حالك",
+      "roman": "Kayfa ḥālak",
+      "meaningId": "Hello (how are you)",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Arabic (Yemeni dialect)",
+      "nativeName": "اللهجة اليمنية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Yemeni Arabic is considered conservative and preserves many Classical Arabic features; Hadhrami Arabic is also spoken in Hadhramaut."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "أسمح لي",
+        "roman": "Ismaḥ lī"
+      },
+      {
+        "id": "Goodbye",
+        "native": "الله يحفظك",
+        "roman": "Allāh yaḥfaẓak"
+      }
+    ],
+    "cultureNote": "Coffee is remembered as originating in Yemen; the word mocha refers to the port of al-Makha, and Yemeni Coffee Day is celebrated every 3 March. The upper rooms of Sana'a tower-houses are used to receive guests.",
+    "peopleNote": "Receive and eat with the right hand. Guests are honoured and served coffee or qishr. Greet the eldest person first. Casual talk is often mixed with poetry and stories.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "In Yemen, male guests are usually received in an upper room of a Sana'a tower-house, whose windows are framed with arched stained glass. There coffee is served with dates, and the small cup is filled a little at a time and refilled. Some hosts serve qishr, an infusion of coffee husks. Coffee itself is remembered as originating in Yemen: the word mocha refers to the port of al-Makha, and the country celebrates Yemeni Coffee Day every 3 March. The spice blend hawaij is added to the brew here. The official language is Modern Standard Arabic, while conversation uses Yemeni Arabic, considered conservative because it preserves many Classical Arabic features. The influence of Hadhrami Arabic, and of Malay from migration to Southeast Asia, left traces in everyday vocabulary. The right hand is used to receive and to eat.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+          "what": "Conservative Yemeni Arabic; Hadhrami Arabic; outside influence on vocabulary"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Coffee originated in Yemen via the port of Mokha; the hawaij spice blend; Yemeni Coffee Day"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+          "what": "Yemeni coffee and its origins in al-Makha"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+          "what": "Tower-houses and qishr, an infusion of coffee husks"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+        "what": "Conservative Yemeni Arabic; Hadhrami Arabic; outside influence on vocabulary"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Coffee originated in Yemen via the port of Mokha; the hawaij spice blend; Yemeni Coffee Day"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+        "what": "Yemeni coffee and its origins in al-Makha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qishr",
+        "what": "Qishr, a Yemeni infusion of coffee husks"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+        "what": "Tower-houses and qishr, an infusion of coffee husks"
+      }
+    ],
+    "needsVerification": [
+      "The use of qishr and hawaij varies between regions",
+      "Malay vocabulary influence varies between communities"
+    ]
+  },
+  {
+    "id": "jo",
+    "iso3": "JOR",
+    "nameId": "Jordan",
+    "nameLocal": "الأردن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Peace be upon you (hello)",
+      "register": "neutral, with religious overtones"
+    },
+    "language": {
+      "nameId": "Arabic",
+      "nativeName": "العربية",
+      "script": "Arabic script (abjad, 28 letters, right to left)",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Arabic is the official language of Jordan; daily conversation uses Jordanian Arabic (Levantine), while Modern Standard Arabic is used for writing and the news."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Mansaf, rice with lamb and thick yoghurt, is the national dish, eaten together from one large platter. The tradition of hosting guests and sharing food marks both the host's honour and the closeness of the family.",
+    "peopleNote": "A greeting usually comes with a handshake and sometimes cheek kisses between people of the same gender. «Ahlan wa sahlan» is often used as a word of welcome. The older person is greeted first, and guests are usually offered tea or coffee right away.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "A large tray of rice, lamb, and thick yoghurt is set down in the middle of a circle of family. The dish, mansaf, is eaten together with the right hand from one big platter, a way of eating that marks togetherness and respect for the guest. Jordan designates Arabic as its official language, while daily social life uses Jordanian Arabic from the Levantine branch. Modern Standard Arabic appears more in writing, news, and official documents, following the diglossia common across the Arab world. Arabic script runs right to left using an alphabet of 28 letters, some of them distinguished by dots above or below. According to Britannica, Amman, once called Philadelphia, is now one of the Arab world's major cultural centres. The everyday greeting is «السلام عليكم», often followed by «أهلا وسهلا» (ahlan wa sahlan) as a welcome.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Jordan",
+          "what": "Arabic is the official language; Amman is the capital; Petra"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jordanian_Arabic",
+          "what": "Jordanian Arabic from the Levantine branch; diglossia with Modern Standard Arabic; Arabic script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Modern Standard Arabic for writing and the news; 28-letter abjad, right to left"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+          "what": "شكراً = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+          "what": "مع السلامة = goodbye / farewell"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Jordan",
+        "what": "Arabic is the official language; Amman is the capital; Petra"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Jordanian_Arabic",
+        "what": "Jordanian Arabic from the Levantine branch; diglossia with Modern Standard Arabic; Arabic script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Modern Standard Arabic for writing and the news; 28-letter abjad, right to left"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = goodbye / farewell"
+      }
+    ],
+    "needsVerification": [
+      "The handshake, cheek-kiss, and mansaf etiquette comes from common practice, not a primary source",
+      "Jordanian Arabic is very diverse (sedentary versus Bedouin) and is simplified here"
+    ]
+  },
+  {
+    "id": "kg",
+    "iso3": "KGZ",
+    "nameId": "Kyrgyzstan",
+    "nameLocal": "Кыргызстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Салам",
+      "roman": "Salam",
+      "meaningId": "Hello",
+      "register": "neutral; casual register"
+    },
+    "language": {
+      "nameId": "Kyrgyz",
+      "nativeName": "Кыргыз тили",
+      "script": "Cyrillic alphabet (with added letters ң, ө, ү)",
+      "family": "Turkic (Kipchak)",
+      "note": "Kyrgyz is an official language alongside Russian. Like other Turkic languages, Kyrgyz uses vowel harmony."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Рахмат",
+        "roman": "Rakhmat"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Кечиресиз",
+        "roman": "Kechiresiz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Кош болуңуз",
+        "roman": "Kosh boluñuz"
+      }
+    ],
+    "cultureNote": "Hospitality is a highly valued norm. A guest is welcomed and is expected to accept an offer of tea or kymyz, a fermented mare's-milk drink, because refusing food can feel like a rejection of the host.",
+    "peopleNote": "Handshakes are common, especially between men, and elders are greeted first. Objects are given or received with the right hand, and shoes are removed before entering a home.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "At a teahouse near Bishkek, a guest is welcomed with a spoken greeting and a handshake. The official language of Kyrgyzstan is Kyrgyz, a member of the Turkic family in the Kipchak branch, and Russian also has official status. Kyrgyz is written in the Cyrillic alphabet with extra letters ң, ө, and ү for sounds not found in Russian. Like other Turkic languages, Kyrgyz uses vowel harmony: the vowels in a word shift to match a front or back row. The friendly greeting is salam, often followed by the question kandaisyng, 'how are you?'. A short reply is jakshy, 'fine', or jakshy, rakhmat. Thank you is rakhmat. Kyrgyz people value hospitality highly. A guest is invited in and offered tea or kymyz, a fermented drink made from mare's milk. Elders are greeted first. Giving or receiving an object is best done with the right hand.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Kyrgyz_language",
+          "what": "Turkic family, Kipchak branch, vowel harmony, Cyrillic alphabet with ң, ө, ү, official status alongside Russian"
+        },
+        {
+          "url": "https://worldly.academy/words/kyrgyz",
+          "what": "The phrases Salam, Kosh boluñuz, Rakhmat, and kymyz as an offering"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Kyrgyz_alphabets",
+          "what": "The Kyrgyz Cyrillic alphabet and its added letters"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kyrgyz_language",
+        "what": "Turkic family, vowel harmony, Cyrillic alphabet, official status"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Kyrgyz_alphabets",
+        "what": "The added letters ң, ө, ү in the Kyrgyz Cyrillic alphabet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Kyrgyzstan",
+        "what": "Hospitality, offerings of tea and kymyz, respect for guests"
+      },
+      {
+        "url": "https://worldly.academy/words/kyrgyz",
+        "what": "Basic greeting and thank-you phrases"
+      }
+    ],
+    "needsVerification": [
+      "Mapping 'Excuse me' to kechiresiz (which means sorry/excuse me) needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "tj",
+    "iso3": "TJK",
+    "nameId": "Tajikistan",
+    "nameLocal": "Тоҷикистон",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Салом",
+      "roman": "Salom",
+      "meaningId": "Hello",
+      "register": "neutral, friendly"
+    },
+    "language": {
+      "nameId": "Tajik",
+      "nativeName": "Тоҷикӣ",
+      "script": "Cyrillic alphabet (35 letters)",
+      "family": "Indo-European (Iranian)",
+      "note": "Tajik is a variety of Persian written in Cyrillic. It is closely related to Farsi in Iran and Dari in Afghanistan."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Ташаккур",
+        "roman": "Tashakkur"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Мебахшед",
+        "roman": "Mebakhshed"
+      },
+      {
+        "id": "Goodbye",
+        "native": "То дидан",
+        "roman": "To didan"
+      }
+    ],
+    "cultureNote": "Nowruz, the spring new year, is celebrated with food and family visits. The festival marks the start of the year in the Persian tradition inherited by Tajiks.",
+    "peopleNote": "When greeting, people place the right hand on the chest. Elders are greeted first, guests are offered tea, and shoes are removed before entering a home.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "At a choykhona, a teahouse in Dushanbe, a guest greets with salom and places his right hand on his chest. The official language of Tajikistan is Tajik, a member of the Indo-European family in the Iranian branch. Tajik is in fact a variety of Persian written in the Cyrillic alphabet since 1940. The Tajik Cyrillic alphabet has 35 letters, including extra letters ғ, ӣ, қ, ӯ, ҳ, and ҷ for Persian sounds absent from Russian. Previously Tajik was written in the Perso-Arabic script, then briefly in a Latin alphabet. The everyday greeting salom and the thanks tashakkur come largely from Arabic vocabulary, a trace of Islamic influence. Tajiks celebrate Nowruz, the spring new year, with food and family visits. In social life, elders are respected and greeted first, and guests are offered tea and fruit before long conversation. Removing shoes on entering a home is common.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tajik_language",
+          "what": "Tajik as a variety of Persian, Indo-European Iranian branch, written in Cyrillic since 1939-1940"
+        },
+        {
+          "url": "https://celcar.indiana.edu/materials/language-portal/tajiki.html",
+          "what": "The history of Tajik scripts and the 35-letter Cyrillic alphabet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tajik_alphabet",
+          "what": "The added letters ғ, ӣ, қ, ӯ, ҳ, ҷ"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Tajik_language",
+        "what": "Tajik as a variety of Persian, Indo-European family, Cyrillic writing"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tajik_alphabet",
+        "what": "The Tajik Cyrillic alphabet and its added letters"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Tajikistan",
+        "what": "Nowruz, hospitality, and customs of receiving guests"
+      },
+      {
+        "url": "https://celcar.indiana.edu/materials/language-portal/tajiki.html",
+        "what": "The history of Tajik's three writing systems and its features"
+      }
+    ],
+    "needsVerification": [
+      "The Arabic origin of salom and tashakkur has not been traced to a primary etymological source"
+    ]
+  },
+  {
+    "id": "tm",
+    "iso3": "TKM",
+    "nameId": "Turkmenistan",
+    "nameLocal": "Türkmenistan",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Salam",
+      "roman": "Salam",
+      "meaningId": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "nameId": "Turkmen",
+      "nativeName": "Türkmençe",
+      "script": "Latin alphabet (official since 1993; previously Cyrillic)",
+      "family": "Turkic (Oghuz)",
+      "note": "Turkmen is the official language of Turkmenistan and is closely related to Turkish and Azerbaijani. Its Latin alphabet uses extra letters such as ä, ň, ö, ş, ü, and ý."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Sag boluň",
+        "roman": "Sag boluň"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Bagyşlaň",
+        "roman": "Bagyşlaň"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Hoş sag boluň",
+        "roman": "Hoş sag boluň"
+      }
+    ],
+    "cultureNote": "Bread is treated with respect: it is never placed upside down or thrown away. In Turkmen culture bread represents sustenance, so the way it is handled reflects gratitude toward the host.",
+    "peopleNote": "Elders are greeted first, and food or gifts are offered with the right hand, sometimes supported by the left. Guests are served tea and bread when they visit.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "On the edge of the Karakum Desert, a guest is welcomed inside a tent with a plate of bread and a bowl of green tea. The official language of Turkmenistan is Turkmen, a member of the Turkic family in the Oghuz branch, closely related to Turkish and Azerbaijani. Within one century the language used four writing systems: the Perso-Arabic script, then Latin in 1928, then Cyrillic in 1940, and back to Latin in 1993 after independence. The official Turkmen Latin alphabet uses extra letters such as ä, ň, ö, ş, ü, ý, and ž. The greeting Salam is answered with Salam, then Nähili, 'how are you?'. The thanks sag boluň literally means 'stay well'. Turkmen culture treats bread with respect: bread is never placed upside down or thrown away. Elders are greeted first, and gifts or food are offered with the right hand, sometimes supported by the left.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Turkmen_language",
+          "what": "Turkic family, Oghuz branch, Latin alphabet official since 1993, history of four writing systems"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Turkmen_alphabet",
+          "what": "The Turkmen Latin alphabet with the accented letters ä, ň, ö, ş, ü, ý, ž"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Turkmen_phrasebook",
+          "what": "Salam, Nähili, sag boluň, bagyşlaň as basic phrases"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Turkmen_language",
+        "what": "Turkic Oghuz family, official Latin alphabet, history of the writing system"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Turkmen_alphabet",
+        "what": "The layout of the Turkmen Latin alphabet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Turkmenistan",
+        "what": "Hospitality, the role of bread and tea, customs of receiving guests"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Turkmen_phrasebook",
+        "what": "Phrases for greeting, thank you, and excuse me"
+      }
+    ],
+    "needsVerification": [
+      "Some people still write and read the Cyrillic variant; the Latin spelling for 'Hoş sag boluň' has not been traced to an official dictionary",
+      "The literal meaning of 'sag boluň' needs checking with a native speaker"
+    ]
+  }
+]

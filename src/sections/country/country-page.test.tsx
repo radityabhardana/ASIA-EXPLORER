@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { countries, getCountry } from '@/content/countries';
+import { themes } from '@/content/themes';
 import CountryPage from '@/app/pages/CountryPage';
 import { contrastRatio } from '@/lib/color';
 import CountryBackground, { getCountryTheme } from './CountryBackground';
@@ -60,10 +61,11 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
   });
 
   describe('1. Adaptive Background (CountryBackground.tsx)', () => {
-    it('memiliki palet tema untuk semua 15 negara dengan kontras ink >= 12:1 (AAA)', () => {
-      expect(countries).toHaveLength(15);
-      for (const country of countries) {
-        const theme = getCountryTheme(country.id);
+    it('memiliki palet tema untuk setiap id bertema dengan kontras ink >= 12:1 (AAA)', () => {
+      const themedIds = Object.keys(themes.countries);
+      expect(themedIds.length).toBeGreaterThan(0);
+      for (const cid of themedIds) {
+        const theme = getCountryTheme(cid);
         expect(theme.base).toMatch(/^#[0-9a-f]{6}$/i);
         expect(theme.contourStroke).toMatch(/^#[0-9a-f]{6}$/i);
         expect(theme.contourOpacity).toBeGreaterThanOrEqual(0.12);
@@ -72,8 +74,20 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
         const cr = contrastRatio('#1a1f24', theme.base);
         expect(
           cr,
-          `Kontras --ink terhadap base negara ${country.id} harus >= 12:1 (AAA), dapat ${cr.toFixed(2)}:1`,
+          `Kontras --ink terhadap base negara ${cid} harus >= 12:1 (AAA), dapat ${cr.toFixed(2)}:1`,
         ).toBeGreaterThanOrEqual(12);
+      }
+    });
+
+    it('memberi tema deterministik (fallback wilayah) untuk semua negara tanpa crash', () => {
+      expect(countries.length).toBeGreaterThanOrEqual(15);
+      for (const country of countries) {
+        const theme = getCountryTheme(country.id);
+        expect(theme.base).toMatch(/^#[0-9a-f]{6}$/i);
+        expect(theme.soil).toMatch(/^#[0-9a-f]{6}$/i);
+        expect(theme.accent).toMatch(/^#[0-9a-f]{6}$/i);
+        const cr = contrastRatio('#1a1f24', theme.base);
+        expect(cr, `fallback tema ${country.id} kontras ${cr.toFixed(2)}:1`).toBeGreaterThanOrEqual(12);
       }
     });
 

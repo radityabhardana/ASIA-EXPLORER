@@ -1,0 +1,698 @@
+[
+  {
+    "id": "am",
+    "iso3": "ARM",
+    "name_id": "Armenia",
+    "name_local": "Հայաստան",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Բարև",
+      "roman": "Barev",
+      "meaning_id": "Hello",
+      "register": "neutral, familiar; polite form «Բարև ձեզ»"
+    },
+    "language": {
+      "name_id": "Armenian",
+      "native_name": "Հայերեն (Hayeren)",
+      "script": "Armenian alphabet, 36 letters, left to right (created by Mashtots, c. 405 CE)",
+      "family": "Indo-European (its own branch)",
+      "note": "The official language of Armenia; it has two written standards, Eastern Armenian (Yerevan) and Western Armenian, which lives on in the diaspora."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Շնորհակալություն",
+        "roman": "Shnorhakalutyun"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Կներեք",
+        "roman": "Knerek"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Ցտեսություն",
+        "roman": "Tstesutyun"
+      }
+    ],
+    "culture_note": "The Armenian alphabet was inscribed on UNESCO's Intangible Cultural Heritage list in 2019. For Armenians the alphabet is more than a writing tool: it is a national symbol, uniting the homeland and the diaspora through a single writing system.",
+    "people_note": "Men usually shake hands when greeting, while relatives and close friends exchange two cheek kisses. The younger greets the elder first. Guests are offered coffee or tea, and receiving something with the right hand is considered polite.",
+    "story": {
+      "text": "Behind a wooden desk in 405 CE, Mesrop Mashtots carved a line of new signs for the first time. He devised the Armenian alphabet, 36 letters written left to right and partly modelled on the Greek sequence. According to Britannica, Armenian forms its own branch of the Indo-European family and is not closely related to the Iranian or Turkic languages around it. The script was soon used to translate the Bible and marked a golden age of Armenian literature. From the 1920s Soviet spelling was slightly reformed, while the Western Armenian diaspora kept the traditional spelling, so one language has two written standards: Eastern Armenian in Yerevan and Western Armenian abroad. On the streets of Yerevan the everyday greeting is «Բարև» (Barev); with someone unfamiliar people use the polite «Բարև ձեզ». As a rule the younger greets the elder first. When visiting a home, guests take off their shoes and accept coffee from the host as a sign of respect.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Armenian-language",
+          "what": "Armenian is a separate branch of Indo-European; Mashtots created the alphabet in 405 CE with 36 signs, writing direction following Greek"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Armenian_alphabet",
+          "what": "The Armenian alphabet was developed by Mashtots around 405 CE; written left to right; official script of Armenia"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D5%A2%D5%A1%D6%80%D6%87",
+          "what": "Բարև = hello; polite form «Բարև ձեզ»"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Armenian-language",
+        "what": "Armenian is a separate branch of Indo-European; Mashtots created the alphabet in 405 CE with 36 signs, writing direction following Greek"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Armenian_alphabet",
+        "what": "The Armenian alphabet was developed by Mashtots around 405 CE; written left to right; official script of Armenia"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D5%A2%D5%A1%D6%80%D6%87",
+        "what": "Բարև = hello; polite form «Բարև ձեզ»"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D5%B7%D5%B6%D5%B8%D6%80%D5%B0%D5%A1%D5%AF%D5%A1%D5%AC%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6",
+        "what": "Շնորհակալություն = thank you"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The romanisation of Կներեք and Ցտեսություն has not been checked against a dictionary source",
+      "The shoe-removal and double-cheek-kiss etiquette comes from common practice, not a primary source"
+    ]
+  },
+  {
+    "id": "az",
+    "iso3": "AZE",
+    "name_id": "Azerbaijan",
+    "name_local": "Azərbaycan",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Salam",
+      "roman": "Salam",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Azerbaijani",
+      "native_name": "Azərbaycan dili",
+      "script": "Latin script since 1991; Cyrillic and Arabic in other regions",
+      "family": "Turkic (Oghuz branch)",
+      "note": "The official language of the Republic of Azerbaijan; the variety spoken in Iran is still written in the Arabic script and is called South Azerbaijani."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Təşəkkür edirəm",
+        "roman": "Təşəkkür edirəm"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Bağışlayın",
+        "roman": "Bağışlayın"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Sağ ol",
+        "roman": "Sağ ol"
+      }
+    ],
+    "culture_note": "Tea is the main welcoming drink. The host pours it into a pear-shaped glass called armudu and serves it with jam or sugar lumps; letting a guest's glass stay empty is considered unfriendly.",
+    "people_note": "Men shake hands when they meet, while women often just nod or place a hand on the chest. The older person is greeted first. At home, shoes are removed and guests usually bring a small gift for the host.",
+    "story": {
+      "text": "Tea is poured into a pear-shaped glass called armudu before any conversation begins. In a Baku tea house the host rarely lets a guest's glass stay empty; strong tea is served with jam, nuts, or lumps of sugar. Azerbaijani belongs to the Oghuz branch of the Turkic family, related to Turkish and Turkmen. According to Britannica, the language used the Arabic script until the early 20th century, then switched to the Cyrillic alphabet from 1939 under Soviet rule. After independence in 1991 the Republic of Azerbaijan returned to a Latin alphabet, while speakers in Iran still write in Arabic script. The everyday greeting is simply «Salam». At the door of a home, guests remove their shoes and bring a small gift of fruit or sweets for the host. Elders are greeted first, and men's handshakes usually come with eye contact and a brief clasp of both hands.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Azerbaijani-language",
+          "what": "Turkic language, Oghuz branch; Arabic script until the 20th century, Cyrillic in 1939, Latin since 1992"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Azerbaijani_language",
+          "what": "Oghuz Turkic; Latin script since 1991 in the Republic of Azerbaijan; the Iranian variety uses Arabic script"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/salam",
+          "what": "salam = hello (Azerbaijani)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Azerbaijani-language",
+        "what": "Turkic language, Oghuz branch; Arabic script until the 20th century, Cyrillic in 1939, Latin since 1992"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Azerbaijani_language",
+        "what": "Oghuz Turkic; Latin script since 1991 in the Republic of Azerbaijan; the Iranian variety uses Arabic script"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/salam",
+        "what": "salam = hello (Azerbaijani)"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The romanisation of Təşəkkür edirəm, Bağışlayın, and Sağ ol has not been checked against a dictionary source",
+      "The custom of bringing a small gift when visiting comes from common practice, not a primary source"
+    ]
+  },
+  {
+    "id": "bh",
+    "iso3": "BHR",
+    "name_id": "Bahrain",
+    "name_local": "البحرين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Peace be upon you (hello)",
+      "register": "neutral, with religious overtones"
+    },
+    "language": {
+      "name_id": "Arabic",
+      "native_name": "العربية",
+      "script": "Arabic script (abjad, 28 letters, right to left)",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "The official language of Bahrain; the local Bahrani and Gulf Arabic dialects coexist, while Modern Standard Arabic is used in the media and official documents."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "culture_note": "Bahrain's constitution declares the family the cornerstone of society, so large family gatherings and hosting at home hold an important place. Arabic coffee, gahwa, is served with dates to welcome a guest.",
+    "people_note": "Handshakes are common between people of the same gender; with the opposite gender, one waits for the other to extend a hand first. A guest is greeted and invited to sit before the host. Receiving food or drink with the right hand is considered polite.",
+    "story": {
+      "text": "Unsweetened coffee is poured from a copper pot into a small handleless cup. In Bahrain, serving gahwa, or Arabic coffee, with dates is how a host welcomes a guest; an empty cup is refilled at once until the guest shakes the cup to signal that it is enough. Arabic is the official language of this island nation. According to Britannica, Bahrain lies in the Persian Gulf with Manama as its capital, and its constitution affirms the family as the cornerstone of society. On the street two varieties of Arabic coexist: the Bahrani dialect typical of the older population and the Gulf Arabic spoken in the cities. Modern Standard Arabic appears in the media, official documents, and schools. The most common greeting is «السلام عليكم» (as-salāmu ʿalaykum), a wish of peace, answered with «وعليكم السلام». Guests usually receive food or drink with the right hand, while the left hand is considered less proper.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Bahrain",
+          "what": "Arabic is the official language; Manama is the capital; the constitution calls the family the cornerstone of society"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+          "what": "The Bahrani Arabic dialect coexists with Gulf Arabic; it uses the Arabic script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Modern Standard Arabic is used in the media and documents; a diglossic situation across the Arab world"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Bahrain",
+        "what": "Arabic is the official language; Manama is the capital; the constitution calls the family the cornerstone of society"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+        "what": "The Bahrani Arabic dialect coexists with Gulf Arabic; it uses the Arabic script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Modern Standard Arabic is used in the media and documents; a diglossic situation across the Arab world"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = goodbye / farewell"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The cross-gender handshake etiquette and the order of greeting have not been checked against a primary source",
+      "The dialect a visitor hears may differ from city to city"
+    ]
+  },
+  {
+    "id": "cy",
+    "iso3": "CYP",
+    "name_id": "Cyprus",
+    "name_local": "Κύπρος",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Γεια σας",
+      "roman": "Yia sas",
+      "meaning_id": "Hello",
+      "register": "polite (respectful plural form); familiar form: «γεια σου»"
+    },
+    "language": {
+      "name_id": "Greek",
+      "native_name": "Ελληνικά",
+      "script": "Greek alphabet, 24 letters, left to right",
+      "family": "Indo-European (Hellenic)",
+      "note": "Greek is the dominant official language; Turkish is co-official in the Republic of Cyprus and dominant in the north. The Cypriot dialect differs noticeably from Standard Greek."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Ευχαριστώ",
+        "roman": "Efcharistó"
+      },
+      {
+        "id": "Excuse me",
+        "native": "Συγγνώμη",
+        "roman": "Sygnómi"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Αντίο",
+        "roman": "Adío"
+      }
+    ],
+    "culture_note": "Meze, a spread of small dishes shared by everyone, is the characteristic Cypriot way of dining. Hosts often urge guests to take more with the call «kopiaste», roughly \"please eat plenty\", because repeatedly refusing is seen as impolite.",
+    "people_note": "A friendly greeting between friends usually comes with two cheek kisses, while a formal introduction is just a handshake. The older person is greeted first. Cafes serve as social spaces where people sit for a long time and chat.",
+    "story": {
+      "text": "In an old coffee shop in Nicosia, a glass of Greek coffee is sipped slowly while the owner greets every customer with «Γεια σας» (Yia sas). The Republic of Cyprus has two official languages, Greek and Turkish, with Greek spoken by the majority. Daily conversation in the southern cities often uses Cypriot Greek, a dialect different enough from Standard Modern Greek that listeners from Athens need time to tune their ear. This situation is called diglossia: the vernacular variety is used daily, while the standard appears in the news and documents. The Greek alphabet is more than two thousand years old and runs left to right with 24 letters. At the table, food arrives as meze, many small dishes shared among everyone. A friendly greeting between friends usually comes with two cheek kisses.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Cyprus",
+          "what": "Greek and Turkish are official languages; Nicosia/Lefkosia is the capital"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Cypriot_Greek",
+          "what": "Cypriot Greek dialect; diglossia with Standard Greek; uses the Greek alphabet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Greek_alphabet",
+          "what": "The Greek alphabet has 24 letters and runs left to right"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%CE%B3%CE%B5%CE%B9%CE%B1_%CF%83%CE%B1%CF%82",
+          "what": "γεια σας = hello/goodbye (respectful plural form)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Cyprus",
+        "what": "Greek and Turkish are official languages; Nicosia/Lefkosia is the capital"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Cypriot_Greek",
+        "what": "Cypriot Greek dialect; diglossia with Standard Greek; uses the Greek alphabet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Greek_alphabet",
+        "what": "The Greek alphabet has 24 letters and runs left to right"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B3%CE%B5%CE%B9%CE%B1_%CF%83%CE%B1%CF%82",
+        "what": "γεια σας = hello/goodbye (respectful plural form)"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B5%CF%85%CF%87%CE%B1%CF%81%CE%B9%CF%83%CF%84%CF%8E",
+        "what": "ευχαριστώ = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CF%83%CF%85%CE%B3%CE%B3%CE%BD%CF%8E%CE%BC%CE%B7",
+        "what": "συγγνώμη = sorry / excuse me"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B1%CE%BD%CF%84%CE%AF%CE%BF",
+        "what": "αντίο = goodbye"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The two-cheek-kiss etiquette and the «kopiaste» call come from common practice, not a primary source",
+      "The coverage of official languages in the northern area is simplified"
+    ]
+  },
+  {
+    "id": "ge",
+    "iso3": "GEO",
+    "name_id": "Georgia",
+    "name_local": "საქართველო",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "გამარჯობა",
+      "roman": "Gamarjoba",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Georgian",
+      "native_name": "ქართული (Kartuli)",
+      "script": "Georgian script; Mkhedruli with 33 letters, no upper or lower case",
+      "family": "Kartvelian (South Caucasus)",
+      "note": "The official language of Georgia; it is unrelated to the main language families around it and has its own distinctive script."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "მადლობა",
+        "roman": "Madloba"
+      },
+      {
+        "id": "Excuse me",
+        "native": "ბოდიში",
+        "roman": "Bodishi"
+      },
+      {
+        "id": "Goodbye",
+        "native": "ნახვამდის",
+        "roman": "Nakhvamdis"
+      }
+    ],
+    "culture_note": "A supra feast is led by the tamada, who orders the toasts, from peace to the memory of ancestors. Guests do not drink before the tamada leads, because each glass is raised to a theme rather than simply to clink.",
+    "people_note": "Men shake hands when they meet, while close friends exchange cheek kisses. The older person is greeted first. A guest is treated as a blessing, so food or drink is often offered before the guest has even sat down.",
+    "story": {
+      "text": "A wine glass is raised high as the tamada, the feast leader, gives the first toast. The Georgian supra tradition orders the meal: each glass is raised to a theme, from peace to the memory of ancestors, and guests do not drink before the tamada leads. Georgian belongs to the Kartvelian family and is unrelated to the Indo-European and Turkic languages around it. The distinctive Mkhedruli script, which has no upper or lower case, is the everyday alphabet, while two older church scripts still appear in manuscripts and icons. According to Britannica, Georgian literary tradition goes back to the 5th century. On the streets of Tbilisi the everyday greeting is «გამარჯობა» (Gamarjoba). Elders are greeted first, and a handshake is the usual greeting between men meeting for the first time.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Georgian-language",
+          "what": "Official language of Georgia; Kartvelian family; literary tradition since the 5th century; Mkhedruli is the current script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Georgian_language",
+          "what": "Kartvelian; official language of Georgia; Mkhedruli without upper/lower case"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Georgian_scripts",
+          "what": "Three Georgian scripts; Mkhedruli with 33 letters; UNESCO cultural heritage 2016"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90",
+          "what": "გამარჯობა = hello"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E1%83%9B%E1%83%90%E1%83%93%E1%83%9A%E1%83%9D%E1%83%91%E1%83%90",
+          "what": "მადლობა = thank you"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Georgian-language",
+        "what": "Official language of Georgia; Kartvelian family; literary tradition since the 5th century; Mkhedruli is the current script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Georgian_language",
+        "what": "Kartvelian; official language of Georgia; Mkhedruli without upper/lower case"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Georgian_scripts",
+        "what": "Three Georgian scripts; Mkhedruli with 33 letters; UNESCO cultural heritage 2016"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90",
+        "what": "გამარჯობა = hello"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E1%83%9B%E1%83%90%E1%83%93%E1%83%9A%E1%83%9D%E1%83%91%E1%83%90",
+        "what": "მადლობა = thank you"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The romanisation of ბოდიში and ნახვამდის has not been checked against a dictionary source",
+      "The cheek-kiss and handshake etiquette comes from common practice"
+    ]
+  },
+  {
+    "id": "il",
+    "iso3": "ISR",
+    "name_id": "Israel",
+    "name_local": "ישראל",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "שלום",
+      "roman": "Shalom",
+      "meaning_id": "Hello / peace",
+      "register": "neutral, used both as a greeting and a farewell"
+    },
+    "language": {
+      "name_id": "Hebrew",
+      "native_name": "עברית (Ivrit)",
+      "script": "Hebrew alphabet, 22 letters, abjad written right to left",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "The official language of Israel; revived as a spoken language from the late 19th century, while Arabic holds special status."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "תודה",
+        "roman": "Todá"
+      },
+      {
+        "id": "Excuse me",
+        "native": "סליחה",
+        "roman": "Slicha"
+      },
+      {
+        "id": "Goodbye",
+        "native": "להתראות",
+        "roman": "Lehitraot"
+      }
+    ],
+    "culture_note": "Welcoming Shabbat, families gather on Friday evening to light candles and eat together. Before the Sabbath many shops close early, and in some areas public transport stops until Saturday evening.",
+    "people_note": "The word «Shalom» serves both as a greeting and a farewell. A handshake is the usual greeting, but some religious people avoid physical contact with the opposite gender, so it is best to wait for a hand to be offered. Speech tends to be direct and outspoken.",
+    "story": {
+      "text": "On a Friday afternoon the Mahane Yehuda market in Jerusalem empties as many people hurry home for Shabbat. Modern Hebrew is the official language of Israel and the only ancient language successfully revived as an everyday spoken tongue, led by Eliezer Ben-Yehuda in the late 19th century. Hebrew belongs to the Afro-Asiatic family, Semitic branch, and differs from the European languages of the Jewish diaspora. The Hebrew script is an abjad of 22 letters written right to left; its letters originally recorded only consonants, while vowels were added as small marks that tend to disappear in everyday writing. The word «שלום» (Shalom) means peace and also serves as both greeting and farewell. A handshake is the usual greeting on meeting, and asking direct questions is considered normal rather than rude.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Hebrew-language",
+          "what": "Northwest Semitic language; official language of Israel; 22 letters, written right to left"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+          "what": "Official language of Israel; revived as a spoken language; Afro-Asiatic, Semitic branch"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hebrew_alphabet",
+          "what": "The Hebrew alphabet has 22 letters, an abjad written right to left; derived from the Aramaic script"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D7%A9%D7%9C%D7%95%D7%9D",
+          "what": "שלום = peace; used as both a greeting and a farewell"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Hebrew-language",
+        "what": "Northwest Semitic language; official language of Israel; 22 letters, written right to left"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+        "what": "Official language of Israel; revived as a spoken language; Afro-Asiatic, Semitic branch"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hebrew_alphabet",
+        "what": "The Hebrew alphabet has 22 letters, an abjad written right to left; derived from the Aramaic script"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%A9%D7%9C%D7%95%D7%9D",
+        "what": "שלום = peace; used as both a greeting and a farewell"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%AA%D7%95%D7%93%D7%94",
+        "what": "תודה = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%94",
+        "what": "סליחה = sorry / excuse me"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The romanisation of תודה, סליחה, and להתראות has not been checked against a dictionary source",
+      "The etiquette about physical contact with the opposite gender applies to some groups and is not universal"
+    ]
+  },
+  {
+    "id": "iq",
+    "iso3": "IRQ",
+    "name_id": "Iraq",
+    "name_local": "العراق",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Peace be upon you (hello)",
+      "register": "neutral, with religious overtones"
+    },
+    "language": {
+      "name_id": "Arabic",
+      "native_name": "العربية",
+      "script": "Arabic script (abjad, 28 letters, right to left)",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Arabic and Kurdish are the two official languages of Iraq; the Baghdadi dialect, called the Iraqi dialect, is the everyday lingua franca."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "culture_note": "Strong sweet tea is the welcoming drink, served in a small glass without milk and often with date pastries. Honouring the guest, diyafa, is an important value, so refusing a host's offer again and again is seen as impolite.",
+    "people_note": "People of the same gender shake hands and sometimes exchange cheek kisses; with the opposite gender, physical contact is not always made. Receiving and handing over items with the right hand is considered polite. The older person is greeted first.",
+    "story": {
+      "text": "Steam rises from a small glass of strong tea at a cafe on the bank of the Tigris in Baghdad. Sweet, dark tea, chai, is the welcoming drink, served without milk and often with date pastries. Iraq designates Arabic and Kurdish as its two official languages. Everyday conversation in Baghdad uses Mesopotamian Arabic, commonly called the Iraqi dialect, which its speakers regard as fairly close to classical Arabic. Modern Standard Arabic is used for documents, books, and news broadcasts; this situation is known as diglossia. According to Britannica, Baghdad has been a seat of government since the Abbasid Caliphate and is now a city of tens of millions. The everyday greeting is «السلام عليكم» (as-salāmu ʿalaykum). Guests generally take food with the right hand, while eating or handing over items with the left hand is avoided.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Iraq",
+          "what": "Arabic and Kurdish are the official languages; Baghdad is the capital; the land of Mesopotamia"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+          "what": "The Mesopotamian/Baghdadi dialect is Iraq's lingua franca; two varieties, Gelet and Qeltu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Modern Standard Arabic is used in documents and the news; a diglossic situation"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+          "what": "شكراً = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+          "what": "مع السلامة = goodbye / farewell"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Iraq",
+        "what": "Arabic and Kurdish are the official languages; Baghdad is the capital; the land of Mesopotamia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+        "what": "The Mesopotamian/Baghdadi dialect is Iraq's lingua franca; two varieties, Gelet and Qeltu"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Modern Standard Arabic is used in documents and the news; a diglossic situation"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = goodbye / farewell"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The right-hand and cheek-kiss etiquette comes from common practice, not a primary source",
+      "Variation between city dialects is simplified into the Baghdadi dialect"
+    ]
+  },
+  {
+    "id": "jo",
+    "iso3": "JOR",
+    "name_id": "Jordan",
+    "name_local": "الأردن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Peace be upon you (hello)",
+      "register": "neutral, with religious overtones"
+    },
+    "language": {
+      "name_id": "Arabic",
+      "native_name": "العربية",
+      "script": "Arabic script (abjad, 28 letters, right to left)",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Arabic is the official language of Jordan; daily conversation uses Jordanian Arabic (Levantine), while Modern Standard Arabic is used for writing and the news."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "culture_note": "Mansaf, rice with lamb and thick yoghurt, is the national dish, eaten together from one large platter. The tradition of hosting guests and sharing food marks both the host's honour and the closeness of the family.",
+    "people_note": "A greeting usually comes with a handshake and sometimes cheek kisses between people of the same gender. «Ahlan wa sahlan» is often used as a word of welcome. The older person is greeted first, and guests are usually offered tea or coffee right away.",
+    "story": {
+      "text": "A large tray of rice, lamb, and thick yoghurt is set down in the middle of a circle of family. The dish, mansaf, is eaten together with the right hand from one big platter, a way of eating that marks togetherness and respect for the guest. Jordan designates Arabic as its official language, while daily social life uses Jordanian Arabic from the Levantine branch. Modern Standard Arabic appears more in writing, news, and official documents, following the diglossia common across the Arab world. Arabic script runs right to left using an alphabet of 28 letters, some of them distinguished by dots above or below. According to Britannica, Amman, once called Philadelphia, is now one of the Arab world's major cultural centres. The everyday greeting is «السلام عليكم», often followed by «أهلا وسهلا» (ahlan wa sahlan) as a welcome.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Jordan",
+          "what": "Arabic is the official language; Amman is the capital; Petra"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jordanian_Arabic",
+          "what": "Jordanian Arabic from the Levantine branch; diglossia with Modern Standard Arabic; Arabic script"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Modern Standard Arabic for writing and the news; 28-letter abjad, right to left"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+          "what": "شكراً = thank you"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+          "what": "مع السلامة = goodbye / farewell"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Jordan",
+        "what": "Arabic is the official language; Amman is the capital; Petra"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Jordanian_Arabic",
+        "what": "Jordanian Arabic from the Levantine branch; diglossia with Modern Standard Arabic; Arabic script"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Modern Standard Arabic for writing and the news; 28-letter abjad, right to left"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = thank you"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = goodbye / farewell"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The handshake, cheek-kiss, and mansaf etiquette comes from common practice, not a primary source",
+      "Jordanian Arabic is very diverse (sedentary versus Bedouin) and is simplified here"
+    ]
+  }
+]

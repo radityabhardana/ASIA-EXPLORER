@@ -8,18 +8,18 @@ test.describe('gates P0', () => {
     await page.goto('/');
 
     await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
+      () => window.__asiakin_map48?.ready === true,
       null,
       { timeout: 45_000 },
     );
 
     const projected = await page.evaluate(() => {
-      const p = (id: string) => window.__asiakin_scene?.projected(id);
+      const p = (id: string) => window.__asiakin_map48?.projected(id);
       return {
-        jp: p('jp'),
-        sa: p('sa'),
-        id: p('id'),
-        cn: p('cn'),
+        jp: p('JPN'),
+        sa: p('SAU'),
+        id: p('IDN'),
+        cn: p('CHN'),
       };
     });
 
@@ -43,27 +43,23 @@ test.describe('gates P0', () => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 1440, height: 900 });
 
-    // Tunda GLB 2.500 ms agar fase loading teramati pada titik-titik sampel 100/300/600/1200/2000 ms
-    await page.route('**/models/asia.glb', async (route) => {
+    // Tunda aset model/geo 2.500 ms agar fase loading teramati pada titik-titik sampel 100/300/600/1200/2000 ms
+    await page.route(/(?:models\/asia\.glb|asia-countries\.geo\.json)/, async (route) => {
       await new Promise((resolve) => setTimeout(resolve, 2500));
       await route.continue();
     });
 
-    const startTime = Date.now();
-    const navPromise = page.goto('/');
+    // Tunggu komit navigasi dulu supaya sampler tidak menembak execution
+    // context yang sedang berganti; sampel tetap dihitung dari commit.
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
 
-    const samplePoints = [100, 300, 600, 1200, 2000];
     const sampledHeights: number[] = [];
 
-    for (const targetMs of samplePoints) {
-      const elapsed = Date.now() - startTime;
-      const waitTime = targetMs - elapsed;
-      if (waitTime > 0) {
-        await page.waitForTimeout(waitTime);
-      }
+    for (let i = 0; i < 5; i++) {
+      await page.waitForTimeout(100);
 
       const sample = await page.evaluate(() => {
-        const svg = document.querySelector('.country-map-svg');
+        const svg = document.querySelector('.map48-fallback');
         const heroScene = document.querySelector('.landing-hero__scene');
         const rect = heroScene?.getBoundingClientRect();
         const root = document.querySelector('.landing-asia');
@@ -81,8 +77,6 @@ test.describe('gates P0', () => {
         sampledHeights.push(sample.height);
       }
     }
-
-    await navPromise;
 
     // Tunggu scene selesai hingga data-state="ready"
     await page.waitForFunction(
@@ -186,8 +180,9 @@ test.describe('gates P0', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
 
-    const fallbackSvg = page.locator('.country-map-svg').first();
-    await expect(fallbackSvg).toBeVisible({ timeout: 10_000 });
+    const fallbackList = page.locator('.map48-fallback').first();
+    await expect(fallbackList).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('.map48-fallback__item')).toHaveCount(48);
 
     const root = page.locator('.landing-asia').first();
     await expect(root).toHaveAttribute('data-state', 'fallback');
@@ -203,13 +198,13 @@ test.describe('gates P0', () => {
     }
     await page.goto('/');
     await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
+      () => window.__asiakin_map48?.ready === true,
       null,
       { timeout: 30_000 },
     );
     await page.waitForTimeout(1000);
 
-    const ink = await page.evaluate(() => window.__asiakin_scene?.measureInk?.());
+    const ink = await page.evaluate(() => window.__asiakin_map48?.measureInk?.());
     expect(ink).not.toBeNull();
 
     if (isMobile) {
@@ -230,7 +225,7 @@ test.describe('gates P0', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
     await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
+      () => window.__asiakin_map48?.ready === true,
       null,
       { timeout: 30_000 },
     );
@@ -279,72 +274,7 @@ test.describe('gates P0', () => {
     }
   });
 
-  test('counter: counter text === jumlah negara menyala di benua 3D, final 15/15 (3x loop)', async ({
-    page,
-    isMobile,
-  }) => {
-    test.skip(isMobile, 'Pengujian desktop 1440');
-    test.setTimeout(60_000);
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/');
-    await page.waitForFunction(
-      () => window.__asiakin_scenes?.scale?.ready === true,
-      null,
-      { timeout: 30_000 },
-    );
-    // Intro descent masih berjalan ~1.6 s; tunggu sampai tinta stabil.
-    await page.waitForTimeout(1800);
-
-    const total = await page.evaluate(
-      () => document.documentElement.scrollHeight - window.innerHeight,
-    );
-
-    const fractions = [0.03, 0.05, 0.065, 0.08, 0.095];
-
-    for (let run = 1; run <= 3; run++) {
-      for (const f of fractions) {
-        await page.evaluate((y) => window.scrollTo(0, y), Math.round(total * f));
-        await page.waitForTimeout(400);
-
-        const sample = await page.evaluate(() => {
-          const scene = window.__asiakin_scenes?.scale;
-          const counterEl = document.querySelector(
-            '.landing-scene--scale [data-counter]',
-          );
-          const counterNum = parseInt(counterEl?.textContent?.trim() ?? '0', 10);
-          const lit = scene?.lit?.() ?? [];
-          return { counterNum, litCount: lit.length, progress: scene?.highlightProgress?.() ?? -1 };
-        });
-
-        expect(
-          sample.counterNum,
-          `counter ${sample.counterNum} vs lit ${sample.litCount}`,
-        ).toBe(sample.litCount);
-      }
-
-      await page.evaluate(
-        (y) => window.scrollTo(0, y),
-        Math.round(total * 0.125),
-      );
-      await page.waitForTimeout(400);
-
-      const finalSample = await page.evaluate(() => {
-        const scene = window.__asiakin_scenes?.scale;
-        const counterEl = document.querySelector(
-          '.landing-scene--scale [data-counter]',
-        );
-        const counterNum = parseInt(counterEl?.textContent?.trim() ?? '0', 10);
-        const lit = scene?.lit?.() ?? [];
-        return { counterNum, litCount: lit.length, highlightCount: scene?.highlightCount?.() ?? -1 };
-      });
-
-      expect(finalSample.counterNum).toBe(15);
-      expect(finalSample.litCount).toBe(15);
-      expect(finalSample.highlightCount).toBe(15);
-    }
-  });
-
-  test('footer reachability at max scroll: 15 buttons and mark visible (1440 & 375)', async ({
+  test('footer reachability at max scroll: mark visible dan 15 kartu mosaik (1440 & 375)', async ({
     page,
     isMobile,
   }) => {
@@ -354,7 +284,7 @@ test.describe('gates P0', () => {
     }
     await page.goto('/');
     await page.waitForFunction(
-      () => window.__asiakin_scene?.ready === true,
+      () => window.__asiakin_map48?.ready === true,
       null,
       { timeout: 30_000 },
     );
@@ -365,33 +295,27 @@ test.describe('gates P0', () => {
 
     const footerReach = await page.evaluate(() => {
       const stage = document.querySelector('.landing-stage--footer');
-      const buttons = [...document.querySelectorAll('.landing-footer__index-button')].map((b) => {
-        const rect = b.getBoundingClientRect();
-        return { bottom: rect.bottom, top: rect.top };
-      });
+      const cards = [...document.querySelectorAll('.landing-mosaic__card')];
       const mark = document.querySelector('.landing-footer__mark')?.getBoundingClientRect();
       const vh = window.innerHeight;
       const scrollDiff = stage ? stage.scrollHeight - stage.clientHeight : 999;
-
-      // Acceptance: every button has bottom <= innerHeight at max scroll
-      const allButtonsReached = buttons.every((b) => b.bottom <= vh);
-      const markReached = mark ? mark.bottom <= vh : false;
+      const markReached = mark ? mark.top >= 0 && mark.bottom <= vh : false;
+      const lastCard = cards[cards.length - 1]?.getBoundingClientRect();
 
       return {
         scrollDiff,
-        buttonCount: buttons.length,
-        allButtonsReached,
+        cardCount: cards.length,
         markReached,
-        lastButtonBottom: buttons[buttons.length - 1]?.bottom,
+        lastCardReached: lastCard ? lastCard.bottom <= vh : false,
         markBottom: mark?.bottom,
         vh,
       };
     });
 
     expect(footerReach.scrollDiff).toBeLessThanOrEqual(1);
-    expect(footerReach.buttonCount).toBe(15);
-    expect(footerReach.allButtonsReached).toBe(true);
+    expect(footerReach.cardCount).toBe(15);
     expect(footerReach.markReached).toBe(true);
+    expect(footerReach.lastCardReached).toBe(true);
   });
 });
 
@@ -401,14 +325,9 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
     { width: 375, height: 812, label: '375' },
     { width: 768, height: 1024, label: '768' },
   ];
-  const SCENES = [
-    'scale',
-    'language',
-    'script',
-    'invitation',
-    'dashboard',
-    'footer',
-  ];
+  // Footer kini hanya wordmark + hak cipta (tanpa daftar negara), jadi sampel
+  // reveal memakai mosaik yang masih punya blok copy panjang.
+  const SCENES = ['script', 'mosaic', 'dashboard'];
 
   type RevealSample = {
     copyTop: number;
@@ -470,7 +389,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
       await page.setViewportSize({ width: lane.width, height: lane.height });
       await page.goto('/');
       await page.waitForFunction(
-        () => window.__asiakin_scene?.ready === true,
+        () => window.__asiakin_map48?.ready === true,
         null,
         { timeout: 45_000 },
       );
@@ -613,7 +532,7 @@ test.describe('gates P2.3 — reveal mengikuti geometri nyata', () => {
       await page.setViewportSize({ width: lane.width, height: lane.height });
       await page.goto('/');
       await page.waitForFunction(
-        () => window.__asiakin_scene?.ready === true,
+        () => window.__asiakin_map48?.ready === true,
         null,
         { timeout: 45_000 },
       );

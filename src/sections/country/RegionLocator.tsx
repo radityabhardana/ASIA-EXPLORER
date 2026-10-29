@@ -9,13 +9,18 @@ type RegionLocatorProps = {
 
 type MapCountry = (typeof mapPaths)[number];
 
-// Region groupings for neighbour finding
+// Pengelompokan wilayah untuk pencarian tetangga — mencakup semua 48 negara.
+// Entri di luar 15 negara kurasi tidak punya path di `map-paths.json` dan
+// otomatis dilewati oleh loop di bawah.
 const REGION_GROUPS: Record<string, string[]> = {
-  'Asia Tenggara': ['id', 'my', 'sg', 'th', 'vn', 'ph'],
-  'Asia Timur': ['cn', 'jp', 'kr', 'mn'],
-  'Asia Selatan': ['in'],
-  'Asia Barat': ['sa', 'tr'],
-  'Asia Tengah': ['kz', 'uz'],
+  'Asia Tenggara': ['id', 'my', 'sg', 'th', 'vn', 'ph', 'bn', 'kh', 'la', 'mm', 'tl'],
+  'Asia Timur': ['cn', 'jp', 'kr', 'mn', 'kp'],
+  'Asia Selatan': ['in', 'af', 'bd', 'bt', 'ir', 'lk', 'mv', 'np', 'pk'],
+  'Asia Barat': [
+    'sa', 'tr', 'am', 'az', 'bh', 'cy', 'ge', 'il', 'iq', 'jo', 'kw', 'lb', 'om', 'ps', 'qa',
+    'sy', 'ae', 'ye',
+  ],
+  'Asia Tengah': ['kz', 'uz', 'kg', 'tj', 'tm'],
 };
 
 export default function RegionLocator({ countryId, region }: RegionLocatorProps) {

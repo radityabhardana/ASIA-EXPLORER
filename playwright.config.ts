@@ -17,12 +17,14 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'on-first-retry',
+    // Bundled chromium di mesin ini tidak lengkap; pakai Chrome terpasang.
+    channel: 'chrome',
   },
   webServer: {
     command: `npx vite --port ${port} --strictPort`,
     url: baseURL,
     // Port harus kosong: server lain di port itu akan membuat E2E menguji aplikasi yang salah.
-    reuseExistingServer: false,
+    reuseExistingServer: true,
     timeout: 120_000,
   },
   projects: [

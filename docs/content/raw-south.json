@@ -1,0 +1,628 @@
+[
+  {
+    "id": "af",
+    "iso3": "AFG",
+    "name_id": "Afganistan",
+    "name_local": "افغانستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Dari",
+      "native_name": "دری",
+      "script": "Aksara Arab-Persia (varian Afganistan)",
+      "family": "Indo-Eropa (cabang Iran)",
+      "note": "Dari dan Pashto sama-sama resmi; Dari berperan sebagai lingua franca dan bahasa utama kehidupan kota."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "تشکر",
+        "roman": "Tashakor"
+      },
+      {
+        "id": "Permisi",
+        "native": "ببخشین",
+        "roman": "Bebakhshin"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "خدا حافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "culture_note": "Hospitalitas dijunjung lewat tradisi nanawati, hak memberi suaka kepada pelarian: menolak tamu atau pengungsi yang meminta perlindungan dianggap mencoreng kehormatan keluarga dan komunitas.",
+    "people_note": "Saat bertemu, tangan kanan dijabat lalu diletakkan di dada sebagai tanda tulus; pria dan wanita di ruang publik umumnya tidak berjabat tangan, dan orang tertua disapa lebih dulu.",
+    "story": {
+      "text": "Teh dipersembahkan kepada tamu sebelum urusan lain dibicarakan. Di rumah-rumah Afganistan, tuan rumah menuangkan teh dan menyodorkannya lebih dulu sebagai tanda penghormatan, walau sang tamu datang tanpa janji. Dua bahasa resmi negara ini adalah Dari dan Pashto, keduanya dari rumpun Indo-Eropa dan ditulis memakai aksara Arab yang disesuaikan. Dari berperan sebagai lingua franca antaretnis dan bahasa utama kehidupan kota, sedangkan Pashto dominan di wilayah selatan dan timur. Sapaan paling umum berbunyi Salam, kependekan dari assalamu alaikum, dan dijawab dengan wa alaikum assalam. Etiket pertemuan menuntut setiap orang berdiri ketika seorang yang lebih tua memasuki ruangan. Jabat tangan memakai tangan kanan, sering disusul menaruh telapak di dada. Setelah itu, tamu dan tuan rumah menanyakan keadaan masing-masing sebelum sampai pada pembicaraan pokok, karena tergesa-gesa dianggap kurang sopan.",
+      "sources": [
+        {
+          "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+          "what": "Sapaan salaam alaykum, jabat tangan tangan kanan lalu telapak di dada, pria-wanita tidak berjabat tangan, tradisi nanawati"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+          "what": "Dari dan Pashto sebagai bahasa resmi; Dari lingua franca antaretnis"
+        },
+        {
+          "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+          "what": "tashakor = terima kasih; khodaa haafez = selamat tinggal"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+        "what": "Sapaan salaam alaykum, jabat tangan tangan kanan lalu telapak di dada, pria-wanita tidak berjabat tangan, tradisi nanawati"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+        "what": "Dari dan Pashto sebagai bahasa resmi; Dari lingua franca antaretnis"
+      },
+      {
+        "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+        "what": "tashakor = terima kasih; khodaa haafez = selamat tinggal"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dari",
+        "what": "Dari sebagai varian bahasa Persia yang dituturkan di Afganistan"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Ejaan Dari untuk 'permisi' berbeda antarsumber (ببخشین vs ببخشید)"
+    ]
+  },
+  {
+    "id": "bd",
+    "iso3": "BGD",
+    "name_id": "Bangladesh",
+    "name_local": "বাংলাদেশ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "আসসালামু আলাইকুম",
+      "roman": "Assalamu alaikum",
+      "meaning_id": "Salam (semoga keselamatan atasmu)",
+      "register": "netral, umum di Bangladesh"
+    },
+    "language": {
+      "name_id": "Bahasa Bengali",
+      "native_name": "বাংলা",
+      "script": "Aksara Bengali (Bangla)",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Bengali adalah bahasa resmi Bangladesh; ragam lisan sehari-hari berbeda dari ragam tulisnya yang formal."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ধন্যবাদ",
+        "roman": "Dhonnobad"
+      },
+      {
+        "id": "Permisi",
+        "native": "মাফ করবেন",
+        "roman": "Māf korben"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "বিদায়",
+        "roman": "Biday"
+      }
+    ],
+    "culture_note": "Sapaan assalamu alaikum menjadi salam harian mayoritas Muslim, sedangkan nomoshkar dipakai umat Hindu dengan telapak tangan rapat; pilihan kata menandai identitas agama, bukan waktu.",
+    "people_note": "Orang lebih tua disapa lebih dulu memakai bentuk hormat apni, bukan tumi; menyentuh kepala orang lain atau menunjuk dengan satu telunjuk dianggap tidak sopan.",
+    "story": {
+      "text": "Piring bersama diletakkan di tengah tikar sebelum nasi disendok. Di banyak rumah Bangladesh, makan dilakukan dengan tangan kanan langsung, tanpa sendok, dan setiap orang mengambil lauk dari mangkuk bersama hanya dari sisi terdekat. Bengali menjadi satu-satunya bahasa resmi negara ini dan tergolong rumpun Indo-Arya dalam keluarga Indo-Eropa, ditulis memakai aksara Bengali yang khas. Sapaan harian mayoritas penduduk berbunyi Assalamu alaikum, dijawab dengan wa alaikum assalam. Ragam tuturnya bertingkat: apni untuk lawan bicara yang dihormati, tumi untuk teman sebaya, dan tui hanya untuk orang yang sangat akrab. Pilihan kata ini menandai jarak sosial secara halus. Umat Hindu setempat menyapa dengan nomoshkar sambil merapatkan kedua telapak di depan dada. Kata biday terasa berat, seperti perpisahan final, sehingga perpisahan sehari-hari lebih sering diucapkan sebagai abar dekha hobe, yang berarti sampai berjumpa lagi.",
+      "sources": [
+        {
+          "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+          "what": "Sapaan Bangladesh: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+          "what": "dhonnobad = terima kasih; maph korben = maaf; ragam tumi dan apni"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bengali_language",
+          "what": "Bengali sebagai bahasa resmi Bangladesh, rumpun Indo-Arya"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+        "what": "Sapaan Bangladesh: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+        "what": "dhonnobad = terima kasih; maph korben = maaf; ragam tumi dan apni"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_language",
+        "what": "Bengali sebagai bahasa resmi Bangladesh, rumpun Indo-Arya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_alphabet",
+        "what": "Aksara Bengali dan cara penulisannya"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Pilihan ragam tui/tumi/apni bersumber kamus komunitas, belum diuji penutur asli"
+    ]
+  },
+  {
+    "id": "bt",
+    "iso3": "BTN",
+    "name_id": "Bhutan",
+    "name_local": "འབྲུག་ཡུལ།",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "སྐུ་གཟུགས་བཟང་པོ་ལགས།",
+      "roman": "Kuzu zangpo la",
+      "meaning_id": "Halo (sopan)",
+      "register": "sopan; partikel la menandai hormat"
+    },
+    "language": {
+      "name_id": "Bahasa Dzongkha",
+      "native_name": "རྫོང་ཁ་",
+      "script": "Aksara Tibet (varian Dzongkha)",
+      "family": "Sino-Tibet (cabang Tibeto-Burman)",
+      "note": "Dzongkha adalah bahasa nasional Bhutan, ditulis dengan aksara Tibet; pengembangannya diawasi Dzongkha Development Commission."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "བཀའ་དྲིན་ཆེ།",
+        "roman": "Kadrin chhe"
+      },
+      {
+        "id": "Permisi",
+        "native": "ཙིགཔ་མ་ཟ།",
+        "roman": "Tsip maza"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ལོག་ཤུལ་ལས་འབྱལ་གེ།",
+        "roman": "Lok shu ley jel gey"
+      }
+    ],
+    "culture_note": "Tashi delek, harapan baik khas Bhutan, sering disertai kain sutra putih (khadar) untuk tamu kehormatan; menerimanya dengan dua tangan dan sedikit tunduk adalah bentuk hormat.",
+    "people_note": "Sebelum masuk rumah atau kuil, sepatu dilepas; duduk dengan telapak kaki mengarah ke patung atau orang lain dianggap tidak sopan, dan benda suci diserahkan dengan dua tangan.",
+    "story": {
+      "text": "Sebuah selendang sutra putih disampirkan di bahu tamu. Di Bhutan, tuan rumah menyambut orang kehormatan dengan khadar, sepotong kain sutra, sebagai doa agar hidupnya panjang. Dzongkha, bahasa nasional negara ini, tergolong rumpun Sino-Tibet dan ditulis memakai aksara Tibet yang mengalir dari kiri ke kanan. Aksaranya sama yang dipakai di Tibet, tetapi ortografi dan kosakatanya khas Bhutan. Sapaan sopan berbunyi Kuzu zangpo la, dengan partikel la di ujung sebagai penanda hormat yang selalu dipakai kepada orang yang lebih tua. Bentuk tanpa la hanya untuk teman akrab. Ucapan terima kasih, kadrin chhe, diucapkan setelah menerima bantuan atau hadiah. Etiket menerima sesuatu menuntut kedua tangan, atau tangan kanan yang disangga lengan kiri. Sebelum memasuki rumah maupun kuil, alas kaki wajib ditanggalkan di ambang pintu, dan telapak kaki tidak diarahkan ke orang atau patung.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+          "what": "Kuzu zangpo la, kadrin chhe, dan ucapan Dzongkha sehari-hari"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Dzongkha",
+          "what": "Dzongkha sebagai bahasa nasional Bhutan, aksara Tibet, rumpun Sino-Tibet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Khadar",
+          "what": "Khadar, kain sutra yang diserahkan kepada tamu sebagai tanda hormat"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+        "what": "Kuzu zangpo la, kadrin chhe, dan ucapan Dzongkha sehari-hari"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dzongkha",
+        "what": "Dzongkha sebagai bahasa nasional Bhutan, aksara Tibet, rumpun Sino-Tibet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Khadar",
+        "what": "Khadar, kain sutra yang diserahkan kepada tamu sebagai tanda hormat"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tibetan_script",
+        "what": "Aksara Tibet yang dipakai menulis Dzongkha"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Ejaan aksara Dzongkha untuk 'Tsip maza' (permisi) dan 'Lok shu ley jel gey' (sampai jumpa) perlu dicek penutur asli",
+      "Frasa Dzongkha bersumber phrasebook, belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "ir",
+    "iso3": "IRN",
+    "name_id": "Iran",
+    "name_local": "ایران",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Persia",
+      "native_name": "فارسی",
+      "script": "Aksara Arab-Persia",
+      "family": "Indo-Eropa (cabang Iran)",
+      "note": "Persia adalah bahasa resmi Iran; aksara Arab dimodifikasi dengan huruf tambahan untuk bunyi p, g, ch, dan zh."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ممنون",
+        "roman": "Mamnun"
+      },
+      {
+        "id": "Permisi",
+        "native": "ببخشید",
+        "roman": "Bebakhshid"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "خداحافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "culture_note": "Taarof, sistem kesopanan berlapis, membuat orang menawarkan barang atau bantuan lalu menolaknya beberapa kali; menolak tawaran pertama secara halus dianggap sopan, bukan penolakan sungguhan.",
+    "people_note": "Pria dan wanita di ruang publik jarang berjabat tangan; sapaan dilakukan dengan menaruh tangan di dada sambil sedikit mengangguk, dan orang yang lebih tua selalu disapa lebih dulu.",
+    "story": {
+      "text": "Seorang tamu menolak tawaran permen dua kali sebelum akhirnya menerimanya. Pola itu disebut taarof, etiket berlapis Iran yang mengatur hampir setiap percakapan: tawaran pertama, kedua, dan ketiga adalah bagian ritual kesopanan, bukan penolakan sungguhan. Bahasa resmi negara ini adalah bahasa Persia, anggota rumpun Indo-Eropa cabang Iran. Aksara Arab dipinjam untuk menulisnya, lalu ditambah huruf khusus bagi bunyi yang tidak ada dalam bahasa Arab, seperti p, g, ch, dan zh. Sapaan sehari-hari berbunyi salam, kependekan yang dipakai kapan saja, pagi maupun malam. Ucapan terima kasih yang paling umum adalah mamnun, sedangkan bebakhshid dipakai untuk menarik perhatian atau meminta maaf. Di ruang publik, pria dan wanita umumnya tidak berjabat tangan; mereka menyapa dengan menaruh telapak di dada sambil sedikit menundukkan kepala. Menjelang tahun baru, rumah disapu bersih untuk menyambut Nowruz, perayaan musim semi.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Persian_language",
+          "what": "Persia sebagai bahasa resmi Iran, aksara Arab yang dimodifikasi, rumpun Indo-Eropa"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Taarof",
+          "what": "Taarof sebagai sistem kesopanan berlapis di Iran"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nowruz",
+          "what": "Nowruz sebagai perayaan tahun baru musim semi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_language",
+        "what": "Persia sebagai bahasa resmi Iran, aksara Arab yang dimodifikasi, rumpun Indo-Eropa"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Taarof",
+        "what": "Taarof sebagai sistem kesopanan berlapis di Iran"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_alphabet",
+        "what": "Huruf tambahan p, g, ch, zh pada aksara Persia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nowruz sebagai perayaan tahun baru musim semi"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Klaim bahwa pria dan wanita di ruang publik umumnya tidak berjabat tangan bersumber ensiklopedia budaya umum"
+    ]
+  },
+  {
+    "id": "lk",
+    "iso3": "LKA",
+    "name_id": "Sri Lanka",
+    "name_local": "ශ්‍රී ලංකාව",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "ආයුබෝවන්",
+      "roman": "Āyubōwan",
+      "meaning_id": "Halo (harfiah: semoga panjang umur)",
+      "register": "netral, agak formal"
+    },
+    "language": {
+      "name_id": "Bahasa Sinhala",
+      "native_name": "සිංහල",
+      "script": "Aksara Sinhala",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Sinhala adalah bahasa mayoritas dan resmi; Tamil juga resmi dan dipakai luas di wilayah utara serta timur."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ස්තූතියි",
+        "roman": "Sthūthiyi"
+      },
+      {
+        "id": "Permisi",
+        "native": "සමාවෙන්න",
+        "roman": "Samāwenna"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ගිහින් එන්නම්",
+        "roman": "Gihin ennam"
+      }
+    ],
+    "culture_note": "Di kuil Buddha, pengunjung menanggalkan alas kaki dan menutup bahu serta lutut; patung Buddha tidak disentuh atau dipanjat, dan memunggungi patung saat berfoto dianggap tidak hormat.",
+    "people_note": "Kepala dianggap bagian paling suci sehingga tidak disentuh, sedangkan kaki paling rendah; beri dan terima dengan tangan kanan, dan anggukan kepala ke samping justru berarti ya.",
+    "story": {
+      "text": "Telapak tangan dirapatkan di depan dada, lalu kepala sedikit ditundukkan. Salam Āyubōwan di Sri Lanka bukan sekadar halo, melainkan doa agar orang yang disapa berumur panjang. Ucapan itu dipakai sepanjang hari dan bisa juga menjadi salam perpisahan. Negara ini memiliki dua bahasa resmi, Sinhala yang dituturkan mayoritas penduduk dan Tamil di wilayah utara serta timur. Bahasa Sinhala berasal dari cabang Indo-Arya rumpun Indo-Eropa dan ditulis memakai aksara Sinhala yang berbentuk bundar. Terima kasih diucapkan sthūthiyi, dan samāwenna dipakai untuk meminta maaf atau menarik perhatian. Dalam pergaulan, kepala dianggap bagian paling suci dan tidak boleh disentuh siapa pun, sedangkan benda diberikan atau diterima dengan tangan kanan. Menariknya, anggukan kepala ke samping, bukan mengangguk ke bawah, justru berarti setuju. Sebelum masuk kuil Buddha, alas kaki dilepas dan bahu serta lutut ditutup.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+          "what": "Sinhala sebagai bahasa resmi Sri Lanka, rumpun Indo-Arya, aksara Sinhala"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+          "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+          "what": "Norma kunjungan kuil: melepas alas kaki, menutup bahu dan lutut"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+        "what": "Sinhala sebagai bahasa resmi Sri Lanka, rumpun Indo-Arya, aksara Sinhala"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+        "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+        "what": "Norma kunjungan kuil: melepas alas kaki, menutup bahu dan lutut"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sri_Lanka",
+        "what": "Dua bahasa resmi, Sinhala dan Tamil"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Kebiasaan anggukan kepala ke samping sebagai tanda ya perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "mv",
+    "iso3": "MDV",
+    "name_id": "Maladewa",
+    "name_local": "ދިވެހިރާއްޖެ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "އައްސަލާމު ޢަލައިކުމް",
+      "roman": "Assalaamu alaikum",
+      "meaning_id": "Salam (semoga keselamatan atasmu)",
+      "register": "netral, sapaan Islam umum"
+    },
+    "language": {
+      "name_id": "Bahasa Dhivehi",
+      "native_name": "ދިވެހި",
+      "script": "Aksara Thaana",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Dhivehi adalah bahasa resmi Maladewa, ditulis memakai aksara Thaana yang dibaca dari kanan ke kiri."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ޝުކުރިއްޔާ",
+        "roman": "Shukuriyyaa"
+      },
+      {
+        "id": "Permisi",
+        "native": "މަޢާފް ކުރޭ",
+        "roman": "Ma'aaf kurey"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ދަނީ",
+        "roman": "Dhanee"
+      }
+    ],
+    "culture_note": "Maladewa negeri Muslim, jadi alkohol dan daging babi tidak diperjualbelikan di pulau berpenduduk; busana menutup tubuh dihormati, dan pakaian renang hanya dipakai di pantai khusus.",
+    "people_note": "Sapaan Islam assalaamu alaikum lazim antarwarga; tamu ditawari teh dan kudapan kecil (hedhikaa) lebih dulu, dan setiap orang biasanya makan dari piring sendiri.",
+    "story": {
+      "text": "Secangkir teh hangat dan sepiring kudapan kecil disajikan kepada tamu sebelum percakapan dimulai. Di Maladewa, menjamu tamu dengan hedhikaa, camilan gurih seperti cutlet ikan dan samosa, adalah inti keramahan setempat. Negara kepulauan ini berbahasa resmi Dhivehi, bahasa dari cabang Indo-Arya yang ditulis memakai aksara Thaana. Thaana istimewa karena dibaca dari kanan ke kiri; sembilan huruf pertamanya berasal dari angka Arab, sedangkan sembilan berikutnya dari angka lokal kuno. Sapaan sehari-hari berbunyi assalaamu alaikum, dijawab wa alaikum assalaam, karena mayoritas penduduk beragama Islam. Ucapan terima kasih adalah shukuriyyaa, dan ma'aaf kurey dipakai untuk meminta maaf atau menarik perhatian. Ungkapan tidak resmi untuk pamit, dhanee, lebih sering dipakai daripada bentuk formal. Alkohol tidak dijual di pulau berpenduduk, dan pengunjung diharapkan berpakaian sopan di luar pantai.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+          "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+          "what": "Dhivehi sebagai bahasa resmi, rumpun Indo-Arya, aksara Thaana"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Thaana",
+          "what": "Thaana dibaca kanan ke kiri, hurufnya berasal dari angka Arab dan angka lokal"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+        "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+        "what": "Dhivehi sebagai bahasa resmi, rumpun Indo-Arya, aksara Thaana"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Thaana",
+        "what": "Thaana dibaca kanan ke kiri, hurufnya berasal dari angka Arab dan angka lokal"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_the_Maldives",
+        "what": "Negara Muslim, aturan alkohol, dan norma busana"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Detail asal huruf Thaana bersumber ensiklopedia umum",
+      "Register informal 'dhanee' perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "np",
+    "iso3": "NPL",
+    "name_id": "Nepal",
+    "name_local": "नेपाल",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaning_id": "Halo / salam hormat",
+      "register": "netral, formal maupun sehari-hari"
+    },
+    "language": {
+      "name_id": "Bahasa Nepali",
+      "native_name": "नेपाली",
+      "script": "Aksara Devanagari",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Nepali adalah bahasa resmi Nepal, ditulis memakai aksara Devanagari yang sama dengan bahasa Hindi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "धन्यवाद",
+        "roman": "Dhanyabād"
+      },
+      {
+        "id": "Permisi",
+        "native": "माफ गर्नुहोस्",
+        "roman": "Māph garnuhos"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "फेरि भेटौंला",
+        "roman": "Pheri bheṭaunlā"
+      }
+    ],
+    "culture_note": "Di kuil Hindu, pengunjung menanggalkan sepatu dan berjalan searah jarum jam mengelilingi stupa; daging sapi tidak dikonsumsi karena sapi dihormati dalam tradisi Hindu Nepal.",
+    "people_note": "Orang lebih tua disapa dengan namaskar dan partikel hormat hajur; barang serta makanan diterima dengan tangan kanan, dan menyentuh orang dengan kaki dianggap tidak sopan.",
+    "story": {
+      "text": "Dua telapak tangan dirapatkan di depan dada, lalu diucapkan namaste. Salam itu dipakai di Nepal untuk menyapa maupun berpamitan, kapan saja sepanjang hari. Bahasa resmi negara ini adalah bahasa Nepali, anggota cabang Indo-Arya rumpun Indo-Eropa, ditulis memakai aksara Devanagari yang sama dengan bahasa Hindi. Terima kasih diucapkan dhanyabad, dan maaph garnuhos dipakai untuk meminta maaf atau menarik perhatian. Ragam hormat ditandai kata ganti: tapai untuk orang yang dihormati, timi untuk teman sebaya. Saat berjumpa orang tua, orang Nepal sering menyebut hajur, partikel hormat yang menandai kesopanan. Perpisahan yang ramah biasanya berbunyi pheri bhetaunla, artinya sampai berjumpa lagi, bukan selamat tinggal. Sebelum masuk rumah atau kuil, alas kaki dilepas, dan benda diberikan atau diterima dengan tangan kanan. Sapi dihormati, sehingga dagingnya tidak dimakan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Nepali_language",
+          "what": "Nepali sebagai bahasa resmi Nepal, rumpun Indo-Arya, aksara Devanagari"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+          "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+          "what": "Norma kuil, alas kaki, dan penghormatan terhadap sapi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepali_language",
+        "what": "Nepali sebagai bahasa resmi Nepal, rumpun Indo-Arya, aksara Devanagari"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+        "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+        "what": "Norma kuil, alas kaki, dan penghormatan terhadap sapi"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepal",
+        "what": "Bahasa resmi Nepal"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Klaim sapi dihormati dan daging sapi tidak dikonsumsi bersumber ensiklopedia umum, bukan sumber primer Nepal"
+    ]
+  },
+  {
+    "id": "pk",
+    "iso3": "PAK",
+    "name_id": "Pakistan",
+    "name_local": "پاکستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "السلام علیکم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Salam (semoga keselamatan atasmu)",
+      "register": "netral, sapaan baku"
+    },
+    "language": {
+      "name_id": "Bahasa Urdu",
+      "native_name": "اردو",
+      "script": "Aksara Arab-Persia (gaya Nastaliq)",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Urdu adalah bahasa resmi Pakistan, ditulis memakai aksara Arab gaya Nastaliq yang mengalir dari kanan ke kiri."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شکریہ",
+        "roman": "Shukriyā"
+      },
+      {
+        "id": "Permisi",
+        "native": "معاف کیجیے",
+        "roman": "Māf kījiye"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "خدا حافظ",
+        "roman": "Khudā hāfiz"
+      }
+    ],
+    "culture_note": "Salam assalamu alaikum menjadi sapaan baku lintas etnis; setelahnya orang biasanya menanyakan keadaan dan keluarga, karena menyapa tanpa bertanya kabar dianggap tergesa-gesa.",
+    "people_note": "Pria berjabat tangan dengan sesama pria, tetapi pria dan wanita tidak berjabat tangan; orang lebih tua disapa dengan kata hormat aap, bukan tum.",
+    "story": {
+      "text": "Tangan diletakkan di dada setelah berjabat tangan. Di Pakistan, pria menyapa pria lain dengan assalamu alaikum sambil berjabat tangan, lalu menaruh telapak di dada sebagai tanda ketulusan. Bahasa resmi negara ini adalah Urdu, anggota cabang Indo-Arya rumpun Indo-Eropa, ditulis memakai aksara Arab gaya Nastaliq yang mengalir dari kanan ke kiri. Terima kasih diucapkan shukriya, dan maaf kijiye dipakai untuk meminta maaf atau menarik perhatian. Ragam hormat ditandai kata ganti: aap untuk yang dihormati, tum hanya untuk yang jauh lebih muda atau akrab. Perpisahan lazim berbunyi khuda hafiz, yang secara harfiah berarti semoga Tuhan menjadi pelindungmu. Etiket setempat melarang pria dan wanita berjabat tangan di ruang publik. Sebelum berbicara soal urusan, orang biasanya lebih dulu menanyakan keadaan dan keluarga, sebab langsung ke pokok persoalan dianggap kurang sopan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Urdu",
+          "what": "Urdu sebagai bahasa resmi Pakistan, rumpun Indo-Arya, aksara Nastaliq"
+        },
+        {
+          "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+          "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+        },
+        {
+          "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+          "what": "Jabat tangan sesama jenis, pria-wanita tidak, ragam hormat aap"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu",
+        "what": "Urdu sebagai bahasa resmi Pakistan, rumpun Indo-Arya, aksara Nastaliq"
+      },
+      {
+        "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+        "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+      },
+      {
+        "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+        "what": "Jabat tangan sesama jenis, pria-wanita tidak, ragam hormat aap"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu_alphabet",
+        "what": "Aksara Urdu gaya Nastaliq, ditulis dari kanan ke kiri"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Klaim pria dan wanita tidak berjabat tangan bersumber panduan bahasa, belum diperiksa penutur asli"
+    ]
+  }
+]

@@ -105,18 +105,17 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
             </li>
             <li>
               <a
-                href="#galeri-mosaik"
+                href="#tantangan-harian"
                 className="navbar__link"
-                onClick={handleAnchorClick('#galeri-mosaik')}
+                onClick={handleAnchorClick('#tantangan-harian')}
               >
-                {t('nav.countries')}
+                {t('nav.challenge')}
               </a>
             </li>
             <li>
               <a
-                href="#dashboard-showcase"
+                href="/dashboard"
                 className="navbar__link"
-                onClick={handleAnchorClick('#dashboard-showcase')}
               >
                 {t('nav.dashboard')}
               </a>
@@ -239,18 +238,18 @@ export default function Navbar({ onScrollToMap }: NavbarProps = {}) {
               </li>
               <li>
                 <a
-                  href="#galeri-mosaik"
+                  href="#tantangan-harian"
                   className="navbar__mobile-link"
-                  onClick={handleAnchorClick('#galeri-mosaik')}
+                  onClick={handleAnchorClick('#tantangan-harian')}
                 >
-                  {t('nav.countries')}
+                  {t('nav.challenge')}
                 </a>
               </li>
               <li>
                 <a
-                  href="#dashboard-showcase"
+                  href="/dashboard"
                   className="navbar__mobile-link"
-                  onClick={handleAnchorClick('#dashboard-showcase')}
+                  onClick={() => setMobileOpen(false)}
                 >
                   {t('nav.dashboard')}
                 </a>

@@ -1,0 +1,640 @@
+[
+  {
+    "id": "ae",
+    "iso3": "ARE",
+    "name_id": "Uni Emirat Arab",
+    "name_local": "الإمارات العربية المتحدة",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلاً وسهلاً",
+      "roman": "Ahlan wa sahlan",
+      "meaning_id": "Halo",
+      "register": "hangat, khas menyambut tamu"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Emirat)",
+      "native_name": "اللهجة الإماراتية",
+      "script": "Aksara Arab, ditulis dari kanan ke kiri",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Emirat atau Al Ramsa termasuk rumpun Arab Teluk; Arab Baku Modern dipakai di sekolah dan dokumen resmi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "عن إذنك",
+        "roman": "ʿAn idhnak"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "في أمان الله",
+        "roman": "Fī amān Allāh"
+      }
+    ],
+    "culture_note": "Majlis, ruang tamu sekaligus tempat keluarga berkumpul, tercatat UNESCO sebagai warisan budaya takbenda sejak 2015. Kopi Arab disajikan bersama kurma, dan mengisi cangkir tamu lebih dulu adalah tanda kehormatan.",
+    "people_note": "Terima dan beri barang dengan tangan kanan. Sepatu dilepas sebelum masuk rumah atau majlis. Tamu menyapa yang paling tua lebih dahulu. Antara lawan jenis, tunggu perempuan mengulurkan tangan lebih dulu.",
+    "story": {
+      "text": "Saat tamu melangkah ke majlis, ruang duduk yang dilapisi bantal di sepanjang dinding, tuan rumah di Uni Emirat Arab menyuguhkan kopi Arab. Kopi dituang dari dallah, ceret kuningan berleher panjang, ke cangkir kecil tanpa gagang bernama finjān. Kurma diletakkan di sisinya untuk menetralkan rasa pahit. Cangkir diisi setengah, dan tamu menerimanya dengan tangan kanan, lalu mengembalikannya dengan cara yang sama; menolak isian berikutnya cukup dengan menggerakkan tangan. Bahasa sehari-hari di negeri ini adalah dialek Emirat, yang penuturnya menyebutnya Al Ramsa dan tergolong rumpun Arab Teluk. Di sekolah dan dokumen resmi, Arab Baku Modern yang dipakai. Bunyi q yang di Arab Baku diucapkan q berubah menjadi g dalam dialek ini, sehingga qahwa terdengar gahwa. Majlis sendiri, ruang tamu sekaligus tempat keluarga berkumpul, tercatat UNESCO sebagai warisan budaya takbenda sejak 2015.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+          "what": "Dialek Emirat (Al Ramsa) termasuk Arab Teluk; perubahan bunyi q menjadi g"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab, dallah, finjān, kurma, dan adab menuang untuk tamu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama UAE, Oman, Qatar, Arab Saudi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+        "what": "Dialek Emirat (Al Ramsa) termasuk Arab Teluk; perubahan bunyi q menjadi g"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab, dallah, finjān, kurma, dan adab menuang untuk tamu"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama UAE, Oman, Qatar, Arab Saudi"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic",
+        "what": "Bahasa Arab dari rumpun Afro-Asia cabang Semitik; Arab Baku Modern"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Register sapaan أهلاً وسهلاً belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "kw",
+    "iso3": "KWT",
+    "name_id": "Kuwait",
+    "name_local": "الكويت",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "هلا والله",
+      "roman": "Hala wallah",
+      "meaning_id": "Halo",
+      "register": "akrab, khas Teluk"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Kuwait)",
+      "native_name": "كويتي",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Kuwait bagian dari Arab Teluk; kosakatanya menyerap kata Persia, Turki, Inggris, dan Hindi karena sejarah pelayaran dan dagang."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "يعطيك العافية",
+        "roman": "Yaʿṭīk al-ʿāfiya"
+      },
+      {
+        "id": "Permisi",
+        "native": "لو سمحت",
+        "roman": "Law samaḥt"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "الله وياك",
+        "roman": "Allāh wiyyāk"
+      }
+    ],
+    "culture_note": "Diwaniya, ruang tamu terpisah di depan rumah, jadi tempat pria berkumpul membahas urusan keluarga dan kampung. Menjamu tamu dinilai kehormatan, sehingga kopi dan kurma disuguhkan lebih dulu sebelum percakapan panjang.",
+    "people_note": "Mulai sapaan dengan yang paling tua. Gunakan tangan kanan untuk makan dan memberi. Menerima suguhan kopi berarti menghormati tuan rumah. Bicara santai dan berbagi cerita lazim dalam pergaulan.",
+    "story": {
+      "text": "Di Kuwait, tamu pria sering diterima di diwaniya, ruang tamu terpisah di depan rumah untuk berkumpul. Kopi Arab dituang dari ceret dan disajikan bersama kurma; tamu menerima cangkir kecil itu dengan tangan kanan. Bahasa percakapan sehari-hari adalah dialek Kuwait, bagian dari rumpun Arab Teluk. Kota pelabuhan Kuwait lama menjadi jalur dagang, sehingga dialeknya menyerap banyak kata dari Persia, Turki, Inggris, dan Hindi. Kekhasan bunyinya terdengar jelas: q berubah menjadi g dan k menjadi c, termasuk pada kata qahwa yang menjadi gahwa. Industri sinetron Kuwait membuat logat ini dikenal sampai Tunisia dan Yordania. Masyarakatnya diglosik: Arab Baku Modern untuk sekolah dan administrasi, sedangkan dialek Kuwait dipakai untuk urusan rumah tangga dan dianggap penanda identitas. Sapaan hangat dan jamuan kopi dianggap cara paling nyata menunjukkan kehormatan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+          "what": "Dialek Kuwait bagian Arab Teluk; kata serapan Persia, Turki, Inggris, Hindi; sinetron menyebarkan logatnya"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab disajikan dengan kurma; adab menerima dan mengembalikan cangkir dengan tangan kanan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+          "what": "Kebudayaan Kuwait dan tradisi menjamu tamu"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+        "what": "Dialek Kuwait bagian Arab Teluk; kata serapan Persia, Turki, Inggris, Hindi; sinetron menyebarkan logatnya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "Rumpun Arab Teluk dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab disajikan dengan kurma; adab menerima dan mengembalikan cangkir dengan tangan kanan"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+        "what": "Kebudayaan Kuwait dan tradisi menjamu tamu"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Tradisi diwaniya belum dirujuk ke sumber primer khusus",
+      "Register sapaan هلا والله perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "lb",
+    "iso3": "LBN",
+    "name_id": "Lebanon",
+    "name_local": "لبنان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "مرحبا",
+      "roman": "Marhaba",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas di Levant"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Lebanon)",
+      "native_name": "العربية اللبنانية",
+      "script": "Aksara Arab; percakapan sering disisipi kata Prancis dan Inggris",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Lebanon bagian rumpun Arab Levantin; kata serapan Prancis umum karena sejarah dan pendidikan."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "تسلم",
+        "roman": "Tislam"
+      },
+      {
+        "id": "Permisi",
+        "native": "بعد إذنك",
+        "roman": "Baʿd iznak"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "بسلامة",
+        "roman": "Bslāme"
+      }
+    ],
+    "culture_note": "Menjamu tamu dianggap kehormatan, sehingga undangan makan datang cepat dalam persahabatan. Jam karet diterima: telat sekitar dua puluh menit masih dianggap wajar, dan tamu biasanya membawa manisan.",
+    "people_note": "Sapa penghuni menurut urutan usia, mulai yang tertua. Terima teh atau kopi yang ditawarkan sebagai tanda penghargaan. Hindari menyilangkan kaki sampai telapak mengarah ke orang lain.",
+    "story": {
+      "text": "Di Beirut, tamu yang datang ke rumah biasanya menyapa penghuni menurut urutan usia, dari yang paling tua. Tuan rumah menyuguhkan kopi Levantin yang ditumbuk halus dan dibubuhi kapulaga, diseduh dalam ceret berleher panjang bernama rakwa. Di pedesaan dan perkemahan Bedouin, ceret besar berparuh panjang bernama bakraj yang dipakai. Sebelum kafe modern menjamur, rumah kopi Arab menjadi ruang diskusi; sebagian menyebutnya sekolah orang bijak. Bahasa resminya Arab Baku Modern, tetapi percakapan harian memakai dialek Lebanon dari rumpun Arab Levantin, yang kerap disisipi kata Prancis. Karena itu penuturnya mudah beralih antara dua laras. Adab bertamu menuntut tamu mencicipi semua hidangan yang disajikan sebagai tanda hormat. Menolak tawaran kopi atau teh bisa dianggap meremehkan kehormatan tuan rumah, jadi menerimanya justru dianggap jauh lebih sopan.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+          "what": "Etiket bertamu: menyapa menurut usia, menerima suguhan, jam karet, tidak mengarahkan kaki"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+          "what": "Dialek Lebanon bagian rumpun Arab Levantin"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj; rumah kopi sebagai ruang diskusi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+        "what": "Etiket bertamu: menyapa menurut usia, menerima suguhan, jam karet, tidak mengarahkan kaki"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+        "what": "Dialek Lebanon bagian rumpun Arab Levantin"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "Rumpun Arab Levantin dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj; rumah kopi sebagai ruang diskusi"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Tingkat campur kode bahasa Prancis berbeda antargenerasi dan wilayah"
+    ]
+  },
+  {
+    "id": "om",
+    "iso3": "OMN",
+    "name_id": "Oman",
+    "name_local": "عُمان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Oman)",
+      "native_name": "اللهجة العمانية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Selain dialek Arab Oman, di selatan negeri juga dipakai bahasa Semitik Selatan modern seperti Mehri dan Soqotri."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "مشكور",
+        "roman": "Masykūr"
+      },
+      {
+        "id": "Permisi",
+        "native": "من فضلك",
+        "roman": "Min faḍlak"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "إلى اللقاء",
+        "roman": "Ilā al-liqāʾ"
+      }
+    ],
+    "culture_note": "Khanjar, belati berlekuk, dikenakan pria Oman pada pernikahan dan hari besar; kerajinan serta adatnya tercatat UNESCO pada 2022. Kopi Oman beraroma kapulaga disajikan bersama kurma atau halwa.",
+    "people_note": "Terima dan beri dengan tangan kanan. Tamu menyapa yang paling tua lebih dahulu. Dalam jamuan, suguhan sebaiknya dicicipi. Panggilan hormat kepada sesepuh lazim dipakai sebagai tanda adab.",
+    "story": {
+      "text": "Di Muscat, tuan rumah menyambut tamu dengan kopi Oman yang disajikan bersama kurma atau halwa, manisan kenyal. Kopi dituang dari dallah, ceret berparuh panjang, ke cangkir kecil; tamu menerima dan mengembalikannya dengan tangan kanan. Lelaki Oman mengenakan khanjar, belati berlekuk, pada acara resmi seperti pernikahan dan hari besar; kerajinan dan adat terkait khanjar tercatat UNESCO pada 2022. Bahasa resminya adalah Arab Baku Modern, sedangkan percakapan harian memakai dialek Arab Oman. Di wilayah selatan, masyarakat juga memakai bahasa Semitik Selatan modern seperti Mehri dan Soqotri, cabang rumpun Afro-Asia yang berbeda dari Arab. Majlis, ruang tempat tetangga dan keluarga berkumpul, diakui UNESCO sebagai warisan budaya takbenda sejak 2015, dengan Oman sebagai salah satu negara pengusul. Di meja jamuan, hidangan diambil dengan tangan kanan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+          "what": "Kopi Oman berkapulaga dengan kurma atau halwa; khanjar dikenakan pada pernikahan dan hari besar, UNESCO 2022"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+          "what": "Dialek Arab Oman dan ciri bunyinya"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Oman sebagai pengusul"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+        "what": "Kopi Oman berkapulaga dengan kurma atau halwa; khanjar dikenakan pada pernikahan dan hari besar, UNESCO 2022"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+        "what": "Dialek Arab Oman dan ciri bunyinya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_South_Arabian_languages",
+        "what": "Bahasa Semitik Selatan modern seperti Mehri dan Soqotri"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Oman sebagai pengusul"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Rincian tradisi jamuan lokal bisa berbeda antardaerah"
+    ]
+  },
+  {
+    "id": "ps",
+    "iso3": "PSE",
+    "name_id": "Palestina",
+    "name_local": "فلسطين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلين",
+      "roman": "Ahlēn",
+      "meaning_id": "Halo",
+      "register": "akrab, khas Levant"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Palestina)",
+      "native_name": "العربية الفلسطينية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Palestina bagian rumpun Arab Levantin; pelafalan berbeda antara kota, desa, dan kelompok Bedouin."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً جزيلاً",
+        "roman": "Syukran jazīlan"
+      },
+      {
+        "id": "Permisi",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "الله معك",
+        "roman": "Allāh maʿak"
+      }
+    ],
+    "culture_note": "Tamu disambut dengan ahlan wa sahlan. Menjelang pulang, tuan rumah menawarkan kopi perpisahan; tamu berpamitan setelah meminumnya. Memuji barang pribadi berulang kali dihindari karena dipercaya memicu mata jahat.",
+    "people_note": "Hormati yang lebih tua: berdiri saat mereka masuk dan tawarkan tempat duduk. Tawaran diterima setelah tuan rumah mendesak dua kali. Gunakan tangan kanan untuk makan dan memberi.",
+    "story": {
+      "text": "Di Ramallah, tamu diterima dengan ucapan ahlan wa sahlan, lalu dipersilakan duduk. Tuan rumah menyuguhkan teh, kue kering, lantas kopi, mengikuti tata urut hidangan yang sudah lama. Kopi pahit bertabur kapulaga itu bukan sekadar minuman, tetapi penanda pertemuan. Menjelang akhir kunjungan, tuan rumah menyodorkan kopi perpisahan; tamu berpamitan setelah meminumnya, sebab menolaknya bisa memperpanjang kunjungan. Bahasa sehari-hari di sini adalah dialek Palestina, bagian rumpun Arab Levantin, sementara Arab Baku Modern dipakai di sekolah dan dokumen resmi. Orang menghormati yang lebih tua dengan berdiri saat mereka masuk ruangan dan mempersilakan tempat duduk. Adab lain: menerima sesuatu dengan tangan kanan, dan tidak memuji barang pribadi berulang kali karena dipercaya bisa memicu rasa iri, kepercayaan pada mata jahat yang disebut ain. Sapaan akrab dan jamuan menjadi penanda hubungan yang hangat.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+          "what": "Etiket bertamu: tata urut suguhan, kopi perpisahan, menghormati yang tua, mata jahat, tangan kanan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+          "what": "Dialek Palestina bagian rumpun Arab Levantin"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab bertabur kapulaga dan adab penyajiannya"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+        "what": "Etiket bertamu: tata urut suguhan, kopi perpisahan, menghormati yang tua, mata jahat, tangan kanan"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+        "what": "Dialek Palestina bagian rumpun Arab Levantin"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "Rumpun Arab Levantin dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab bertabur kapulaga dan adab penyajiannya"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Adat berbeda antara keluarga Muslim dan Kristen serta antardaerah"
+    ]
+  },
+  {
+    "id": "qa",
+    "iso3": "QAT",
+    "name_id": "Qatar",
+    "name_local": "قطر",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "حياك الله",
+      "roman": "Ḥayyāk Allāh",
+      "meaning_id": "Halo (semoga Allah menjagamu)",
+      "register": "hangat, khas Teluk"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Teluk)",
+      "native_name": "اللهجة القطرية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Qatar bagian Arab Teluk; Arab Baku Modern dipakai media seperti Al Jazeera dan administrasi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "جزاك الله خير",
+        "roman": "Jazāk Allāh khayr"
+      },
+      {
+        "id": "Permisi",
+        "native": "لو تسمح",
+        "roman": "Law tismaḥ"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "culture_note": "Majlis, ruang duduk berlapis bantal di sepanjang dinding, tercatat UNESCO sebagai warisan takbenda sejak 2015. Di sana tetangga dan keluarga berkumpul, dan kopi Arab beserta kurma disajikan mengelilingi tamu.",
+    "people_note": "Terima dan beri dengan tangan kanan. Sapa yang paling tua lebih dahulu. Terima suguhan kopi sebagai tanda hormat. Bicara dengan nada tenang dan tidak mengangkat suara dianggap sopan.",
+    "story": {
+      "text": "Di Souq Waqif, pasar tua di Doha, kopi Arab dituang dari ceret berparuh panjang ke cangkir kecil. Kurma disajikan di sampingnya. Tamu menyambutnya dengan tangan kanan dan mengembalikan cangkir dengan cara yang sama. Tuan rumah sering menyapa tamunya dengan hayyak Allah, harfiah semoga Allah menjagamu, sebagai pembuka yang hangat. Pertemuan keluarga dan tetangga berlangsung di majlis, ruang duduk berlapis bantal di sepanjang dinding; ruang ini tercatat UNESCO sebagai warisan takbenda sejak 2015. Bahasa percakapan harian di Qatar adalah dialek Teluk, sedangkan Arab Baku Modern dipakai di sekolah, surat resmi, dan siaran berita seperti Al Jazeera. Inilah situasi diglosia, dua laras yang hidup berdampingan. Bunyi q lazim berubah menjadi g dan k menjadi c, ciri yang terdengar di jalan maupun di pasar.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+          "what": "Dialek Teluk, diglosia dengan Arab Baku Modern, perubahan bunyi q dan k"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Qatar sebagai pengusul"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab dituang dari ceret ke cangkir kecil, disajikan dengan kurma, diterima dengan tangan kanan"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "Dialek Teluk, diglosia dengan Arab Baku Modern, perubahan bunyi q dan k"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qatari_Arabic",
+        "what": "Dialek Qatar sebagai bagian Arab Teluk"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Souq_Waqif",
+        "what": "Souq Waqif, pasar tua di Doha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Qatar sebagai pengusul"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab dituang dari ceret ke cangkir kecil, disajikan dengan kurma, diterima dengan tangan kanan"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Register sapaan حياك الله belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "sy",
+    "iso3": "SYR",
+    "name_id": "Suriah",
+    "name_local": "سوريا",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "شلونك",
+      "roman": "Shlōnak",
+      "meaning_id": "Halo (apa kabar)",
+      "register": "akrab, khas Levant"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Suriah)",
+      "native_name": "العربية السورية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Suriah bagian rumpun Arab Levantin; kosakatanya menyerap kata Turki dan Prancis."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "يسلمو",
+        "roman": "Yislamu"
+      },
+      {
+        "id": "Permisi",
+        "native": "إذا بتسمح",
+        "roman": "Idhā bitismaḥ"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "بخاطرك",
+        "roman": "Bkhāṭrak"
+      }
+    ],
+    "culture_note": "Tamu bisa datang tanpa undangan; tuan rumah diharapkan menghentikan pekerjaan dan menjamu sebaik mungkin. Menolak tawaran sekali dulu, lalu menerima setelah didesak, adalah adab yang sopan.",
+    "people_note": "Berdiri saat yang lebih tua masuk ruangan. Gunakan tangan kanan untuk makan dan memberi. Jangan mengarahkan telapak kaki ke orang lain. Bicara lembut dinilai santun.",
+    "story": {
+      "text": "Di Damaskus, jika tetangga datang tanpa undangan, tuan rumah diharapkan menghentikan pekerjaannya dan menjamu sebaik mungkin. Adabnya begitu: tawaran diterima setelah didesak, sebab penolakan pertama justru tanda kesopanan. Kopi diseduh kental dan beraroma kapulaga, dituang dari rakwa di kota atau bakraj berparuh panjang di daerah Bedouin. Cangkir kecil diisi sedikit agar tuan rumah sempat menuang ulang. Bahasa sehari-hari adalah dialek Suriah dari rumpun Arab Levantin, yang menyerap kata Turki dan Prancis dari sejarah panjang kawasan itu. Arab Baku Modern tetap dipakai untuk dokumen resmi dan pengajaran. Di meja makan, tamu duduk di tempat kehormatan, dan yang lebih tua disilakan lebih dulu. Semua hidangan sebaiknya dicicipi. Berbicara lembut dan tidak mengarahkan kaki ke orang lain juga bagian penting dari etiket pergaulan sehari-hari.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+          "what": "Etiket: tamu tanpa undangan, menolak lalu menerima tawaran, berdiri untuk yang tua, tidak mengarahkan kaki"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+          "what": "Dialek Suriah bagian rumpun Arab Levantin"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+        "what": "Etiket: tamu tanpa undangan, menolak lalu menerima tawaran, berdiri untuk yang tua, tidak mengarahkan kaki"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+        "what": "Dialek Suriah bagian rumpun Arab Levantin"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "Rumpun Arab Levantin dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Tingkat penggunaan kata serapan Turki dan Prancis berbeda antargenerasi"
+    ]
+  },
+  {
+    "id": "ye",
+    "iso3": "YEM",
+    "name_id": "Yaman",
+    "name_local": "اليمن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "كيف حالك",
+      "roman": "Kayfa ḥālak",
+      "meaning_id": "Halo (apa kabar)",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Arab (dialek Yaman)",
+      "native_name": "اللهجة اليمنية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Yaman tergolong konservatif dan menyimpan banyak ciri Arab Klasik; di Hadhramaut juga dipakai dialek Hadhrami."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "أسمح لي",
+        "roman": "Ismaḥ lī"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "الله يحفظك",
+        "roman": "Allāh yaḥfaẓak"
+      }
+    ],
+    "culture_note": "Kopi dikenang berasal dari Yaman; kata mocha mengacu ke pelabuhan al-Makha, dan Hari Kopi Yaman dirayakan setiap 3 Maret. Rumah menara Sanaa jadi tempat menjamu tamu di ruang atasnya.",
+    "people_note": "Terima dan santap dengan tangan kanan. Tamu dihormati dan disuguhi kopi atau qishr. Sapa yang paling tua lebih dahulu. Percakapan santai sering diselingi syair dan cerita.",
+    "story": {
+      "text": "Di Yaman, tamu pria biasanya diterima di ruang atas rumah menara Sanaa yang jendelanya berhiaskan lengkung kaca warna. Di sana kopi disuguhkan bersama kurma, dan cangkir diisi sedikit lalu dituang ulang. Sebagian menjamu dengan qishr, seduhan kulit kopi. Kopi sendiri dikenang berasal dari Yaman: kata mocha mengacu ke pelabuhan al-Makha, dan negeri ini merayakan Hari Kopi Yaman setiap 3 Maret. Bumbu hawaij dicampurkan ke seduhan di sini. Bahasa resminya Arab Baku Modern, sedangkan percakapan memakai dialek Arab Yaman yang tergolong konservatif karena masih menyimpan banyak ciri Arab Klasik. Pengaruh dialek Hadhrami dan bahasa Melayu dari perantauan ke Asia Tenggara meninggalkan jejak pada kosakata sehari-hari. Tangan kanan dipakai untuk menerima dan menyantap hidangan. Jamuan di ruang atas itu menjadi momen penting untuk menjaga hubungan keluarga dan tetangga.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+          "what": "Dialek Yaman yang konservatif; dialek Hadhrami; pengaruh bahasa lain pada kosakata"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab berasal dari Yaman lewat pelabuhan Mokha; bumbu hawaij; Hari Kopi Yaman"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+          "what": "Kopi Yaman dan asal-usulnya di al-Makha"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+          "what": "Rumah menara dan qishr (seduhan kulit kopi)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+        "what": "Dialek Yaman yang konservatif; dialek Hadhrami; pengaruh bahasa lain pada kosakata"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab berasal dari Yaman lewat pelabuhan Mokha; bumbu hawaij; Hari Kopi Yaman"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+        "what": "Kopi Yaman dan asal-usulnya di al-Makha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qishr",
+        "what": "Qishr, seduhan kulit kopi khas Yaman"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+        "what": "Rumah menara dan qishr (seduhan kulit kopi)"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Tingkat pemakaian qishr dan hawaij berbeda antardaerah",
+      "Pengaruh kosakata Melayu bervariasi antarkomunitas"
+    ]
+  }
+]

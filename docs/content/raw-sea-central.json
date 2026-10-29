@@ -1,0 +1,410 @@
+[
+  {
+    "id": "bn",
+    "iso3": "BRN",
+    "name_id": "Brunei",
+    "name_local": "بروني دارالسلام",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salam",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Melayu (Melayu Brunei)",
+      "native_name": "Bahasa Melayu / بهاس ملايو",
+      "script": "Rumi (huruf Latin) dan Jawi (huruf Arab-Melayu)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Bahasa Melayu menjadi bahasa resmi, sedangkan Melayu Brunei adalah varian percakapan sehari-hari. Rumi dipakai luas, sementara Jawi tetap resmi untuk nama lembaga dan papan tanda."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "تريما کاسيه", "roman": "Terima kasih" },
+      { "id": "Permisi", "native": "معاف", "roman": "Maaf" },
+      { "id": "Sampai jumpa", "native": "سلامت تيڠݢل", "roman": "Selamat tinggal" }
+    ],
+    "culture_note": "Brunei mempertahankan aksara Jawi di samping huruf Rumi. Nama kementerian dan papan tanda jalan sering ditulis dalam dua aksara, sebab Jawi dianggap menjaga identitas Melayu-Islam negara.",
+    "people_note": "Saat menyapa, orang Brunei berjabat tangan ringan lalu menyentuh dada dengan tangan kanan; menunjuk memakai ibu jari, bukan telunjuk. Tamu melepas sepatu di rumah dan menyapa yang tertua lebih dahulu.",
+    "story": {
+      "text": "Di Kampong Ayer, rumah kayu berdiri di atas air Sungai Brunei. Seorang tamu naik perahu, melepas sepatu di tangga, lalu menyapa tuan rumah yang paling tua lebih dahulu. Salamnya singkat: \"Salam\" atau \"Assalamualaikum\". Setelah berjabat tangan ringan, telapak tangan kanannya disentuhkan ke dada sebagai tanda hormat. Bahasa resmi Brunei adalah bahasa Melayu, tetapi dalam percakapan harian warga memakai varian Melayu Brunei. Hubungan kedua ragam itu disebut diglosia: Melayu baku dipakai di sekolah dan upacara resmi, sedangkan Melayu Brunei menjadi lingua franca di pasar dan di rumah. Negara juga mempertahankan aksara Jawi di samping huruf Rumi. Nama kementerian dan papan tanda jalan sering ditulis dua kali, sekali dalam Rumi, sekali dalam Jawi. Saat menunjukkan arah, orang Brunei memakai ibu jari dengan jari lain terkepal, bukan telunjuk. Ketika dijamu, tamu dianjurkan mencicipi hidangan walau hanya sedikit agar tuan rumah tidak merasa ditolak.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Brunei_Malay", "what": "Melayu Brunei dominan dalam percakapan harian dan hidup berdampingan secara diglosia dengan Melayu baku" },
+        { "url": "https://commisceo-global.com/country-guides/brunei-guide/", "what": "Sapa yang tertua dulu, jabat tangan ringan lalu sentuh dada, beri-terima dengan tangan kanan, lepas sepatu" },
+        { "url": "https://rumikejawi.com/ucapan-jawi/", "what": "Ejaan Jawi untuk terima kasih (تريما کاسيه) dan salam" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Brunei_Malay", "what": "Melayu Brunei dominan dalam percakapan harian dan hidup berdampingan secara diglosia dengan Melayu baku" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Brunei", "what": "Bahasa Melayu resmi, Jawi dan Rumi, adat istiadat Melayu-Islam" },
+      { "url": "https://commisceo-global.com/country-guides/brunei-guide/", "what": "Etiket sapaan, tangan kanan, melepas sepatu, menghormati yang lebih tua" },
+      { "url": "https://rumikejawi.com/ucapan-jawi/", "what": "Ejaan Jawi untuk terima kasih (تريما کاسيه) dan salam" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Ejaan Jawi untuk 'Selamat tinggal' (سلامت تيڠݢل) perlu dicek penutur asli",
+      "Register sapaan 'Salam' versus 'Assalamualaikum' belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "kh",
+    "iso3": "KHM",
+    "name_id": "Kamboja",
+    "name_local": "កម្ពុជា",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "សួស្តី",
+      "roman": "Suostei",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai sehari-hari"
+    },
+    "language": {
+      "name_id": "Bahasa Khmer",
+      "native_name": "ភាសាខ្មែរ",
+      "script": "Aksara Khmer (abugida turunan Brahmi)",
+      "family": "Austroasiatik (Mon-Khmer)",
+      "note": "Khmer adalah bahasa resmi Kamboja dan termasuk bahasa tak bernada. Ragam sopan memakai banyak kosakata serapan Pali dan Sanskrit."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "អរគុណ", "roman": "Arkun" },
+      { "id": "Permisi", "native": "សុំទោស", "roman": "Som toh" },
+      { "id": "Sampai jumpa", "native": "លាហើយ", "roman": "Lea haey" }
+    ],
+    "culture_note": "Orang Kamboja menyapa dengan sompeah, kedua telapak tangan dirapatkan di depan dada. Tinggi tangan menyesuaikan kedudukan orang yang disapa, sebab gestur ini menyatakan tingkat hormat.",
+    "people_note": "Yang muda menyapa lebih dahulu, dan barang diberikan atau diterima dengan tangan kanan. Menyentuh kepala orang lain dianggap kurang sopan, dan perempuan sebaiknya tidak duduk terlalu dekat dengan biksu.",
+    "story": {
+      "text": "Di depan gerbang Angkor Wat, seorang pemandu menyambut tamu dengan sompeah: kedua telapak tangan dirapatkan di depan dada, punggung sedikit dibungkukkan. Tinggi tangan mengikuti kedudukan orang yang disapa. Bahasa resmi Kamboja adalah bahasa Khmer, anggota rumpun Austroasiatik yang tidak bernada, berbeda dari bahasa tetangganya yang bertona. Khmer ditulis memakai aksara Khmer, sebuah abugida turunan aksara Brahmi dari India selatan yang sudah dipakai sejak abad ketujuh. Pada aksara itu, vokal ditulis sebagai tanda di sekeliling konsonan, dan gugus konsonan memakai bentuk subskrip. Sapaan sehari-hari berbunyi suostei, sedangkan chumreap suor dipakai kepada orang tua atau pejabat. Kosakata sopan Khmer banyak diserap dari Pali dan Sanskrit karena pengaruh agama Buddha dan Hindu. Sopan santun kepada biksu sangat dijunjung: tangan dinaikkan sampai alis, dan perempuan sebaiknya tidak menyentuh atau duduk terlalu dekat dengan biksu.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Khmer_language", "what": "Rumpun Austroasiatik, bahasa tak bernada, aksara Khmer abugida sejak abad ke-7, serapan Pali-Sanskrit" },
+        { "url": "https://en.wikipedia.org/wiki/Sampeah", "what": "Sompeah sebagai salam dengan telapak tangan rapat, tinggi tangan menandai tingkat hormat" },
+        { "url": "https://preply.com/en/blog/khmer-greetings-phrases-guide/", "what": "Suostei salam sehari-hari, chumreap suor ragam sopan, sompeah kepada biksu setinggi alis" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Khmer_language", "what": "Rumpun Austroasiatik, bahasa tak bernada, aksara Khmer abugida sejak abad ke-7, serapan Pali-Sanskrit" },
+      { "url": "https://en.wikipedia.org/wiki/Sampeah", "what": "Sompeah sebagai salam dengan telapak tangan rapat" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Cambodia", "what": "Adat sopan santun dan penghormatan kepada biksu" },
+      { "url": "https://bhasaly.com/khmer-phrases", "what": "Frasa suostei, arkun, som toh, lea haey beserta artinya" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Pemetaan 'Permisi' ke som toh (yang berarti maaf/permisi) perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "la",
+    "iso3": "LAO",
+    "name_id": "Laos",
+    "name_local": "ລາວ",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "ສະບາຍດີ",
+      "roman": "Sabaidee",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai kapan saja"
+    },
+    "language": {
+      "name_id": "Bahasa Lao",
+      "native_name": "ພາສາລາວ",
+      "script": "Aksara Lao (abugida turunan Brahmi)",
+      "family": "Kra-Dai (Tai-Kadai)",
+      "note": "Bahasa Lao adalah bahasa resmi Laos dan termasuk bahasa bernada. Bahasa ini berkerabat dengan bahasa Thai dan banyak menyerap kata dari Pali."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "ຂອບໃຈ", "roman": "Khop chai" },
+      { "id": "Permisi", "native": "ຂໍໂທດ", "roman": "Kho thot" },
+      { "id": "Sampai jumpa", "native": "ລາກ່ອນ", "roman": "La kon" }
+    ],
+    "culture_note": "Orang Laos menyapa dengan nop, telapak tangan rapat setinggi dada atau dagu. Nilai 'sabai', yaitu rasa nyaman dan tenang, membuat sapaan sabaidee sekaligus harapan agar orang lain sejahtera.",
+    "people_note": "Yang muda atau berkedudukan lebih rendah menyapa lebih dahulu. Alas kaki dilepas sebelum masuk rumah atau wihara, dan seseorang tidak melangkahi orang yang sedang duduk atau berbaring.",
+    "story": {
+      "text": "Setiap pagi di Luang Prabang, para biksu berjalan berbaris menerima persembahan nasi ketan dari warga. Bahasa resmi Laos adalah bahasa Lao, anggota rumpun Kra-Dai yang bernada dan berkerabat dengan bahasa Thai. Lao ditulis dengan aksara Lao, abugida turunan Brahmi yang berbentuk bulat dan mengalir. Sapaan paling umum berbunyi sabaidee. Secara harfiah artinya kurang lebih 'sejahtera baik', karena sabai berarti nyaman atau sehat dan dee berarti baik. Ucapan itu bisa dipakai kapan saja, pagi maupun petang, kepada siapa pun. Orang Laos menyapa dengan gerakan nop: kedua telapak tangan dirapatkan setinggi dada atau dagu, disertai anggukan. Perbedaan usia menentukan tinggi tangan. Saat masuk rumah atau wihara, alas kaki dilepas, dan seseorang tidak melangkahi orang yang duduk. Hidangan biasanya disantap bersama di meja rendah dengan nasi ketan sebagai makanan pokok yang diambil memakai tangan.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Lao_language", "what": "Rumpun Kra-Dai, bahasa bernada, aksara Lao abugida, serapan Pali" },
+        { "url": "https://laolessons.com/greetings-in-lao/", "what": "Sabaidee berarti 'sejahtera baik' dan dipakai sebagai sapaan sepanjang hari" },
+        { "url": "https://www.laos-guide-999.com/learn-lao.html", "what": "Frasa khop chai, kho thot, la kon dan nop sebagai salam" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Lao_language", "what": "Rumpun Kra-Dai, bahasa bernada, aksara Lao abugida" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Laos", "what": "Nop sebagai salam, melepas sepatu di rumah, penghormatan kepada yang lebih tua" },
+      { "url": "https://laolessons.com/greetings-in-lao/", "what": "Makna sabaidee dan frasa sapaan dasar" },
+      { "url": "https://www.laos-guide-999.com/learn-lao.html", "what": "Daftar frasa terima kasih, permisi, dan selamat tinggal" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Detail tinggi tangan pada nop menurut usia belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "mm",
+    "iso3": "MMR",
+    "name_id": "Myanmar",
+    "name_local": "မြန်မာ",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "မင်္ဂလာပါ",
+      "roman": "Mingalaba",
+      "meaning_id": "Halo",
+      "register": "netral, disertai sedikit bungkukan"
+    },
+    "language": {
+      "name_id": "Bahasa Burma (Myanmar)",
+      "native_name": "မြန်မာဘာသာ",
+      "script": "Aksara Burma (Mon-Burma)",
+      "family": "Sino-Tibet (Tibeto-Burma)",
+      "note": "Burma adalah bahasa resmi Myanmar dan termasuk bahasa bernada. Bahasa ini membedakan ragam sastra untuk tulisan dan ragam lisan untuk percakapan."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "ကျေးဇူးတင်ပါတယ်", "roman": "Kyay zu tin ba de" },
+      { "id": "Permisi", "native": "တောင်းပန်ပါတယ်", "roman": "Taung pan ba de" },
+      { "id": "Sampai jumpa", "native": "သွားတော့မယ်", "roman": "Thwa daw me" }
+    ],
+    "culture_note": "Orang Myanmar umumnya tidak memakai nama keluarga. Sebagai gantinya, gelar seperti U untuk pria dan Daw untuk perempuan diletakkan di depan nama, sebab gelar menandai usia dan penghormatan.",
+    "people_note": "Sapaan mingalaba disertai sedikit bungkukan, dan barang diberi atau diterima dengan tangan kanan. Menyentuh kepala orang lain dianggap tidak sopan, dan menyapa biksu memakai ragam bahasa yang lebih halus.",
+    "story": {
+      "text": "Di pelataran Shwedagon, warga menyapa dengan mingalaba sambil sedikit membungkuk. Kata itu berasal dari Pali mangala, yang berarti berkah atau hal yang membawa keberuntungan. Bahasa resmi Myanmar adalah bahasa Burma, anggota rumpun Sino-Tibet cabang Tibeto-Burma. Bahasa ini bernada dan membedakan dua ragam: ragam sastra untuk tulisan resmi dan ragam lisan untuk percakapan. Aksara Burma berbentuk bulat dan melingkar, konon karena dahulu ditulis pada daun palem agar tidak sobek. Orang Myanmar umumnya tidak memakai nama keluarga. Sebagai gantinya, gelar kehormatan seperti U untuk pria dewasa dan Daw untuk perempuan diletakkan di depan nama. Etiket pergaulan menekankan penghormatan kepada yang lebih tua dan biksu. Barang diberikan atau diterima dengan tangan kanan, sementara menyentuh kepala orang lain dianggap tidak sopan. Salam kepada biksu memakai bahasa yang lebih halus.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Burmese_language", "what": "Rumpun Sino-Tibet cabang Tibeto-Burma, bahasa bernada, diglosia ragam sastra dan lisan, aksara Burma" },
+        { "url": "https://worldly.academy/words/burmese", "what": "Mingalaba sebagai sapaan; kyay zu tin ba de terima kasih; thwa daw me selamat tinggal" },
+        { "url": "https://phrasary.com/burmese", "what": "Aksara Burma bulat dan frasa sapaan dasar" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Burmese_language", "what": "Rumpun Sino-Tibet, bahasa bernada, diglosia, aksara Burma" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Myanmar", "what": "Gelar U dan Daw, penghormatan kepada yang lebih tua dan biksu" },
+      { "url": "https://worldly.academy/words/burmese", "what": "Frasa mingalaba, terima kasih, dan selamat tinggal" },
+      { "url": "https://phrasary.com/burmese", "what": "Daftar frasa sapaan dan catatan aksara Burma" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Kaitan bentuk bulat aksara Burma dengan daun palem bersumber cerita rakyat, bukan bukti linguistik"
+    ]
+  },
+  {
+    "id": "tl",
+    "iso3": "TLS",
+    "name_id": "Timor-Leste",
+    "name_local": "Timor-Leste",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Bondia",
+      "roman": "Bondia",
+      "meaning_id": "Halo / selamat pagi",
+      "register": "netral, dipakai dari pagi sampai tengah hari"
+    },
+    "language": {
+      "name_id": "Bahasa Tetun",
+      "native_name": "Tetun",
+      "script": "Alfabet Latin (ejaan resmi INL)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Tetum menjadi lingua franca dan bahasa resmi bersama bahasa Portugis. Banyak kata diserap dari Portugis, termasuk ungkapan terima kasih."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Obrigadu", "roman": "Obrigadu" },
+      { "id": "Permisi", "native": "Deskulpa", "roman": "Deskulpa" },
+      { "id": "Sampai jumpa", "native": "Ate logu", "roman": "Ate logu" }
+    ],
+    "culture_note": "Gereja Katolik memakai Tetum sebagai bahasa liturgi selama pendudukan Indonesia, sehingga bahasa itu menjadi penanda identitas nasional. Kini Tetum dan Portugis sama-sama berstatus bahasa resmi.",
+    "people_note": "Salam menyesuaikan waktu: bondia pada pagi, botarde pada siang, dan bonoiti pada malam. Jabat tangan ringan lazim, dan orang muda menyapa yang lebih tua lebih dahulu.",
+    "story": {
+      "text": "Di pasar Dili, seorang penjual menyapa pagi dengan bondia. Kata itu diserap dari bahasa Portugis bom dia, 'selamat pagi'. Bahasa resmi Timor-Leste adalah bahasa Tetum dan bahasa Portugis. Tetum berperan sebagai lingua franca, sementara Portugis menjadi bahasa hukum dan pendidikan. Tetum ditulis memakai alfabet Latin dengan ejaan resmi yang ditetapkan Lembaga Nasional Linguistik pada 2004. Selama berabad-abad pengaruh Portugis meninggalkan banyak kata serapan, termasuk ungkapan terima kasih. Karena itu ucapan terima kasih mengikuti pola Portugis dan menyesuaikan diri dengan penuturnya: lelaki mengucapkan obrigadu, perempuan mengucapkan obrigada. Permintaan maaf sehari-hari berbunyi deskulpa. Sapaan berubah mengikuti waktu: bondia pada pagi, botarde pada siang, dan bonoiti pada malam. Orang muda menyapa yang lebih tua lebih dahulu, dan jabat tangan dilakukan dengan sentuhan ringan.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Tetum_language", "what": "Tetum Austronesia, bahasa resmi Timor-Leste, alfabet Latin, serapan Portugis termasuk obrigadu/obrigada" },
+        { "url": "https://visiteasttimor.com/plan/speak-tetum/", "what": "Bondia, obrigadu/obrigada menurut jenis kelamin, deskulpa, atelogu, ejaan resmi oleh INL" },
+        { "url": "https://en.wikipedia.org/wiki/Timor-Leste", "what": "Tetum dan Portugis sebagai bahasa resmi" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Tetum_language", "what": "Tetum Austronesia, ejaan Latin resmi, serapan Portugis dan Melayu" },
+      { "url": "https://en.wikipedia.org/wiki/Timor-Leste", "what": "Tetum dan Portugis sebagai bahasa resmi negara" },
+      { "url": "https://visiteasttimor.com/plan/speak-tetum/", "what": "Frasa sapaan harian dan aturan obrigadu/obrigada" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Pemakaian 'obrigadu/obrigada' tanpa penyesuaian gender pada praktiknya masih longgar dan perlu cek penutur asli",
+      "Klaim peran Portugis dalam ranah hukum dan pendidikan belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "kg",
+    "iso3": "KGZ",
+    "name_id": "Kirgizstan",
+    "name_local": "Кыргызстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Салам",
+      "roman": "Salam",
+      "meaning_id": "Halo",
+      "register": "netral; ragam santai"
+    },
+    "language": {
+      "name_id": "Bahasa Kirgiz",
+      "native_name": "Кыргыз тили",
+      "script": "Alfabet Kiril (ditambah huruf ң, ө, ү)",
+      "family": "Turkik (Kipchak)",
+      "note": "Kirgiz adalah bahasa resmi bersama bahasa Rusia. Seperti bahasa Turkik lain, Kirgiz memakai harmoni vokal."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Рахмат", "roman": "Rakhmat" },
+      { "id": "Permisi", "native": "Кечиресиз", "roman": "Kechiresiz" },
+      { "id": "Sampai jumpa", "native": "Кош болуңуз", "roman": "Kosh boluñuz" }
+    ],
+    "culture_note": "Keramahan adalah nilai yang dijunjung tinggi. Tamu disambut dan sebaiknya menerima suguhan teh atau kymyz, minuman susu kuda fermentasi, sebab menolak hidangan bisa terasa sebagai penolakan terhadap tuan rumah.",
+    "people_note": "Jabat tangan lazim, terutama antarpria, dan yang lebih tua disapa lebih dahulu. Barang diberikan atau diterima dengan tangan kanan, dan sepatu dilepas sebelum masuk rumah.",
+    "story": {
+      "text": "Di sebuah rumah teh dekat Bishkek, tamu disambut dengan ucapan salam sambil berjabat tangan. Bahasa resmi Kirgizstan adalah bahasa Kirgiz, anggota rumpun Turkik cabang Kipchak, dan bahasa Rusia juga berstatus resmi. Kirgiz ditulis memakai alfabet Kiril yang ditambah huruf khusus ң, ө, dan ү untuk bunyi yang tidak ada dalam bahasa Rusia. Seperti bahasa Turkik lain, Kirgiz memakai harmoni vokal: vokal dalam satu kata menyesuaikan baris depan atau belakang. Sapaan akrab berbunyi salam, sering diikuti pertanyaan kandaisyng, 'apa kabar?'. Jawabannya cukup jakshy, 'baik', atau jakshy, rakhmat. Ucapan terima kasih adalah rakhmat. Orang Kirgiz sangat menjunjung keramahan. Tamu dipersilakan masuk dan disuguhi teh atau kymyz, minuman dari susu kuda yang difermentasi. Yang lebih tua disapa lebih dahulu. Menyerahkan atau menerima sesuatu sebaiknya memakai tangan kanan.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Kyrgyz_language", "what": "Rumpun Turkik cabang Kipchak, harmoni vokal, alfabet Kiril dengan huruf ң, ө, ү, status resmi bersama Rusia" },
+        { "url": "https://worldly.academy/words/kyrgyz", "what": "Frasa Salam, Kosh boluñuz, Rakhmat, dan kymyz sebagai suguhan" },
+        { "url": "https://en.wikipedia.org/wiki/Kyrgyz_alphabets", "what": "Alfabet Kiril Kirgiz dan huruf tambahan" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Kyrgyz_language", "what": "Rumpun Turkik, harmoni vokal, alfabet Kiril, status resmi" },
+      { "url": "https://en.wikipedia.org/wiki/Kyrgyz_alphabets", "what": "Huruf tambahan ң, ө, ү dalam alfabet Kiril Kirgiz" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Kyrgyzstan", "what": "Keramahan, suguhan teh dan kymyz, penghormatan kepada tamu" },
+      { "url": "https://worldly.academy/words/kyrgyz", "what": "Frasa sapaan dan terima kasih dasar" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Pemetaan 'Permisi' ke kechiresiz (yang berarti maaf/permisi) perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "tj",
+    "iso3": "TJK",
+    "name_id": "Tajikistan",
+    "name_local": "Тоҷикистон",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Салом",
+      "roman": "Salom",
+      "meaning_id": "Halo",
+      "register": "netral, akrab"
+    },
+    "language": {
+      "name_id": "Bahasa Tajik",
+      "native_name": "Тоҷикӣ",
+      "script": "Alfabet Kiril (35 huruf)",
+      "family": "Indo-Eropa (Iran)",
+      "note": "Tajik adalah varian bahasa Persia yang ditulis memakai huruf Kiril. Bahasa ini berkerabat dekat dengan bahasa Farsi di Iran dan Dari di Afghanistan."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Ташаккур", "roman": "Tashakkur" },
+      { "id": "Permisi", "native": "Мебахшед", "roman": "Mebakhshed" },
+      { "id": "Sampai jumpa", "native": "То дидан", "roman": "To didan" }
+    ],
+    "culture_note": "Nowruz, tahun baru musim semi, dirayakan dengan hidangan dan kunjungan keluarga. Perayaan ini menandai awal tahun dalam tradisi Persia yang diwarisi Tajik.",
+    "people_note": "Saat menyapa, orang meletakkan tangan kanan di dada. Yang lebih tua disapa lebih dahulu, tamu disuguhi teh, dan sepatu dilepas sebelum masuk rumah.",
+    "story": {
+      "text": "Di sebuah choykhona, rumah teh di Dushanbe, tamu menyapa dengan salom dan meletakkan tangan kanan di dada. Bahasa resmi Tajikistan adalah bahasa Tajik, anggota rumpun Indo-Eropa cabang Iran. Tajik sebenarnya varian bahasa Persia yang ditulis memakai alfabet Kiril sejak 1940. Alfabet Kiril Tajik memuat 35 huruf, termasuk huruf tambahan ғ, ӣ, қ, ӯ, ҳ, dan ҷ untuk bunyi khas Persia yang tidak ada dalam bahasa Rusia. Sebelumnya Tajik ditulis memakai aksara Persia-Arab, lalu sempat memakai alfabet Latin. Sapaan sehari-hari salom dan ucapan terima kasih tashakkur banyak berasal dari kosakata Arab, jejak pengaruh Islam. Rakyat Tajik merayakan Nowruz, tahun baru musim semi, dengan hidangan dan pertemuan keluarga. Dalam pergaulan, yang lebih tua dihormati dan disapa lebih dahulu, dan tamu disuguhi teh serta buah sebelum berbincang panjang. Melepas sepatu saat masuk rumah adalah kebiasaan yang lazim.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Tajik_language", "what": "Tajik varian Persia, rumpun Indo-Eropa cabang Iran, ditulis Kiril sejak 1939-1940" },
+        { "url": "https://celcar.indiana.edu/materials/language-portal/tajiki.html", "what": "Sejarah aksara Tajik dan 35 huruf alfabet Kiril" },
+        { "url": "https://en.wikipedia.org/wiki/Tajik_alphabet", "what": "Huruf tambahan ғ, ӣ, қ, ӯ, ҳ, ҷ" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Tajik_language", "what": "Tajik varian Persia, rumpun Indo-Eropa, penulisan Kiril" },
+      { "url": "https://en.wikipedia.org/wiki/Tajik_alphabet", "what": "Alfabet Kiril Tajik dan huruf tambahannya" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Tajikistan", "what": "Nowruz, keramahan, dan adat menerima tamu" },
+      { "url": "https://celcar.indiana.edu/materials/language-portal/tajiki.html", "what": "Sejarah tiga sistem tulisan Tajik dan ciri bahasanya" }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Asal kata Arab untuk salom dan tashakkur belum dirujuk ke sumber etimologi primer"
+    ]
+  },
+  {
+    "id": "tm",
+    "iso3": "TKM",
+    "name_id": "Turkmenistan",
+    "name_local": "Türkmenistan",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Salam",
+      "roman": "Salam",
+      "meaning_id": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "name_id": "Bahasa Turkmen",
+      "native_name": "Türkmençe",
+      "script": "Alfabet Latin (resmi sejak 1993; sebelumnya Kiril)",
+      "family": "Turkik (Oghuz)",
+      "note": "Turkmen adalah bahasa resmi Turkmenistan dan berkerabat dekat dengan bahasa Turki serta Azerbaijani. Alfabet Latinnya memakai huruf tambahan seperti ä, ň, ö, ş, ü, dan ý."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "Sag boluň", "roman": "Sag boluň" },
+      { "id": "Permisi", "native": "Bagyşlaň", "roman": "Bagyşlaň" },
+      { "id": "Sampai jumpa", "native": "Hoş sag boluň", "roman": "Hoş sag boluň" }
+    ],
+    "culture_note": "Roti diperlakukan dengan hormat: roti tidak diletakkan terbalik dan tidak dibuang. Dalam budaya Turkmen, roti melambangkan rezeki, sehingga sikap terhadapnya mencerminkan rasa syukur kepada tuan rumah.",
+    "people_note": "Yang lebih tua disapa lebih dahulu, dan makanan atau hadiah diberikan dengan tangan kanan, kadang disangga tangan kiri. Tamu disuguhi teh dan roti saat berkunjung.",
+    "story": {
+      "text": "Di tepi Gurun Karakum, tamu disambut di dalam tenda dengan sepiring roti dan semangkuk teh hijau. Bahasa resmi Turkmenistan adalah bahasa Turkmen, anggota rumpun Turkik cabang Oghuz yang berkerabat dekat dengan bahasa Turki dan Azerbaijani. Dalam satu abad, bahasa ini sempat memakai empat sistem tulisan: aksara Persia-Arab, lalu Latin pada 1928, lalu Kiril pada 1940, dan kembali ke Latin pada 1993 setelah kemerdekaan. Alfabet Latin resmi Turkmen memakai huruf tambahan seperti ä, ň, ö, ş, ü, ý, dan ž. Sapaan Salam dijawab dengan Salam, lalu Nähili, 'apa kabar?'. Ucapan terima kasih sag boluň secara harfiah berarti 'tetaplah sehat'. Budaya Turkmen menghormati roti: roti tidak diletakkan terbalik atau dibuang. Orang yang lebih tua disapa lebih dahulu, dan hadiah atau makanan diberikan dengan tangan kanan, kadang disangga tangan kiri.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Turkmen_language", "what": "Rumpun Turkik cabang Oghuz, alfabet Latin resmi sejak 1993, sejarah empat sistem tulisan" },
+        { "url": "https://en.wikipedia.org/wiki/Turkmen_alphabet", "what": "Huruf Latin Turkmen dengan aksen ä, ň, ö, ş, ü, ý, ž" },
+        { "url": "https://en.wikivoyage.org/wiki/Turkmen_phrasebook", "what": "Salam, Nähili, sag boluň, bagyşlaň sebagai frasa dasar" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/Turkmen_language", "what": "Rumpun Turkik Oghuz, alfabet Latin resmi, sejarah tulisan" },
+      { "url": "https://en.wikipedia.org/wiki/Turkmen_alphabet", "what": "Susunan huruf Latin Turkmen" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_Turkmenistan", "what": "Keramahan, peran roti dan teh, adat menerima tamu" },
+      { "url": "https://en.wikivoyage.org/wiki/Turkmen_phrasebook", "what": "Frasa sapaan, terima kasih, dan permisi" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Sebagian warga masih menulis dan membaca varian Kiril; ejaan Latin untuk 'Hoş sag boluň' belum dirujuk ke kamus resmi",
+      "Makna harfiah 'sag boluň' perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "kp",
+    "iso3": "PRK",
+    "name_id": "Korea Utara",
+    "name_local": "조선",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하십니까",
+      "roman": "Annyeonghasimnikka",
+      "meaning_id": "Halo",
+      "register": "sopan formal, dipakai kepada orang lebih tua"
+    },
+    "language": {
+      "name_id": "Bahasa Korea",
+      "native_name": "조선말",
+      "script": "Hangul (di Korea Utara disebut Chosŏn'gŭl / 조선글)",
+      "family": "Koreanik",
+      "note": "Bahasa resmi Korea Utara adalah bahasa Korea. Ragam bakunya, Munhwaŏ, berbasis dialek Pyongyang dan cenderung menghindari kata serapan."
+    },
+    "phrases": [
+      { "id": "Terima kasih", "native": "고맙습니다", "roman": "Gomapseumnida" },
+      { "id": "Permisi", "native": "실례합니다", "roman": "Sillyehamnida" },
+      { "id": "Sampai jumpa", "native": "안녕히 가십시오", "roman": "Annyeonghi gasipsio" }
+    ],
+    "culture_note": "Hangul diciptakan pada 1443 pada masa Dinasti Joseon agar rakyat biasa bisa membaca dan menulis. Di Korea Utara aksara ini disebut Chosŏn'gŭl dan menjadi lambang kebanggaan bangsa.",
+    "people_note": "Orang muda menyapa yang lebih tua lebih dahulu dengan membungkuk. Barang diberi atau diterima dengan dua tangan, dan ragam bahasa sopan dipakai kepada orang yang lebih tua atau berkedudukan tinggi.",
+    "story": {
+      "text": "Di sebuah sekolah di Pyongyang, murid menyapa guru dengan ungkapan sopan annyeonghasimnikka sambil membungkukkan badan. Bahasa resmi Korea Utara adalah bahasa Korea, yang oleh penuturnya disebut chosonmal. Ragam bakunya dinamakan Munhwao, 'bahasa budaya', dan berbasis dialek Pyongyang. Bahasa Korea umumnya dimasukkan ke rumpun Koreanik, meski hubungannya dengan rumpun lain masih diperdebatkan. Bahasanya ditulis memakai Hangul, aksara asli yang diciptakan pada 1443 pada masa Dinasti Joseon agar rakyat jelata bisa membaca dan menulis. Di Korea Utara aksara itu disebut Chosŏn'gŭl. Hangul bukan huruf biasa, melainkan aksara fitur: bentuk konsonannya meniru posisi mulut dan lidah saat mengucapkan bunyi. Untuk berterima kasih, orang Korea Utara lebih sering memakai gomapseumnida yang berakar kata Korea asli, sedangkan gamsahamnida yang berakar Sino-Korea juga dipahami. Salam perpisahan kepada orang yang pergi berbunyi annyeonghi gasipsio.",
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/North_Korean_standard_language", "what": "Munhwao berbasis dialek Pyongyang sebagai ragam baku Korea Utara, ditulis Chosŏn'gŭl" },
+        { "url": "https://en.wikipedia.org/wiki/Hangul", "what": "Hangul diciptakan 1443, aksara fitur dengan bentuk konsonan menyerupai organ bicara" },
+        { "url": "https://shunculture.com/category/democratic-peoples-republic-of-korea/phrases", "what": "Annyeonghasimnikka sapaan formal dan gomapseumnida terima kasih berakar kata Korea asli" }
+      ]
+    },
+    "sources": [
+      { "url": "https://en.wikipedia.org/wiki/North_Korean_standard_language", "what": "Ragam baku Munhwao dan dasar dialek Pyongyang" },
+      { "url": "https://en.wikipedia.org/wiki/Hangul", "what": "Asal usul dan ciri aksara Hangul" },
+      { "url": "https://en.wikipedia.org/wiki/Culture_of_North_Korea", "what": "Adat menghormati yang lebih tua dan pemakaian bahasa sopan" },
+      { "url": "https://shunculture.com/category/democratic-peoples-republic-of-korea/phrases", "what": "Frasa sapaan, terima kasih, dan salam perpisahan" }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "Romanisasi yang dipakai adalah sistem Korea Selatan; Korea Utara memiliki sistem sendiri",
+      "Ejaan Chosŏn'gŭl dengan diakritik perlu dicek terhadap romanisasi resmi Korea Utara"
+    ]
+  }
+]

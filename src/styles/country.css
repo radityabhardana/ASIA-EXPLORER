@@ -16,6 +16,17 @@
   --font-cyril: 'Segoe UI', 'Helvetica Neue', 'Noto Sans', Arial, sans-serif;
   --font-deva: 'Nirmala UI', 'Devanagari Sangam MN', 'Noto Sans Devanagari', Mangal, sans-serif;
   --font-thai: 'Leelawadee UI', Thonburi, 'Noto Sans Thai', Tahoma, sans-serif;
+  --font-hebr: 'Segoe UI', 'Arial Hebrew', 'Noto Sans Hebrew', David, Tahoma, sans-serif;
+  --font-armn: Sylfaen, 'Segoe UI', 'Noto Sans Armenian', Arial, sans-serif;
+  --font-geor: Sylfaen, 'Segoe UI', 'Noto Sans Georgian', Arial, sans-serif;
+  --font-beng: 'Nirmala UI', Vrinda, 'Noto Sans Bengali', sans-serif;
+  --font-sinh: 'Iskoola Pota', 'Nirmala UI', 'Noto Sans Sinhala', sans-serif;
+  --font-thaa: 'MV Boli', 'Noto Sans Thaana', Tahoma, sans-serif;
+  --font-mymr: 'Myanmar Text', Padauk, 'Noto Sans Myanmar', sans-serif;
+  --font-khmr: 'Khmer UI', 'Leelawadee UI', 'Noto Sans Khmer', sans-serif;
+  --font-laoo: 'Leelawadee UI', 'Lao UI', 'Noto Sans Lao', Tahoma, sans-serif;
+  --font-tibt: 'Microsoft Himalaya', 'Noto Sans Tibetan', Kailasa, sans-serif;
+  --font-grek: 'Segoe UI', 'Noto Sans', Arial, sans-serif;
 }
 
 .country[data-country='id'] {
@@ -81,7 +92,7 @@
 /* --- Halaman & Grid ------------------------------------------------------- */
 
 .country {
-  --country-accent: var(--accent);
+  --country-accent: var(--country-default, var(--accent));
   --country-gap-tight: 8px;
   --country-gap-snug: 12px;
   --country-gap-loose: 24px;
@@ -370,10 +381,10 @@
   left: 0;
   right: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding-inline: 48px;
-  z-index: var(--z-overlay);
+  z-index: var(--z-skip-link, 50);
   pointer-events: none;
   background: transparent;
   border: none;
@@ -390,11 +401,13 @@
 }
 
 .country-back {
+  position: fixed;
+  z-index: var(--z-skip-link, 50);
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-height: 38px;
+  min-height: 44px;
   padding: 8px 18px;
   background: rgba(254, 252, 248, 0.92);
   backdrop-filter: blur(12px);
@@ -484,6 +497,61 @@
   line-height: 1.45;
 }
 
+.country-native--hebr {
+  font-family: var(--font-hebr);
+  line-height: 1.4;
+}
+
+.country-native--armn,
+.country-native--geor {
+  font-family: var(--font-armn);
+  line-height: 1.3;
+}
+
+.country-native--geor {
+  font-family: var(--font-geor);
+}
+
+.country-native--beng {
+  font-family: var(--font-beng);
+  line-height: 1.45;
+}
+
+.country-native--sinh {
+  font-family: var(--font-sinh);
+  line-height: 1.45;
+}
+
+.country-native--thaa {
+  font-family: var(--font-thaa);
+  line-height: 1.4;
+}
+
+.country-native--mymr {
+  font-family: var(--font-mymr);
+  line-height: 1.5;
+}
+
+.country-native--khmr {
+  font-family: var(--font-khmr);
+  line-height: 1.5;
+}
+
+.country-native--laoo {
+  font-family: var(--font-laoo);
+  line-height: 1.5;
+}
+
+.country-native--tibt {
+  font-family: var(--font-tibt);
+  line-height: 1.5;
+}
+
+.country-native--grek {
+  font-family: var(--font-grek);
+  line-height: 1.3;
+}
+
 /* --- 1. Hero (Full Immersive Wide Banner with Parallax) ------------------- */
 
 .country-hero {
@@ -548,8 +616,8 @@
   pointer-events: none;
   user-select: none;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
   font-weight: var(--weight-bold, 700);
   z-index: 1;
 }
@@ -635,6 +703,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  z-index: var(--z-skip-link, 50);
   pointer-events: auto;
 }
 

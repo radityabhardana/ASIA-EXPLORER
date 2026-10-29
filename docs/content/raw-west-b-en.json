@@ -1,0 +1,640 @@
+[
+  {
+    "id": "ae",
+    "iso3": "ARE",
+    "name_id": "United Arab Emirates",
+    "name_local": "الإمارات العربية المتحدة",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلاً وسهلاً",
+      "roman": "Ahlan wa sahlan",
+      "meaning_id": "Hello",
+      "register": "warm, used to welcome guests"
+    },
+    "language": {
+      "name_id": "Arabic (Emirati dialect)",
+      "native_name": "اللهجة الإماراتية",
+      "script": "Arabic script, written right to left",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Emirati Arabic, or Al Ramsa, belongs to the Gulf Arabic group; Modern Standard Arabic is used in school and official documents."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عن إذنك",
+        "roman": "ʿAn idhnak"
+      },
+      {
+        "id": "Goodbye",
+        "native": "في أمان الله",
+        "roman": "Fī amān Allāh"
+      }
+    ],
+    "culture_note": "The majlis, a sitting room and family gathering place, has been listed by UNESCO as intangible cultural heritage since 2015. Arabic coffee is served with dates, and pouring for the guest first is a mark of honour.",
+    "people_note": "Receive and give things with the right hand. Shoes are removed before entering a home or a majlis. Guests greet the eldest person first. With the opposite gender, wait for the woman to offer her hand first.",
+    "story": {
+      "text": "When a guest steps into the majlis, the cushion-lined sitting room, the host in the United Arab Emirates serves Arabic coffee. It is poured from a dallah, a long-necked brass pot, into a small handleless cup called a finjan. Dates are set beside it to offset the bitterness. The cup is filled only halfway, and the guest receives it with the right hand, then returns it the same way; declining a refill is done with a slight hand gesture. Everyday speech here is Emirati Arabic, which its speakers call Al Ramsa and which belongs to the Gulf Arabic group. In school and official documents, Modern Standard Arabic is used. The sound q, pronounced q in Standard Arabic, becomes g in this dialect, so qahwa is heard as gahwa. The majlis itself, a sitting room and family gathering place, has been listed by UNESCO as intangible cultural heritage since 2015.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+          "what": "Emirati, or Al Ramsa, is Gulf Arabic; the sound q becomes g"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee, dallah, finjan, dates, and the etiquette of pouring for guests"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis as a sitting room, listed by UNESCO in 2015 with the UAE, Oman, Qatar, and Saudi Arabia"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+        "what": "Emirati, or Al Ramsa, is Gulf Arabic; the sound q becomes g"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee, dallah, finjan, dates, and the etiquette of pouring for guests"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis as a sitting room, listed by UNESCO in 2015 with the UAE, Oman, Qatar, and Saudi Arabia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic",
+        "what": "Arabic, an Afro-Asiatic Semitic language; Modern Standard Arabic"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The register of the greeting أهلاً وسهلاً has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "kw",
+    "iso3": "KWT",
+    "name_id": "Kuwait",
+    "name_local": "الكويت",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "هلا والله",
+      "roman": "Hala wallah",
+      "meaning_id": "Hello",
+      "register": "friendly, typically Gulf"
+    },
+    "language": {
+      "name_id": "Arabic (Kuwaiti dialect)",
+      "native_name": "كويتي",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Kuwaiti Arabic belongs to the Gulf group; its vocabulary absorbed Persian, Turkish, English, and Hindi words through the country's maritime and trading history."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "يعطيك العافية",
+        "roman": "Yaʿṭīk al-ʿāfiya"
+      },
+      {
+        "id": "Excuse me",
+        "native": "لو سمحت",
+        "roman": "Law samaḥt"
+      },
+      {
+        "id": "Goodbye",
+        "native": "الله وياك",
+        "roman": "Allāh wiyyāk"
+      }
+    ],
+    "culture_note": "The diwaniya, a separate front sitting room, is where men gather to discuss family and neighbourhood matters. Hosting guests is seen as an honour, so coffee and dates are served before long conversation.",
+    "people_note": "Begin with the eldest when greeting. Use the right hand to eat and to give. Accepting the coffee served honours the host. Relaxed talk and shared stories are common in social life.",
+    "story": {
+      "text": "In Kuwait, male guests are often received in the diwaniya, a separate front room set aside for gatherings. Arabic coffee is poured from a pot and served with dates; the guest accepts the small cup with the right hand. Everyday speech is Kuwaiti Arabic, part of the Gulf Arabic group. The old port city of Kuwait was a trading crossroads, so its dialect absorbed many words from Persian, Turkish, English, and Hindi. Its distinctive sounds are easy to hear: q becomes g and k becomes ch, including in qahwa, heard as gahwa. Kuwait's soap-opera industry made this accent familiar as far away as Tunisia and Jordan. Society is diglossic: Modern Standard Arabic serves school and administration, while Kuwaiti Arabic is used at home and is seen as a marker of identity.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+          "what": "Kuwaiti Arabic is Gulf Arabic; Persian, Turkish, English, and Hindi loanwords; soap operas spread the accent"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee is served with dates; the cup is received and returned with the right hand"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+          "what": "Kuwaiti culture and the tradition of hosting guests"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+        "what": "Kuwaiti Arabic is Gulf Arabic; Persian, Turkish, English, and Hindi loanwords; soap operas spread the accent"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "The Gulf Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee is served with dates; the cup is received and returned with the right hand"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+        "what": "Kuwaiti culture and the tradition of hosting guests"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The diwaniya tradition has not been traced to a dedicated primary source",
+      "The register of the greeting هلا والله needs checking with a native speaker"
+    ]
+  },
+  {
+    "id": "lb",
+    "iso3": "LBN",
+    "name_id": "Lebanon",
+    "name_local": "لبنان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "مرحبا",
+      "roman": "Marhaba",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used in the Levant"
+    },
+    "language": {
+      "name_id": "Arabic (Lebanese dialect)",
+      "native_name": "العربية اللبنانية",
+      "script": "Arabic script; conversation often mixed with French and English words",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Lebanese Arabic belongs to the Levantine Arabic group; French loanwords are common because of history and education."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "تسلم",
+        "roman": "Tislam"
+      },
+      {
+        "id": "Excuse me",
+        "native": "بعد إذنك",
+        "roman": "Baʿd iznak"
+      },
+      {
+        "id": "Goodbye",
+        "native": "بسلامة",
+        "roman": "Bslāme"
+      }
+    ],
+    "culture_note": "Hosting is seen as an honour, so dinner invitations often come early in a friendship. Lateness is tolerated: about twenty minutes is still considered normal, and guests usually bring sweets.",
+    "people_note": "Greet the household in order of age, starting with the eldest. Accept offered tea or coffee as a sign of respect. Avoid crossing your legs so your foot points at someone.",
+    "story": {
+      "text": "In Beirut, guests arriving at a home usually greet the household in order of age, starting with the oldest. The host serves Levantine coffee, finely ground and scented with cardamom, brewed in a long-handled pot called a rakwa. In rural areas and Bedouin camps, a larger long-spouted pot known as a bakraj is used. Before modern cafes spread, Arab coffeehouses served as places of discussion; some called them schools of the wise. The official language is Modern Standard Arabic, but daily talk uses Lebanese Arabic, part of the Levantine group, often mixed with French words. Speakers therefore switch easily between two registers. Guest etiquette expects visitors to taste every dish served as a sign of respect. Refusing an offer of coffee or tea can seem to slight the host's honour, so accepting is considered more polite.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+          "what": "Guest etiquette: greeting by age, accepting what is offered, loose punctuality, not pointing the feet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+          "what": "Lebanese Arabic belongs to the Levantine group"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Levantine cardamom coffee; the rakwa and bakraj pots; coffeehouses as centres of discussion"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+        "what": "Guest etiquette: greeting by age, accepting what is offered, loose punctuality, not pointing the feet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+        "what": "Lebanese Arabic belongs to the Levantine group"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "The Levantine Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Levantine cardamom coffee; the rakwa and bakraj pots; coffeehouses as centres of discussion"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The degree of French code-switching varies by generation and region"
+    ]
+  },
+  {
+    "id": "om",
+    "iso3": "OMN",
+    "name_id": "Oman",
+    "name_local": "عُمان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Hello",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Arabic (Omani dialect)",
+      "native_name": "اللهجة العمانية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Besides Omani Arabic, Modern South Arabian languages such as Mehri and Soqotri are also spoken in the south of the country."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "مشكور",
+        "roman": "Masykūr"
+      },
+      {
+        "id": "Excuse me",
+        "native": "من فضلك",
+        "roman": "Min faḍlak"
+      },
+      {
+        "id": "Goodbye",
+        "native": "إلى اللقاء",
+        "roman": "Ilā al-liqāʾ"
+      }
+    ],
+    "culture_note": "The khanjar, a curved dagger, is worn by Omani men at weddings and national occasions; its craft and customs were inscribed by UNESCO in 2022. Omani coffee is scented with cardamom and served with dates or halwa.",
+    "people_note": "Receive and give with the right hand. Guests greet the eldest person first. At a gathering, the food served should be tasted. Honorific titles for elders are common as a mark of good manners.",
+    "story": {
+      "text": "In Muscat, a host welcomes guests with Omani coffee served alongside dates or halwa, a chewy sweet. The coffee is poured from a dallah, a long-spouted pot, into small cups; guests receive and return the cup with the right hand. Omani men wear the khanjar, a curved dagger, at official events such as weddings and national occasions; the craft and customs around it were inscribed by UNESCO in 2022. The official language is Modern Standard Arabic, while daily talk uses Omani Arabic. In the south, communities also speak Modern South Arabian languages such as Mehri and Soqotri, a branch of the Afro-Asiatic family distinct from Arabic. The majlis, the room where neighbours and family gather, was recognised by UNESCO as intangible cultural heritage in 2015, with Oman among the nominating states. At the table, food is taken with the right hand.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+          "what": "Omani cardamom coffee with dates or halwa; the khanjar worn at weddings and national occasions, UNESCO 2022"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+          "what": "Omani Arabic and its sound features"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Oman as a nominating state"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+        "what": "Omani cardamom coffee with dates or halwa; the khanjar worn at weddings and national occasions, UNESCO 2022"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+        "what": "Omani Arabic and its sound features"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_South_Arabian_languages",
+        "what": "Modern South Arabian languages such as Mehri and Soqotri"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Oman as a nominating state"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Details of local hosting traditions can differ between regions"
+    ]
+  },
+  {
+    "id": "ps",
+    "iso3": "PSE",
+    "name_id": "Palestine",
+    "name_local": "فلسطين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلين",
+      "roman": "Ahlēn",
+      "meaning_id": "Hello",
+      "register": "friendly, typical of the Levant"
+    },
+    "language": {
+      "name_id": "Arabic (Palestinian dialect)",
+      "native_name": "العربية الفلسطينية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Palestinian Arabic belongs to the Levantine Arabic group; pronunciation varies between cities, villages, and Bedouin communities."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً جزيلاً",
+        "roman": "Syukran jazīlan"
+      },
+      {
+        "id": "Excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "الله معك",
+        "roman": "Allāh maʿak"
+      }
+    ],
+    "culture_note": "Guests are welcomed with ahlan wa sahlan. Near the end of a visit, the host offers a goodbye coffee; guests take their leave after drinking it. Repeatedly praising a possession is avoided, as it is believed to invite the evil eye.",
+    "people_note": "Honour elders: stand when they enter and offer them a seat. Accept an offer after the host insists a second time. Use the right hand to eat and to give.",
+    "story": {
+      "text": "In Ramallah, guests are welcomed with the phrase ahlan wa sahlan, then shown to a seat. The host serves tea, then pastries, then coffee, following a long-established order. The bitter, cardamom-scented coffee is more than a drink; it marks the visit. Near the end of a visit, the host offers a goodbye coffee; guests take their leave after drinking it, since refusing may prolong the stay. Everyday speech here is Palestinian Arabic, part of the Levantine group, while Modern Standard Arabic is used in school and official documents. People honour their elders by standing when they enter a room and offering them a seat. Other etiquette: accept things with the right hand, and avoid praising a personal possession repeatedly, as this is believed to invite envy, the evil eye known as the ain.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+          "what": "Guest etiquette: the order of refreshments, goodbye coffee, honouring elders, the evil eye, the right hand"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+          "what": "Palestinian Arabic belongs to the Levantine group"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Cardamom Arabic coffee and the etiquette of serving it"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+        "what": "Guest etiquette: the order of refreshments, goodbye coffee, honouring elders, the evil eye, the right hand"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+        "what": "Palestinian Arabic belongs to the Levantine group"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "The Levantine Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Cardamom Arabic coffee and the etiquette of serving it"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Customs differ between Muslim and Christian families and between regions"
+    ]
+  },
+  {
+    "id": "qa",
+    "iso3": "QAT",
+    "name_id": "Qatar",
+    "name_local": "قطر",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "حياك الله",
+      "roman": "Ḥayyāk Allāh",
+      "meaning_id": "Hello (may God keep you)",
+      "register": "warm, typically Gulf"
+    },
+    "language": {
+      "name_id": "Arabic (Gulf dialect)",
+      "native_name": "اللهجة القطرية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Qatari Arabic belongs to the Gulf Arabic group; Modern Standard Arabic is used in media such as Al Jazeera and in administration."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "جزاك الله خير",
+        "roman": "Jazāk Allāh khayr"
+      },
+      {
+        "id": "Excuse me",
+        "native": "لو تسمح",
+        "roman": "Law tismaḥ"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "culture_note": "The majlis, a sitting room lined with cushions along the walls, has been listed by UNESCO as intangible heritage since 2015. There neighbours and family gather, and Arabic coffee with dates is served around the guests.",
+    "people_note": "Receive and give with the right hand. Greet the eldest person first. Accept the coffee offered as a mark of respect. A calm tone and not raising one's voice are considered polite.",
+    "story": {
+      "text": "At Souq Waqif, the old market in Doha, Arabic coffee is poured from a long-spouted pot into small cups. Dates are served alongside. Guests accept the cup with the right hand and return it the same way. Hosts often greet a visitor with hayyak Allah, literally may God keep you, as a warm opening. Family and neighbours gather in the majlis, a sitting room lined with cushions along the walls; it has been listed by UNESCO as intangible heritage since 2015. Daily conversation in Qatar uses Gulf Arabic, while Modern Standard Arabic is used in school, official letters, and news broadcasts such as Al Jazeera. This is the situation of diglossia, two registers living side by side. The sound q commonly shifts to g and k to ch, a trait heard both on the street and in the market.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+          "what": "The Gulf dialect, diglossia with Modern Standard Arabic, the shifts of q and k"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Qatar as a nominating state"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee poured from a pot into small cups, served with dates, received with the right hand"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "The Gulf dialect, diglossia with Modern Standard Arabic, the shifts of q and k"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qatari_Arabic",
+        "what": "Qatari Arabic as part of Gulf Arabic"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Souq_Waqif",
+        "what": "Souq Waqif, the old market in Doha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "The majlis as a sitting room, listed by UNESCO in 2015 with Qatar as a nominating state"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee poured from a pot into small cups, served with dates, received with the right hand"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The register of the greeting حياك الله has not been traced to a primary source"
+    ]
+  },
+  {
+    "id": "sy",
+    "iso3": "SYR",
+    "name_id": "Syria",
+    "name_local": "سوريا",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "شلونك",
+      "roman": "Shlōnak",
+      "meaning_id": "Hello (how are you)",
+      "register": "friendly, typical of the Levant"
+    },
+    "language": {
+      "name_id": "Arabic (Syrian dialect)",
+      "native_name": "العربية السورية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Syrian Arabic belongs to the Levantine Arabic group; its vocabulary absorbed Turkish and French words."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "يسلمو",
+        "roman": "Yislamu"
+      },
+      {
+        "id": "Excuse me",
+        "native": "إذا بتسمح",
+        "roman": "Idhā bitismaḥ"
+      },
+      {
+        "id": "Goodbye",
+        "native": "بخاطرك",
+        "roman": "Bkhāṭrak"
+      }
+    ],
+    "culture_note": "Guests may arrive without an invitation; the host is expected to stop work and offer the best hospitality. Refusing an offer once, then accepting after insistence, is the polite custom.",
+    "people_note": "Stand when an elder enters a room. Use the right hand to eat and to give. Do not point the soles of your feet at others. Speaking softly is considered courteous.",
+    "story": {
+      "text": "In Damascus, if a neighbour arrives without an invitation, the host is expected to stop work and offer the best hospitality. The custom works like this: an offer is accepted only after insistence, since a first refusal is itself a mark of good manners. Coffee is brewed strong and scented with cardamom, poured from a rakwa in the city or a long-spouted bakraj among Bedouin. The small cup is filled only partly so the host can pour again. Daily speech is Syrian Arabic, part of the Levantine group, which absorbed Turkish and French words from the region's long history. Modern Standard Arabic remains in use for official documents and teaching. At the table, the guest takes the place of honour, and elders are invited to start first. Every dish should be tasted. Speaking softly and not pointing one's feet at others are also part of social etiquette.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+          "what": "Etiquette: unannounced guests, refusing then accepting an offer, standing for elders, not pointing the feet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+          "what": "Syrian Arabic belongs to the Levantine group"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Levantine cardamom coffee; the rakwa and bakraj pots"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+        "what": "Etiquette: unannounced guests, refusing then accepting an offer, standing for elders, not pointing the feet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+        "what": "Syrian Arabic belongs to the Levantine group"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "The Levantine Arabic group and its spread"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Levantine cardamom coffee; the rakwa and bakraj pots"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The use of Turkish and French loanwords varies by generation"
+    ]
+  },
+  {
+    "id": "ye",
+    "iso3": "YEM",
+    "name_id": "Yemen",
+    "name_local": "اليمن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "كيف حالك",
+      "roman": "Kayfa ḥālak",
+      "meaning_id": "Hello (how are you)",
+      "register": "neutral, widely used"
+    },
+    "language": {
+      "name_id": "Arabic (Yemeni dialect)",
+      "native_name": "اللهجة اليمنية",
+      "script": "Arabic script",
+      "family": "Afro-Asiatic (Semitic)",
+      "note": "Yemeni Arabic is considered conservative and preserves many Classical Arabic features; Hadhrami Arabic is also spoken in Hadhramaut."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Excuse me",
+        "native": "أسمح لي",
+        "roman": "Ismaḥ lī"
+      },
+      {
+        "id": "Goodbye",
+        "native": "الله يحفظك",
+        "roman": "Allāh yaḥfaẓak"
+      }
+    ],
+    "culture_note": "Coffee is remembered as originating in Yemen; the word mocha refers to the port of al-Makha, and Yemeni Coffee Day is celebrated every 3 March. The upper rooms of Sana'a tower-houses are used to receive guests.",
+    "people_note": "Receive and eat with the right hand. Guests are honoured and served coffee or qishr. Greet the eldest person first. Casual talk is often mixed with poetry and stories.",
+    "story": {
+      "text": "In Yemen, male guests are usually received in an upper room of a Sana'a tower-house, whose windows are framed with arched stained glass. There coffee is served with dates, and the small cup is filled a little at a time and refilled. Some hosts serve qishr, an infusion of coffee husks. Coffee itself is remembered as originating in Yemen: the word mocha refers to the port of al-Makha, and the country celebrates Yemeni Coffee Day every 3 March. The spice blend hawaij is added to the brew here. The official language is Modern Standard Arabic, while conversation uses Yemeni Arabic, considered conservative because it preserves many Classical Arabic features. The influence of Hadhrami Arabic, and of Malay from migration to Southeast Asia, left traces in everyday vocabulary. The right hand is used to receive and to eat.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+          "what": "Conservative Yemeni Arabic; Hadhrami Arabic; outside influence on vocabulary"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Coffee originated in Yemen via the port of Mokha; the hawaij spice blend; Yemeni Coffee Day"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+          "what": "Yemeni coffee and its origins in al-Makha"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+          "what": "Tower-houses and qishr, an infusion of coffee husks"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+        "what": "Conservative Yemeni Arabic; Hadhrami Arabic; outside influence on vocabulary"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Coffee originated in Yemen via the port of Mokha; the hawaij spice blend; Yemeni Coffee Day"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+        "what": "Yemeni coffee and its origins in al-Makha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qishr",
+        "what": "Qishr, a Yemeni infusion of coffee husks"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+        "what": "Tower-houses and qishr, an infusion of coffee husks"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The use of qishr and hawaij varies between regions",
+      "Malay vocabulary influence varies between communities"
+    ]
+  }
+]

@@ -1,0 +1,392 @@
+[
+  {
+    "id": "ph",
+    "iso3": "PHL",
+    "name_id": "Philippines",
+    "name_local": "Pilipinas",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Kumusta",
+      "roman": "Kumusta",
+      "meaning_id": "Hello / how are you",
+      "register": "neutral; respectful form: Kumusta po"
+    },
+    "language": {
+      "name_id": "Filipino language",
+      "native_name": "Filipino",
+      "script": "Latin (Alpabetong Filipino, 28 letters)",
+      "family": "Austronesian (Malayo-Polynesian, Central Philippine)",
+      "note": "The official name of the national language; based on Tagalog, enriched by other Philippine languages."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Salamat",
+        "roman": "Salamat"
+      },
+      {
+        "id": "Excuse me when passing",
+        "native": "Makikiraan po",
+        "roman": "Makikiraan po"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Paalam",
+        "roman": "Paalam"
+      }
+    ],
+    "culture_note": "The 1987 Constitution, Article XIV, establishes Filipino as the national language; the name was chosen because it encompasses elements of regional languages, not only Tagalog.",
+    "people_note": "The respectful particle po/opo is used with older people. Pagmamano, taking an elder's right hand and touching it to the forehead, is still common. Shoes are removed when entering a house.",
+    "story": {
+      "text": "An elder's right hand is taken and its back pressed to one's own forehead. This gesture is called pagmamano or mano po, the highest respect for the older generation in the Philippines. In speech, respect passes through the particle po or opo: with someone older, Kumusta becomes Kumusta po. Kumusta itself is borrowed from Spanish and serves as the everyday greeting. The state sets the language base: Article XIV Section 6 of the 1987 Constitution makes Filipino the national language of the Republic of the Philippines, alongside English. Its development is carried out by the Komisyon sa Wikang Filipino. Its grammar is based on Tagalog, of the Austronesian family, Central Philippine branch. Its official spelling, the Alpabetong Filipino, has 28 Latin letters: the 26 of the basic alphabet plus ñ and the digraph ng. Direction is not pointed with a finger either: in casual company people use a pursed-lip gesture, and raised eyebrows serve as a silent greeting. Entering someone's house, shoes come off at the front door; guests bring a gift when visiting relatives.",
+      "sources": [
+        {
+          "url": "https://kwf.gov.ph/tungkol-sa-kwf/",
+          "what": "National language mandate"
+        },
+        {
+          "url": "https://glottolog.org/resource/languoid/id/taga1270",
+          "what": "Classification of Tagalog"
+        },
+        {
+          "url": "https://www.tagalognow.com/learn/mano-po-and-filipino-etiquette/",
+          "what": "po/opo etiquette and pagmamano"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Pilipino-language",
+          "what": "Standardised form of Tagalog, official language alongside English, Austronesian family"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://kwf.gov.ph/tungkol-sa-kwf/",
+        "what": "National language mandate"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/taga1270",
+        "what": "Classification of Tagalog"
+      },
+      {
+        "url": "https://www.tagalognow.com/learn/mano-po-and-filipino-etiquette/",
+        "what": "po/opo etiquette and pagmamano"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The spelling varies: Kumusta / Kamusta"
+    ]
+  },
+  {
+    "id": "sa",
+    "iso3": "SAU",
+    "name_id": "Saudi Arabia",
+    "name_local": "المملكة العربية السعودية",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaning_id": "Peace be upon you",
+      "register": "formal-neutral; the reply is Wa ʿalaykum as-salām"
+    },
+    "language": {
+      "name_id": "Arabic language",
+      "native_name": "العربية",
+      "script": "Arabic",
+      "family": "Afroasiatic (Semitic)",
+      "note": "The official language; written in Modern Standard Arabic, conversation uses the Najdi/Hijazi dialects."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Goodbye",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "culture_note": "Arabic is the official language and the state calendar is the Hijri one. Arabic coffee is served in small cups together with dates as a sign of hospitality.",
+    "people_note": "Eat and give with the right hand. Shoes are removed in the home and the majlis. Guests greet the eldest first. Wait for a woman to offer her hand.",
+    "story": {
+      "text": "The host serves Arabic coffee in small cups (finjān) together with dates. A guest in Saudi Arabia returns that courtesy with the right hand: receiving the cup, drinking, and eating only with the right hand. When visiting, shoes are removed before stepping onto the carpet of the majlis room. The official language is Arabic, of the Afroasiatic family, Semitic branch, written in an Arabic script that flows from right to left. Modern Standard Arabic is used for administration and official literature, while daily conversation flows through local dialects such as Najdi and Hijazi. A meeting opens with As-salāmu ʿalaykum, answered with Wa ʿalaykum as-salām. Speakers often address a peer with the honorific Abu followed by the name of his eldest son. Men shake hands with the right hand; towards an elder, respect is shown with a kiss on the forehead. Between men and women, physical contact is avoided unless the woman offers her hand first. A male guest simply nods politely.",
+      "sources": [
+        {
+          "url": "https://my.gov.sa/en/about-kingdom",
+          "what": "Official language and Hijri calendar"
+        },
+        {
+          "url": "https://culturalatlas.sbs.com.au/saudi-arabian-culture/saudi-arabian-culture-etiquette",
+          "what": "Guest etiquette, right hand, gender interaction"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Arabic coffee, finjān, dates"
+        },
+        {
+          "url": "https://theculturalatlas.org/saudi-arabian-culture/saudi-arabian-culture-greetings",
+          "what": "The greeting As-salāmu ʿalaykum, right-hand handshake, gender etiquette"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://my.gov.sa/en/about-kingdom",
+        "what": "Official language and Hijri calendar"
+      },
+      {
+        "url": "https://culturalatlas.sbs.com.au/saudi-arabian-culture/saudi-arabian-culture-etiquette",
+        "what": "Guest etiquette, right hand, gender interaction"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Arabic coffee, finjān, dates"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The phrases use Modern Standard Arabic; the dialects differ"
+    ]
+  },
+  {
+    "id": "tr",
+    "iso3": "TUR",
+    "name_id": "Turkey",
+    "name_local": "Türkiye",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Merhaba",
+      "roman": "Merhaba",
+      "meaning_id": "Hello",
+      "register": "neutral"
+    },
+    "language": {
+      "name_id": "Turkish language",
+      "native_name": "Türkçe",
+      "script": "Latin (Turkish alphabet, 29 letters)",
+      "family": "Turkic (Oghuz branch)",
+      "note": "The 29-letter Latin alphabet was adopted in 1928; it does not use q, w, x, but has ı, ş, ğ, ç, ö, ü."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Teşekkürler",
+        "roman": "Teşekkürler"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "Affedersiniz",
+        "roman": "Affedersiniz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Hoşça kal",
+        "roman": "Hoşça kal"
+      }
+    ],
+    "culture_note": "The Latin alphabet was introduced on 1 November 1928. Turkish coffee is brewed in a cezve and served in a small cup.",
+    "people_note": "Shoes are removed at the door and guests wear slippers. The younger person kisses an elder's right hand and then touches it to the forehead. Give something with the right hand or both hands.",
+    "story": {
+      "text": "Greeting an elder or an elderly relative in Turkey means performing el öpmek: the elder's right hand is kissed, then its back is touched to one's own forehead, a sign of reverence and a request for a blessing. In formal meetings, greeting takes the form of a firm handshake with the right hand. The official language is Turkish, of the Turkic family, Oghuz branch. Its spelling is regulated by the Türk Dil Kurumu and written in a special 29-letter Latin alphabet, introduced with the script reform on 1 November 1928. The letters q, w, and x are not used; in their place come ç, ğ, ı, ö, ş, and ü. A common neutral greeting is Merhaba, alongside the religious greeting Selamün aleyküm and the greeting question Nasılsınız. A person's first name is usually followed by the honorific Bey for men and Hanım for women. Guests remove their outdoor footwear at the entrance of the house and change into terlik slippers provided by the host.",
+      "sources": [
+        {
+          "url": "https://tdk.gov.tr/icerik/yazim-kurallari/ses-harf-ve-alfabe/",
+          "what": "The 29-letter Turkish alphabet"
+        },
+        {
+          "url": "https://glottolog.org/resource/languoid/id/nucl1301",
+          "what": "Oghuz Turkic classification"
+        },
+        {
+          "url": "https://culturalatlas.sbs.com.au/turkish-culture/turkish-culture-etiquette",
+          "what": "el öpmek and guest slippers"
+        },
+        {
+          "url": "https://theculturalatlas.org/turkish-culture/turkish-culture-greetings",
+          "what": "The greeting Merhaba, el öpmek, the titles Bey and Hanım"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://tdk.gov.tr/icerik/yazim-kurallari/ses-harf-ve-alfabe/",
+        "what": "The 29-letter Turkish alphabet"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/nucl1301",
+        "what": "Oghuz Turkic classification"
+      },
+      {
+        "url": "https://culturalatlas.sbs.com.au/turkish-culture/turkish-culture-etiquette",
+        "what": "el öpmek and guest slippers"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "Hoşça kal is said by the one leaving; the host replies Güle güle"
+    ]
+  },
+  {
+    "id": "kz",
+    "iso3": "KAZ",
+    "name_id": "Kazakhstan",
+    "name_local": "Қазақстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Сәлеметсіз бе",
+      "roman": "Sälemetsiz be",
+      "meaning_id": "Hello (formal)",
+      "register": "formal; casual: Сәлем (Sälem)"
+    },
+    "language": {
+      "name_id": "Kazakh language",
+      "native_name": "Қазақ тілі",
+      "script": "Cyrillic; Latin being introduced, not yet final",
+      "family": "Turkic (Kipchak branch)",
+      "note": "Kazakh is the state language; Russian is officially used in state institutions."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Рахмет",
+        "roman": "Rahmet"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "Кешіріңіз",
+        "roman": "Keshiriñiz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Сау болыңыз",
+        "roman": "Sau bolıñız"
+      }
+    ],
+    "culture_note": "Nauryz is celebrated on 21 March and was inscribed by UNESCO in 2016. The dish Nauryz köje is cooked to welcome the new year.",
+    "people_note": "The younger person greets first. Men shake hands, sometimes with two hands or the left hand on the chest. Shoes are removed at the door. Elders are not addressed by their first name.",
+    "story": {
+      "text": "The tea bowl is never filled to the brim. At the dastarkhan (dining spread), a Kazakh host pours hot tea into a goblet-shaped ceramic bowl only half full, so that the serving can always be topped up while still warm — that is how a guest is honoured. The state language is Kazakh, of the Kipchak branch of the Turkic family, an agglutinative language with vowel harmony. It has been written in the Cyrillic alphabet since the Soviet era, after earlier use of Arabic script and a Latin variant, and in 2017 the government set a plan to transition back to the Latin alphabet. The respectful greeting Sälemetsiz be is used with an individual, Sälemetsizder me with an audience, and Sälem in familiar situations. The younger person greets the older one first. Men shake hands with the right hand or cup both hands; women greet verbally or embrace close relatives. Guests remove their outdoor shoes at the entrance of the home.",
+      "sources": [
+        {
+          "url": "https://glottolog.org/resource/languoid/id/kaza1248",
+          "what": "Kipchak Turkic classification"
+        },
+        {
+          "url": "https://welcome.kz/en/important/visiting-kazakh-family",
+          "what": "Visiting etiquette"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nowruz",
+          "what": "Nauryz on 21 March, UNESCO 2016"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Kazakh-language",
+          "what": "Kipchak Turkic family, agglutinative, history of Cyrillic and Latin scripts"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://glottolog.org/resource/languoid/id/kaza1248",
+        "what": "Kipchak Turkic classification"
+      },
+      {
+        "url": "https://welcome.kz/en/important/visiting-kazakh-family",
+        "what": "Visiting etiquette"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nauryz on 21 March, UNESCO 2016"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The Latin transliteration is not yet standardised"
+    ]
+  },
+  {
+    "id": "uz",
+    "iso3": "UZB",
+    "name_id": "Uzbekistan",
+    "name_local": "Oʻzbekiston",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Assalomu alaykum",
+      "roman": "Assalomu alaykum",
+      "meaning_id": "Peace be upon you",
+      "register": "formal-neutral; casual: Salom"
+    },
+    "language": {
+      "name_id": "Uzbek language",
+      "native_name": "Oʻzbekcha",
+      "script": "Latin official; Cyrillic still in use",
+      "family": "Turkic (Karluk branch)",
+      "note": "Latin official since 1993; Cyrillic still circulates in the media and among older people."
+    },
+    "phrases": [
+      {
+        "id": "Thank you",
+        "native": "Rahmat",
+        "roman": "Rahmat"
+      },
+      {
+        "id": "Sorry / excuse me",
+        "native": "Kechirasiz",
+        "roman": "Kechirasiz"
+      },
+      {
+        "id": "Goodbye",
+        "native": "Xayr",
+        "roman": "Xayr"
+      }
+    ],
+    "culture_note": "Palov (osh) is the national rice dish served to guests. Navruz is celebrated on 21 March and was inscribed by UNESCO in 2016.",
+    "people_note": "When greeting, the right hand is placed on the chest. Men shake hands; wait for a woman to offer her hand. Shoes are removed at the door. The seat farthest from the door is the place of honour.",
+    "story": {
+      "text": "The seat farthest from the door holds the highest honour. In an Uzbek home, that seating area is reserved for the eldest or the principal guest. The official language is Uzbek, of the Karluk branch of the Turkic family. After passing through the era of Arabic and Cyrillic script, a law dated 2 September 1993 established the adoption of a Latin alphabet consisting of 26 basic letters plus special combinations such as sh, ch, ng, oʻ, and gʻ. The everyday polite greeting used with anyone is Assalomu alaykum, while the casual greeting between peers is Salom. When delivering a greeting, a person places the right palm on the left chest while bowing the head slightly as a sign of inner sincerity. Handshakes are exchanged only between men. With a woman, a speaker waits for her to offer her hand first or simply greets her with a hand-to-chest gesture. Visiting customs require outdoor shoes to be removed at the threshold.",
+      "sources": [
+        {
+          "url": "https://lex.uz/en/docs/112283",
+          "what": "Official language law"
+        },
+        {
+          "url": "https://glottolog.org/resource/languoid/id/uzbe1247",
+          "what": "Karluk Turkic classification"
+        },
+        {
+          "url": "https://exploreuzbekistan.uz/en/travel/phrasebook/",
+          "what": "Greeting phrases"
+        },
+        {
+          "url": "https://www.britannica.com/topic/Uzbek-language",
+          "what": "Karluk Turkic family, base dialect, 1993 Latin alphabet"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://lex.uz/en/docs/112283",
+        "what": "Official language law"
+      },
+      {
+        "url": "https://glottolog.org/resource/languoid/id/uzbe1247",
+        "what": "Karluk Turkic classification"
+      },
+      {
+        "url": "https://exploreuzbekistan.uz/en/travel/phrasebook/",
+        "what": "Greeting phrases"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The Latin spelling uses ʻ (oʻ, gʻ)"
+    ]
+  }
+]

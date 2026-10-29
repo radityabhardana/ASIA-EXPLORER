@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
-import { getCountry } from '@/content/countries';
+import { countryById } from '@/content/countries';
 import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
@@ -20,7 +20,11 @@ import '@/styles/country.css';
 
 export default function CountryPage() {
   const { id } = useParams();
-  const country = id === undefined ? undefined : getCountry(id);
+  const { pathname } = useLocation();
+  // Rute `/en/negara/:id` menyajikan prosa Inggris; konten yang belum
+  // diterjemahkan jatuh kembali ke ID lewat `countryById`.
+  const contentLocale = pathname.startsWith('/en') ? 'en' : 'id';
+  const country = id === undefined ? undefined : countryById(id, contentLocale);
   const { leaving, handleBackClick } = useExitToLanding();
   const { t } = useI18n();
 

@@ -197,28 +197,17 @@ describe('Speech Engine (Multi-Tier & Resilience)', () => {
     });
   });
 
-  describe('All 15 Countries Audio Reliability', () => {
+  describe('All Countries Audio Reliability', () => {
     it('speaks native script when matching native voice is present', () => {
-      const nativeVoices: MockVoice[] = [
-        { lang: 'id-ID', name: 'Indonesian' },
-        { lang: 'ms-MY', name: 'Malay' },
-        { lang: 'en-SG', name: 'Singaporean' },
-        { lang: 'th-TH', name: 'Thai' },
-        { lang: 'vi-VN', name: 'Vietnamese' },
-        { lang: 'fil-PH', name: 'Filipino' },
-        { lang: 'zh-CN', name: 'Chinese' },
-        { lang: 'ja-JP', name: 'Japanese' },
-        { lang: 'ko-KR', name: 'Korean' },
-        { lang: 'hi-IN', name: 'Hindi' },
-        { lang: 'ar-SA', name: 'Arabic' },
-        { lang: 'tr-TR', name: 'Turkish' },
-        { lang: 'kk-KZ', name: 'Kazakh' },
-        { lang: 'uz-UZ', name: 'Uzbek' },
-        { lang: 'mn-MN', name: 'Mongolian' },
-      ];
+      // Voice per negara dibangun dari profilnya sendiri supaya tes tetap
+      // benar berapa pun jumlah negara yang sudah terisi.
+      const nativeVoices: MockVoice[] = countries.map((country) => ({
+        lang: profileFor(country).speechLang,
+        name: country.id,
+      }));
       mockGetVoices.mockReturnValue(nativeVoices);
 
-      expect(countries.length).toBe(15);
+      expect(countries.length).toBeGreaterThanOrEqual(15);
 
       for (const country of countries) {
         mockSpeak.mockClear();

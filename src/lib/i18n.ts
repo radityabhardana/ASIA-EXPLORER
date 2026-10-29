@@ -7,6 +7,7 @@ export const DICTIONARY = {
     // Navbar
     'nav.explore': 'Jelajah',
     'nav.dashboard': 'Dashboard',
+    'nav.challenge': 'Tantangan',
     'nav.countries': 'Negara',
     'nav.signin': 'Masuk',
     'nav.register': 'Daftar',
@@ -14,8 +15,39 @@ export const DICTIONARY = {
 
     // Hero
     'hero.skipLink': 'Lewati ke pilihan negara',
-    'hero.eyebrow': 'PETA INTERAKTIF · 15 NEGARA',
-    'hero.hint': 'Tarik untuk memutar · Arahkan kursor ke negara',
+    'hero.eyebrow': 'ATLAS GEOGRAFI & EKSPEDISI BUDAYA',
+    'hero.title': 'Jelajahi 48 Bangsa di Asia.',
+    'hero.tagline':
+      'Platform ekspedisi geografi dan pemahaman budaya Asia. Kenali bentang alam 48 negara, uji insting norma dan etiket lokal lewat tantangan interaktif, serta telusuri profil peradaban tiap bangsa.',
+    'hero.ctaExplore': 'Mulai Ekspedisi',
+    'hero.ctaQuiz': 'Mulai Tantangan Harian',
+    'hero.ctaSearch': 'Cari & Telusuri Negara',
+    'hero.frictionNote': '',
+    'hero.pillar1Title': 'Atlas 48 Bangsa',
+    'hero.pillar1Desc': 'Bentang alam, ibu kota, demografi, dan profil budaya mendalam tiap negara.',
+    'hero.pillar2Title': 'Uji Etiket & Norma Sosial',
+    'hero.pillar2Desc': 'Latih insting kebiasaan lokal, etiket bertamu, dan gestur santun berbagai wilayah.',
+    'hero.pillar3Title': 'Arsip Budaya & Tradisi',
+    'hero.pillar3Desc': 'Eksplorasi mendalam peradaban, nilai adat, dan dinamika sosial tiap bangsa.',
+    'hero.valueBadge': '48 Bangsa Asia · Arsip Geografi & Budaya Komprehensif',
+    'hero.hint': 'Ketuk negara di peta untuk membuka cerita · Tarik untuk memutar sudut pandang',
+
+    // Pratinjau negara di hero
+    'preview.eyebrow': 'LEMBAR LAPANGAN',
+    'preview.regionLabel': 'Pratinjau negara',
+    'preview.depthFull': 'Lengkap',
+    'preview.depthExplore': 'Penjelajahan',
+    'preview.greeting': 'Sapaan asli',
+    'preview.ctaFull': 'Buka cerita',
+    'preview.ctaExplore': 'Lihat sekilas',
+    'preview.exploreNote': 'Catatan ringkas. Panduan etiket lengkap menyusul.',
+    'preview.credit': 'Foto',
+    'preview.creditSource': 'Wikimedia Commons',
+    'preview.close': 'Tutup pratinjau negara',
+    'preview.live': 'pratinjau dibuka',
+    'preview.photoFallback': 'Lanskap editorial',
+    'map.fallbackNote':
+      'Peta 3D tidak bisa dimuat di perangkat ini. Pilih negara dari daftar.',
 
     // Skala
     'scale.statWords': 'negara dalam cakupan',
@@ -219,6 +251,7 @@ export const DICTIONARY = {
     // Navbar
     'nav.explore': 'Explore',
     'nav.dashboard': 'Dashboard',
+    'nav.challenge': 'Challenge',
     'nav.countries': 'Countries',
     'nav.signin': 'Sign in',
     'nav.register': 'Register',
@@ -226,8 +259,22 @@ export const DICTIONARY = {
 
     // Hero
     'hero.skipLink': 'Skip to country selection',
-    'hero.eyebrow': 'INTERACTIVE MAP · 15 COUNTRIES',
-    'hero.hint': 'Drag to rotate · Hover country for info',
+    'hero.eyebrow': 'GEOGRAPHIC ATLAS & CULTURAL EXPEDITION',
+    'hero.title': 'Explore 48 Nations in Asia.',
+    'hero.tagline':
+      'An interactive geography and cultural expedition platform for Asia. Explore the landscapes of 48 nations, test local customs and etiquette through daily challenges, and uncover rich civilizational heritage.',
+    'hero.ctaExplore': 'Start Expedition',
+    'hero.ctaQuiz': 'Start Daily Challenge',
+    'hero.ctaSearch': 'Search & Explore Nations',
+    'hero.frictionNote': '',
+    'hero.pillar1Title': '48 Asian Nations Atlas',
+    'hero.pillar1Desc': 'Landscapes, capitals, and deep cultural dossiers for every nation.',
+    'hero.pillar2Title': 'Etiquette & Social Norms',
+    'hero.pillar2Desc': 'Sharpen social instincts, local customs, and polite gestures.',
+    'hero.pillar3Title': 'Cultural & Heritage Archive',
+    'hero.pillar3Desc': 'Deep-dive into ancient civilizations, living traditions, and regional history.',
+    'hero.valueBadge': '48 Asian Nations · Comprehensive Geography & Culture Archive',
+    'hero.hint': 'Tap any country to reveal its story · Drag to rotate map viewpoint',
 
     // Skala
     'scale.statWords': 'countries covered',

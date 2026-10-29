@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+
+import { countries } from '@/content/countries';
 import '@/styles/preloader.css';
 
 const PRELOADER_SESSION_KEY = 'asiakin:preloader-shown';
@@ -26,7 +28,7 @@ function markSessionShown(): void {
 /**
  * Preloader (Fullscreen Intro Screen matching frame_001.jpg):
  * Warm paper background (#EDE7DC / #F4EDE1), centered editorial title,
- * eyebrow 'BENUA ASIA', hairline divider, and subtitle 'Menyiapkan data 15 negara'.
+ * eyebrow 'BENUA ASIA', hairline divider, and a country-count subtitle.
  * Once ready (~1.2s - 1.8s), smoothly scales up to 1.04 and fades out,
  * seamlessly revealing the 3D map stage.
  */
@@ -180,7 +182,9 @@ export default function Preloader() {
         <span className="preloader__eyebrow">BENUA ASIA</span>
         <div className="preloader__title">Asia Explorer</div>
         <span className="preloader__divider" aria-hidden="true" />
-        <p className="preloader__subtitle">Menyiapkan data 15 negara</p>
+        <p className="preloader__subtitle">
+          Menyiapkan data {countries.length} negara
+        </p>
       </div>
     </div>
   );
