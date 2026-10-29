@@ -8,7 +8,6 @@ import BackNavigation from '@/sections/country/BackNavigation';
 import CountryBackground, { getCountryTheme } from '@/sections/country/CountryBackground';
 import CountryGallery from '@/sections/country/CountryGallery';
 import CountryHero from '@/sections/country/CountryHero';
-import CountryPortrait from '@/sections/country/CountryPortrait';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
 import RegionLocator from '@/sections/country/RegionLocator';
@@ -78,10 +77,13 @@ export default function CountryPage() {
       {/* 1. Immersive Wide Hero Banner with Parallax & Overlaid Country Identity */}
       <CountryHero country={country} profile={profile} />
 
-      {/* Visual & locator sidebar: sticky on desktop, inline block below hero on <900px */}
+      {/* Visual & locator sidebar: sticky on desktop, unified editorial cartography card */}
       <aside className="country-sidebar" aria-label="Visual dan lokasi regional">
-        <CountryPortrait countryId={country.id} />
-        <RegionLocator countryId={country.id} region={country.region} />
+        <RegionLocator
+          countryId={country.id}
+          region={country.region}
+          countryName={country.nameId}
+        />
       </aside>
 
       {/* Main reading column: Cerita, Budaya, Orang, Bahasa, Galeri, Dashboard, Sumber */}

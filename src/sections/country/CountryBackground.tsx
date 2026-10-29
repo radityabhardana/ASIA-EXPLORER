@@ -119,12 +119,12 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
       {/* 1. Subtle warm wash */}
       <div className="country-background__wash" />
 
-      {/* 2. Concentric faint cartographic survey rings (NO dark filled blobs) */}
+      {/* 2. Concentric faint cartographic survey rings (NO dark filled blobs, pure delicate vector lines) */}
       <div className="country-background__contours">
         {CONTOUR_SCALES.map((scale, index) => {
           const falloffOpacity = Math.max(
             0.02,
-            Math.min(0.08, theme.contourOpacity * (0.5 - index * 0.1)),
+            Math.min(0.06, theme.contourOpacity * (0.4 - index * 0.08)),
           );
           return (
             <div
@@ -146,7 +146,7 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
                   cy="400"
                   r={350}
                   stroke={theme.contourStroke}
-                  strokeWidth="0.8"
+                  strokeWidth="0.75"
                   strokeDasharray={index % 2 === 0 ? '4 8' : 'none'}
                   fill="none"
                 />
@@ -170,7 +170,7 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
             stroke={theme.contourStroke}
             strokeWidth="0.75"
             strokeDasharray="4 6"
-            opacity="0.06"
+            opacity="0.04"
           />
           <ellipse
             cx="500"
@@ -179,35 +179,10 @@ export default function CountryBackground({ countryId }: CountryBackgroundProps)
             ry="360"
             stroke={theme.contourStroke}
             strokeWidth="0.75"
-            opacity="0.04"
+            opacity="0.03"
           />
         </svg>
       </div>
-
-      {/* 3. Archival handmade washi paper grain texture */}
-      <svg
-        className="country-background__grain"
-        width="100%"
-        height="100%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <filter id="country-paper-grain" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.65"
-              numOctaves="3"
-              stitchTiles="stitch"
-              result="noise"
-            />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0 0.10  0 0 0 0.035 0"
-            />
-          </filter>
-        </defs>
-        <rect width="100%" height="100%" filter="url(#country-paper-grain)" fill="none" />
-      </svg>
     </div>
   );
 }

@@ -307,69 +307,99 @@
   }
 }
 
-/* Tablet (600px - 899px): Portrait 40% & Locator 60% side-by-side */
+/* Tablet (600px - 899px): Unified compact cartography */
 @media (min-width: 600px) and (max-width: 899px) {
   .country-sidebar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
     width: 100%;
-    max-width: 100%;
-  }
-
-  .country-portrait {
-    flex: 0 0 40%;
-    max-width: 40%;
-    padding: 0;
-  }
-
-  .country-portrait__plate {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .country-portrait__svg {
-    max-height: 260px;
+    max-width: 68ch;
+    margin-inline: auto;
+    margin-block-end: var(--space-3);
   }
 
   .country-locator {
-    flex: 0 0 calc(60% - 24px);
-    max-width: 360px;
+    width: 100%;
+    max-width: 100%;
     padding: 0;
-    border-block-start: none;
+  }
+
+  .country-locator__card {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 24px;
+    align-items: center;
+  }
+
+  .country-locator__header {
+    grid-column: 1;
+    grid-row: 1;
+    margin-block-end: 0;
+  }
+
+  .country-locator__map {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    max-width: 100%;
+  }
+
+  .country-locator__footer {
+    grid-column: 1;
+    grid-row: 2;
+    margin-block-start: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .country-locator__svg {
+    max-height: 160px;
   }
 }
 
-/* Mobile (< 600px): Portrait & Locator stacked */
+/* Mobile (< 600px): Compact editorial plate, quick reading access */
 @media (max-width: 599px) {
   .country-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
     width: 100%;
     max-width: 100%;
-  }
-
-  .country-portrait {
-    width: 100%;
-    padding: 0;
-  }
-
-  .country-portrait__plate {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .country-portrait__svg {
-    max-height: 220px;
+    margin-block-end: var(--space-2);
   }
 
   .country-locator {
     width: 100%;
-    max-width: 360px;
-    padding: var(--space-2) 0 0 0;
-    border-block-start: 1px solid var(--line);
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .country-locator__card {
+    max-width: 100%;
+    padding: var(--space-2) 0;
+  }
+
+  .country-locator__header {
+    margin-block-end: var(--space-1);
+  }
+
+  .country-locator__title {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .country-locator__map {
+    max-width: 100%;
+    padding: var(--space-1) 0;
+  }
+
+  .country-locator__svg {
+    max-height: 125px;
+  }
+
+  .country-locator__footer {
+    margin-block-start: var(--space-1);
+  }
+
+  .country-story {
+    padding-block-start: var(--space-2);
   }
 }
 
@@ -719,7 +749,7 @@
 
 @media (max-width: 599px) {
   .country-hero__visual-frame {
-    height: 300px;
+    height: 240px;
     border-radius: 8px;
   }
 
@@ -1408,28 +1438,49 @@
 .country-portrait__svg {
   display: block;
   width: 100%;
-  max-height: 260px;
+  max-height: 200px;
   height: auto;
 }
 
-@media (max-width: 599px) {
-  .country-portrait__svg {
-    max-height: 220px;
-  }
-}
+/* --- Unified Editorial Cartography Card (.country-locator) ---------------- */
 
 .country-locator {
-  padding-block: var(--space-2);
-  border-block-start: 1px solid var(--line);
+  padding-block: 0;
+  margin: 0;
+  border: none;
+}
+
+.country-locator__card {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0;
+  padding: var(--space-3) 0;
+  border-block: 1px solid var(--line);
+  background: transparent;
+}
+
+.country-locator__header {
+  margin-block-end: var(--space-2);
+}
+
+.country-locator__kicker {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 .country-locator__title {
-  margin: 0 0 var(--space-2) 0;
+  margin: 2px 0 0 0;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: var(--text-h2);
+  font-size: 1.125rem;
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-h2);
+  line-height: 1.3;
 }
 
 .country-locator__map {
@@ -1437,6 +1488,9 @@
   width: 100%;
   max-width: 360px;
   margin: 0;
+  background: rgba(0, 0, 0, 0.015);
+  border-block: 1px solid rgba(140, 115, 85, 0.12);
+  padding: var(--space-2) 0;
 }
 
 .country-locator__svg {
@@ -1449,31 +1503,64 @@
 .country-locator__graticule {
   stroke: var(--line);
   stroke-width: 0.5;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* Contrast >= 3:1 against --surface (#f9f7f3):
  * --ink-muted (#5c6670) on --surface has contrast ratio 5.47:1
  */
 .country-locator__path {
-  fill: none;
+  fill: rgba(0, 0, 0, 0.02);
   stroke: var(--ink-muted);
-  stroke-width: 1;
-  opacity: 1;
+  stroke-width: 0.75;
+  opacity: 0.7;
   transition: opacity var(--duration-micro) var(--ease-standard);
 }
 
 .country-locator__path--active {
-  fill: var(--country-accent);
-  stroke: var(--country-accent);
+  fill: var(--country-accent, #2070df);
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
   opacity: 1;
 }
 
+.country-locator__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: var(--space-2);
+  gap: var(--space-2);
+}
+
+.country-locator__scale-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.country-locator__scale-bar {
+  display: inline-block;
+  width: 36px;
+  height: 4px;
+  border-inline: 1px solid var(--ink-muted);
+  border-block-end: 1px solid var(--ink-muted);
+}
+
 .country-locator__scale {
-  margin: var(--space-2) 0 0 0;
+  margin: 0;
   color: var(--ink-muted);
-  font-size: var(--text-label);
-  line-height: var(--leading-label);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-family: var(--font-text);
+}
+
+.country-locator__meta {
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* --- Negara tidak ditemukan ----------------------------------------------- */

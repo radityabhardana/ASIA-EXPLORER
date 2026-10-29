@@ -66,15 +66,14 @@ export default function AsiaSceneLazy({
   );
   const compassNeedleRef = useRef<HTMLSpanElement>(null);
   const [isCtrlActive, setIsCtrlActive] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  useEffect(() => {
-    const isTouch =
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
       'ontouchstart' in window ||
       navigator.maxTouchPoints > 0 ||
-      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
-    setIsTouchDevice(isTouch);
-  }, []);
+      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches
+    );
+  });
 
   const switchDimension = (nextDim: MapDimension) => {
     setDimension(nextDim);

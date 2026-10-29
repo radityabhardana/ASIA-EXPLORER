@@ -57,15 +57,14 @@ export default function LandingPage() {
   } | null>(null);
   const transitTimerRef = useRef<number | null>(null);
   const lastFocusRef = useRef<string | null>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  useEffect(() => {
-    const isTouch =
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
       'ontouchstart' in window ||
       navigator.maxTouchPoints > 0 ||
-      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
-    setIsTouchDevice(isTouch);
-  }, []);
+      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches
+    );
+  });
 
   // Hitung geodetic transit metric saat berpindah negara fokus
   useEffect(() => {
@@ -262,9 +261,11 @@ export default function LandingPage() {
       .slice(0, 6);
   }, [searchQuery, searchableCountries]);
 
-  useEffect(() => {
+  const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
+  if (prevSearchQuery !== searchQuery) {
+    setPrevSearchQuery(searchQuery);
     setHighlightedIndex(0);
-  }, [searchResults]);
+  }
 
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>

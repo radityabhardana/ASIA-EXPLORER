@@ -16,9 +16,12 @@ docs/VERIFY_SCENE/
 docs/VERIFY_COUNTRY/
 docs/VERIFY_LANDING/
 docs/VERIFY/
+docs/VERIFY_PULL/
 docs/research/shots/
 docs/*.zip
 tmp-*
+
+scratch/*.png
 
 .slim/deepwork/
 
