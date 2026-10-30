@@ -1,0 +1,43 @@
+/* ============================================================
+   Label CSS2D untuk panel peta 3D di landing (panel-map.js).
+   explore.css tidak ikut di-load di landing, jadi label perlu
+   aturannya sendiri — versi kecil, tanpa sub-baris.
+   ============================================================ */
+
+.panel-map__labels .country-label {
+  pointer-events: none;
+}
+
+.panel-map__labels .country-label__body {
+  display: inline-block;
+  padding: 4px 10px 3px;
+  border: 1px solid var(--sun-line, var(--line, #d8d4cc));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sun-wash, var(--surface-raised, #fffef9)) 94%, transparent);
+  box-shadow: 0 3px 12px rgba(27, 26, 23, 0.16);
+  color: var(--sun-ink, var(--ink, #1a1f24));
+  font-family: var(--sans, var(--font-text, sans-serif));
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.16s ease, transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panel-map__labels .country-label.is-visible .country-label__body {
+  opacity: 1;
+  transform: translateY(-9px);
+}
+
+.panel-map__labels .country-label__sub {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-map__labels .country-label__body {
+    transition: none;
+  }
+}

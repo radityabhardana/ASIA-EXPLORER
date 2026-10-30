@@ -22,12 +22,6 @@ type LandingTimelineOptions = {
   root: RefObject<HTMLDivElement | null>;
   /** Dibaca `AsiaScene` per frame; ditulis dari progres ScrollTrigger. */
   progress: RefObject<number>;
-  /**
-   * Sorotan 3D scene Skala (0..1). Tween sinkronisasi menulis ref ini DAN
-   * teks counter dalam satu onUpdate — jumlah negara menyala selalu sama
-   * dengan angka counter (audit A4).
-   */
-  highlight: RefObject<number>;
 };
 
 type ScrollWindow = {
@@ -52,14 +46,13 @@ const WINDOW_RATIO_MIN = 0.2;
 
 /**
  * Satu timeline GSAP untuk seluruh halaman, di-scrub langsung oleh scroll.
- * Semua tween hanya menyentuh transform/opacity (plus textContent counter
- * dan ref sorotan), dan tidak membaca layout di dalam loop scroll. Timing
- * tiap scene diukur ulang saat resize / orientasi / pergantian breakpoint.
+ * Semua tween hanya menyentuh transform/opacity, dan tidak membaca layout di
+ * dalam loop scroll. Timing tiap scene diukur ulang saat resize / orientasi /
+ * pergantian breakpoint.
  */
 export function useLandingTimeline({
   root,
   progress,
-  highlight,
 }: LandingTimelineOptions): void {
   useEffect(() => {
     const rootElement = root.current;
@@ -67,9 +60,6 @@ export function useLandingTimeline({
       return;
     }
 
-    const counters = Array.from(
-      rootElement.querySelectorAll<HTMLElement>('[data-counter]'),
-    );
     const reducedQuery = matchMediaSafe('(prefers-reduced-motion: reduce)');
     const mobileQuery = matchMediaSafe('(max-width: 767px)');
     const tabletQuery = matchMediaSafe('(max-width: 899px)');
@@ -83,17 +73,6 @@ export function useLandingTimeline({
       )) {
         element.style.opacity = '1';
         element.style.transform = 'none';
-      }
-      for (const element of counters) {
-        element.textContent = element.dataset.counter ?? element.textContent;
-      }
-      // Sorotan peta SVG / benua scene Skala ke keadaan akhir: 15 negara.
-      // eslint-disable-next-line react-hooks/immutability
-      highlight.current = 1;
-      for (const mark of rootElement.querySelectorAll<SVGPathElement>(
-        '.landing-scene--scale [data-highlight]',
-      )) {
-        mark.style.opacity = '1';
       }
       // `progress` adalah ref milik pemanggil (bukan props render). Menulis
       // `.current` di dalam effect adalah pemakaian ref yang sah; aturan
@@ -126,8 +105,8 @@ export function useLandingTimeline({
 
       // Bersihkan inline style sisa build sebelumnya supaya pengukuran
       // geometri tidak terdistorsi offset y/opacity tween yang lama.
-      for (const element of rootElement.querySelectorAll<HTMLElement | SVGElement>(
-        '[data-reveal], .landing-scene--scale [data-highlight]',
+      for (const element of rootElement.querySelectorAll<HTMLElement>(
+        '[data-reveal]',
       )) {
         element.style.removeProperty('opacity');
         element.style.removeProperty('transform');
@@ -223,57 +202,7 @@ export function useLandingTimeline({
       }
       // .landing-hint tampil lewat [data-intro] (reveal preloader), bukan tween.
 
-      // Scene 2 — skala negara: counter dan sorotan peta SVG 15 negara satu sumber di
-      // syncState; teks counter = jumlah negara menyala di peta.
-      const scaleWin = measureWindow(
-        '.landing-scene--scale',
-        '.landing-stage__copy',
-      );
-      if (scaleWin) {
-        reveal('.landing-scene--scale .landing-stage__copy', segment(scaleWin, 0, 0.35));
-        reveal('.landing-scene--scale .landing-scale__map-wrap', segment(scaleWin, 0.08, 0.45));
-
-        const counterEl = rootElement.querySelector<HTMLElement>(
-          '.landing-scene--scale [data-counter]',
-        );
-        const marks = queryAll<SVGPathElement>(
-          '.landing-scene--scale [data-highlight]',
-        );
-        const syncSegment = segment(scaleWin, 0.15, 0.85);
-        if (counterEl && syncSegment.duration > 0) {
-          const syncState = { value: 0 };
-          counterEl.textContent = '0';
-          for (const m of marks) {
-            m.style.opacity = '0.2';
-          }
-          tl.fromTo(
-            syncState,
-            { value: 0 },
-            {
-              value: 15,
-              duration: syncSegment.duration,
-              ease: 'none',
-              onUpdate: () => {
-                const count = Math.min(
-                  15,
-                  Math.max(0, Math.round(syncState.value)),
-                );
-                counterEl.textContent = String(count);
-                highlight.current = count / 15;
-                for (let i = 0; i < marks.length; i++) {
-                  const mark = marks[i];
-                  if (mark) {
-                    mark.style.opacity = i < count ? '1' : '0.2';
-                  }
-                }
-              },
-            },
-            syncSegment.at,
-          );
-        }
-      }
-
-      // Scene 3 — marquee aksara (K12).
+      // Scene 2 — marquee aksara (K12).
       const scriptWin = measureWindow(
         '.landing-scene--script',
         '.landing-stage__copy',
@@ -289,23 +218,7 @@ export function useLandingTimeline({
         );
       }
 
-      // Scene 4 — peta interaktif (undangan penjelajahan / pilih negara).
-      const invitationWin = measureWindow(
-        '.landing-scene--invitation',
-        '.landing-stage__copy',
-      );
-      if (invitationWin) {
-        reveal(
-          '.landing-scene--invitation .landing-stage__copy',
-          segment(invitationWin, 0, 0.4),
-        );
-        reveal(
-          '.landing-invitation__scene',
-          segment(invitationWin, 0.15, 0.85),
-        );
-      }
-
-      // Scene 5 — Scene Mosaic (15 Negara, Satu Benua).
+      // Scene 3 — Scene Mosaic (15 Negara, Satu Benua).
       const mosaicWin = measureWindow(
         '.landing-scene--mosaic',
         '.landing-stage__copy',
@@ -325,7 +238,7 @@ export function useLandingTimeline({
         );
       }
 
-      // Scene 6 — dashboard & sistem belajar.
+      // Scene 4 — dashboard & sistem belajar.
       const dashboardWin = measureWindow(
         '.landing-scene--dashboard',
         '.landing-stage__copy',
@@ -419,5 +332,5 @@ export function useLandingTimeline({
       trigger?.kill();
       timeline?.kill();
     };
-  }, [root, progress, highlight]);
+  }, [root, progress]);
 }

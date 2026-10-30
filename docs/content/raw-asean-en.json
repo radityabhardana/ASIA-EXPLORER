@@ -1,0 +1,414 @@
+[
+  {
+    "id": "id",
+    "iso3": "IDN",
+    "name_id": "Indonesia",
+    "name_local": "Indonesia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat pagi",
+      "roman": "Selamat pagi",
+      "meaning_id": "A greeting of good morning",
+      "register": "Formal. Used specifically in the morning; midday and evening use 'Selamat siang'/'Selamat malam'. In casual situations people use 'Halo' or 'Hai', so 'Selamat pagi' is not an all-purpose neutral greeting."
+    },
+    "language": {
+      "name_id": "Indonesian language",
+      "native_name": "Bahasa Indonesia",
+      "script": "Latin (Rumi)",
+      "family": "Austronesian (Malayo-Polynesian)",
+      "note": "Standardised from Johor-Riau Malay; developed by Badan Bahasa."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Terima kasih",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "sorry",
+        "native": "Maaf",
+        "roman": "Maaf"
+      },
+      {
+        "id": "goodbye",
+        "native": "Sampai jumpa",
+        "roman": "Sampai jumpa"
+      }
+    ],
+    "culture_note": "Indonesia records 718 regional languages from 2,560 observation points, concentrated in eastern Indonesia. Indonesian serves as the unifying language above that diversity.",
+    "people_note": "Greetings use Bapak/Ibu for those who are older. A handshake with the right hand is accompanied by a nod; some people perform the salim. Shoes are removed when entering a house.",
+    "story": {
+      "text": "A handshake with the right hand and a nod of the head — that is how people open a formal meeting in Indonesia. Greetings are tied to the time of day: Selamat pagi, Selamat siang, or Selamat malam, while casual company is fine with Halo. With someone older or of higher standing, a speaker must use the title Bapak or Ibu before the name. The official language of the state is Indonesian. It is rooted in Malay and belongs to the Austronesian family. This unifying language is standardised in the Latin script under the guidance of the Agency for Language Development and Cultivation. The agency's official survey recorded 718 regional languages from 2,560 observation points across the archipelago. In family life and traditional communities the salim tradition is still alive: touching the back of an elder's hand to one's own forehead as a sign of reverence. When visiting a home, footwear must be removed at the threshold, and the left hand must not be used to hand over objects.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Indonesian_language",
+          "what": "Language name, official status, origin from Malay"
+        },
+        {
+          "url": "https://badanbahasa.kemendikdasmen.go.id/artikel-detail/4540/masa-depan-bahasa-daerah",
+          "what": "718 regional languages from 2,560 observation points"
+        },
+        {
+          "url": "https://uiii.ac.id/basic-norms-language",
+          "what": "Bapak/Ibu greeting, right hand, 'Selamat pagi'"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Etiquette_in_Indonesia",
+          "what": "Salim, right hand, shoes removed"
+        },
+        {
+          "url": "https://theculturalatlas.org/indonesian-culture/indonesian-culture-etiquette",
+          "what": "Norms for greeting and interaction with elders"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Indonesian_language",
+        "what": "Language name, official status, origin from Malay"
+      },
+      {
+        "url": "https://badanbahasa.kemendikdasmen.go.id/artikel-detail/4540/masa-depan-bahasa-daerah",
+        "what": "718 regional languages from 2,560 observation points"
+      },
+      {
+        "url": "https://uiii.ac.id/basic-norms-language",
+        "what": "Bapak/Ibu greeting, right hand, 'Selamat pagi'"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Etiquette_in_Indonesia",
+        "what": "Salim, right hand, shoes removed"
+      },
+      {
+        "url": "https://theculturalatlas.org/indonesian-culture/indonesian-culture-etiquette",
+        "what": "Norms for greeting and interaction with elders"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The time range of 'Selamat pagi' is not taken from an official Badan Bahasa guideline",
+      "The KBBI failed to load during research (DNS), so the dictionary definition was not quoted directly"
+    ]
+  },
+  {
+    "id": "my",
+    "iso3": "MYS",
+    "name_id": "Malaysia",
+    "name_local": "Malaysia",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Selamat sejahtera",
+      "roman": "Selamat sejahtera",
+      "meaning_id": "A wish of well-being / respectful salutation",
+      "register": "Formal and religiously neutral. Common as the opening of speeches and official events; in daily conversation people more often use 'Hai'/'Helo' or 'Assalamualaikum'."
+    },
+    "language": {
+      "name_id": "Malay language",
+      "native_name": "Bahasa Melayu",
+      "script": "Latin (Rumi) and Arabic (Jawi)",
+      "family": "Austronesian (Malayo-Polynesian)",
+      "note": "The national language under Article 152; developed by Dewan Bahasa dan Pustaka."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Terima kasih",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "sorry",
+        "native": "Maaf",
+        "roman": "Maaf"
+      },
+      {
+        "id": "goodbye",
+        "native": "Selamat tinggal",
+        "roman": "Selamat tinggal"
+      }
+    ],
+    "culture_note": "Article 152 of the Federal Constitution establishes Malay as the national language, written in Rumi and Jawi. Jawi is still used, especially for heritage and religious matters.",
+    "people_note": "Shaking hands with the right hand or both hands; bowing slightly when passing an elder. Shoes are removed in the house. Pointing is done with the thumb, not the index finger.",
+    "story": {
+      "text": "The index finger is not used for pointing in Malaysia. To indicate a direction or a person, people use a neatly folded right thumb. The national language is protected by law: Article 152 of the Federal Constitution of Malaysia establishes Malay, of the Austronesian family, as the national language. Its cultivation and standardisation are carried out by Dewan Bahasa dan Pustaka. The writing uses two official scripts. The Latin alphabet, called Rumi, is used for general administration, while the Arabic-based Jawi script serves Islamic religious affairs and heritage documents. At formal state forums, a speaker addresses the audience with Selamat sejahtera, an expression neutral from a religious standpoint. The greeting Assalamualaikum and the casual Helo are heard more often in daily communities. When shaking hands, people use the right hand or cup both hands, then draw the palm close to the chest. Passing in front of an elder, the body is bent slightly as a sign of respect. Guests remove their shoes on the veranda before entering the inner rooms of the house.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Malay_language",
+          "what": "Language name, Rumi and Jawi, Austronesian family, Article 152"
+        },
+        {
+          "url": "https://prpm.dbp.gov.my/cari1?keyword=terima%20kasih",
+          "what": "Headword 'terima kasih'"
+        },
+        {
+          "url": "https://prpm.dbp.gov.my/cari1?keyword=maaf",
+          "what": "Headword 'maaf'"
+        },
+        {
+          "url": "https://theculturalatlas.org/malaysian-culture/malaysian-culture-etiquette",
+          "what": "Handshake, shoes removed, pointing with the thumb"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Malay_language",
+        "what": "Language name, Rumi and Jawi, Austronesian family, Article 152"
+      },
+      {
+        "url": "https://prpm.dbp.gov.my/cari1?keyword=terima%20kasih",
+        "what": "Headword 'terima kasih'"
+      },
+      {
+        "url": "https://prpm.dbp.gov.my/cari1?keyword=maaf",
+        "what": "Headword 'maaf'"
+      },
+      {
+        "url": "https://theculturalatlas.org/malaysian-culture/malaysian-culture-etiquette",
+        "what": "Handshake, shoes removed, pointing with the thumb"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "The status of 'Selamat sejahtera' as a daily greeting versus a speech opener has not been verified from an official government site",
+      "PRPM contains no headword entry for 'salam sejahtera' or 'selamat tinggal'"
+    ]
+  },
+  {
+    "id": "sg",
+    "iso3": "SGP",
+    "name_id": "Singapore",
+    "name_local": "Singapore",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Hello",
+      "roman": "Hello",
+      "meaning_id": "Hello",
+      "register": "English is chosen because it is the main working language and the interethnic lingua franca. Malay is the national language but its role is ceremonial; Mandarin and Tamil are official yet used within their own communities."
+    },
+    "language": {
+      "name_id": "English language",
+      "native_name": "English",
+      "script": "Latin",
+      "family": "Indo-European (Germanic)",
+      "note": "The main working language; Malay is the ceremonial national language; Mandarin and Tamil are also official."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Thank you",
+        "roman": "Thank you"
+      },
+      {
+        "id": "sorry",
+        "native": "Sorry",
+        "roman": "Sorry"
+      },
+      {
+        "id": "goodbye",
+        "native": "Goodbye",
+        "roman": "Goodbye"
+      }
+    ],
+    "culture_note": "Singapore's hawker culture was inscribed on the UNESCO Representative List of the Intangible Cultural Heritage of Humanity on 16 December 2020. Hawker centres serve as a shared eating space across ethnic groups.",
+    "people_note": "Shoes are removed before entering a house. Gifts are given with both hands. A hawker table is reserved with a packet of tissues. Punctuality is valued.",
+    "story": {
+      "text": "The greeting is Hello. In Singapore, the question of whether the other person has eaten often follows it — a sign of mutual care. The Constitution of the Republic of Singapore recognises four official languages: English, Malay, Mandarin, and Tamil, to serve a plural society. Article 153A establishes Malay as the national language with a ceremonial role in the national anthem and state symbols. English is the working language of administration, the medium of instruction, and the interethnic lingua franca. Writing uses the Latin alphabet, Chinese hanzi, and the Tamil script. A light handshake with the right hand is common in formal settings. Senior citizens often shake with two hands, the second hand touching the wrist of the person they are speaking to. With the opposite sex in certain Malay or Indian communities, physical contact is avoided until the woman offers her hand first. Guests remove their shoes at the front door of a house and hand over gifts with both hands.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Languages_of_Singapore",
+          "what": "Four official languages; Malay the national language; English the working language"
+        },
+        {
+          "url": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+          "what": "Hawker culture inscribed 16 December 2020"
+        },
+        {
+          "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-etiquette",
+          "what": "Shoes, gifts with both hands, tissue to reserve a seat, punctuality"
+        },
+        {
+          "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-greetings",
+          "what": "Handshake etiquette and interethnic greetings in Singapore"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Singapore",
+        "what": "Four official languages; Malay the national language; English the working language"
+      },
+      {
+        "url": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+        "what": "Hawker culture inscribed 16 December 2020"
+      },
+      {
+        "url": "https://theculturalatlas.org/singaporean-culture/singaporean-culture-etiquette",
+        "what": "Shoes, gifts with both hands, tissue to reserve a seat, punctuality"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The choice of 'Hello' is an editorial decision, not a quotation from a single official source"
+    ]
+  },
+  {
+    "id": "th",
+    "iso3": "THA",
+    "name_id": "Thailand",
+    "name_local": "ประเทศไทย",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "สวัสดี",
+      "roman": "sawatdi",
+      "meaning_id": "Hello / greeting",
+      "register": "Neutral to formal. The particle ครับ (male speaker) or ค่ะ (female speaker) is added at the end of a sentence for politeness."
+    },
+    "language": {
+      "name_id": "Thai language",
+      "native_name": "ภาษาไทย",
+      "script": "Thai script",
+      "family": "Kra-Dai",
+      "note": "A tonal language without inflection; the particles ครับ/ค่ะ mark politeness."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "ขอบคุณ",
+        "roman": "khopkhun"
+      },
+      {
+        "id": "sorry",
+        "native": "ขอโทษ",
+        "roman": "kho thot"
+      },
+      {
+        "id": "goodbye",
+        "native": "ลาก่อน",
+        "roman": "la kon"
+      }
+    ],
+    "culture_note": "The Thai script was adapted from the Khmer script; the oldest Thai inscription dates to 1292 CE. The writing system is still in use today.",
+    "people_note": "The wai is used to greet and to take leave; the younger person initiates it. Shoes are removed at home and in temples. The head is not touched; feet are not pointed at people.",
+    "story": {
+      "text": "Both palms are pressed together in front of the chest while the head bows — that is how Thais open the wai greeting. The younger person begins first. The level of respect shows in the position of the palms. Honouring a monk, the thumbs touch between the eyebrows. Greeting elders and teachers, the palms stop at the tip of the nose. For peers, the two hands rest low in front of the chest. Two taboos hold: the head is sacred and must not be touched by others, and the foot's sole must not point at another person. The official language of the country is Thai, of the Kra-Dai family, a tonal language written in the Thai script. That script was adapted from the ancient Khmer script, and its oldest stone inscription dates to 1292 CE. The national greeting sawatdi was only standardised officially in the early 1940s. Politeness is marked by a sentence-final particle: khrap for men, kha for women. Footwear is always removed before entering a house or temple.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Thai_language",
+          "what": "Kra-Dai family, Thai script, 1292 CE inscription, khrap/kha particles"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/สวัสดี",
+          "what": "Royal Institute romanisation"
+        },
+        {
+          "url": "https://thailandfoundation.or.th/wai-the-thai-greeting/",
+          "what": "The wai for greeting and taking leave"
+        },
+        {
+          "url": "https://thailand.iom.int/sites/g/files/tmzbdl1371/files/documents/Tips%2520for%2520Migrant%2520Workers%2520on%2520the%2520Culture%2520of%2520Thailand_ENG.pdf",
+          "what": "Shoes removed, head and foot taboos"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Thai_language",
+        "what": "Kra-Dai family, Thai script, 1292 CE inscription, khrap/kha particles"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/สวัสดี",
+        "what": "Royal Institute romanisation"
+      },
+      {
+        "url": "https://thailandfoundation.or.th/wai-the-thai-greeting/",
+        "what": "The wai for greeting and taking leave"
+      },
+      {
+        "url": "https://thailand.iom.int/sites/g/files/tmzbdl1371/files/documents/Tips%2520for%2520Migrant%2520Workers%2520on%2520the%2520Culture%2520of%2520Thailand_ENG.pdf",
+        "what": "Shoes removed, head and foot taboos"
+      }
+    ],
+    "confidence": "tinggi",
+    "perlu_verifikasi": [
+      "The RTGS romanisation does not mark tone"
+    ]
+  },
+  {
+    "id": "vn",
+    "iso3": "VNM",
+    "name_id": "Vietnam",
+    "name_local": "Việt Nam",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Xin chào",
+      "roman": "Xin chào",
+      "meaning_id": "Hello / greeting",
+      "register": "Somewhat formal. In daily conversation people use just 'chào', often with a kinship term added according to the age of the person addressed (anh, chị, em, ông, bà)."
+    },
+    "language": {
+      "name_id": "Vietnamese language",
+      "native_name": "Tiếng Việt",
+      "script": "Latin (chữ Quốc ngữ)",
+      "family": "Austroasiatic (Vietic branch)",
+      "note": "Six tones; a diacritic Latin orthography replaced chữ Nôm."
+    },
+    "phrases": [
+      {
+        "id": "thank you",
+        "native": "Cảm ơn",
+        "roman": "Cảm ơn"
+      },
+      {
+        "id": "sorry",
+        "native": "Xin lỗi",
+        "roman": "Xin lỗi"
+      },
+      {
+        "id": "goodbye",
+        "native": "Tạm biệt",
+        "roman": "Tạm biệt"
+      }
+    ],
+    "culture_note": "Chữ Quốc ngữ, a Latin orthography based on the work of 17th-century Portuguese missionaries, replaced chữ Nôm and became the official script in the early 20th century.",
+    "people_note": "Give and receive with both hands. The head is not touched; objects are not passed over the head. Greetings use kinship terms according to age and status.",
+    "story": {
+      "text": "Objects are always handed over with both hands, and the head must not be touched. Those two basic rules of courtesy apply in Vietnam. Greetings are graded by age: the younger person greets the older first, usually with chào combined with a kinship term such as anh, chị, em, or ông according to the age of the person addressed. The formal form is Xin chào. The foundation of it all is Vietnamese, of the Austroasiatic family, Vietic branch. This tonal language has six phonemic tone contours and is written in a diacritic Latin orthography called chữ Quốc ngữ. This script, devised by 17th-century Jesuit missionaries, replaced the chữ Nôm script in the early 20th century. A man's handshake is accompanied by a slight nod of the head, while formal situations use both hands when shaking. Towards a senior figure, a person bows from the base of the shoulders and lowers the direction of the gaze. Shoes are left at the entrance of the house.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Vietnamese_language",
+          "what": "Language name, chữ Quốc ngữ, Austroasiatic-Vietic family"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/xin_chào",
+          "what": "Formal form and daily use of 'chào' plus kinship terms"
+        },
+        {
+          "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-etiquette",
+          "what": "Two hands, head taboo, deference to age"
+        },
+        {
+          "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-greetings",
+          "what": "The spoken greeting Xin chào, kinship terms, and bowing etiquette"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Vietnamese_language",
+        "what": "Language name, chữ Quốc ngữ, Austroasiatic-Vietic family"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/xin_chào",
+        "what": "Formal form and daily use of 'chào' plus kinship terms"
+      },
+      {
+        "url": "https://theculturalatlas.org/vietnamese-culture/vietnamese-culture-etiquette",
+        "what": "Two hands, head taboo, deference to age"
+      }
+    ],
+    "confidence": "sedang",
+    "perlu_verifikasi": [
+      "'Tạm biệt' is formal/literary; an everyday equivalent has not been settled"
+    ]
+  }
+]

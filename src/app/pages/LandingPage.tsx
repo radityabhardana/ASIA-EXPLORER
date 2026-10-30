@@ -1,103 +1,145 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
-import { Link } from 'react-router-dom';
 
 import Navbar from '@/app/Navbar';
+import { countries } from '@/content/countries';
+import { COUNTRIES, ISO3_TO_ISO2, iso3For } from '@/content/countries48';
+import { playParchmentClick, playTransitSweep } from '@/lib/audio';
+import {
+  COUNTRY_COORDINATES,
+  formatDMS,
+  formatDistanceKm,
+  getHeadingDirection,
+  haversineDistanceKm,
+} from '@/lib/geo-coords';
 import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
-import { speak } from '@/lib/speech';
-import { differs, profileFor } from '@/sections/country/scripts';
 import AsiaSceneLazy from '@/sections/landing/AsiaSceneLazy';
-import CountryMapSvg from '@/sections/landing/CountryMapSvg';
-import MosaicGallery from '@/sections/landing/MosaicGallery';
+import CartographicGround from '@/sections/landing/CartographicGround';
+import CountryDirectoryDrawer from '@/sections/landing/CountryDirectoryDrawer';
+import CountryPreviewPanel from '@/sections/landing/CountryPreviewPanel';
+import CulturalComparisonMatrix from '@/sections/landing/CulturalComparisonMatrix';
+import DailyChallengeExpedition from '@/sections/landing/DailyChallengeExpedition';
+import EtiquetteFieldGuide from '@/sections/landing/EtiquetteFieldGuide';
+import ExpeditionMasterySection from '@/sections/landing/ExpeditionMasterySection';
+import RegionExpeditionGallery from '@/sections/landing/RegionExpeditionGallery';
 import TopoBackground from '@/sections/landing/TopoBackground';
-import {
-  SCRIPT_COUNTRY_IDS,
-  countryEntry,
-} from '@/sections/landing/landing-data';
-import { useLandingTimeline } from '@/sections/landing/useLandingTimeline';
 import '@/styles/landing.css';
 
-const scriptCountries = SCRIPT_COUNTRY_IDS.flatMap((id) => {
-  const country = countryEntry(id);
-  return country ? [country] : [];
-});
+const REGION_WAYPOINTS = [
+  { id: 'sea', labelId: 'Asia Tenggara', labelEn: 'Southeast Asia', focusId: 'id' },
+  { id: 'ea', labelId: 'Asia Timur', labelEn: 'East Asia', focusId: 'jp' },
+  { id: 'sa', labelId: 'Asia Selatan', labelEn: 'South Asia', focusId: 'in' },
+  { id: 'wa', labelId: 'Asia Barat', labelEn: 'West Asia', focusId: 'sa' },
+  { id: 'ca', labelId: 'Asia Tengah', labelEn: 'Central Asia', focusId: 'kz' },
+];
 
 export default function LandingPage() {
   const rootRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLElement>(null);
-  const heroProgressRef = useRef(0);
-  const invitationProgressRef = useRef(0.5);
-  /**
-   * Sumber sorotan tunggal scene Skala: tween GSAP menulis 0..1 di sini dan
-   * teks counter dalam satu onUpdate — jumlah tinta 3D selalu = teks counter.
-   */
-  const scaleHighlightRef = useRef(1);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const [ready, setReady] = useState(false);
-  const [selectedScenarioOption, setSelectedScenarioOption] = useState<number>(0);
-  const [activeLeitnerBox, setActiveLeitnerBox] = useState<number>(3);
-  const [speakingId, setSpeakingId] = useState<string | null>(null);
+  const [previewId, setPreviewId] = useState<string | null>(null);
+  const [panelCountryId, setPanelCountryId] = useState<string | null>(null);
+  const [directoryOpen, setDirectoryOpen] = useState(false);
+  const [comparisonOpen, setComparisonOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).has('bandingkan');
+  });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const previewExitTimer = useRef<number | null>(null);
 
   const { locale, t } = useI18n();
 
-  const leitnerItems = [
-    {
-      box: 1,
-      interval: '1h',
-      days: 1,
-      duePhrases: 18,
-      label:
-        locale === 'id'
-          ? 'Kotak 1: Interval 1 hari · 18 frasa siap ulas'
-          : 'Box 1: 1-day interval · 18 phrases due',
-    },
-    {
-      box: 2,
-      interval: '3h',
-      days: 3,
-      duePhrases: 9,
-      label:
-        locale === 'id'
-          ? 'Kotak 2: Interval 3 hari · 9 frasa siap ulas'
-          : 'Box 2: 3-day interval · 9 phrases due',
-    },
-    {
-      box: 3,
-      interval: '7h',
-      days: 7,
-      duePhrases: 12,
-      label:
-        locale === 'id'
-          ? 'Kotak 3: Interval 7 hari · 12 frasa siap ulas'
-          : 'Box 3: 7-day interval · 12 phrases due',
-    },
-    {
-      box: 4,
-      interval: '16h',
-      days: 16,
-      duePhrases: 4,
-      label:
-        locale === 'id'
-          ? 'Kotak 4: Interval 16 hari · 4 frasa siap ulas'
-          : 'Box 4: 16-day interval · 4 phrases due',
-    },
-    {
-      box: 5,
-      interval: '35h',
-      days: 35,
-      duePhrases: 2,
-      label:
-        locale === 'id'
-          ? 'Kotak 5: Interval 35 hari · 2 frasa siap ulas'
-          : 'Box 5: 35-day interval · 2 phrases due',
-    },
-  ];
-
-  useLandingTimeline({
-    root: rootRef,
-    progress: heroProgressRef,
-    highlight: scaleHighlightRef,
+  // FŪDO-inspired Live Geodetic Transit HUD State
+  const [hoverCountryId, setHoverCountryId] = useState<string | null>(null);
+  const [transitInfo, setTransitInfo] = useState<{
+    originName: string;
+    originCapital: string;
+    destName: string;
+    destCapital: string;
+    distance: string;
+    direction: string;
+  } | null>(null);
+  const transitTimerRef = useRef<number | null>(null);
+  const lastFocusRef = useRef<string | null>(null);
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(max-width: 767px), (pointer: coarse)').matches
+    );
   });
+
+  // Hitung geodetic transit metric saat berpindah negara fokus
+  useEffect(() => {
+    if (!previewId) {
+      lastFocusRef.current = null;
+      return;
+    }
+    const prev = lastFocusRef.current;
+    lastFocusRef.current = previewId;
+    if (prev && prev !== previewId) {
+      const prevIso3 = iso3For(prev);
+      const currIso3 = iso3For(previewId);
+      if (prevIso3 && currIso3 && prevIso3 !== currIso3) {
+        const cOrigin = COUNTRIES[prevIso3];
+        const cDest = COUNTRIES[currIso3];
+        const coordOrigin = COUNTRY_COORDINATES[prevIso3];
+        const coordDest = COUNTRY_COORDINATES[currIso3];
+        if (cOrigin && cDest && coordOrigin && coordDest) {
+          const distKm = haversineDistanceKm(
+            coordOrigin.lat,
+            coordOrigin.lon,
+            coordDest.lat,
+            coordDest.lon,
+          );
+          const direction = getHeadingDirection(
+            coordOrigin.lat,
+            coordOrigin.lon,
+            coordDest.lat,
+            coordDest.lon,
+            locale as 'id' | 'en',
+          );
+          setTransitInfo({
+            originName: cOrigin.name,
+            originCapital: cOrigin.capital,
+            destName: cDest.name,
+            destCapital: cDest.capital,
+            distance: formatDistanceKm(distKm, locale as 'id' | 'en'),
+            direction,
+          });
+          if (transitTimerRef.current !== null) {
+            window.clearTimeout(transitTimerRef.current);
+          }
+          transitTimerRef.current = window.setTimeout(() => {
+            setTransitInfo(null);
+            transitTimerRef.current = null;
+          }, 3800);
+        }
+      }
+    }
+  }, [previewId, locale]);
+
+  // Datum koordinat negara aktif (hover atau selected)
+  const activeCountryDatum = useMemo(() => {
+    const targetId = hoverCountryId || previewId;
+    if (!targetId) return null;
+    const iso3 = iso3For(targetId);
+    if (!iso3) return null;
+    const c48 = COUNTRIES[iso3];
+    const coords = COUNTRY_COORDINATES[iso3];
+    if (!c48 || !coords) return null;
+    return {
+      dms: formatDMS(coords.lat, coords.lon),
+      name: c48.name.toUpperCase(),
+      capital: c48.capital.toUpperCase(),
+      region: c48.region.toUpperCase(),
+    };
+  }, [hoverCountryId, previewId]);
 
   // Hero intro triggered by preloader exit or immediate if preloader skipped.
   useEffect(() => {
@@ -116,21 +158,81 @@ export default function LandingPage() {
     };
   }, []);
 
-  const speakGreeting = (
-    countryId: string,
-    text: string,
-    romanText: string,
-    speechLang: string,
-  ) => {
-    setSpeakingId(countryId);
-    speak(text, {
-      lang: speechLang,
-      fallbackText: romanText,
-      rate: 0.9,
-      onEnd: () => setSpeakingId((cur) => (cur === countryId ? null : cur)),
-      onError: () => setSpeakingId((cur) => (cur === countryId ? null : cur)),
-    });
-  };
+  // Shortcut Ctrl+K / Cmd+K / Slash untuk fokus search
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      } else if (e.key === '/' && document.activeElement?.tagName !== 'INPUT') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  const openCountryPreview = useCallback((id: string) => {
+    if (previewExitTimer.current !== null) {
+      window.clearTimeout(previewExitTimer.current);
+      previewExitTimer.current = null;
+    }
+    playTransitSweep();
+    setPreviewId(id);
+    setPanelCountryId(id);
+  }, []);
+
+  const closeCountryPreview = useCallback(() => {
+    playParchmentClick();
+    setPreviewId(null);
+    if (previewExitTimer.current !== null) {
+      window.clearTimeout(previewExitTimer.current);
+    }
+    // Biarkan panel menyelesaikan animasi keluar sebelum dilepas dari DOM.
+    previewExitTimer.current = window.setTimeout(() => {
+      setPanelCountryId(null);
+      previewExitTimer.current = null;
+    }, 280);
+    mapSectionRef.current?.focus({ preventScroll: true });
+  }, []);
+
+  const handleSelectCountry = useCallback(
+    (id: string | null) => {
+      if (id) {
+        openCountryPreview(id);
+      } else {
+        closeCountryPreview();
+      }
+    },
+    [openCountryPreview, closeCountryPreview],
+  );
+
+  useEffect(() => {
+    if (!previewId) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') {
+        return;
+      }
+      event.preventDefault();
+      closeCountryPreview();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [previewId, closeCountryPreview]);
+
+  useEffect(
+    () => () => {
+      if (previewExitTimer.current !== null) {
+        window.clearTimeout(previewExitTimer.current);
+      }
+    },
+    [],
+  );
 
   const handleSkipToMap = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -138,8 +240,42 @@ export default function LandingPage() {
     mapSectionRef.current?.focus({ preventScroll: true });
   };
 
-  const activeLeitnerItem =
-    leitnerItems.find((b) => b.box === activeLeitnerBox) ?? leitnerItems[2]!;
+  // 48 Negara untuk live search
+  const searchableCountries = useMemo(() => {
+    return Object.entries(ISO3_TO_ISO2).map(([iso3, id]) => {
+      const c48 = COUNTRIES[iso3];
+      const full = countries.find((item) => item.id === id);
+      return {
+        id,
+        iso3,
+        name: full?.nameId || c48?.name || id.toUpperCase(),
+        nameLocal: full?.nameLocal || c48?.name || '',
+        capital: c48?.capital || '',
+        region: c48?.region || full?.region || '',
+      };
+    });
+  }, []);
+
+  const searchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    return searchableCountries
+      .filter(
+        (c) =>
+          c.name.toLowerCase().includes(q) ||
+          c.nameLocal.toLowerCase().includes(q) ||
+          c.capital.toLowerCase().includes(q) ||
+          c.region.toLowerCase().includes(q) ||
+          c.id.toLowerCase() === q,
+      )
+      .slice(0, 6);
+  }, [searchQuery, searchableCountries]);
+
+  const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
+  if (prevSearchQuery !== searchQuery) {
+    setPrevSearchQuery(searchQuery);
+    setHighlightedIndex(0);
+  }
 
   return (
     <div className={`landing ${ready ? 'landing--ready' : ''}`} ref={rootRef}>
@@ -147,613 +283,314 @@ export default function LandingPage() {
       <a className="landing-skip skip-link" href="#peta" onClick={handleSkipToMap}>
         {t('hero.skipLink')}
       </a>
-      <Navbar onScrollToMap={handleSkipToMap} />
+      <Navbar
+        onScrollToMap={handleSkipToMap}
+        onOpenCountryDirectory={() => setDirectoryOpen(true)}
+        onOpenComparison={() => setComparisonOpen(true)}
+      />
 
-      {/* Scene 1 — Hero */}
-      <section className="landing-scene landing-scene--hero" aria-labelledby="landing-title">
+      {/* Scene 1 — Hero: Peta Interaktif 48 Negara + Search Cerdas */}
+      <section
+        id="peta"
+        ref={mapSectionRef}
+        tabIndex={-1}
+        className="landing-scene landing-scene--hero"
+        aria-labelledby="landing-title"
+      >
         <div className="landing-stage landing-stage--hero">
-          <div className="landing-hero__ground" aria-hidden="true">
-            <svg
-              className="landing-hero__ground-svg"
-              viewBox="0 0 1000 585"
-              preserveAspectRatio="none"
-            >
-              <ellipse
-                className="landing-hero__ground-disc"
-                cx="500"
-                cy="292.5"
-                rx="498"
-                ry="290"
-              />
-              <ellipse
-                className="landing-hero__ground-ring landing-hero__ground-ring--1"
-                cx="500"
-                cy="292.5"
-                rx="498"
-                ry="290"
-              />
-              <ellipse
-                className="landing-hero__ground-ring landing-hero__ground-ring--2"
-                cx="500"
-                cy="292.5"
-                rx="410"
-                ry="239"
-              />
-              <ellipse
-                className="landing-hero__ground-ring landing-hero__ground-ring--3"
-                cx="500"
-                cy="292.5"
-                rx="320"
-                ry="187"
-              />
-            </svg>
-          </div>
+          <CartographicGround />
 
           <div className="landing-hero__copy" data-intro>
-            <p className="landing-hero__eyebrow">{t('hero.eyebrow')}</p>
+            <div className="landing-hero__eyebrow-wrap">
+              <p className="landing-hero__eyebrow landing-hero__kicker">{t('hero.eyebrow')}</p>
+            </div>
             <span className="landing-hero__accent-bar" aria-hidden="true" />
             <h1 className="landing-hero__title" id="landing-title">
-              Asia Explorer
+              {locale === 'id' ? (
+                <>
+                  Jelajahi 48 Bangsa <span className="landing-hero__title--accent">di Asia.</span>
+                </>
+              ) : (
+                <>
+                  Explore 48 Nations <span className="landing-hero__title--accent">in Asia.</span>
+                </>
+              )}
             </h1>
+            <p className="landing-hero__tagline">{t('hero.tagline')}</p>
+
+            {/* Input Pencarian 48 Negara Terintegrasi */}
+            <div className="landing-hero__search-wrap">
+              <div
+                className={`landing-hero__search-box ${searchFocused ? 'landing-hero__search-box--focused' : ''}`}
+              >
+                <svg
+                  className="landing-hero__search-icon"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <circle cx="8.5" cy="8.5" r="5.5" />
+                  <line x1="13" y1="13" x2="17.5" y2="17.5" />
+                </svg>
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setSearchFocused(false), 220)}
+                  onKeyDown={(e) => {
+                    if (searchResults.length === 0) return;
+                    if (e.key === 'ArrowDown') {
+                      e.preventDefault();
+                      setHighlightedIndex((prev) => (prev + 1) % searchResults.length);
+                    } else if (e.key === 'ArrowUp') {
+                      e.preventDefault();
+                      setHighlightedIndex((prev) => (prev - 1 + searchResults.length) % searchResults.length);
+                    } else if (e.key === 'Enter') {
+                      e.preventDefault();
+                      const chosen = searchResults[highlightedIndex] || searchResults[0];
+                      if (chosen) {
+                        setSearchQuery('');
+                        setSearchFocused(false);
+                        handleSelectCountry(chosen.id);
+                        searchInputRef.current?.blur();
+                      }
+                    } else if (e.key === 'Escape') {
+                      e.preventDefault();
+                      setSearchFocused(false);
+                    }
+                  }}
+                  placeholder={
+                    locale === 'id'
+                      ? 'Cari 48 negara... (misal: Jepang, Uzbekistan)'
+                      : 'Search 48 countries... (e.g. Japan, Uzbekistan)'
+                  }
+                  className="landing-hero__search-input"
+                  aria-label={locale === 'id' ? 'Cari negara di Asia' : 'Search Asian country'}
+                />
+                {searchQuery ? (
+                  <button
+                    type="button"
+                    className="landing-hero__search-clear"
+                    onClick={() => setSearchQuery('')}
+                    aria-label={locale === 'id' ? 'Hapus pencarian' : 'Clear search'}
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                    >
+                      <path d="M4 4l8 8M12 4l-8 8" />
+                    </svg>
+                  </button>
+                ) : isTouchDevice ? null : (
+                  <span className="landing-hero__search-kbd" aria-hidden="true">Ctrl+K</span>
+                )}
+              </div>
+
+              {searchFocused && searchResults.length > 0 && (
+                <ul className="landing-hero__search-dropdown" role="listbox">
+                  {searchResults.map((c, index) => (
+                    <li
+                      key={c.id}
+                      role="option"
+                      aria-selected={index === highlightedIndex}
+                      className={`landing-hero__search-item ${index === highlightedIndex ? 'landing-hero__search-item--active' : ''}`}
+                      onMouseEnter={() => setHighlightedIndex(index)}
+                      onMouseDown={() => {
+                        setSearchQuery('');
+                        handleSelectCountry(c.id);
+                      }}
+                    >
+                      <div className="landing-hero__search-item-info">
+                        <span className="landing-hero__search-item-name">{c.name}</span>
+                        {c.nameLocal && c.nameLocal !== c.name && (
+                          <span className="landing-hero__search-item-local">({c.nameLocal})</span>
+                        )}
+                      </div>
+                      <span className="landing-hero__search-item-meta">
+                        {c.capital} · {c.region}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {/* Kawasan Pintas Ekspedisi */}
+            <div
+              className="landing-hero__regions"
+              role="region"
+              aria-label={locale === 'id' ? 'Jelajahi kawasan Asia' : 'Explore Asian regions'}
+            >
+              <span className="landing-hero__regions-caption">
+                {locale === 'id' ? 'Pintas Kawasan:' : 'Regions:'}
+              </span>
+              <div className="landing-hero__region-list">
+                {REGION_WAYPOINTS.map((region) => (
+                  <button
+                    key={region.id}
+                    type="button"
+                    className={`landing-hero__region-btn ${panelCountryId === region.focusId ? 'landing-hero__region-btn--active' : ''}`}
+                    onClick={() => handleSelectCountry(region.focusId)}
+                  >
+                    {locale === 'id' ? region.labelId : region.labelEn}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Indeks Karakter Benua (Arsitektural & Faktual) */}
+            <div
+              className="landing-hero__census"
+              aria-label={locale === 'id' ? 'Indeks Karakter Benua Asia' : 'Continental Character Index'}
+            >
+              <div className="landing-hero__census-head">
+                <span className="landing-hero__census-pip" aria-hidden="true" />
+                <span className="landing-hero__census-label">
+                  {locale === 'id' ? 'Indeks Karakter Benua' : 'Continental Character Index'}
+                </span>
+                <span className="landing-hero__census-code" aria-hidden="true">
+                  [ARC · 48]
+                </span>
+              </div>
+              <div className="landing-hero__census-grid">
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">48</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Bangsa Berdaulat' : 'Sovereign Nations'}
+                  </span>
+                </div>
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">5</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Zona Kawasan Budaya' : 'Cultural Regions'}
+                  </span>
+                </div>
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">18</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Rumpun Aksara Asli' : 'Native Script Families'}
+                  </span>
+                </div>
+                <div className="landing-hero__census-item">
+                  <span className="landing-hero__census-num">700+</span>
+                  <span className="landing-hero__census-name">
+                    {locale === 'id' ? 'Bahasa & Dialek Lokal' : 'Living Languages'}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="landing-hero__scene" data-intro>
             <AsiaSceneLazy
               debugKey="hero"
               label={t('hero.eyebrow')}
-              scrollProgressRef={heroProgressRef}
               showOverlays={true}
               interactiveClick={false}
+              selectedId={previewId}
+              focusCountryId={previewId}
+              onSelectCountry={handleSelectCountry}
+              onHoverCountry={setHoverCountryId}
               controlsHintText={t('hero.hint')}
             />
           </div>
-        </div>
-      </section>
 
-      {/* Scene 2 — Skala: proyeksi peta SVG 15 negara dengan sorotan tersinkronisasi */}
-      <section
-        className="landing-scene landing-scene--scale landing-scene--pinned"
-        aria-labelledby="landing-scale-heading"
-      >
-        <div className="landing-stage landing-stage--scale">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <h2
-              className="landing-display landing-display--stat landing-display--wide"
-              id="landing-scale-heading"
-            >
-              <span className="landing-display__number" data-counter="15">
-                15
-              </span>
-              <span className="landing-display__words">{t('scale.statWords')}</span>
-            </h2>
-            <p className="landing-note">{t('scale.note')}</p>
-          </div>
-
-          <div className="landing-scale__map-wrap" data-reveal>
-            <CountryMapSvg variant="scene" className="landing-scale__map" />
-          </div>
-        </div>
-      </section>
-
-      {/* Scene 3 — Aksara: pita sapaan 15 negara */}
-      <section
-        className="landing-scene landing-scene--script"
-        aria-labelledby="landing-script-heading"
-      >
-        <div className="landing-stage landing-stage--script">
-          <div className="landing-stage__copy" data-reveal>
-            <p className="landing-kicker">{t('script.kicker')}</p>
-            <h2 className="landing-display" id="landing-script-heading">
-              {t('script.heading')}
-            </h2>
-          </div>
-
-          <div className="landing-script__band" data-reveal>
-            <div className="landing-script__viewport">
-              <div
-                className="landing-script__marquee"
-                tabIndex={-1}
-                aria-label={locale === 'id' ? 'Pita aksara 15 negara' : '15-country script band'}
-              >
-                <div className="landing-script__track">
-                  {scriptCountries.map((country) => {
-                    const profile = profileFor(country);
-                    const isSpeaking = speakingId === country.id;
-                    return (
-                      <article
-                        key={country.id}
-                        className={`landing-script__item landing-script__card ${isSpeaking ? 'landing-script__card--speaking' : ''}`}
-                        tabIndex={0}
-                        aria-label={
-                          locale === 'id'
-                            ? `${country.nameId}: ${country.greeting.native}, bahasa ${country.language.nameId}. Ketuk untuk mendengarkan pengucapan.`
-                            : `${country.nameId}: ${country.greeting.native}, ${country.language.nameId} language. Tap to listen.`
-                        }
-                        onClick={() =>
-                          speakGreeting(
-                            country.id,
-                            country.greeting.native,
-                            country.greeting.roman,
-                            profile.speechLang,
-                          )
-                        }
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            speakGreeting(
-                              country.id,
-                              country.greeting.native,
-                              country.greeting.roman,
-                              profile.speechLang,
-                            );
-                          }
-                        }}
-                      >
-                        <div className="landing-script__card-header">
-                          <div className="landing-script__card-identity">
-                            <div className="landing-script__country-badge">
-                              <span className="landing-script__accent-bar" aria-hidden="true" />
-                              <span className="landing-script__country">{country.nameId}</span>
-                            </div>
-                            <span className="landing-script__label">
-                              {country.language.nameId}
-                            </span>
-                          </div>
-                          <button
-                            type="button"
-                            className={`landing-script__audio-btn ${isSpeaking ? 'landing-script__audio-btn--active' : ''}`}
-                            aria-label={
-                              locale === 'id'
-                                ? `Dengarkan pengucapan sapaan ${country.nameId}`
-                                : `Listen to greeting pronunciation ${country.nameId}`
-                            }
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              speakGreeting(
-                                country.id,
-                                country.greeting.native,
-                                country.greeting.roman,
-                                profile.speechLang,
-                              );
-                            }}
-                          >
-                            {isSpeaking ? (
-                              <span className="landing-script__soundwave" aria-hidden="true">
-                                <span className="landing-script__soundwave-bar" />
-                                <span className="landing-script__soundwave-bar" />
-                                <span className="landing-script__soundwave-bar" />
-                              </span>
-                            ) : (
-                              <svg
-                                className="landing-script__speaker-icon"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                aria-hidden="true"
-                              >
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                              </svg>
-                            )}
-                          </button>
-                        </div>
-                        <div className="landing-script__card-body">
-                          <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
-                            {country.greeting.native}
-                          </p>
-                          <p className="landing-script__roman">
-                            {differs(country.greeting.native, country.greeting.roman)
-                              ? country.greeting.roman
-                              : country.greeting.meaningId}
-                          </p>
-                          {differs(country.greeting.native, country.greeting.roman) && country.greeting.meaningId && (
-                            <p className="landing-script__meaning">
-                              &ldquo;{country.greeting.meaningId}&rdquo;
-                            </p>
-                          )}
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-
-                <div className="landing-script__track" aria-hidden="true">
-                  {scriptCountries.map((country) => {
-                    const profile = profileFor(country);
-                    const isSpeaking = speakingId === country.id;
-                    return (
-                      <article
-                        key={`dup-${country.id}`}
-                        className={`landing-script__item landing-script__card ${isSpeaking ? 'landing-script__card--speaking' : ''}`}
-                        tabIndex={-1}
-                        onClick={() =>
-                          speakGreeting(
-                            country.id,
-                            country.greeting.native,
-                            country.greeting.roman,
-                            profile.speechLang,
-                          )
-                        }
-                      >
-                        <div className="landing-script__card-header">
-                          <div className="landing-script__card-identity">
-                            <div className="landing-script__country-badge">
-                              <span className="landing-script__accent-bar" aria-hidden="true" />
-                              <span className="landing-script__country">{country.nameId}</span>
-                            </div>
-                            <span className="landing-script__label">
-                              {country.language.nameId}
-                            </span>
-                          </div>
-                          <button
-                            type="button"
-                            tabIndex={-1}
-                            className={`landing-script__audio-btn ${isSpeaking ? 'landing-script__audio-btn--active' : ''}`}
-                            aria-label={
-                              locale === 'id'
-                                ? `Dengarkan pengucapan sapaan ${country.nameId}`
-                                : `Listen to greeting pronunciation ${country.nameId}`
-                            }
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              speakGreeting(
-                                country.id,
-                                country.greeting.native,
-                                country.greeting.roman,
-                                profile.speechLang,
-                              );
-                            }}
-                          >
-                            {isSpeaking ? (
-                              <span className="landing-script__soundwave" aria-hidden="true">
-                                <span className="landing-script__soundwave-bar" />
-                                <span className="landing-script__soundwave-bar" />
-                                <span className="landing-script__soundwave-bar" />
-                              </span>
-                            ) : (
-                              <svg
-                                className="landing-script__speaker-icon"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                aria-hidden="true"
-                              >
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                              </svg>
-                            )}
-                          </button>
-                        </div>
-                        <div className="landing-script__card-body">
-                          <p className="landing-script__native" lang={profile.lang} dir={profile.dir}>
-                            {country.greeting.native}
-                          </p>
-                          <p className="landing-script__roman">
-                            {differs(country.greeting.native, country.greeting.roman)
-                              ? country.greeting.roman
-                              : country.greeting.meaningId}
-                          </p>
-                          {differs(country.greeting.native, country.greeting.roman) && country.greeting.meaningId && (
-                            <p className="landing-script__meaning">
-                              &ldquo;{country.greeting.meaningId}&rdquo;
-                            </p>
-                          )}
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Scene 4 — Pilih Negara (Peta Interaktif 3D) */}
-      <section
-        id="peta"
-        ref={mapSectionRef}
-        tabIndex={-1}
-        className="landing-scene landing-scene--invitation"
-        aria-labelledby="landing-invitation-heading"
-      >
-        <div className="landing-stage landing-stage--invitation">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <p className="landing-kicker">{t('invitation.kicker')}</p>
-            <h2 className="landing-display" id="landing-invitation-heading">
-              {t('invitation.heading')}
-            </h2>
-            <p className="landing-note">{t('invitation.note')}</p>
-          </div>
-
-          <div className="landing-invitation__scene" data-reveal>
-            <AsiaSceneLazy
-              debugKey="invitation"
-              label={t('invitation.heading')}
-              scrollProgressRef={invitationProgressRef}
-              showOverlays={true}
-              interactiveClick={true}
-              controlsHintText={t('invitation.hint')}
+          {panelCountryId ? (
+            <CountryPreviewPanel
+              countryId={panelCountryId}
+              open={previewId !== null}
+              onClose={closeCountryPreview}
             />
-          </div>
-        </div>
-      </section>
+          ) : null}
 
-      {/* Scene 5 — Mosaik Galeri (15 Negara, Satu Benua) */}
-      <MosaicGallery />
-
-      {/* Scene 6 — Dashboard Showcase (Studio Belajar & Progres Budaya) */}
-      <section
-        id="dashboard-showcase"
-        className="landing-scene landing-scene--dashboard"
-        aria-labelledby="landing-dashboard-heading"
-      >
-        <div className="landing-stage landing-stage--dashboard">
-          <div className="landing-stage__copy landing-center" data-reveal>
-            <p className="landing-kicker">{t('dashboard.kicker')}</p>
-            <h2 className="landing-display" id="landing-dashboard-heading">
-              {t('dashboard.heading')}
-            </h2>
-            <p className="landing-note">{t('dashboard.note')}</p>
-          </div>
-
-          <div className="landing-dashboard__grid" data-reveal>
-            {/* Left Side: Live Interactive Learning Studio / Console */}
-            <div className="landing-dashboard__console">
-              <div className="landing-dashboard__console-bar">
-                <div className="landing-dashboard__console-dots" aria-hidden="true">
-                  <span className="landing-dashboard__console-dot landing-dashboard__console-dot--red" />
-                  <span className="landing-dashboard__console-dot landing-dashboard__console-dot--yellow" />
-                  <span className="landing-dashboard__console-dot landing-dashboard__console-dot--green" />
-                </div>
-                <span className="landing-dashboard__console-title">
-                  {t('dashboard.consoleTitle')}
+          {/* Archival Expedition Datum HUD (FŪDO-inspired Geodetic Transit Datum) */}
+          <div className="landing-hero__hud" aria-hidden="true">
+            {transitInfo ? (
+              <div className="landing-hero__hud-datum landing-hero__hud-datum--transit">
+                <span className="landing-hero__hud-badge">TRANSIT</span>
+                <span className="landing-hero__hud-metric">
+                  {transitInfo.originCapital.toUpperCase()} → {transitInfo.destCapital.toUpperCase()}
+                </span>
+                <span className="landing-hero__hud-sep">·</span>
+                <span className="landing-hero__hud-coord">{transitInfo.distance}</span>
+                <span className="landing-hero__hud-sep">·</span>
+                <span className="landing-hero__hud-direction">{transitInfo.direction}</span>
+              </div>
+            ) : activeCountryDatum ? (
+              <div className="landing-hero__hud-datum landing-hero__hud-datum--active">
+                <span className="landing-hero__hud-coord">{activeCountryDatum.dms}</span>
+                <span className="landing-hero__hud-sep">·</span>
+                <span className="landing-hero__hud-metric">
+                  {activeCountryDatum.name} ({activeCountryDatum.capital})
+                </span>
+                <span className="landing-hero__hud-sep">·</span>
+                <span className="landing-hero__hud-region">{activeCountryDatum.region}</span>
+              </div>
+            ) : (
+              <div className="landing-hero__hud-datum">
+                <span className="landing-hero__hud-coord">10°S - 82°N · 26°E - 170°W</span>
+                <span className="landing-hero__hud-sep">·</span>
+                <span className="landing-hero__hud-metric">
+                  {locale === 'id' ? 'ATLAS KARTOGRAFI 48 BANGSA' : '48 NATIONS CARTOGRAPHIC ATLAS'}
                 </span>
               </div>
-
-              <div className="landing-dashboard__console-content">
-                {/* Active Quest Scenario preview */}
-                <div className="landing-dashboard__scenario-box">
-                  <div className="landing-dashboard__scenario-header">
-                    <span className="landing-dashboard__scenario-badge">
-                      {t('dashboard.scenarioBadge')}
-                    </span>
-                    <span className="landing-dashboard__scenario-location">
-                      {t('dashboard.scenarioLocation')}
-                    </span>
-                  </div>
-                  <h3 className="landing-dashboard__scenario-title">
-                    {t('dashboard.scenarioTitle')}
-                  </h3>
-                  <div
-                    className="landing-dashboard__scenario-options"
-                    role="radiogroup"
-                    aria-label="Pilihan respon etiket"
-                  >
-                    <button
-                      type="button"
-                      role="radio"
-                      aria-checked={selectedScenarioOption === 0}
-                      className={`landing-dashboard__option-btn ${selectedScenarioOption === 0 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--correct' : ''}`}
-                      onClick={() => setSelectedScenarioOption(0)}
-                    >
-                      <div className="landing-dashboard__option-content">
-                        <span className="landing-dashboard__option-indicator" aria-hidden="true">
-                          {selectedScenarioOption === 0 ? (
-                            <svg
-                              viewBox="0 0 14 14"
-                              width="10"
-                              height="10"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2.2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <polyline points="2.5 7 5.5 10 11.5 4" />
-                            </svg>
-                          ) : (
-                            <span className="landing-dashboard__option-indicator-inner" />
-                          )}
-                        </span>
-                        <span className="landing-dashboard__option-text">
-                          {t('dashboard.scenarioOpt1')}
-                        </span>
-                      </div>
-                      {selectedScenarioOption === 0 && (
-                        <div className="landing-dashboard__option-tags">
-                          <span className="landing-dashboard__reason-tag">
-                            {t('dashboard.tagHierarchy')}
-                          </span>
-                          <span className="landing-dashboard__reason-tag">
-                            {t('dashboard.tagSocial')}
-                          </span>
-                        </div>
-                      )}
-                    </button>
-
-                    <button
-                      type="button"
-                      role="radio"
-                      aria-checked={selectedScenarioOption === 1}
-                      className={`landing-dashboard__option-btn ${selectedScenarioOption === 1 ? 'landing-dashboard__option-btn--active landing-dashboard__option-btn--warning' : ''}`}
-                      onClick={() => setSelectedScenarioOption(1)}
-                    >
-                      <div className="landing-dashboard__option-content">
-                        <span className="landing-dashboard__option-indicator" aria-hidden="true">
-                          {selectedScenarioOption === 1 && (
-                            <span className="landing-dashboard__option-indicator-inner" />
-                          )}
-                        </span>
-                        <span className="landing-dashboard__option-text">
-                          {t('dashboard.scenarioOpt2')}
-                        </span>
-                      </div>
-                      {selectedScenarioOption === 1 && (
-                        <div className="landing-dashboard__option-tags">
-                          <span className="landing-dashboard__reason-tag landing-dashboard__reason-tag--amber">
-                            {t('dashboard.tagViolation')}
-                          </span>
-                        </div>
-                      )}
-                    </button>
-                  </div>
-
-                  {/* Interactive Feedback Cards */}
-                  {selectedScenarioOption === 0 && (
-                    <div
-                      className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--success"
-                      role="status"
-                      aria-live="polite"
-                    >
-                      <div className="landing-dashboard__feedback-header">
-                        <span
-                          className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--success"
-                          aria-hidden="true"
-                        >
-                          ✓
-                        </span>
-                        <strong className="landing-dashboard__feedback-lead">
-                          {t('dashboard.scenarioCorrectLead')}
-                        </strong>
-                      </div>
-                      <p className="landing-dashboard__feedback-text">
-                        {t('dashboard.scenarioCorrectText')}
-                      </p>
-                    </div>
-                  )}
-
-                  {selectedScenarioOption === 1 && (
-                    <div
-                      className="landing-dashboard__scenario-feedback landing-dashboard__scenario-feedback--warning"
-                      role="status"
-                      aria-live="polite"
-                    >
-                      <div className="landing-dashboard__feedback-header">
-                        <span
-                          className="landing-dashboard__feedback-badge landing-dashboard__feedback-badge--warning"
-                          aria-hidden="true"
-                        >
-                          !
-                        </span>
-                        <strong className="landing-dashboard__feedback-lead">
-                          {t('dashboard.scenarioWarnLead')}
-                        </strong>
-                      </div>
-                      <p className="landing-dashboard__feedback-text">
-                        {t('dashboard.scenarioWarnText')}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Spaced Repetition track: 5 Leitner review boxes */}
-                <div className="landing-dashboard__leitner-track">
-                  <div className="landing-dashboard__leitner-header">
-                    <span className="landing-dashboard__leitner-label">
-                      {t('dashboard.leitnerTitle')}
-                    </span>
-                    <span className="landing-dashboard__leitner-meta">
-                      {t('dashboard.leitnerInterval')} {activeLeitnerItem.days}{' '}
-                      {t('dashboard.leitnerDays')} &middot; {activeLeitnerItem.duePhrases}{' '}
-                      {t('dashboard.leitnerPhrasesReady')}
-                    </span>
-                  </div>
-                  <div
-                    className="landing-dashboard__leitner-boxes"
-                    role="tablist"
-                    aria-label="Kotak ulasan Spaced Repetition"
-                  >
-                    {leitnerItems.map((item) => {
-                      const isActive = activeLeitnerBox === item.box;
-                      return (
-                        <button
-                          key={item.box}
-                          type="button"
-                          role="tab"
-                          aria-selected={isActive}
-                          className={`landing-dashboard__leitner-box ${isActive ? 'landing-dashboard__leitner-box--active' : ''}`}
-                          title={item.label}
-                          onClick={() => setActiveLeitnerBox(item.box)}
-                          onMouseEnter={() => setActiveLeitnerBox(item.box)}
-                        >
-                          <span className="landing-dashboard__leitner-num">{item.box}</span>
-                          <span className="landing-dashboard__leitner-interval">{item.interval}</span>
-                          {isActive && (
-                            <span className="landing-dashboard__leitner-status">
-                              &bull; {item.duePhrases} {t('dashboard.leitnerPhrasesUnit')}
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {/* Local-first status bar */}
-              <div className="landing-dashboard__status-bar">
-                <div className="landing-dashboard__status-indicator">
-                  <span className="landing-dashboard__status-pulse" aria-hidden="true" />
-                  <span>{t('dashboard.statusLocal')}</span>
-                </div>
-                <span>{t('dashboard.statusMeta')}</span>
-              </div>
-            </div>
-
-            {/* Right Side: 4 Strategic Capability Pillars */}
-            <div className="landing-dashboard__pillars">
-              <article className="landing-dashboard__pillar-item">
-                <span className="landing-dashboard__pillar-num">01</span>
-                <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p1Title')}</h3>
-                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p1Desc')}</p>
-                </div>
-              </article>
-
-              <article className="landing-dashboard__pillar-item">
-                <span className="landing-dashboard__pillar-num">02</span>
-                <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p2Title')}</h3>
-                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p2Desc')}</p>
-                </div>
-              </article>
-
-              <article className="landing-dashboard__pillar-item">
-                <span className="landing-dashboard__pillar-num">03</span>
-                <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p3Title')}</h3>
-                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p3Desc')}</p>
-                </div>
-              </article>
-
-              <article className="landing-dashboard__pillar-item">
-                <span className="landing-dashboard__pillar-num">04</span>
-                <div className="landing-dashboard__pillar-content">
-                  <h3 className="landing-dashboard__pillar-title">{t('dashboard.p4Title')}</h3>
-                  <p className="landing-dashboard__pillar-desc">{t('dashboard.p4Desc')}</p>
-                </div>
-              </article>
-
-              <div className="landing-dashboard__actions">
-                <Link to="/dashboard" className="landing-dashboard__cta">
-                  {t('dashboard.cta')} <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
+            )}
+            <div className="landing-hero__hud-scroll">
+              <span>{locale === 'id' ? 'GULIR UNTUK MENJELAJAH' : 'SCROLL TO EXPLORE'}</span>
+              <span className="landing-hero__hud-arrow">↓</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Scene 7 — Footer: wordmark dan catatan hak cipta */}
+      {/* Scene 2 — Tantangan Harian Interaktif (Playable 60s Quiz ala Worldly) */}
+      <DailyChallengeExpedition
+        locale={locale}
+      />
+
+      {/* Scene 3 — Ekspedisi 5 Kawasan Budaya Asia (Curated Spheres) */}
+      <RegionExpeditionGallery
+        onOpenDirectory={() => {
+          playParchmentClick();
+          setDirectoryOpen(true);
+        }}
+      />
+
+      {/* Scene 4 — Panduan Etiket & Norma Budaya (Field Guide 48 Bangsa) */}
+      <EtiquetteFieldGuide />
+
+      {/* Scene 5 — Sains Memori, Quest & Jalur Belajar */}
+      <ExpeditionMasterySection />
+
+      {/* Atlas Direktori 48 Bangsa Drawer */}
+      <CountryDirectoryDrawer
+        open={directoryOpen}
+        onClose={() => setDirectoryOpen(false)}
+        onSelectCountry={handleSelectCountry}
+      />
+
+      {/* Matriks Komparasi Lintas Peradaban */}
+      <CulturalComparisonMatrix
+        open={comparisonOpen}
+        onClose={() => setComparisonOpen(false)}
+        initialCountryA={panelCountryId || 'jp'}
+      />
+
+      {/* Scene 6 — Footer: wordmark dan catatan hak cipta */}
       <footer
         className="landing-scene landing-scene--footer"
         aria-labelledby="landing-footer-heading"
@@ -762,7 +599,9 @@ export default function LandingPage() {
           <p className="landing-footer__mark" id="landing-footer-heading">
             Asia Explorer
           </p>
-          <p className="landing-footer__copyright">{t('footer.copyright')}</p>
+          <p className="landing-footer__copyright">
+            {t('footer.copyright').replace('{count}', String(countries.length))}
+          </p>
         </div>
       </footer>
     </div>

@@ -116,6 +116,12 @@
   height: 100dvh;
 }
 
+/* Lab memakai scene 48 negara yang di landing tingginya diatur oleh
+   `.landing-hero__scene`; di sini tidak ada wrapper itu, jadi isi penuh stage. */
+.scene-lab .landing-asia {
+  height: 100%;
+}
+
 .scene-lab__status {
   position: absolute;
   inset: 0;

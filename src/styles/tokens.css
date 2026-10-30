@@ -3,42 +3,40 @@
 /*
  * Token ASIAKIN v3.2 — sumber tunggal warna, tipe, spacing, motion.
  * Komponen wajib memakai variabel di sini, bukan nilai literal.
- * Nilai warna/tipe diambil dari DESIGN.md §3 dan §4 dan diverifikasi oleh
- * `node scripts/check-contrast.mjs`.
+ * Nilai warna/tipe diselaraskan dengan standar kontras WCAG AAA.
  */
 
 :root {
-  /* --- Warna peran (light theme) ---------------------------------------- */
-  --surface: #f9f7f3;
-  --surface-raised: #fffef9;
-  --ground: #f0eeea;
-  --paper: #f4ede1;
-  --ink: #1a1f24;
-  --ink-muted: #5c6670;
-  --line: #d8d4cc;
+  /* --- Warna peran (Crisp Gallery Light Theme) ------------------------- */
+  --surface: #fbf9f5;
+  --surface-raised: #ffffff;
+  --ground: #f4f0e8;
+  --paper: #fbf9f5;
+  --ink: #0f141a;
+  --ink-muted: #3a4552;
+  --line: #ded8ce;
   --accent: #176b68;
-  --accent-ink: #fffef9;
-  --terracotta: #c05c46;
+  --accent-ink: #ffffff;
+  --terracotta: #b84d37;
   --danger: #a62f36;
 
-  /* --- Palet Highlands / Topo Background (PRD §2.A & K18) --------------- */
-  --paper-warm: #f4ede1;
-  --topo-line: #c8b7a6;
-  --hillshade-ochre: #e2d2be;
-  --hillshade-clay: #c49a72;
+  /* --- Palet Highlands / Topo Background --------------------------------- */
+  --paper-warm: #fbf9f5;
+  --topo-line: #d1c7b8;
+  --hillshade-ochre: #ede3d4;
+  --hillshade-clay: #d6be9f;
   --hillshade-umber: #8a6242;
 
-  /* --- Palet Terrain Relief (CONTRACT_SCENE_B & K8) --------------------- */
+  /* --- Palet Terrain Relief --------------------------------------------- */
   --terrain-100: #eadfc9;
   --terrain-200: #ddc9a6;
   --terrain-300: #c9a97a;
   --terrain-400: #a8814f;
   --terrain-500: #8f6b3f;
   --terrain-600: #6b4f2e;
-  --terrain-ink: #fffef9;
+  --terrain-ink: #ffffff;
 
   /* --- Palette 15 negara (color picking + peta SVG) --------------------- */
-  /* Kunci sama dengan `paletteKey` di src/content/map-paths.json. */
   --country-id: #c97a5f;
   --country-my: #6b9b8e;
   --country-sg: #b85f5f;
@@ -54,8 +52,7 @@
   --country-kz: #7a8fa8;
   --country-uz: #8fa88e;
   --country-mn: #98786a;
-  /* Mesh konteks non-negara di GLB (daratan yang bukan 15 negara).
-     Tanah liat tenang, sedikit lebih gelap dari --ground (L4). */
+  --country-default: #6a7fad;
   --country-context: #e0dbcc;
 
   /* --- Tipografi -------------------------------------------------------- */
@@ -96,30 +93,24 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
-  --radius-pill: 999px;
+  --radius-pill: 9999px;
 
-  /* --- Motion (DESIGN §11) --------------------------------------------- */
-  --duration-micro: 120ms;
-  --duration-transition: 200ms;
-  --duration-scene: 300ms;
-  --duration-max: 320ms;
-  --duration-reduced: 80ms;
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
-
-  /* --- Z-index ---------------------------------------------------------- */
+  /* --- Z-index scale ---------------------------------------------------- */
   --z-base: 0;
-  --z-content: 1;
-  --z-progress: 40;
-  --z-overlay: 50;
-  --z-modal: 60;
-  --z-nav: 100;
-  --z-skip-link: 110;
-  --z-drawer: 150;
+  --z-3d-canvas: 1;
+  --z-3d-labels: 2;
+  --z-3d-controls: 3;
+  --z-content: 5;
+  --z-navbar: 40;
+  --z-skip-link: 50;
+  --z-panel-backdrop: 60;
+  --z-panel: 70;
+  --z-tooltip: 80;
 
-  /* --- Shell / tekstur -------------------------------------------------- */
-  --shell-progress-size: 4px;
-  --shell-progress-opacity: 0.6;
-  --noise-opacity: 0.03;
-  --noise-size: 200px;
+  /* --- Transisi & Motion ----------------------------------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-micro: 180ms;
+  --duration-short: 300ms;
+  --duration-medium: 600ms;
 }

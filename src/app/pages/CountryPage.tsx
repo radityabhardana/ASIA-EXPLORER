@@ -1,14 +1,18 @@
-import { useEffect, useMemo } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
-import { getCountry } from '@/content/countries';
+import { countryById } from '@/content/countries';
+import { playParchmentClick } from '@/lib/audio';
 import { useI18n } from '@/lib/i18n';
 import { scrollToSection } from '@/lib/motion';
 import BackNavigation from '@/sections/country/BackNavigation';
 import CountryBackground, { getCountryTheme } from '@/sections/country/CountryBackground';
+import CountryEtiquette from '@/sections/country/CountryEtiquette';
+import CountryFactsheet from '@/sections/country/CountryFactsheet';
 import CountryGallery from '@/sections/country/CountryGallery';
 import CountryHero from '@/sections/country/CountryHero';
-import CountryPortrait from '@/sections/country/CountryPortrait';
+import CountryNeighbors from '@/sections/country/CountryNeighbors';
+import CulturalComparisonMatrix from '@/sections/landing/CulturalComparisonMatrix';
 import LanguageBlock from '@/sections/country/LanguageBlock';
 import NoteBlock from '@/sections/country/NoteBlock';
 import RegionLocator from '@/sections/country/RegionLocator';
@@ -20,19 +24,24 @@ import '@/styles/country.css';
 
 export default function CountryPage() {
   const { id } = useParams();
-  const country = id === undefined ? undefined : getCountry(id);
   const location = useLocation();
+  const { pathname } = location;
+  // Rute `/en/negara/:id` menyajikan prosa Inggris; konten yang belum
+  // diterjemahkan jatuh kembali ke ID lewat `countryById`.
+  const contentLocale = pathname.startsWith('/en') ? 'en' : 'id';
+  const country = id === undefined ? undefined : countryById(id, contentLocale);
 
   const returnTo = useMemo(() => {
     const fromState = (location.state as { from?: string } | null)?.from;
     if (fromState && typeof fromState === 'string' && fromState.startsWith('/')) {
       return fromState;
     }
-    return '/';
-  }, [location.state]);
+    return pathname.startsWith('/en') ? '/en' : '/';
+  }, [location.state, pathname]);
 
   const { leaving, handleBackClick } = useExitToLanding(returnTo);
   const { locale, t } = useI18n();
+  const [comparisonOpen, setComparisonOpen] = useState(false);
 
   const backLabel = useMemo(() => {
     if (returnTo.includes('/dashboard/pelajaran')) {
@@ -105,30 +114,39 @@ export default function CountryPage() {
       {/* 1. Immersive Wide Hero Banner with Parallax & Overlaid Country Identity */}
       <CountryHero country={country} profile={profile} />
 
-      {/* Visual & locator sidebar: sticky on desktop, inline block below hero on <900px */}
+      {/* Visual & locator sidebar: sticky on desktop, unified editorial cartography card */}
       <aside className="country-sidebar" aria-label="Visual dan lokasi regional">
-        <CountryPortrait countryId={country.id} />
-        <RegionLocator countryId={country.id} region={country.region} />
+        <RegionLocator
+          countryId={country.id}
+          region={country.region}
+          countryName={country.nameId}
+        />
       </aside>
 
-      {/* Main reading column: Cerita, Budaya, Orang, Bahasa, Galeri, Dashboard, Sumber */}
+      {/* Main reading column: Factsheet, Cerita, Kaidah Etiket, Budaya, Orang, Bahasa, Galeri, Dashboard, Tetangga, Sumber */}
       <div className="country-body">
-        {/* 2. Cerita */}
-        <StoryBlock country={country} />
+        {/* 2. Lembar Fakta Lapangan (Geodesi, Ibu Kota, Waktu, Demografi) */}
+        <CountryFactsheet country={country} locale={contentLocale} />
 
-        {/* 3. Budaya */}
+        {/* 3. Cerita */}
+        <StoryBlock country={country} locale={contentLocale} />
+
+        {/* 4. Kaidah Etiket Lapangan (Tiga Aturan Sopan Santun Budaya) */}
+        <CountryEtiquette country={country} locale={contentLocale} />
+
+        {/* 5. Budaya */}
         <NoteBlock id="country-culture-title" title={t('country.culture')} text={country.cultureNote} />
 
-        {/* 4. Orang */}
+        {/* 6. Orang */}
         <NoteBlock id="country-people-title" title={t('country.people')} text={country.peopleNote} />
 
-        {/* 5. Bahasa & Audio Pronunciation */}
+        {/* 7. Bahasa & Audio Pronunciation */}
         <LanguageBlock country={country} profile={profile} />
 
-        {/* 6. Country Photo Gallery */}
+        {/* 8. Country Photo Gallery */}
         <CountryGallery countryId={country.id} countryName={country.nameId} />
 
-        {/* 7. Learning Dashboard Link (for Lengkap countries) */}
+        {/* 9. Learning Dashboard Link (for Lengkap countries) */}
         {country.depth === 'Lengkap' && (
           <section
             className="country-block country-dashboard-callout"
@@ -154,13 +172,57 @@ export default function CountryPage() {
           </section>
         )}
 
-        {/* 8. Foldable Provenance / Sources */}
+        {/* 10. Jelajah Negara Terdekat & Kawasan Serumpun */}
+        <CountryNeighbors currentCountry={country} locale={contentLocale} />
+
+        {/* 10b. Komparasi Lintas Peradaban Callout */}
+        <section
+          className="country-block country-compare-callout"
+          aria-labelledby="country-compare-callout-title"
+        >
+          <div className="country-block__inner country-compare-callout__inner">
+            <div className="country-compare-callout__body">
+              <p className="country-compare-callout__kicker">
+                {t('country.compareKicker')}
+              </p>
+              <h2
+                id="country-compare-callout-title"
+                className="country-compare-callout__title"
+              >
+                {t('country.compareTitle')}
+              </h2>
+              <p className="country-compare-callout__description">
+                {t('country.compareDesc')}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="country-compare-callout__cta"
+              onClick={() => {
+                playParchmentClick();
+                setComparisonOpen(true);
+              }}
+            >
+              <span>{t('country.compareCta')}</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
+        {/* 11. Foldable Provenance / Sources */}
         <SourceBlock
           sources={country.sources}
           needsVerification={country.needsVerification}
           depth={country.depth}
         />
       </div>
+
+      {/* Cultural Comparison Matrix Slide-over Modal */}
+      <CulturalComparisonMatrix
+        open={comparisonOpen}
+        onClose={() => setComparisonOpen(false)}
+        initialCountryA={country.id}
+      />
     </article>
   );
 }

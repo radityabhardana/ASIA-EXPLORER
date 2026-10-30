@@ -1,0 +1,426 @@
+/* ============================================================
+   Risalah Adab Lapangan & Norma Budaya (EtiquetteFieldGuide)
+   Gaya Risalah Adab Lapangan / Field Protocol Ledger
+   Editorial Archival Luxury: Komparasi Adab Kelaziman vs Tabu Perilaku
+   di 48 Bangsa Asia.
+   ============================================================ */
+
+.etiquette-guide {
+  position: relative;
+  width: 100%;
+  padding: clamp(64px, 10vh, 120px) clamp(24px, 5vw, 72px);
+  background-color: var(--ground, #f4f0e8);
+  border-top: 1px solid var(--line, #ded8ce);
+  box-sizing: border-box;
+}
+
+.etiquette-guide__container {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vh, 48px);
+}
+
+/* Header */
+.etiquette-guide__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 820px;
+}
+
+.etiquette-guide__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b84d37);
+  margin: 0;
+}
+
+.etiquette-guide__eyebrow-line {
+  display: inline-block;
+  width: 18px;
+  height: 1.5px;
+  background-color: var(--terracotta, #b84d37);
+}
+
+.etiquette-guide__eyebrow-code {
+  font-family: var(--font-text, monospace);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted, #3a4552);
+  background: rgba(15, 20, 26, 0.05);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-right: 2px;
+}
+
+.etiquette-guide__title {
+  font-family: var(--font-display, serif);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+.etiquette-guide__title-accent {
+  font-style: italic;
+  color: var(--terracotta, #b84d37);
+}
+
+.etiquette-guide__lead {
+  font-family: var(--font-text, sans-serif);
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--ink-muted, #3a4552);
+  margin: 0;
+}
+
+/* Category Filter Tabs: Indeks Klasifikasi Arsip Berpenomoran Vintage */
+.etiquette-guide__categories {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 12px 2px;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--line, #ded8ce);
+}
+
+.etiquette-guide__categories::-webkit-scrollbar {
+  display: none;
+}
+
+.etiquette-guide__cat-btn {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 4px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted, #3a4552);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(15, 20, 26, 0.03);
+}
+
+.etiquette-guide__cat-section {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--terracotta, #b84d37);
+  letter-spacing: 0.06em;
+}
+
+.etiquette-guide__cat-label {
+  letter-spacing: 0.02em;
+}
+
+.etiquette-guide__cat-btn:hover {
+  color: var(--ink, #0f141a);
+  border-color: var(--ink, #0f141a);
+  transform: translateY(-1px);
+}
+
+.etiquette-guide__cat-btn:focus-visible {
+  outline: 2px solid var(--terracotta, #b84d37);
+  outline-offset: 2px;
+}
+
+.etiquette-guide__cat-btn--active {
+  background: var(--ink, #0f141a);
+  color: #ffffff;
+  border-color: var(--ink, #0f141a);
+  box-shadow: 0 4px 12px rgba(15, 20, 26, 0.15);
+}
+
+.etiquette-guide__cat-btn--active .etiquette-guide__cat-section {
+  color: #e8a598;
+}
+
+.etiquette-guide__cat-btn--active:hover {
+  color: #ffffff;
+  border-color: var(--ink, #0f141a);
+  transform: translateY(-1px);
+}
+
+/* Grid Kartu Etiket (Litograf Archival Ledger Plates) */
+.etiquette-guide__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.etiquette-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface, #fbf9f5);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 6px;
+  padding: 24px;
+  gap: 18px;
+  box-shadow: 0 1px 3px rgba(15, 20, 26, 0.04), 0 6px 18px rgba(15, 20, 26, 0.02);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.etiquette-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background-color 0.22s ease;
+}
+
+.etiquette-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--terracotta, #b84d37);
+  box-shadow: 0 8px 24px rgba(15, 20, 26, 0.07);
+}
+
+.etiquette-card:hover::before {
+  background: var(--terracotta, #b84d37);
+}
+
+.etiquette-card:focus-visible {
+  outline: 2px solid var(--terracotta, #b84d37);
+  outline-offset: 3px;
+}
+
+.etiquette-card:hover .etiquette-card__action-btn {
+  color: #8c3220;
+  gap: 8px;
+}
+
+.etiquette-card:hover .etiquette-card__action-arrow {
+  transform: translateX(3px);
+}
+
+/* Header Kartu */
+.etiquette-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.etiquette-card__plate-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.etiquette-card__folio-tag {
+  font-family: var(--font-text, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta, #b84d37);
+}
+
+.etiquette-card__country-pill {
+  font-family: var(--font-text, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: var(--surface-raised, #ffffff);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 3px;
+  color: var(--ink, #0f141a);
+  letter-spacing: 0.02em;
+}
+
+.etiquette-card__title {
+  font-family: var(--font-display, serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+/* Aturan Adab vs Tabu (Editorial Tipografis & Aksen Mineral Vertikal) */
+.etiquette-card__rules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.etiquette-card__rule {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 0 4px 4px 0;
+  box-sizing: border-box;
+}
+
+/* Proper Protocol: Celadon / Giok mineral line */
+.etiquette-card__rule--do {
+  border-left: 2px solid #2f6854;
+  background: rgba(47, 104, 84, 0.045);
+}
+
+.etiquette-card__rule--do .etiquette-card__rule-tag {
+  color: #2f6854;
+}
+
+.etiquette-card__rule--do .etiquette-card__rule-indicator {
+  background-color: #2f6854;
+}
+
+/* Field Taboo: Terracotta bata mineral line */
+.etiquette-card__rule--dont {
+  border-left: 2px solid #94582b;
+  background: rgba(148, 88, 43, 0.045);
+}
+
+.etiquette-card__rule--dont .etiquette-card__rule-tag {
+  color: #94582b;
+}
+
+.etiquette-card__rule--dont .etiquette-card__rule-indicator {
+  background-color: #94582b;
+}
+
+.etiquette-card__rule-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.etiquette-card__rule-indicator {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+}
+
+.etiquette-card__rule-text {
+  font-family: var(--font-text, sans-serif);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+/* Falsafah Budaya (Editorial Wisdom Callout) */
+.etiquette-card__philosophy {
+  padding: 12px 14px;
+  background: var(--ground, #f4f0e8);
+  border: 1px solid var(--line, #ded8ce);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.etiquette-card__philosophy-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.etiquette-card__philosophy-mark {
+  font-family: var(--font-display, serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--terracotta, #b84d37);
+  line-height: 1;
+}
+
+.etiquette-card__philosophy-label {
+  font-family: var(--font-text, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted, #3a4552);
+}
+
+.etiquette-card__philosophy-text {
+  font-family: var(--font-display, Georgia, serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink, #0f141a);
+  margin: 0;
+}
+
+/* Footer Card */
+.etiquette-card__footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--line, #ded8ce);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.etiquette-card__action-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-text, sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--terracotta, #b84d37);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.etiquette-card__action-btn:focus-visible {
+  outline: 2px solid var(--terracotta, #b84d37);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.etiquette-card__action-arrow {
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 1024px) {
+  .etiquette-guide__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .etiquette-guide__grid {
+    grid-template-columns: 1fr;
+  }
+  .etiquette-guide {
+    padding: 48px 16px;
+  }
+  .etiquette-card {
+    padding: 20px;
+  }
+}

@@ -7,7 +7,10 @@
         "slug": "borobudur-temple",
         "role": "hero",
         "title": "File:Borobudur-Nothwest-view.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Candi Borobudur terlihat dari sisi barat laut di antara perbukitan hijau Jawa Tengah",
           "en": "The Borobudur temple seen from its northwest side amid the green hills of Central Java"
@@ -17,7 +20,10 @@
         "slug": "jakarta-thamrin-bus",
         "role": "life",
         "title": "File:Jakarta Doubledecker Tourist Bus at Sarinah Thamrin.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Bus wisata dua tingkat melintas Jalan Thamrin dengan gedung pencakar langit Jakarta di belakangnya",
           "en": "A double-decker tourist bus passing along Thamrin Avenue with Jakarta high-rises behind"
@@ -27,7 +33,10 @@
         "slug": "nasi-goreng-warung",
         "role": "food",
         "title": "File:Nasi goreng, Warung Kuliner 69, BG Junction, 2025 (02).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Piring nasi goreng dengan teh es dan lauk pendamping di meja warung",
           "en": "A plate of Indonesian fried rice with iced tea and side dishes at a warung"
@@ -37,7 +46,10 @@
         "slug": "aksara-jawa-surakarta",
         "role": "script",
         "title": "File:Aksara Jawa 028.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama kantor dinas di Surakarta dengan tulisan aksara Jawa dan Latin",
           "en": "An office signboard in Surakarta displaying Javanese script alongside Latin lettering"
@@ -49,7 +61,10 @@
         "slug": "petronas-towers",
         "role": "hero",
         "title": "File:The Twins SE Asia 2019 (49171985716).jpg",
-        "focus": [0.5, 0.38],
+        "focus": [
+          0.5,
+          0.38
+        ],
         "alt": {
           "id": "Menara kembar Petronas menjulang di antara gedung tinggi pusat Kuala Lumpur",
           "en": "The twin Petronas Towers rising above neighboring high-rises in central Kuala Lumpur"
@@ -59,7 +74,10 @@
         "slug": "pasar-pudu-kl",
         "role": "life",
         "title": "File:Pasar Pudu, Kuala Lumpur (231127).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Para pengunjung dan lapak sayur memadati pasar basah tradisional Pudu di Kuala Lumpur",
           "en": "Shoppers and vegetable stalls crowding the traditional Pudu wet market in Kuala Lumpur"
@@ -69,7 +87,10 @@
         "slug": "nasi-lemak-banana-leaf",
         "role": "food",
         "title": "File:Nasi lemak on banana leaf.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Nasi lemak di atas daun pisang dengan ayam goreng, ikan bilis, kacang, telur, dan sambal",
           "en": "Nasi lemak on a banana leaf with fried chicken, anchovies, peanuts, egg, and sambal"
@@ -79,7 +100,10 @@
         "slug": "jawi-istana-maziah",
         "role": "script",
         "title": "File:Kuala Terengganu - Istana Maziah name plaque Jawi - May 2024.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama gerbang berhuruf Jawi di Istana Maziah, Kuala Terengganu",
           "en": "A gateway name plaque in Jawi script at Istana Maziah, Kuala Terengganu"
@@ -91,7 +115,10 @@
         "slug": "marina-bay-skyline",
         "role": "hero",
         "title": "File:Skyline, Marina Bay, Singapur, 2023-08-17, DD 28.jpg",
-        "focus": [0.5, 0.55],
+        "focus": [
+          0.5,
+          0.55
+        ],
         "alt": {
           "id": "Cakrawala Marina Bay Singapore dengan menara pusat kota berpendar di seberang teluk",
           "en": "The Marina Bay skyline of Singapore with downtown towers glinting across the bay"
@@ -101,7 +128,10 @@
         "slug": "bedok-hawker-centre",
         "role": "life",
         "title": "File:Bedok Interchange Hawker Centre 07-08-2025.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Pengunjung menikmati makanan di meja panjang pusat jajanan Bedok Interchange di Singapura",
           "en": "Diners eating at long shared tables in the Bedok Interchange Hawker Centre"
@@ -111,7 +141,10 @@
         "slug": "hainanese-chicken-rice",
         "role": "food",
         "title": "File:Hainanese chicken rice.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Piring ayam hainan dengan nasi putih, irisan timun, dan kuah pendamping",
           "en": "A plate of Hainanese chicken rice with white rice, cucumber slices, and broth"
@@ -121,7 +154,10 @@
         "slug": "chinatown-mrt-sign",
         "role": "script",
         "title": "File:Singapore MRT-Station Chinatown-01.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama stasiun MRT Chinatown dengan tulisan Latin dan Hanzi di bawah tanah",
           "en": "Chinatown MRT station signage with Latin and Chinese characters in the underground station"
@@ -133,7 +169,10 @@
         "slug": "wat-arun-bangkok",
         "role": "hero",
         "title": "File:Templo Wat Arun, Bangkok, Tailandia, 2013-08-22, DD 32.jpg",
-        "focus": [0.45, 0.5],
+        "focus": [
+          0.45,
+          0.5
+        ],
         "alt": {
           "id": "Menara prang Wat Arun menjulang di tepi Sungai Chao Phraya, Bangkok",
           "en": "The prang tower of Wat Arun rising over the Chao Phraya riverfront in Bangkok"
@@ -143,7 +182,10 @@
         "slug": "yaowarat-street",
         "role": "life",
         "title": "File:2016 Bangkok, Dystrykt Samphanthawong, Ulica Yaowarat, Chińskie produkty żywnościowe (02).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Warung dan lapak makanan menghiasi trotoar Jalan Yaowarat di kawasan pecinan Bangkok",
           "en": "Food stalls and shopfronts lining the sidewalk of Yaowarat Road in Bangkok's Chinatown"
@@ -153,7 +195,10 @@
         "slug": "pad-thai-bangkok",
         "role": "food",
         "title": "File:Pad thai con camarones.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Porsi pad thai dengan udang, tauge, kacang tanah, dan potongan jeruk nipis",
           "en": "A serving of pad thai with shrimp, bean sprouts, crushed peanuts, and lime"
@@ -163,7 +208,10 @@
         "slug": "thai-sign-wat-phra-kaew",
         "role": "script",
         "title": "File:Emerald Buddha Temple - 2017-06-11 (018).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan tanda dwibahasa Thai dan Latin di area Wat Phra Kaew, Bangkok",
           "en": "A bilingual Thai and English sign within the grounds of Wat Phra Kaew, Bangkok"
@@ -175,7 +223,10 @@
         "slug": "ha-long-bay",
         "role": "hero",
         "title": "File:Ha Long Bay, Vietnam, View from above.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Pulau karst berpuncak hijau tersebar di perairan teluk Ha Long yang tenang",
           "en": "Green-capped limestone islands scattered across the calm waters of Ha Long Bay"
@@ -185,7 +236,10 @@
         "slug": "hanoi-old-quarter",
         "role": "life",
         "title": "File:Old Quarter street scene, Hanoi (1) (38464672752).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Sepeda motor dan pejalan memadati jalan sempit kawasan kota tua Hanoi",
           "en": "Motorbikes and pedestrians crowding a narrow lane in Hanoi's Old Quarter"
@@ -195,7 +249,10 @@
         "slug": "bun-bo-hue",
         "role": "food",
         "title": "File:Bún bò Huế minh28397.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Semangkuk bún bò Huế dengan irisan daging dan sayur pendamping di kedai Hanoi",
           "en": "A bowl of bún bò Huế with sliced meat and garnishes at a Hanoi eatery"
@@ -205,7 +262,10 @@
         "slug": "hanoi-street-sign",
         "role": "script",
         "title": "File:Quốc Tử Giám Street, Hanoi 02.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama biru Jalan Quốc Tử Giám di tepi jalan kota Hanoi",
           "en": "A blue street name sign for Quốc Tử Giám Street in Hanoi"
@@ -217,7 +277,10 @@
         "slug": "chocolate-hills",
         "role": "hero",
         "title": "File:Chocolate Hills Carmen Bohol 2019.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Gundukan bukit kerucut Chocolate Hills berdiri di atas lahan dan hutan Bohol",
           "en": "The conical mounds of the Chocolate Hills rising over fields and forest in Bohol"
@@ -227,7 +290,10 @@
         "slug": "manila-jeepney-street",
         "role": "life",
         "title": "File:Jeepney, Muralla Street, 2018 (02).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Sepasang jeepney melintas Jalan Muralla di Intramuros dengan bangunan Aduana di belakang",
           "en": "Pair of jeepneys passing along Muralla Street in Intramuros with the Aduana Building behind"
@@ -237,7 +303,10 @@
         "slug": "halo-halo-laguna",
         "role": "food",
         "title": "File:Chicken empanada and halo-halo 20230602.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Semangkuk halo-halo dengan empanada ayam di meja restoran San Pablo, Laguna",
           "en": "A bowl of halo-halo with a chicken empanada at a San Pablo City, Laguna eatery"
@@ -247,7 +316,10 @@
         "slug": "makati-street-sign",
         "role": "script",
         "title": "File:202403 Street sign of Makati Avenue.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama Jalan Makati Avenue berdiri di persimpangan bisnis kota Makati",
           "en": "A street name sign for Makati Avenue standing at a commercial intersection in Makati"
@@ -259,7 +331,10 @@
         "slug": "great-wall-badaling",
         "role": "hero",
         "title": "File:View east from Great Wall of China at Badaling.jpg",
-        "focus": [0.5, 0.45],
+        "focus": [
+          0.5,
+          0.45
+        ],
         "alt": {
           "id": "Jalur batu Tembok Besar membentang di punggung bukit Badaling dengan menara jaga",
           "en": "The stone path of the Great Wall running along the Badaling ridge with watchtowers"
@@ -269,7 +344,10 @@
         "slug": "xinyongan-road-shanghai",
         "role": "life",
         "title": "File:Shanghai - Xinyongan Road - 0001.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Pejalan dan deretan kedai memenuhi jalan Xinyongan di pusat kota Shanghai",
           "en": "Pedestrians and shopfronts filling Xinyongan Road in central Shanghai"
@@ -279,7 +357,10 @@
         "slug": "jiaozi-dumplings",
         "role": "food",
         "title": "File:Jiaozi GS CN.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Piring jiaozi dengan saus celup dan sumpit di atas meja",
           "en": "A plate of jiaozi dumplings with dipping sauce and chopsticks"
@@ -289,7 +370,10 @@
         "slug": "tianzifang-signboard",
         "role": "script",
         "title": "File:Mailbox and handmade signboard (8367870268).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama berhuruf Hanzi tergantung di lorong kota tua Tianzifang, Shanghai",
           "en": "A hand-lettered signboard with Chinese characters hanging in Shanghai's Tianzifang lane"
@@ -301,7 +385,10 @@
         "slug": "mount-fuji-lake",
         "role": "hero",
         "title": "File:Mount Fuji from Lake Yamanaka.JPG",
-        "focus": [0.5, 0.35],
+        "focus": [
+          0.5,
+          0.35
+        ],
         "alt": {
           "id": "Puncak Mount Fuji tertutup salju terlihat dari tepian Danau Yamanaka",
           "en": "The snow-capped peak of Mount Fuji seen from the shore of Lake Yamanaka"
@@ -311,7 +398,10 @@
         "slug": "shibuya-crossing",
         "role": "life",
         "title": "File:Shibuya Crossing (25790725888).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Empat arah pejalan menyeberang serentak di persimpangan scramble Shibuya, Tokyo",
           "en": "Pedestrians crossing from all directions at the famous Shibuya scramble intersection in Tokyo"
@@ -321,7 +411,10 @@
         "slug": "nigiri-sushi",
         "role": "food",
         "title": "File:Sushi (14927932561).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Nampan nigiri sushi tersusun rapi di atas meja restoran",
           "en": "Platters of nigiri sushi neatly arranged on a restaurant table"
@@ -331,7 +424,10 @@
         "slug": "kabukicho-neon",
         "role": "script",
         "title": "File:Colorful neon street signs in Kabukichō, Shinjuku, Tokyo.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan neon penuh kanji memenuhi fasad gedung di Kabukichō, Shinjuku",
           "en": "Kanji-covered neon billboards crowding the building facades of Kabukichō, Shinjuku"
@@ -343,7 +439,10 @@
         "slug": "gyeongbokgung",
         "role": "hero",
         "title": "File:경복궁／景福宮 Gyeongbokgung (53618347305).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Kompleks istana kerajaan Gyeongbokgung dengan atap keramik di bawah langit Seoul",
           "en": "The royal palace complex of Gyeongbokgung with tiered tiled roofs in Seoul"
@@ -353,7 +452,10 @@
         "slug": "gyedong-gil-street",
         "role": "life",
         "title": "File:Gyedong-gil street with climbing plants at golden hour in Seoul South Korea.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Kafe berjendela terbuka dan tanaman rambat di Jalan Gyedong-gil, Seoul",
           "en": "A café with open windows and climbing plants along Gyedong-gil street, Seoul"
@@ -363,7 +465,10 @@
         "slug": "dolsot-bibimbap",
         "role": "food",
         "title": "File:Dolsot-bibimbap.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Semangkuk dolsot bibimbap berisi sayur, daging, telur, dan gochujang",
           "en": "A stone bowl of dolsot bibimbap with vegetables, meat, egg, and gochujang"
@@ -373,7 +478,10 @@
         "slug": "sinchon-station-sign",
         "role": "script",
         "title": "File:Seoul-metro-240-Sinchon-station-sign-20181121-081712.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama stasiun Sinchon dengan tulisan Hangul, Hanja, dan Latin",
           "en": "The Sinchon station sign showing Hangul, Hanja, and Roman lettering in Seoul"
@@ -385,7 +493,10 @@
         "slug": "taj-mahal",
         "role": "hero",
         "title": "File:Taj Mahal (Edited).jpeg",
-        "focus": [0.5, 0.45],
+        "focus": [
+          0.5,
+          0.45
+        ],
         "alt": {
           "id": "Kubah putih Taj Mahal berdiri di ujung kolam refleksi panjang di Agra",
           "en": "The white domed mausoleum of the Taj Mahal framed by its long reflecting pool at Agra"
@@ -395,7 +506,10 @@
         "slug": "chandni-chowk",
         "role": "life",
         "title": "File:32 - Old Delhi Chandni Chowk.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Keramaian pejalan dan kendaraan niaga di jalur Chandni Chowk, Old Delhi",
           "en": "Busy shoppers and market traffic along the Chandni Chowk lane in Old Delhi"
@@ -405,7 +519,10 @@
         "slug": "thali-darjeeling",
         "role": "food",
         "title": "File:Darjeeling, India, Indian Thali meal.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Nampan thali logam dengan ramekan kari, nasi, dan roti di Darjeeling",
           "en": "A metal thali platter with curry bowls, rice, and breads in Darjeeling"
@@ -415,7 +532,10 @@
         "slug": "rani-kamlapati-board",
         "role": "script",
         "title": "File:Rani Kamlapati Railway Station Board in Hindi at Plateform 005.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama stasiun Rani Kamlapati dengan huruf Devanagari di peron",
           "en": "The Rani Kamlapati railway station name board with Devanagari lettering on the platform"
@@ -427,7 +547,10 @@
         "slug": "qasr-al-farid-alula",
         "role": "hero",
         "title": "File:Qasr al-Farid, a 1st-century AD Nabatean unfinished tomb carved into a giant boulder in Hegra (Mada'in Salih), the kingdom's second Nabatean capital after Petra, Saudi Arabia - 53534952258.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Makam batu Qasr al-Farid belum selesai diukir di Hegra, AlUla",
           "en": "The unfinished rock-cut tomb of Qasr al-Farid at Hegra in AlUla"
@@ -437,7 +560,10 @@
         "slug": "jeddah-corniche",
         "role": "life",
         "title": "File:Jeddah Corniche at night.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Tepian laut Corniche Jeddah bersistri lampu kota pada malam hari",
           "en": "The lit waterfront of Jeddah Corniche at night with city lights"
@@ -447,7 +573,10 @@
         "slug": "kabsa-rice-platter",
         "role": "food",
         "title": "File:Kabsa (6486384335).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Nampan besar kabsa, nasi rempah dengan lauk daging untuk dibagi bersama",
           "en": "A large shared platter of kabsa, spiced rice served with meat"
@@ -457,7 +586,10 @@
         "slug": "khobar-street-sign",
         "role": "script",
         "title": "File:Street sign in Khobar.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama jalan dengan tulisan Arab dan Latin di pinggir jalan Khobar",
           "en": "A street name sign with Arabic and bilingual lettering on a Khobar street"
@@ -469,7 +601,10 @@
         "slug": "cappadocia-balloon",
         "role": "hero",
         "title": "File:Hot air balloon ride at sunrise in Cappadocia 4.JPG",
-        "focus": [0.5, 0.45],
+        "focus": [
+          0.5,
+          0.45
+        ],
         "alt": {
           "id": "Puluhan balon panas melayang di langit fajar di atas lembah tufa Cappadocia",
           "en": "Dozens of hot air balloons drifting over the tuff valleys of Cappadocia at sunrise"
@@ -479,7 +614,10 @@
         "slug": "istiklal-tram",
         "role": "life",
         "title": "File:Istiklal Street tram in January 2024.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Trem nostalgia merah menyusuri rel di keramaian Jalan Istiklal, Istanbul",
           "en": "The red nostalgic tram gliding along its track amid the crowds of Istiklal Street, Istanbul"
@@ -489,7 +627,10 @@
         "slug": "baklava-gaziantep",
         "role": "food",
         "title": "File:Baklava sunumu.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Nampan baklava berlapis dipajang di kedai baklava Gaziantep",
           "en": "Trays of layered baklava on display at a pastry shop in Gaziantep"
@@ -499,7 +640,10 @@
         "slug": "rami-station-sign",
         "role": "script",
         "title": "File:T4 Rami station sign, Istanbul Turkey 2024.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama stasiun Rami dengan huruf Latin di jalur tram T4 Istanbul",
           "en": "The Rami station sign with Latin Turkish lettering on Istanbul's T4 line"
@@ -511,7 +655,10 @@
         "slug": "charyn-canyon",
         "role": "hero",
         "title": "File:Charyn Canyon, Kazakhstan 01.jpg",
-        "focus": [0.5, 0.55],
+        "focus": [
+          0.5,
+          0.55
+        ],
         "alt": {
           "id": "Tebing batu pasir berlapis merah terpotong lembah di Charyn Canyon",
           "en": "Layered red sandstone cliffs gouged by the river valley in Charyn Canyon"
@@ -521,7 +668,10 @@
         "slug": "almaty-city-bus",
         "role": "life",
         "title": "File:Golden Dragon XML6125, Almaty (P1180221).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Bus kota Golden Dragon melintas di wilayah Almaly, Almaty",
           "en": "A Golden Dragon city bus passing through the Almaly district of Almaty"
@@ -531,7 +681,10 @@
         "slug": "beshbarmak-plate",
         "role": "food",
         "title": "File:Бешбармак - казахское национальное блюдо.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Nampan beshbarmak dengan potongan daging, mi tarik tangan, dan kaldu di Kazakhstan",
           "en": "A platter of Kazakh beshbarmak with meat, hand-pulled noodles, and broth"
@@ -541,7 +694,10 @@
         "slug": "almaty-city-sign",
         "role": "script",
         "title": "File:ALAcityborder.JPG",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan tanda jalan di batas masuk kota Almaty dengan tulisan setempat",
           "en": "A road sign marking the entrance to the city of Almaty"
@@ -553,7 +709,10 @@
         "slug": "registan-samarkand",
         "role": "hero",
         "title": "File:Registan 01.jpg",
-        "focus": [0.5, 0.45],
+        "focus": [
+          0.5,
+          0.45
+        ],
         "alt": {
           "id": "Fasad madrasah biru bermosaik kompleks Registan di Samarkand",
           "en": "Blue-tiled mosaic facades of the Registan madrasas in Samarkand"
@@ -563,7 +722,10 @@
         "slug": "kosmonavtlar-metro",
         "role": "life",
         "title": "File:Kosmonavtlar Station of Tashkent Metro 6.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Balai bawah tanah stasiun metro Kosmonavtlar dengan lengkungan biru di Tashkent",
           "en": "The underground vaulted hall of Kosmonavtlar metro station in Tashkent"
@@ -573,7 +735,10 @@
         "slug": "tashkent-plov-centre",
         "role": "food",
         "title": "File:Central Asian Plov Centre in Tashkent 2.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Piring besar plov dengan nasi kuning, wortel, dan potongan daging di Tashkent",
           "en": "A large plate of plov with yellow rice, carrots, and pieces of meat in Tashkent"
@@ -583,7 +748,10 @@
         "slug": "tashkent-garden-sign",
         "role": "script",
         "title": "File:Beautiful Sign in Tashkent Botanical Garden.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan nama dengan tulisan Uzbek di Taman Botani Tashkent",
           "en": "A garden sign with Uzbek lettering at the Tashkent Botanical Garden"
@@ -595,7 +763,10 @@
         "slug": "gobi-camels",
         "role": "hero",
         "title": "File:Camels in Gobi Desert 01.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Unta Baktria menapaki padang pasir terbuka di Gurun Gobi, Mongolia",
           "en": "Bactrian camels crossing the open sandy steppe of the Gobi Desert"
@@ -605,7 +776,10 @@
         "slug": "ulaanbaatar-street",
         "role": "life",
         "title": "File:202408 Street views in Ulaanbaatar 02.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Lalu lintas kota dan gedung menengah menghiasi jalan utama Ulaanbaatar",
           "en": "City traffic and mid-rise buildings filling a main street in Ulaanbaatar"
@@ -615,7 +789,10 @@
         "slug": "mongolian-buuz",
         "role": "food",
         "title": "File:Mongolian buuz.jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Semangkuk buuz kukus isi daging kambing khas Mongolia",
           "en": "A plate of buuz, steamed mutton dumplings from Mongolian cuisine"
@@ -625,10 +802,1665 @@
         "slug": "nalaikh-road-sign",
         "role": "script",
         "title": "File:A01 Road (AH3) in Nalaikh, Ulaanbaatar, Mongolia (2023).jpg",
-        "focus": [0.5, 0.5],
+        "focus": [
+          0.5,
+          0.5
+        ],
         "alt": {
           "id": "Papan penunjuk rute Jalan Raya Asia 3 dengan tulisan kiril di Nalaikh, Ulaanbaatar",
           "en": "An Asian Highway 3 route sign with Cyrillic lettering on the road at Nalaikh"
+        }
+      }
+    ],
+    "af": [
+      {
+        "slug": "af-hero-band-e-amir",
+        "role": "hero",
+        "title": "File:Band-e-Amir National Park-3.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Danau biru Band-e-Amir berjajar di ngarai batu kapur wilayah Bamyan Afghanistan",
+          "en": "Deep blue lakes of Band-e-Amir set among pale limestone canyons in Bamyan province"
+        }
+      },
+      {
+        "slug": "af-life-kabul-street-1966",
+        "role": "life",
+        "title": "File:349 Street scene, Kabul Afghanistan 1966 (51190778692).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pedagang dan pejalan kaki memadati jalanan Kabul pada tahun 1966",
+          "en": "Shoppers and pedestrians crowding a busy street in Kabul in 1966"
+        }
+      },
+      {
+        "slug": "af-food-kabuli-pulao",
+        "role": "food",
+        "title": "File:Kabuli Pulao.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nasi kabuli pulao dengan wortel, kismis, dan daging di atas piring",
+          "en": "A plate of kabuli pulao rice with carrots, raisins, and tender meat"
+        }
+      }
+    ],
+    "am": [
+      {
+        "slug": "am-hero-tatev-monastery",
+        "role": "hero",
+        "title": "File:Monasterio de Tatev, Armenia, 2016-10-01, DD 89-91 HDR.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Biara Tatev berdiri di tepi jurang ngarai Vorotan, Armenia selatan",
+          "en": "Tatev Monastery perched above the deep Vorotan river canyon in southern Armenia"
+        }
+      },
+      {
+        "slug": "am-life-yerevan-brandy",
+        "role": "life",
+        "title": "File:Yerevan, Brandy barrels, Armenia.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Deretan tong kayu berisi brendi Armenia di gudang penyulingan Yerevan",
+          "en": "Rows of wooden barrels ageing Armenian brandy inside a Yerevan distillery"
+        }
+      },
+      {
+        "slug": "am-food-khorovats",
+        "role": "food",
+        "title": "File:Khorovats in the making.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Daging khorovats dipanggang di atas arang pada panggangan kebun Armenia",
+          "en": "Armenian khorovats skewers of meat grilling over glowing charcoal outdoors"
+        }
+      },
+      {
+        "slug": "am-script-armenian-alphabet",
+        "role": "script",
+        "title": "File:Armenian alphabet 002.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Ukiran huruf alfabet Armenia pada monumen batu di Artashavan dekat Yerevan",
+          "en": "Carved Armenian alphabet letters on the stone monument at Artashavan near Yerevan"
+        }
+      }
+    ],
+    "az": [
+      {
+        "slug": "az-hero-icherisheher",
+        "role": "hero",
+        "title": "File:Old City, Baku- Part I - OldCityBaku8362.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Bangunan batu kota tua Icherisheher dengan menara Maiden di Baku",
+          "en": "Old City of Baku with the ancient Maiden Tower rising among stone walls"
+        }
+      },
+      {
+        "slug": "az-life-istiglaliyyat-street",
+        "role": "life",
+        "title": "File:Istiglaliyyat Street, Baku 01.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan lalu lintas menyusuri Jalan Istiglaliyyat di pusat kota Baku",
+          "en": "Pedestrians and traffic along Istiglaliyyat Street in the centre of Baku"
+        }
+      },
+      {
+        "slug": "az-food-plov",
+        "role": "food",
+        "title": "File:Azerbaijani plov.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nampan plov Azerbaijan dengan nasi kuning, daging, dan buah kering",
+          "en": "A platter of Azerbaijani plov with yellow rice, meat, and dried fruit"
+        }
+      },
+      {
+        "slug": "az-script-baku-street-sign",
+        "role": "script",
+        "title": "File:Street sign in Baku near Baku State Circus.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan berhuruf Latin di dekat sirkus kota Baku",
+          "en": "A street name sign in Latin lettering near the Baku State Circus"
+        }
+      }
+    ],
+    "bd": [
+      {
+        "slug": "bd-hero-sixty-dome-mosque",
+        "role": "hero",
+        "title": "File:Sixty Dome Mosque at Bagerhat (7).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Masjid Enam Puluh Kubah bata merah di Bagerhat, Bangladesh barat daya",
+          "en": "The red brick Sixty Dome Mosque at Bagerhat in south-western Bangladesh"
+        }
+      },
+      {
+        "slug": "bd-life-sonargaon",
+        "role": "life",
+        "title": "File:Sonargaon Janapath 09.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lalu lintas dan pejalan di jalan tua Sonargaon dekat Dhaka",
+          "en": "Traffic and pedestrians on the historic street of Sonargaon near Dhaka"
+        }
+      },
+      {
+        "slug": "bd-food-kacchi-biryani",
+        "role": "food",
+        "title": "File:Kacchi Biryani with Jali Kabab.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring biryani kacchi Dhaka dengan jali kabab dan salad",
+          "en": "A plate of Dhaka-style kacchi biryani served with jali kabab and salad"
+        }
+      },
+      {
+        "slug": "bd-script-road-sign",
+        "role": "script",
+        "title": "File:Road sign in Bangladesh.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda jalan Bangladesh dengan tulisan Bengali dan Latin di pinggir jalan",
+          "en": "A Bangladeshi road sign showing Bengali and Latin lettering beside the highway"
+        }
+      }
+    ],
+    "bh": [
+      {
+        "slug": "bh-hero-tree-of-life",
+        "role": "hero",
+        "title": "File:Bahrain Tree of Life 19.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pohon Life yang rimbang berdiri sendiri di gurun Bahrain",
+          "en": "The lone green Tree of Life standing alone in the Bahraini desert"
+        }
+      },
+      {
+        "slug": "bh-life-manama-souq",
+        "role": "life",
+        "title": "File:Manama Bab al-Bahrain Souq 4.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Deretan toko dan pejalan di pasar Bab al-Bahrain, Manama",
+          "en": "Shops and strollers lining the Bab al-Bahrain souq in Manama, Bahrain"
+        }
+      },
+      {
+        "slug": "bh-food-machboos",
+        "role": "food",
+        "title": "File:Machboos (cropped).JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring machboos nasi rempah dengan ayam khas Teluk Bahrain",
+          "en": "A plate of Bahraini machboos spiced rice served with chicken"
+        }
+      }
+    ],
+    "bn": [
+      {
+        "slug": "bn-hero-kampong-ayer",
+        "role": "hero",
+        "title": "File:Kampong Ayer, Brunei in January 2026 (DSCF1416).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Rumah panggung kayu Kampong Ayer berdiri di atas air Sungai Brunei",
+          "en": "Timber stilt houses of Kampong Ayer standing over the Brunei River"
+        }
+      },
+      {
+        "slug": "bn-life-jalan-roberts",
+        "role": "life",
+        "title": "File:Shophouses on Jalan Roberts in Bandar Seri Begawan, Brunei (DSCF1405).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Deretan ruko sepanjang Jalan Roberts di Bandar Seri Begawan",
+          "en": "Rows of shophouses along Jalan Roberts in Bandar Seri Begawan, Brunei"
+        }
+      },
+      {
+        "slug": "bn-food-ambuyat",
+        "role": "food",
+        "title": "File:Ambuyat in Bandar Seri Begawan Brunei.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Mangkuk ambuyat sagu dengan saus celup khas Brunei di meja",
+          "en": "A bowl of Brunei's sago ambuyat served with dipping sauce on a table"
+        }
+      },
+      {
+        "slug": "bn-script-jawi-road-sign",
+        "role": "script",
+        "title": "File:Jawi road sign in Rimba, Brunei.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda jalan berhuruf Jawi dan Latin di Rimba, Brunei",
+          "en": "A Brunei road sign showing Jawi and Latin lettering in Rimba"
+        }
+      }
+    ],
+    "bt": [
+      {
+        "slug": "bt-hero-taktsang",
+        "role": "hero",
+        "title": "File:Paro Taktsang, Bhutan (edited).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Biara Taktsang atau Sarang Macan menempel di tebing cadas Paro",
+          "en": "The Tiger's Nest monastery clinging to a sheer cliff above Paro valley"
+        }
+      },
+      {
+        "slug": "bt-life-thimphu-street",
+        "role": "life",
+        "title": "File:Street scenes in Thimphu in 2016.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan toko di jalan pusat kota Thimphu, Bhutan",
+          "en": "Pedestrians and shopfronts along a central street in Thimphu, Bhutan"
+        }
+      },
+      {
+        "slug": "bt-food-ema-datshi",
+        "role": "food",
+        "title": "File:Bhutanese hemadatsi and rice.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nasi merah Bhutan dengan ema datshi, tumis cabai dan keju",
+          "en": "Bhutanese red rice served with ema datshi, a chilli and cheese stew"
+        }
+      },
+      {
+        "slug": "bt-script-chorten-kora-sign",
+        "role": "script",
+        "title": "File:Sign at Chorten Kora.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda berhuruf Dzongkha di gerbang Chorten Kora Bhutan",
+          "en": "A signboard with Dzongkha lettering near the entrance of Chorten Kora"
+        }
+      }
+    ],
+    "cy": [
+      {
+        "slug": "cy-hero-petra-tou-romiou",
+        "role": "hero",
+        "title": "File:Roca de Afrodita, Chipre, 2021-12-10, DD 65.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Formasi batu Petra tou Romiou di tepi laut Siprus saat senja",
+          "en": "The Petra tou Romiou sea rock formation on the Cyprus coast"
+        }
+      },
+      {
+        "slug": "cy-life-ledra-street",
+        "role": "life",
+        "title": "File:Nicosia Ledra street border.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan menyusuri Jalan Ledra yang melintasi garis pemisah Nicosia",
+          "en": "Pedestrians walking along Ledra Street crossing the divided line in Nicosia"
+        }
+      },
+      {
+        "slug": "cy-food-grilled-halloumi",
+        "role": "food",
+        "title": "File:Grilled Halloumi.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Potongan halloumi panggang berkerak disajikan di piring Siprus",
+          "en": "Slices of grilled halloumi cheese served golden-brown on a Cyprus plate"
+        }
+      },
+      {
+        "slug": "cy-script-kormacit-sign",
+        "role": "script",
+        "title": "File:Multilingual street sign in Kormacit.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan multibahasa Yunani dan Turki di Kormacit, Siprus",
+          "en": "A multilingual street sign in Greek and Turkish at Kormacit, Cyprus"
+        }
+      }
+    ],
+    "ge": [
+      {
+        "slug": "ge-hero-gergeti-trinity",
+        "role": "hero",
+        "title": "File:Gergeti Trinity Church, Mountain pasture, Georgia.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Gereja Gergeti Trinity berdiri di padang rumput pegunungan Kaukasus",
+          "en": "Gergeti Trinity Church standing on an alpine meadow below Kazbegi"
+        }
+      },
+      {
+        "slug": "ge-life-tbilisi-old-town",
+        "role": "life",
+        "title": "File:Street in Tbilisi Old Town.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Jalan batu sempit dan rumah balkon kayu di kota tua Tbilisi",
+          "en": "A narrow cobbled lane with wooden balconied houses in old Tbilisi"
+        }
+      },
+      {
+        "slug": "ge-food-khachapuri-khinkali",
+        "role": "food",
+        "title": "File:Tbilisi, Khachapuri and khinkali, Georgian traditional food, Georgia.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Khachapuri keju dan khinkali di atas meja restoran Georgia",
+          "en": "Georgian khachapuri cheese bread and khinkali dumplings on a restaurant table"
+        }
+      },
+      {
+        "slug": "ge-script-georgian",
+        "role": "script",
+        "title": "File:Georgian script.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Tulisan aksara Georgia pada papan tanda di jalan kota Tbilisi",
+          "en": "Georgian Mkhedruli script painted on a signboard on a Tbilisi street"
+        }
+      }
+    ],
+    "il": [
+      {
+        "slug": "il-hero-jerusalem-walls",
+        "role": "hero",
+        "title": "File:Old City Walls and Tower of David in Jerusalem (2019) 03.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Dinding batu kota tua Yerusalem dengan Menara Daud saat senja",
+          "en": "The ancient stone walls and Tower of David in the old city of Jerusalem"
+        }
+      },
+      {
+        "slug": "il-life-carmel-market",
+        "role": "life",
+        "title": "File:Carmel Market, Tel Aviv.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lapak buah dan sayur serta pembeli di Pasar Carmel Tel Aviv",
+          "en": "Produce stalls and shoppers crowding the Carmel Market in Tel Aviv"
+        }
+      },
+      {
+        "slug": "il-food-hummus",
+        "role": "food",
+        "title": "File:Hummus plate ni.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring hummus dengan minyak zaitun dan kacang arab di meja",
+          "en": "A plate of hummus topped with olive oil and whole chickpeas"
+        }
+      },
+      {
+        "slug": "il-script-zamenhof-sign",
+        "role": "script",
+        "title": "File:Zamenhof Street sign, Jerusalem, Israel.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama Jalan Zamenhof berhuruf Ibrani di Yerusalem",
+          "en": "A street name sign for Zamenhof Street with Hebrew lettering in Jerusalem"
+        }
+      }
+    ],
+    "iq": [
+      {
+        "slug": "iq-hero-ziggurat-of-ur",
+        "role": "hero",
+        "title": "File:Ziggurat of Ur Site in Nasiriyah 17.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Ziggurat Ur berdiri di gurun dekat Nasiriyah, Irak selatan",
+          "en": "The ancient Ziggurat of Ur rising above the desert near Nasiriyah"
+        }
+      },
+      {
+        "slug": "iq-life-erbil-bazaar",
+        "role": "life",
+        "title": "File:Views around Teyrawa Bazaar in Erbil 11.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lapak dan pembeli ramai di Bazaar Teyrawa, Erbil Kurdistan",
+          "en": "Stalls and shoppers crowding the Teyrawa bazaar in Erbil, Iraq"
+        }
+      },
+      {
+        "slug": "iq-food-masgouf",
+        "role": "food",
+        "title": "File:Masgouf, an Iraqi tradition - Flickr - Al Jazeera English.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Ikan masgouf bakar terbuka di atas api arang khas Irak",
+          "en": "A butterflied masgouf fish grilling over open charcoal, an Iraqi tradition"
+        }
+      },
+      {
+        "slug": "iq-script-baghdad-sign",
+        "role": "script",
+        "title": "File:BaghdadSign.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda berhuruf Arab di sebuah jalan kota Baghdad Irak",
+          "en": "A signboard with Arabic lettering on a street in Baghdad, Iraq"
+        }
+      }
+    ],
+    "ir": [
+      {
+        "slug": "ir-hero-nasir-al-mulk",
+        "role": "hero",
+        "title": "File:Mezquita de Nasirolmolk, Shiraz, Irán, 2016-09-24, DD 66-68 HDR.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Jendela kaca warna Masjid Nasir al-Mulk berpendar di Shiraz, Iran",
+          "en": "Stained glass windows of the Nasir al-Mulk Mosque glowing inside in Shiraz"
+        }
+      },
+      {
+        "slug": "ir-life-tehran-bazaar",
+        "role": "life",
+        "title": "File:Grand Bazaar, Tehran.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lorong beratap dan pedagang di Grand Bazaar Tehran, Iran",
+          "en": "Vaulted corridors and shopkeepers inside the Grand Bazaar of Tehran"
+        }
+      },
+      {
+        "slug": "ir-food-chelo-kabab",
+        "role": "food",
+        "title": "File:Chelo Kabab.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nasi chelo dengan kabab sate disajikan di piring restoran Iran",
+          "en": "A plate of chelo kabab, saffron rice served with grilled skewered meat"
+        }
+      },
+      {
+        "slug": "ir-script-kish-sign",
+        "role": "script",
+        "title": "File:Mazandaran Street & Persian Gulf Boulevard Kish 2025 03.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan berhuruf Persia di Boulevard Teluk Persia, Kish",
+          "en": "A street sign with Persian lettering on Persian Gulf Boulevard in Kish"
+        }
+      }
+    ],
+    "jo": [
+      {
+        "slug": "jo-hero-petra-treasury",
+        "role": "hero",
+        "title": "File:Al Khazneh Petra edit 2.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Fasad ukiran batu Al-Khazneh menghadap ngarai di Petra, Yordania",
+          "en": "The carved stone facade of Al-Khazneh facing the canyon at Petra"
+        }
+      },
+      {
+        "slug": "jo-life-rainbow-street",
+        "role": "life",
+        "title": "File:Rainbow Street, Amman -- Eastward.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Kafe dan pejalan memenuhi Jalan Rainbow di pusat kota Amman",
+          "en": "Cafes and pedestrians filling Rainbow Street in central Amman, Jordan"
+        }
+      },
+      {
+        "slug": "jo-food-mansaf",
+        "role": "food",
+        "title": "File:Jordanian Traditional Mansaf, Petra Restaurant, 2026 (01).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nampan mansaf Yordania dengan nasi, daging domba, dan yoghurt",
+          "en": "A Jordanian mansaf platter of rice, lamb, and jameed yoghurt sauce"
+        }
+      },
+      {
+        "slug": "jo-script-amman-sign",
+        "role": "script",
+        "title": "File:Official street sign of Al-Mukhtar Yaser Al-Attar Street in Amman.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan resmi berhuruf Arab dan Latin di Amman",
+          "en": "An official street name sign with Arabic and Latin lettering in Amman"
+        }
+      }
+    ],
+    "kg": [
+      {
+        "slug": "kg-hero-song-kol",
+        "role": "hero",
+        "title": "File:Song Köl lake, Kyrgyzstan (29955691312).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Danau Song Köl dikelilingi bukit hijau di pegunungan Kirgizstan",
+          "en": "Lake Song-Kol ringed by green rolling hills in the Kyrgyz highlands"
+        }
+      },
+      {
+        "slug": "kg-life-osh-bazaar",
+        "role": "life",
+        "title": "File:2015-09-05-170504 - Bishkek - Osh Bazar.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pedagang dan pembeli memadati Bazaar Osh di Bishkek, Kirgizstan",
+          "en": "Traders and shoppers crowding the Osh Bazaar in Bishkek, Kyrgyzstan"
+        }
+      },
+      {
+        "slug": "kg-food-beshbarmak",
+        "role": "food",
+        "title": "File:Beshbarmak photo.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nampan beshbarmak Kirgizstan dengan daging domba dan mi tarik",
+          "en": "A platter of Kyrgyz beshbarmak with lamb and hand-pulled noodles"
+        }
+      }
+    ],
+    "kh": [
+      {
+        "slug": "kh-hero-angkor-wat",
+        "role": "hero",
+        "title": "File:Angkor Wat with its reflection (cropped).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Menara Angkor Wat terpantul di kolam depan saat fajar",
+          "en": "The towers of Angkor Wat reflected in the front pond at dawn"
+        }
+      },
+      {
+        "slug": "kh-life-phnom-penh-market",
+        "role": "life",
+        "title": "File:Phnom Penh Central Market - January 2020 - 2.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lorong pasar sentral Phnom Penh dengan pedagang dan pembeli",
+          "en": "The aisles of Phnom Penh's Central Market with vendors and shoppers"
+        }
+      },
+      {
+        "slug": "kh-food-fish-amok",
+        "role": "food",
+        "title": "File:Fish amok amok trei Khmer Cambodian food.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Amok trei, kari ikan Khmer, disajikan dalam mangkuk daun pisang",
+          "en": "Fish amok, a Khmer coconut curry, served in a banana-leaf bowl"
+        }
+      },
+      {
+        "slug": "kh-script-road-signs",
+        "role": "script",
+        "title": "File:Road signs in Cambodia 01.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan penunjuk jalan berhuruf Khmer dan Latin di Kamboja",
+          "en": "Road direction signs with Khmer and Latin lettering in Cambodia"
+        }
+      }
+    ],
+    "kp": [
+      {
+        "slug": "kp-hero-kumgang-falls",
+        "role": "hero",
+        "title": "File:0438 - Nordkorea 2015 - Kumgang Gebirge - Kuryong Fasserfall (22543108597).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Air terjun Kuryong jatuh di antara tebing Gunung Kumgang, Korea Utara",
+          "en": "The Kuryong waterfall falling between cliffs in the Kumgang Mountains"
+        }
+      },
+      {
+        "slug": "kp-life-pyongyang-metro",
+        "role": "life",
+        "title": "File:Pyongyang Metro.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Balai bawah tanah stasiun Metro Pyongyang dengan lampu gantung",
+          "en": "The chandelier-lit underground hall of a Pyongyang metro station"
+        }
+      },
+      {
+        "slug": "kp-food-naengmyeon",
+        "role": "food",
+        "title": "File:Mul-naengmyeon 6.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Semangkuk mul-naengmyeon, mi soba dingin kuah, khas Korea",
+          "en": "A bowl of chilled mul-naengmyeon buckwheat noodles in cold broth"
+        }
+      },
+      {
+        "slug": "kp-script-pyongyang",
+        "role": "script",
+        "title": "File:Pyongyang, North Korea - panoramio (26).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama dan tulisan Hangul di jalan kota Pyongyang, Korea Utara",
+          "en": "Hangul signage and lettering on a street in Pyongyang, North Korea"
+        }
+      }
+    ],
+    "kw": [
+      {
+        "slug": "kw-hero-kuwait-city-night",
+        "role": "hero",
+        "title": "File:Kuwait City Skyline at Night 5.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Siluet cakrawala kota Kuwait City berpendar di malam hari",
+          "en": "The illuminated skyline of Kuwait City glowing across the bay at night"
+        }
+      },
+      {
+        "slug": "kw-life-mubarakiya",
+        "role": "life",
+        "title": "File:Elmubarakiya-market-kuwait.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Deretan kios dan pembeli di pasar Mubarakiya, Kuwait City",
+          "en": "Stalls and shoppers in the traditional Mubarakiya market of Kuwait City"
+        }
+      },
+      {
+        "slug": "kw-food-machboos",
+        "role": "food",
+        "title": "File:Machboos.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring machboos nasi rempah khas Kuwait dengan daging",
+          "en": "A plate of Kuwaiti machboos spiced rice served with meat"
+        }
+      },
+      {
+        "slug": "kw-script-city-sign",
+        "role": "script",
+        "title": "File:Kuwaitcitysign.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama kota Kuwait dengan tulisan Arab dan Latin",
+          "en": "A Kuwait city signboard with Arabic and Latin lettering"
+        }
+      }
+    ],
+    "la": [
+      {
+        "slug": "la-hero-kuang-si",
+        "role": "hero",
+        "title": "File:Kuang Si Falls and its turquoise tiered water pools in Luang Prabang province Laos.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Air terjun Kuang Si bertingkat dengan kolam pirus di Luang Prabang",
+          "en": "The tiered turquoise pools of Kuang Si Falls near Luang Prabang, Laos"
+        }
+      },
+      {
+        "slug": "la-life-night-market",
+        "role": "life",
+        "title": "File:Luang Prabang Night Market 2016 (HDR).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lapak makanan dan lampu warna di pasar malam Luang Prabang",
+          "en": "Food stalls and colourful lights at the Luang Prabang night market"
+        }
+      },
+      {
+        "slug": "la-food-larb",
+        "role": "food",
+        "title": "File:LaoFood LarbNeua.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring larb Lao dengan daging cincang, rempah, dan daun mint",
+          "en": "A plate of Lao larb with minced meat, herbs, and fresh mint"
+        }
+      }
+    ],
+    "lb": [
+      {
+        "slug": "lb-hero-baalbek-jupiter",
+        "role": "hero",
+        "title": "File:Lebanon, Baalbek, Temple of Jupiter.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Kolom raksasa Kuil Jupiter berdiri di reruntuhan Baalbek, Lebanon",
+          "en": "The giant columns of the Temple of Jupiter among the ruins of Baalbek"
+        }
+      },
+      {
+        "slug": "lb-life-beirut-street",
+        "role": "life",
+        "title": "File:Streets of Beirut, Lebanon.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan gedung di jalan pusat kota Beirut, Lebanon",
+          "en": "Pedestrians and buildings along a central street in Beirut, Lebanon"
+        }
+      },
+      {
+        "slug": "lb-food-tabbouleh",
+        "role": "food",
+        "title": "File:Flickr - cyclonebill - Tabbouleh.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Semangkuk tabbouleh dengan peterseli, tomat, dan bulgur Lebanon",
+          "en": "A bowl of Lebanese tabbouleh with parsley, tomato, and bulgur"
+        }
+      }
+    ],
+    "lk": [
+      {
+        "slug": "lk-hero-sigiriya",
+        "role": "hero",
+        "title": "File:Sigiriya from Pidurangala 2023.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Batu Sigiriya menjulang dari hutan dataran tengah Sri Lanka",
+          "en": "The Sigiriya rock fortress rising above the forests of central Sri Lanka"
+        }
+      },
+      {
+        "slug": "lk-life-colombo",
+        "role": "life",
+        "title": "File:Colombo April 2013-2.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lalu lintas dan gedung di jalan pusat kota Colombo, Sri Lanka",
+          "en": "Traffic and buildings along a central street in Colombo, Sri Lanka"
+        }
+      },
+      {
+        "slug": "lk-food-rice-curry",
+        "role": "food",
+        "title": "File:Sri Lankan Rice and Curry.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Nasi dan kari Sri Lanka dengan beberapa lauk dalam piring",
+          "en": "A Sri Lankan rice and curry plate with several side dishes"
+        }
+      },
+      {
+        "slug": "lk-script-ella-sign",
+        "role": "script",
+        "title": "File:202312 Bilingual \"no plastic, limited entry\" sign in Ella, Sri Lanka.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda dwibahasa Sinhala dan Inggris di Ella, Sri Lanka",
+          "en": "A bilingual Sinhala and English signboard on a road in Ella, Sri Lanka"
+        }
+      }
+    ],
+    "mm": [
+      {
+        "slug": "mm-hero-bagan",
+        "role": "hero",
+        "title": "File:Bagan, Myanmar, Htilominlo Temple and other Buddhist stupas in Bagan plain.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Kubah dan menara candi Bagan tersebar di dataran Myanmar tengah",
+          "en": "Temple spires and domes scattered across the plains of Bagan, Myanmar"
+        }
+      },
+      {
+        "slug": "mm-life-yangon",
+        "role": "life",
+        "title": "File:Yangon, Downtown Yangon, Myanmar, Burma.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lalu lintas dan bangunan kolonial di pusat kota Yangon, Myanmar",
+          "en": "Traffic and colonial-era buildings in downtown Yangon, Myanmar"
+        }
+      },
+      {
+        "slug": "mm-food-mohinga",
+        "role": "food",
+        "title": "File:Mohinga (20250315).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Semangkuk mohinga, sup mi ikan khas Myanmar, dengan pelengkap",
+          "en": "A bowl of mohinga, Myanmar's fish noodle soup, with garnishes"
+        }
+      },
+      {
+        "slug": "mm-script-mandalay-sign",
+        "role": "script",
+        "title": "File:Sign at Mahagandhayon Monastery, Amarapura, Mandalay, Myanmar - 20141207-01.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda berhuruf Burma di biara Amarapura dekat Mandalay",
+          "en": "A signboard with Burmese lettering at a monastery in Amarapura, Mandalay"
+        }
+      }
+    ],
+    "mv": [
+      {
+        "slug": "mv-hero-guriadhoo-aerial",
+        "role": "hero",
+        "title": "File:Guriadhoo-2019-aerial-view-Luka-Peternel.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pulau Guriadhoo dilihat dari udara dengan laguna biru Maladewa",
+          "en": "An aerial view of Guriadhoo island ringed by turquoise Maldivian lagoon"
+        }
+      },
+      {
+        "slug": "mv-life-male-city",
+        "role": "life",
+        "title": "File:Malé Maldives (1).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Bangunan padat dan pelabuhan kota Malé di Maladewa",
+          "en": "Dense buildings and the harbour of Male city in the Maldives"
+        }
+      },
+      {
+        "slug": "mv-food-mas-riha",
+        "role": "food",
+        "title": "File:Mas riha Maldives.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Semangkuk mas riha, kari ikan Maladewa, dengan nasi dan roti",
+          "en": "A bowl of mas riha, Maldivian tuna curry, served with rice"
+        }
+      },
+      {
+        "slug": "mv-script-public-advice",
+        "role": "script",
+        "title": "File:Buiobuione-Maldive-Maafushi-Kaafu-Public-Advice.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan pemberitahuan publik berhuruf Dhivehi di Maafushi, Maladewa",
+          "en": "A public advice signboard with Dhivehi lettering on Maafushi, Maldives"
+        }
+      }
+    ],
+    "np": [
+      {
+        "slug": "np-hero-boudhanath",
+        "role": "hero",
+        "title": "File:Boudha Stupa 2018 04.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Stupa Boudhanath putih dengan mata Buddha di Kathmandu, Nepal",
+          "en": "The whitewashed Boudhanath stupa with painted Buddha eyes in Kathmandu"
+        }
+      },
+      {
+        "slug": "np-life-kathmandu-street",
+        "role": "life",
+        "title": "File:Kathmandu, Basantapur, Street, Nepal.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan toko di jalan kawasan Basantapur, Kathmandu, Nepal",
+          "en": "Pedestrians and shops along a street in Basantapur, Kathmandu, Nepal"
+        }
+      },
+      {
+        "slug": "np-food-momo",
+        "role": "food",
+        "title": "File:Momo Nepali cuisine.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Sepiring momo kukus Nepal dengan saus cabai di meja",
+          "en": "A plate of steamed Nepali momo dumplings served with chilli sauce"
+        }
+      },
+      {
+        "slug": "np-script-tyoura-sign",
+        "role": "script",
+        "title": "File:Tyoura street sign.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan berhuruf Devanagari di Kathmandu, Nepal",
+          "en": "A street name sign with Devanagari lettering in Kathmandu, Nepal"
+        }
+      }
+    ],
+    "om": [
+      {
+        "slug": "om-hero-nizwa-fort",
+        "role": "hero",
+        "title": "File:Nizwa Fort, Oman 2024 14.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Benteng Nizwa bulat berdiri dengan menara masjid di Oman",
+          "en": "The round tower of Nizwa Fort beside the Friday mosque minaret in Oman"
+        }
+      },
+      {
+        "slug": "om-life-muttrah-souq",
+        "role": "life",
+        "title": "File:Oman, Muscat, Muttrah Souq.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lorong beratap dan lapak rempah di Souq Muttrah, Muscat",
+          "en": "Covered alleys and spice stalls inside the Muttrah Souq in Muscat"
+        }
+      },
+      {
+        "slug": "om-script-khasab-road",
+        "role": "script",
+        "title": "File:Oman Khasab Coastal Road 01.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan penunjuk jalan berhuruf Arab dan Latin di Khasab, Oman",
+          "en": "A road sign with Arabic and Latin lettering near Khasab in Oman"
+        }
+      }
+    ],
+    "pk": [
+      {
+        "slug": "pk-hero-k2",
+        "role": "hero",
+        "title": "File:K2 2006b.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Puncak bersalju Gunung K2 menjulang di Karakoram, Pakistan",
+          "en": "The snow-covered pyramid peak of K2 in the Karakoram range"
+        }
+      },
+      {
+        "slug": "pk-life-lahore-street",
+        "role": "life",
+        "title": "File:Street near Lahore fort.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan kendaraan di jalan dekat Benteng Lahore, Pakistan",
+          "en": "Pedestrians and vehicles on a street near Lahore Fort in Pakistan"
+        }
+      },
+      {
+        "slug": "pk-food-nihari",
+        "role": "food",
+        "title": "File:Beef Nihari, made by Saleha Atif, Pakistan.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Semangkuk nihari daging sapi Pakistan dengan roti pendamping",
+          "en": "A bowl of Pakistani beef nihari stew served with bread on the side"
+        }
+      }
+    ],
+    "ps": [
+      {
+        "slug": "ps-hero-bethlehem",
+        "role": "hero",
+        "title": "File:Bethlehem-BW-10.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Kota Bethlehem lama dengan gereja dan atap batu di Palestina",
+          "en": "The old town of Bethlehem with church domes and stone roofs in Palestine"
+        }
+      },
+      {
+        "slug": "ps-life-ramallah-square",
+        "role": "life",
+        "title": "File:Al-Manara Square, Ramallah 02.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Alun-alun Manara dan pejalan di pusat kota Ramallah, Palestina",
+          "en": "Al-Manara Square and pedestrians in the centre of Ramallah, Palestine"
+        }
+      },
+      {
+        "slug": "ps-food-musakhan",
+        "role": "food",
+        "title": "File:Musakhan.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Musakhan, ayam panggang dengan bawang dan roti taboon Palestina",
+          "en": "Musakhan, Palestinian roasted chicken with onions on taboon flatbread"
+        }
+      },
+      {
+        "slug": "ps-script-road-signs",
+        "role": "script",
+        "title": "File:Hebrew Arabic English road signs.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan penunjuk jalan tiga bahasa Arab, Ibrani, dan Inggris",
+          "en": "Road direction signs in three languages: Arabic, Hebrew, and English"
+        }
+      }
+    ],
+    "qa": [
+      {
+        "slug": "qa-hero-zubarah-fort",
+        "role": "hero",
+        "title": "File:Qatar - Al Zubarah Fort 01.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Benteng Al Zubarah batu berdiri di tepi gurun Qatar",
+          "en": "The stone Al Zubarah Fort standing at the edge of the Qatari desert"
+        }
+      },
+      {
+        "slug": "qa-life-souq-waqif",
+        "role": "life",
+        "title": "File:Souq Waqif, Doha, Catar, 2013-08-05, DD 107.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lorong dan pedagang di Souq Waqif pusat kota Doha",
+          "en": "Alleys and traders inside the Souq Waqif in central Doha, Qatar"
+        }
+      },
+      {
+        "slug": "qa-food-machboos",
+        "role": "food",
+        "title": "File:Machboos (cropped).JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring machboos nasi rempah Qatar dengan lauk daging",
+          "en": "A plate of Qatari machboos spiced rice served with meat"
+        }
+      },
+      {
+        "slug": "qa-script-al-gharrafa",
+        "role": "script",
+        "title": "File:Beginning of Duhail Al Gharrafa Bridge in Al Gharrafa.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda berhuruf Arab di Jembatan Duhail Al Gharrafa Qatar",
+          "en": "An Arabic street signboard at the Duhail Al Gharrafa bridge in Qatar"
+        }
+      }
+    ],
+    "sy": [
+      {
+        "slug": "sy-hero-palmyra-bel",
+        "role": "hero",
+        "title": "File:Temple of Bel, Palmyra 02.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Reruntuhan Kuil Bel di Palmyra dengan kolom Romawi berdiri",
+          "en": "The ruins of the Temple of Bel with standing Roman columns at Palmyra"
+        }
+      },
+      {
+        "slug": "sy-life-damascus-souq",
+        "role": "life",
+        "title": "File:Damascus Al-Hamidiyah Souq 5049.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Lorong beratap kios di Souq Al-Hamidiyah kota tua Damaskus",
+          "en": "Covered alleyways of stalls inside the Al-Hamidiyah Souq in old Damascus"
+        }
+      },
+      {
+        "slug": "sy-food-kibbeh",
+        "role": "food",
+        "title": "File:Kibbeh3.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Potongan kibbeh goreng renyah dengan isian daging, khas Suriah",
+          "en": "Fried kibbeh croquettes filled with spiced meat, a Syrian speciality"
+        }
+      },
+      {
+        "slug": "sy-script-damascus-sign",
+        "role": "script",
+        "title": "File:Street sign in Damascus 01.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan berhuruf Arab di kota Damaskus, Suriah",
+          "en": "A street name sign with Arabic lettering in Damascus, Syria"
+        }
+      }
+    ],
+    "tj": [
+      {
+        "slug": "tj-hero-iskanderkul",
+        "role": "hero",
+        "title": "File:Iskanderkul and Fann Mountains.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Danau Iskanderkul berwarna biru dengan Pegunungan Fann Tajikistan",
+          "en": "The blue lake Iskanderkul set among the Fann Mountains of Tajikistan"
+        }
+      },
+      {
+        "slug": "tj-life-dushanbe-street",
+        "role": "life",
+        "title": "File:Streets in Dushanbe 01.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan pepohonan di jalan pusat kota Dushanbe, Tajikistan",
+          "en": "Pedestrians and trees along a central street in Dushanbe, Tajikistan"
+        }
+      },
+      {
+        "slug": "tj-food-qurutob",
+        "role": "food",
+        "title": "File:Kurutob Tajikistan.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring qurutob Tajikistan dengan fatir dan saus yoghurt",
+          "en": "A plate of Tajik qurutob with fatir flatbread and yoghurt sauce"
+        }
+      },
+      {
+        "slug": "tj-script-dushanbe-signs",
+        "role": "script",
+        "title": "File:Dushanbe Street Signs.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan berhuruf Kiril dan Tajik di Dushanbe",
+          "en": "Street name signs with Cyrillic and Tajik lettering in Dushanbe"
+        }
+      }
+    ],
+    "tl": [
+      {
+        "slug": "tl-hero-atauro-beach",
+        "role": "hero",
+        "title": "File:Beach behind Cristo Rei with view of Atauro Island in background.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pantai di belakang Cristo Rei dengan Pulau Atauro di kejauhan",
+          "en": "A beach behind Cristo Rei with Atauro Island visible in the distance"
+        }
+      },
+      {
+        "slug": "tl-life-pineapple-vendor",
+        "role": "life",
+        "title": "File:Pineapple street vendor in Dili, Timor-Leste.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Penjual nanas berjalan di pinggir jalan kota Dili, Timor-Leste",
+          "en": "A pineapple street vendor walking along a roadside in Dili, Timor-Leste"
+        }
+      },
+      {
+        "slug": "tl-script-avenida",
+        "role": "script",
+        "title": "File:Avenida 20 de Maio, Dili, 2018 (03).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan nama jalan berbahasa Portugis di Avenida 20 de Maio, Dili",
+          "en": "A Portuguese street name sign on Avenida 20 de Maio in Dili"
+        }
+      }
+    ],
+    "tm": [
+      {
+        "slug": "tm-hero-darvaza",
+        "role": "hero",
+        "title": "File:Darvaza gas crater, Jähennem derwezesi, Door to Hell, Gates of Hell, Derweze, Turkmenistan.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Kawah gas Darvaza menyala oranye di gurun Karakum Turkmenistan",
+          "en": "The glowing Darvaza gas crater burning in Turkmenistan's Karakum desert"
+        }
+      },
+      {
+        "slug": "tm-life-ashgabat-street",
+        "role": "life",
+        "title": "File:Ashgabat streets (10) (45137094395).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan gapura putih di jalan pusat kota Ashgabat",
+          "en": "Pedestrians and white archways along a central street in Ashgabat"
+        }
+      },
+      {
+        "slug": "tm-food-palov",
+        "role": "food",
+        "title": "File:Polu.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring palov Turkmenistan dengan nasi, wortel, dan daging domba",
+          "en": "A plate of Turkmen palov rice with carrots and pieces of lamb"
+        }
+      },
+      {
+        "slug": "tm-script-ashgabat-sign",
+        "role": "script",
+        "title": "File:Ashgabat streets (11) (45137093645).jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Papan tanda jalan berhuruf Kiril dan Latin di Ashgabat, Turkmenistan",
+          "en": "A road sign with Cyrillic and Latin lettering in Ashgabat, Turkmenistan"
+        }
+      }
+    ],
+    "ae": [
+      {
+        "slug": "ae-hero-liwa-desert",
+        "role": "hero",
+        "title": "File:Liwa Desert in Abu Dhabi.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Bukit pasir Liwa berwarna keemasan di gurun Abu Dhabi, UEA",
+          "en": "Golden sand dunes of the Liwa oasis in Abu Dhabi's desert"
+        }
+      },
+      {
+        "slug": "ae-life-dubai-creek",
+        "role": "life",
+        "title": "File:Abras in Dubai Creek!.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Perahu abra kayu melintasi Dubai Creek di kota tua Dubai",
+          "en": "Wooden abra boats crossing Dubai Creek in the old town"
+        }
+      },
+      {
+        "slug": "ae-food-machboos",
+        "role": "food",
+        "title": "File:Machboos.JPG",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Piring machboos nasi rempah Uni Emirat Arab dengan daging",
+          "en": "A plate of Emirati machboos spiced rice served with meat"
+        }
+      }
+    ],
+    "ye": [
+      {
+        "slug": "ye-hero-socotra-dragon",
+        "role": "hero",
+        "title": "File:Dragonblood tree in Socotra 2.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pohon darah naga berpayung tumbuh di dataran Socotra, Yaman",
+          "en": "Umbrella-shaped dragon's blood trees growing on the Socotra plateau in Yemen"
+        }
+      },
+      {
+        "slug": "ye-life-sanaa-street",
+        "role": "life",
+        "title": "File:Street, Sana'a, Yemen.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Pejalan dan toko di jalan kota tua Sanaa, Yaman",
+          "en": "Pedestrians and shops along a street in the old city of Sanaa"
+        }
+      },
+      {
+        "slug": "ye-food-saltah",
+        "role": "food",
+        "title": "File:Saltah.jpg",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "alt": {
+          "id": "Semangkuk saltah, sup daging khas Yaman, dengan saus dan roti",
+          "en": "A bowl of saltah, Yemen's traditional meat stew, with bread"
         }
       }
     ]

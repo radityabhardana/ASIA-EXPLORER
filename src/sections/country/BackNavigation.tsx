@@ -18,36 +18,28 @@ export default function BackNavigation({ leaving, onClick, label, to = '/' }: Ba
     label ?? (locale === 'en' ? 'Return to previous page' : 'Kembali ke halaman sebelumnya');
 
   const [hidden, setHidden] = useState(false);
-  const lastScrollY = useRef(0);
+  const prevScrollY = useRef(0);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const prevScrollY = lastScrollY.current;
-
-      // Scrolling up or near top (<60px): reveal the bar
       if (currentScrollY < 60) {
         setHidden(false);
-      } else if (currentScrollY > 80 && currentScrollY > prevScrollY) {
-        // Scrolling down past 80px: hide the bar
+      } else if (currentScrollY > 80 && currentScrollY > prevScrollY.current) {
         setHidden(true);
-      } else if (currentScrollY < prevScrollY) {
-        // Scrolling up: reveal the bar
+      } else if (currentScrollY < prevScrollY.current) {
         setHidden(false);
       }
-
-      lastScrollY.current = currentScrollY;
+      prevScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleFocus = () => {
+    setHidden(false);
+  };
 
   return (
     <div
@@ -59,13 +51,14 @@ export default function BackNavigation({ leaving, onClick, label, to = '/' }: Ba
         className="country-back"
         to={to}
         onClick={onClick}
-        onFocus={() => setHidden(false)}
+        onFocus={handleFocus}
         aria-label={ariaLabel}
-        aria-disabled={leaving || undefined}
-        data-leaving={leaving ? 'true' : undefined}
+        data-leaving={leaving ? 'true' : 'false'}
       >
-        <span aria-hidden="true">&larr;</span>
-        <span>{text}</span>
+        <span className="country-back__icon" aria-hidden="true">
+          ←
+        </span>
+        <span className="country-back__text">{text}</span>
       </Link>
     </div>
   );

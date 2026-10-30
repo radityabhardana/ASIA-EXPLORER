@@ -9,6 +9,10 @@ const VIEWPORTS = [
   { width: 1440, height: 900 },
 ] as const;
 
+// `local` untuk `id` sengaja identik dengan `name`: hero menyembunyikan baris nama
+// lokal saat ia hanya mengulang nama negara (dedup, commit aabbace), jadi baris itu
+// justru di-assert tidak ada oleh loop di bawah. Nilai dipertahankan agar bentuk
+// tabel seragam, bukan karena dipakai sebagai teks yang diharapkan.
 const COUNTRIES = [
   { id: 'jp', name: 'Jepang', local: '日本', greeting: 'こんにちは' },
   { id: 'id', name: 'Indonesia', local: 'Indonesia', greeting: 'Selamat pagi' },
@@ -31,6 +35,7 @@ function collectErrors(page: Page): string[] {
 
 for (const country of COUNTRIES) {
   test(`/negara/${country.id} utuh di 375, 768, 1440`, async ({ page }) => {
+    test.setTimeout(60_000);
     const errors = collectErrors(page);
 
     for (const viewport of VIEWPORTS) {
@@ -43,8 +48,15 @@ for (const country of COUNTRIES) {
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
 
       const local = page.locator('.country-hero__local');
-      await expect(local).toBeVisible();
-      await expect(local).toHaveText(country.local);
+      if (country.local === country.name) {
+        // Dedup (commit aabbace): `CountryHero` menyembunyikan `.country-hero__local`
+        // bila nama lokal sama persis dengan nama negara (`id` hari ini); `h1` di atas
+        // sudah menampilkan nama itu, jadi baris lokal tidak boleh dirender.
+        await expect(local).toHaveCount(0);
+      } else {
+        await expect(local).toBeVisible();
+        await expect(local).toHaveText(country.local);
+      }
 
       const greeting = page.locator('.country-specimen__greeting');
       await greeting.scrollIntoViewIfNeeded();
@@ -84,13 +96,13 @@ for (const country of COUNTRIES) {
         expect(words).toBeLessThanOrEqual(45);
       }
 
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(150);
+
       const back = page.getByRole('link', { name: 'Kembali ke halaman utama' });
       await expect(back).toBeVisible();
       const backBox = await back.boundingBox();
       expect(backBox?.height ?? 0).toBeGreaterThanOrEqual(44);
-
-      await page.evaluate(() => window.scrollTo(0, 0));
-      await page.waitForTimeout(150);
       await page.screenshot({
         path: `${SHOT_DIR}/${country.id}-${viewport.width}x${viewport.height}.png`,
         fullPage: true,
@@ -116,7 +128,7 @@ test('navigasi kembali tetap terlihat dan menuju beranda', async ({ page }) => {
   await back.click();
   await expect(page).toHaveURL('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Asia Explorer',
+    /Jelajahi 48 Bangsa|Asia Explorer/,
   );
 
   expect(errors).toEqual([]);

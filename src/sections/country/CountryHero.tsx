@@ -2,6 +2,12 @@ import { useEffect, useRef } from 'react';
 
 import type { Country } from '@/content/countries';
 import imagesData from '@/content/images.json';
+import {
+  COUNTRY_COORDINATES,
+  formatDMS,
+  formatDistanceKm,
+  haversineDistanceKm,
+} from '@/lib/geo-coords';
 
 import NativeText from './NativeText';
 import type { TextProfile } from './scripts';
@@ -107,6 +113,12 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
 
   const fallbackImg = webp1600?.file ?? webp960?.file ?? photo?.webp[0]?.file ?? '';
   const showDistinctLocalName = country.nameLocal !== country.nameId;
+  const iso3 = (country.iso3 || country.id).toUpperCase();
+  const coords = COUNTRY_COORDINATES[iso3];
+  const distFromJakarta =
+    coords && country.id !== 'id'
+      ? haversineDistanceKm(-6.2088, 106.8456, coords.lat, coords.lon)
+      : null;
 
   return (
     <header className="country-hero" ref={heroRef}>
@@ -147,7 +159,7 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
         {/* Scrim overlay for editorial contrast */}
         <div className="country-hero__scrim" aria-hidden="true" />
 
-        {/* Large authentic native script watermark */}
+        {/* Large authentic native script watermark (subtle right corner) */}
         <div className="country-hero__watermark" aria-hidden="true">
           <NativeText profile={profile}>{country.nameLocal}</NativeText>
         </div>
@@ -163,6 +175,26 @@ export default function CountryHero({ country, profile }: CountryHeroProps) {
             {country.nameId}
           </h1>
           <p className="country-hero__meta">
+            {coords && (
+              <>
+                <span className="country-hero__coord">{formatDMS(coords.lat, coords.lon)}</span>
+                <span className="country-hero__sep" aria-hidden="true">
+                  {' '}
+                  ·{' '}
+                </span>
+              </>
+            )}
+            {distFromJakarta !== null && (
+              <>
+                <span className="country-hero__dist">
+                  {formatDistanceKm(distFromJakarta, 'id')} dari Jakarta
+                </span>
+                <span className="country-hero__sep" aria-hidden="true">
+                  {' '}
+                  ·{' '}
+                </span>
+              </>
+            )}
             <span className="country-hero__region">{country.region}</span>
             <span className="country-hero__sep" aria-hidden="true">
               {' '}

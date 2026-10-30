@@ -65,26 +65,26 @@ import '@/styles/scene.css';
  * - uz (Uzbekistan): Uzbek turquoise (#23739e)
  */
 export const COUNTRY_COLORS: Record<string, string> = {
-  // Southeast Asia
-  id: '#c53a2a', // Indonesian crimson vermilion
-  my: '#385a48', // Malaysian forest pine
-  sg: '#cf3d32', // Singapore coral red
-  th: '#6b4a6d', // Thai royal plum
-  vn: '#b82e26', // Vietnam lacquer red
-  ph: '#bf7d28', // Philippine golden amber
-  // East Asia
-  cn: '#b83324', // China imperial vermilion
-  jp: '#c83232', // Japan sun crimson
-  kr: '#4a5450', // Korea celadon slate umber
-  mn: '#9c7c4e', // Mongolian steppe sand
-  // South Asia
-  in: '#cc6e25', // India saffron terracotta
-  // West Asia
-  sa: '#2e663d', // Saudi oasis olive green
-  tr: '#a63629', // Turkish anatolian rust
-  // Central Asia
-  kz: '#948057', // Kazakh steppe loess khaki
-  uz: '#a38753', // Uzbek sandstone ochre
+  // Southeast Asia - Celadon / Giok Tropis (#2f6854 hover #3a8067)
+  id: '#2f6854',
+  my: '#346f5b',
+  sg: '#387862',
+  th: '#2b624f',
+  vn: '#2f6854',
+  ph: '#326c58',
+  // East Asia - Lacquer Cinnabar / Merah Kekaisaran (#8c3832 hover #a6423b)
+  cn: '#8c3832',
+  jp: '#943c35',
+  kr: '#84342f',
+  mn: '#9a423b',
+  // South Asia - Saffron Terracotta / Rempah Purba (#94582b hover #ad6733)
+  in: '#94582b',
+  // West Asia - Lapis Lazuli & Gurun Pasir (#465a73 hover #556d8c)
+  sa: '#465a73',
+  tr: '#4d637e',
+  // Central Asia - Steppe Bronze / Perunggu Jalur Sutra (#665c3b hover #7d7048)
+  kz: '#665c3b',
+  uz: '#6f6440',
 };
 
 export const REGION_COLORS: Record<string, string> = COUNTRY_COLORS;
@@ -167,10 +167,20 @@ export interface AsiaSceneProps {
    */
   highlightProgressRef?: RefObject<number>;
   selectedId?: string | null;
+  /**
+   * Id negara yang ingin di-frame kamera (mis. dari preview panel di landing).
+   * - id valid: kamera bergeser halus ke negara tsb + zoom terbatas, highlight
+   *   mengikuti `selectedRef`, idle sway berhenti. Tidak menavigasi.
+   * - `null`: kembali halus ke pose overview/scroll normal.
+   * Di layar lebar (>900px) negara digeser sedikit ke kiri supaya panel preview
+   * di sisi kanan tidak menutupinya.
+   */
+  focusCountryId?: string | null;
   onHoverCountry?: (hit: CountryHit | string | null) => void;
   onCountryAnchor?: (id: string, anchor: { x: number; y: number }, side: 'left' | 'right') => void;
   onSelectCountry?: (id: string) => void;
   onActivateCountry?: (id: string) => void;
+  onHeadingChange?: (heading: number) => void;
   introEnabled?: boolean;
   idleSway?: boolean;
   /** WebGL gagal dibuat atau model tidak bisa dimuat. */
@@ -215,12 +225,18 @@ export interface AsiaSceneDebug {
   highlightCount?(): number;
   highlightProgress?(): number;
   pose(): CameraPose;
+  getHeading?(): number;
+  resetNorth?(): void;
   intro(): {
     state: 'boot' | 'intro' | 'scroll' | 'reduced' | 'skipped' | 'done';
     progress: number;
     elapsedMs: number;
   };
   hovered(): string | null;
+  /** Id negara yang sedang di-frame oleh `focusCountryId`, atau null. */
+  focused?(): string | null;
+  /** DEV helper: paksa fokus/lepas fokus tanpa mengubah prop React. */
+  focus?(id: string | null): void;
   panelAnchor(): {
     x: number;
     y: number;
@@ -264,13 +280,16 @@ interface CountryEntry {
   hoverAmt: number;
   hl: number;
   band: number;
+  /** Pusat & radius geometry (ruang dunia model) untuk framing fokus kamera. */
+  focusCenter: Vector3;
+  focusRadius: number;
 }
 
 const FOV = 38;
 const ELEVATION_FROM_HORIZONTAL = 52;
 const DPR_MAX = 1.5;
 
-const HOVER_LIFT = 0.6;
+const HOVER_LIFT = 1.0;
 const SELECT_LIFT = 1.4;
 const LIFT_TAU = 0.11;
 const GLOW_TAU = 0.12;
@@ -283,9 +302,33 @@ const FIT_INK_SAFETY = 1.04;
 const HOVER_HYSTERESIS_MS = 130;
 const MATERIAL_ROUGHNESS = 0.42;
 const MATERIAL_METALNESS = 0.08;
-const OUTLINE_OPACITY = 0.45;
+const OUTLINE_OPACITY = 0.65;
 const MIN_CAMERA_DISTANCE = 130;
 const MAX_CAMERA_DISTANCE = 320;
+
+// Framing fokus kamera (focusCountryId).
+// Margin radius negara saat menghitung jarak kamera; nilai lebih besar = lebih longgar.
+const FOCUS_MARGIN = 1.35;
+// Di layar lebar, target kamera digeser ke kanan sebesar fraksi setengah lebar
+// pandang, sehingga negara tampak sedikit ke kiri dari tengah (memberi ruang
+// untuk panel preview di sisi kanan). 0 = tepat di tengah.
+const FOCUS_LEFT_BIAS = 0.16;
+const FOCUS_BLEND_TAU = 0.32; // detik, transisi target overview <-> negara
+const FOCUS_POINT_TAU = 0.22; // detik, perpindahan antar negara saat fokus
+const FOCUS_DISTANCE_TAU = 0.28; // detik, peredaman jarak kamera
+
+/**
+ * Jarak kamera agar bola ber-radius `radius` masuk frame (dengan margin),
+ * dibatasi MIN/MAX_CAMERA_DISTANCE. Memakai sudut pandang yang lebih sempit
+ * antara vertikal & horizontal supaya negara tetap utuh di kedua sumbu.
+ */
+function focusDistanceForRadius(radius: number, aspect: number): number {
+  const verticalHalf = (FOV * Math.PI) / 360;
+  const horizontalHalf = Math.atan(Math.tan(verticalHalf) * Math.max(0.1, aspect));
+  const halfAngle = Math.max(0.05, Math.min(verticalHalf, horizontalHalf));
+  const fitted = (Math.max(1, radius) * FOCUS_MARGIN) / Math.sin(halfAngle);
+  return Math.max(MIN_CAMERA_DISTANCE, Math.min(MAX_CAMERA_DISTANCE, fitted));
+}
 
 function assetUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path}`;
@@ -423,10 +466,12 @@ export default function AsiaScene({
   scrollProgressRef,
   highlightProgressRef,
   selectedId = null,
+  focusCountryId = null,
   onHoverCountry,
   onCountryAnchor,
   onSelectCountry,
   onActivateCountry,
+  onHeadingChange,
   introEnabled = true,
   idleSway = true,
   onUnavailable,
@@ -455,11 +500,19 @@ export default function AsiaScene({
     onCountryAnchor,
     onSelectCountry,
     onActivateCountry,
+    onHeadingChange,
     onUnavailable,
     interactiveClick,
     navigate,
   });
   const selectedRef = useRef<string | null>(selectedId ?? null);
+  // Nilai prop `selectedId` terakhir; dipakai untuk memulihkan highlight saat
+  // fokus dilepas (supaya tidak "melawan" efek selectedId).
+  const selectedIdRef = useRef<string | null>(selectedId ?? null);
+  // Permintaan fokus dari prop/debug, dibaca per frame oleh loop rAF.
+  const focusRequestRef = useRef<string | null>(focusCountryId ?? null);
+  // Id fokus yang sedang aktif di dalam loop (null = overview).
+  const focusActiveRef = useRef<string | null>(null);
 
   useEffect(() => {
     callbacksRef.current = {
@@ -467,6 +520,7 @@ export default function AsiaScene({
       onCountryAnchor,
       onSelectCountry,
       onActivateCountry,
+      onHeadingChange,
       onUnavailable,
       interactiveClick,
       navigate,
@@ -474,8 +528,18 @@ export default function AsiaScene({
   });
 
   useEffect(() => {
-    selectedRef.current = selectedId ?? null;
+    selectedIdRef.current = selectedId ?? null;
+    // Saat fokus aktif, highlight dikendalikan negara fokus; jangan ditimpa.
+    if (focusActiveRef.current === null) {
+      selectedRef.current = selectedIdRef.current;
+    }
   }, [selectedId]);
+
+  // Prop fokus hanya disalurkan lewat ref supaya scene tidak di-rebuild dan
+  // perubahan cepat (mis. hover di daftar preview) tetap aman.
+  useEffect(() => {
+    focusRequestRef.current = focusCountryId ?? null;
+  }, [focusCountryId]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -628,6 +692,45 @@ export default function AsiaScene({
     const instanceHeroPose: CameraPose = { ...HERO_POSE };
     const currentPose: CameraPose = { ...HERO_POSE };
 
+    // Fokus kamera (lihat prop `focusCountryId`). Semua state di sini hidup di
+    // dalam closure loop; tidak ada alokasi per frame.
+    const overviewTarget = new Vector3(); // target pose overview/scroll
+    const focusPoint = new Vector3(); // pusat negara, dihaluskan antar-negara
+    const effectiveTarget = new Vector3(); // hasil lerp overview <-> fokus
+    let focusCountry: CountryEntry | null = null;
+    let focusRequestedId: string | null = null; // request terakhir yang diproses
+    let focusActive = false;
+    let focusBlend = 0; // 0 = overview, 1 = fokus penuh
+    let focusDistance = MIN_CAMERA_DISTANCE;
+
+    /**
+     * Tulis target kamera efektif ke `effectiveTarget`. Di layar lebar, target
+     * digeser ke kanan sepanjang vektor "right" kamera sehingga negara tampak
+     * di kiri tengah (ruang untuk panel preview kanan).
+     */
+    const resolveEffectiveTarget = (azimuthRad: number, distanceVal: number) => {
+      if (focusBlend <= 0.0001) {
+        effectiveTarget.copy(overviewTarget);
+        return effectiveTarget;
+      }
+      let shiftX = 0;
+      let shiftZ = 0;
+      if (containerW > 900) {
+        const horizontalHalf = Math.atan(
+          Math.tan((FOV * Math.PI) / 360) * Math.max(0.1, camera.aspect),
+        );
+        const worldShift = distanceVal * Math.tan(horizontalHalf) * FOCUS_LEFT_BIAS;
+        shiftX = Math.cos(azimuthRad) * worldShift;
+        shiftZ = -Math.sin(azimuthRad) * worldShift;
+      }
+      effectiveTarget.x =
+        overviewTarget.x + (focusPoint.x + shiftX - overviewTarget.x) * focusBlend;
+      effectiveTarget.y = overviewTarget.y + (focusPoint.y - overviewTarget.y) * focusBlend;
+      effectiveTarget.z =
+        overviewTarget.z + (focusPoint.z + shiftZ - overviewTarget.z) * focusBlend;
+      return effectiveTarget;
+    };
+
     // Stats tracking
     let frameCount = 0;
     let pickCount = 0;
@@ -660,6 +763,11 @@ export default function AsiaScene({
       renderer.setSize(containerW, containerH, false);
       camera.aspect = containerW / containerH;
       camera.updateProjectionMatrix();
+
+      // Aspect berubah -> jarak fokus yang pas untuk radius negara berubah juga.
+      if (focusCountry) {
+        focusDistance = focusDistanceForRadius(focusCountry.focusRadius, camera.aspect);
+      }
 
       if (loaded && owner !== 'intro') {
         const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
@@ -840,10 +948,32 @@ export default function AsiaScene({
       }
     };
 
+    let recenterTimer = 0;
+
+    const cancelAutoRecenter = () => {
+      window.clearTimeout(recenterTimer);
+    };
+
+    const scheduleAutoRecenter = () => {
+      window.clearTimeout(recenterTimer);
+      if (selectedRef.current !== null || focusActiveRef.current !== null) {
+        return;
+      }
+      recenterTimer = window.setTimeout(() => {
+        if (selectedRef.current === null && focusActiveRef.current === null) {
+          targetAzimuth = 0;
+          targetElevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
+          targetDistance = instanceHeroPose.distance;
+          userHasControlled = false;
+        }
+      }, 1400);
+    };
+
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0 && event.pointerType === 'mouse') {
         return;
       }
+      cancelAutoRecenter();
       triggerInterrupt();
       pointerDownX = event.clientX;
       pointerDownY = event.clientY;
@@ -903,6 +1033,10 @@ export default function AsiaScene({
     };
 
     const onPointerLeave = (event: PointerEvent) => {
+      if (isDragging) {
+        isDragging = false;
+        scheduleAutoRecenter();
+      }
       if (event.pointerType !== 'mouse' && event.type !== 'pointercancel') {
         return;
       }
@@ -927,6 +1061,7 @@ export default function AsiaScene({
 
       if (isDragging) {
         isDragging = false;
+        scheduleAutoRecenter();
         return;
       }
 
@@ -983,6 +1118,7 @@ export default function AsiaScene({
         MIN_CAMERA_DISTANCE,
         Math.min(MAX_CAMERA_DISTANCE, targetDistance + zoomFactor),
       );
+      scheduleAutoRecenter();
     };
 
     let ctrlWheelAttached = false;
@@ -1007,6 +1143,7 @@ export default function AsiaScene({
     };
 
     const onDblClick = (event: MouseEvent) => {
+      cancelAutoRecenter();
       const id = pickAt(event.clientX, event.clientY);
       if (id) {
         selectedRef.current = id;
@@ -1062,6 +1199,13 @@ export default function AsiaScene({
           tz: currentPose.tz,
         };
       },
+      getHeading(): number {
+        const deg = (currentPose.azimuth * 180) / Math.PI;
+        return (((deg + 180) % 360) + 360) % 360 - 180;
+      },
+      resetNorth(): void {
+        targetAzimuth = 0;
+      },
       intro() {
         const elapsed = introStartedAt > 0 ? performance.now() - introStartedAt : 0;
         const progress =
@@ -1079,6 +1223,13 @@ export default function AsiaScene({
       },
       hovered() {
         return hoveredId;
+      },
+      focused() {
+        return focusCountry?.id ?? null;
+      },
+      focus(id: string | null) {
+        // Dipakai probe DEV/Playwright; loop rAF yang mengeksekusi transisinya.
+        focusRequestRef.current = id;
       },
       panelAnchor() {
         if (!hoveredId) return null;
@@ -1424,6 +1575,7 @@ export default function AsiaScene({
     let lastFitScale = 1;
     let lastSpanX = 0;
     let lastSpanY = 0;
+    let lastHeadingDispatched = -999;
 
     const tick = (time: number) => {
       frameCount++;
@@ -1476,6 +1628,63 @@ export default function AsiaScene({
         }
       }
 
+      // --- Fokus kamera (prop `focusCountryId`) ----------------------------
+      // Deteksi perubahan request. Id divalidasi terhadap negara yang sudah
+      // dimuat; bila model belum siap, request dicoba lagi tiap frame.
+      const requestedFocus = focusRequestRef.current;
+      if (requestedFocus !== focusRequestedId) {
+        if (requestedFocus === null) {
+          focusRequestedId = null;
+          if (focusActive) {
+            focusActive = false;
+            focusActiveRef.current = null;
+            focusCountry = null;
+            // Kembalikan highlight ke pilihan prop (bukan highlight paksa fokus).
+            selectedRef.current = selectedIdRef.current;
+            targetDistance = Math.max(
+              MIN_CAMERA_DISTANCE,
+              Math.min(MAX_CAMERA_DISTANCE, lastDistance > 50 ? lastDistance : 220),
+            );
+          }
+        } else {
+          const entry = countriesById.get(requestedFocus);
+          if (entry) {
+            focusRequestedId = requestedFocus;
+            if (!focusActive) {
+              // Mulai dari pose saat ini supaya transisi tidak melompat.
+              focusPoint.set(currentPose.tx, currentPose.ty, currentPose.tz);
+            }
+            focusActive = true;
+            focusCountry = entry;
+            focusActiveRef.current = entry.id;
+            selectedRef.current = entry.id;
+            focusDistance = focusDistanceForRadius(entry.focusRadius, camera.aspect);
+            targetDistance = focusDistance;
+            // Fokus mengalahkan intro yang sedang berjalan (tanpa navigasi).
+            if (owner !== 'scroll') {
+              owner = 'scroll';
+              container.dataset.intro = reducedMotion ? 'reduced' : 'done';
+              introFinishedAt = time;
+            }
+          }
+          // id tidak dikenal -> abaikan dan coba lagi setelah model termuat.
+        }
+      }
+
+      // Blend target (overview <-> negara) dan peredaman titik fokus.
+      const blendFactor = reducedMotion ? 1 : 1 - Math.exp(-delta / FOCUS_BLEND_TAU);
+      focusBlend += ((focusActive ? 1 : 0) - focusBlend) * blendFactor;
+      if (!focusActive && focusBlend < 0.001) {
+        focusBlend = 0;
+      }
+      if (focusActive && focusCountry) {
+        const pointFactor = reducedMotion ? 1 : 1 - Math.exp(-delta / FOCUS_POINT_TAU);
+        const liftedY = focusCountry.focusCenter.y + focusCountry.lift;
+        focusPoint.x += (focusCountry.focusCenter.x - focusPoint.x) * pointFactor;
+        focusPoint.y += (liftedY - focusPoint.y) * pointFactor;
+        focusPoint.z += (focusCountry.focusCenter.z - focusPoint.z) * pointFactor;
+      }
+
       if (owner === 'scroll') {
         if (userHasControlled) {
           // Orbit kamera interaktif yang halus (lerp/dampening)
@@ -1484,15 +1693,22 @@ export default function AsiaScene({
           currentElevation += (targetElevation - currentElevation) * factor;
           currentDistance = Math.max(
             MIN_CAMERA_DISTANCE,
-            Math.min(MAX_CAMERA_DISTANCE, currentDistance + (targetDistance - currentDistance) * factor),
+            Math.min(
+              MAX_CAMERA_DISTANCE,
+              currentDistance + (targetDistance - currentDistance) * factor,
+            ),
           );
+
+          // Pivot = target efektif; saat fokus, drag mengorbit negara fokus.
+          overviewTarget.copy(fitTarget);
+          const target = resolveEffectiveTarget(currentAzimuth, currentDistance);
 
           currentPose.azimuth = currentAzimuth;
           currentPose.elevation = currentElevation;
           currentPose.distance = currentDistance;
-          currentPose.tx = fitTarget.x;
-          currentPose.ty = fitTarget.y;
-          currentPose.tz = fitTarget.z;
+          currentPose.tx = target.x;
+          currentPose.ty = target.y;
+          currentPose.tz = target.z;
 
           placeCameraFromPose(currentPose);
         } else {
@@ -1501,6 +1717,7 @@ export default function AsiaScene({
           if (
             idleSway !== false &&
             !reducedMotion &&
+            !focusActive &&
             hoveredId === null &&
             selectedRef.current === null
           ) {
@@ -1512,20 +1729,34 @@ export default function AsiaScene({
           }
           const elevation = ((ELEVATION_FROM_HORIZONTAL + scroll * 7) * Math.PI) / 180;
           fitCamera(azimuth, elevation, scroll, 1.0);
+          overviewTarget.copy(fitTarget);
+
+          // Jarak overview mengikuti fitCamera; fokus punya jarak sendiri yang
+          // diredam supaya zoom terasa terbatas, bukan lompatan.
+          const distanceGoal = focusActive ? focusDistance : lastDistance;
+          if (reducedMotion) {
+            currentDistance = distanceGoal;
+          } else if (focusActive || focusBlend > 0.001) {
+            const dFactor = 1 - Math.exp(-delta / FOCUS_DISTANCE_TAU);
+            currentDistance += (distanceGoal - currentDistance) * dFactor;
+          } else {
+            currentDistance = distanceGoal;
+          }
+          targetDistance = distanceGoal;
 
           currentAzimuth = azimuth;
           targetAzimuth = azimuth;
           currentElevation = elevation;
           targetElevation = elevation;
-          currentDistance = lastDistance;
-          targetDistance = lastDistance;
+
+          const target = resolveEffectiveTarget(azimuth, currentDistance);
 
           currentPose.azimuth = azimuth;
-          currentPose.distance = lastDistance;
+          currentPose.distance = currentDistance;
           currentPose.elevation = elevation;
-          currentPose.tx = fitTarget.x;
-          currentPose.ty = fitTarget.y;
-          currentPose.tz = fitTarget.z;
+          currentPose.tx = target.x;
+          currentPose.ty = target.y;
+          currentPose.tz = target.z;
         }
       }
 
@@ -1616,6 +1847,19 @@ export default function AsiaScene({
 
       renderer.render(scene, camera);
 
+      const headingDeg =
+        (((currentPose.azimuth * 180) / Math.PI + 180) % 360 + 360) % 360 - 180;
+      if (Math.abs(headingDeg - lastHeadingDispatched) > 0.2) {
+        lastHeadingDispatched = headingDeg;
+        callbacksRef.current.onHeadingChange?.(headingDeg);
+        container.dispatchEvent(
+          new CustomEvent('asiakin:heading-change', {
+            bubbles: true,
+            detail: { heading: headingDeg },
+          }),
+        );
+      }
+
       if (!debug.ready) {
         debug.ready = true;
         window.dispatchEvent(new CustomEvent('asiakin:scene-ready'));
@@ -1673,9 +1917,16 @@ export default function AsiaScene({
 
         const geometry = object.geometry;
         geometry.computeBoundingBox();
+        geometry.computeBoundingSphere();
         const bounds = geometry.boundingBox;
         if (!bounds) {
           return;
+        }
+        const sphere = geometry.boundingSphere;
+        const focusCenter = sphere ? sphere.center.clone() : new Vector3();
+        const focusRadius = sphere ? Math.max(1, sphere.radius) : 1;
+        if (!sphere) {
+          bounds.getCenter(focusCenter);
         }
 
         if (!entry) {
@@ -1779,6 +2030,8 @@ export default function AsiaScene({
           hoverAmt: 0,
           hl: 0,
           band: 0,
+          focusCenter,
+          focusRadius,
         };
         countries.push(country);
         pickTargets.push(object);
@@ -1935,6 +2188,8 @@ export default function AsiaScene({
       // Ukur HERO_POSE kanonik pertama kali
       const elevation = (ELEVATION_FROM_HORIZONTAL * Math.PI) / 180;
       fitCamera(0, elevation, 0, 1.0);
+      overviewTarget.copy(fitTarget);
+      focusPoint.copy(fitTarget);
       targetDistance = Math.max(MIN_CAMERA_DISTANCE, Math.min(MAX_CAMERA_DISTANCE, lastDistance));
       currentDistance = targetDistance;
       instanceHeroPose.azimuth = 0;
@@ -1974,6 +2229,8 @@ export default function AsiaScene({
 
     return () => {
       disposed = true;
+      cancelAutoRecenter();
+      focusActiveRef.current = null;
       detachCtrlWheel();
       motionQuery.removeEventListener('change', onMotionChange);
       resizeObserver.disconnect();
@@ -2091,21 +2348,21 @@ export default function AsiaScene({
           <div className="scene-legend" aria-label="Legenda Wilayah">
             <span className="scene-legend__title">WILAYAH</span>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#a63629' }} /> West Asia
+              <span className="scene-legend__color" style={{ background: '#465a73' }} /> West Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#948057' }} /> Central
+              <span className="scene-legend__color" style={{ background: '#665c3b' }} /> Central
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#cc6e25' }} /> South Asia
+              <span className="scene-legend__color" style={{ background: '#94582b' }} /> South Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#385a48' }} /> Southeast
+              <span className="scene-legend__color" style={{ background: '#2f6854' }} /> Southeast
               Asia
             </div>
             <div className="scene-legend__item">
-              <span className="scene-legend__color" style={{ background: '#b83324' }} /> East Asia
+              <span className="scene-legend__color" style={{ background: '#8c3832' }} /> East Asia
             </div>
           </div>
 

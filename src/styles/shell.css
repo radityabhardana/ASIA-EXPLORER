@@ -173,6 +173,11 @@
   text-decoration: none;
   position: relative;
   padding-block: 4px;
+  padding-inline: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  line-height: inherit;
   transition: color var(--duration-micro) var(--ease-standard);
 }
 
@@ -233,6 +238,53 @@
 .navbar__lang-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.navbar__audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  color: var(--ink-muted);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--duration-micro) var(--ease-standard),
+    color var(--duration-micro) var(--ease-standard);
+  padding: 0;
+}
+
+.navbar__audio-btn:hover {
+  background-color: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink);
+}
+
+.navbar__audio-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.navbar__audio-btn--active {
+  color: var(--accent);
+}
+
+.navbar__audio-btn--muted {
+  color: var(--ink-muted);
+  opacity: 0.7;
+}
+
+.navbar__audio-btn--mobile {
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+  gap: 8px;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs);
 }
 
 .navbar__lang-opt {
@@ -319,6 +371,96 @@
   width: auto;
 }
 
+/* --- Tombol Atlas 48 Bangsa (Editorial Pill) ----------------------------- */
+.navbar__atlas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-text);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background-color: #fbf8f2;
+  border: 1px solid #dcd4c6;
+  border-radius: var(--radius-pill, 9999px);
+  padding: 5px 12px 5px 10px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 5px -1px rgba(26, 31, 36, 0.08);
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar__atlas-btn:hover {
+  background-color: #ffffff;
+  border-color: #1a1f24;
+  color: #1a1f24;
+  transform: translateY(-1.5px);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 5px 12px -2px rgba(26, 31, 36, 0.16);
+}
+
+.navbar__atlas-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.navbar__atlas-btn:active {
+  transform: translateY(1.5px);
+  background-color: #ede3d4;
+  box-shadow: inset 0 1px 3px rgba(26, 31, 36, 0.14);
+}
+
+.navbar__atlas-icon {
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: transform var(--duration-micro) var(--ease-standard);
+}
+
+.navbar__atlas-btn:hover .navbar__atlas-icon {
+  transform: rotate(20deg);
+}
+
+.navbar__atlas-label {
+  white-space: nowrap;
+}
+
+.navbar__atlas-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 5px;
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border-radius: var(--radius-pill, 9999px);
+}
+
+.navbar__mobile-link--btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.navbar__mobile-atlas-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
 .navbar__mobile-toggle {
   display: none;
   flex-direction: column;
@@ -355,8 +497,14 @@
   .navbar__link--subtle,
   .navbar__link--register,
   .navbar__btn-action,
-  .navbar__actions > :not(.navbar__mobile-toggle) {
+  .navbar__actions > :not(.navbar__mobile-toggle):not(.navbar__atlas-btn) {
     display: none;
+  }
+
+  .navbar__atlas-btn {
+    padding: 4px 8px 4px 7px;
+    font-size: 0.75rem;
+    gap: 5px;
   }
 
   .navbar__mobile-toggle {

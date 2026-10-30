@@ -1316,5 +1316,2667 @@
       "Status aksara tradisional 2025-2026 belum dikonfirmasi",
       "people_note bersumber panduan budaya komersial"
     ]
+  },
+  {
+    "id": "bn",
+    "iso3": "BRN",
+    "nameId": "Brunei",
+    "nameLocal": "بروني دارالسلام",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salam",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Melayu (Melayu Brunei)",
+      "nativeName": "Bahasa Melayu / بهاس ملايو",
+      "script": "Rumi (huruf Latin) dan Jawi (huruf Arab-Melayu)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Bahasa Melayu menjadi bahasa resmi, sedangkan Melayu Brunei adalah varian percakapan sehari-hari. Rumi dipakai luas, sementara Jawi tetap resmi untuk nama lembaga dan papan tanda."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "تريما کاسيه",
+        "roman": "Terima kasih"
+      },
+      {
+        "id": "Permisi",
+        "native": "معاف",
+        "roman": "Maaf"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "سلامت تيڠݢل",
+        "roman": "Selamat tinggal"
+      }
+    ],
+    "cultureNote": "Brunei mempertahankan aksara Jawi di samping huruf Rumi. Nama kementerian dan papan tanda jalan sering ditulis dalam dua aksara, sebab Jawi dianggap menjaga identitas Melayu-Islam negara.",
+    "peopleNote": "Saat menyapa, orang Brunei berjabat tangan ringan lalu menyentuh dada dengan tangan kanan; menunjuk memakai ibu jari, bukan telunjuk. Tamu melepas sepatu di rumah dan menyapa yang tertua lebih dahulu.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Di Kampong Ayer, rumah kayu berdiri di atas air Sungai Brunei. Seorang tamu naik perahu, melepas sepatu di tangga, lalu menyapa tuan rumah yang paling tua lebih dahulu. Salamnya singkat: \"Salam\" atau \"Assalamualaikum\". Setelah berjabat tangan ringan, telapak tangan kanannya disentuhkan ke dada sebagai tanda hormat. Bahasa resmi Brunei adalah bahasa Melayu, tetapi dalam percakapan harian warga memakai varian Melayu Brunei. Hubungan kedua ragam itu disebut diglosia: Melayu baku dipakai di sekolah dan upacara resmi, sedangkan Melayu Brunei menjadi lingua franca di pasar dan di rumah. Negara juga mempertahankan aksara Jawi di samping huruf Rumi. Nama kementerian dan papan tanda jalan sering ditulis dua kali, sekali dalam Rumi, sekali dalam Jawi. Saat menunjukkan arah, orang Brunei memakai ibu jari dengan jari lain terkepal, bukan telunjuk. Ketika dijamu, tamu dianjurkan mencicipi hidangan walau hanya sedikit agar tuan rumah tidak merasa ditolak.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Brunei_Malay",
+          "what": "Melayu Brunei dominan dalam percakapan harian dan hidup berdampingan secara diglosia dengan Melayu baku"
+        },
+        {
+          "url": "https://commisceo-global.com/country-guides/brunei-guide/",
+          "what": "Sapa yang tertua dulu, jabat tangan ringan lalu sentuh dada, beri-terima dengan tangan kanan, lepas sepatu"
+        },
+        {
+          "url": "https://rumikejawi.com/ucapan-jawi/",
+          "what": "Ejaan Jawi untuk terima kasih (تريما کاسيه) dan salam"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Brunei_Malay",
+        "what": "Melayu Brunei dominan dalam percakapan harian dan hidup berdampingan secara diglosia dengan Melayu baku"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Brunei",
+        "what": "Bahasa Melayu resmi, Jawi dan Rumi, adat istiadat Melayu-Islam"
+      },
+      {
+        "url": "https://commisceo-global.com/country-guides/brunei-guide/",
+        "what": "Etiket sapaan, tangan kanan, melepas sepatu, menghormati yang lebih tua"
+      },
+      {
+        "url": "https://rumikejawi.com/ucapan-jawi/",
+        "what": "Ejaan Jawi untuk terima kasih (تريما کاسيه) dan salam"
+      }
+    ],
+    "needsVerification": [
+      "Ejaan Jawi untuk 'Selamat tinggal' (سلامت تيڠݢل) perlu dicek penutur asli",
+      "Register sapaan 'Salam' versus 'Assalamualaikum' belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "kh",
+    "iso3": "KHM",
+    "nameId": "Kamboja",
+    "nameLocal": "កម្ពុជា",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "សួស្តី",
+      "roman": "Suostei",
+      "meaningId": "Halo",
+      "register": "netral, dipakai sehari-hari"
+    },
+    "language": {
+      "nameId": "Bahasa Khmer",
+      "nativeName": "ភាសាខ្មែរ",
+      "script": "Aksara Khmer (abugida turunan Brahmi)",
+      "family": "Austroasiatik (Mon-Khmer)",
+      "note": "Khmer adalah bahasa resmi Kamboja dan termasuk bahasa tak bernada. Ragam sopan memakai banyak kosakata serapan Pali dan Sanskrit."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "អរគុណ",
+        "roman": "Arkun"
+      },
+      {
+        "id": "Permisi",
+        "native": "សុំទោស",
+        "roman": "Som toh"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "លាហើយ",
+        "roman": "Lea haey"
+      }
+    ],
+    "cultureNote": "Orang Kamboja menyapa dengan sompeah, kedua telapak tangan dirapatkan di depan dada. Tinggi tangan menyesuaikan kedudukan orang yang disapa, sebab gestur ini menyatakan tingkat hormat.",
+    "peopleNote": "Yang muda menyapa lebih dahulu, dan barang diberikan atau diterima dengan tangan kanan. Menyentuh kepala orang lain dianggap kurang sopan, dan perempuan sebaiknya tidak duduk terlalu dekat dengan biksu.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di depan gerbang Angkor Wat, seorang pemandu menyambut tamu dengan sompeah: kedua telapak tangan dirapatkan di depan dada, punggung sedikit dibungkukkan. Tinggi tangan mengikuti kedudukan orang yang disapa. Bahasa resmi Kamboja adalah bahasa Khmer, anggota rumpun Austroasiatik yang tidak bernada, berbeda dari bahasa tetangganya yang bertona. Khmer ditulis memakai aksara Khmer, sebuah abugida turunan aksara Brahmi dari India selatan yang sudah dipakai sejak abad ketujuh. Pada aksara itu, vokal ditulis sebagai tanda di sekeliling konsonan, dan gugus konsonan memakai bentuk subskrip. Sapaan sehari-hari berbunyi suostei, sedangkan chumreap suor dipakai kepada orang tua atau pejabat. Kosakata sopan Khmer banyak diserap dari Pali dan Sanskrit karena pengaruh agama Buddha dan Hindu. Sopan santun kepada biksu sangat dijunjung: tangan dinaikkan sampai alis, dan perempuan sebaiknya tidak menyentuh atau duduk terlalu dekat dengan biksu.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Khmer_language",
+          "what": "Rumpun Austroasiatik, bahasa tak bernada, aksara Khmer abugida sejak abad ke-7, serapan Pali-Sanskrit"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Sampeah",
+          "what": "Sompeah sebagai salam dengan telapak tangan rapat, tinggi tangan menandai tingkat hormat"
+        },
+        {
+          "url": "https://preply.com/en/blog/khmer-greetings-phrases-guide/",
+          "what": "Suostei salam sehari-hari, chumreap suor ragam sopan, sompeah kepada biksu setinggi alis"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Khmer_language",
+        "what": "Rumpun Austroasiatik, bahasa tak bernada, aksara Khmer abugida sejak abad ke-7, serapan Pali-Sanskrit"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sampeah",
+        "what": "Sompeah sebagai salam dengan telapak tangan rapat"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Cambodia",
+        "what": "Adat sopan santun dan penghormatan kepada biksu"
+      },
+      {
+        "url": "https://bhasaly.com/khmer-phrases",
+        "what": "Frasa suostei, arkun, som toh, lea haey beserta artinya"
+      }
+    ],
+    "needsVerification": [
+      "Pemetaan 'Permisi' ke som toh (yang berarti maaf/permisi) perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "la",
+    "iso3": "LAO",
+    "nameId": "Laos",
+    "nameLocal": "ລາວ",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "ສະບາຍດີ",
+      "roman": "Sabaidee",
+      "meaningId": "Halo",
+      "register": "netral, dipakai kapan saja"
+    },
+    "language": {
+      "nameId": "Bahasa Lao",
+      "nativeName": "ພາສາລາວ",
+      "script": "Aksara Lao (abugida turunan Brahmi)",
+      "family": "Kra-Dai (Tai-Kadai)",
+      "note": "Bahasa Lao adalah bahasa resmi Laos dan termasuk bahasa bernada. Bahasa ini berkerabat dengan bahasa Thai dan banyak menyerap kata dari Pali."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ຂອບໃຈ",
+        "roman": "Khop chai"
+      },
+      {
+        "id": "Permisi",
+        "native": "ຂໍໂທດ",
+        "roman": "Kho thot"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ລາກ່ອນ",
+        "roman": "La kon"
+      }
+    ],
+    "cultureNote": "Orang Laos menyapa dengan nop, telapak tangan rapat setinggi dada atau dagu. Nilai 'sabai', yaitu rasa nyaman dan tenang, membuat sapaan sabaidee sekaligus harapan agar orang lain sejahtera.",
+    "peopleNote": "Yang muda atau berkedudukan lebih rendah menyapa lebih dahulu. Alas kaki dilepas sebelum masuk rumah atau wihara, dan seseorang tidak melangkahi orang yang sedang duduk atau berbaring.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Setiap pagi di Luang Prabang, para biksu berjalan berbaris menerima persembahan nasi ketan dari warga. Bahasa resmi Laos adalah bahasa Lao, anggota rumpun Kra-Dai yang bernada dan berkerabat dengan bahasa Thai. Lao ditulis dengan aksara Lao, abugida turunan Brahmi yang berbentuk bulat dan mengalir. Sapaan paling umum berbunyi sabaidee. Secara harfiah artinya kurang lebih 'sejahtera baik', karena sabai berarti nyaman atau sehat dan dee berarti baik. Ucapan itu bisa dipakai kapan saja, pagi maupun petang, kepada siapa pun. Orang Laos menyapa dengan gerakan nop: kedua telapak tangan dirapatkan setinggi dada atau dagu, disertai anggukan. Perbedaan usia menentukan tinggi tangan. Saat masuk rumah atau wihara, alas kaki dilepas, dan seseorang tidak melangkahi orang yang duduk. Hidangan biasanya disantap bersama di meja rendah dengan nasi ketan sebagai makanan pokok yang diambil memakai tangan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Lao_language",
+          "what": "Rumpun Kra-Dai, bahasa bernada, aksara Lao abugida, serapan Pali"
+        },
+        {
+          "url": "https://laolessons.com/greetings-in-lao/",
+          "what": "Sabaidee berarti 'sejahtera baik' dan dipakai sebagai sapaan sepanjang hari"
+        },
+        {
+          "url": "https://www.laos-guide-999.com/learn-lao.html",
+          "what": "Frasa khop chai, kho thot, la kon dan nop sebagai salam"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Lao_language",
+        "what": "Rumpun Kra-Dai, bahasa bernada, aksara Lao abugida"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Laos",
+        "what": "Nop sebagai salam, melepas sepatu di rumah, penghormatan kepada yang lebih tua"
+      },
+      {
+        "url": "https://laolessons.com/greetings-in-lao/",
+        "what": "Makna sabaidee dan frasa sapaan dasar"
+      },
+      {
+        "url": "https://www.laos-guide-999.com/learn-lao.html",
+        "what": "Daftar frasa terima kasih, permisi, dan selamat tinggal"
+      }
+    ],
+    "needsVerification": [
+      "Detail tinggi tangan pada nop menurut usia belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "mm",
+    "iso3": "MMR",
+    "nameId": "Myanmar",
+    "nameLocal": "မြန်မာ",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "မင်္ဂလာပါ",
+      "roman": "Mingalaba",
+      "meaningId": "Halo",
+      "register": "netral, disertai sedikit bungkukan"
+    },
+    "language": {
+      "nameId": "Bahasa Burma (Myanmar)",
+      "nativeName": "မြန်မာဘာသာ",
+      "script": "Aksara Burma (Mon-Burma)",
+      "family": "Sino-Tibet (Tibeto-Burma)",
+      "note": "Burma adalah bahasa resmi Myanmar dan termasuk bahasa bernada. Bahasa ini membedakan ragam sastra untuk tulisan dan ragam lisan untuk percakapan."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ကျေးဇူးတင်ပါတယ်",
+        "roman": "Kyay zu tin ba de"
+      },
+      {
+        "id": "Permisi",
+        "native": "တောင်းပန်ပါတယ်",
+        "roman": "Taung pan ba de"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "သွားတော့မယ်",
+        "roman": "Thwa daw me"
+      }
+    ],
+    "cultureNote": "Orang Myanmar umumnya tidak memakai nama keluarga. Sebagai gantinya, gelar seperti U untuk pria dan Daw untuk perempuan diletakkan di depan nama, sebab gelar menandai usia dan penghormatan.",
+    "peopleNote": "Sapaan mingalaba disertai sedikit bungkukan, dan barang diberi atau diterima dengan tangan kanan. Menyentuh kepala orang lain dianggap tidak sopan, dan menyapa biksu memakai ragam bahasa yang lebih halus.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di pelataran Shwedagon, warga menyapa dengan mingalaba sambil sedikit membungkuk. Kata itu berasal dari Pali mangala, yang berarti berkah atau hal yang membawa keberuntungan. Bahasa resmi Myanmar adalah bahasa Burma, anggota rumpun Sino-Tibet cabang Tibeto-Burma. Bahasa ini bernada dan membedakan dua ragam: ragam sastra untuk tulisan resmi dan ragam lisan untuk percakapan. Aksara Burma berbentuk bulat dan melingkar, konon karena dahulu ditulis pada daun palem agar tidak sobek. Orang Myanmar umumnya tidak memakai nama keluarga. Sebagai gantinya, gelar kehormatan seperti U untuk pria dewasa dan Daw untuk perempuan diletakkan di depan nama. Etiket pergaulan menekankan penghormatan kepada yang lebih tua dan biksu. Barang diberikan atau diterima dengan tangan kanan, sementara menyentuh kepala orang lain dianggap tidak sopan. Salam kepada biksu memakai bahasa yang lebih halus.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Burmese_language",
+          "what": "Rumpun Sino-Tibet cabang Tibeto-Burma, bahasa bernada, diglosia ragam sastra dan lisan, aksara Burma"
+        },
+        {
+          "url": "https://worldly.academy/words/burmese",
+          "what": "Mingalaba sebagai sapaan; kyay zu tin ba de terima kasih; thwa daw me selamat tinggal"
+        },
+        {
+          "url": "https://phrasary.com/burmese",
+          "what": "Aksara Burma bulat dan frasa sapaan dasar"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Burmese_language",
+        "what": "Rumpun Sino-Tibet, bahasa bernada, diglosia, aksara Burma"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Myanmar",
+        "what": "Gelar U dan Daw, penghormatan kepada yang lebih tua dan biksu"
+      },
+      {
+        "url": "https://worldly.academy/words/burmese",
+        "what": "Frasa mingalaba, terima kasih, dan selamat tinggal"
+      },
+      {
+        "url": "https://phrasary.com/burmese",
+        "what": "Daftar frasa sapaan dan catatan aksara Burma"
+      }
+    ],
+    "needsVerification": [
+      "Kaitan bentuk bulat aksara Burma dengan daun palem bersumber cerita rakyat, bukan bukti linguistik"
+    ]
+  },
+  {
+    "id": "tl",
+    "iso3": "TLS",
+    "nameId": "Timor-Leste",
+    "nameLocal": "Timor-Leste",
+    "region": "Asia Tenggara",
+    "greeting": {
+      "native": "Bondia",
+      "roman": "Bondia",
+      "meaningId": "Halo / selamat pagi",
+      "register": "netral, dipakai dari pagi sampai tengah hari"
+    },
+    "language": {
+      "nameId": "Bahasa Tetun",
+      "nativeName": "Tetun",
+      "script": "Alfabet Latin (ejaan resmi INL)",
+      "family": "Austronesia (Melayu-Polinesia)",
+      "note": "Tetum menjadi lingua franca dan bahasa resmi bersama bahasa Portugis. Banyak kata diserap dari Portugis, termasuk ungkapan terima kasih."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Obrigadu",
+        "roman": "Obrigadu"
+      },
+      {
+        "id": "Permisi",
+        "native": "Deskulpa",
+        "roman": "Deskulpa"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Ate logu",
+        "roman": "Ate logu"
+      }
+    ],
+    "cultureNote": "Gereja Katolik memakai Tetum sebagai bahasa liturgi selama pendudukan Indonesia, sehingga bahasa itu menjadi penanda identitas nasional. Kini Tetum dan Portugis sama-sama berstatus bahasa resmi.",
+    "peopleNote": "Salam menyesuaikan waktu: bondia pada pagi, botarde pada siang, dan bonoiti pada malam. Jabat tangan ringan lazim, dan orang muda menyapa yang lebih tua lebih dahulu.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Di pasar Dili, seorang penjual menyapa pagi dengan bondia. Kata itu diserap dari bahasa Portugis bom dia, 'selamat pagi'. Bahasa resmi Timor-Leste adalah bahasa Tetum dan bahasa Portugis. Tetum berperan sebagai lingua franca, sementara Portugis menjadi bahasa hukum dan pendidikan. Tetum ditulis memakai alfabet Latin dengan ejaan resmi yang ditetapkan Lembaga Nasional Linguistik pada 2004. Selama berabad-abad pengaruh Portugis meninggalkan banyak kata serapan, termasuk ungkapan terima kasih. Karena itu ucapan terima kasih mengikuti pola Portugis dan menyesuaikan diri dengan penuturnya: lelaki mengucapkan obrigadu, perempuan mengucapkan obrigada. Permintaan maaf sehari-hari berbunyi deskulpa. Sapaan berubah mengikuti waktu: bondia pada pagi, botarde pada siang, dan bonoiti pada malam. Orang muda menyapa yang lebih tua lebih dahulu, dan jabat tangan dilakukan dengan sentuhan ringan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tetum_language",
+          "what": "Tetum Austronesia, bahasa resmi Timor-Leste, alfabet Latin, serapan Portugis termasuk obrigadu/obrigada"
+        },
+        {
+          "url": "https://visiteasttimor.com/plan/speak-tetum/",
+          "what": "Bondia, obrigadu/obrigada menurut jenis kelamin, deskulpa, atelogu, ejaan resmi oleh INL"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Timor-Leste",
+          "what": "Tetum dan Portugis sebagai bahasa resmi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Tetum_language",
+        "what": "Tetum Austronesia, ejaan Latin resmi, serapan Portugis dan Melayu"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Timor-Leste",
+        "what": "Tetum dan Portugis sebagai bahasa resmi negara"
+      },
+      {
+        "url": "https://visiteasttimor.com/plan/speak-tetum/",
+        "what": "Frasa sapaan harian dan aturan obrigadu/obrigada"
+      }
+    ],
+    "needsVerification": [
+      "Pemakaian 'obrigadu/obrigada' tanpa penyesuaian gender pada praktiknya masih longgar dan perlu cek penutur asli",
+      "Klaim peran Portugis dalam ranah hukum dan pendidikan belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "kp",
+    "iso3": "PRK",
+    "nameId": "Korea Utara",
+    "nameLocal": "조선",
+    "region": "Asia Timur",
+    "greeting": {
+      "native": "안녕하십니까",
+      "roman": "Annyeonghasimnikka",
+      "meaningId": "Halo",
+      "register": "sopan formal, dipakai kepada orang lebih tua"
+    },
+    "language": {
+      "nameId": "Bahasa Korea",
+      "nativeName": "조선말",
+      "script": "Hangul (di Korea Utara disebut Chosŏn'gŭl / 조선글)",
+      "family": "Koreanik",
+      "note": "Bahasa resmi Korea Utara adalah bahasa Korea. Ragam bakunya, Munhwaŏ, berbasis dialek Pyongyang dan cenderung menghindari kata serapan."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "고맙습니다",
+        "roman": "Gomapseumnida"
+      },
+      {
+        "id": "Permisi",
+        "native": "실례합니다",
+        "roman": "Sillyehamnida"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "안녕히 가십시오",
+        "roman": "Annyeonghi gasipsio"
+      }
+    ],
+    "cultureNote": "Hangul diciptakan pada 1443 pada masa Dinasti Joseon agar rakyat biasa bisa membaca dan menulis. Di Korea Utara aksara ini disebut Chosŏn'gŭl dan menjadi lambang kebanggaan bangsa.",
+    "peopleNote": "Orang muda menyapa yang lebih tua lebih dahulu dengan membungkuk. Barang diberi atau diterima dengan dua tangan, dan ragam bahasa sopan dipakai kepada orang yang lebih tua atau berkedudukan tinggi.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Di sebuah sekolah di Pyongyang, murid menyapa guru dengan ungkapan sopan annyeonghasimnikka sambil membungkukkan badan. Bahasa resmi Korea Utara adalah bahasa Korea, yang oleh penuturnya disebut chosonmal. Ragam bakunya dinamakan Munhwao, 'bahasa budaya', dan berbasis dialek Pyongyang. Bahasa Korea umumnya dimasukkan ke rumpun Koreanik, meski hubungannya dengan rumpun lain masih diperdebatkan. Bahasanya ditulis memakai Hangul, aksara asli yang diciptakan pada 1443 pada masa Dinasti Joseon agar rakyat jelata bisa membaca dan menulis. Di Korea Utara aksara itu disebut Chosŏn'gŭl. Hangul bukan huruf biasa, melainkan aksara fitur: bentuk konsonannya meniru posisi mulut dan lidah saat mengucapkan bunyi. Untuk berterima kasih, orang Korea Utara lebih sering memakai gomapseumnida yang berakar kata Korea asli, sedangkan gamsahamnida yang berakar Sino-Korea juga dipahami. Salam perpisahan kepada orang yang pergi berbunyi annyeonghi gasipsio.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/North_Korean_standard_language",
+          "what": "Munhwao berbasis dialek Pyongyang sebagai ragam baku Korea Utara, ditulis Chosŏn'gŭl"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hangul",
+          "what": "Hangul diciptakan 1443, aksara fitur dengan bentuk konsonan menyerupai organ bicara"
+        },
+        {
+          "url": "https://shunculture.com/category/democratic-peoples-republic-of-korea/phrases",
+          "what": "Annyeonghasimnikka sapaan formal dan gomapseumnida terima kasih berakar kata Korea asli"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/North_Korean_standard_language",
+        "what": "Ragam baku Munhwao dan dasar dialek Pyongyang"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hangul",
+        "what": "Asal usul dan ciri aksara Hangul"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_North_Korea",
+        "what": "Adat menghormati yang lebih tua dan pemakaian bahasa sopan"
+      },
+      {
+        "url": "https://shunculture.com/category/democratic-peoples-republic-of-korea/phrases",
+        "what": "Frasa sapaan, terima kasih, dan salam perpisahan"
+      }
+    ],
+    "needsVerification": [
+      "Romanisasi yang dipakai adalah sistem Korea Selatan; Korea Utara memiliki sistem sendiri",
+      "Ejaan Chosŏn'gŭl dengan diakritik perlu dicek terhadap romanisasi resmi Korea Utara"
+    ]
+  },
+  {
+    "id": "af",
+    "iso3": "AFG",
+    "nameId": "Afganistan",
+    "nameLocal": "افغانستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Dari",
+      "nativeName": "دری",
+      "script": "Aksara Arab-Persia (varian Afganistan)",
+      "family": "Indo-Eropa (cabang Iran)",
+      "note": "Dari dan Pashto sama-sama resmi; Dari berperan sebagai lingua franca dan bahasa utama kehidupan kota."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "تشکر",
+        "roman": "Tashakor"
+      },
+      {
+        "id": "Permisi",
+        "native": "ببخشین",
+        "roman": "Bebakhshin"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "خدا حافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "cultureNote": "Hospitalitas dijunjung lewat tradisi nanawati, hak memberi suaka kepada pelarian: menolak tamu atau pengungsi yang meminta perlindungan dianggap mencoreng kehormatan keluarga dan komunitas.",
+    "peopleNote": "Saat bertemu, tangan kanan dijabat lalu diletakkan di dada sebagai tanda tulus; pria dan wanita di ruang publik umumnya tidak berjabat tangan, dan orang tertua disapa lebih dulu.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Teh dipersembahkan kepada tamu sebelum urusan lain dibicarakan. Di rumah-rumah Afganistan, tuan rumah menuangkan teh dan menyodorkannya lebih dulu sebagai tanda penghormatan, walau sang tamu datang tanpa janji. Dua bahasa resmi negara ini adalah Dari dan Pashto, keduanya dari rumpun Indo-Eropa dan ditulis memakai aksara Arab yang disesuaikan. Dari berperan sebagai lingua franca antaretnis dan bahasa utama kehidupan kota, sedangkan Pashto dominan di wilayah selatan dan timur. Sapaan paling umum berbunyi Salam, kependekan dari assalamu alaikum, dan dijawab dengan wa alaikum assalam. Etiket pertemuan menuntut setiap orang berdiri ketika seorang yang lebih tua memasuki ruangan. Jabat tangan memakai tangan kanan, sering disusul menaruh telapak di dada. Setelah itu, tamu dan tuan rumah menanyakan keadaan masing-masing sebelum sampai pada pembicaraan pokok, karena tergesa-gesa dianggap kurang sopan.",
+      "sources": [
+        {
+          "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+          "what": "Sapaan salaam alaykum, jabat tangan tangan kanan lalu telapak di dada, pria-wanita tidak berjabat tangan, tradisi nanawati"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+          "what": "Dari dan Pashto sebagai bahasa resmi; Dari lingua franca antaretnis"
+        },
+        {
+          "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+          "what": "tashakor = terima kasih; khodaa haafez = selamat tinggal"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://assets.publishing.service.gov.uk/media/5a79004f40f0b676f4a7d153/afghanistan_cultural_appreciation_booklet.pdf",
+        "what": "Sapaan salaam alaykum, jabat tangan tangan kanan lalu telapak di dada, pria-wanita tidak berjabat tangan, tradisi nanawati"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Languages_of_Afghanistan",
+        "what": "Dari dan Pashto sebagai bahasa resmi; Dari lingua franca antaretnis"
+      },
+      {
+        "url": "https://celcar.indiana.edu/materials/language-portal/dari.html",
+        "what": "tashakor = terima kasih; khodaa haafez = selamat tinggal"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dari",
+        "what": "Dari sebagai varian bahasa Persia yang dituturkan di Afganistan"
+      }
+    ],
+    "needsVerification": [
+      "Ejaan Dari untuk 'permisi' berbeda antarsumber (ببخشین vs ببخشید)"
+    ]
+  },
+  {
+    "id": "bd",
+    "iso3": "BGD",
+    "nameId": "Bangladesh",
+    "nameLocal": "বাংলাদেশ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "আসসালামু আলাইকুম",
+      "roman": "Assalamu alaikum",
+      "meaningId": "Salam (semoga keselamatan atasmu)",
+      "register": "netral, umum di Bangladesh"
+    },
+    "language": {
+      "nameId": "Bahasa Bengali",
+      "nativeName": "বাংলা",
+      "script": "Aksara Bengali (Bangla)",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Bengali adalah bahasa resmi Bangladesh; ragam lisan sehari-hari berbeda dari ragam tulisnya yang formal."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ধন্যবাদ",
+        "roman": "Dhonnobad"
+      },
+      {
+        "id": "Permisi",
+        "native": "মাফ করবেন",
+        "roman": "Māf korben"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "বিদায়",
+        "roman": "Biday"
+      }
+    ],
+    "cultureNote": "Sapaan assalamu alaikum menjadi salam harian mayoritas Muslim, sedangkan nomoshkar dipakai umat Hindu dengan telapak tangan rapat; pilihan kata menandai identitas agama, bukan waktu.",
+    "peopleNote": "Orang lebih tua disapa lebih dulu memakai bentuk hormat apni, bukan tumi; menyentuh kepala orang lain atau menunjuk dengan satu telunjuk dianggap tidak sopan.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Piring bersama diletakkan di tengah tikar sebelum nasi disendok. Di banyak rumah Bangladesh, makan dilakukan dengan tangan kanan langsung, tanpa sendok, dan setiap orang mengambil lauk dari mangkuk bersama hanya dari sisi terdekat. Bengali menjadi satu-satunya bahasa resmi negara ini dan tergolong rumpun Indo-Arya dalam keluarga Indo-Eropa, ditulis memakai aksara Bengali yang khas. Sapaan harian mayoritas penduduk berbunyi Assalamu alaikum, dijawab dengan wa alaikum assalam. Ragam tuturnya bertingkat: apni untuk lawan bicara yang dihormati, tumi untuk teman sebaya, dan tui hanya untuk orang yang sangat akrab. Pilihan kata ini menandai jarak sosial secara halus. Umat Hindu setempat menyapa dengan nomoshkar sambil merapatkan kedua telapak di depan dada. Kata biday terasa berat, seperti perpisahan final, sehingga perpisahan sehari-hari lebih sering diucapkan sebagai abar dekha hobe, yang berarti sampai berjumpa lagi.",
+      "sources": [
+        {
+          "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+          "what": "Sapaan Bangladesh: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+          "what": "dhonnobad = terima kasih; maph korben = maaf; ragam tumi dan apni"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bengali_language",
+          "what": "Bengali sebagai bahasa resmi Bangladesh, rumpun Indo-Arya"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikiversity.org/wiki/Bengali_Language/Greetings_and_basic_polite_expressions",
+        "what": "Sapaan Bangladesh: assalamu alaikum, nomoshkar, abar dekha hobe, biday"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/Appendix:Basic_Bengali_phrases",
+        "what": "dhonnobad = terima kasih; maph korben = maaf; ragam tumi dan apni"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_language",
+        "what": "Bengali sebagai bahasa resmi Bangladesh, rumpun Indo-Arya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bengali_alphabet",
+        "what": "Aksara Bengali dan cara penulisannya"
+      }
+    ],
+    "needsVerification": [
+      "Pilihan ragam tui/tumi/apni bersumber kamus komunitas, belum diuji penutur asli"
+    ]
+  },
+  {
+    "id": "bt",
+    "iso3": "BTN",
+    "nameId": "Bhutan",
+    "nameLocal": "འབྲུག་ཡུལ།",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "སྐུ་གཟུགས་བཟང་པོ་ལགས།",
+      "roman": "Kuzu zangpo la",
+      "meaningId": "Halo (sopan)",
+      "register": "sopan; partikel la menandai hormat"
+    },
+    "language": {
+      "nameId": "Bahasa Dzongkha",
+      "nativeName": "རྫོང་ཁ་",
+      "script": "Aksara Tibet (varian Dzongkha)",
+      "family": "Sino-Tibet (cabang Tibeto-Burman)",
+      "note": "Dzongkha adalah bahasa nasional Bhutan, ditulis dengan aksara Tibet; pengembangannya diawasi Dzongkha Development Commission."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "བཀའ་དྲིན་ཆེ།",
+        "roman": "Kadrin chhe"
+      },
+      {
+        "id": "Permisi",
+        "native": "ཙིགཔ་མ་ཟ།",
+        "roman": "Tsip maza"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ལོག་ཤུལ་ལས་འབྱལ་གེ།",
+        "roman": "Lok shu ley jel gey"
+      }
+    ],
+    "cultureNote": "Tashi delek, harapan baik khas Bhutan, sering disertai kain sutra putih (khadar) untuk tamu kehormatan; menerimanya dengan dua tangan dan sedikit tunduk adalah bentuk hormat.",
+    "peopleNote": "Sebelum masuk rumah atau kuil, sepatu dilepas; duduk dengan telapak kaki mengarah ke patung atau orang lain dianggap tidak sopan, dan benda suci diserahkan dengan dua tangan.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Sebuah selendang sutra putih disampirkan di bahu tamu. Di Bhutan, tuan rumah menyambut orang kehormatan dengan khadar, sepotong kain sutra, sebagai doa agar hidupnya panjang. Dzongkha, bahasa nasional negara ini, tergolong rumpun Sino-Tibet dan ditulis memakai aksara Tibet yang mengalir dari kiri ke kanan. Aksaranya sama yang dipakai di Tibet, tetapi ortografi dan kosakatanya khas Bhutan. Sapaan sopan berbunyi Kuzu zangpo la, dengan partikel la di ujung sebagai penanda hormat yang selalu dipakai kepada orang yang lebih tua. Bentuk tanpa la hanya untuk teman akrab. Ucapan terima kasih, kadrin chhe, diucapkan setelah menerima bantuan atau hadiah. Etiket menerima sesuatu menuntut kedua tangan, atau tangan kanan yang disangga lengan kiri. Sebelum memasuki rumah maupun kuil, alas kaki wajib ditanggalkan di ambang pintu, dan telapak kaki tidak diarahkan ke orang atau patung.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+          "what": "Kuzu zangpo la, kadrin chhe, dan ucapan Dzongkha sehari-hari"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Dzongkha",
+          "what": "Dzongkha sebagai bahasa nasional Bhutan, aksara Tibet, rumpun Sino-Tibet"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Khadar",
+          "what": "Khadar, kain sutra yang diserahkan kepada tamu sebagai tanda hormat"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dzongkha_phrasebook",
+        "what": "Kuzu zangpo la, kadrin chhe, dan ucapan Dzongkha sehari-hari"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dzongkha",
+        "what": "Dzongkha sebagai bahasa nasional Bhutan, aksara Tibet, rumpun Sino-Tibet"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Khadar",
+        "what": "Khadar, kain sutra yang diserahkan kepada tamu sebagai tanda hormat"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tibetan_script",
+        "what": "Aksara Tibet yang dipakai menulis Dzongkha"
+      }
+    ],
+    "needsVerification": [
+      "Ejaan aksara Dzongkha untuk 'Tsip maza' (permisi) dan 'Lok shu ley jel gey' (sampai jumpa) perlu dicek penutur asli",
+      "Frasa Dzongkha bersumber phrasebook, belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "ir",
+    "iso3": "IRN",
+    "nameId": "Iran",
+    "nameLocal": "ایران",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "سلام",
+      "roman": "Salām",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Persia",
+      "nativeName": "فارسی",
+      "script": "Aksara Arab-Persia",
+      "family": "Indo-Eropa (cabang Iran)",
+      "note": "Persia adalah bahasa resmi Iran; aksara Arab dimodifikasi dengan huruf tambahan untuk bunyi p, g, ch, dan zh."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ممنون",
+        "roman": "Mamnun"
+      },
+      {
+        "id": "Permisi",
+        "native": "ببخشید",
+        "roman": "Bebakhshid"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "خداحافظ",
+        "roman": "Khodā hāfez"
+      }
+    ],
+    "cultureNote": "Taarof, sistem kesopanan berlapis, membuat orang menawarkan barang atau bantuan lalu menolaknya beberapa kali; menolak tawaran pertama secara halus dianggap sopan, bukan penolakan sungguhan.",
+    "peopleNote": "Pria dan wanita di ruang publik jarang berjabat tangan; sapaan dilakukan dengan menaruh tangan di dada sambil sedikit mengangguk, dan orang yang lebih tua selalu disapa lebih dulu.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Seorang tamu menolak tawaran permen dua kali sebelum akhirnya menerimanya. Pola itu disebut taarof, etiket berlapis Iran yang mengatur hampir setiap percakapan: tawaran pertama, kedua, dan ketiga adalah bagian ritual kesopanan, bukan penolakan sungguhan. Bahasa resmi negara ini adalah bahasa Persia, anggota rumpun Indo-Eropa cabang Iran. Aksara Arab dipinjam untuk menulisnya, lalu ditambah huruf khusus bagi bunyi yang tidak ada dalam bahasa Arab, seperti p, g, ch, dan zh. Sapaan sehari-hari berbunyi salam, kependekan yang dipakai kapan saja, pagi maupun malam. Ucapan terima kasih yang paling umum adalah mamnun, sedangkan bebakhshid dipakai untuk menarik perhatian atau meminta maaf. Di ruang publik, pria dan wanita umumnya tidak berjabat tangan; mereka menyapa dengan menaruh telapak di dada sambil sedikit menundukkan kepala. Menjelang tahun baru, rumah disapu bersih untuk menyambut Nowruz, perayaan musim semi.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Persian_language",
+          "what": "Persia sebagai bahasa resmi Iran, aksara Arab yang dimodifikasi, rumpun Indo-Eropa"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Taarof",
+          "what": "Taarof sebagai sistem kesopanan berlapis di Iran"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Nowruz",
+          "what": "Nowruz sebagai perayaan tahun baru musim semi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_language",
+        "what": "Persia sebagai bahasa resmi Iran, aksara Arab yang dimodifikasi, rumpun Indo-Eropa"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Taarof",
+        "what": "Taarof sebagai sistem kesopanan berlapis di Iran"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Persian_alphabet",
+        "what": "Huruf tambahan p, g, ch, zh pada aksara Persia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nowruz",
+        "what": "Nowruz sebagai perayaan tahun baru musim semi"
+      }
+    ],
+    "needsVerification": [
+      "Klaim bahwa pria dan wanita di ruang publik umumnya tidak berjabat tangan bersumber ensiklopedia budaya umum"
+    ]
+  },
+  {
+    "id": "mv",
+    "iso3": "MDV",
+    "nameId": "Maladewa",
+    "nameLocal": "ދިވެހިރާއްޖެ",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "އައްސަލާމު ޢަލައިކުމް",
+      "roman": "Assalaamu alaikum",
+      "meaningId": "Salam (semoga keselamatan atasmu)",
+      "register": "netral, sapaan Islam umum"
+    },
+    "language": {
+      "nameId": "Bahasa Dhivehi",
+      "nativeName": "ދިވެހި",
+      "script": "Aksara Thaana",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Dhivehi adalah bahasa resmi Maladewa, ditulis memakai aksara Thaana yang dibaca dari kanan ke kiri."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ޝުކުރިއްޔާ",
+        "roman": "Shukuriyyaa"
+      },
+      {
+        "id": "Permisi",
+        "native": "މަޢާފް ކުރޭ",
+        "roman": "Ma'aaf kurey"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ދަނީ",
+        "roman": "Dhanee"
+      }
+    ],
+    "cultureNote": "Maladewa negeri Muslim, jadi alkohol dan daging babi tidak diperjualbelikan di pulau berpenduduk; busana menutup tubuh dihormati, dan pakaian renang hanya dipakai di pantai khusus.",
+    "peopleNote": "Sapaan Islam assalaamu alaikum lazim antarwarga; tamu ditawari teh dan kudapan kecil (hedhikaa) lebih dulu, dan setiap orang biasanya makan dari piring sendiri.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Secangkir teh hangat dan sepiring kudapan kecil disajikan kepada tamu sebelum percakapan dimulai. Di Maladewa, menjamu tamu dengan hedhikaa, camilan gurih seperti cutlet ikan dan samosa, adalah inti keramahan setempat. Negara kepulauan ini berbahasa resmi Dhivehi, bahasa dari cabang Indo-Arya yang ditulis memakai aksara Thaana. Thaana istimewa karena dibaca dari kanan ke kiri; sembilan huruf pertamanya berasal dari angka Arab, sedangkan sembilan berikutnya dari angka lokal kuno. Sapaan sehari-hari berbunyi assalaamu alaikum, dijawab wa alaikum assalaam, karena mayoritas penduduk beragama Islam. Ucapan terima kasih adalah shukuriyyaa, dan ma'aaf kurey dipakai untuk meminta maaf atau menarik perhatian. Ungkapan tidak resmi untuk pamit, dhanee, lebih sering dipakai daripada bentuk formal. Alkohol tidak dijual di pulau berpenduduk, dan pengunjung diharapkan berpakaian sopan di luar pantai.",
+      "sources": [
+        {
+          "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+          "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+          "what": "Dhivehi sebagai bahasa resmi, rumpun Indo-Arya, aksara Thaana"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Thaana",
+          "what": "Thaana dibaca kanan ke kiri, hurufnya berasal dari angka Arab dan angka lokal"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikivoyage.org/wiki/Dhivehi_phrasebook",
+        "what": "assalaamu alaikum, shukuriyyaa, ma'aaf kurey, dhanee"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Maldivian_language",
+        "what": "Dhivehi sebagai bahasa resmi, rumpun Indo-Arya, aksara Thaana"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Thaana",
+        "what": "Thaana dibaca kanan ke kiri, hurufnya berasal dari angka Arab dan angka lokal"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_the_Maldives",
+        "what": "Negara Muslim, aturan alkohol, dan norma busana"
+      }
+    ],
+    "needsVerification": [
+      "Detail asal huruf Thaana bersumber ensiklopedia umum",
+      "Register informal 'dhanee' perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "np",
+    "iso3": "NPL",
+    "nameId": "Nepal",
+    "nameLocal": "नेपाल",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "नमस्ते",
+      "roman": "Namaste",
+      "meaningId": "Halo / salam hormat",
+      "register": "netral, formal maupun sehari-hari"
+    },
+    "language": {
+      "nameId": "Bahasa Nepali",
+      "nativeName": "नेपाली",
+      "script": "Aksara Devanagari",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Nepali adalah bahasa resmi Nepal, ditulis memakai aksara Devanagari yang sama dengan bahasa Hindi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "धन्यवाद",
+        "roman": "Dhanyabād"
+      },
+      {
+        "id": "Permisi",
+        "native": "माफ गर्नुहोस्",
+        "roman": "Māph garnuhos"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "फेरि भेटौंला",
+        "roman": "Pheri bheṭaunlā"
+      }
+    ],
+    "cultureNote": "Di kuil Hindu, pengunjung menanggalkan sepatu dan berjalan searah jarum jam mengelilingi stupa; daging sapi tidak dikonsumsi karena sapi dihormati dalam tradisi Hindu Nepal.",
+    "peopleNote": "Orang lebih tua disapa dengan namaskar dan partikel hormat hajur; barang serta makanan diterima dengan tangan kanan, dan menyentuh orang dengan kaki dianggap tidak sopan.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Dua telapak tangan dirapatkan di depan dada, lalu diucapkan namaste. Salam itu dipakai di Nepal untuk menyapa maupun berpamitan, kapan saja sepanjang hari. Bahasa resmi negara ini adalah bahasa Nepali, anggota cabang Indo-Arya rumpun Indo-Eropa, ditulis memakai aksara Devanagari yang sama dengan bahasa Hindi. Terima kasih diucapkan dhanyabad, dan maaph garnuhos dipakai untuk meminta maaf atau menarik perhatian. Ragam hormat ditandai kata ganti: tapai untuk orang yang dihormati, timi untuk teman sebaya. Saat berjumpa orang tua, orang Nepal sering menyebut hajur, partikel hormat yang menandai kesopanan. Perpisahan yang ramah biasanya berbunyi pheri bhetaunla, artinya sampai berjumpa lagi, bukan selamat tinggal. Sebelum masuk rumah atau kuil, alas kaki dilepas, dan benda diberikan atau diterima dengan tangan kanan. Sapi dihormati, sehingga dagingnya tidak dimakan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Nepali_language",
+          "what": "Nepali sebagai bahasa resmi Nepal, rumpun Indo-Arya, aksara Devanagari"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+          "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+          "what": "Norma kuil, alas kaki, dan penghormatan terhadap sapi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepali_language",
+        "what": "Nepali sebagai bahasa resmi Nepal, rumpun Indo-Arya, aksara Devanagari"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Nepali_phrasebook",
+        "what": "namaste, dhanyabad, maaph garnuhos, pheri bhetaunla"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Nepal",
+        "what": "Norma kuil, alas kaki, dan penghormatan terhadap sapi"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Nepal",
+        "what": "Bahasa resmi Nepal"
+      }
+    ],
+    "needsVerification": [
+      "Klaim sapi dihormati dan daging sapi tidak dikonsumsi bersumber ensiklopedia umum, bukan sumber primer Nepal"
+    ]
+  },
+  {
+    "id": "pk",
+    "iso3": "PAK",
+    "nameId": "Pakistan",
+    "nameLocal": "پاکستان",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "السلام علیکم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Salam (semoga keselamatan atasmu)",
+      "register": "netral, sapaan baku"
+    },
+    "language": {
+      "nameId": "Bahasa Urdu",
+      "nativeName": "اردو",
+      "script": "Aksara Arab-Persia (gaya Nastaliq)",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Urdu adalah bahasa resmi Pakistan, ditulis memakai aksara Arab gaya Nastaliq yang mengalir dari kanan ke kiri."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شکریہ",
+        "roman": "Shukriyā"
+      },
+      {
+        "id": "Permisi",
+        "native": "معاف کیجیے",
+        "roman": "Māf kījiye"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "خدا حافظ",
+        "roman": "Khudā hāfiz"
+      }
+    ],
+    "cultureNote": "Salam assalamu alaikum menjadi sapaan baku lintas etnis; setelahnya orang biasanya menanyakan keadaan dan keluarga, karena menyapa tanpa bertanya kabar dianggap tergesa-gesa.",
+    "peopleNote": "Pria berjabat tangan dengan sesama pria, tetapi pria dan wanita tidak berjabat tangan; orang lebih tua disapa dengan kata hormat aap, bukan tum.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Tangan diletakkan di dada setelah berjabat tangan. Di Pakistan, pria menyapa pria lain dengan assalamu alaikum sambil berjabat tangan, lalu menaruh telapak di dada sebagai tanda ketulusan. Bahasa resmi negara ini adalah Urdu, anggota cabang Indo-Arya rumpun Indo-Eropa, ditulis memakai aksara Arab gaya Nastaliq yang mengalir dari kanan ke kiri. Terima kasih diucapkan shukriya, dan maaf kijiye dipakai untuk meminta maaf atau menarik perhatian. Ragam hormat ditandai kata ganti: aap untuk yang dihormati, tum hanya untuk yang jauh lebih muda atau akrab. Perpisahan lazim berbunyi khuda hafiz, yang secara harfiah berarti semoga Tuhan menjadi pelindungmu. Etiket setempat melarang pria dan wanita berjabat tangan di ruang publik. Sebelum berbicara soal urusan, orang biasanya lebih dulu menanyakan keadaan dan keluarga, sebab langsung ke pokok persoalan dianggap kurang sopan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Urdu",
+          "what": "Urdu sebagai bahasa resmi Pakistan, rumpun Indo-Arya, aksara Nastaliq"
+        },
+        {
+          "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+          "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+        },
+        {
+          "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+          "what": "Jabat tangan sesama jenis, pria-wanita tidak, ragam hormat aap"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu",
+        "what": "Urdu sebagai bahasa resmi Pakistan, rumpun Indo-Arya, aksara Nastaliq"
+      },
+      {
+        "url": "https://www.bbc.com/languages/other/urdu/guide/phrases.shtml",
+        "what": "assalam-o-alekum, khuda-hafiz, shukria, maaf kijiye"
+      },
+      {
+        "url": "https://www.langmedia.fivecolleges.edu/resources/pakistan/basic-communications/greetings-and-partings",
+        "what": "Jabat tangan sesama jenis, pria-wanita tidak, ragam hormat aap"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Urdu_alphabet",
+        "what": "Aksara Urdu gaya Nastaliq, ditulis dari kanan ke kiri"
+      }
+    ],
+    "needsVerification": [
+      "Klaim pria dan wanita tidak berjabat tangan bersumber panduan bahasa, belum diperiksa penutur asli"
+    ]
+  },
+  {
+    "id": "lk",
+    "iso3": "LKA",
+    "nameId": "Sri Lanka",
+    "nameLocal": "ශ්‍රී ලංකාව",
+    "region": "Asia Selatan",
+    "greeting": {
+      "native": "ආයුබෝවන්",
+      "roman": "Āyubōwan",
+      "meaningId": "Halo (harfiah: semoga panjang umur)",
+      "register": "netral, agak formal"
+    },
+    "language": {
+      "nameId": "Bahasa Sinhala",
+      "nativeName": "සිංහල",
+      "script": "Aksara Sinhala",
+      "family": "Indo-Arya (Indo-Eropa)",
+      "note": "Sinhala adalah bahasa mayoritas dan resmi; Tamil juga resmi dan dipakai luas di wilayah utara serta timur."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "ස්තූතියි",
+        "roman": "Sthūthiyi"
+      },
+      {
+        "id": "Permisi",
+        "native": "සමාවෙන්න",
+        "roman": "Samāwenna"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ගිහින් එන්නම්",
+        "roman": "Gihin ennam"
+      }
+    ],
+    "cultureNote": "Di kuil Buddha, pengunjung menanggalkan alas kaki dan menutup bahu serta lutut; patung Buddha tidak disentuh atau dipanjat, dan memunggungi patung saat berfoto dianggap tidak hormat.",
+    "peopleNote": "Kepala dianggap bagian paling suci sehingga tidak disentuh, sedangkan kaki paling rendah; beri dan terima dengan tangan kanan, dan anggukan kepala ke samping justru berarti ya.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Telapak tangan dirapatkan di depan dada, lalu kepala sedikit ditundukkan. Salam Āyubōwan di Sri Lanka bukan sekadar halo, melainkan doa agar orang yang disapa berumur panjang. Ucapan itu dipakai sepanjang hari dan bisa juga menjadi salam perpisahan. Negara ini memiliki dua bahasa resmi, Sinhala yang dituturkan mayoritas penduduk dan Tamil di wilayah utara serta timur. Bahasa Sinhala berasal dari cabang Indo-Arya rumpun Indo-Eropa dan ditulis memakai aksara Sinhala yang berbentuk bundar. Terima kasih diucapkan sthūthiyi, dan samāwenna dipakai untuk meminta maaf atau menarik perhatian. Dalam pergaulan, kepala dianggap bagian paling suci dan tidak boleh disentuh siapa pun, sedangkan benda diberikan atau diterima dengan tangan kanan. Menariknya, anggukan kepala ke samping, bukan mengangguk ke bawah, justru berarti setuju. Sebelum masuk kuil Buddha, alas kaki dilepas dan bahu serta lutut ditutup.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+          "what": "Sinhala sebagai bahasa resmi Sri Lanka, rumpun Indo-Arya, aksara Sinhala"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+          "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+          "what": "Norma kunjungan kuil: melepas alas kaki, menutup bahu dan lutut"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Sinhala_language",
+        "what": "Sinhala sebagai bahasa resmi Sri Lanka, rumpun Indo-Arya, aksara Sinhala"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Sinhala_phrasebook",
+        "what": "Ayubowan, sthuthiyi, samawenna, gihin ennam"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Sri_Lanka",
+        "what": "Norma kunjungan kuil: melepas alas kaki, menutup bahu dan lutut"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sri_Lanka",
+        "what": "Dua bahasa resmi, Sinhala dan Tamil"
+      }
+    ],
+    "needsVerification": [
+      "Kebiasaan anggukan kepala ke samping sebagai tanda ya perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "am",
+    "iso3": "ARM",
+    "nameId": "Armenia",
+    "nameLocal": "Հայաստան",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Բարև",
+      "roman": "Barev",
+      "meaningId": "Halo",
+      "register": "netral, akrab; bentuk hormat «Բարև ձեզ»"
+    },
+    "language": {
+      "nameId": "Bahasa Armenia",
+      "nativeName": "Հայերեն (Hayeren)",
+      "script": "Aksara Armenia, 36 huruf, kiri ke kanan (dibuat Mashtots, sekitar 405 M)",
+      "family": "Indo-Eropa (cabang tersendiri)",
+      "note": "Bahasa resmi Armenia; punya dua ragam baku, Armenia Timur (Yerevan) dan Armenia Barat yang hidup di komunitas diaspora."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Շնորհակալություն",
+        "roman": "Shnorhakalutyun"
+      },
+      {
+        "id": "Permisi",
+        "native": "Կներեք",
+        "roman": "Knerek"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Ցտեսություն",
+        "roman": "Tstesutyun"
+      }
+    ],
+    "cultureNote": "Aksara Armenia diakui UNESCO sebagai warisan budaya takbenda pada 2019. Bagi orang Armenia, alfabet bukan sekadar alat tulis, melainkan lambang jati diri bangsa karena menyatukan wilayah dan diaspora lewat satu sistem tulisan.",
+    "peopleNote": "Saat menyapa, pria biasanya berjabat tangan, sedangkan kerabat dan teman dekat saling mencium pipi dua kali. Orang yang lebih muda menyapa lebih dulu. Tamu disuguhi kopi atau teh, dan menerima suguhan dengan tangan kanan dianggap sopan.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di balik meja kayu pada tahun 405 Masehi, Mesrop Mashtots menorehkan sebaris tanda baru untuk pertama kalinya. Ia menyusun alfabet Armenia, 36 huruf yang bergerak dari kiri ke kanan dan sebagian meniru susunan aksara Yunani. Menurut Britannica, bahasa Armenia membentuk cabang tersendiri di rumpun Indo-Eropa dan tidak berkerabat dekat dengan bahasa Iranik maupun Turkik di sekitarnya. Aksara itu segera dipakai menerjemahkan Alkitab dan menandai usia keemasan sastra Armenia. Sejak 1920-an ejaan resmi Soviet sedikit direformasi, sementara diaspora Armenia Barat tetap memakai ejaan tradisional, sehingga satu bahasa memiliki dua ragam baku: Armenia Timur di Yerevan dan Armenia Barat di perantauan. Di jalanan Yerevan, salam sehari-hari berbunyi «Բարև» (Barev); kepada orang yang belum dikenal dipakai bentuk hormat «Բարև ձեզ». Lazimnya yang lebih muda menyapa lebih dulu. Saat bertamu, tamu menanggalkan alas kaki dan menerima kopi dari tuan rumah sebagai tanda penghormatan.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Armenian-language",
+          "what": "Bahasa Armenia cabang tersendiri rumpun Indo-Eropa; Mashtots membuat alfabet 405 M dengan 36 tanda, arah tulis mengikuti Yunani"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Armenian_alphabet",
+          "what": "Aksara Armenia dikembangkan Mashtots sekitar 405 M; arah kiri ke kanan; aksara resmi Armenia"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D5%A2%D5%A1%D6%80%D6%87",
+          "what": "Բարև = halo; bentuk hormat «Բարև ձեզ»"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Armenian-language",
+        "what": "Bahasa Armenia cabang tersendiri rumpun Indo-Eropa; Mashtots membuat alfabet 405 M dengan 36 tanda, arah tulis mengikuti Yunani"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Armenian_alphabet",
+        "what": "Aksara Armenia dikembangkan Mashtots sekitar 405 M; arah kiri ke kanan; aksara resmi Armenia"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D5%A2%D5%A1%D6%80%D6%87",
+        "what": "Բարև = halo; bentuk hormat «Բարև ձեզ»"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D5%B7%D5%B6%D5%B8%D6%80%D5%B0%D5%A1%D5%AF%D5%A1%D5%AC%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6",
+        "what": "Շնորհակալություն = terima kasih"
+      }
+    ],
+    "needsVerification": [
+      "Romanisasi Կներեք dan Ցտեսություն belum dirujuk ke sumber kamus",
+      "Etiket menanggalkan alas kaki dan mencium pipi dua kali bersumber kebiasaan umum, belum sumber primer"
+    ]
+  },
+  {
+    "id": "az",
+    "iso3": "AZE",
+    "nameId": "Azerbaijan",
+    "nameLocal": "Azərbaycan",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Salam",
+      "roman": "Salam",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Azerbaijan",
+      "nativeName": "Azərbaycan dili",
+      "script": "Aksara Latin sejak 1991; huruf Kiril dan Arab di wilayah lain",
+      "family": "Turkik (cabang Oghuz)",
+      "note": "Bahasa resmi Republik Azerbaijan; ragam di Iran tetap ditulis dengan aksara Arab dan disebut Azerbaijani Selatan."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Təşəkkür edirəm",
+        "roman": "Təşəkkür edirəm"
+      },
+      {
+        "id": "Permisi",
+        "native": "Bağışlayın",
+        "roman": "Bağışlayın"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Sağ ol",
+        "roman": "Sağ ol"
+      }
+    ],
+    "cultureNote": "Teh adalah minuman penyambut utama. Tuan rumah menuangnya ke gelas armudu berbentuk buah pir dan menyajikannya bersama selai atau gula batu; membiarkan gelas tamu kosong dianggap kurang ramah.",
+    "peopleNote": "Pria berjabat tangan saat bertemu, sedangkan perempuan sering sekadar mengangguk atau menaruh tangan di dada. Orang yang lebih tua disapa lebih dulu. Di rumah, alas kaki dilepas dan tamu lazim membawa oleh-oleh kecil bagi tuan rumah.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Air teh dituang ke gelas berbentuk buah pir, armudu, sebelum percakapan dimulai. Di rumah teh Baku, tuan rumah jarang membiarkan gelas tamu kosong; teh kental disajikan bersama selai, kacang, atau potongan gula batu. Bahasa Azerbaijan termasuk rumpun Turkik cabang Oghuz, serumpun dengan bahasa Turki dan Turkmenistan. Menurut Britannica, bahasa ini memakai aksara Arab hingga awal abad ke-20, lalu beralih ke huruf Kiril mulai 1939 pada masa Soviet. Setelah merdeka pada 1991, Republik Azerbaijan kembali ke aksara Latin, sementara penutur di Iran tetap menulis dengan aksara Arab. Salam sehari-hari cukup diucapkan «Salam». Di depan pintu rumah, tamu menanggalkan alas kaki dan membawa buah atau manisan kecil bagi tuan rumah. Orang yang lebih tua disapa lebih dulu, dan jabat tangan pria biasanya disertai tatapan mata serta genggaman dua tangan singkat.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Azerbaijani-language",
+          "what": "Bahasa Turkik cabang Oghuz; aksara Arab hingga abad ke-20, Kiril 1939, Latin sejak 1992"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Azerbaijani_language",
+          "what": "Oghuz Turkik; aksara Latin sejak 1991 di Republik Azerbaijan; ragam Iran memakai aksara Arab"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/salam",
+          "what": "salam = halo (bahasa Azerbaijan)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Azerbaijani-language",
+        "what": "Bahasa Turkik cabang Oghuz; aksara Arab hingga abad ke-20, Kiril 1939, Latin sejak 1992"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Azerbaijani_language",
+        "what": "Oghuz Turkik; aksara Latin sejak 1991 di Republik Azerbaijan; ragam Iran memakai aksara Arab"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/salam",
+        "what": "salam = halo (bahasa Azerbaijan)"
+      }
+    ],
+    "needsVerification": [
+      "Romanisasi Təşəkkür edirəm, Bağışlayın, dan Sağ ol belum dirujuk ke sumber kamus",
+      "Kebiasaan membawa oleh-oleh kecil saat bertamu bersumber kebiasaan umum, belum sumber primer"
+    ]
+  },
+  {
+    "id": "bh",
+    "iso3": "BHR",
+    "nameId": "Bahrain",
+    "nameLocal": "البحرين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Semoga keselamatan atasmu (halo)",
+      "register": "netral, bernuansa religius"
+    },
+    "language": {
+      "nameId": "Bahasa Arab",
+      "nativeName": "العربية",
+      "script": "Aksara Arab (abjad, 28 huruf, kanan ke kiri)",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Bahasa resmi Bahrain; dialek setempat Bahrani dan Gulf Arab hidup berdampingan, sementara bahasa Arab standar modern dipakai di media dan dokumen."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Konstitusi Bahrain menegaskan keluarga sebagai batu penjuru masyarakat, sehingga kunjungan keluarga besar dan jamuan di rumah menempati tempat penting. Kopi Arab, gahwa, bersama kurma disajikan untuk menyambut tamu.",
+    "peopleNote": "Menjabat tangan lazim dilakukan sesama jenis; terhadap lawan jenis, uluran tangan menunggu lebih dulu. Tamu disapa dan dipersilakan duduk sebelum tuan rumah. Menerima makanan atau minuman dengan tangan kanan dianggap sopan.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Kopi tanpa gula dituang dari ceret tembaga ke cangkir kecil tanpa pegangan. Di Bahrain, menyajikan gahwa atau kopi Arab bersama kurma adalah cara tuan rumah menyambut tamu; cangkir yang kosong akan segera diisi lagi sampai tamu menggoyangkan cangkir sebagai tanda cukup. Bahasa Arab adalah bahasa resmi negara kepulauan ini. Menurut Britannica, Bahrain terletak di Teluk Persia dengan Manama sebagai ibu kota, dan konstitusinya menegaskan keluarga sebagai batu penjuru masyarakat. Di jalanan, dua ragam Arab hidup berdampingan: dialek Bahrani yang khas penduduk lama dan Gulf Arab yang dipakai penduduk kota. Bahasa Arab standar modern muncul di media, dokumen resmi, dan sekolah. Salam paling lazim berbunyi «السلام عليكم» (as-salāmu ʿalaykum), yang menebar doa keselamatan, dan dijawab «وعليكم السلام». Tamu biasanya menerima makanan atau minuman dengan tangan kanan, sedangkan tangan kiri dipandang kurang pantas.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Bahrain",
+          "what": "Bahasa resmi Arab; Manama ibu kota; konstitusi menegaskan keluarga sebagai batu penjuru masyarakat"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+          "what": "Dialek Bahrani Arab hidup berdampingan dengan Gulf Arab; memakai aksara Arab"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Bahasa Arab standar modern dipakai di media dan dokumen; situasi diglosia di dunia Arab"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Bahrain",
+        "what": "Bahasa resmi Arab; Manama ibu kota; konstitusi menegaskan keluarga sebagai batu penjuru masyarakat"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Bahrani_Arabic",
+        "what": "Dialek Bahrani Arab hidup berdampingan dengan Gulf Arab; memakai aksara Arab"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Bahasa Arab standar modern dipakai di media dan dokumen; situasi diglosia di dunia Arab"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = selamat jalan / sampai jumpa"
+      }
+    ],
+    "needsVerification": [
+      "Etiket jabat tangan antargender dan urutan menyapa belum dirujuk ke sumber primer",
+      "Pilihan dialek yang didengar pendatang dapat berbeda menurut kota"
+    ]
+  },
+  {
+    "id": "ge",
+    "iso3": "GEO",
+    "nameId": "Georgia",
+    "nameLocal": "საქართველო",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "გამარჯობა",
+      "roman": "Gamarjoba",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Georgia",
+      "nativeName": "ქართული (Kartuli)",
+      "script": "Aksara Georgia; Mkhedruli 33 huruf, tanpa huruf besar-kecil",
+      "family": "Kartvelia (Kaukasus Selatan)",
+      "note": "Bahasa resmi Georgia; tidak berkerabat dengan keluarga bahasa utama di sekitarnya dan punya aksara sendiri yang khas."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "მადლობა",
+        "roman": "Madloba"
+      },
+      {
+        "id": "Permisi",
+        "native": "ბოდიში",
+        "roman": "Bodishi"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "ნახვამდის",
+        "roman": "Nakhvamdis"
+      }
+    ],
+    "cultureNote": "Jamuan supra dipimpin tamada yang mengatur urutan pesta kata, dari perdamaian hingga kenangan leluhur. Tamu tidak meneguk anggur sebelum tamada memimpin, karena setiap gelas diangkat untuk sebuah tema, bukan sekadar bersulang.",
+    "peopleNote": "Pria berjabat tangan saat bertemu, sedangkan teman dekat saling mencium pipi. Orang yang lebih tua disapa lebih dulu. Tamu diperlakukan sebagai berkah, sehingga sering ada hidangan atau minuman yang disodorkan sebelum tamu sempat duduk.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Gelas anggur diangkat tinggi saat tamada, pemimpin jamuan, mengucapkan pesta kata pertamanya. Tradisi supra Georgia mengatur urutan pesta: setiap gelas diangkat untuk sebuah tema, dari perdamaian hingga kenangan leluhur, dan tamu tidak meneguk sebelum tamada memimpin. Bahasa Georgia termasuk rumpun Kartvelia dan tidak berkerabat dengan bahasa Indo-Eropa maupun Turkik di sekelilingnya. Aksara Mkhedruli yang khas dan tanpa huruf besar-kecil menjadi aksara sehari-hari, sementara dua aksara gerejawi yang lebih tua masih muncul di naskah dan ikon. Menurut Britannica, tradisi sastra Georgia berakar pada abad ke-5. Aksara Mkhedruli yang kini dipakai menyusut menjadi 33 huruf setelah beberapa huruf lama tak lagi digunakan. Di jalanan Tbilisi, sapaan sehari-hari berbunyi «გამარჯობა» (Gamarjoba). Orang yang lebih tua disapa lebih dulu, dan jabat tangan menjadi salam umum antar pria saat pertama bertemu.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Georgian-language",
+          "what": "Bahasa resmi Georgia; rumpun Kartvelia; tradisi sastra sejak abad ke-5; Mkhedruli aksara kini"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Georgian_language",
+          "what": "Kartvelia; bahasa resmi Georgia; Mkhedruli tanpa beda huruf besar-kecil"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Georgian_scripts",
+          "what": "Tiga aksara Georgia; Mkhedruli 33 huruf; warisan budaya UNESCO 2016"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90",
+          "what": "გამარჯობა = halo"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%E1%83%9B%E1%83%90%E1%83%93%E1%83%9A%E1%83%9D%E1%83%91%E1%83%90",
+          "what": "მადლობა = terima kasih"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Georgian-language",
+        "what": "Bahasa resmi Georgia; rumpun Kartvelia; tradisi sastra sejak abad ke-5; Mkhedruli aksara kini"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Georgian_language",
+        "what": "Kartvelia; bahasa resmi Georgia; Mkhedruli tanpa beda huruf besar-kecil"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Georgian_scripts",
+        "what": "Tiga aksara Georgia; Mkhedruli 33 huruf; warisan budaya UNESCO 2016"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90",
+        "what": "გამარჯობა = halo"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%E1%83%9B%E1%83%90%E1%83%93%E1%83%9A%E1%83%9D%E1%83%91%E1%83%90",
+        "what": "მადლობა = terima kasih"
+      }
+    ],
+    "needsVerification": [
+      "Romanisasi ბოდიში dan ნახვამდის belum dirujuk ke sumber kamus",
+      "Etiket dua ciuman pipi dan jabat tangan antar pria bersumber kebiasaan umum"
+    ]
+  },
+  {
+    "id": "iq",
+    "iso3": "IRQ",
+    "nameId": "Irak",
+    "nameLocal": "العراق",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Semoga keselamatan atasmu (halo)",
+      "register": "netral, bernuansa religius"
+    },
+    "language": {
+      "nameId": "Bahasa Arab",
+      "nativeName": "العربية",
+      "script": "Aksara Arab (abjad, 28 huruf, kanan ke kiri)",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Arab dan Kurdi dua bahasa resmi Irak; dialek Baghdad yang disebut dialek Irak menjadi lingua franca percakapan sehari-hari."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Teh manis pekat menjadi minuman penyambut tamu, disajikan dalam gelas kaca kecil tanpa susu dan sering diiringi kue kurma. Menjunjung kehormatan tamu atau diyafa adalah nilai penting, sehingga menolak jamuan tuan rumah berkali-kali dianggap kurang sopan.",
+    "peopleNote": "Sesama jenis berjabat tangan dan kadang mencium pipi; terhadap lawan jenis, kontak fisik tidak selalu dilakukan. Menerima dan menyerahkan barang dengan tangan kanan dianggap sopan. Orang yang lebih tua disapa lebih dulu.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Uap mengepul dari gelas kaca kecil berisi teh kental di kedai tepi Sungai Tigris, Baghdad. Teh manis pekat, chai, menjadi minuman penyambut tamu, disajikan tanpa susu dan sering diiringi kue kurma. Irak menetapkan Arab dan Kurdi sebagai dua bahasa resmi. Percakapan sehari-hari di Baghdad memakai dialek Mesopotamia, yang lazim disebut dialek Irak dan oleh penuturnya dianggap cukup dekat dengan bahasa Arab klasik. Bahasa Arab standar modern dipakai untuk dokumen, buku, dan siaran berita; situasi ini disebut diglosia. Menurut Britannica, Baghdad menjadi pusat pemerintahan sejak masa Kekhalifahan Abbasiyah dan kini berpenduduk puluhan juta jiwa. Salam sehari-hari berbunyi «السلام عليكم» (as-salāmu ʿalaykum). Di bagian utara negeri, bahasa Kurdi menjadi bahasa utama dalam percakapan warga. Tamu umumnya menerima hidangan dengan tangan kanan, sedangkan menyantap dan menyerahkan barang dengan tangan kiri dihindari.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Iraq",
+          "what": "Bahasa resmi Arab dan Kurdi; Baghdad ibu kota; wilayah Mesopotamia"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+          "what": "Dialek Mesopotamia/Baghdad menjadi lingua franca Irak; dua ragam Gelet dan Qeltu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Bahasa Arab standar modern dipakai di dokumen dan berita; situasi diglosia"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+          "what": "شكراً = terima kasih"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+          "what": "مع السلامة = selamat jalan / sampai jumpa"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Iraq",
+        "what": "Bahasa resmi Arab dan Kurdi; Baghdad ibu kota; wilayah Mesopotamia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic",
+        "what": "Dialek Mesopotamia/Baghdad menjadi lingua franca Irak; dua ragam Gelet dan Qeltu"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Bahasa Arab standar modern dipakai di dokumen dan berita; situasi diglosia"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = selamat jalan / sampai jumpa"
+      }
+    ],
+    "needsVerification": [
+      "Etiket tangan kanan dan cium pipi bersumber kebiasaan umum, belum sumber primer",
+      "Variasi dialek antarkota disederhanakan menjadi dialek Baghdad"
+    ]
+  },
+  {
+    "id": "il",
+    "iso3": "ISR",
+    "nameId": "Israel",
+    "nameLocal": "ישראל",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "שלום",
+      "roman": "Shalom",
+      "meaningId": "Halo / damai",
+      "register": "netral, dipakai untuk menyapa dan berpamitan"
+    },
+    "language": {
+      "nameId": "Bahasa Ibrani",
+      "nativeName": "עברית (Ivrit)",
+      "script": "Aksara Ibrani, 22 huruf, abjad kanan ke kiri",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Bahasa resmi Israel; dihidupkan kembali menjadi bahasa lisan sejak akhir abad ke-19, sementara bahasa Arab memiliki status khusus."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "תודה",
+        "roman": "Todá"
+      },
+      {
+        "id": "Permisi",
+        "native": "סליחה",
+        "roman": "Slicha"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "להתראות",
+        "roman": "Lehitraot"
+      }
+    ],
+    "cultureNote": "Menyambut Shabbat, keluarga berkumpul pada Jumat malam untuk menyalakan lilin dan makan bersama. Menjelang Sabat banyak toko tutup lebih awal, dan di sebagian wilayah transportasi umum berhenti hingga Sabtu malam.",
+    "peopleNote": "Kata «Shalom» dipakai baik untuk menyapa maupun berpamitan. Jabat tangan menjadi salam umum, tetapi sebagian orang religius menghindari kontak fisik dengan lawan jenis, jadi uluran tangan sebaiknya menunggu lebih dulu. Gaya bicara cenderung langsung dan terus terang.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Menjelang Jumat sore, pasar Yehuda di Yerusalem mulai sepi karena banyak orang bergegas pulang menyambut Shabbat. Bahasa Ibrani modern adalah bahasa resmi Israel dan satu-satunya bahasa kuno yang berhasil dihidupkan kembali menjadi bahasa lisan sehari-hari, dipelopori Eliezer Ben-Yehuda pada akhir abad ke-19. Bahasa ini termasuk rumpun Afro-Asia cabang Semitik dan berbeda dari bahasa-bahasa Eropa di lingkungan diaspora Yahudi. Aksara Ibrani adalah abjad 22 huruf yang ditulis dari kanan ke kiri; hurufnya sejak awal hanya mencatat konsonan, sedangkan vokal dibubuhkan sebagai tanda kecil yang cenderung hilang dalam tulisan sehari-hari. Kosakata baru bahasa Ibrani modern banyak dibentuk kembali dari akar kata kuno Alkitab. Kata «שלום» (Shalom) berarti damai sekaligus dipakai untuk menyapa dan berpamitan. Jabat tangan menjadi salam umum saat bertemu, sedangkan bertanya secara langsung dianggap wajar dan tidak kasar.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/topic/Hebrew-language",
+          "what": "Bahasa Semitik Barat Laut; bahasa resmi Israel; 22 huruf, ditulis kanan ke kiri"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+          "what": "Bahasa resmi Israel; dihidupkan kembali; rumpun Afro-Asia cabang Semitik"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Hebrew_alphabet",
+          "what": "Aksara Ibrani 22 huruf, abjad, kanan ke kiri; turunan aksara Aram"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D7%A9%D7%9C%D7%95%D7%9D",
+          "what": "שלום = damai; dipakai sebagai salam dan perpisahan"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/topic/Hebrew-language",
+        "what": "Bahasa Semitik Barat Laut; bahasa resmi Israel; 22 huruf, ditulis kanan ke kiri"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hebrew_language",
+        "what": "Bahasa resmi Israel; dihidupkan kembali; rumpun Afro-Asia cabang Semitik"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hebrew_alphabet",
+        "what": "Aksara Ibrani 22 huruf, abjad, kanan ke kiri; turunan aksara Aram"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%A9%D7%9C%D7%95%D7%9D",
+        "what": "שלום = damai; dipakai sebagai salam dan perpisahan"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%AA%D7%95%D7%93%D7%94",
+        "what": "תודה = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%94",
+        "what": "סליחה = maaf / permisi"
+      }
+    ],
+    "needsVerification": [
+      "Romanisasi תודה, סליחה, dan להתראות belum dirujuk ke sumber kamus",
+      "Etiket kontak fisik antar lawan jenis berlaku sebagian kelompok, tidak universal"
+    ]
+  },
+  {
+    "id": "kw",
+    "iso3": "KWT",
+    "nameId": "Kuwait",
+    "nameLocal": "الكويت",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "هلا والله",
+      "roman": "Hala wallah",
+      "meaningId": "Halo",
+      "register": "akrab, khas Teluk"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Kuwait)",
+      "nativeName": "كويتي",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Kuwait bagian dari Arab Teluk; kosakatanya menyerap kata Persia, Turki, Inggris, dan Hindi karena sejarah pelayaran dan dagang."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "يعطيك العافية",
+        "roman": "Yaʿṭīk al-ʿāfiya"
+      },
+      {
+        "id": "Permisi",
+        "native": "لو سمحت",
+        "roman": "Law samaḥt"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "الله وياك",
+        "roman": "Allāh wiyyāk"
+      }
+    ],
+    "cultureNote": "Diwaniya, ruang tamu terpisah di depan rumah, jadi tempat pria berkumpul membahas urusan keluarga dan kampung. Menjamu tamu dinilai kehormatan, sehingga kopi dan kurma disuguhkan lebih dulu sebelum percakapan panjang.",
+    "peopleNote": "Mulai sapaan dengan yang paling tua. Gunakan tangan kanan untuk makan dan memberi. Menerima suguhan kopi berarti menghormati tuan rumah. Bicara santai dan berbagi cerita lazim dalam pergaulan.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Di Kuwait, tamu pria sering diterima di diwaniya, ruang tamu terpisah di depan rumah untuk berkumpul. Kopi Arab dituang dari ceret dan disajikan bersama kurma; tamu menerima cangkir kecil itu dengan tangan kanan. Bahasa percakapan sehari-hari adalah dialek Kuwait, bagian dari rumpun Arab Teluk. Kota pelabuhan Kuwait lama menjadi jalur dagang, sehingga dialeknya menyerap banyak kata dari Persia, Turki, Inggris, dan Hindi. Kekhasan bunyinya terdengar jelas: q berubah menjadi g dan k menjadi c, termasuk pada kata qahwa yang menjadi gahwa. Industri sinetron Kuwait membuat logat ini dikenal sampai Tunisia dan Yordania. Masyarakatnya diglosik: Arab Baku Modern untuk sekolah dan administrasi, sedangkan dialek Kuwait dipakai untuk urusan rumah tangga dan dianggap penanda identitas. Sapaan hangat dan jamuan kopi dianggap cara paling nyata menunjukkan kehormatan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+          "what": "Dialek Kuwait bagian Arab Teluk; kata serapan Persia, Turki, Inggris, Hindi; sinetron menyebarkan logatnya"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab disajikan dengan kurma; adab menerima dan mengembalikan cangkir dengan tangan kanan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+          "what": "Kebudayaan Kuwait dan tradisi menjamu tamu"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kuwaiti_Arabic",
+        "what": "Dialek Kuwait bagian Arab Teluk; kata serapan Persia, Turki, Inggris, Hindi; sinetron menyebarkan logatnya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "Rumpun Arab Teluk dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab disajikan dengan kurma; adab menerima dan mengembalikan cangkir dengan tangan kanan"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Kuwait",
+        "what": "Kebudayaan Kuwait dan tradisi menjamu tamu"
+      }
+    ],
+    "needsVerification": [
+      "Tradisi diwaniya belum dirujuk ke sumber primer khusus",
+      "Register sapaan هلا والله perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "lb",
+    "iso3": "LBN",
+    "nameId": "Lebanon",
+    "nameLocal": "لبنان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "مرحبا",
+      "roman": "Marhaba",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas di Levant"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Lebanon)",
+      "nativeName": "العربية اللبنانية",
+      "script": "Aksara Arab; percakapan sering disisipi kata Prancis dan Inggris",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Lebanon bagian rumpun Arab Levantin; kata serapan Prancis umum karena sejarah dan pendidikan."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "تسلم",
+        "roman": "Tislam"
+      },
+      {
+        "id": "Permisi",
+        "native": "بعد إذنك",
+        "roman": "Baʿd iznak"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "بسلامة",
+        "roman": "Bslāme"
+      }
+    ],
+    "cultureNote": "Menjamu tamu dianggap kehormatan, sehingga undangan makan datang cepat dalam persahabatan. Jam karet diterima: telat sekitar dua puluh menit masih dianggap wajar, dan tamu biasanya membawa manisan.",
+    "peopleNote": "Sapa penghuni menurut urutan usia, mulai yang tertua. Terima teh atau kopi yang ditawarkan sebagai tanda penghargaan. Hindari menyilangkan kaki sampai telapak mengarah ke orang lain.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di Beirut, tamu yang datang ke rumah biasanya menyapa penghuni menurut urutan usia, dari yang paling tua. Tuan rumah menyuguhkan kopi Levantin yang ditumbuk halus dan dibubuhi kapulaga, diseduh dalam ceret berleher panjang bernama rakwa. Di pedesaan dan perkemahan Bedouin, ceret besar berparuh panjang bernama bakraj yang dipakai. Sebelum kafe modern menjamur, rumah kopi Arab menjadi ruang diskusi; sebagian menyebutnya sekolah orang bijak. Bahasa resminya Arab Baku Modern, tetapi percakapan harian memakai dialek Lebanon dari rumpun Arab Levantin, yang kerap disisipi kata Prancis. Karena itu penuturnya mudah beralih antara dua laras. Adab bertamu menuntut tamu mencicipi semua hidangan yang disajikan sebagai tanda hormat. Menolak tawaran kopi atau teh bisa dianggap meremehkan kehormatan tuan rumah, jadi menerimanya justru dianggap jauh lebih sopan.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+          "what": "Etiket bertamu: menyapa menurut usia, menerima suguhan, jam karet, tidak mengarahkan kaki"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+          "what": "Dialek Lebanon bagian rumpun Arab Levantin"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj; rumah kopi sebagai ruang diskusi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/lebanese-culture/lebanese-culture-etiquette",
+        "what": "Etiket bertamu: menyapa menurut usia, menerima suguhan, jam karet, tidak mengarahkan kaki"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Lebanese_Arabic",
+        "what": "Dialek Lebanon bagian rumpun Arab Levantin"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "Rumpun Arab Levantin dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj; rumah kopi sebagai ruang diskusi"
+      }
+    ],
+    "needsVerification": [
+      "Tingkat campur kode bahasa Prancis berbeda antargenerasi dan wilayah"
+    ]
+  },
+  {
+    "id": "om",
+    "iso3": "OMN",
+    "nameId": "Oman",
+    "nameLocal": "عُمان",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Oman)",
+      "nativeName": "اللهجة العمانية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Selain dialek Arab Oman, di selatan negeri juga dipakai bahasa Semitik Selatan modern seperti Mehri dan Soqotri."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "مشكور",
+        "roman": "Masykūr"
+      },
+      {
+        "id": "Permisi",
+        "native": "من فضلك",
+        "roman": "Min faḍlak"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "إلى اللقاء",
+        "roman": "Ilā al-liqāʾ"
+      }
+    ],
+    "cultureNote": "Khanjar, belati berlekuk, dikenakan pria Oman pada pernikahan dan hari besar; kerajinan serta adatnya tercatat UNESCO pada 2022. Kopi Oman beraroma kapulaga disajikan bersama kurma atau halwa.",
+    "peopleNote": "Terima dan beri dengan tangan kanan. Tamu menyapa yang paling tua lebih dahulu. Dalam jamuan, suguhan sebaiknya dicicipi. Panggilan hormat kepada sesepuh lazim dipakai sebagai tanda adab.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di Muscat, tuan rumah menyambut tamu dengan kopi Oman yang disajikan bersama kurma atau halwa, manisan kenyal. Kopi dituang dari dallah, ceret berparuh panjang, ke cangkir kecil; tamu menerima dan mengembalikannya dengan tangan kanan. Lelaki Oman mengenakan khanjar, belati berlekuk, pada acara resmi seperti pernikahan dan hari besar; kerajinan dan adat terkait khanjar tercatat UNESCO pada 2022. Bahasa resminya adalah Arab Baku Modern, sedangkan percakapan harian memakai dialek Arab Oman. Di wilayah selatan, masyarakat juga memakai bahasa Semitik Selatan modern seperti Mehri dan Soqotri, cabang rumpun Afro-Asia yang berbeda dari Arab. Majlis, ruang tempat tetangga dan keluarga berkumpul, diakui UNESCO sebagai warisan budaya takbenda sejak 2015, dengan Oman sebagai salah satu negara pengusul. Di meja jamuan, hidangan diambil dengan tangan kanan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+          "what": "Kopi Oman berkapulaga dengan kurma atau halwa; khanjar dikenakan pada pernikahan dan hari besar, UNESCO 2022"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+          "what": "Dialek Arab Oman dan ciri bunyinya"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Oman sebagai pengusul"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Oman",
+        "what": "Kopi Oman berkapulaga dengan kurma atau halwa; khanjar dikenakan pada pernikahan dan hari besar, UNESCO 2022"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Omani_Arabic",
+        "what": "Dialek Arab Oman dan ciri bunyinya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_South_Arabian_languages",
+        "what": "Bahasa Semitik Selatan modern seperti Mehri dan Soqotri"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Oman sebagai pengusul"
+      }
+    ],
+    "needsVerification": [
+      "Rincian tradisi jamuan lokal bisa berbeda antardaerah"
+    ]
+  },
+  {
+    "id": "ps",
+    "iso3": "PSE",
+    "nameId": "Palestina",
+    "nameLocal": "فلسطين",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلين",
+      "roman": "Ahlēn",
+      "meaningId": "Halo",
+      "register": "akrab, khas Levant"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Palestina)",
+      "nativeName": "العربية الفلسطينية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Palestina bagian rumpun Arab Levantin; pelafalan berbeda antara kota, desa, dan kelompok Bedouin."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً جزيلاً",
+        "roman": "Syukran jazīlan"
+      },
+      {
+        "id": "Permisi",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "الله معك",
+        "roman": "Allāh maʿak"
+      }
+    ],
+    "cultureNote": "Tamu disambut dengan ahlan wa sahlan. Menjelang pulang, tuan rumah menawarkan kopi perpisahan; tamu berpamitan setelah meminumnya. Memuji barang pribadi berulang kali dihindari karena dipercaya memicu mata jahat.",
+    "peopleNote": "Hormati yang lebih tua: berdiri saat mereka masuk dan tawarkan tempat duduk. Tawaran diterima setelah tuan rumah mendesak dua kali. Gunakan tangan kanan untuk makan dan memberi.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di Ramallah, tamu diterima dengan ucapan ahlan wa sahlan, lalu dipersilakan duduk. Tuan rumah menyuguhkan teh, kue kering, lantas kopi, mengikuti tata urut hidangan yang sudah lama. Kopi pahit bertabur kapulaga itu bukan sekadar minuman, tetapi penanda pertemuan. Menjelang akhir kunjungan, tuan rumah menyodorkan kopi perpisahan; tamu berpamitan setelah meminumnya, sebab menolaknya bisa memperpanjang kunjungan. Bahasa sehari-hari di sini adalah dialek Palestina, bagian rumpun Arab Levantin, sementara Arab Baku Modern dipakai di sekolah dan dokumen resmi. Orang menghormati yang lebih tua dengan berdiri saat mereka masuk ruangan dan mempersilakan tempat duduk. Adab lain: menerima sesuatu dengan tangan kanan, dan tidak memuji barang pribadi berulang kali karena dipercaya bisa memicu rasa iri, kepercayaan pada mata jahat yang disebut ain. Sapaan akrab dan jamuan menjadi penanda hubungan yang hangat.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+          "what": "Etiket bertamu: tata urut suguhan, kopi perpisahan, menghormati yang tua, mata jahat, tangan kanan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+          "what": "Dialek Palestina bagian rumpun Arab Levantin"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab bertabur kapulaga dan adab penyajiannya"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/palestinian-culture/palestinian-culture-etiquette",
+        "what": "Etiket bertamu: tata urut suguhan, kopi perpisahan, menghormati yang tua, mata jahat, tangan kanan"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Palestinian_Arabic",
+        "what": "Dialek Palestina bagian rumpun Arab Levantin"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "Rumpun Arab Levantin dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab bertabur kapulaga dan adab penyajiannya"
+      }
+    ],
+    "needsVerification": [
+      "Adat berbeda antara keluarga Muslim dan Kristen serta antardaerah"
+    ]
+  },
+  {
+    "id": "qa",
+    "iso3": "QAT",
+    "nameId": "Qatar",
+    "nameLocal": "قطر",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "حياك الله",
+      "roman": "Ḥayyāk Allāh",
+      "meaningId": "Halo (semoga Allah menjagamu)",
+      "register": "hangat, khas Teluk"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Teluk)",
+      "nativeName": "اللهجة القطرية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Qatar bagian Arab Teluk; Arab Baku Modern dipakai media seperti Al Jazeera dan administrasi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "جزاك الله خير",
+        "roman": "Jazāk Allāh khayr"
+      },
+      {
+        "id": "Permisi",
+        "native": "لو تسمح",
+        "roman": "Law tismaḥ"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Majlis, ruang duduk berlapis bantal di sepanjang dinding, tercatat UNESCO sebagai warisan takbenda sejak 2015. Di sana tetangga dan keluarga berkumpul, dan kopi Arab beserta kurma disajikan mengelilingi tamu.",
+    "peopleNote": "Terima dan beri dengan tangan kanan. Sapa yang paling tua lebih dahulu. Terima suguhan kopi sebagai tanda hormat. Bicara dengan nada tenang dan tidak mengangkat suara dianggap sopan.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di Souq Waqif, pasar tua di Doha, kopi Arab dituang dari ceret berparuh panjang ke cangkir kecil. Kurma disajikan di sampingnya. Tamu menyambutnya dengan tangan kanan dan mengembalikan cangkir dengan cara yang sama. Tuan rumah sering menyapa tamunya dengan hayyak Allah, harfiah semoga Allah menjagamu, sebagai pembuka yang hangat. Pertemuan keluarga dan tetangga berlangsung di majlis, ruang duduk berlapis bantal di sepanjang dinding; ruang ini tercatat UNESCO sebagai warisan takbenda sejak 2015. Bahasa percakapan harian di Qatar adalah dialek Teluk, sedangkan Arab Baku Modern dipakai di sekolah, surat resmi, dan siaran berita seperti Al Jazeera. Inilah situasi diglosia, dua laras yang hidup berdampingan. Bunyi q lazim berubah menjadi g dan k menjadi c, ciri yang terdengar di jalan maupun di pasar.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+          "what": "Dialek Teluk, diglosia dengan Arab Baku Modern, perubahan bunyi q dan k"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Qatar sebagai pengusul"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab dituang dari ceret ke cangkir kecil, disajikan dengan kurma, diterima dengan tangan kanan"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Gulf_Arabic",
+        "what": "Dialek Teluk, diglosia dengan Arab Baku Modern, perubahan bunyi q dan k"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qatari_Arabic",
+        "what": "Dialek Qatar sebagai bagian Arab Teluk"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Souq_Waqif",
+        "what": "Souq Waqif, pasar tua di Doha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama Qatar sebagai pengusul"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab dituang dari ceret ke cangkir kecil, disajikan dengan kurma, diterima dengan tangan kanan"
+      }
+    ],
+    "needsVerification": [
+      "Register sapaan حياك الله belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "cy",
+    "iso3": "CYP",
+    "nameId": "Siprus",
+    "nameLocal": "Κύπρος",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "Γεια σας",
+      "roman": "Yia sas",
+      "meaningId": "Halo",
+      "register": "sopan (bentuk jamak hormat); bentuk akrab: «γεια σου»"
+    },
+    "language": {
+      "nameId": "Bahasa Yunani",
+      "nativeName": "Ελληνικά",
+      "script": "Aksara Yunani, 24 huruf, kiri ke kanan",
+      "family": "Indo-Eropa (Hellenik)",
+      "note": "Yunani adalah bahasa resmi dominan; bahasa Turki berstatus resmi bersama di Republik Siprus dan dominan di bagian utara. Dialek Siprus cukup berbeda dari bahasa Yunani standar."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Ευχαριστώ",
+        "roman": "Efcharistó"
+      },
+      {
+        "id": "Permisi",
+        "native": "Συγγνώμη",
+        "roman": "Sygnómi"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Αντίο",
+        "roman": "Adío"
+      }
+    ],
+    "cultureNote": "Meze, deretan piring kecil yang dibagi bersama, menjadi cara bersantap khas Siprus. Tuan rumah sering mendorong tamu menambah makanan dengan seruan «kopiaste», semacam «silakan makan banyak», karena terus menolak dianggap kurang sopan.",
+    "peopleNote": "Sapaan akrab antar teman biasanya disertai dua ciuman pipi, sedangkan perkenalan resmi cukup dengan jabat tangan. Orang yang lebih tua disapa lebih dulu. Kafe menjadi ruang sosial tempat orang duduk lama sambil mengobrol.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di kedai kopi tua di Nicosia, segelas kopi Yunani diseruput pelan sambil pemilik kedai menyapa setiap pelanggan dengan «Γεια σας» (Yia sas). Republik Siprus menetapkan dua bahasa resmi, Yunani dan Turki, dengan bahasa Yunani sebagai bahasa mayoritas. Percakapan harian di kota-kota selatan sering memakai dialek Yunani Siprus yang cukup berbeda dari bahasa Yunani standar sehingga penutur dari Athena butuh waktu menyesuaikan telinga. Situasi ini disebut diglosia: ragam vernakular dipakai sehari-hari, sedangkan ragam baku muncul di berita dan dokumen. Aksara Yunani berusia lebih dari dua ribu tahun dan bergerak dari kiri ke kanan dengan 24 huruf; huruf-hurufnya juga dipakai sebagai lambang dalam matematika dan ilmu pengetahuan. Di meja makan, hidangan disajikan sebagai meze, banyak piring kecil untuk dibagi bersama. Sapaan akrab antar teman biasanya disertai dua ciuman pipi, sedangkan perkenalan resmi cukup dengan jabat tangan singkat.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Cyprus",
+          "what": "Bahasa resmi Yunani dan Turki; Nikosia/Lefkosia ibu kota"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Cypriot_Greek",
+          "what": "Dialek Yunani Siprus, diglosia dengan bahasa Yunani standar, memakai aksara Yunani"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Greek_alphabet",
+          "what": "Aksara Yunani 24 huruf, arah tulis kiri ke kanan"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%CE%B3%CE%B5%CE%B9%CE%B1_%CF%83%CE%B1%CF%82",
+          "what": "γεια σας = halo/selamat (bentuk jamak hormat)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Cyprus",
+        "what": "Bahasa resmi Yunani dan Turki; Nikosia/Lefkosia ibu kota"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Cypriot_Greek",
+        "what": "Dialek Yunani Siprus, diglosia dengan bahasa Yunani standar, memakai aksara Yunani"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Greek_alphabet",
+        "what": "Aksara Yunani 24 huruf, arah tulis kiri ke kanan"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B3%CE%B5%CE%B9%CE%B1_%CF%83%CE%B1%CF%82",
+        "what": "γεια σας = halo/selamat (bentuk jamak hormat)"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B5%CF%85%CF%87%CE%B1%CF%81%CE%B9%CF%83%CF%84%CF%8E",
+        "what": "ευχαριστώ = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CF%83%CF%85%CE%B3%CE%B3%CE%BD%CF%8E%CE%BC%CE%B7",
+        "what": "συγγνώμη = maaf / permisi"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%CE%B1%CE%BD%CF%84%CE%AF%CE%BF",
+        "what": "αντίο = selamat tinggal"
+      }
+    ],
+    "needsVerification": [
+      "Etiket dua ciuman pipi dan seruan «kopiaste» bersumber kebiasaan umum, belum sumber primer",
+      "Cakupan bahasa resmi di wilayah utara disederhanakan"
+    ]
+  },
+  {
+    "id": "sy",
+    "iso3": "SYR",
+    "nameId": "Suriah",
+    "nameLocal": "سوريا",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "شلونك",
+      "roman": "Shlōnak",
+      "meaningId": "Halo (apa kabar)",
+      "register": "akrab, khas Levant"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Suriah)",
+      "nativeName": "العربية السورية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Suriah bagian rumpun Arab Levantin; kosakatanya menyerap kata Turki dan Prancis."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "يسلمو",
+        "roman": "Yislamu"
+      },
+      {
+        "id": "Permisi",
+        "native": "إذا بتسمح",
+        "roman": "Idhā bitismaḥ"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "بخاطرك",
+        "roman": "Bkhāṭrak"
+      }
+    ],
+    "cultureNote": "Tamu bisa datang tanpa undangan; tuan rumah diharapkan menghentikan pekerjaan dan menjamu sebaik mungkin. Menolak tawaran sekali dulu, lalu menerima setelah didesak, adalah adab yang sopan.",
+    "peopleNote": "Berdiri saat yang lebih tua masuk ruangan. Gunakan tangan kanan untuk makan dan memberi. Jangan mengarahkan telapak kaki ke orang lain. Bicara lembut dinilai santun.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di Damaskus, jika tetangga datang tanpa undangan, tuan rumah diharapkan menghentikan pekerjaannya dan menjamu sebaik mungkin. Adabnya begitu: tawaran diterima setelah didesak, sebab penolakan pertama justru tanda kesopanan. Kopi diseduh kental dan beraroma kapulaga, dituang dari rakwa di kota atau bakraj berparuh panjang di daerah Bedouin. Cangkir kecil diisi sedikit agar tuan rumah sempat menuang ulang. Bahasa sehari-hari adalah dialek Suriah dari rumpun Arab Levantin, yang menyerap kata Turki dan Prancis dari sejarah panjang kawasan itu. Arab Baku Modern tetap dipakai untuk dokumen resmi dan pengajaran. Di meja makan, tamu duduk di tempat kehormatan, dan yang lebih tua disilakan lebih dulu. Semua hidangan sebaiknya dicicipi. Berbicara lembut dan tidak mengarahkan kaki ke orang lain juga bagian penting dari etiket pergaulan sehari-hari.",
+      "sources": [
+        {
+          "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+          "what": "Etiket: tamu tanpa undangan, menolak lalu menerima tawaran, berdiri untuk yang tua, tidak mengarahkan kaki"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+          "what": "Dialek Suriah bagian rumpun Arab Levantin"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://theculturalatlas.org/syrian-culture/syrian-culture-etiquette",
+        "what": "Etiket: tamu tanpa undangan, menolak lalu menerima tawaran, berdiri untuk yang tua, tidak mengarahkan kaki"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Syrian_Arabic",
+        "what": "Dialek Suriah bagian rumpun Arab Levantin"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Levantine_Arabic",
+        "what": "Rumpun Arab Levantin dan wilayah sebarannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Levantin berkapulaga; ceret rakwa dan bakraj"
+      }
+    ],
+    "needsVerification": [
+      "Tingkat penggunaan kata serapan Turki dan Prancis berbeda antargenerasi"
+    ]
+  },
+  {
+    "id": "ae",
+    "iso3": "ARE",
+    "nameId": "Uni Emirat Arab",
+    "nameLocal": "الإمارات العربية المتحدة",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "أهلاً وسهلاً",
+      "roman": "Ahlan wa sahlan",
+      "meaningId": "Halo",
+      "register": "hangat, khas menyambut tamu"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Emirat)",
+      "nativeName": "اللهجة الإماراتية",
+      "script": "Aksara Arab, ditulis dari kanan ke kiri",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Emirat atau Al Ramsa termasuk rumpun Arab Teluk; Arab Baku Modern dipakai di sekolah dan dokumen resmi."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "عن إذنك",
+        "roman": "ʿAn idhnak"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "في أمان الله",
+        "roman": "Fī amān Allāh"
+      }
+    ],
+    "cultureNote": "Majlis, ruang tamu sekaligus tempat keluarga berkumpul, tercatat UNESCO sebagai warisan budaya takbenda sejak 2015. Kopi Arab disajikan bersama kurma, dan mengisi cangkir tamu lebih dulu adalah tanda kehormatan.",
+    "peopleNote": "Terima dan beri barang dengan tangan kanan. Sepatu dilepas sebelum masuk rumah atau majlis. Tamu menyapa yang paling tua lebih dahulu. Antara lawan jenis, tunggu perempuan mengulurkan tangan lebih dulu.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Saat tamu melangkah ke majlis, ruang duduk yang dilapisi bantal di sepanjang dinding, tuan rumah di Uni Emirat Arab menyuguhkan kopi Arab. Kopi dituang dari dallah, ceret kuningan berleher panjang, ke cangkir kecil tanpa gagang bernama finjān. Kurma diletakkan di sisinya untuk menetralkan rasa pahit. Cangkir diisi setengah, dan tamu menerimanya dengan tangan kanan, lalu mengembalikannya dengan cara yang sama; menolak isian berikutnya cukup dengan menggerakkan tangan. Bahasa sehari-hari di negeri ini adalah dialek Emirat, yang penuturnya menyebutnya Al Ramsa dan tergolong rumpun Arab Teluk. Di sekolah dan dokumen resmi, Arab Baku Modern yang dipakai. Bunyi q yang di Arab Baku diucapkan q berubah menjadi g dalam dialek ini, sehingga qahwa terdengar gahwa. Majlis sendiri, ruang tamu sekaligus tempat keluarga berkumpul, tercatat UNESCO sebagai warisan budaya takbenda sejak 2015.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+          "what": "Dialek Emirat (Al Ramsa) termasuk Arab Teluk; perubahan bunyi q menjadi g"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab, dallah, finjān, kurma, dan adab menuang untuk tamu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Majlis",
+          "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama UAE, Oman, Qatar, Arab Saudi"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Emirati_Arabic",
+        "what": "Dialek Emirat (Al Ramsa) termasuk Arab Teluk; perubahan bunyi q menjadi g"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab, dallah, finjān, kurma, dan adab menuang untuk tamu"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Majlis",
+        "what": "Majlis sebagai ruang tamu; tercatat UNESCO pada 2015 bersama UAE, Oman, Qatar, Arab Saudi"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic",
+        "what": "Bahasa Arab dari rumpun Afro-Asia cabang Semitik; Arab Baku Modern"
+      }
+    ],
+    "needsVerification": [
+      "Register sapaan أهلاً وسهلاً belum dirujuk ke sumber primer"
+    ]
+  },
+  {
+    "id": "ye",
+    "iso3": "YEM",
+    "nameId": "Yaman",
+    "nameLocal": "اليمن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "كيف حالك",
+      "roman": "Kayfa ḥālak",
+      "meaningId": "Halo (apa kabar)",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Arab (dialek Yaman)",
+      "nativeName": "اللهجة اليمنية",
+      "script": "Aksara Arab",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Dialek Yaman tergolong konservatif dan menyimpan banyak ciri Arab Klasik; di Hadhramaut juga dipakai dialek Hadhrami."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Syukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "أسمح لي",
+        "roman": "Ismaḥ lī"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "الله يحفظك",
+        "roman": "Allāh yaḥfaẓak"
+      }
+    ],
+    "cultureNote": "Kopi dikenang berasal dari Yaman; kata mocha mengacu ke pelabuhan al-Makha, dan Hari Kopi Yaman dirayakan setiap 3 Maret. Rumah menara Sanaa jadi tempat menjamu tamu di ruang atasnya.",
+    "peopleNote": "Terima dan santap dengan tangan kanan. Tamu dihormati dan disuguhi kopi atau qishr. Sapa yang paling tua lebih dahulu. Percakapan santai sering diselingi syair dan cerita.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di Yaman, tamu pria biasanya diterima di ruang atas rumah menara Sanaa yang jendelanya berhiaskan lengkung kaca warna. Di sana kopi disuguhkan bersama kurma, dan cangkir diisi sedikit lalu dituang ulang. Sebagian menjamu dengan qishr, seduhan kulit kopi. Kopi sendiri dikenang berasal dari Yaman: kata mocha mengacu ke pelabuhan al-Makha, dan negeri ini merayakan Hari Kopi Yaman setiap 3 Maret. Bumbu hawaij dicampurkan ke seduhan di sini. Bahasa resminya Arab Baku Modern, sedangkan percakapan memakai dialek Arab Yaman yang tergolong konservatif karena masih menyimpan banyak ciri Arab Klasik. Pengaruh dialek Hadhrami dan bahasa Melayu dari perantauan ke Asia Tenggara meninggalkan jejak pada kosakata sehari-hari. Tangan kanan dipakai untuk menerima dan menyantap hidangan. Jamuan di ruang atas itu menjadi momen penting untuk menjaga hubungan keluarga dan tetangga.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+          "what": "Dialek Yaman yang konservatif; dialek Hadhrami; pengaruh bahasa lain pada kosakata"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+          "what": "Kopi Arab berasal dari Yaman lewat pelabuhan Mokha; bumbu hawaij; Hari Kopi Yaman"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+          "what": "Kopi Yaman dan asal-usulnya di al-Makha"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+          "what": "Rumah menara dan qishr (seduhan kulit kopi)"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_Arabic",
+        "what": "Dialek Yaman yang konservatif; dialek Hadhrami; pengaruh bahasa lain pada kosakata"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Arabic_coffee",
+        "what": "Kopi Arab berasal dari Yaman lewat pelabuhan Mokha; bumbu hawaij; Hari Kopi Yaman"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Yemeni_coffee",
+        "what": "Kopi Yaman dan asal-usulnya di al-Makha"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Qishr",
+        "what": "Qishr, seduhan kulit kopi khas Yaman"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Yemen",
+        "what": "Rumah menara dan qishr (seduhan kulit kopi)"
+      }
+    ],
+    "needsVerification": [
+      "Tingkat pemakaian qishr dan hawaij berbeda antardaerah",
+      "Pengaruh kosakata Melayu bervariasi antarkomunitas"
+    ]
+  },
+  {
+    "id": "jo",
+    "iso3": "JOR",
+    "nameId": "Yordania",
+    "nameLocal": "الأردن",
+    "region": "Asia Barat",
+    "greeting": {
+      "native": "السلام عليكم",
+      "roman": "As-salāmu ʿalaykum",
+      "meaningId": "Semoga keselamatan atasmu (halo)",
+      "register": "netral, bernuansa religius"
+    },
+    "language": {
+      "nameId": "Bahasa Arab",
+      "nativeName": "العربية",
+      "script": "Aksara Arab (abjad, 28 huruf, kanan ke kiri)",
+      "family": "Afro-Asia (Semitik)",
+      "note": "Bahasa Arab bahasa resmi Yordania; percakapan harian memakai dialek Yordania (Levantine), sedangkan bahasa Arab standar untuk tulisan dan berita."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "شكراً",
+        "roman": "Shukran"
+      },
+      {
+        "id": "Permisi",
+        "native": "عفواً",
+        "roman": "ʿAfwan"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "مع السلامة",
+        "roman": "Maʿa as-salāma"
+      }
+    ],
+    "cultureNote": "Mansaf, nasi dengan daging domba dan yoghurt kental, menjadi hidangan nasional yang disantap bersama dari satu nampan besar. Tradisi menjamu tamu dan berbagi makanan menandai kehormatan tuan rumah sekaligus keakraban keluarga.",
+    "peopleNote": "Sapaan umumnya disertai jabat tangan dan kadang ciuman pipi antar sesama jenis. «Ahlan wa sahlan» sering dipakai sebagai ucapan selamat datang. Orang yang lebih tua disapa lebih dulu, dan tamu biasanya langsung disuguhi teh atau kopi.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Nampan besar berisi nasi, daging domba, dan yoghurt kental diletakkan di tengah lingkaran keluarga. Hidangan mansaf itu disantap bersama dengan tangan kanan dari satu piring besar, cara makan yang menandai kebersamaan dan penghormatan pada tamu. Yordania menetapkan bahasa Arab sebagai bahasa resmi, sementara pergaulan harian memakai dialek Yordania dari rumpun Arab Levantine. Bahasa Arab standar lebih banyak muncul di tulisan, berita, dan dokumen resmi, mengikuti pola diglosia yang umum di dunia Arab. Aksara Arab ditulis dari kanan ke kiri memakai abjad 28 huruf, sebagian huruf dibedakan lewat titik di atas atau bawah. Menurut Britannica, Amman yang dahulu bernama Philadelphia kini menjadi salah satu pusat budaya Arab terpenting. Salam sehari-hari berbunyi «السلام عليكم» dan sering dilanjutkan «أهلا وسهلا» (ahlan wa sahlan) sebagai ucapan selamat datang.",
+      "sources": [
+        {
+          "url": "https://www.britannica.com/place/Jordan",
+          "what": "Bahasa resmi Arab; Amman ibu kota; Petra"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jordanian_Arabic",
+          "what": "Dialek Yordania dari rumpun Arab Levantine; diglosia dengan bahasa Arab standar; aksara Arab"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+          "what": "Bahasa Arab standar untuk tulisan dan berita; abjad 28 huruf, kanan ke kiri"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+          "what": "شكراً = terima kasih"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+          "what": "مع السلامة = selamat jalan / sampai jumpa"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.britannica.com/place/Jordan",
+        "what": "Bahasa resmi Arab; Amman ibu kota; Petra"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Jordanian_Arabic",
+        "what": "Dialek Yordania dari rumpun Arab Levantine; diglosia dengan bahasa Arab standar; aksara Arab"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Modern_Standard_Arabic",
+        "what": "Bahasa Arab standar untuk tulisan dan berita; abjad 28 huruf, kanan ke kiri"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D8%B4%D9%83%D8%B1%D8%A7",
+        "what": "شكراً = terima kasih"
+      },
+      {
+        "url": "https://en.wiktionary.org/wiki/%D9%85%D8%B9_%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9",
+        "what": "مع السلامة = selamat jalan / sampai jumpa"
+      }
+    ],
+    "needsVerification": [
+      "Etiket jabat tangan, cium pipi, dan hidangan mansaf bersumber kebiasaan umum, belum sumber primer",
+      "Dialek Yordania sangat beragam (sedentary versus Bedouin) dan disederhanakan di sini"
+    ]
+  },
+  {
+    "id": "kg",
+    "iso3": "KGZ",
+    "nameId": "Kirgizstan",
+    "nameLocal": "Кыргызстан",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Салам",
+      "roman": "Salam",
+      "meaningId": "Halo",
+      "register": "netral; ragam santai"
+    },
+    "language": {
+      "nameId": "Bahasa Kirgiz",
+      "nativeName": "Кыргыз тили",
+      "script": "Alfabet Kiril (ditambah huruf ң, ө, ү)",
+      "family": "Turkik (Kipchak)",
+      "note": "Kirgiz adalah bahasa resmi bersama bahasa Rusia. Seperti bahasa Turkik lain, Kirgiz memakai harmoni vokal."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Рахмат",
+        "roman": "Rakhmat"
+      },
+      {
+        "id": "Permisi",
+        "native": "Кечиресиз",
+        "roman": "Kechiresiz"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Кош болуңуз",
+        "roman": "Kosh boluñuz"
+      }
+    ],
+    "cultureNote": "Keramahan adalah nilai yang dijunjung tinggi. Tamu disambut dan sebaiknya menerima suguhan teh atau kymyz, minuman susu kuda fermentasi, sebab menolak hidangan bisa terasa sebagai penolakan terhadap tuan rumah.",
+    "peopleNote": "Jabat tangan lazim, terutama antarpria, dan yang lebih tua disapa lebih dahulu. Barang diberikan atau diterima dengan tangan kanan, dan sepatu dilepas sebelum masuk rumah.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di sebuah rumah teh dekat Bishkek, tamu disambut dengan ucapan salam sambil berjabat tangan. Bahasa resmi Kirgizstan adalah bahasa Kirgiz, anggota rumpun Turkik cabang Kipchak, dan bahasa Rusia juga berstatus resmi. Kirgiz ditulis memakai alfabet Kiril yang ditambah huruf khusus ң, ө, dan ү untuk bunyi yang tidak ada dalam bahasa Rusia. Seperti bahasa Turkik lain, Kirgiz memakai harmoni vokal: vokal dalam satu kata menyesuaikan baris depan atau belakang. Sapaan akrab berbunyi salam, sering diikuti pertanyaan kandaisyng, 'apa kabar?'. Jawabannya cukup jakshy, 'baik', atau jakshy, rakhmat. Ucapan terima kasih adalah rakhmat. Orang Kirgiz sangat menjunjung keramahan. Tamu dipersilakan masuk dan disuguhi teh atau kymyz, minuman dari susu kuda yang difermentasi. Yang lebih tua disapa lebih dahulu. Menyerahkan atau menerima sesuatu sebaiknya memakai tangan kanan.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Kyrgyz_language",
+          "what": "Rumpun Turkik cabang Kipchak, harmoni vokal, alfabet Kiril dengan huruf ң, ө, ү, status resmi bersama Rusia"
+        },
+        {
+          "url": "https://worldly.academy/words/kyrgyz",
+          "what": "Frasa Salam, Kosh boluñuz, Rakhmat, dan kymyz sebagai suguhan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Kyrgyz_alphabets",
+          "what": "Alfabet Kiril Kirgiz dan huruf tambahan"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kyrgyz_language",
+        "what": "Rumpun Turkik, harmoni vokal, alfabet Kiril, status resmi"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Kyrgyz_alphabets",
+        "what": "Huruf tambahan ң, ө, ү dalam alfabet Kiril Kirgiz"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Kyrgyzstan",
+        "what": "Keramahan, suguhan teh dan kymyz, penghormatan kepada tamu"
+      },
+      {
+        "url": "https://worldly.academy/words/kyrgyz",
+        "what": "Frasa sapaan dan terima kasih dasar"
+      }
+    ],
+    "needsVerification": [
+      "Pemetaan 'Permisi' ke kechiresiz (yang berarti maaf/permisi) perlu dicek penutur asli"
+    ]
+  },
+  {
+    "id": "tj",
+    "iso3": "TJK",
+    "nameId": "Tajikistan",
+    "nameLocal": "Тоҷикистон",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Салом",
+      "roman": "Salom",
+      "meaningId": "Halo",
+      "register": "netral, akrab"
+    },
+    "language": {
+      "nameId": "Bahasa Tajik",
+      "nativeName": "Тоҷикӣ",
+      "script": "Alfabet Kiril (35 huruf)",
+      "family": "Indo-Eropa (Iran)",
+      "note": "Tajik adalah varian bahasa Persia yang ditulis memakai huruf Kiril. Bahasa ini berkerabat dekat dengan bahasa Farsi di Iran dan Dari di Afghanistan."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Ташаккур",
+        "roman": "Tashakkur"
+      },
+      {
+        "id": "Permisi",
+        "native": "Мебахшед",
+        "roman": "Mebakhshed"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "То дидан",
+        "roman": "To didan"
+      }
+    ],
+    "cultureNote": "Nowruz, tahun baru musim semi, dirayakan dengan hidangan dan kunjungan keluarga. Perayaan ini menandai awal tahun dalam tradisi Persia yang diwarisi Tajik.",
+    "peopleNote": "Saat menyapa, orang meletakkan tangan kanan di dada. Yang lebih tua disapa lebih dahulu, tamu disuguhi teh, dan sepatu dilepas sebelum masuk rumah.",
+    "depth": "Lengkap",
+    "story": {
+      "text": "Di sebuah choykhona, rumah teh di Dushanbe, tamu menyapa dengan salom dan meletakkan tangan kanan di dada. Bahasa resmi Tajikistan adalah bahasa Tajik, anggota rumpun Indo-Eropa cabang Iran. Tajik sebenarnya varian bahasa Persia yang ditulis memakai alfabet Kiril sejak 1940. Alfabet Kiril Tajik memuat 35 huruf, termasuk huruf tambahan ғ, ӣ, қ, ӯ, ҳ, dan ҷ untuk bunyi khas Persia yang tidak ada dalam bahasa Rusia. Sebelumnya Tajik ditulis memakai aksara Persia-Arab, lalu sempat memakai alfabet Latin. Sapaan sehari-hari salom dan ucapan terima kasih tashakkur banyak berasal dari kosakata Arab, jejak pengaruh Islam. Rakyat Tajik merayakan Nowruz, tahun baru musim semi, dengan hidangan dan pertemuan keluarga. Dalam pergaulan, yang lebih tua dihormati dan disapa lebih dahulu, dan tamu disuguhi teh serta buah sebelum berbincang panjang. Melepas sepatu saat masuk rumah adalah kebiasaan yang lazim.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tajik_language",
+          "what": "Tajik varian Persia, rumpun Indo-Eropa cabang Iran, ditulis Kiril sejak 1939-1940"
+        },
+        {
+          "url": "https://celcar.indiana.edu/materials/language-portal/tajiki.html",
+          "what": "Sejarah aksara Tajik dan 35 huruf alfabet Kiril"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tajik_alphabet",
+          "what": "Huruf tambahan ғ, ӣ, қ, ӯ, ҳ, ҷ"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Tajik_language",
+        "what": "Tajik varian Persia, rumpun Indo-Eropa, penulisan Kiril"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tajik_alphabet",
+        "what": "Alfabet Kiril Tajik dan huruf tambahannya"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Tajikistan",
+        "what": "Nowruz, keramahan, dan adat menerima tamu"
+      },
+      {
+        "url": "https://celcar.indiana.edu/materials/language-portal/tajiki.html",
+        "what": "Sejarah tiga sistem tulisan Tajik dan ciri bahasanya"
+      }
+    ],
+    "needsVerification": [
+      "Asal kata Arab untuk salom dan tashakkur belum dirujuk ke sumber etimologi primer"
+    ]
+  },
+  {
+    "id": "tm",
+    "iso3": "TKM",
+    "nameId": "Turkmenistan",
+    "nameLocal": "Türkmenistan",
+    "region": "Asia Tengah",
+    "greeting": {
+      "native": "Salam",
+      "roman": "Salam",
+      "meaningId": "Halo",
+      "register": "netral, dipakai luas"
+    },
+    "language": {
+      "nameId": "Bahasa Turkmen",
+      "nativeName": "Türkmençe",
+      "script": "Alfabet Latin (resmi sejak 1993; sebelumnya Kiril)",
+      "family": "Turkik (Oghuz)",
+      "note": "Turkmen adalah bahasa resmi Turkmenistan dan berkerabat dekat dengan bahasa Turki serta Azerbaijani. Alfabet Latinnya memakai huruf tambahan seperti ä, ň, ö, ş, ü, dan ý."
+    },
+    "phrases": [
+      {
+        "id": "Terima kasih",
+        "native": "Sag boluň",
+        "roman": "Sag boluň"
+      },
+      {
+        "id": "Permisi",
+        "native": "Bagyşlaň",
+        "roman": "Bagyşlaň"
+      },
+      {
+        "id": "Sampai jumpa",
+        "native": "Hoş sag boluň",
+        "roman": "Hoş sag boluň"
+      }
+    ],
+    "cultureNote": "Roti diperlakukan dengan hormat: roti tidak diletakkan terbalik dan tidak dibuang. Dalam budaya Turkmen, roti melambangkan rezeki, sehingga sikap terhadapnya mencerminkan rasa syukur kepada tuan rumah.",
+    "peopleNote": "Yang lebih tua disapa lebih dahulu, dan makanan atau hadiah diberikan dengan tangan kanan, kadang disangga tangan kiri. Tamu disuguhi teh dan roti saat berkunjung.",
+    "depth": "Penjelajahan",
+    "story": {
+      "text": "Di tepi Gurun Karakum, tamu disambut di dalam tenda dengan sepiring roti dan semangkuk teh hijau. Bahasa resmi Turkmenistan adalah bahasa Turkmen, anggota rumpun Turkik cabang Oghuz yang berkerabat dekat dengan bahasa Turki dan Azerbaijani. Dalam satu abad, bahasa ini sempat memakai empat sistem tulisan: aksara Persia-Arab, lalu Latin pada 1928, lalu Kiril pada 1940, dan kembali ke Latin pada 1993 setelah kemerdekaan. Alfabet Latin resmi Turkmen memakai huruf tambahan seperti ä, ň, ö, ş, ü, ý, dan ž. Sapaan Salam dijawab dengan Salam, lalu Nähili, 'apa kabar?'. Ucapan terima kasih sag boluň secara harfiah berarti 'tetaplah sehat'. Budaya Turkmen menghormati roti: roti tidak diletakkan terbalik atau dibuang. Orang yang lebih tua disapa lebih dahulu, dan hadiah atau makanan diberikan dengan tangan kanan, kadang disangga tangan kiri.",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Turkmen_language",
+          "what": "Rumpun Turkik cabang Oghuz, alfabet Latin resmi sejak 1993, sejarah empat sistem tulisan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Turkmen_alphabet",
+          "what": "Huruf Latin Turkmen dengan aksen ä, ň, ö, ş, ü, ý, ž"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Turkmen_phrasebook",
+          "what": "Salam, Nähili, sag boluň, bagyşlaň sebagai frasa dasar"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Turkmen_language",
+        "what": "Rumpun Turkik Oghuz, alfabet Latin resmi, sejarah tulisan"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Turkmen_alphabet",
+        "what": "Susunan huruf Latin Turkmen"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Culture_of_Turkmenistan",
+        "what": "Keramahan, peran roti dan teh, adat menerima tamu"
+      },
+      {
+        "url": "https://en.wikivoyage.org/wiki/Turkmen_phrasebook",
+        "what": "Frasa sapaan, terima kasih, dan permisi"
+      }
+    ],
+    "needsVerification": [
+      "Sebagian warga masih menulis dan membaca varian Kiril; ejaan Latin untuk 'Hoş sag boluň' belum dirujuk ke kamus resmi",
+      "Makna harfiah 'sag boluň' perlu dicek penutur asli"
+    ]
   }
 ]

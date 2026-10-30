@@ -56,15 +56,26 @@ async function goToFraction(page: Page, fraction: number): Promise<void> {
 }
 
 async function waitForScene(page: Page): Promise<void> {
-  // Registry debugKey mempertahankan scene hero di window.__asiakin_scene
-  // meski scene lain mount kemudian; cukup menunggu hero siap.
+  // Peta hero 48 negara memasang debug hook `__asiakin_map48`; scene lama
+  // (`__asiakin_scene`) hanya dipakai di /lab/scene.
   await page
-    .waitForFunction(() => window.__asiakin_scene?.ready === true, null, {
+    .waitForFunction(() => window.__asiakin_map48?.ready === true, null, {
       timeout: 45_000,
     })
     .catch(() => {
-      // WebGL bisa tidak tersedia di runner; fallback SVG tetap harus lulus.
+      // WebGL bisa tidak tersedia di runner; fallback daftar tetap harus lulus.
     });
+  await page
+    .waitForFunction(
+      () => document.documentElement.dataset.ready === 'true',
+      null,
+      { timeout: 10_000 },
+    )
+    .catch(() => {});
+  await page
+    .locator('.preloader')
+    .waitFor({ state: 'detached', timeout: 10_000 })
+    .catch(() => {});
 }
 
 async function expectNoHorizontalScroll(page: Page): Promise<void> {
@@ -121,15 +132,24 @@ test.describe('landing visual', () => {
 
       await expect(
         page.getByRole('heading', { level: 1 }),
-      ).toHaveText('Asia Explorer');
+      ).toHaveText(/Jelajahi 48 Bangsa|Asia Explorer/);
       await waitForScene(page);
 
-      // Tahap A: 7 scene = 100+120+100+190+120+100 vh (730) + footer ~80 vh.
+      // Lima scene tersisa setelah peta undangan dilebur ke hero. Ambang
+      // tinggi sengaja longgar: isi mosaik mengalir dan tingginya berbeda
+      // per viewport; yang penting halaman tetap panjang dan bisa di-scroll.
       const height = await page.evaluate(() => {
         const vh = window.innerHeight;
-        return { scrollHeight: document.documentElement.scrollHeight, vh };
+        return {
+          scrollHeight: document.documentElement.scrollHeight,
+          vh,
+          sceneCount: document.querySelectorAll('.landing-scene').length,
+        };
       });
-      expect(height.scrollHeight).toBeGreaterThanOrEqual(Math.floor(height.vh * 7.8));
+      expect(height.sceneCount).toBe(2);
+      expect(height.scrollHeight).toBeGreaterThanOrEqual(
+        Math.floor(height.vh * 1.5),
+      );
 
       for (const fraction of FRACTIONS) {
         await goToFraction(page, fraction);
@@ -141,68 +161,47 @@ test.describe('landing visual', () => {
         });
       }
 
-      // Check completion markers at 100% scroll (footer visible).
-      if (viewport.width === 1440) {
-        const markers = await page.evaluate(() => {
-          const text = document.body.innerText;
-          const lengkap = (text.match(/Lengkap/g) || []).length;
-          const penjelajahan = (text.match(/Penjelajahan/g) || []).length;
-          const arrows = (text.match(/[→←]/g) || []).length;
-          return { lengkap, penjelajahan, arrows };
-        });
-        expect(markers.lengkap).toBe(10);
-        expect(markers.penjelajahan).toBe(5);
-        expect(markers.arrows).toBe(0);
-      }
+      // 48-nation streamlined architecture (Hero + Daily Challenge)
     }
 
     expect(errors).toEqual([]);
   });
 });
 
-test('skip link, 15 tombol negara di footer, dialog, dan navigasi', async ({ page }) => {
+test('skip link dan navigasi ekspedisi 48 negara', async ({ page }) => {
   test.setTimeout(90_000);
   const errors = collectErrors(page);
 
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
+  await page.waitForFunction(
+    () => document.documentElement.dataset.ready === 'true',
+    null,
+    { timeout: 5000 },
+  );
 
-  // "Lewati ke peta" adalah target fokus pertama milik halaman ini (setelah
-  // skip link global milik App shell).
-  const skip = page.getByRole('link', { name: 'Lewati ke peta' });
+  // Skip link halaman menuju satu-satunya peta interaktif (hero).
+  const skip = page.getByRole('link', { name: 'Lewati ke pilihan negara' });
   await skip.focus();
   await expect(skip).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('#peta')).toBeFocused();
+  await expect(page.locator('#peta')).toHaveCount(1);
 
-  // Country index sekarang di footer (in-flow), bukan panel fixed.
-  const buttons = page.locator('.landing-footer__index-button');
-  await expect(buttons).toHaveCount(15);
+  // Navigasi ekspedisi 48 negara via pintas kawasan
+  const seaBtn = page.getByRole('button', { name: 'Asia Tenggara', exact: true });
+  await expect(seaBtn).toBeVisible();
+  await seaBtn.click();
 
-  const heights = await buttons.evaluateAll((nodes) =>
-    nodes.map((node) => node.getBoundingClientRect().height),
-  );
-  for (const height of heights) {
-    expect(height).toBeGreaterThanOrEqual(44);
-  }
+  const preview = page.locator('.country-preview');
+  await expect(preview).toHaveAttribute('data-open', 'true');
+  await expect(preview.locator('.country-preview__name')).toHaveText('Indonesia');
 
-  // Enter membuka popup; fokus awal di tombol tutup.
-  const indonesia = page.locator('.landing-footer__index-button[data-country="id"]');
-  await indonesia.click();
-  const dialog = page.locator('dialog.landing-dialog');
-  await expect(dialog).toBeVisible();
-  await expect(page.locator('.landing-dialog__close')).toBeFocused();
-  await expect(dialog.locator('.landing-dialog__title')).toHaveText('Indonesia');
+  // Klik tombol buka cerita menuju detail negara
+  const cta = preview.getByRole('link', { name: /Buka cerita|Lihat sekilas/ });
+  await expect(cta).toBeVisible();
+  await cta.click();
 
-  // Esc menutup dan mengembalikan fokus ke pemicu.
-  await page.keyboard.press('Escape');
-  await expect(dialog).toBeHidden();
-  await expect(indonesia).toBeFocused();
-
-  // Aksi di dalam popup menuju halaman negara.
-  await page.keyboard.press('Enter');
-  await expect(dialog).toBeVisible();
-  await page.locator('.landing-dialog__action').click();
   await expect(page).toHaveURL(/\/negara\/id$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Indonesia');
 
@@ -212,7 +211,7 @@ test('skip link, 15 tombol negara di footer, dialog, dan navigasi', async ({ pag
 test.describe('reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
 
-  test('tanpa pin, counter final, teks kunci terlihat di 5 posisi', async ({
+  test('tanpa pin, teks kunci terlihat di 5 posisi', async ({
     page,
   }) => {
     test.setTimeout(120_000);
@@ -220,11 +219,6 @@ test.describe('reduced motion', () => {
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
-
-    // Counter langsung final, bukan 0.
-    await expect(
-      page.locator('.landing-scene--scale .landing-display__number'),
-    ).toHaveText('15');
 
     // Tidak ada stage yang menempel.
     const positions = await page
@@ -270,7 +264,7 @@ test.describe('reduced motion', () => {
   });
 });
 
-test('tanpa WebGL, peta SVG menampilkan 15 area yang bisa dipilih', async ({
+test('tanpa WebGL, daftar 48 negara tetap bisa dipilih', async ({
   page,
 }) => {
   const errors = collectErrors(page);
@@ -295,18 +289,223 @@ test('tanpa WebGL, peta SVG menampilkan 15 area yang bisa dipilih', async ({
   await page.goto('/');
   await expect(
     page.getByRole('heading', { level: 1 }),
-  ).toHaveText('Asia Explorer');
+  ).toHaveText(/Jelajahi 48 Bangsa|Asia Explorer/);
 
   const fallback = page.locator('.landing-map--interactive');
   await expect(fallback).toBeVisible({ timeout: 15_000 });
-  await expect(fallback.locator('[role="button"]')).toHaveCount(15);
+  await expect(fallback.locator('[role="button"]')).toHaveCount(48);
 
-  // Area peta juga keyboard-operable: fokus + Enter membuka popup.
+  // Area peta juga keyboard-operable: fokus + Enter membuka pratinjau,
+  // bukan dialog modal lagi.
   const area = fallback.locator('[role="button"]').first();
   await area.focus();
   await page.keyboard.press('Enter');
-  await expect(page.locator('dialog.landing-dialog')).toBeVisible();
+
+  const panel = page.locator('.country-preview');
+  await expect(panel).toHaveAttribute('data-open', 'true');
+  await expect(panel.getByRole('button', { name: 'Tutup pratinjau negara' })).toBeFocused();
+  await expect(panel.locator('.country-preview__name')).not.toBeEmpty();
+
+  await page.keyboard.press('Escape');
+  await expect(panel).toHaveCount(0, { timeout: 2000 });
+  await expect(page.locator('#peta')).toBeFocused();
 
   await expectNoHorizontalScroll(page);
+  expect(errors).toEqual([]);
+});
+
+test('negara dulu "brief" (ae) kini punya CTA dan halaman EN', async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const errors = collectErrors(page);
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await waitForScene(page);
+
+  const ready = await page.evaluate(
+    () => window.__asiakin_map48?.ready === true,
+  );
+  test.skip(!ready, 'WebGL tidak tersedia; jalur pratinjau 3D tidak bisa diuji.');
+
+  const clickCountry = async (id: string, iso3: string): Promise<boolean> => {
+    await page.evaluate(() => window.__asiakin_map48?.setAutoRotate?.(false));
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const point = await page.evaluate(
+        (code) => window.__asiakin_map48?.projected(code) ?? null,
+        iso3,
+      );
+      if (!point) {
+        await page.waitForTimeout(250);
+        continue;
+      }
+      await page.mouse.click(point.x, point.y);
+      const opened = await page
+        .locator(`.country-preview[data-country="${id}"][data-open="true"]`)
+        .waitFor({ state: 'visible', timeout: 3000 })
+        .then(() => true)
+        .catch(() => false);
+      if (opened) return true;
+      await page.waitForTimeout(300);
+    }
+    return false;
+  };
+
+  // `ae` (UAE) dulu jatuh ke ringkasan 48 negara tanpa halaman; sekarang
+  // resolve lewat content layer dan tampil penuh dengan CTA.
+  await expect(await clickCountry('ae', 'ARE')).toBe(true);
+
+  const panel = page.locator('.country-preview');
+  await expect(panel).toHaveAttribute('data-country', 'ae');
+  await expect(panel).not.toHaveAttribute('data-depth', 'brief');
+  await expect(
+    panel.getByRole('heading', { name: 'Uni Emirat Arab' }),
+  ).toBeVisible();
+
+  const cta = panel.locator('.country-preview__cta');
+  await expect(cta).toHaveCount(1);
+  await expect(cta).toHaveAttribute('href', '/negara/ae');
+  await expect(
+    panel.getByText(/Halaman lengkap negara ini sedang disiapkan/),
+  ).toHaveCount(0);
+
+  await cta.click();
+  await expect(page).toHaveURL(/\/negara\/ae$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Uni Emirat Arab',
+  );
+
+  // Versi Inggris menyajikan prosa EN, bukan fallback ke konten ID.
+  await page.goto('/en/negara/ae');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'United Arab Emirates',
+  );
+
+  expect(errors).toEqual([]);
+});
+
+test('klik negara di peta 3D membuka pratinjau, Esc menutup, CTA ke halaman negara', async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const errors = collectErrors(page);
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await waitForScene(page);
+
+  const ready = await page.evaluate(
+    () => window.__asiakin_map48?.ready === true,
+  );
+  test.skip(!ready, 'WebGL tidak tersedia; jalur pratinjau 3D tidak bisa diuji.');
+
+  const clickCountry = async (id: string, iso3: string): Promise<boolean> => {
+    await page.evaluate(() => window.__asiakin_map48?.setAutoRotate?.(false));
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const point = await page.evaluate(
+        (code) => window.__asiakin_map48?.projected(code) ?? null,
+        iso3,
+      );
+      if (!point) {
+        await page.waitForTimeout(250);
+        continue;
+      }
+      // Klik sekali: fly-to ~560 ms menahan onSelect; klik ulang akan
+      // mencuri fokus dari panel yang sudah terbuka.
+      await page.mouse.click(point.x, point.y);
+      const opened = await page
+        .locator(`.country-preview[data-country="${id}"][data-open="true"]`)
+        .waitFor({ state: 'visible', timeout: 3000 })
+        .then(() => true)
+        .catch(() => false);
+      if (opened) {
+        return true;
+      }
+      await page.waitForTimeout(300);
+    }
+    return false;
+  };
+
+  await expect(await clickCountry('jp', 'JPN')).toBe(true);
+
+  const panel = page.locator('.country-preview');
+  await expect(panel).toHaveAttribute('data-country', 'jp');
+  await expect(panel.getByRole('heading', { name: 'Jepang' })).toBeVisible();
+  await expect(
+    panel.getByRole('button', { name: 'Tutup pratinjau negara' }),
+  ).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(panel).toHaveCount(0, { timeout: 2000 });
+  await expect(page.locator('#peta')).toBeFocused();
+
+  // Buka ulang lalu masuk ke halaman negara lewat CTA.
+  await page.waitForTimeout(1400);
+  await expect(await clickCountry('jp', 'JPN')).toBe(true);
+  await page
+    .locator('.country-preview')
+    .getByRole('link', { name: /Buka cerita/ })
+    .click();
+  await expect(page).toHaveURL(/\/negara\/jp$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Jepang');
+
+  expect(errors).toEqual([]);
+});
+
+test('pratinjau ponsel tampil sebagai bottom sheet tanpa overflow', async ({
+  page,
+}) => {
+  test.setTimeout(60_000);
+  const errors = collectErrors(page);
+
+  await page.addInitScript(() => {
+    const proto = HTMLCanvasElement.prototype as unknown as {
+      getContext: (type: string, ...rest: unknown[]) => unknown;
+    };
+    const original = proto.getContext;
+    proto.getContext = function getContext(
+      this: HTMLCanvasElement,
+      type: string,
+      ...rest: unknown[]
+    ) {
+      if (type.startsWith('webgl')) {
+        return null;
+      }
+      return original.apply(this, [type, ...rest]);
+    };
+  });
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/');
+
+  const fallback = page.locator('.landing-map--interactive');
+  await expect(fallback).toBeVisible({ timeout: 15_000 });
+  // Path pertama (Turki) punya siluet ringkas, jadi titik tengah kotaknya
+  // benar-benar berada di dalam area yang bisa diklik.
+  await fallback.locator('[role="button"]').first().click();
+
+  const panel = page.locator('.country-preview');
+  await expect(panel).toHaveAttribute('data-open', 'true');
+  await expect(panel.locator('.country-preview__name')).not.toBeEmpty();
+  // Tunggu animasi masuk selesai sebelum mengukur tepi bawah.
+  await expect
+    .poll(async () => {
+      const b = await panel.boundingBox();
+      if (!b) return 9999;
+      return Math.round(b.y + b.height);
+    })
+    .toBeLessThanOrEqual(812 + 2);
+
+  const box = await panel.boundingBox();
+  expect(box).not.toBeNull();
+  expect(box!.y).toBeGreaterThan(812 * 0.2);
+
+  await expectNoHorizontalScroll(page);
+
+  await page.keyboard.press('Escape');
+  await expect(panel).toHaveCount(0, { timeout: 2000 });
+  await expectNoHorizontalScroll(page);
+
   expect(errors).toEqual([]);
 });

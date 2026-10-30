@@ -3,7 +3,12 @@ import { Volume2 } from 'lucide-react';
 
 import type { Country } from '@/content/countries';
 import { useI18n } from '@/lib/i18n';
-import { cancelSpeech, isSpeechSupported, speak } from '@/lib/speech';
+import {
+  cancelSpeech,
+  findMatchingVoice,
+  isSpeechSynthesisSupported,
+  speak,
+} from '@/lib/speech';
 
 import NativeText from './NativeText';
 import type { TextProfile } from './scripts';
@@ -21,13 +26,28 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
   const { t } = useI18n();
   const [status, setStatus] = useState<PlaybackStatus>('idle');
   const [activeSpeechText, setActiveSpeechText] = useState<string | null>(null);
-  const supported = isSpeechSupported();
+  // getVoices() diisi asinkron; tombol hanya muncul bila ada suara untuk bahasa ini.
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>(() =>
+    isSpeechSynthesisSupported() ? window.speechSynthesis.getVoices() : [],
+  );
 
   useEffect(() => {
+    if (!isSpeechSynthesisSupported()) {
+      return () => {
+        cancelSpeech();
+      };
+    }
+    const synth = window.speechSynthesis;
+    const sync = () => setVoices(synth.getVoices());
+    sync();
+    synth.addEventListener?.('voiceschanged', sync);
     return () => {
+      synth.removeEventListener?.('voiceschanged', sync);
       cancelSpeech();
     };
   }, []);
+
+  const hasVoice = findMatchingVoice(voices, profile.speechLang) !== undefined;
 
   const statusText =
     status === 'error'
@@ -98,7 +118,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
           {greeting.register.trim().length > 0 && (
             <p className="country-specimen__register">{greeting.register}</p>
           )}
-          {supported && (
+          {hasVoice && (
             <div className="country-language__audio-wrap">
               <button
                 type="button"
@@ -123,7 +143,7 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
             <li className="country-phrases__item" key={`${phrase.native}-${index}`}>
               <div className="country-phrases__header">
                 <p className="country-phrases__label">{phrase.id}</p>
-                {supported && (
+                {hasVoice && (
                   <button
                     type="button"
                     className="country-audio-btn"

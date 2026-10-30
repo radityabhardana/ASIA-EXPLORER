@@ -24,23 +24,9 @@ const ROOT = path.resolve(__dirname, '..');
 const IMAGES_JSON_PATH = path.join(ROOT, 'src/content/images.json');
 const OUTPUT_PATH = path.join(ROOT, 'src/content/themes.json');
 
-const COUNTRY_IDS = [
-  'id',
-  'my',
-  'sg',
-  'th',
-  'vn',
-  'ph',
-  'cn',
-  'jp',
-  'kr',
-  'in',
-  'sa',
-  'tr',
-  'kz',
-  'uz',
-  'mn',
-];
+// Hue paksa untuk hero yang rerata warnanya terdistorsi massa komplementer
+// (mis. Al-Ula SA: langit biru + batu pasir). Kunci = id negara.
+const HUE_OVERRIDES = { sa: 30 };
 
 const INK_HEX = '#1a1f24';
 const INK_MUTED_HEX = '#5c6670';
@@ -238,6 +224,16 @@ function pickAccentColor(clusters) {
 }
 
 /**
+ * Daftar negara bertema = setiap negara di images.json yang punya foto hero.
+ * Diurutkan alfabetis supaya keluaran deterministik dan stabil.
+ */
+function themedCountryIds(imagesData) {
+  return Object.keys(imagesData.countries)
+    .filter((id) => imagesData.countries[id].some((entry) => entry.role === 'hero'))
+    .sort();
+}
+
+/**
  * Ekstraksi palet lengkap satu negara dari foto hero.
  */
 async function extractThemeForCountry(countryId, imagesData) {
@@ -271,9 +267,8 @@ async function extractThemeForCountry(countryId, imagesData) {
 
   // Deteksi bila hero memiliki massa batu/tanah hangat dominan (contoh Al-Ula SA)
   let photoHue = meanHsl.h;
-  if (countryId === 'sa') {
-    // Al-Ula: mean terdistorsi oleh langit biru + batu pasir komplementer; gunakan hue batu pasir 30°
-    photoHue = 30;
+  if (HUE_OVERRIDES[countryId] !== undefined) {
+    photoHue = HUE_OVERRIDES[countryId];
   }
 
   // 3. Warna Base: S 8–16% (0.12), L 0.94–0.97 (0.95) -> pastel anti-muddy
@@ -345,13 +340,20 @@ async function runCheck() {
     process.exit(1);
   }
 
+  if (!existsSync(IMAGES_JSON_PATH)) {
+    console.error(`[themes:check] GAGAL: ${IMAGES_JSON_PATH} tidak ditemukan.`);
+    process.exit(1);
+  }
+  const imagesData = JSON.parse(readFileSync(IMAGES_JSON_PATH, 'utf8'));
+  const countryIds = themedCountryIds(imagesData);
+
   const failures = [];
   const HEX_RE = /^#[0-9a-f]{6}$/i;
 
   console.log('\nID   Base      Soil      Accent    Stroke    inkVsBase   inkMutedVsBase  Status');
   console.log('---  --------  --------  --------  --------  ----------  --------------  ------');
 
-  for (const cid of COUNTRY_IDS) {
+  for (const cid of countryIds) {
     const theme = data.countries[cid];
     if (!theme) {
       failures.push(`Negara '${cid}' tidak ada di themes.json`);
@@ -399,7 +401,9 @@ async function runCheck() {
     process.exit(1);
   }
 
-  console.log(`\n[themes:check] SEMUA 15 NEGARA LULUS verifikasi kontras dan integritas.`);
+  console.log(
+    `\n[themes:check] SEMUA ${countryIds.length} NEGARA LULUS verifikasi kontras dan integritas.`,
+  );
   process.exit(0);
 }
 
@@ -417,9 +421,10 @@ async function runBuild() {
   const imagesRaw = readFileSync(IMAGES_JSON_PATH, 'utf8');
   const imagesData = JSON.parse(imagesRaw);
 
+  const countryIds = themedCountryIds(imagesData);
   const countriesTheme = {};
 
-  for (const cid of COUNTRY_IDS) {
+  for (const cid of countryIds) {
     process.stdout.write(`  - Mengolah negara [${cid}]... `);
     const theme = await extractThemeForCountry(cid, imagesData);
     countriesTheme[cid] = theme;

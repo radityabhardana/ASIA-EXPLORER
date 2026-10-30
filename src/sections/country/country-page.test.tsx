@@ -3,15 +3,22 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { countries, getCountry } from '@/content/countries';
+import { themes } from '@/content/themes';
 import CountryPage from '@/app/pages/CountryPage';
 import { contrastRatio } from '@/lib/color';
 import CountryBackground, { getCountryTheme } from './CountryBackground';
 import BackNavigation from './BackNavigation';
+import CountryEtiquette from './CountryEtiquette';
+import CountryFactsheet from './CountryFactsheet';
 import CountryGallery, { getCountryPhotos } from './CountryGallery';
 import CountryHero, { getHeroPhoto } from './CountryHero';
+import CountryNeighbors from './CountryNeighbors';
 import LanguageBlock from './LanguageBlock';
+import NoteBlock from './NoteBlock';
 import { profileFor } from './scripts';
 import SourceBlock from './SourceBlock';
+import StoryBlock from './StoryBlock';
+import * as speech from '@/lib/speech';
 
 class MockSpeechSynthesisUtterance {
   text: string;
@@ -60,10 +67,11 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
   });
 
   describe('1. Adaptive Background (CountryBackground.tsx)', () => {
-    it('memiliki palet tema untuk semua 15 negara dengan kontras ink >= 12:1 (AAA)', () => {
-      expect(countries).toHaveLength(15);
-      for (const country of countries) {
-        const theme = getCountryTheme(country.id);
+    it('memiliki palet tema untuk setiap id bertema dengan kontras ink >= 12:1 (AAA)', () => {
+      const themedIds = Object.keys(themes.countries);
+      expect(themedIds.length).toBeGreaterThan(0);
+      for (const cid of themedIds) {
+        const theme = getCountryTheme(cid);
         expect(theme.base).toMatch(/^#[0-9a-f]{6}$/i);
         expect(theme.contourStroke).toMatch(/^#[0-9a-f]{6}$/i);
         expect(theme.contourOpacity).toBeGreaterThanOrEqual(0.12);
@@ -72,8 +80,20 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
         const cr = contrastRatio('#1a1f24', theme.base);
         expect(
           cr,
-          `Kontras --ink terhadap base negara ${country.id} harus >= 12:1 (AAA), dapat ${cr.toFixed(2)}:1`,
+          `Kontras --ink terhadap base negara ${cid} harus >= 12:1 (AAA), dapat ${cr.toFixed(2)}:1`,
         ).toBeGreaterThanOrEqual(12);
+      }
+    });
+
+    it('memberi tema deterministik (fallback wilayah) untuk semua negara tanpa crash', () => {
+      expect(countries.length).toBeGreaterThanOrEqual(15);
+      for (const country of countries) {
+        const theme = getCountryTheme(country.id);
+        expect(theme.base).toMatch(/^#[0-9a-f]{6}$/i);
+        expect(theme.soil).toMatch(/^#[0-9a-f]{6}$/i);
+        expect(theme.accent).toMatch(/^#[0-9a-f]{6}$/i);
+        const cr = contrastRatio('#1a1f24', theme.base);
+        expect(cr, `fallback tema ${country.id} kontras ${cr.toFixed(2)}:1`).toBeGreaterThanOrEqual(12);
       }
     });
 
@@ -327,6 +347,194 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
         screen.queryByRole('link', { name: /Mulai Pelajaran di Dashboard →/i }),
       ).not.toBeInTheDocument();
       expect(container.querySelector('.country-dashboard-callout')).toBeNull();
+    });
+
+    it('merender Lembar Fakta Lapangan, Kaidah Etiket, dan Jelajah Negara Terdekat di CountryPage', () => {
+      const { container } = render(
+        <MemoryRouter initialEntries={['/negara/jp']}>
+          <Routes>
+            <Route path="/negara/:id" element={<CountryPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      // Factsheet
+      const factsheet = container.querySelector('.country-factsheet');
+      expect(factsheet).not.toBeNull();
+      expect(factsheet?.textContent).toContain('Tokyo');
+      expect(factsheet?.textContent).toContain('Asia Timur');
+
+      // 3 Kaidah Etiket
+      const etiquette = container.querySelector('.country-etiquette');
+      expect(etiquette).not.toBeNull();
+      const rules = container.querySelectorAll('.country-etiquette__card');
+      expect(rules.length).toBe(3);
+
+      // Jelajah Negara Terdekat
+      const neighbors = container.querySelector('.country-neighbors');
+      expect(neighbors).not.toBeNull();
+      const neighborCards = container.querySelectorAll('.country-neighbor-card');
+      expect(neighborCards.length).toBe(3);
+    });
+  });
+
+  describe('7. Modular Cultural Blocks: Factsheet, Etiquette, & Neighbors', () => {
+    it('CountryFactsheet merender data geodetik dan ibu kota dengan benar', () => {
+      const jp = getCountry('jp')!;
+      const { container } = render(<CountryFactsheet country={jp} locale="id" />);
+
+      expect(container.querySelector('.country-factsheet__value--accent')?.textContent).toBe('Tokyo');
+      expect(container.textContent).toContain('JST');
+      expect(container.textContent).toContain('Asia Timur');
+    });
+
+    it('CountryFactsheet merender tombol audio sapaan resmi dan memutar audio saat diklik', () => {
+      const jp = getCountry('jp')!;
+      const speakSpy = vi.spyOn(speech, 'speak').mockImplementation((_text, options) => {
+        options?.onEnd?.();
+        return true;
+      });
+
+      const { container } = render(<CountryFactsheet country={jp} locale="id" />);
+
+      const audioBtn = container.querySelector('.country-factsheet__audio-btn') as HTMLButtonElement;
+      expect(audioBtn).not.toBeNull();
+      expect(container.textContent).toContain('Dengar Sapaan');
+      expect(container.textContent).toContain('こんにちは');
+
+      fireEvent.click(audioBtn);
+      expect(speakSpy).toHaveBeenCalledWith(
+        'こんにちは',
+        expect.objectContaining({
+          lang: 'ja-JP',
+          fallbackText: 'Konnichiwa',
+        }),
+      );
+      speakSpy.mockRestore();
+    });
+
+    it('CountryEtiquette menyajikan tepat 3 kaidah sopan santun budaya', () => {
+      const id = getCountry('id')!;
+      const { container } = render(<CountryEtiquette country={id} locale="id" />);
+
+      const cards = container.querySelectorAll('.country-etiquette__card');
+      expect(cards.length).toBe(3);
+      expect(container.textContent).toContain('KAIDAH 01');
+      expect(container.textContent).toContain('KAIDAH 02');
+      expect(container.textContent).toContain('KAIDAH 03');
+    });
+
+    it('CountryNeighbors menghubungkan ke 3 negara tetangga serumpun', () => {
+      const jp = getCountry('jp')!;
+      const { container } = render(
+        <MemoryRouter>
+          <CountryNeighbors currentCountry={jp} locale="id" />
+        </MemoryRouter>,
+      );
+
+      const links = container.querySelectorAll('.country-neighbor-card');
+      expect(links.length).toBe(3);
+      for (const link of links) {
+        expect(link.getAttribute('href')).toMatch(/^\/negara\/[a-z]{2}$/);
+      }
+    });
+  });
+
+  describe('8. Professional Uniformity: Story Editorial, 48 Countries Etiquette, & Lithograph Plates', () => {
+    it('StoryBlock menyajikan tata letak editorial majalah dengan lead, paragraf terpisah, dan pull-quote', () => {
+      const jp = getCountry('jp')!;
+      const { container } = render(<StoryBlock country={jp} locale="id" />);
+
+      // Section & header
+      expect(container.querySelector('.country-story')).not.toBeNull();
+      expect(container.querySelector('.country-story__lead')).not.toBeNull();
+      expect(container.querySelectorAll('.country-story__paragraph').length).toBeGreaterThan(0);
+
+      // Pull quote with cultural ethos
+      const quote = container.querySelector('.country-story__quote');
+      expect(quote).not.toBeNull();
+      expect(quote?.querySelector('.country-story__quote-text')).not.toBeNull();
+      expect(quote?.querySelector('.country-story__quote-cite')).not.toBeNull();
+    });
+
+    it('CountryEtiquette memberikan 3 kartu berbobot setara untuk SEMUA 48 negara dengan badge terstruktur', () => {
+      expect(countries.length).toBe(48);
+
+      for (const c of countries) {
+        const { container } = render(<CountryEtiquette country={c} locale="id" />);
+        const cards = container.querySelectorAll('.country-etiquette__card');
+        expect(cards.length, `Negara ${c.id} harus memiliki tepat 3 kartu etiket`).toBe(3);
+
+        const badges = Array.from(container.querySelectorAll('.country-etiquette__badge')).map(
+          (b) => b.textContent?.trim(),
+        );
+        expect(badges).toContain('PANDUAN UTAMA');
+        expect(badges).toContain('KERAMAHAN');
+        expect(badges).toContain('PANTANGAN LAPANGAN');
+
+        // Verify none of the cards are empty or stub
+        const instructions = container.querySelectorAll('.country-etiquette__instruction');
+        expect(instructions.length).toBe(3);
+        for (const inst of instructions) {
+          expect(
+            inst.textContent && inst.textContent.length > 25,
+            `Instruksi etiket di negara ${c.id} tidak boleh stub sederhana`,
+          ).toBe(true);
+        }
+
+        const philosophies = container.querySelectorAll('.country-etiquette__philosophy-text');
+        expect(philosophies.length).toBe(3);
+        for (const phil of philosophies) {
+          expect(
+            phil.textContent && phil.textContent.length > 20,
+            `Akar nilai di negara ${c.id} tidak boleh kosong`,
+          ).toBe(true);
+        }
+        cleanup();
+      }
+    });
+
+    it('CountryEtiquette menyajikan badge versi bahasa Inggris ketika locale="en"', () => {
+      const th = getCountry('th')!;
+      const { container } = render(<CountryEtiquette country={th} locale="en" />);
+
+      const badges = Array.from(container.querySelectorAll('.country-etiquette__badge')).map(
+        (b) => b.textContent?.trim(),
+      );
+      expect(badges).toContain('PRIMARY PROTOCOL');
+      expect(badges).toContain('HOSPITALITY');
+      expect(badges).toContain('FIELD TABOOS');
+    });
+
+    it('NoteBlock menyajikan kartu arsip litograf dengan cap arsip, subjudul, dan kertas krem', () => {
+      const id = getCountry('id')!;
+      const { container } = render(
+        <NoteBlock
+          id="country-culture-title"
+          title="Budaya"
+          text={id.cultureNote}
+        />,
+      );
+
+      const plate = container.querySelector('.country-archive-plate');
+      expect(plate).not.toBeNull();
+
+      const stamp = container.querySelector('.country-archive-plate__stamp');
+      expect(stamp).not.toBeNull();
+      expect(stamp?.textContent).toContain('KHAZANAH BUDAYA');
+
+      const seal = container.querySelector('.country-archive-plate__seal');
+      expect(seal?.textContent).toBe('§');
+
+      const title = container.querySelector('.country-archive-plate__title');
+      expect(title?.textContent).toBe('Budaya');
+
+      const subtitle = container.querySelector('.country-archive-plate__subtitle');
+      expect(subtitle).not.toBeNull();
+      expect(subtitle?.textContent?.length).toBeGreaterThan(10);
+
+      const text = container.querySelector('.country-archive-plate__text');
+      expect(text?.textContent).toBe(id.cultureNote);
     });
   });
 });

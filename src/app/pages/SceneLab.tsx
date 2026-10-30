@@ -7,7 +7,7 @@ import '@/styles/scene.css';
  * membuktikan picking lewat raycast, ukuran render, dan screenshot.
  * `three` hanya masuk lewat dynamic import di sini.
  */
-const AsiaScene = lazy(() => import('@/scene/AsiaScene'));
+const AsiaMap48 = lazy(() => import('@/sections/landing/AsiaSceneLazy'));
 
 export default function SceneLab() {
   const [selected, setSelected] = useState<string | null>(null);
@@ -18,9 +18,10 @@ export default function SceneLab() {
     <div className="scene-lab">
       <div className="scene-lab__stage">
         <Suspense fallback={<p className="scene-lab__status">Memuat scene…</p>}>
-          <AsiaScene
-            className="asia-scene--lab"
+          <AsiaMap48
+            label="Lab peta Asia 48 negara"
             selectedId={selected}
+            idleSway={false}
             onHoverCountry={setHovered}
             onSelectCountry={setSelected}
             onUnavailable={() => setUnavailable(true)}

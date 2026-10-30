@@ -585,7 +585,10 @@ export default function DashboardPage() {
                       {t('dashboard.taskAllDone')}
                     </h2>
                     <p className="dashboard-hero-task__explanation">
-                      {t('dashboard.taskAllDoneDesc')}
+                      {t('dashboard.taskAllDoneDesc').replace(
+                        '{count}',
+                        String(LENGKAP_COUNTRY_IDS.length),
+                      )}
                     </p>
                     <div className="dashboard-hero-task__action">
                       <button

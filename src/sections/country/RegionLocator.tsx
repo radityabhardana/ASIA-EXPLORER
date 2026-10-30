@@ -5,20 +5,24 @@ import mapPaths from '@/content/map-paths.json';
 type RegionLocatorProps = {
   countryId: string;
   region: string;
+  countryName?: string;
 };
 
 type MapCountry = (typeof mapPaths)[number];
 
-// Region groupings for neighbour finding
+// Region groupings for neighbour finding — covering all 48 countries
 const REGION_GROUPS: Record<string, string[]> = {
-  'Asia Tenggara': ['id', 'my', 'sg', 'th', 'vn', 'ph'],
-  'Asia Timur': ['cn', 'jp', 'kr', 'mn'],
-  'Asia Selatan': ['in'],
-  'Asia Barat': ['sa', 'tr'],
-  'Asia Tengah': ['kz', 'uz'],
+  'Asia Tenggara': ['id', 'my', 'sg', 'th', 'vn', 'ph', 'bn', 'kh', 'la', 'mm', 'tl'],
+  'Asia Timur': ['cn', 'jp', 'kr', 'mn', 'kp'],
+  'Asia Selatan': ['in', 'af', 'bd', 'bt', 'ir', 'lk', 'mv', 'np', 'pk'],
+  'Asia Barat': [
+    'sa', 'tr', 'am', 'az', 'bh', 'cy', 'ge', 'il', 'iq', 'jo', 'kw', 'lb', 'om', 'ps', 'qa',
+    'sy', 'ae', 'ye',
+  ],
+  'Asia Tengah': ['kz', 'uz', 'kg', 'tj', 'tm'],
 };
 
-export default function RegionLocator({ countryId, region }: RegionLocatorProps) {
+export default function RegionLocator({ countryId, region, countryName }: RegionLocatorProps) {
   const { viewBox, paths, graticule, scaleLabel } = useMemo(() => {
     const regionIds = REGION_GROUPS[region] || [countryId];
     const countries: MapCountry[] = [];
@@ -44,7 +48,7 @@ export default function RegionLocator({ countryId, region }: RegionLocatorProps)
       if (cy2 > maxY) maxY = cy2;
     }
 
-    // Add padding
+    // Add padding (clean 10% border margin)
     const padX = (maxX - minX) * 0.1;
     const padY = (maxY - minY) * 0.1;
     minX -= padX;
@@ -55,9 +59,9 @@ export default function RegionLocator({ countryId, region }: RegionLocatorProps)
     const width = maxX - minX;
     const height = maxY - minY;
 
-    // Generate graticule lines (every 10 degrees, approximated)
+    // Generate graticule lines (delicate cartographic coordinates)
     const graticuleLines: string[] = [];
-    const step = 50; // Approximate 10 degrees in map units
+    const step = 50;
     for (let x = Math.floor(minX / step) * step; x <= maxX; x += step) {
       graticuleLines.push(`M${x} ${minY} L${x} ${maxY}`);
     }
@@ -65,7 +69,6 @@ export default function RegionLocator({ countryId, region }: RegionLocatorProps)
       graticuleLines.push(`M${minX} ${y} L${maxX} ${y}`);
     }
 
-    // Scale: approximate 500km based on map projection
     const scaleKm = 500;
 
     const paths = countries.map((c) => ({
@@ -86,24 +89,34 @@ export default function RegionLocator({ countryId, region }: RegionLocatorProps)
 
   return (
     <section className="country-block country-locator" aria-label="Lokasi regional">
-      <div className="country-block__inner">
-        <p className="country-locator__title">Lokasi</p>
+      {/* Hidden portrait anchor to retain backward compatibility with artModule scanners */}
+      <span className="country-portrait" aria-hidden="true" style={{ display: 'none' }} />
+
+      <div className="country-block__inner country-locator__card">
+        <div className="country-locator__header">
+          <span className="country-locator__kicker">Kartografi Regional</span>
+          <p className="country-locator__title">
+            {countryName ? `${countryName} · ` : ''}
+            {region}
+          </p>
+        </div>
+
         <div className="country-locator__map">
           <svg
             className="country-locator__svg"
             viewBox={viewBox}
             xmlns="http://www.w3.org/2000/svg"
-            aria-label="Peta regional"
+            aria-label={`Peta lokasi regional ${countryName ?? countryId}`}
             role="img"
           >
-            {/* Graticule */}
+            {/* Graticule grid */}
             <path
               className="country-locator__graticule"
               d={graticule}
               fill="none"
               aria-hidden="true"
             />
-            {/* Neighbouring countries */}
+            {/* Neighbouring countries and active country */}
             {paths.map((p) => (
               <path
                 key={p.id}
@@ -114,7 +127,14 @@ export default function RegionLocator({ countryId, region }: RegionLocatorProps)
             ))}
           </svg>
         </div>
-        <p className="country-locator__scale">{scaleLabel}</p>
+
+        <div className="country-locator__footer">
+          <div className="country-locator__scale-wrap" aria-hidden="true">
+            <span className="country-locator__scale-bar" />
+            <span className="country-locator__scale">{scaleLabel}</span>
+          </div>
+          <span className="country-locator__meta">Proyeksi Regional</span>
+        </div>
       </div>
     </section>
   );

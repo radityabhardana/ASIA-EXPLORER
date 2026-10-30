@@ -1,0 +1,481 @@
+import { countries } from './countries';
+
+export interface Country48Item {
+  name: string;
+  capital: string;
+  region: string;
+  languages: string[];
+  greet: { text: string; latin: string };
+  culture: string;
+  fact: string;
+}
+
+/**
+ * Konten budaya & bahasa 48 negara Asia (UN geoscheme).
+ * Dipakai untuk kartu negara, kuis, dan quest. Nama memakai ejaan Indonesia.
+ * greet.text = tulisan asli, greet.latin = cara baca.
+ */
+export const COUNTRIES: Record<string, Country48Item> = {
+  AFG: {
+    name: 'Afganistan',
+    capital: 'Kabul',
+    region: 'South Asia',
+    languages: ['Dari', 'Pashto'],
+    greet: { text: 'سلام', latin: 'salaam' },
+    culture: 'Karpet tenun tangan dan musik rubab jadi duta budaya Afganistan.',
+    fact: 'Dari dan Pashto sama-sama berstatus bahasa resmi.',
+  },
+  ARM: {
+    name: 'Armenia',
+    capital: 'Yerevan',
+    region: 'West Asia',
+    languages: ['Armenia'],
+    greet: { text: 'Բարև', latin: 'barev' },
+    culture:
+      'Biara-biara abad ke-4 jadi saksi Armenia sebagai salah satu negara pertama yang memeluk Kristen.',
+    fact: 'Alfabet Armenia diciptakan tahun 405 oleh Mesrop Mashtots.',
+  },
+  AZE: {
+    name: 'Azerbaijan',
+    capital: 'Baku',
+    region: 'West Asia',
+    languages: ['Azerbaijan'],
+    greet: { text: 'Salam', latin: 'salam' },
+    culture: 'Mugham, musik modal khas Azerbaijan, diakui UNESCO sebagai warisan budaya.',
+    fact: 'Baku berdiri 28 meter di bawah permukaan laut.',
+  },
+  BHR: {
+    name: 'Bahrain',
+    capital: 'Manama',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture:
+      'Pohon Kehidupan berusia 400 tahun tumbuh sendiri di gurun tanpa sumber air yang jelas.',
+    fact: 'Bahrain berarti "dua laut".',
+  },
+  BGD: {
+    name: 'Bangladesh',
+    capital: 'Dhaka',
+    region: 'South Asia',
+    languages: ['Bengali'],
+    greet: { text: 'আসসালামু আলাইকুম', latin: 'assalamu alaikum' },
+    culture: 'Muslin Dhaka dulu dijuluki kain tenun yang ditenun angin karena setipis kabut.',
+    fact: 'Hari Bahasa Ibu Internasional lahir dari gerakan bahasa Bengali tahun 1952.',
+  },
+  BTN: {
+    name: 'Bhutan',
+    capital: 'Thimphu',
+    region: 'South Asia',
+    languages: ['Dzongkha'],
+    greet: { text: 'ཀུཟུ་ཟང་པོ་ལ', latin: 'kuzu zangpo la' },
+    culture: 'Kebahagiaan nasional bruto dipakai sebagai indikator resmi negara, bukan PDB.',
+    fact: 'Hutan Bhutan menyerap karbon lebih banyak daripada yang dikeluarkan negara itu.',
+  },
+  BRN: {
+    name: 'Brunei',
+    capital: 'Bandar Seri Begawan',
+    region: 'Southeast Asia',
+    languages: ['Melayu'],
+    greet: { text: 'السلام عليكم', latin: 'assalamu alaikum' },
+    culture: 'Kampung Ayer, kampung di atas air berusia 1.000 tahun, masih dihuni sampai sekarang.',
+    fact: 'Istana Nurul Iman termasuk istana terbesar di dunia.',
+  },
+  KHM: {
+    name: 'Kamboja',
+    capital: 'Phnom Penh',
+    region: 'Southeast Asia',
+    languages: ['Khmer'],
+    greet: { text: 'សួស្តី', latin: 'sous-dey' },
+    culture: 'Tari Apsara mengadaptasi gerakan bidadari dari relief Angkor Wat.',
+    fact: 'Bendera Kamboja satu-satunya bendera negara yang menampilkan gambar bangunan.',
+  },
+  CHN: {
+    name: 'Tiongkok',
+    capital: 'Beijing',
+    region: 'East Asia',
+    languages: ['Mandarin'],
+    greet: { text: '你好', latin: 'nǐ hǎo' },
+    culture: 'Opera Peking menggabungkan vokal, akrobatik, dan musik dalam satu panggung.',
+    fact: 'Kaligrafi dianggap bentuk seni tertinggi di Tiongkok.',
+  },
+  CYP: {
+    name: 'Siprus',
+    capital: 'Nikosia',
+    region: 'West Asia',
+    languages: ['Yunani', 'Turki'],
+    greet: { text: 'Γεια σου', latin: 'yassou' },
+    culture: 'Halloumi, keju yang bisa dipanggang tanpa meleleh, jadi ikon kuliner Siprus.',
+    fact: 'Nikosia satu-satunya ibu kota di Eropa yang terbelah dua.',
+  },
+  GEO: {
+    name: 'Georgia',
+    capital: 'Tbilisi',
+    region: 'West Asia',
+    languages: ['Georgia'],
+    greet: { text: 'გამარჯობა', latin: 'gamarjoba' },
+    culture:
+      'Supra, jamuan panjang dengan rangkaian toast yang dipimpin tamada, jadi pusat kehidupan sosial.',
+    fact: 'Georgia punya tiga sistem tulisan dan semuanya diakui UNESCO.',
+  },
+  IND: {
+    name: 'India',
+    capital: 'New Delhi',
+    region: 'South Asia',
+    languages: ['Hindi', 'Inggris', '22 bahasa resmi'],
+    greet: { text: 'नमस्ते', latin: 'namaste' },
+    culture: 'Bharatanatyam dan sistem raga punya aturan nada serta gestur yang sangat rinci.',
+    fact: 'India punya 22 bahasa resmi dan ratusan bahasa yang masih hidup.',
+  },
+  IDN: {
+    name: 'Indonesia',
+    capital: 'Jakarta',
+    region: 'Southeast Asia',
+    languages: ['Indonesia', '700+ bahasa daerah'],
+    greet: { text: 'Selamat pagi', latin: 'selamat pagi' },
+    culture: 'Batik dengan motif parang dan kawung diakui UNESCO sebagai warisan budaya takbenda.',
+    fact: 'Indonesia punya lebih dari 700 bahasa, terbanyak kedua di dunia.',
+  },
+  IRN: {
+    name: 'Iran',
+    capital: 'Teheran',
+    region: 'South Asia',
+    languages: ['Persia'],
+    greet: { text: 'سلام', latin: 'salam' },
+    culture: 'Nowruz, tahun baru Persia, dirayakan lebih dari 3.000 tahun.',
+    fact: 'Karpet Persia jadi komoditas seni ekspor tertua Iran.',
+  },
+  IRQ: {
+    name: 'Irak',
+    capital: 'Baghdad',
+    region: 'West Asia',
+    languages: ['Arab', 'Kurdi'],
+    greet: { text: 'أهلا وسهلا', latin: 'ahlan wa sahlan' },
+    culture: 'Maqam Irak, musik klasik Arab, diwariskan turun-temurun di keluarga Baghdad.',
+    fact: 'Irak dijuluki tanah antara dua sungai, Tigris dan Efrat.',
+  },
+  ISR: {
+    name: 'Israel',
+    capital: 'Yerusalem',
+    region: 'West Asia',
+    languages: ['Ibrani'],
+    greet: { text: 'שלום', latin: 'shalom' },
+    culture: 'Bahasa Ibrani dihidupkan kembali dari bahasa liturgi menjadi bahasa sehari-hari.',
+    fact: 'Israel punya salah satu industri teknologi terbesar per kapita.',
+  },
+  JPN: {
+    name: 'Jepang',
+    capital: 'Tokyo',
+    region: 'East Asia',
+    languages: ['Jepang'],
+    greet: { text: 'こんにちは', latin: 'konnichiwa' },
+    culture: 'Kabuki yang megah dan Noh yang lambat penuh simbol sama-sama teater klasik Jepang.',
+    fact: 'Ada lebih dari 20 jenis kimono yang disesuaikan dengan musim dan acara.',
+  },
+  JOR: {
+    name: 'Yordania',
+    capital: 'Amman',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'أهلا وسهلا', latin: 'ahlan wa sahlan' },
+    culture: 'Petra dipahat langsung di tebing batu pasir merah.',
+    fact: 'Yordania termasuk negara paling kekurangan air di dunia.',
+  },
+  KAZ: {
+    name: 'Kazakhstan',
+    capital: 'Astana',
+    region: 'Central Asia',
+    languages: ['Kazakh', 'Rusia'],
+    greet: { text: 'Сәлем', latin: 'sälem' },
+    culture: 'Dombyra, alat musik dua dawai, jadi simbol cerita rakyat stepa.',
+    fact: 'Kazakhstan negara terkurung daratan terbesar di dunia.',
+  },
+  KGZ: {
+    name: 'Kirgizstan',
+    capital: 'Bishkek',
+    region: 'Central Asia',
+    languages: ['Kyrgyz', 'Rusia'],
+    greet: { text: 'Салам', latin: 'salam' },
+    culture:
+      'Epik Manas, salah satu puisi terpanjang di dunia, diceritakan manaschi dengan iringan komuz.',
+    fact: 'Sekitar 90 persen wilayah Kirgizstan berada di atas 1.500 meter.',
+  },
+  KOR: {
+    name: 'Korea Selatan',
+    capital: 'Seoul',
+    region: 'East Asia',
+    languages: ['Korea'],
+    greet: { text: '안녕하세요', latin: 'annyeonghaseyo' },
+    culture:
+      'Pansori, nyanyian naratif dengan suara serak khas, dimainkan satu penyanyi dan satu genderang.',
+    fact: 'Hangul diciptakan tahun 1443 agar rakyat biasa mudah belajar baca-tulis.',
+  },
+  KWT: {
+    name: 'Kuwait',
+    capital: 'Kuwait City',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture: 'Diwaniya, majelis informal di rumah warga, jadi ruang diskusi sosial dan politik.',
+    fact: 'Menara air Kuwait jadi ikon arsitektur futuristik tahun 1970-an.',
+  },
+  LAO: {
+    name: 'Laos',
+    capital: 'Vientiane',
+    region: 'Southeast Asia',
+    languages: ['Lao'],
+    greet: { text: 'ສະບາຍດີ', latin: 'sabaidee' },
+    culture:
+      'Ritual sedekah pagi para biksu di Luang Prabang berlangsung setiap hari sejak ratusan tahun.',
+    fact: 'Laos satu-satunya negara ASEAN yang tidak punya akses ke laut.',
+  },
+  LBN: {
+    name: 'Lebanon',
+    capital: 'Beirut',
+    region: 'West Asia',
+    languages: ['Arab', 'Prancis'],
+    greet: { text: 'أهلا وسهلا', latin: 'ahlan wa sahlan' },
+    culture: 'Dabke, tarian rakyat berpegangan tangan membentuk garis, jadi tarian wajib di pesta.',
+    fact: 'Beirut pernah dijuluki Paris of the Middle East.',
+  },
+  LKA: {
+    name: 'Sri Lanka',
+    capital: 'Kolombo',
+    region: 'South Asia',
+    languages: ['Sinhala', 'Tamil'],
+    greet: { text: 'ආයුබෝවන්', latin: 'ayubowan' },
+    culture: 'Tari Kandyan bergerak cepat dengan kostum berhias dan genderang geta bera.',
+    fact: 'Ayubowan berarti semoga panjang umur.',
+  },
+  MDV: {
+    name: 'Maladewa',
+    capital: 'Malé',
+    region: 'South Asia',
+    languages: ['Dhivehi'],
+    greet: { text: 'އައްސަލާމު ޢަލައިކުމް', latin: 'assalaamu alaikum' },
+    culture:
+      'Boduberu, musik genderang berirama Afrika-Asia, dimainkan berkelompok di pulau-pulau.',
+    fact: 'Maladewa punya titik tertinggi paling rendah di dunia, sekitar 2,4 meter.',
+  },
+  MYS: {
+    name: 'Malaysia',
+    capital: 'Kuala Lumpur',
+    region: 'Southeast Asia',
+    languages: ['Melayu'],
+    greet: { text: 'Selamat pagi', latin: 'selamat pagi' },
+    culture: 'Songket dengan benang emas dipakai di upacara adat Melayu.',
+    fact: 'Malaysia dibangun dari tiga etnis besar: Melayu, Tionghoa, dan India.',
+  },
+  MNG: {
+    name: 'Mongolia',
+    capital: 'Ulaanbaatar',
+    region: 'East Asia',
+    languages: ['Mongolia'],
+    greet: { text: 'Сайн байна уу', latin: 'sain baina uu' },
+    culture:
+      'Khoomei, nyanyian tenggorokan, bisa menghasilkan dua nada sekaligus dari satu penyanyi.',
+    fact: 'Jumlah kuda di Mongolia lebih banyak daripada jumlah manusia.',
+  },
+  MMR: {
+    name: 'Myanmar',
+    capital: 'Naypyidaw',
+    region: 'Southeast Asia',
+    languages: ['Burma'],
+    greet: { text: 'မင်္ဂလာပါ', latin: 'mingalaba' },
+    culture: 'Thanaka, pasta dari kulit kayu, dipakai sebagai pelindung matahari alami.',
+    fact: 'Myanmar punya lebih dari 100 kelompok etnis dengan bahasa masing-masing.',
+  },
+  NPL: {
+    name: 'Nepal',
+    capital: 'Kathmandu',
+    region: 'South Asia',
+    languages: ['Nepali'],
+    greet: { text: 'नमस्ते', latin: 'namaste' },
+    culture: 'Musik madal mengiringi festival Dashain di seluruh lembah Kathmandu.',
+    fact: 'Bendera Nepal satu-satunya bendera negara yang tidak berbentuk persegi.',
+  },
+  OMN: {
+    name: 'Oman',
+    capital: 'Muscat',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture: 'Khanjar, belati melengkung, jadi simbol nasional yang bahkan ada di bendera.',
+    fact: 'Semenanjung Musandam punya fjord gurun yang mirip Norwegia.',
+  },
+  PAK: {
+    name: 'Pakistan',
+    capital: 'Islamabad',
+    region: 'South Asia',
+    languages: ['Urdu', 'Inggris'],
+    greet: { text: 'السلام علیکم', latin: 'assalamu alaikum' },
+    culture: 'Qawwali, nyanyian sufi, mendunia lewat suara Nusrat Fateh Ali Khan.',
+    fact: 'K2, gunung tertinggi kedua di dunia, berdiri di perbatasan Pakistan.',
+  },
+  PHL: {
+    name: 'Filipina',
+    capital: 'Manila',
+    region: 'Southeast Asia',
+    languages: ['Filipino', 'Inggris'],
+    greet: { text: 'Kumusta', latin: 'kumusta' },
+    culture: 'Jeepney, hasil modifikasi jeep militer, jadi ikon seni jalanan Manila.',
+    fact: 'Filipina punya lebih dari 170 bahasa dan sekitar 7.600 pulau.',
+  },
+  PRK: {
+    name: 'Korea Utara',
+    capital: 'Pyongyang',
+    region: 'East Asia',
+    languages: ['Korea'],
+    greet: { text: '안녕하세요', latin: 'annyeonghaseyo' },
+    culture: 'Arirang, lagu rakyat Korea, punya versi berbeda di Utara dan Selatan.',
+    fact: 'Kosakata serapan Korea Utara dan Selatan banyak yang sudah berbeda.',
+  },
+  PSE: {
+    name: 'Palestina',
+    capital: 'Ramallah',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture: 'Tatreez, sulaman tangan dengan motif yang menandai desa asal pemakainya.',
+    fact: 'Pohon zaitun jadi simbol budaya sekaligus ekonomi Palestina.',
+  },
+  QAT: {
+    name: 'Qatar',
+    capital: 'Doha',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture: 'Souq Waqif menjaga arsitektur pasar tradisional di tengah kota modern.',
+    fact: 'Qatar termasuk eksportir gas alam terbesar di dunia.',
+  },
+  SAU: {
+    name: 'Arab Saudi',
+    capital: 'Riyadh',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'السلام عليكم', latin: 'as-salamu alaykum' },
+    culture: 'Ardah, tarian pedang berbaris, jadi bagian wajib perayaan besar.',
+    fact: 'Bahasa Arab dipakai sebagai bahasa resmi di lebih dari 20 negara.',
+  },
+  SGP: {
+    name: 'Singapura',
+    capital: 'Singapore',
+    region: 'Southeast Asia',
+    languages: ['Inggris', 'Melayu', 'Mandarin', 'Tamil'],
+    greet: { text: 'Hello', latin: 'hello' },
+    culture: 'Hawker centre, kumpulan warung kaki lima, masuk daftar warisan UNESCO.',
+    fact: 'Singapura punya empat bahasa resmi dalam satu negara kota.',
+  },
+  SYR: {
+    name: 'Suriah',
+    capital: 'Damaskus',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'أهلا وسهلا', latin: 'ahlan wa sahlan' },
+    culture: 'Damaskus dulu pusat tenun brokat dan musik Andalusia.',
+    fact: 'Damaskus salah satu kota tertua yang terus dihuni manusia.',
+  },
+  THA: {
+    name: 'Thailand',
+    capital: 'Bangkok',
+    region: 'Southeast Asia',
+    languages: ['Thai'],
+    greet: { text: 'สวัสดี', latin: 'sawasdee' },
+    culture: 'Khon, drama topeng kerajaan, dipentaskan dengan narasi dan gamelan piphat.',
+    fact: 'Bahasa Thai punya lima nada dan 44 konsonan.',
+  },
+  TJK: {
+    name: 'Tajikistan',
+    capital: 'Dushanbe',
+    region: 'Central Asia',
+    languages: ['Tajik'],
+    greet: { text: 'Салом', latin: 'salom' },
+    culture: 'Falak, musik gunung Pamir, dinyanyikan dengan suara tinggi melengking.',
+    fact: 'Sekitar 93 persen wilayah Tajikistan adalah pegunungan.',
+  },
+  TLS: {
+    name: 'Timor-Leste',
+    capital: 'Dili',
+    region: 'Southeast Asia',
+    languages: ['Tetum', 'Portugis'],
+    greet: { text: 'Bondia', latin: 'bondia' },
+    culture: 'Tais, kain tenun ikat, dipakai sebagai penanda status dan identitas daerah.',
+    fact: 'Motif tais berbeda-beda di setiap daerah di Timor-Leste.',
+  },
+  TKM: {
+    name: 'Turkmenistan',
+    capital: 'Ashgabat',
+    region: 'Central Asia',
+    languages: ['Turkmen'],
+    greet: { text: 'Salam', latin: 'salam' },
+    culture: 'Karpet Turkmen dianggap simbol bangsa dan motifnya tercetak di bendera.',
+    fact: 'Kawah gas Darvaza terbakar terus sejak 1971.',
+  },
+  TUR: {
+    name: 'Turki',
+    capital: 'Ankara',
+    region: 'West Asia',
+    languages: ['Turki'],
+    greet: { text: 'Merhaba', latin: 'merhaba' },
+    culture: 'Ebru, seni melukis di atas air, menghasilkan pola marmer yang tidak bisa diulang.',
+    fact: 'Istanbul satu-satunya kota besar yang berdiri di dua benua.',
+  },
+  ARE: {
+    name: 'Uni Emirat Arab',
+    capital: 'Abu Dhabi',
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture: 'Falkonri masih jadi olahraga warisan gurun yang dipertandingkan.',
+    fact: 'Burj Khalifa setinggi 828 meter, gedung tertinggi di dunia.',
+  },
+  UZB: {
+    name: 'Uzbekistan',
+    capital: 'Tashkent',
+    region: 'Central Asia',
+    languages: ['Uzbek'],
+    greet: { text: 'Salom', latin: 'salom' },
+    culture: 'Madrasah Samarkand penuh mosaik biru kobalt, pusat jalur sutra.',
+    fact: 'Uzbekistan satu-satunya negara yang terkurung daratan ganda di dunia.',
+  },
+  VNM: {
+    name: 'Vietnam',
+    capital: 'Hanoi',
+    region: 'Southeast Asia',
+    languages: ['Vietnam'],
+    greet: { text: 'Xin chào', latin: 'xin chao' },
+    culture: 'Water puppet, teater boneka di atas air, lahir dari sawah yang banjir.',
+    fact: 'Vietnam punya 54 kelompok etnis resmi.',
+  },
+  YEM: {
+    name: 'Yaman',
+    capital: "Sana'a",
+    region: 'West Asia',
+    languages: ['Arab'],
+    greet: { text: 'مرحبا', latin: 'marhaba' },
+    culture: "Sana'a punya rumah menara dari lumpur setinggi lima sampai delapan lantai.",
+    fact: 'Pulau Socotra punya pohon darah naga yang bentuknya seperti payung.',
+  },
+};
+
+export function countryContent(code: string): Country48Item | null {
+  return COUNTRIES[code] || null;
+}
+
+export const ISO3_TO_ISO2: Record<string, string> = Object.fromEntries(
+  countries.map((c) => [c.iso3.toUpperCase(), c.id.toLowerCase()]),
+);
+
+export const ISO2_TO_ISO3: Record<string, string> = Object.fromEntries(
+  countries.map((c) => [c.id.toLowerCase(), c.iso3.toUpperCase()]),
+);
+
+export function countryIdOf(code: string): string {
+  const upper = code.toUpperCase();
+  return ISO3_TO_ISO2[upper] ?? code.toLowerCase();
+}
+
+export function iso3For(id: string): string | undefined {
+  const lower = id.toLowerCase();
+  return ISO2_TO_ISO3[lower] ?? (id.length === 3 ? id.toUpperCase() : undefined);
+}
