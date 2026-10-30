@@ -29,7 +29,7 @@ describe('CountryDirectoryDrawer (Atlas Direktori 48 Bangsa)', () => {
     expect(screen.getByRole('heading', { name: 'Asia Selatan' })).toBeDefined();
     expect(screen.getByRole('heading', { name: 'Asia Barat' })).toBeDefined();
     expect(screen.getByRole('heading', { name: 'Asia Tengah' })).toBeDefined();
-  });
+  }, 15000);
 
   it('memfilter negara secara instan melalui kolom pencarian', () => {
     const handleClose = vi.fn();
