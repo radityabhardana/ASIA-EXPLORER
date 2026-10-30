@@ -160,29 +160,52 @@ export default function AudioQuestPhase({
   return (
     <div className="audio-quest-phase">
       <div className="audio-quest-phase__inner">
-        {/* Meta */}
+        {/* Meta Header */}
         <div className="audio-quest-phase__meta">
-          <span className="audio-quest-phase__counter">
-            Tantangan {challengeNumber} dari {totalChallenges}
-          </span>
-          <p className="audio-quest-phase__type-label">{TYPE_LABELS[challenge.type]}</p>
+          <div className="audio-quest-phase__eyebrow">
+            <span className="audio-quest-phase__counter">
+              Tantangan {String(challengeNumber).padStart(2, '0')} / {String(totalChallenges).padStart(2, '0')}
+            </span>
+            <span className="audio-quest-phase__seal-badge" aria-hidden="true">
+              ARSIP SUARA • ASIA
+            </span>
+          </div>
+          <h2 className="audio-quest-phase__type-label">{TYPE_LABELS[challenge.type]}</h2>
+          <p className="audio-quest-phase__subtext">Dengarkan rekaman audio, lalu tentukan pilihan yang tepat.</p>
         </div>
 
         {/* Audio zone */}
-        <div className="audio-quest-phase__audio-zone">
+        <div
+          className="audio-quest-phase__audio-zone"
+          onClick={() => {
+            if (!isPlaying) handleReplay();
+          }}
+          title={isPlaying ? 'Sedang memutar audio...' : 'Klik untuk putar ulang audio'}
+        >
+          <div className="audio-quest-phase__audio-top" aria-hidden="true">
+            <div className={`audio-quest-phase__mic-dot${isPlaying ? ' active' : ''}`} />
+            <span className="audio-quest-phase__audio-label">
+              {isPlaying ? 'Memutar Audio...' : 'Audio Siap Didengarkan'}
+            </span>
+          </div>
+
           <div className={`audio-waveform${!isPlaying ? ' audio-waveform--paused' : ''}`} aria-hidden="true">
-            {[0, 1, 2, 3, 4].map((i) => (
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div key={i} className="audio-waveform__bar" />
             ))}
           </div>
+
           <button
             type="button"
             className="audio-quest-phase__replay-btn"
-            onClick={handleReplay}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleReplay();
+            }}
             aria-label="Putar ulang audio"
           >
-            <RotateCcw size={14} aria-hidden="true" />
-            Putar Ulang
+            <RotateCcw size={13} aria-hidden="true" />
+            <span>Putar Ulang</span>
           </button>
         </div>
 
@@ -193,6 +216,7 @@ export default function AudioQuestPhase({
               key={tile.id}
               id={tile.id}
               text={tile.text}
+              index={i}
               locked={i >= unlockedCount}
               selected={selectedId === tile.id}
               state={tileStates[tile.id] ?? 'idle'}
@@ -213,7 +237,8 @@ export default function AudioQuestPhase({
               role="status"
               aria-live="polite"
             >
-              {challenge.feedback}
+              <div className="audio-quest-phase__feedback-label">CATATAN LAPANGAN:</div>
+              <p className="audio-quest-phase__feedback-text">{challenge.feedback}</p>
             </motion.div>
           )}
         </AnimatePresence>

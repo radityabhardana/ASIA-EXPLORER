@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Volume2 } from 'lucide-react';
 
 import type { Country } from '@/content/countries';
 import { useI18n } from '@/lib/i18n';
@@ -105,7 +106,8 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
                 onClick={handleListenGreeting}
                 aria-label={`Dengarkan sapaan dalam ${language.nameId}`}
               >
-                🔊 {t('country.listen')}
+                <Volume2 size={14} className="country-audio-btn__icon" aria-hidden="true" />
+                <span>{t('country.listen')}</span>
               </button>
             </div>
           )}
@@ -128,7 +130,8 @@ export default function LanguageBlock({ country, profile }: LanguageBlockProps) 
                     onClick={() => handlePlay(phrase.native, phrase.id, phrase.roman)}
                     aria-label={`Dengarkan pengucapan ${phrase.id}: ${phrase.native}`}
                   >
-                    🔊 {t('country.listen')}
+                    <Volume2 size={14} className="country-audio-btn__icon" aria-hidden="true" />
+                    <span>{t('country.listen')}</span>
                   </button>
                 )}
               </div>

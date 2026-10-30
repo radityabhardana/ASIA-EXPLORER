@@ -217,9 +217,9 @@ describe('Country Page & Editorial Cultural Atlas Transformation', () => {
       // 1 for greeting + 3 for phrases = 4 buttons
       expect(audioButtons.length).toBe(4);
 
-      // Check text is "🔊 Dengarkan"
+      // Check text is "Dengarkan"
       const phraseBtn = audioButtons[1];
-      expect(phraseBtn?.textContent).toContain('🔊 Dengarkan');
+      expect(phraseBtn?.textContent).toContain('Dengarkan');
 
       // Click button triggers speech
       fireEvent.click(phraseBtn!);

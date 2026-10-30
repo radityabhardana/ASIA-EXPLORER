@@ -1,26 +1,35 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Swords,
+  Compass,
   Sparkles,
   CheckCircle2,
   Clock,
-  ArrowRight,
   BookOpen,
   Award,
+  Play,
+  RotateCcw,
 } from 'lucide-react';
 import { useProfile } from '@/lib/profile';
-import { useI18n } from '@/lib/i18n';
 import { getCountry } from '@/content/countries';
-import { LENGKAP_COUNTRY_IDS, getQuestItemsForCountry } from '@/content/quests';
+import { LENGKAP_COUNTRY_IDS } from '@/content/quests';
+import { getStoryQuest } from '@/data/story-quests';
+import { loadQuestProgress, getDiscoveredEndings } from '@/lib/story-quest/storage';
+import { NpcAvatarBadge } from '@/sections/quest/QuestIcons';
 import { getAttemptsByProfile, getLessonsByProfile } from '@/lib/storage/db';
 import type { Attempt, LessonProgress } from '@/lib/storage/types';
 import DashboardSidebar from '@/app/components/DashboardSidebar';
 import '@/styles/dashboard.css';
 
+interface CountryQuestStatus {
+  status: 'completed' | 'in_progress' | 'ready';
+  badgeLabel?: string;
+  endingsCount?: number;
+  highestEnding?: 'sahabat' | 'diterima' | 'canggung';
+}
+
 export default function QuestHubPage() {
   const { profile, signOut } = useProfile();
-  const { t: _t } = useI18n();
   const profileId = profile?.id ?? '';
 
   const [attempts, setAttempts] = useState<Attempt[]>([]);
@@ -76,32 +85,48 @@ export default function QuestHubPage() {
     return saved ? Number(saved) : 1;
   }, [profileId]);
 
+  // Status Story Quest untuk setiap negara
   const questStatusMap = useMemo(() => {
-    const map = new Map<string, { status: 'completed' | 'in_progress' | 'ready'; attemptId?: string; score?: string }>();
-    for (const cid of LENGKAP_COUNTRY_IDS) {
-      const countryAttempts = attempts.filter((a) => a.countryId === cid);
-      const finished = countryAttempts.filter((a) => a.finishedAt !== null);
-      const inProgress = countryAttempts.find((a) => a.finishedAt === null);
+    const map = new Map<string, CountryQuestStatus>();
 
-      if (inProgress) {
-        map.set(cid, { status: 'in_progress', attemptId: inProgress.id });
-      } else if (finished.length > 0) {
-        const latest = finished[finished.length - 1]!;
-        const correct = latest.answers.filter((a) => a.correct).length;
-        const total = latest.itemIds.length || latest.answers.length || 1;
+    for (const cid of LENGKAP_COUNTRY_IDS) {
+      const discoveredEndings = profileId ? getDiscoveredEndings(profileId, cid) : [];
+      const savedProgress = profileId ? loadQuestProgress(profileId, cid) : null;
+
+      // Cek apakah ada attempt legacy yang sudah selesai jika belum ada di story-quest
+      const legacyFinished = attempts.some((a) => a.countryId === cid && a.finishedAt !== null);
+
+      if (discoveredEndings.length > 0 || legacyFinished) {
+        let highest: 'sahabat' | 'diterima' | 'canggung' = 'diterima';
+        if (discoveredEndings.includes('sahabat')) highest = 'sahabat';
+        else if (discoveredEndings.includes('diterima')) highest = 'diterima';
+        else if (discoveredEndings.includes('canggung')) highest = 'canggung';
+
+        const tierName =
+          highest === 'sahabat' ? 'Sahabat' : highest === 'diterima' ? 'Diterima' : 'Canggung';
+
         map.set(cid, {
           status: 'completed',
-          attemptId: latest.id,
-          score: `${correct}/${total} (${Math.round((correct / total) * 100)}%)`,
+          badgeLabel: `${tierName} · ${discoveredEndings.length || 1}/3 Akhir`,
+          endingsCount: discoveredEndings.length || 1,
+          highestEnding: highest,
+        });
+      } else if (savedProgress && !savedProgress.finishedAt && savedProgress.currentSceneId) {
+        map.set(cid, {
+          status: 'in_progress',
+          badgeLabel: 'Sedang Berjalan',
         });
       } else {
-        map.set(cid, { status: 'ready' });
+        map.set(cid, { status: 'ready', badgeLabel: 'Siap Mulai' });
       }
     }
-    return map;
-  }, [attempts]);
 
-  const completedCount = Array.from(questStatusMap.values()).filter((v) => v.status === 'completed').length;
+    return map;
+  }, [profileId, attempts]);
+
+  const completedCount = Array.from(questStatusMap.values()).filter(
+    (v) => v.status === 'completed',
+  ).length;
 
   return (
     <div className="dashboard-layout">
@@ -118,18 +143,19 @@ export default function QuestHubPage() {
           <header className="dashboard-header">
             <div className="dashboard-header__top-row">
               <span className="dashboard-header__eyebrow">
-                <Swords size={13} aria-hidden="true" />
-                ARENA EVALUASI KULTURAL
+                <Compass size={13} aria-hidden="true" />
+                PETUALANGAN BUDAYA INTERAKTIF
               </span>
               <span className="dashboard-header__status-badge">
                 <Award size={13} aria-hidden="true" />
-                {completedCount} dari 10 Quest Diselesaikan
+                {completedCount} dari 10 Petualangan Diselesaikan
               </span>
             </div>
 
-            <h1 className="dashboard-header__title">Katalog Quest Budaya & Etiket</h1>
+            <h1 className="dashboard-header__title">Katalog Petualangan Budaya & Etiket</h1>
             <p className="dashboard-header__desc">
-              Uji ketajaman pemahaman norma sosial, sapaan kesantunan, dan skenario percabangan untuk 10 negara berstatus Lengkap.
+              Jelajahi simulasi visual novel interaktif di 10 negara Asia. Siapkan bekal, berdialog dengan
+              tuan rumah lokal, dan tentukan alur serta akhir ceritamu.
             </p>
           </header>
 
@@ -137,9 +163,10 @@ export default function QuestHubPage() {
           <div className="quest-hub-grid">
             {LENGKAP_COUNTRY_IDS.map((cid) => {
               const country = getCountry(cid);
-              if (!country) return null;
-              const items = getQuestItemsForCountry(cid);
-              const info = questStatusMap.get(cid) ?? { status: 'ready' };
+              const storyQuest = getStoryQuest(cid);
+              if (!country || !storyQuest) return null;
+
+              const info = questStatusMap.get(cid) ?? { status: 'ready', badgeLabel: 'Siap Mulai' };
 
               return (
                 <div key={cid} className="dashboard-console-card quest-card">
@@ -154,51 +181,85 @@ export default function QuestHubPage() {
                     </div>
 
                     {info.status === 'completed' ? (
-                      <span className="dashboard-console-card__badge" style={{ color: 'var(--accent)', borderColor: 'rgba(23, 107, 104, 0.3)' }}>
+                      <span
+                        className="dashboard-console-card__badge"
+                        style={{ color: 'var(--accent)', borderColor: 'rgba(23, 107, 104, 0.3)' }}
+                      >
                         <CheckCircle2 size={11} style={{ display: 'inline', marginRight: 4 }} />
-                        Selesai · {info.score}
+                        {info.badgeLabel}
                       </span>
                     ) : info.status === 'in_progress' ? (
-                      <span className="dashboard-console-card__badge" style={{ color: '#b45309', borderColor: 'rgba(217, 119, 6, 0.3)' }}>
+                      <span
+                        className="dashboard-console-card__badge"
+                        style={{ color: '#b45309', borderColor: 'rgba(217, 119, 6, 0.3)' }}
+                      >
                         <Clock size={11} style={{ display: 'inline', marginRight: 4 }} />
-                        Berjalan
+                        {info.badgeLabel}
                       </span>
                     ) : (
-                      <span className="dashboard-console-card__badge">
-                        Siap Mulai
-                      </span>
+                      <span className="dashboard-console-card__badge">Siap Berpetualang</span>
                     )}
                   </div>
 
                   <div className="quest-card__body">
-                    <div className="quest-card__meta">
-                      <span>{country.region}</span>
-                      <span>·</span>
-                      <span className="quest-card__native">{country.greeting.native}</span>
+                    {/* NPC Strip Preview */}
+                    <div className="quest-card__npc-strip">
+                      <NpcAvatarBadge
+                        avatar={storyQuest.npc.avatar}
+                        nama={storyQuest.npc.nama}
+                        size="small"
+                      />
+                      <div className="quest-card__npc-meta">
+                        <strong>{storyQuest.npc.nama}</strong>
+                        <span>{storyQuest.npc.peran}</span>
+                      </div>
                     </div>
 
+                    <h2 className="quest-card__story-title">{storyQuest.judul}</h2>
+
                     <p className="quest-card__note">
-                      {country.cultureNote.slice(0, 120)}...
+                      {storyQuest.pengantar.length > 120
+                        ? `${storyQuest.pengantar.slice(0, 120)}...`
+                        : storyQuest.pengantar}
                     </p>
 
                     <div className="quest-card__tags">
                       <span className="quest-card__tag">
-                        <BookOpen size={11} /> {items.length} Soal Evaluasi
+                        <BookOpen size={11} /> {storyQuest.adegan.length} Adegan Cerita
                       </span>
                       <span className="quest-card__tag">
-                        <Sparkles size={11} /> +{items.length * 10} XP
+                        <Sparkles size={11} /> Maks +60 XP
                       </span>
                     </div>
 
                     <div className="quest-card__footer">
                       <Link
                         to={`/dashboard/quest/${cid}`}
-                        className={`dashboard-btn ${info.status === 'completed' ? 'dashboard-btn--secondary' : 'dashboard-btn--primary'} dashboard-btn--small`}
+                        className={`dashboard-btn ${
+                          info.status === 'completed'
+                            ? 'dashboard-btn--secondary'
+                            : 'dashboard-btn--primary'
+                        } dashboard-btn--small`}
                         style={{ width: '100%' }}
+                        aria-label={
+                          info.status === 'completed'
+                            ? `Mainkan Ulang Petualangan ${country.nameId}`
+                            : info.status === 'in_progress'
+                            ? `Lanjutkan Petualangan ${country.nameId}`
+                            : `Mulai Petualangan ${country.nameId}`
+                        }
                       >
-                        <Swords size={14} />
-                        <span>{info.status === 'completed' ? 'Ulangi Quest' : info.status === 'in_progress' ? 'Lanjutkan Quest' : 'Mulai Quest'}</span>
-                        <ArrowRight size={13} />
+                        {info.status === 'completed' ? (
+                          <>
+                            <RotateCcw size={14} />
+                            <span>Jelajahi Cabang Lain</span>
+                          </>
+                        ) : (
+                          <>
+                            <Play size={14} />
+                            <span>{info.status === 'in_progress' ? 'Lanjutkan Petualangan' : 'Mulai Petualangan'}</span>
+                          </>
+                        )}
                       </Link>
                     </div>
                   </div>

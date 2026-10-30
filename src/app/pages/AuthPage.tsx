@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Compass } from 'lucide-react';
 import { signInWithEmail, registerWithEmail, signInWithGoogle } from '@/lib/auth';
+import { useProfile } from '@/lib/profile';
 import AuthInteractiveMap from '@/app/components/AuthInteractiveMap';
 import '@/styles/auth.css';
 
@@ -11,32 +12,47 @@ interface AuthPageProps {
 
 export default function AuthPage({ defaultTab = 'login' }: AuthPageProps) {
   const [tab, setTab] = useState<'login' | 'register'>(defaultTab);
+  const navigate = useNavigate();
+  const { status, profile, syncFirebaseUser } = useProfile();
 
-  // Sync tab with defaultTab prop changes (e.g. route change)
+  // Sinkronisasi tab saat prop defaultTab berubah (misal saat berganti rute /login <-> /register)
   useEffect(() => {
     setTab(defaultTab);
   }, [defaultTab]);
 
+  // Jika user sudah terautentikasi dan profil siap, langsung arahkan ke Dashboard
+  useEffect(() => {
+    if (status === 'ready' && profile) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [status, profile, navigate]);
+
   return (
     <div className="auth-page">
-      {/* ── Visual panel with Interactive Asia Map ── */}
+      {/* ── Panel Visual: Carousel Potongan Peta Negara ── */}
       <div className="auth-visual">
         <AuthInteractiveMap />
       </div>
 
-      {/* ── Form panel ── */}
+      {/* ── Panel Formulir: Masuk Sesi / Buat Profil ── */}
       <div className="auth-form-panel">
         <div className="auth-form-inner">
           <div className="auth-header-wrap">
+            <div className="auth-logo-badge">
+              <Compass size={20} className="auth-logo-icon" aria-hidden="true" />
+              <span>Asia Explorer</span>
+            </div>
             <h1 className="auth-logo">
-              Asia<span>Explorer</span>
+              {tab === 'login' ? 'Masuk ke Studio' : 'Daftar Pengelana'}
             </h1>
             <p className="auth-subtitle">
-              Portal Pembelajaran Mandiri Bahasa & Etiket Asia
+              {tab === 'login'
+                ? 'Lanjutkan penjelajahan aksara, etiket budaya, dan petualangan cerita Asia Anda.'
+                : 'Mulai perjalanan budaya interaktif Anda dan simpan pencapaian eksplorasi.'}
             </p>
           </div>
 
-          {/* Tab switcher */}
+          {/* Switcher Tab Masuk / Buat Profil */}
           <div className="auth-tabs" role="tablist">
             <button
               type="button"
@@ -58,15 +74,23 @@ export default function AuthPage({ defaultTab = 'login' }: AuthPageProps) {
             </button>
           </div>
 
-          {tab === 'login' ? <LoginForm /> : <RegisterForm />}
+          {tab === 'login' ? (
+            <LoginForm syncProfile={syncFirebaseUser} />
+          ) : (
+            <RegisterForm syncProfile={syncFirebaseUser} />
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-/* ── Login form ──────────────────────────────────────────────────────────── */
-function LoginForm() {
+/* ── Form Masuk (Login) ─────────────────────────────────────────────────── */
+interface FormProps {
+  syncProfile?: (user: import('@/lib/auth').FirebaseUser) => Promise<import('@/lib/storage/types').Profile>;
+}
+
+function LoginForm({ syncProfile }: FormProps) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -80,29 +104,34 @@ function LoginForm() {
       setError('');
       setLoading(true);
       try {
-        await signInWithEmail(email, password);
-        navigate('/dashboard');
+        const user = await signInWithEmail(email, password);
+        if (syncProfile) {
+          await syncProfile(user);
+        }
+        navigate('/dashboard', { replace: true });
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Gagal masuk. Periksa email & password.');
+        setError(err instanceof Error ? err.message : 'Gagal masuk. Periksa email & password Anda.');
       } finally {
         setLoading(false);
       }
     },
-    [email, password, navigate]
+    [email, password, syncProfile, navigate]
   );
 
   const handleGoogle = useCallback(async () => {
     setError('');
     setLoading(true);
     try {
-      await signInWithGoogle();
-      navigate('/dashboard');
+      const user = await signInWithGoogle();
+      if (syncProfile) {
+        await syncProfile(user);
+      }
+      navigate('/dashboard', { replace: true });
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Gagal masuk dengan Google.');
-    } finally {
       setLoading(false);
     }
-  }, [navigate]);
+  }, [syncProfile, navigate]);
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
@@ -124,24 +153,26 @@ function LoginForm() {
 
       <div className="auth-field">
         <label className="auth-label" htmlFor="login-password">Password</label>
-        <input
-          id="login-password"
-          type={showPw ? 'text' : 'password'}
-          className="auth-input auth-input--password"
-          placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          autoComplete="current-password"
-        />
-        <button
-          type="button"
-          className="auth-pw-toggle"
-          onClick={() => setShowPw((v) => !v)}
-          aria-label={showPw ? 'Sembunyikan password' : 'Tampilkan password'}
-        >
-          {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
-        </button>
+        <div className="auth-input-password-wrap">
+          <input
+            id="login-password"
+            type={showPw ? 'text' : 'password'}
+            className="auth-input auth-input--password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            autoComplete="current-password"
+          />
+          <button
+            type="button"
+            className="auth-pw-toggle"
+            onClick={() => setShowPw((v) => !v)}
+            aria-label={showPw ? 'Sembunyikan password' : 'Tampilkan password'}
+          >
+            {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
+          </button>
+        </div>
       </div>
 
       <button type="submit" className="auth-btn" disabled={loading}>
@@ -158,8 +189,8 @@ function LoginForm() {
   );
 }
 
-/* ── Register form ───────────────────────────────────────────────────────── */
-function RegisterForm() {
+/* ── Form Registrasi (Register) ─────────────────────────────────────────── */
+function RegisterForm({ syncProfile }: FormProps) {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -174,29 +205,34 @@ function RegisterForm() {
       setError('');
       setLoading(true);
       try {
-        await registerWithEmail(email, password, name);
-        navigate('/dashboard');
+        const user = await registerWithEmail(name, email, password);
+        if (syncProfile) {
+          await syncProfile(user);
+        }
+        navigate('/dashboard', { replace: true });
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : 'Gagal mendaftar. Coba lagi.');
       } finally {
         setLoading(false);
       }
     },
-    [email, password, name, navigate]
+    [name, email, password, syncProfile, navigate]
   );
 
   const handleGoogle = useCallback(async () => {
     setError('');
     setLoading(true);
     try {
-      await signInWithGoogle();
-      navigate('/dashboard');
+      const user = await signInWithGoogle();
+      if (syncProfile) {
+        await syncProfile(user);
+      }
+      navigate('/dashboard', { replace: true });
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Gagal mendaftar dengan Google.');
-    } finally {
       setLoading(false);
     }
-  }, [navigate]);
+  }, [syncProfile, navigate]);
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
@@ -232,25 +268,27 @@ function RegisterForm() {
 
       <div className="auth-field">
         <label className="auth-label" htmlFor="reg-password">Password</label>
-        <input
-          id="reg-password"
-          type={showPw ? 'text' : 'password'}
-          className="auth-input auth-input--password"
-          placeholder="Min. 6 karakter"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength={6}
-          autoComplete="new-password"
-        />
-        <button
-          type="button"
-          className="auth-pw-toggle"
-          onClick={() => setShowPw((v) => !v)}
-          aria-label={showPw ? 'Sembunyikan password' : 'Tampilkan password'}
-        >
-          {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
-        </button>
+        <div className="auth-input-password-wrap">
+          <input
+            id="reg-password"
+            type={showPw ? 'text' : 'password'}
+            className="auth-input auth-input--password"
+            placeholder="Min. 6 karakter"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+            autoComplete="new-password"
+          />
+          <button
+            type="button"
+            className="auth-pw-toggle"
+            onClick={() => setShowPw((v) => !v)}
+            aria-label={showPw ? 'Sembunyikan password' : 'Tampilkan password'}
+          >
+            {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
+          </button>
+        </div>
       </div>
 
       <button type="submit" className="auth-btn" disabled={loading}>
@@ -267,7 +305,7 @@ function RegisterForm() {
   );
 }
 
-/* ── Helpers ─────────────────────────────────────────────────────────────── */
+/* ── Ikon Google SVG ─────────────────────────────────────────────────────── */
 function GoogleIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">

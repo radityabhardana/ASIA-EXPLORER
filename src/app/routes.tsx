@@ -32,6 +32,7 @@ export const SCENE_LAB_PATH = '/lab/scene';
 
 /** Rute lab hanya ada di DEV; di build produksi cabang ini ter-eliminasi. */
 const SceneLab = import.meta.env.DEV ? lazy(() => import('./pages/SceneLab')) : null;
+const SketchbookScene = lazy(() => import('@/Scene'));
 
 /** Rute PRD v2.3 `/country/:id` hanya redirect (PRD v2.4 D38). */
 function LegacyCountryRedirect() {
@@ -196,6 +197,27 @@ export function AppRoutes() {
           }
         />
       ) : null}
+
+      {/* Story Sketchbook Direct Route (Dev & Quick Access) */}
+      <Route path="/story/:countryId" element={<SessionPage />} />
+
+      {/* ThreeUI Meng To Sketchbook */}
+      <Route
+        path="/sketchbook"
+        element={
+          <Suspense fallback={null}>
+            <SketchbookScene />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/meng-to-sketchbook"
+        element={
+          <Suspense fallback={null}>
+            <SketchbookScene />
+          </Suspense>
+        }
+      />
 
       <Route path="*" element={<Navigate to={LANDING_PATH} replace />} />
     </Routes>

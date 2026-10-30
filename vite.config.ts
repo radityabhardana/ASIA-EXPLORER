@@ -9,6 +9,12 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': srcPath,
+      '@designcodeio/threeui/style.css': /^\/[A-Za-z]:/.test(new URL('./src/shaders/threeui.css', import.meta.url).pathname)
+        ? new URL('./src/shaders/threeui.css', import.meta.url).pathname.slice(1)
+        : new URL('./src/shaders/threeui.css', import.meta.url).pathname,
+      '@designcodeio/threeui': /^\/[A-Za-z]:/.test(new URL('./src/shaders/landing-pages/LandingPages.tsx', import.meta.url).pathname)
+        ? new URL('./src/shaders/landing-pages/LandingPages.tsx', import.meta.url).pathname.slice(1)
+        : new URL('./src/shaders/landing-pages/LandingPages.tsx', import.meta.url).pathname,
     },
   },
   build: {

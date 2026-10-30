@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { Profile, Progress } from './types';
-import { getAllProfiles, getProfile, getProgress, saveProfile, saveProgress } from './db';
+import { getProfile, getProgress, saveProfile, saveProgress } from './db';
 import { getStoredLocale } from '@/lib/i18n';
-import { onAuthChange, signOutUser } from '@/lib/auth';
+import { onAuthChange, signOutUser, type FirebaseUser } from '@/lib/auth';
 
 export type ProfileStatus = 'loading' | 'none' | 'ready';
 
@@ -12,6 +12,7 @@ export interface ProfileContextValue {
   progress: Progress | null;
   signIn: (displayName: string) => Promise<Profile>;
   signOut: () => Promise<void>;
+  syncFirebaseUser: (firebaseUser: FirebaseUser) => Promise<Profile>;
   refreshProgress: () => Promise<void>;
   refresh: () => Promise<void>;
 }
@@ -38,6 +39,38 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     }
   }, [profile]);
 
+  const syncFirebaseUser = useCallback(async (firebaseUser: FirebaseUser): Promise<Profile> => {
+    setStatus('loading');
+    let active = await getProfile(firebaseUser.uid);
+    if (!active) {
+      const name =
+        firebaseUser.displayName?.trim() ||
+        firebaseUser.email?.split('@')[0] ||
+        'Penjelajah';
+      active = {
+        id: firebaseUser.uid,
+        displayName: name,
+        createdAt: Date.now(),
+        locale: getStoredLocale(),
+      };
+      await saveProfile(active);
+      await saveProgress({ profileId: active.id, countries: {} });
+    }
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(ACTIVE_PROFILE_STORAGE_KEY, active.id);
+      if (navigator.storage && navigator.storage.persist) {
+        navigator.storage.persist().catch(() => {});
+      }
+    }
+
+    setProfile(active);
+    const prog = await getProgress(active.id);
+    setProgress(prog ?? null);
+    setStatus('ready');
+    return active;
+  }, []);
+
   const loadActiveProfile = useCallback(async () => {
     try {
       const savedId =
@@ -50,16 +83,6 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
         const found = await getProfile(savedId);
         if (found) {
           active = found;
-        }
-      }
-
-      if (!active) {
-        const all = await getAllProfiles();
-        if (all.length > 0 && all[0]) {
-          if (typeof window !== 'undefined') {
-            localStorage.setItem(ACTIVE_PROFILE_STORAGE_KEY, all[0].id);
-          }
-          active = all[0];
         }
       }
 
@@ -85,33 +108,14 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
       if (!mounted) return;
       if (firebaseUser) {
         try {
-          let active = await getProfile(firebaseUser.uid);
-          if (!active) {
-            const name =
-              firebaseUser.displayName?.trim() ||
-              firebaseUser.email?.split('@')[0] ||
-              'Penjelajah';
-            active = {
-              id: firebaseUser.uid,
-              displayName: name,
-              createdAt: Date.now(),
-              locale: getStoredLocale(),
-            };
-            await saveProfile(active);
-            await saveProgress({ profileId: active.id, countries: {} });
-          }
-          if (!mounted) return;
-          if (typeof window !== 'undefined') {
-            localStorage.setItem(ACTIVE_PROFILE_STORAGE_KEY, active.id);
-          }
-          setProfile(active);
-          const prog = await getProgress(active.id);
-          if (!mounted) return;
-          setProgress(prog ?? null);
-          setStatus('ready');
+          await syncFirebaseUser(firebaseUser);
           return;
-        } catch {
-          // fallback to local check below
+        } catch (err) {
+          console.error('Gagal sinkronisasi profil auth:', err);
+          if (mounted) {
+            setStatus('none');
+          }
+          return;
         }
       }
 
@@ -127,16 +131,6 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
           const found = await getProfile(savedId);
           if (found) {
             active = found;
-          }
-        }
-
-        if (!active) {
-          const all = await getAllProfiles();
-          if (all.length > 0 && all[0]) {
-            if (typeof window !== 'undefined') {
-              localStorage.setItem(ACTIVE_PROFILE_STORAGE_KEY, all[0].id);
-            }
-            active = all[0];
           }
         }
 
@@ -164,7 +158,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
       mounted = false;
       unsubscribe();
     };
-  }, []);
+  }, [syncFirebaseUser]);
 
   const signIn = useCallback(async (displayName: string): Promise<Profile> => {
     const trimmed = displayName.trim();
@@ -222,6 +216,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
         progress,
         signIn,
         signOut,
+        syncFirebaseUser,
         refreshProgress,
         refresh: loadActiveProfile,
       }}
@@ -231,10 +226,25 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+export const DEFAULT_PROFILE_CONTEXT: ProfileContextValue = {
+  status: 'none',
+  profile: null,
+  progress: null,
+  signIn: async () => {
+    throw new Error('signIn dipanggil di luar ProfileProvider');
+  },
+  signOut: async () => {},
+  syncFirebaseUser: async () => {
+    throw new Error('syncFirebaseUser dipanggil di luar ProfileProvider');
+  },
+  refreshProgress: async () => {},
+  refresh: async () => {},
+};
+
 export function useProfile(): ProfileContextValue {
   const ctx = useContext(ProfileContext);
   if (!ctx) {
-    throw new Error('useProfile must be used within a ProfileProvider');
+    return DEFAULT_PROFILE_CONTEXT;
   }
   return ctx;
 }

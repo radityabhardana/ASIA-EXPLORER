@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Volume2 } from 'lucide-react';
+import { Volume2, ArrowRight, Lightbulb } from 'lucide-react';
+import { type PanInfo } from 'framer-motion';
 import { speak } from '@/lib/speech';
 import type { BuildChallenge } from '@/lib/storage/types';
 import WordTile from './WordTile';
@@ -30,6 +30,58 @@ function shuffleArray<T>(arr: T[]): T[] {
 
 const MAX_HINTS = 2;
 
+// Helper to check if point is over an element bounding rect with tolerance
+function isPointOverElement(point: { x: number; y: number }, element: HTMLElement | null, tolerance = 32): boolean {
+  if (!element) return false;
+  const rect = element.getBoundingClientRect();
+  return (
+    point.x >= rect.left - tolerance &&
+    point.x <= rect.right + tolerance &&
+    point.y >= rect.top - tolerance &&
+    point.y <= rect.bottom + tolerance
+  );
+}
+
+// Helper to find which specific slot in the tray the point is over
+function getTargetSlotIndex(point: { x: number; y: number }, trayEl: HTMLElement | null): number {
+  if (!trayEl) return -1;
+  const slotElements = trayEl.querySelectorAll('.build-tray__slot-wrapper');
+  if (slotElements.length === 0) return -1;
+
+  const trayRect = trayEl.getBoundingClientRect();
+  // Check if pointer is near the tray vertically and horizontally (with 45px margin)
+  if (
+    point.y < trayRect.top - 45 ||
+    point.y > trayRect.bottom + 45 ||
+    point.x < trayRect.left - 45 ||
+    point.x > trayRect.right + 45
+  ) {
+    return -1;
+  }
+
+  // Find the slot wrapper whose center is closest to point
+  let closestIndex = -1;
+  let minDistanceSq = Infinity;
+
+  for (let i = 0; i < slotElements.length; i++) {
+    const el = slotElements[i];
+    if (!el) continue;
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = point.x - cx;
+    const dy = point.y - cy;
+    const distSq = dx * dx + dy * dy;
+
+    if (distSq < minDistanceSq) {
+      minDistanceSq = distSq;
+      closestIndex = i;
+    }
+  }
+
+  return closestIndex;
+}
+
 export default function BuildPhase({
   challenge,
   challengeNumber,
@@ -50,6 +102,7 @@ export default function BuildPhase({
   const [tileStates, setTileStates] = useState<Record<string, TileState>>({});
   const [hintsUsed, setHintsUsed] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [activeDropSlot, setActiveDropSlot] = useState<number | null>(null);
 
   // Init on challenge change
   useEffect(() => {
@@ -77,48 +130,148 @@ export default function BuildPhase({
     speak(challenge.audioText, { lang: challenge.audioLang, rate: 0.88 });
   };
 
-  // Move word from bank → first empty tray slot
-  const bankToTray = useCallback(
-    (word: Word) => {
-      setTray((prev) => {
-        const firstEmpty = prev.findIndex((slot) => slot === null);
-        if (firstEmpty === -1) return prev;
-        const next = [...prev];
-        next[firstEmpty] = word;
+  // Swap or move between slots within tray
+  const moveOrSwapTraySlot = useCallback(
+    (sourceSlot: number, targetSlot: number) => {
+      if (submitted) return;
+      if (sourceSlot === targetSlot) return;
+
+      setTray((prevTray) => {
+        const sourceWord = prevTray[sourceSlot];
+        if (!sourceWord) return prevTray;
+
+        const targetWord = prevTray[targetSlot] ?? null;
+        const next = [...prevTray];
+        next[targetSlot] = sourceWord;
+        next[sourceSlot] = targetWord; // Swaps if target had a word, or leaves null if target was empty!
         return next;
       });
-      setBank((prev) => prev.filter((w) => w.id !== word.id));
+    },
+    [submitted],
+  );
+
+  // Move word from bank → tray (strictly deduplicated & bounded)
+  const bankToTray = useCallback(
+    (word: Word, preferredSlot?: number) => {
+      if (submitted) return;
+
+      setTray((prevTray) => {
+        // Prevent duplicate insertion if word already in tray
+        if (prevTray.some((slot) => slot?.id === word.id)) {
+          return prevTray;
+        }
+
+        let targetSlot = -1;
+        if (
+          preferredSlot !== undefined &&
+          preferredSlot >= 0 &&
+          preferredSlot < prevTray.length
+        ) {
+          targetSlot = preferredSlot;
+        } else {
+          targetSlot = prevTray.findIndex((slot) => slot === null);
+        }
+
+        if (targetSlot === -1) {
+          return prevTray; // Tray is full and no target
+        }
+
+        const existingAtTarget = prevTray[targetSlot];
+
+        // Successfully placed in tray; update bank:
+        setBank((prevBank) => {
+          const withoutNewWord = prevBank.filter((w) => w.id !== word.id);
+          // If the target slot already had a word, return that existing word to bank!
+          if (existingAtTarget && !withoutNewWord.some((w) => w.id === existingAtTarget.id)) {
+            return [...withoutNewWord, existingAtTarget];
+          }
+          return withoutNewWord;
+        });
+
+        const next = [...prevTray];
+        next[targetSlot] = word;
+        return next;
+      });
+    },
+    [submitted],
+  );
+
+  // Move word from tray → bank (strictly deduplicated)
+  const trayToBank = useCallback(
+    (word: Word, slotIndex: number) => {
+      if (submitted) return;
+
+      setTray((prevTray) => {
+        // Only remove if this slot actually contains this word
+        if (!prevTray[slotIndex] || prevTray[slotIndex]?.id !== word.id) {
+          return prevTray;
+        }
+
+        // Add back to bank if not already in bank
+        setBank((prevBank) => {
+          if (prevBank.some((w) => w.id === word.id)) {
+            return prevBank;
+          }
+          return [...prevBank, word];
+        });
+
+        const next = [...prevTray];
+        next[slotIndex] = null;
+        return next;
+      });
+    },
+    [submitted],
+  );
+
+  // Live hover tracking while dragging over tray slots
+  const handleTileDrag = useCallback(
+    (info: PanInfo) => {
+      const trayEl = trayRef.current;
+      if (!trayEl) return;
+      const targetSlot = getTargetSlotIndex(info.point, trayEl);
+      setActiveDropSlot(targetSlot >= 0 ? targetSlot : null);
     },
     [],
   );
 
-  // Move word from tray → bank
-  const trayToBank = useCallback((word: Word, slotIndex: number) => {
-    setTray((prev) => {
-      const next = [...prev];
-      next[slotIndex] = null;
-      return next;
-    });
-    setBank((prev) => [...prev, word]);
-  }, []);
-
-  // Desktop drag end — detect if over tray
+  // Desktop drag end — checks drop target position & swaps or moves
   const handleDragEnd = useCallback(
-    (word: Word, _info: { offset: { x: number; y: number } }, fromZone: 'bank' | 'tray', slotIndex?: number) => {
+    (
+      word: Word,
+      info: PanInfo,
+      fromZone: 'bank' | 'tray',
+      sourceSlotIndex?: number,
+    ) => {
+      setActiveDropSlot(null);
+      if (submitted) return;
+
+      // Filter out tiny pointer jitters (must be real drag movement)
+      if (Math.hypot(info.offset.x, info.offset.y) < 8) {
+        return;
+      }
+
       const trayEl = trayRef.current;
       if (!trayEl) return;
 
-      // We can't use pointer position from offset alone easily — use getBoundingClientRect + mouse position
-      // Framer provides point from event via info.point but our WordTile only passes offset.
-      // Alternative: just use tap for desktop too when drag ends near origin; rely on tap for simplicity.
-      // On desktop we allow tap (keyboard) to also move tiles, same as mobile.
+      const overTray = isPointOverElement(info.point, trayEl);
+      const targetSlot = getTargetSlotIndex(info.point, trayEl);
+
       if (fromZone === 'bank') {
-        bankToTray(word);
-      } else if (fromZone === 'tray' && slotIndex !== undefined) {
-        trayToBank(word, slotIndex);
+        if (overTray) {
+          bankToTray(word, targetSlot >= 0 ? targetSlot : undefined);
+        }
+        // If not over tray, Framer Motion dragSnapToOrigin will cleanly spring it back to bank
+      } else if (fromZone === 'tray' && sourceSlotIndex !== undefined) {
+        if (overTray && targetSlot >= 0 && targetSlot !== sourceSlotIndex) {
+          // SWAP OR MOVE WITHIN TRAY
+          moveOrSwapTraySlot(sourceSlotIndex, targetSlot);
+        } else if (!overTray) {
+          // Dragged out of tray -> return to bank
+          trayToBank(word, sourceSlotIndex);
+        }
       }
     },
-    [bankToTray, trayToBank],
+    [submitted, bankToTray, trayToBank, moveOrSwapTraySlot],
   );
 
   const allFilled = tray.every((slot) => slot !== null);
@@ -159,11 +312,9 @@ export default function BuildPhase({
     setHintsUsed(newHintsUsed);
 
     if (newHintsUsed === 1) {
-      // Hint 1: highlight or auto-place tile at hint1Target index
       const targetSlot = challenge.hint1Target;
       const expectedWord = challenge.correctOrder[targetSlot];
 
-      // If slot empty, auto-place the correct word there
       if (tray[targetSlot] === null) {
         const wordInBank = bank.find((w) => w.text === expectedWord);
         if (wordInBank) {
@@ -175,7 +326,6 @@ export default function BuildPhase({
           setBank((prev) => prev.filter((w) => w.id !== wordInBank.id));
         }
       } else {
-        // Slot occupied — highlight wrong ones in tray
         setTray((prev) => {
           const wrongWord = prev[targetSlot];
           if (wrongWord && wrongWord.text !== expectedWord) {
@@ -185,15 +335,13 @@ export default function BuildPhase({
         });
       }
     } else if (newHintsUsed === 2) {
-      // Hint 2: auto-place the most out-of-place tile
       let bestWordToPlace: Word | null = null;
       let bestTargetSlot = -1;
 
       for (let i = 0; i < challenge.correctOrder.length; i++) {
         const expected = challenge.correctOrder[i];
-        if (tray[i]?.text === expected) continue; // already correct
+        if (tray[i]?.text === expected) continue;
         if (tray[i] === null) {
-          // Empty slot: find word in bank
           const inBank = bank.find((w) => w.text === expected);
           if (inBank) {
             bestWordToPlace = inBank;
@@ -223,34 +371,48 @@ export default function BuildPhase({
       <div ref={containerRef} className="build-phase__inner">
         {/* Header */}
         <div className="build-phase__header">
-          <span className="build-phase__counter">
-            Tantangan {challengeNumber} dari {totalChallenges}
-          </span>
+          <div className="build-phase__header-left">
+            <div className="build-phase__eyebrow">
+              <span className="build-phase__counter">
+                Tantangan {String(challengeNumber).padStart(2, '0')} / {String(totalChallenges).padStart(2, '0')}
+              </span>
+              <span className="build-phase__seal-badge" aria-hidden="true">
+                SUSUN FRASA • TYPESETTING
+              </span>
+            </div>
+            <h2 className="build-phase__instruction">Susun kalimat yang kamu dengar</h2>
+            <p className="build-phase__subtext">Ketuk atau geser balok kata ke dalam baki susunan di bawah.</p>
+          </div>
           <button
             type="button"
             className="build-phase__replay-btn"
             onClick={handleReplay}
             aria-label="Putar ulang audio"
+            title="Dengarkan kembali kalimat suara"
           >
             <Volume2 size={14} aria-hidden="true" />
-            Putar Ulang
+            <span>Dengarkan Kalimat</span>
           </button>
         </div>
 
-        {/* Instruction */}
-        <p className="build-phase__instruction">Susun kalimat yang kamu dengar:</p>
-
         {/* Tray */}
-        <div>
+        <div className="build-tray-container">
+          <div className="build-tray-header">
+            <span className="build-tray-label">BAKI SUSUNAN KATA</span>
+            <span className="build-tray-hint">Ketuk kata pada baki untuk mengembalikannya ke bank</span>
+          </div>
           <div
             ref={trayRef}
             className="build-tray"
             role="region"
             aria-label="Slot susunan kata"
           >
-            <AnimatePresence>
-              {tray.map((word, slotIndex) =>
-                word ? (
+            {tray.map((word, slotIndex) => (
+              <div
+                key={`slot-wrap-${slotIndex}`}
+                className={`build-tray__slot-wrapper${activeDropSlot === slotIndex ? ' build-tray__slot-wrapper--active' : ''}`}
+              >
+                {word ? (
                   <WordTile
                     key={word.id}
                     word={word}
@@ -258,40 +420,35 @@ export default function BuildPhase({
                     state={tileStates[word.id] ?? 'idle'}
                     isMobile={isMobile}
                     onTap={() => !submitted && trayToBank(word, slotIndex)}
-                    dragConstraints={containerRef}
+                    onDrag={handleTileDrag}
                     onDragEnd={(info) => handleDragEnd(word, info, 'tray', slotIndex)}
                   />
                 ) : (
-                  <motion.div
-                    key={`slot-${slotIndex}`}
-                    className="build-tray__slot"
-                    layout
-                    aria-hidden="true"
-                  />
-                ),
-              )}
-            </AnimatePresence>
+                  <div className="build-tray__slot" aria-hidden="true">
+                    <span className="build-tray__slot-num">{slotIndex + 1}</span>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Bank */}
-        <div>
-          <p className="build-bank-label">Pilih Kata:</p>
+        <div className="build-bank-container">
+          <p className="build-bank-label">PILIH KATA DARI BANK:</p>
           <div className="build-bank" role="group" aria-label="Kata yang tersedia">
-            <AnimatePresence>
-              {bank.map((word) => (
-                <WordTile
-                  key={word.id}
-                  word={word}
-                  zone="bank"
-                  state={tileStates[word.id] ?? 'idle'}
-                  isMobile={isMobile}
-                  onTap={() => !submitted && bankToTray(word)}
-                  dragConstraints={containerRef}
-                  onDragEnd={(info) => handleDragEnd(word, info, 'bank')}
-                />
-              ))}
-            </AnimatePresence>
+            {bank.map((word) => (
+              <WordTile
+                key={word.id}
+                word={word}
+                zone="bank"
+                state={tileStates[word.id] ?? 'idle'}
+                isMobile={isMobile}
+                onTap={() => !submitted && bankToTray(word)}
+                onDrag={handleTileDrag}
+                onDragEnd={(info) => handleDragEnd(word, info, 'bank')}
+              />
+            ))}
           </div>
         </div>
 
@@ -302,20 +459,22 @@ export default function BuildPhase({
             className="build-phase__check-btn"
             disabled={!allFilled || submitted}
             onClick={handleCheck}
+            aria-label="Cek Jawaban Susunan Kata"
           >
-            Cek Jawaban
+            <span>Cek Jawaban</span>
+            <ArrowRight size={14} aria-hidden="true" />
           </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <button
-              type="button"
-              className="build-phase__hint-btn"
-              disabled={hintsUsed >= MAX_HINTS || submitted}
-              onClick={handleHint}
-              aria-label={`Gunakan petunjuk (${hintsRemaining} tersisa)`}
-            >
-              Petunjuk
-            </button>
+          <button
+            type="button"
+            className="build-phase__hint-btn"
+            disabled={hintsUsed >= MAX_HINTS || submitted}
+            onClick={handleHint}
+            aria-label={`Gunakan petunjuk (${hintsRemaining} tersisa)`}
+            title={hintsRemaining > 0 ? `Bantuan susunan kata (${hintsRemaining} tersisa)` : 'Petunjuk habis'}
+          >
+            <Lightbulb size={14} aria-hidden="true" />
+            <span>Petunjuk</span>
             <div className="hint-tokens" aria-label={`${hintsRemaining} petunjuk tersisa`}>
               {Array.from({ length: MAX_HINTS }, (_, i) => (
                 <span
@@ -325,7 +484,7 @@ export default function BuildPhase({
                 />
               ))}
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>

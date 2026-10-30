@@ -1,15 +1,13 @@
-import { useState, useEffect, useMemo, useRef, useCallback, type KeyboardEvent } from 'react';
+import { useState, useEffect, useMemo, useCallback, type KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Compass,
   Volume2,
   Play,
   Pause,
-  ChevronLeft,
-  ChevronRight,
   Sparkles,
-  Radio,
   Globe,
+  MapPin,
 } from 'lucide-react';
 import { countries, getCountry } from '@/content/countries';
 import { mapPaths } from '@/sections/landing/landing-data';
@@ -197,7 +195,22 @@ export const COUNTRY_AUTH_LIST: readonly CountryVisualMeta[] = [
   },
 ];
 
-const VIEW_BOX = '0 160 1000 680';
+/**
+ * Menghitung viewBox ketat potongan siluet satu negara persis seperti aset landing page.
+ */
+export function getCountryTightViewBox(bbox: readonly [number, number, number, number]): string {
+  const [minX, minY, maxX, maxY] = bbox;
+  const width = Math.max(maxX - minX, 1);
+  const height = Math.max(maxY - minY, 1);
+  const maxDim = Math.max(width, height);
+  const pad = Math.max(maxDim * 0.12, 1.2);
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  const vbW = width + pad * 2;
+  const vbH = height + pad * 2;
+
+  return `${(cx - vbW / 2).toFixed(2)} ${(cy - vbH / 2).toFixed(2)} ${vbW.toFixed(2)} ${vbH.toFixed(2)}`;
+}
 
 export interface AuthInteractiveMapProps {
   onCountrySelect?: (countryId: string) => void;
@@ -206,12 +219,9 @@ export interface AuthInteractiveMapProps {
 
 export default function AuthInteractiveMap({ onCountrySelect, className }: AuthInteractiveMapProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [speaking, setSpeaking] = useState(false);
   const [pauseUntil, setPauseUntil] = useState<number>(0);
-  const pillStripRef = useRef<HTMLDivElement>(null);
-  const activePillRef = useRef<HTMLButtonElement>(null);
 
   const activeMeta = COUNTRY_AUTH_LIST[currentIndex] ?? COUNTRY_AUTH_LIST[0]!;
 
@@ -226,30 +236,25 @@ export default function AuthInteractiveMap({ onCountrySelect, className }: AuthI
   const activePath = mapPathMap.get(activeMeta.id);
   const activeCountryData = countryDataMap.get(activeMeta.id) ?? getCountry(activeMeta.id);
 
-  // Auto-scroll active pill into view
-  useEffect(() => {
-    if (activePillRef.current) {
-      activePillRef.current.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest',
-      });
-    }
-  }, [currentIndex]);
+  // Hitung viewBox ketat potongan siluet pulau/negara aktif
+  const activeViewBox = useMemo(() => {
+    if (!activePath) return '0 160 1000 680';
+    return getCountryTightViewBox(activePath.bbox);
+  }, [activePath]);
 
-  // Slide auto-rotation
+  // Rotasi carousel otomatis setiap 4.5 detik
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       if (Date.now() < pauseUntil) return;
       setCurrentIndex((prev) => (prev + 1) % COUNTRY_AUTH_LIST.length);
-    }, 5500);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, pauseUntil]);
 
-  // Handle country selection
+  // Handler navigasi negara
   const handleSelectCountry = useCallback(
     (id: string) => {
       const idx = COUNTRY_AUTH_LIST.findIndex((c) => c.id === id);
@@ -272,7 +277,7 @@ export default function AuthInteractiveMap({ onCountrySelect, className }: AuthI
     setPauseUntil(Date.now() + 8000);
   }, []);
 
-  // Native speech audio playback
+  // Pemutaran audio sapaan bahasa lokal
   const handleSpeak = useCallback(() => {
     if (!isSpeechSupported() || speaking || !activeCountryData) return;
     setSpeaking(true);
@@ -286,327 +291,134 @@ export default function AuthInteractiveMap({ onCountrySelect, className }: AuthI
     });
   }, [speaking, activeCountryData]);
 
-  // Keyboard navigation on SVG path
-  const handlePathKeyDown = (e: KeyboardEvent<SVGPathElement>, id: string) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'ArrowRight') {
       e.preventDefault();
-      handleSelectCountry(id);
+      handleNext();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      handlePrev();
     }
   };
 
-  // Centroid calculations for active beacon and leader callout
-  const beaconGeometry = useMemo(() => {
-    if (!activePath) return null;
-    const [cx, cy] = activePath.centroid;
-    const isNearRightEdge = cx > 700;
-    const isNearTopEdge = cy < 260;
-    const dx = isNearRightEdge ? -24 : 24;
-    const dy = isNearTopEdge ? 24 : -24;
-    const lineEndX = isNearRightEdge ? dx - 85 : dx + 85;
-    return { cx, cy, isNearRightEdge, isNearTopEdge, dx, dy, lineEndX };
-  }, [activePath]);
-
   return (
-    <section className={`auth-visual-showcase ${className || ''}`} aria-label="Kanvas Kartografi Interaktif Asia">
-      {/* ── Top Cartography HUD Bar ── */}
+    <section
+      className={`auth-visual-showcase ${className || ''}`}
+      aria-label="Peta Interaktif Benua Asia"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
+      {/* ── Top Editorial Masthead (Bersih, Terintegrasi & Tanpa Sekat) ── */}
       <header className="auth-hud-bar">
         <Link to="/" className="auth-hud-brand" title="Kembali ke Beranda">
-          <Compass size={18} className="auth-hud-brand__icon" aria-hidden="true" />
+          <Compass size={20} className="auth-hud-brand__icon" aria-hidden="true" />
           <span className="auth-hud-brand__name">Asia Explorer</span>
           <span className="auth-hud-brand__badge">ATLAS</span>
         </Link>
 
-        <div className="auth-hud-coords" aria-live="polite">
-          <Radio size={12} className="auth-hud-coords__radar" aria-hidden="true" />
-          <span className="auth-hud-coords__text">
-            {activeMeta.coords.lat} · {activeMeta.coords.lng}
+        <div className="auth-hud-controls">
+          <span className="auth-hud-card-counter">
+            {String(currentIndex + 1).padStart(2, '0')} / {String(COUNTRY_AUTH_LIST.length).padStart(2, '0')}
           </span>
+          <button
+            type="button"
+            className="auth-hud-play-toggle"
+            onClick={() => {
+              setIsAutoPlaying((v) => !v);
+              setPauseUntil(0);
+            }}
+            title={isAutoPlaying ? 'Jeda Rotasi Otomatis' : 'Mulai Rotasi Otomatis'}
+            aria-label={isAutoPlaying ? 'Jeda Rotasi Otomatis' : 'Mulai Rotasi Otomatis'}
+          >
+            {isAutoPlaying ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="auth-hud-play-toggle"
-          onClick={() => {
-            setIsAutoPlaying((v) => !v);
-            setPauseUntil(0);
-          }}
-          title={isAutoPlaying ? 'Jeda Rotasi Otomatis' : 'Mulai Rotasi Otomatis'}
-          aria-label={isAutoPlaying ? 'Jeda Rotasi Otomatis' : 'Mulai Rotasi Otomatis'}
-        >
-          {isAutoPlaying ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}
-        </button>
       </header>
 
-      {/* ── Interactive SVG Map Canvas ── */}
-      <div className="auth-map-wrapper">
-        <svg
-          className="auth-map-svg"
-          viewBox={VIEW_BOX}
-          preserveAspectRatio="xMidYMid meet"
-          role="group"
-          aria-label="Peta Interaktif Benua Asia"
-        >
-          <defs>
-            {/* Filter glow for active country */}
-            <filter id="auth-country-glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="2" stdDeviation="6" floodColor={activeMeta.color} floodOpacity="0.65" />
-            </filter>
-            {/* Filter soft shadow for tags */}
-            <filter id="auth-tag-shadow" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#000000" floodOpacity="0.45" />
-            </filter>
-            {/* Ambient radial glow under the continent */}
-            <radialGradient id="auth-continent-glow" cx="55%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#1a5553" stopOpacity="0.38" />
-              <stop offset="65%" stopColor="#113339" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#0b1a1e" stopOpacity="0" />
-            </radialGradient>
-          </defs>
+      {/* Navigasi tersembunyi untuk aksesibilitas & screen-reader (tanpa tombol panah visual) */}
+      <button
+        type="button"
+        className="auth-carousel-arrow--hidden"
+        onClick={handlePrev}
+        aria-label="Negara Sebelumnya"
+      />
+      <button
+        type="button"
+        className="auth-carousel-arrow--hidden"
+        onClick={handleNext}
+        aria-label="Negara Berikutnya"
+      />
 
-          {/* Background Ambient Glow */}
-          <rect x="0" y="160" width="1000" height="680" fill="url(#auth-continent-glow)" />
-
-          {/* Graticule Latitude & Longitude Lines */}
-          <g className="auth-map__graticules" aria-hidden="true">
-            {[140, 280, 420, 560, 700, 840, 960].map((x) => (
-              <line key={`meridian-${x}`} x1={x} y1="160" x2={x} y2="840" className="auth-map__graticule-line" />
-            ))}
-            {[260, 390, 520, 650, 780].map((y) => (
-              <line key={`parallel-${y}`} x1="0" y1={y} x2="1000" y2={y} className="auth-map__graticule-line" />
-            ))}
-            {/* Coordinate Labels */}
-            <text x="24" y="275" className="auth-map__coord-label">45° N</text>
-            <text x="24" y="535" className="auth-map__coord-label">15° N</text>
-            <text x="24" y="795" className="auth-map__coord-label">10° S</text>
-            <text x="284" y="180" className="auth-map__coord-label">45° E</text>
-            <text x="564" y="180" className="auth-map__coord-label">90° E</text>
-            <text x="844" y="180" className="auth-map__coord-label">135° E</text>
-          </g>
-
-          {/* Vintage Nautical Compass Rose (Indian Ocean / Arabian Sea area) */}
-          <g className="auth-map__compass" transform="translate(130, 320)" aria-hidden="true">
-            <circle r="36" className="auth-compass__ring auth-compass__ring--outer" />
-            <circle r="26" className="auth-compass__ring" />
-            <circle r="14" className="auth-compass__ring auth-compass__ring--inner" />
-            {/* 8-point nautical star */}
-            <path
-              d="M0,-36 L4,-14 L26,-26 L14,-4 L36,0 L14,4 L26,26 L4,14 L0,36 L-4,14 L-26,26 L-14,4 L-36,0 L-14,-4 L-26,-26 L-4,-14 Z"
-              className="auth-compass__star"
-            />
-            <text x="0" y="-40" className="auth-compass__letter" textAnchor="middle">U</text>
-            <text x="0" y="49" className="auth-compass__letter" textAnchor="middle">S</text>
-            <text x="44" y="3" className="auth-compass__letter" textAnchor="start">T</text>
-            <text x="-44" y="3" className="auth-compass__letter" textAnchor="end">B</text>
-          </g>
-
-          {/* 15 Country Paths */}
-          <g className="auth-map__countries" role="presentation">
-            {mapPaths.map((entry) => {
-              const isActive = entry.id === activeMeta.id;
-              const isHovered = entry.id === hoveredId;
-
-              const pathStyle = {
-                fill: isActive
-                  ? activeMeta.color
-                  : isHovered
-                  ? 'rgba(255, 255, 255, 0.32)'
-                  : 'rgba(255, 255, 255, 0.08)',
-                stroke: isActive ? '#fffef9' : isHovered ? 'rgba(255, 255, 255, 0.65)' : 'rgba(255, 255, 255, 0.2)',
-                strokeWidth: isActive ? 2.5 : isHovered ? 1.7 : 1,
-                filter: isActive ? 'url(#auth-country-glow)' : undefined,
-                cursor: 'pointer',
-                transition: 'fill 0.3s ease, stroke 0.3s ease, opacity 0.3s ease',
-              };
-
-              return (
-                <path
-                  key={entry.id}
-                  d={entry.d}
-                  style={pathStyle}
-                  className={`auth-map__country-path ${isActive ? 'auth-map__country-path--active' : ''}`}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`${entry.name_id} (${isActive ? 'Terpilih' : 'Klik untuk pilih'})`}
-                  onClick={() => handleSelectCountry(entry.id)}
-                  onKeyDown={(e) => handlePathKeyDown(e, entry.id)}
-                  onMouseEnter={() => setHoveredId(entry.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                >
-                  <title>{entry.name_id}</title>
-                </path>
-              );
-            })}
-          </g>
-
-          {/* Active Country Beacon & Floating Leader Tag */}
-          {beaconGeometry && (
-            <g className="auth-map__beacon" transform={`translate(${beaconGeometry.cx}, ${beaconGeometry.cy})`}>
-              {/* Animated radiating radar waves */}
-              <circle r="7" className="auth-map__radar-wave auth-map__radar-wave--1" stroke={activeMeta.color} />
-              <circle r="7" className="auth-map__radar-wave auth-map__radar-wave--2" stroke={activeMeta.color} />
-
-              {/* Glowing Centroid Core Pin */}
-              <circle r="5" fill="#fffef9" stroke={activeMeta.color} strokeWidth="2.5" />
-
-              {/* Leader Callout Line */}
-              <path
-                d={`M 0 0 L ${beaconGeometry.dx} ${beaconGeometry.dy} L ${beaconGeometry.lineEndX} ${beaconGeometry.dy}`}
-                fill="none"
-                stroke="#fffef9"
-                strokeWidth="1.5"
-                strokeDasharray="2 2"
-                opacity="0.9"
-              />
-
-              {/* Floating Country HUD Pill */}
-              <g
-                transform={`translate(${
-                  beaconGeometry.isNearRightEdge ? beaconGeometry.lineEndX - 8 : beaconGeometry.dx
-                }, ${beaconGeometry.dy - 24})`}
-                filter="url(#auth-tag-shadow)"
-              >
-                <rect
-                  x={beaconGeometry.isNearRightEdge ? -95 : 0}
-                  y="0"
-                  width="95"
-                  height="26"
-                  rx="5"
-                  fill="rgba(11, 26, 30, 0.94)"
-                  stroke={activeMeta.color}
-                  strokeWidth="1.2"
-                />
-                <text
-                  x={beaconGeometry.isNearRightEdge ? -47 : 47}
-                  y="12"
-                  textAnchor="middle"
-                  fill="#fffef9"
-                  fontSize="11"
-                  fontWeight="600"
-                  fontFamily="var(--font-display, serif)"
-                >
-                  {activeMeta.nameId}
-                </text>
-                <text
-                  x={beaconGeometry.isNearRightEdge ? -47 : 47}
-                  y="21"
-                  textAnchor="middle"
-                  fill={activeMeta.color}
-                  fontSize="8.5"
-                  fontWeight="600"
-                  letterSpacing="0.04em"
-                >
-                  {activeMeta.script}
-                </text>
-              </g>
-            </g>
-          )}
-
-          {/* Hover tooltip for other countries */}
-          {hoveredId && hoveredId !== activeMeta.id && mapPathMap.get(hoveredId) && (
-            (() => {
-              const hPath = mapPathMap.get(hoveredId)!;
-              const hCountry = countryDataMap.get(hoveredId);
-              return (
-                <g
-                  className="auth-map__hover-tooltip"
-                  transform={`translate(${hPath.centroid[0]}, ${hPath.centroid[1] - 14})`}
-                  filter="url(#auth-tag-shadow)"
-                  pointerEvents="none"
-                >
-                  <rect
-                    x="-50"
-                    y="-20"
-                    width="100"
-                    height="20"
-                    rx="4"
-                    fill="rgba(14, 28, 32, 0.92)"
-                    stroke="rgba(255, 255, 255, 0.3)"
-                    strokeWidth="1"
-                  />
-                  <text
-                    x="0"
-                    y="-7"
-                    textAnchor="middle"
-                    fill="#fffef9"
-                    fontSize="9.5"
-                    fontWeight="500"
-                    fontFamily="var(--font-text, sans-serif)"
-                  >
-                    {hCountry?.nameId || hPath.name_id}
-                  </text>
-                </g>
-              );
-            })()
-          )}
-
-          {/* Cartographic Scale Legend in Bottom Corner */}
-          <g className="auth-map__legend" transform="translate(24, 820)" aria-hidden="true">
-            <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
-            <line x1="0" y1="-3" x2="0" y2="3" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
-            <line x1="50" y1="-2" x2="50" y2="2" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
-            <line x1="100" y1="-3" x2="100" y2="3" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
-            <text x="110" y="3" className="auth-map__legend-text">
-              SKALA 1:25.000.000 · LAMBERT EQUAL-AREA
-            </text>
-          </g>
-        </svg>
-      </div>
-
-      {/* ── Country Selector Pills Strip ── */}
-      <div className="auth-country-strip-wrap" aria-label="Pilih Negara Asia">
-        <div className="auth-country-strip" ref={pillStripRef} role="tablist">
-          {COUNTRY_AUTH_LIST.map((c, i) => {
-            const isSelected = i === currentIndex;
-            return (
-              <button
-                key={c.id}
-                ref={isSelected ? activePillRef : null}
-                type="button"
-                role="tab"
-                aria-selected={isSelected}
-                className={`auth-country-pill ${isSelected ? 'auth-country-pill--active' : ''}`}
-                onClick={() => handleSelectCountry(c.id)}
-              >
-                <span className="auth-country-pill__dot" style={{ backgroundColor: c.color }} />
-                <span className="auth-country-pill__label">{c.nameId}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ── Editorial Spotlight Card (Bottom Glass Drawer) ── */}
-      <div className="auth-spotlight-card">
-        {/* Emblem on the Left */}
-        <div className="auth-spotlight-emblem-wrap">
-          <div className="auth-spotlight-emblem" style={{ borderColor: activeMeta.color }}>
-            <span className="auth-spotlight-emblem__script">{activeMeta.script}</span>
-            <div className="auth-spotlight-emblem__compass-ring" aria-hidden="true" />
-          </div>
-        </div>
-
-        {/* Content in the Center */}
-        <div className="auth-spotlight-content">
-          <div className="auth-spotlight-meta-row">
-            <span className="auth-spotlight-region-badge">
+      {/* ── Panggung Utama Potongan Siluet Negara 2D (Bebas Kotak, Penuh & Interaktif) ── */}
+      <div
+        className="auth-showcase-stage"
+        onMouseEnter={() => setPauseUntil(Date.now() + 15000)}
+        onMouseLeave={() => setPauseUntil(0)}
+      >
+        {/* Header Informasi Negara */}
+        <div className="auth-showcase-header">
+          <div className="auth-showcase-meta-row">
+            <span className="auth-showcase-region">
               <Globe size={11} aria-hidden="true" />
               {activeMeta.region}
             </span>
-            <span className="auth-spotlight-script-badge">
+            <span className="auth-showcase-script-type">
               {activeMeta.scriptType}
             </span>
           </div>
 
-          <div className="auth-spotlight-title-row">
-            <h3 className="auth-spotlight-country">
-              {activeMeta.nameId}
-              <span className="auth-spotlight-country__local">({activeMeta.nativeName})</span>
-            </h3>
-          </div>
+          <h3 className="auth-showcase-country-name">
+            {activeMeta.nameId}
+            <span className="auth-showcase-native-name">({activeMeta.nativeName})</span>
+          </h3>
 
-          {/* Interactive Native Audio Greeting */}
+          <div className="auth-showcase-coords">
+            <MapPin size={12} className="auth-showcase-coords-icon" aria-hidden="true" />
+            <span>Ibukota {activeMeta.coords.capital} · {activeMeta.coords.lat}, {activeMeta.coords.lng}</span>
+          </div>
+        </div>
+
+        {/* Siluet Potongan Pulau/Negara 2D Interaktif (Bersih Tanpa Text Menumpuk) */}
+        <div className="auth-silhouette-stage">
+          <svg
+            className="auth-silhouette-svg"
+            viewBox={activeViewBox}
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label={`Potongan peta ${activeMeta.nameId}`}
+          >
+            {/* Siluet Utama Negara dari map-paths (Aset Landing Page) */}
+            {activePath && (
+              <g
+                className="auth-country-interactive-target"
+                role="button"
+                tabIndex={0}
+                onClick={handleSpeak}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleSpeak();
+                  }
+                }}
+                aria-label={`Klik siluet ${activeMeta.nameId} untuk dengarkan sapaan`}
+              >
+                <path
+                  d={activePath.d}
+                  fill={activeMeta.color}
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  vectorEffect="non-scaling-stroke"
+                  className="auth-silhouette-path"
+                />
+              </g>
+            )}
+          </svg>
+        </div>
+
+        {/* Footer Sapaan Budaya & Tagline */}
+        <div className="auth-showcase-footer">
           {activeCountryData && (
-            <div className="auth-spotlight-greeting">
+            <div className="auth-greeting-row">
               <button
                 type="button"
                 className={`auth-greeting-btn ${speaking ? 'auth-greeting-btn--speaking' : ''}`}
@@ -623,71 +435,46 @@ export default function AuthInteractiveMap({ onCountrySelect, className }: AuthI
                     <span className="auth-soundwave__bar" />
                   </span>
                 ) : (
-                  <Volume2 size={14} aria-hidden="true" />
+                  <Volume2 size={16} aria-hidden="true" />
                 )}
                 <span className="auth-greeting-btn__native">{activeCountryData.greeting.native}</span>
                 {activeCountryData.greeting.roman !== activeCountryData.greeting.native && (
                   <span className="auth-greeting-btn__roman">({activeCountryData.greeting.roman})</span>
                 )}
               </button>
+
               <span className="auth-greeting-meaning">
                 — {activeCountryData.greeting.meaningId}
               </span>
             </div>
           )}
 
-          {/* Cultural Tagline */}
-          <p className="auth-spotlight-tagline">
-            <Sparkles size={12} className="auth-spotlight-tagline__icon" aria-hidden="true" />
+          <p className="auth-showcase-tagline">
+            <Sparkles size={14} className="auth-showcase-tagline__icon" aria-hidden="true" />
             <span>{activeMeta.tagline}</span>
           </p>
         </div>
+      </div>
 
-        {/* Tactical Navigation Controls on the Right */}
-        <div className="auth-spotlight-controls">
-          <div className="auth-spotlight-nav-btns">
-            <button
-              type="button"
-              className="auth-spotlight-nav-btn"
-              onClick={handlePrev}
-              title="Negara Sebelumnya"
-              aria-label="Negara Sebelumnya"
-            >
-              <ChevronLeft size={16} aria-hidden="true" />
-            </button>
-            <span className="auth-spotlight-counter">
-              {currentIndex + 1} / {COUNTRY_AUTH_LIST.length}
-            </span>
-            <button
-              type="button"
-              className="auth-spotlight-nav-btn"
-              onClick={handleNext}
-              title="Negara Berikutnya"
-              aria-label="Negara Berikutnya"
-            >
-              <ChevronRight size={16} aria-hidden="true" />
-            </button>
-          </div>
-
-          {/* Mini progress dots */}
-          <div className="auth-spotlight-dots" role="tablist" aria-label="Indikator slide negara">
-            {COUNTRY_AUTH_LIST.map((c, i) => (
+      {/* ── Indikator Slide Minimalis di Dasar Panel ── */}
+      <footer className="auth-carousel-indicator-row" aria-label="Pilih Negara Asia">
+        <div className="auth-carousel-dots" role="tablist">
+          {COUNTRY_AUTH_LIST.map((c, i) => {
+            const isSelected = i === currentIndex;
+            return (
               <button
                 key={c.id}
                 type="button"
-                className={`auth-spotlight-dot ${i === currentIndex ? 'auth-spotlight-dot--active' : ''}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-label={c.nameId}
+                className={`auth-carousel-dot ${isSelected ? 'auth-carousel-dot--active' : ''}`}
                 onClick={() => handleSelectCountry(c.id)}
-                aria-label={`Slide ${c.nameId}`}
               />
-            ))}
-          </div>
+            );
+          })}
         </div>
-
-        {/* Auto-rotation timer progress line */}
-        {isAutoPlaying && Date.now() >= pauseUntil && (
-          <div key={currentIndex} className="auth-spotlight-progress-line" aria-hidden="true" />
-        )}
-      </div>
+      </footer>
     </section>
   );
 }

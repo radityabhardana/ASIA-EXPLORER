@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, type PanInfo } from 'framer-motion';
 
 interface WordTileProps {
   word: { id: string; text: string };
@@ -7,15 +8,10 @@ interface WordTileProps {
   isMobile: boolean;
   onTap: () => void;
   dragConstraints?: React.RefObject<HTMLElement | null>;
-  onDragEnd?: (info: { offset: { x: number; y: number } }) => void;
+  onDragStart?: () => void;
+  onDrag?: (info: PanInfo) => void;
+  onDragEnd?: (info: PanInfo) => void;
 }
-
-const stateStyles: Record<WordTileProps['state'], React.CSSProperties> = {
-  idle: {},
-  correct: { background: '#e8f5ee', borderColor: 'var(--color-correct)', borderWidth: 2 },
-  wrong: { background: '#fbeaea', borderColor: 'var(--color-wrong)', borderWidth: 2 },
-  hint: {},
-};
 
 const shakeTransition = {
   duration: 0.32,
@@ -29,8 +25,12 @@ export default function WordTile({
   isMobile,
   onTap,
   dragConstraints,
+  onDragStart,
+  onDrag,
   onDragEnd,
 }: WordTileProps) {
+  const isDraggingRef = useRef(false);
+
   const stateClass =
     state === 'idle'
       ? ''
@@ -52,31 +52,36 @@ export default function WordTile({
   // Shake for wrong
   const wrongAnimate =
     state === 'wrong'
-      ? { x: [0, -10, 10, -10, 10, 0], transition: shakeTransition }
+      ? { x: [0, -8, 8, -6, 6, -3, 3, 0], transition: shakeTransition }
       : {};
 
   const stateAnimate = state === 'correct' ? correctAnimate : state === 'wrong' ? wrongAnimate : {};
+
+  const handleTap = () => {
+    if (isDraggingRef.current) return;
+    onTap();
+  };
 
   if (isMobile) {
     return (
       <motion.div
         className={className}
-        style={stateStyles[state]}
-        layout
+        layout="position"
         role="button"
         tabIndex={0}
         aria-label={word.text}
-        onClick={onTap}
+        onTap={handleTap}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            onTap();
+            handleTap();
           }
         }}
-        whileTap={{ scale: 0.94 }}
+        whileTap={{ scale: 0.95 }}
         animate={stateAnimate}
+        transition={{ layout: { type: 'spring', stiffness: 500, damping: 32 } }}
       >
-        {word.text}
+        <span className="word-tile__text">{word.text}</span>
       </motion.div>
     );
   }
@@ -84,30 +89,47 @@ export default function WordTile({
   return (
     <motion.div
       className={className}
-      style={{ ...stateStyles[state], cursor: 'grab' }}
-      layout
+      layout="position"
       role="button"
       tabIndex={0}
       aria-label={word.text}
-      drag
+      drag={state === 'idle'}
+      dragSnapToOrigin={true}
       dragConstraints={dragConstraints}
-      dragElastic={0.2}
-      onDragEnd={(_, info) => onDragEnd?.({ offset: { x: info.offset.x, y: info.offset.y } })}
+      dragElastic={0}
+      dragMomentum={false}
+      onDragStart={() => {
+        isDraggingRef.current = true;
+        onDragStart?.();
+      }}
+      onDrag={(_, info) => {
+        onDrag?.(info);
+      }}
+      onDragEnd={(_, info) => {
+        onDragEnd?.(info);
+        // Delay resetting isDragging so accidental click is suppressed
+        setTimeout(() => {
+          isDraggingRef.current = false;
+        }, 70);
+      }}
+      onTap={handleTap}
+      whileHover={{ y: -2, transition: { duration: 0.12 } }}
       whileDrag={{
-        scale: 1.08,
-        boxShadow: '0 12px 32px rgba(0,0,0,0.18)',
-        zIndex: 50,
+        scale: 1.06,
+        boxShadow: '0 14px 32px rgba(43, 35, 28, 0.24)',
+        zIndex: 999,
         cursor: 'grabbing',
       }}
       animate={stateAnimate}
+      transition={{ layout: { type: 'spring', stiffness: 500, damping: 32 } }}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          onTap();
+          handleTap();
         }
       }}
     >
-      {word.text}
+      <span className="word-tile__text">{word.text}</span>
     </motion.div>
   );
 }

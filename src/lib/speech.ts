@@ -212,7 +212,7 @@ export function cancelSpeech(): void {
   if (typeof window === 'undefined') {
     return;
   }
-  if ('speechSynthesis' in window) {
+  if ('speechSynthesis' in window && window.speechSynthesis) {
     try {
       window.speechSynthesis.cancel();
     } catch {

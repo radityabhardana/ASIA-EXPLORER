@@ -18,7 +18,9 @@
     "noEmit": true,
     "types": ["vite/client"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@designcodeio/threeui": ["./src/shaders/landing-pages/LandingPages.tsx"],
+      "@designcodeio/threeui/style.css": ["./src/shaders/threeui.css"]
     }
   },
   "include": ["src", "e2e", "vite.config.ts", "playwright.config.ts"]

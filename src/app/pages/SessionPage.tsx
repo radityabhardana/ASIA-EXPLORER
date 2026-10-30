@@ -109,7 +109,12 @@ export default function SessionPage() {
   const currentBuildChallenge = content.buildChallenges[challengeIndex];
 
   return (
-    <>
+    <div className="session-page-wrap">
+      {/* Ambient Explorer Desk Wash (Consistent Across All Session Phases) */}
+      <div className="sk-atmo" aria-hidden="true" />
+      <img src="/landing-pages/meng-to-sketchbook/botany-left.png" alt="" className="sk-botany-left" aria-hidden="true" />
+      <img src="/landing-pages/meng-to-sketchbook/botany-right.png" alt="" className="sk-botany-right" aria-hidden="true" />
+
       {/* Sticky progress — always visible except reward */}
       {phase !== 'reward' && (
         <SessionProgress
@@ -166,6 +171,6 @@ export default function SessionPage() {
           onContinue={handleContinue}
         />
       )}
-    </>
+    </div>
   );
 }
