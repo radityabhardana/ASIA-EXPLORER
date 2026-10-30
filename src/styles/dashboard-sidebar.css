@@ -276,6 +276,11 @@
   outline-offset: 2px;
 }
 
+.dsidebar__signout:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* -----------------------------------------------------------------------------
  * Mobile Responsive Drawer & Top Bar System
  * ----------------------------------------------------------------------------- */

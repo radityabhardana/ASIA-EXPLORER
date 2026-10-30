@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Compass,
   Globe,
@@ -19,7 +19,7 @@ interface DashboardSidebarProps {
   profile: { displayName: string; id: string } | null;
   totalXP: number;
   streakDays: number;
-  onSignOut: () => void;
+  onSignOut: () => void | Promise<void>;
 }
 
 const NAV_ITEMS = [
@@ -62,7 +62,21 @@ export default function DashboardSidebar({
   onSignOut,
 }: DashboardSidebarProps) {
   const { pathname, hash } = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
+
+  const handleSignOutClick = async () => {
+    if (isSigningOut) return;
+    setIsSigningOut(true);
+    try {
+      await onSignOut();
+    } catch (err) {
+      console.error('Gagal keluar sesi:', err);
+    } finally {
+      navigate('/login', { replace: true });
+    }
+  };
 
   // Close mobile drawer whenever location changes
   useEffect(() => {
@@ -218,11 +232,17 @@ export default function DashboardSidebar({
 
       {/* Footer Sign Out */}
       <div className="dsidebar__footer">
-        <button className="dsidebar__signout" onClick={onSignOut} type="button">
+        <button
+          className="dsidebar__signout"
+          onClick={handleSignOutClick}
+          type="button"
+          disabled={isSigningOut}
+          aria-label="Keluar dari sesi"
+        >
           <span className="dsidebar__nav-icon-wrap" aria-hidden="true">
             <LogOut size={17} strokeWidth={1.8} />
           </span>
-          <span>Keluar Sesi</span>
+          <span>{isSigningOut ? 'Keluar...' : 'Keluar Sesi'}</span>
         </button>
       </div>
       </aside>

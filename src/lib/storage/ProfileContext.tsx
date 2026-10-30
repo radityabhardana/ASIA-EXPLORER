@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
 import type { Profile, Progress } from './types';
 import { getProfile, getProgress, saveProfile, saveProgress } from './db';
 import { getStoredLocale } from '@/lib/i18n';
@@ -25,6 +25,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<ProfileStatus>('loading');
   const [profile, setProfile] = useState<Profile | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
+  const isSigningOutRef = useRef(false);
 
   const refreshProgress = useCallback(async () => {
     if (!profile) {
@@ -40,6 +41,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   }, [profile]);
 
   const syncFirebaseUser = useCallback(async (firebaseUser: FirebaseUser): Promise<Profile> => {
+    isSigningOutRef.current = false;
     setStatus('loading');
     let active = await getProfile(firebaseUser.uid);
     if (!active) {
@@ -105,18 +107,28 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     let mounted = true;
 
     const unsubscribe = onAuthChange(async (firebaseUser) => {
-      if (!mounted) return;
+      if (!mounted || isSigningOutRef.current) return;
       if (firebaseUser) {
         try {
           await syncFirebaseUser(firebaseUser);
           return;
         } catch (err) {
           console.error('Gagal sinkronisasi profil auth:', err);
-          if (mounted) {
+          if (mounted && !isSigningOutRef.current) {
             setStatus('none');
           }
           return;
         }
+      }
+
+      // Jika sedang proses logout, jangan pulihkan sesi dari localStorage
+      if (isSigningOutRef.current) {
+        if (mounted) {
+          setProfile(null);
+          setProgress(null);
+          setStatus('none');
+        }
+        return;
       }
 
       // If no firebaseUser, check local storage / IndexedDB
@@ -134,12 +146,12 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
           }
         }
 
-        if (!mounted) return;
+        if (!mounted || isSigningOutRef.current) return;
 
         if (active) {
           setProfile(active);
           const prog = await getProgress(active.id);
-          if (!mounted) return;
+          if (!mounted || isSigningOutRef.current) return;
           setProgress(prog ?? null);
           setStatus('ready');
         } else {
@@ -148,7 +160,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
           setStatus('none');
         }
       } catch {
-        if (mounted) {
+        if (mounted && !isSigningOutRef.current) {
           setStatus('none');
         }
       }
@@ -161,6 +173,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   }, [syncFirebaseUser]);
 
   const signIn = useCallback(async (displayName: string): Promise<Profile> => {
+    isSigningOutRef.current = false;
     const trimmed = displayName.trim();
     if (!trimmed) {
       throw new Error('Nama tampilan tidak boleh kosong');
@@ -195,17 +208,28 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOut = useCallback(async () => {
-    try {
-      await signOutUser();
-    } catch {
-      // ignore
-    }
+    // 1. Kunci flag logout segera agar onAuthChange tidak membangkitkan profil lama
+    isSigningOutRef.current = true;
+
+    // 2. Bersihkan localStorage dan state profil segera sebelum await signOutUser
     if (typeof window !== 'undefined') {
       localStorage.removeItem(ACTIVE_PROFILE_STORAGE_KEY);
     }
     setProfile(null);
     setProgress(null);
     setStatus('none');
+
+    // 3. Putuskan sesi Firebase
+    try {
+      await signOutUser();
+    } catch {
+      // ignore
+    } finally {
+      // Pastikan flag bertahan agar event loop async Firebase tidak menduplikasi profile
+      setTimeout(() => {
+        isSigningOutRef.current = false;
+      }, 1000);
+    }
   }, []);
 
   return (
