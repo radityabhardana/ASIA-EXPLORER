@@ -241,7 +241,7 @@ export const DICTIONARY = {
     'dashboard.taskStoryDesc': 'Baca catatan mendalam dan narasi kehidupan budaya negara terpilih.',
     'dashboard.taskStoryBtn': 'Baca Cerita',
     'dashboard.taskAllDone': 'Semua Pelajaran Tuntas',
-    'dashboard.taskAllDoneDesc': 'Selamat! Anda telah menyelesaikan seluruh materi 10 negara dan memelihara memori frasa.',
+    'dashboard.taskAllDoneDesc': 'Selamat! Anda telah menyelesaikan seluruh materi {count} negara dan memelihara memori frasa.',
     'dashboard.taskAllDoneBtn': 'Jelajahi Peta 3D',
 
     // Vault & Leitner
@@ -565,7 +565,7 @@ export const DICTIONARY = {
     'dashboard.taskStoryDesc': 'Read in-depth notes and cultural life narratives of the chosen country.',
     'dashboard.taskStoryBtn': 'Read Story',
     'dashboard.taskAllDone': 'All Lessons Completed',
-    'dashboard.taskAllDoneDesc': 'Congratulations! You have completed all 10 countries and maintained phrase retention.',
+    'dashboard.taskAllDoneDesc': 'Congratulations! You have completed all {count} countries and maintained phrase retention.',
     'dashboard.taskAllDoneBtn': 'Explore 3D Map',
 
     // Vault & Leitner

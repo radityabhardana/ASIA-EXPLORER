@@ -5,6 +5,7 @@ import { NpcAvatarBadge } from './QuestIcons';
 interface NpcAvatarProps {
   npc: NpcInfo;
   expression: NpcExpression;
+  countryId?: string;
 }
 
 const expressionConfig: Record<
@@ -18,7 +19,7 @@ const expressionConfig: Record<
   kagum: { label: 'Sangat Kagum', icon: Sparkles, moodClass: 'sq-npc-badge--impressed' },
 };
 
-export default function NpcAvatar({ npc, expression }: NpcAvatarProps) {
+export default function NpcAvatar({ npc, expression, countryId }: NpcAvatarProps) {
   const currentMood = expressionConfig[expression] ?? expressionConfig.netral;
   const MoodIcon = currentMood.icon;
 
@@ -29,6 +30,7 @@ export default function NpcAvatar({ npc, expression }: NpcAvatarProps) {
           <NpcAvatarBadge
             avatar={npc.avatar}
             nama={npc.nama}
+            countryId={countryId}
             expression={expression}
             size="large"
           />

@@ -120,7 +120,7 @@ export default function CountryModulesPage() {
               </span>
               <span className="dashboard-header__status-badge">
                 <Sparkles size={13} aria-hidden="true" />
-                10 Negara Lengkap · 5 Negara Penjelajahan
+                48 Negara Terintegrasi Penuh
               </span>
             </div>
 
@@ -139,7 +139,7 @@ export default function CountryModulesPage() {
               </div>
               <div className="dashboard-stat-tile__content">
                 <span className="dashboard-stat-tile__label">Total Modul</span>
-                <span className="dashboard-stat-tile__value">15 Negara</span>
+                <span className="dashboard-stat-tile__value">48 Negara</span>
                 <span className="dashboard-stat-tile__sub">Seluruh Kawasan Asia</span>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function CountryModulesPage() {
               </div>
               <div className="dashboard-stat-tile__content">
                 <span className="dashboard-stat-tile__label">Kurikulum 4 Tahap</span>
-                <span className="dashboard-stat-tile__value">10 Negara</span>
+                <span className="dashboard-stat-tile__value">48 Negara</span>
                 <span className="dashboard-stat-tile__sub">Status Lengkap</span>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function CountryModulesPage() {
               </div>
               <div className="dashboard-stat-tile__content">
                 <span className="dashboard-stat-tile__label">Modul Selesai</span>
-                <span className="dashboard-stat-tile__value">{completedCount} / 10</span>
+                <span className="dashboard-stat-tile__value">{completedCount} / 48</span>
                 <span className="dashboard-stat-tile__sub">Tuntas Semua Tahap</span>
               </div>
             </div>
@@ -212,7 +212,7 @@ export default function CountryModulesPage() {
                 className={`country-modules__depth-btn ${selectedDepth === 'all' ? 'country-modules__depth-btn--active' : ''}`}
                 onClick={() => setSelectedDepth('all')}
               >
-                Semua (15)
+                Semua ({countries.length})
               </button>
               <button
                 type="button"
@@ -221,7 +221,7 @@ export default function CountryModulesPage() {
                 className={`country-modules__depth-btn ${selectedDepth === 'lengkap' ? 'country-modules__depth-btn--active' : ''}`}
                 onClick={() => setSelectedDepth('lengkap')}
               >
-                4 Tahap Lengkap (10)
+                4 Tahap Lengkap ({countries.filter((c) => isLengkapCountry(c.id)).length})
               </button>
               <button
                 type="button"
@@ -230,7 +230,7 @@ export default function CountryModulesPage() {
                 className={`country-modules__depth-btn ${selectedDepth === 'penjelajahan' ? 'country-modules__depth-btn--active' : ''}`}
                 onClick={() => setSelectedDepth('penjelajahan')}
               >
-                Penjelajahan Atlas (5)
+                Penjelajahan Atlas ({countries.filter((c) => !isLengkapCountry(c.id)).length})
               </button>
             </div>
           </div>
@@ -238,7 +238,7 @@ export default function CountryModulesPage() {
           {/* Region Tabs */}
           <div className="dashboard-filter-bar" role="tablist" aria-label="Filter kawasan benua Asia">
             {REGIONS.map((region) => {
-              const count = region === 'Semua' ? 15 : countries.filter((c) => c.region === region).length;
+              const count = region === 'Semua' ? countries.length : countries.filter((c) => c.region === region).length;
               const isActive = selectedRegion === region;
               return (
                 <button

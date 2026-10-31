@@ -17,6 +17,7 @@ vi.mock('@/lib/profile', () => ({
 vi.mock('@/lib/storage/db', () => ({
   getAttemptsByProfile: vi.fn().mockResolvedValue([]),
   getLessonsByProfile: vi.fn().mockResolvedValue([]),
+  getReviewsByProfile: vi.fn().mockResolvedValue([]),
 }));
 
 describe('QuestHubPage Cultural Adventure Catalog', () => {
@@ -37,7 +38,7 @@ describe('QuestHubPage Cultural Adventure Catalog', () => {
 
     expect(screen.getByText(/Katalog Petualangan Budaya & Etiket/i)).toBeInTheDocument();
     expect(screen.getByText(/PETUALANGAN BUDAYA INTERAKTIF/i)).toBeInTheDocument();
-    expect(screen.getByText(/dari 10 Petualangan Diselesaikan/i)).toBeInTheDocument();
+    expect(screen.getByText(/dari 48 Petualangan Diselesaikan/i)).toBeInTheDocument();
   });
 
   it(
@@ -60,6 +61,6 @@ describe('QuestHubPage Cultural Adventure Catalog', () => {
 
     // Check action buttons exist
     const playButtons = screen.getAllByRole('link', { name: /Mulai Petualangan/i });
-    expect(playButtons.length).toBe(10);
+    expect(playButtons.length).toBe(48);
   }, 15000);
 });

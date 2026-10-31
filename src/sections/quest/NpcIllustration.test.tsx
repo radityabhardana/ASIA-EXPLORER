@@ -52,6 +52,38 @@ describe('NpcIllustratedAvatar Component', () => {
     expect(avatar).toBeInTheDocument();
   });
 
+  it('resolves unique avatars for newly expanded Asian countries via countryId or name', () => {
+    // Kazakhstan
+    const { container: kz } = render(
+      <NpcIllustratedAvatar countryId="kz" nama="Aksakal Nurlan" size="small" />,
+    );
+    expect(kz.querySelector('[data-npc="KZ"]')).toBeInTheDocument();
+
+    // India
+    const { container: inEl } = render(
+      <NpcIllustratedAvatar countryId="in" nama="Paman Rajesh" size="small" />,
+    );
+    expect(inEl.querySelector('[data-npc="IN"]')).toBeInTheDocument();
+
+    // Malaysia
+    const { container: my } = render(
+      <NpcIllustratedAvatar countryId="my" nama="Encik Faizal" size="small" />,
+    );
+    expect(my.querySelector('[data-npc="MY"]')).toBeInTheDocument();
+
+    // Vietnam
+    const { container: vn } = render(
+      <NpcIllustratedAvatar countryId="vn" nama="Bibi Linh" size="small" />,
+    );
+    expect(vn.querySelector('[data-npc="VN"]')).toBeInTheDocument();
+
+    // United Arab Emirates
+    const { container: ae } = render(
+      <NpcIllustratedAvatar countryId="ae" nama="Syaikh Zayed" size="small" />,
+    );
+    expect(ae.querySelector('[data-npc="AE"]')).toBeInTheDocument();
+  });
+
   it('renders generic illustrated traveler fallback for unknown NPCs', () => {
     const { container } = render(<NpcIllustratedAvatar id="unknown" nama="Pemandu Misterius" />);
     const avatar = container.querySelector('[data-npc="GENERIC"]');

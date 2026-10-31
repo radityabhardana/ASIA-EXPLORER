@@ -5,9 +5,15 @@ import { validateQuestData } from '@/lib/story-quest/engine';
 describe('Story Quests Data Validation', () => {
   const allQuests = getAllStoryQuests();
 
-  it('contains exactly 10 story quests covering all supported countries', () => {
-    expect(allQuests).toHaveLength(10);
-    const expectedCountries = ['jp', 'th', 'id', 'sg', 'ph', 'cn', 'kr', 'sa', 'tr', 'uz'];
+  it('contains 48 story quests covering all Asian countries', () => {
+    expect(allQuests).toHaveLength(48);
+    const expectedCountries = [
+      'id', 'my', 'sg', 'th', 'vn', 'ph', 'cn', 'jp', 'kr', 'in',
+      'sa', 'tr', 'kz', 'uz', 'mn', 'bn', 'kh', 'la', 'mm', 'tl',
+      'kp', 'af', 'bd', 'bt', 'ir', 'mv', 'np', 'pk', 'lk', 'am',
+      'az', 'bh', 'ge', 'iq', 'il', 'kw', 'lb', 'om', 'ps', 'qa',
+      'cy', 'sy', 'ae', 'ye', 'jo', 'kg', 'tj', 'tm'
+    ];
     expectedCountries.forEach((code) => {
       expect(getStoryQuest(code)).toBeDefined();
     });

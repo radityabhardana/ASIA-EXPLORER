@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
   User as UserIcon,
@@ -15,8 +15,7 @@ import {
 } from 'lucide-react';
 import { useProfile } from '@/lib/profile';
 import { getLevelInfo, getXPProgress } from '@/lib/xp';
-import { getAttemptsByProfile, getLessonsByProfile, getReviewsByProfile } from '@/lib/storage/db';
-import type { Attempt, LessonProgress, PhraseReview } from '@/lib/storage/types';
+import { useExplorerStats } from '@/lib/useExplorerStats';
 import { computeLearningDNA, computeWeakSpots } from '@/lib/learningDna';
 import { getCountry } from '@/content/countries';
 import DashboardSidebar from '@/app/components/DashboardSidebar';
@@ -27,61 +26,14 @@ export default function ProfilePage() {
   const { profile, signOut } = useProfile();
   const profileId = profile?.id ?? '';
 
-  const [attempts, setAttempts] = useState<Attempt[]>([]);
-  const [lessons, setLessons] = useState<LessonProgress[]>([]);
-  const [reviews, setReviews] = useState<PhraseReview[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!profileId) return;
-    let isMounted = true;
-
-    Promise.all([
-      getAttemptsByProfile(profileId),
-      getLessonsByProfile(profileId),
-      getReviewsByProfile(profileId),
-    ])
-      .then(([att, les, revs]) => {
-        if (!isMounted) return;
-        setAttempts(att);
-        setLessons(les);
-        setReviews(revs);
-        setLoading(false);
-      })
-      .catch(() => {
-        if (isMounted) setLoading(false);
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [profileId]);
-
-  // Compute Total XP
-  const bonusXP = useMemo(() => {
-    if (typeof window === 'undefined') return 0;
-    return Number(localStorage.getItem(`xp_bonus_${profileId}`) ?? '0');
-  }, [profileId]);
-
-  const totalXP = useMemo(() => {
-    let xp = 0;
-    for (const l of lessons) {
-      xp += (l.stepsDone?.length ?? 0) * 25;
-    }
-    for (const a of attempts) {
-      if (a.finishedAt) {
-        const correctCount = a.answers.filter((ans) => ans.correct).length;
-        xp += correctCount * 10;
-      }
-    }
-    return xp + bonusXP;
-  }, [lessons, attempts, bonusXP]);
-
-  const streakDays = useMemo(() => {
-    if (typeof window === 'undefined') return 1;
-    const saved = localStorage.getItem(`streak_${profileId}`);
-    return saved ? Number(saved) : 1;
-  }, [profileId]);
+  const {
+    lessons,
+    attempts,
+    reviews: _reviews,
+    totalXP,
+    streakDays,
+    loading,
+  } = useExplorerStats(profileId);
 
   const levelInfo = getLevelInfo(totalXP);
   const xpProgress = getXPProgress(totalXP);

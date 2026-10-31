@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Compass,
@@ -83,14 +83,36 @@ export default function DashboardSidebar({
     setIsOpen(false);
   }, [pathname, hash]);
 
-  const levelInfo = getLevelInfo(totalXP);
-  const progress = getXPProgress(totalXP);
+  const profileId = profile?.id ?? '';
+  const effectiveTotalXP = useMemo(() => {
+    if (totalXP > 0) {
+      if (typeof window !== 'undefined' && profileId) {
+        try {
+          localStorage.setItem(`asiakin_cached_xp_${profileId}`, String(totalXP));
+          localStorage.setItem('asiakin_cached_xp_default', String(totalXP));
+        } catch {
+          // ignore
+        }
+      }
+      return totalXP;
+    }
+    if (typeof window !== 'undefined') {
+      const cached = profileId ? localStorage.getItem(`asiakin_cached_xp_${profileId}`) : null;
+      if (cached && Number(cached) > 0) return Number(cached);
+      const fallback = localStorage.getItem('asiakin_cached_xp_default');
+      if (fallback && Number(fallback) > 0) return Number(fallback);
+    }
+    return totalXP;
+  }, [totalXP, profileId]);
+
+  const levelInfo = getLevelInfo(effectiveTotalXP);
+  const progress = getXPProgress(effectiveTotalXP);
 
   const displayName = profile?.displayName ?? 'Penjelajah';
   const initials = getInitials(displayName);
   const avatarColor = getAvatarColor(displayName);
 
-  const xpInLevel = totalXP - levelInfo.xpRequired;
+  const xpInLevel = effectiveTotalXP - levelInfo.xpRequired;
   const xpNeeded = levelInfo.xpNext - levelInfo.xpRequired;
 
   return (
@@ -181,7 +203,7 @@ export default function DashboardSidebar({
             <span className="dsidebar__xp-value">
               {levelInfo.level < 7
                 ? `${xpInLevel} / ${xpNeeded} XP`
-                : `${totalXP} XP (Maksimal)`}
+                : `${effectiveTotalXP} XP (Maksimal)`}
             </span>
           </div>
           <div

@@ -962,7 +962,13 @@ export const QUEST_ITEMS: Record<string, QuestItem[]> = {
   ],
 };
 
-export const LENGKAP_COUNTRY_IDS = ['id', 'sg', 'th', 'ph', 'cn', 'jp', 'kr', 'sa', 'tr', 'uz'] as const;
+export const LENGKAP_COUNTRY_IDS = [
+  'id', 'my', 'sg', 'th', 'vn', 'ph', 'cn', 'jp', 'kr', 'in',
+  'sa', 'tr', 'kz', 'uz', 'mn', 'bn', 'kh', 'la', 'mm', 'tl',
+  'kp', 'af', 'bd', 'bt', 'ir', 'mv', 'np', 'pk', 'lk', 'am',
+  'az', 'bh', 'ge', 'iq', 'il', 'kw', 'lb', 'om', 'ps', 'qa',
+  'cy', 'sy', 'ae', 'ye', 'jo', 'kg', 'tj', 'tm'
+] as const;
 
 export function getQuestItemsForCountry(countryId: string): QuestItem[] {
   return QUEST_ITEMS[countryId] ?? [];

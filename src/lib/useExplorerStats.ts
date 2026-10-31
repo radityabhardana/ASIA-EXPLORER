@@ -7,6 +7,14 @@ import {
 } from '@/lib/storage/db';
 
 export function useExplorerStats(profileId: string) {
+  const getCachedXP = (): number => {
+    if (typeof window === 'undefined') return 0;
+    const direct = profileId ? localStorage.getItem(`asiakin_cached_xp_${profileId}`) : null;
+    if (direct && Number(direct) > 0) return Number(direct);
+    const fallback = localStorage.getItem('asiakin_cached_xp_default');
+    return fallback ? Number(fallback) : 0;
+  };
+
   const [lessons, setLessons] = useState<LessonProgress[]>([]);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [reviews, setReviews] = useState<PhraseReview[]>([]);
@@ -56,8 +64,24 @@ export function useExplorerStats(profileId: string) {
         xp += correctCount * 10;
       }
     }
-    return xp + bonusXP;
-  }, [lessons, attempts, bonusXP]);
+    const computed = xp + bonusXP;
+
+    if (loading) {
+      const cached = getCachedXP();
+      if (cached > computed) return cached;
+    }
+
+    if (computed > 0 && typeof window !== 'undefined' && profileId) {
+      try {
+        localStorage.setItem(`asiakin_cached_xp_${profileId}`, String(computed));
+        localStorage.setItem('asiakin_cached_xp_default', String(computed));
+      } catch {
+        // quota
+      }
+    }
+
+    return computed > 0 ? computed : getCachedXP();
+  }, [lessons, attempts, bonusXP, loading, profileId]);
 
   const streakDays = useMemo(() => {
     if (typeof window === 'undefined') return 1;

@@ -20,12 +20,43 @@ export interface ProfileContextValue {
 export const ProfileContext = createContext<ProfileContextValue | null>(null);
 
 export const ACTIVE_PROFILE_STORAGE_KEY = 'asiakin_active_profile_id';
+export const CACHED_PROFILE_KEY = 'asiakin_cached_profile';
 
 export function ProfileProvider({ children }: { children: React.ReactNode }) {
-  const [status, setStatus] = useState<ProfileStatus>('loading');
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(() => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const cached = localStorage.getItem(CACHED_PROFILE_KEY);
+      return cached ? (JSON.parse(cached) as Profile) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [status, setStatus] = useState<ProfileStatus>(() => {
+    if (typeof window === 'undefined') return 'loading';
+    try {
+      return localStorage.getItem(CACHED_PROFILE_KEY) ? 'ready' : 'loading';
+    } catch {
+      return 'loading';
+    }
+  });
   const [progress, setProgress] = useState<Progress | null>(null);
   const isSigningOutRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (profile) {
+      try {
+        localStorage.setItem(CACHED_PROFILE_KEY, JSON.stringify(profile));
+        localStorage.setItem(ACTIVE_PROFILE_STORAGE_KEY, profile.id);
+      } catch {
+        // storage quota fallback
+      }
+    } else if (isSigningOutRef.current) {
+      localStorage.removeItem(CACHED_PROFILE_KEY);
+      localStorage.removeItem(ACTIVE_PROFILE_STORAGE_KEY);
+    }
+  }, [profile]);
 
   const refreshProgress = useCallback(async () => {
     if (!profile) {
@@ -214,6 +245,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     // 2. Bersihkan localStorage dan state profil segera sebelum await signOutUser
     if (typeof window !== 'undefined') {
       localStorage.removeItem(ACTIVE_PROFILE_STORAGE_KEY);
+      localStorage.removeItem(CACHED_PROFILE_KEY);
     }
     setProfile(null);
     setProgress(null);

@@ -159,6 +159,13 @@ export default function DashboardPage() {
     return Number(localStorage.getItem(`xp_bonus_${profileId}`) ?? '0');
   });
 
+  useEffect(() => {
+    if (profileId && typeof window !== 'undefined') {
+      const savedBonus = Number(localStorage.getItem(`xp_bonus_${profileId}`) ?? '0');
+      setBonusXP(savedBonus);
+    }
+  }, [profileId]);
+
   const handleEarnXP = useCallback(
     (amount: number) => {
       setBonusXP((prev) => {
@@ -183,8 +190,26 @@ export default function DashboardPage() {
         xp += correctCount * 10;
       }
     }
-    return xp + bonusXP;
-  }, [lessons, rawAttempts, bonusXP]);
+    const computed = xp + bonusXP;
+
+    if (loading && typeof window !== 'undefined') {
+      const cached = profileId ? localStorage.getItem(`asiakin_cached_xp_${profileId}`) : null;
+      if (cached && Number(cached) > computed) return Number(cached);
+      const fallback = localStorage.getItem('asiakin_cached_xp_default');
+      if (fallback && Number(fallback) > computed) return Number(fallback);
+    }
+
+    if (computed > 0 && typeof window !== 'undefined' && profileId) {
+      try {
+        localStorage.setItem(`asiakin_cached_xp_${profileId}`, String(computed));
+        localStorage.setItem('asiakin_cached_xp_default', String(computed));
+      } catch {
+        // ignore
+      }
+    }
+
+    return computed;
+  }, [lessons, rawAttempts, bonusXP, loading, profileId]);
 
   const streakDays = useMemo(() => {
     if (typeof window === 'undefined') return 1;
@@ -440,7 +465,7 @@ export default function DashboardPage() {
               </div>
               <div className="dashboard-stat-tile__content">
                 <span className="dashboard-stat-tile__label">Pelajaran Lengkap</span>
-                <span className="dashboard-stat-tile__value">{completedLessonsCount} / 10</span>
+                <span className="dashboard-stat-tile__value">{completedLessonsCount} / {LENGKAP_COUNTRY_IDS.length}</span>
                 <span className="dashboard-stat-tile__sub">Modul 4 Tahap</span>
               </div>
             </div>
@@ -741,14 +766,14 @@ export default function DashboardPage() {
                 </Link>
               </div>
               <p className="dashboard-section-desc">
-                15 negara penjelajahan dengan 10 kurikulum bertingkat 4 tahap: Kenali, Etiket, Bahasa, dan Quest.
+                48 negara penjelajahan dengan kurikulum bertingkat 4 tahap: Kenali, Etiket, Bahasa, dan Quest.
               </p>
             </div>
 
             {/* Region Filter Bar */}
             <div className="dashboard-filter-bar" role="tablist" aria-label="Filter wilayah Asia">
               {REGIONS.map((region) => {
-                const count = region === 'Semua' ? 15 : countries.filter((c) => c.region === region).length;
+                const count = region === 'Semua' ? countries.length : countries.filter((c) => c.region === region).length;
                 const isActive = selectedRegion === region;
                 return (
                   <button

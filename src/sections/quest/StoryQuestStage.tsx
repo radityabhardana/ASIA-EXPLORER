@@ -128,7 +128,12 @@ export default function StoryQuestStage({
           <p className="sq-intro-card__lead">{quest.pengantar}</p>
 
           <div className="sq-intro-card__npc-preview">
-            <NpcAvatarBadge avatar={quest.npc.avatar} nama={quest.npc.nama} size="medium" />
+            <NpcAvatarBadge
+              avatar={quest.npc.avatar}
+              nama={quest.npc.nama}
+              countryId={quest.countryId}
+              size="medium"
+            />
             <div className="sq-intro-card__npc-text">
               <strong>{quest.npc.nama}</strong>
               <span>{quest.npc.peran}</span>
@@ -309,6 +314,7 @@ export default function StoryQuestStage({
           <div className="sq-stage-npc-col">
             <NpcAvatar
               npc={quest.npc}
+              countryId={quest.countryId}
               expression={activeReaction?.ekspresi ?? currentScene.dialog.ekspresi}
             />
           </div>

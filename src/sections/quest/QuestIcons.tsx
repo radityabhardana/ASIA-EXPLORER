@@ -103,6 +103,7 @@ export { NpcIllustratedAvatar };
 interface NpcAvatarBadgeProps {
   avatar?: string;
   nama: string;
+  countryId?: string;
   size?: 'small' | 'medium' | 'large';
   className?: string;
   expression?: 'senang' | 'netral' | 'bingung' | 'kecewa' | 'kagum';
@@ -111,6 +112,7 @@ interface NpcAvatarBadgeProps {
 export function NpcAvatarBadge({
   avatar = '',
   nama,
+  countryId = '',
   size = 'medium',
   className = '',
   expression = 'netral',
@@ -119,6 +121,7 @@ export function NpcAvatarBadge({
     <NpcIllustratedAvatar
       id={avatar}
       nama={nama}
+      countryId={countryId}
       size={size}
       className={className}
       expression={expression}
