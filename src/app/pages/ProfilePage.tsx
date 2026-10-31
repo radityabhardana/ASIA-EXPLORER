@@ -29,7 +29,7 @@ export default function ProfilePage() {
   const {
     lessons,
     attempts,
-    reviews: _reviews,
+    reviews,
     totalXP,
     streakDays,
     loading,
@@ -197,7 +197,7 @@ export default function ProfilePage() {
               </div>
               <div className="dashboard-stat-tile__content">
                 <span className="dashboard-stat-tile__label">Modul Selesai</span>
-                <span className="dashboard-stat-tile__value">{completedLessons.length} / 10</span>
+                <span className="dashboard-stat-tile__value">{completedLessons.length} / 48</span>
                 <span className="dashboard-stat-tile__sub">Negara Lengkap</span>
               </div>
             </div>
